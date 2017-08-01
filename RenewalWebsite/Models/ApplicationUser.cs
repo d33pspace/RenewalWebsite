@@ -9,5 +9,8 @@ namespace RenewalWebsite.Models
     // Add profile data for application users by adding properties to the ApplicationUser class
     public class ApplicationUser : IdentityUser
     {
+        public string FullName { get; set; }
+        public string Currency { get; set; }
+        public string Culture { get; set; }
     }
 }

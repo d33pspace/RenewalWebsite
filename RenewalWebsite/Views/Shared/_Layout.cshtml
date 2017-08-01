@@ -1,4 +1,6 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+﻿@using System.Globalization
+@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,14 +46,25 @@
         @RenderBody()
         <hr />
         <footer>
+            <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+            <p>@await Html.PartialAsync("_LanguageTogglePartial")</p>
             <p>&copy; 2017 - RenewalWebsite</p>
         </footer>
     </div>
+
+    <script>
+        window.globalSetting = {};
+        window.globalSetting.lang = '@CultureInfo.CurrentCulture.Name';
+    </script>
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
         <script src="~/js/site.js" asp-append-version="true"></script>
+        @if (CultureInfo.CurrentCulture.Name == "zh-CN")
+        {
+            // Chinese scripts
+        }
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"

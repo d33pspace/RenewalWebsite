@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
@@ -10,17 +11,20 @@ using Microsoft.Extensions.Options;
 using RenewalWebsite.Models;
 using RenewalWebsite.Models.ManageViewModels;
 using RenewalWebsite.Services;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace RenewalWebsite.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
+        private readonly ICurrencyService _currencyService;
         private readonly ILogger _logger;
 
         public ManageController(
@@ -29,7 +33,8 @@ namespace RenewalWebsite.Controllers
           IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
-          ILoggerFactory loggerFactory)
+          ILoggerFactory loggerFactory,
+          ICurrencyService currencyService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -37,6 +42,7 @@ namespace RenewalWebsite.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<ManageController>();
+            _currencyService = currencyService;
         }
 
         //
@@ -44,6 +50,8 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
+            // Optionaly use the region info to get default currency for user
+
             ViewData["StatusMessage"] =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -58,15 +66,70 @@ namespace RenewalWebsite.Controllers
             {
                 return View("Error");
             }
+
+            // Give the user a default currency if they dont have
+            if (string.IsNullOrEmpty(user.Currency))
+            {
+                var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
+                var culture = requestCulture.RequestCulture.Culture;
+                user.Currency = _currencyService.GetCurrent().Name;
+            }
+
+            var currencies = _currencyService.GetAll();
+
             var model = new IndexViewModel
             {
                 HasPassword = await _userManager.HasPasswordAsync(user),
                 PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
-                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user)
+                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+                FullName = user.FullName,
+                Culture = user.Culture,
+                Currency = user.Currency,
+                CurrencyList = new List<SelectListItem>(currencies.Select(c =>
+                                        new SelectListItem
+                                        {
+                                            Text = c.Symbol,
+                                            Value = c.CultureName
+                                        })),
+                CultureList = new List<SelectListItem>
+                {
+                    new SelectListItem
+                    {
+                        Value = "en-US",
+                        Text = "English"
+                    },
+                    new SelectListItem
+                    {
+                        Value = "zh-CN",
+                        Text = "Chinese"
+                    }
+                }
             };
             return View(model);
+        }
+
+        // POST: /Manage/RemoveLogin
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveProfile(IndexViewModel profile)
+        {
+            var user = await GetCurrentUserAsync();
+            if (user != null)
+            {
+                user.Currency = profile.Currency;
+                user.Culture = profile.Culture;
+                user.FullName = profile.FullName;
+                await _userManager.UpdateAsync(user);
+
+                // Update Localisation if is has changed
+                SetLanguage(profile.Culture);
+                SetCurrency(profile.Currency);
+
+                ViewData["StatusMessage"] = "Saved Profile";
+            }
+            return RedirectToAction(nameof(Index), "Manage");
         }
 
         //
