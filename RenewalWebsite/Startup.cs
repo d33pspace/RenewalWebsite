@@ -16,6 +16,8 @@ using RenewalWebsite.Services;
 using Microsoft.AspNetCore.Mvc.Razor;
 using System.Globalization;
 using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Rewrite;
 
 namespace RenewalWebsite
 {
@@ -57,7 +59,15 @@ namespace RenewalWebsite
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddMvc()
+            services.AddRouting(options =>
+            {
+                options.LowercaseUrls = true;
+            });
+
+            services.AddMvc(options =>
+            {
+                options.Filters.Add(new RequireHttpsAttribute());
+            })
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
 
@@ -72,6 +82,9 @@ namespace RenewalWebsite
         {
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+
+            var options = new RewriteOptions()
+                .AddRedirectToHttps();
 
             if (env.IsDevelopment())
             {
