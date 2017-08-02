@@ -129,7 +129,7 @@ namespace RenewalWebsite
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            appDbContext.Database.Migrate();
+            // appDbContext.Database.Migrate();
         }
     }
 }
