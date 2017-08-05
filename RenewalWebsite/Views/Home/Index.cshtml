@@ -14,34 +14,34 @@
     var currency = CurrencyService.GetCurrent();
     double exchangeRate = 6.8;
 
-    double giftOption1 = 18;
-    double giftOption2 = 63;
-    double giftOption3 = 200;
+    double giftOption1 = 100;
+    double giftOption2 = 350;
+    double giftOption3 = 600;
 
-    if (currency.Name.Contains("zh"))
+    if (currency.Name.Contains("en"))
     {
-        giftOption1 = giftOption1 * exchangeRate;
-        giftOption2 = giftOption2 * exchangeRate;
-        giftOption3 = giftOption3 * exchangeRate;
+        giftOption1 = giftOption1 / exchangeRate;
+        giftOption2 = giftOption2 / exchangeRate;
+        giftOption3 = giftOption3 / exchangeRate;
     }
 }
 
 <div class="row">
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <img src="~/images/slide-1.jpg" class="figure-img img-fluid" alt="donate page image">
-        <figcaption class="figure-caption caption">The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes.</figcaption>
+        <figcaption class="figure-caption caption">@Localizer["The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes."]</figcaption>
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2 class="mt-4">My gift of hot meals for homeless men and women</h2>
-        <p>@Localizer["YES! Use my gift below to transform the lives of Shanghai's poorest by providing them with food, clothes and opportunities to thrive. I'm sending my gift of:"]</p>
+        <h2 class="mt-4">@Localizer["My gift of hot meals"]</h2>
+        <p>@Localizer["YES! Use my gift below to offer hot meals and front-line basic services. I want to open a door for homeless people to a new life away from the streets."]</p>
         <ul class="list-unstyled rmb-options mb-5">
-            <li><input id="radio1" name="RMB-options" type="radio" value="178" checked /><strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide one day of showers, laundry and care for five people."]</li>
-            <li><input id="radio2" name="RMB-options" type="radio" value="356" /><strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide a week of shelter and training for one person."]</li>
-            <li><input id="radio3" name="RMB-options" type="radio" value="712" /><strong>@giftOption3.ToString("C", currency)</strong> @Localizer["towards shower renovations or the purchase of a new van."]</li>
-            <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" />@CurrencyService.GetSymbol(currency) <input id="choose-amount" type="text" /> @Localizer["to help as many people as possible today!"] </li>
+            <li><input id="radio1" name="RMB-options" type="radio" value="178" checked /><strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide 10 hot meals."]</li>
+            <li><input id="radio2" name="RMB-options" type="radio" value="356" /><strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide 35 hot meals."]</li>
+            <li><input id="radio3" name="RMB-options" type="radio" value="712" /><strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide 60 hot meals."]</li>
+            <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" />@CurrencyService.GetSymbol(currency) <input id="choose-amount" type="text" /> @Localizer["to feed and care for as many people as I can."] </li>
         </ul>
         <div class="clearfix mt-4 mb-5">
-            <a class="btn btn-secondary" href="#">DONATE NOW <i class="arrow right-arrow"></i></a>
+            <a class="btn btn-secondary" href="#">@Localizer["DONATE NOW"] <i class="arrow right-arrow"></i></a>
         </div>
     </div>
 </div>

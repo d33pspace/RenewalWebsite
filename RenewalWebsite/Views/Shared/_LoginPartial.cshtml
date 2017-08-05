@@ -12,7 +12,7 @@
                 <a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
             </li>
             <li class="nav-item">
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Log out</button>
+                <button type="submit" class="btn btn-link navbar-btn navbar-link">@Localizer["Log out"]</button>
             </li>
         </ul>
     </form>
@@ -21,10 +21,10 @@ else
 {
     <ul class="navbar-nav ml-auto right">
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Register">Register</a>
+            <a class="nav-link" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Login">Log in</a>
+            <a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Log in"]</a>
         </li>
     </ul>
 }

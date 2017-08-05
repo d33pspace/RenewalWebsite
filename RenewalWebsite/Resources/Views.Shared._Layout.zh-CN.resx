@@ -117,29 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DONATE NOW" xml:space="preserve">
-    <value>立即捐款</value>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
   </data>
-  <data name="My gift of hot meals" xml:space="preserve">
-    <value>我的资助为他们提供食物和改变命运的机会</value>
+  <data name="Program" xml:space="preserve">
+    <value>项目</value>
   </data>
-  <data name="The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes." xml:space="preserve">
-    <value>日新中心帮助有需要的人在上海找工作、找住所</value>
+  <data name="RENEWAL" xml:space="preserve">
+    <value>日新中心</value>
   </data>
-  <data name="to feed and care for as many people as I can." xml:space="preserve">
-    <value>为尽可能多的人提供食物与帮助</value>
-  </data>
-  <data name="to provide 10 hot meals." xml:space="preserve">
-    <value>提供10顿饭菜</value>
-  </data>
-  <data name="to provide 35 hot meals." xml:space="preserve">
-    <value>提供35顿饭菜</value>
-  </data>
-  <data name="to provide 60 hot meals." xml:space="preserve">
-    <value>提供60顿饭菜</value>
-  </data>
-  <data name="YES! Use my gift below to offer hot meals and front-line basic services. I want to open a door for homeless people to a new life away from the streets." xml:space="preserve">
-    <value>是的！请使用我的资助来为上海，以及来自全国各地最穷
-困的人们提供食物和帮助。我愿意捐赠：</value>
+  <data name="Services" xml:space="preserve">
+    <value>服务</value>
   </data>
 </root>
