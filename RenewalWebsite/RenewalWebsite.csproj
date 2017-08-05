@@ -11,10 +11,6 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-RenewalWebsite-d3947413-e3ea-45b0-8884-7a058d6ff7b9</UserSecretsId>
   </PropertyGroup>
-
-  <ItemGroup>
-    <Content Include="wwwroot\css\site.css" />
-  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
