@@ -38,7 +38,7 @@
             <li><input id="radio1" name="RMB-options" type="radio" value="178" checked /><strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide 10 hot meals."]</li>
             <li><input id="radio2" name="RMB-options" type="radio" value="356" /><strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide 35 hot meals."]</li>
             <li><input id="radio3" name="RMB-options" type="radio" value="712" /><strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide 60 hot meals."]</li>
-            <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" />@CurrencyService.GetSymbol(currency) <input id="choose-amount" type="text" /> @Localizer["to feed and care for as many people as I can."] </li>
+            <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" /><strong>@CurrencyService.GetSymbol(currency)</strong><input id="choose-amount" type="text" />@Localizer["to feed and care for as many people as I can."]</li>
         </ul>
         <div class="clearfix mt-4 mb-5">
             <a class="btn btn-secondary" href="#">@Localizer["DONATE NOW"] <i class="arrow right-arrow"></i></a>
