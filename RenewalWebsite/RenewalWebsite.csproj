@@ -11,6 +11,17 @@
   <PropertyGroup>
     <UserSecretsId>aspnet-RenewalWebsite-d3947413-e3ea-45b0-8884-7a058d6ff7b9</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="wwwroot\fonts\dpt35-webfont.woff" />
+    <Content Include="wwwroot\fonts\dpt35-webfont.woff2" />
+    <Content Include="wwwroot\fonts\dpt65-webfont.woff" />
+    <Content Include="wwwroot\fonts\dpt65-webfont.woff2" />
+    <Content Include="wwwroot\images\chines-cert.png" />
+    <Content Include="wwwroot\images\renewal-logo.png" />
+    <Content Include="wwwroot\images\renewal-logo@2x.png" />
+    <Content Include="wwwroot\images\slide-1.jpg" />
+  </ItemGroup>
   <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.4.337" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
