@@ -44,19 +44,5 @@
   <ItemGroup>
     <None Include="Resources\Views.Home.Services.zh-CN.resx" />
   </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Update="Resources\Views.Donate.Index.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views.Home.Index.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views.Shared._CurrencyTogglePartial.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views.Shared._FooterPartial.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-  </ItemGroup>
-
+  
 </Project>
