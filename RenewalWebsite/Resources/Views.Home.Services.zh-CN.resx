@@ -1,0 +1,156 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="After a time of working at Renewal, most program participants are ready to find a full-time job in the marketplace. Our local employment partners including restaurants, Element Fresh, and Maya help us match our residents with a job they value. Once they settle in and establish a personal budget, we give them further assistance to help them find a permanent home." xml:space="preserve">
+    <value>在日新中心工作一段时间后，大多数朋友们都可以在市场上找到一份还不错的工作。我们的合作伙伴包括新元素餐厅可以在这方面提供帮助。当朋友们工作稳定，有固定的收入后，我们还帮助这些朋友们在上海找一个长久的住所。</value>
+  </data>
+  <data name="After years of living on the fringes of society, it can seem impossible to find a good job – and the determination and discipline of full-time work is not something you learn overnight. Renewal’s Work Experience program invites people to serve in our laundry, maintaining the center or managing our essential services. Here, they gain valuable job skills while helping out other people in need." xml:space="preserve">
+    <value>被社会边缘化几年后，找一个不错的工作似乎是不可能的。工作的技能亦非一天就可以学到。日新中心的工作计划邀请碰们们加入洗衣、清洁和接待等工作。等学会工作技能后，再帮助朋友们走入社会。</value>
+  </data>
+  <data name="As we get to know people, many show an interest in gaining further support. For them, our dedicated team of volunteers run life skills workshops that help men and women begin to set goals, resolve conflicts, and express themselves more confidently through art and music. Many people start the process of renewing broken relationships or reconciling with family." xml:space="preserve">
+    <value>我们认识了这些朋友后，他们当中的大部分人会表示需要更多的帮助。志愿者们会帮助他们一起设立目标、解决矛盾，帮助他们重塑信心。很多人已经破裂的家庭关系得到了修复。</value>
+  </data>
+  <data name="Employment and Support" xml:space="preserve">
+    <value>工作和支持</value>
+  </data>
+  <data name="Essential Services" xml:space="preserve">
+    <value>基本卫生服务</value>
+  </data>
+  <data name="Every person who comes to Renewal is offered a hot shower, a change of clothes, laundry facilities, and a chance to let someone know what help they need. Each one will often receive a hot, nutritious meal. The streets can be tough, day and night. With continued support, Renewal will be here for everyone who needs friendship or a helping hand." xml:space="preserve">
+    <value>每位来到日新中心的朋友都可以洗一个热水澡、换一身干净的衣服、吃一顿热呼呼的简餐。日新中心提供洗衣机，他们可以把换下来的脏衣服洗掉。日新中心会了解他们有什么具体的需要。只要他们有需要，日新中心就一直会在他们身边。</value>
+  </data>
+  <data name="Life Skills Workshops" xml:space="preserve">
+    <value>生活技能练习</value>
+  </data>
+  <data name="People come to Renewal with complex problems. Some have addictions. Others have lost touch with family or been in trouble with the law. Some have spent many years without stability, have lost confidence and are unable to find a job, a permanent home, or in some cases even to stay clean and eat well." xml:space="preserve">
+    <value>来到日新中心的朋友都有各种各样的复杂问题，有的需要紧急帮助，有的与家里失去联系，有的带有各种法律纠纷，有的流浪已久没有信心开始一份新的工作，找到一个稳定的住所，有的甚至不能正常地吃东西和保持整洁干净。</value>
+  </data>
+  <data name="Renewal offers our guests four stages of progress to a better life, tailored to the individual..." xml:space="preserve">
+    <value>日新中心为我们的朋友们提供四个阶段的计划，因人而异</value>
+  </data>
+  <data name="The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes." xml:space="preserve">
+    <value>日新中心帮助有需要的人找到朋友、工作和家。日新中心需要您的支持。</value>
+  </data>
+  <data name="Work Experience" xml:space="preserve">
+    <value>实习</value>
+  </data>
+  <data name="Your support helps us work with each person as an individual, through four important stages..." xml:space="preserve">
+    <value>你的支持可以帮助我们通过四种方式为他们提供帮助...</value>
+  </data>
+</root>

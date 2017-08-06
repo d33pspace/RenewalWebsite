@@ -117,8 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DONATE" xml:space="preserve">
+    <value>捐款</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>主页</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>博客</value>
   </data>
   <data name="Program" xml:space="preserve">
     <value>项目</value>
