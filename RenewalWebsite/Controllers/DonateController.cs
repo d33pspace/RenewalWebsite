@@ -6,19 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace RenewalWebsite.Controllers
 {
-    public class HomeController : Controller
+    public class DonateController : Controller
     {
         public IActionResult Index()
-        {
-            return View();
-        }
-
-        public IActionResult Services()
-        {
-            return View();
-        }
-
-        public IActionResult Program()
         {
             return View();
         }

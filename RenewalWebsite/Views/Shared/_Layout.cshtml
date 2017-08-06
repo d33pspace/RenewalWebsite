@@ -21,10 +21,13 @@
                         <a class="nav-link" href="/">@Localizer["Home"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="News" asp-action="Index">@Localizer["Services"]</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Services">@Localizer["Services"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="News" asp-action="Index">@Localizer["Program"]</a>
+                        <a class="nav-link" asp-controller="News" asp-action="Index">@Localizer["News"]</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" asp-controller="Donate" asp-action="Index">@Localizer["DONATE"]</a>
                     </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -33,9 +36,6 @@
     </nav>
     <div class="container pad-top">
         @RenderBody()
-
-        <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
-        <p>@await Html.PartialAsync("_LanguageTogglePartial")</p>
     </div>
     @await Html.PartialAsync("_FooterPartial")
     @await Html.PartialAsync("_BootstrapScriptsPartial")

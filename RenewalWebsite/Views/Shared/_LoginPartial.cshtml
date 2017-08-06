@@ -20,11 +20,14 @@
 else
 {
     <ul class="navbar-nav ml-auto right">
-        <li class="nav-item">
+        <!--<li class="nav-item">
             <a class="nav-link" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
+        </li>-->
+        <li class="nav-item">
+            <a class="nav-link" asp-controller="Account" asp-action="Account">@Localizer["Log in"]</a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Log in"]</a>
+            @await Html.PartialAsync("_LanguageTogglePartial")
         </li>
     </ul>
 }
