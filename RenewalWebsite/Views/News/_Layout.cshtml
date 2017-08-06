@@ -1,0 +1,33 @@
+﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
+<!DOCTYPE html>
+<html>
+<head>
+    @await Html.PartialAsync("_HeadPartial")
+    @Html.Raw(JavaScriptSnippet.FullScript)
+</head>
+<body class="news-page">
+    <header class="masthead">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 p-20">
+                <div class="post-heading">
+                    <a class="news-link" href="/">Home</a>
+                    <img class="renewal-logo-news" src="~/images/renewal-logo-white.png" data-at2x="~/images/renewal-logo-white@2x.png" width="190" />
+                    <h1>Re:news</h1>
+                    <h2 class="subheading">How your gifts are transforming lives in Shanghai</h2>
+                    <div class="left"><h6>ISSUE 8</h6></div><div class="right"><h6>SPRING 2017</h6></div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 news issue-8">
+
+            </div>
+        </div>
+        <figcaption class="figure-caption caption news-caption">Men like Chen Zhen rely on Renewal for a place to shower, and a change of clothes and a healthy meal.</figcaption>
+    </header>
+    <article class="mb-5">
+        @RenderBody()
+    </article>
+    @await Html.PartialAsync("_FooterPartial")
+    @await Html.PartialAsync("_BootstrapScriptsPartial")
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
