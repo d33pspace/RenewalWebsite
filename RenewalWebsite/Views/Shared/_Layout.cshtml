@@ -14,17 +14,17 @@
                 <i class="fa fa-bars"></i>
             </button>
             <a class="navbar-brand hide-small" href="/"><img src="~/images/renewal-logo.png" data-at2x="~/images/renewal-logo@2x.png" width="100" /></a>
-            <a class="navbar-brand hide-large red" href="/">RENEWAL</a>
+            <a class="navbar-brand hide-large red" href="/">@Localizer["RENEWAL"]</a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav left">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">Home</a>
+                        <a class="nav-link" href="/">@Localizer["Home"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="News" asp-action="Index">Services</a>
+                        <a class="nav-link" asp-controller="News" asp-action="Index">@Localizer["Services"]</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="News" asp-action="Index">Program</a>
+                        <a class="nav-link" asp-controller="News" asp-action="Index">@Localizer["Program"]</a>
                     </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")

@@ -117,28 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Every" xml:space="preserve">
-    <value>每捐赠</value>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
   </data>
-  <data name="My gift of hot meals for homeless men and women" xml:space="preserve">
-    <value>我愿为无家可归人士献上一顿饱餐</value>
+  <data name="News" xml:space="preserve">
+    <value>博客</value>
   </data>
-  <data name="Yes, I want to offer the basic kindness of a hot meal while I hold the door open for people who want to walk through and into a new life. Please use my support to also offer showers, clean clothes, shelter and valuable job training. I'm sending:" xml:space="preserve">
-    <value>是的，我希望尽我的微薄之力为需要的人提供食物，我愿意帮助他们脱离贫困，走向新的生活。请利用我的捐助为他们提供洗澡、衣物、住所以及工作培训。我愿意捐助:</value>
+  <data name="Program" xml:space="preserve">
+    <value>项目</value>
   </data>
-  <data name="to provide" xml:space="preserve">
-    <value>提供</value>
+  <data name="RENEWAL" xml:space="preserve">
+    <value>日新中心</value>
   </data>
-  <data name="hot meals." xml:space="preserve">
-    <value>顿饭菜。</value>
-  </data>
-  <data name="DONATE NOW" xml:space="preserve">
-    <value>立即捐款</value>
-  </data>
-  <data name="of your gift will provide a hot meal to a homeless person." xml:space="preserve">
-    <value>人民币，您就能在寒冬中为一个无家可归的人提供一顿热腾腾的饭菜。</value>
-  </data>
-  <data name="to help as much as I can." xml:space="preserve">
-    <value>提供尽可能多的帮助。</value>
+  <data name="Services" xml:space="preserve">
+    <value>服务</value>
   </data>
 </root>
