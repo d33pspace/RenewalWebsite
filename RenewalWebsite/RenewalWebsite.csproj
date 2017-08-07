@@ -13,16 +13,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="wwwroot\images\campaigns\slide-matching.jpg" />
-    <Content Include="wwwroot\images\home\slide-eating.jpg" />
-    <Content Include="wwwroot\images\home\slide-laundry.jpg" />
-    <Content Include="wwwroot\images\home\slide-water.jpg" />
-    <Content Include="wwwroot\images\home\slide-ziggy.jpg" />
-    <Content Include="wwwroot\images\slide-matching.jpg" />
-    <Content Include="wwwroot\images\zhifubao.jpg" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="BuildBundlerMinifier" Version="2.4.337" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="1.1.2" />
