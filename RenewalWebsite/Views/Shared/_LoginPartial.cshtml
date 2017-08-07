@@ -24,7 +24,7 @@ else
             <a class="nav-link" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
         </li>-->
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Account">@Localizer["Log in"]</a>
+            <a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Account"]</a>
         </li>
         <li class="nav-item">
             @await Html.PartialAsync("_LanguageTogglePartial")

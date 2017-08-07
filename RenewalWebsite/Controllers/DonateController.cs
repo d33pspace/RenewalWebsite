@@ -13,6 +13,11 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
+        public IActionResult Campaign1708()
+        {
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View();

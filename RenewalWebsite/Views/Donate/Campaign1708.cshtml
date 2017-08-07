@@ -1,0 +1,58 @@
+﻿@using System.Globalization
+@using RenewalWebsite.Services
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+@inject ICurrencyService CurrencyService
+
+@{
+    ViewData["Title"] = Localizer["Renewal"].Value;
+
+    var currency = CurrencyService.GetCurrent();
+    double exchangeRate = 6.8;
+
+    double giftBase = 10;
+    double giftOption1 = 100;
+    double giftOption2 = 350;
+    double giftOption3 = 600;
+    double giftOption1x2 = 200;
+    double giftOption2x2 = 700;
+    double giftOption3x2 = 1200;
+
+    if (currency.Name.Contains("en"))
+    {
+        giftBase = giftBase / exchangeRate;
+        giftOption1 = giftOption1 / exchangeRate;
+        giftOption2 = giftOption2 / exchangeRate;
+        giftOption3 = giftOption3 / exchangeRate;
+        giftOption1x2 = giftOption1x2 / exchangeRate;
+        giftOption2x2 = giftOption2x2 / exchangeRate;
+        giftOption3x2 = giftOption3x2 / exchangeRate;
+    }
+}
+
+<div class="row">
+    <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+        <img src="~/images/campaigns/slide-matching.jpg" class="figure-img img-fluid" alt="donate page image">
+        <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal to a homeless person."]</figcaption>
+    </div>
+    <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+        <h2 class="mt-4">@Localizer["Double my gift to save and shelter more people"]</h2>
+        <p>@Localizer["Please double my gift to save more people from the cold streets this winter through the board's generous matching grant! I'm sending my gift today:"]</p>
+        <!-- <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p> -->
+        <ul class="list-unstyled rmb-options mb-5">
+            <li><!--<input id="radio1" name="RMB-options" type="radio" value="178" checked /> -->A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["will matched, and doubled to"] <strong>@giftOption1x2.ToString("C", currency)</strong></li>
+            <li><!--<input id="radio2" name="RMB-options" type="radio" value="356" /> -->A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption2x2.ToString("C", currency)</strong></li>
+            <li><!--<input id="radio3" name="RMB-options" type="radio" value="712" /> -->A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption3x2.ToString("C", currency)</strong></li>
+            <li><!--<input id="radio4" name="RMB-options" type="radio" value="choose-amount" /> <strong>@CurrencyService.GetSymbol(currency)</strong> <input id="choose-amount" type="text" /> -->@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
+        </ul>
+        <div class="clearfix mt-4 mb-5">
+            <a class="btn btn-secondary" href="#">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
+        </div>
+        <p>Scan with Alipay to donate now:</p>
+        <img src="~/images/zhifubao.jpg" width="125" />
+        <p><a href="">Donate now using credit card</a></p>
+        <p><a href="">See other ways to give</a></p>
+        
+    </div>
+</div>

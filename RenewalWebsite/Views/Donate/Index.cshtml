@@ -27,7 +27,7 @@
 
 <div class="row">
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <img src="~/images/slide-1.jpg" class="figure-img img-fluid" alt="donate page image">
+        <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
         <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal to a homeless person."]</figcaption>
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
@@ -39,9 +39,12 @@
             <li><input id="radio3" name="RMB-options" type="radio" value="712" /> <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
             <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" /> <strong>@CurrencyService.GetSymbol(currency)</strong> <input id="choose-amount" type="text" /> @Localizer["to help as much as I can."]</li>
         </ul>
+        <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
         <div class="clearfix mt-4 mb-5">
-            <a class="btn btn-secondary" href="#">@Localizer["DONATE NOW"] <i class="arrow right-arrow"></i></a>
+            <a class="btn btn-secondary" href="#">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"] <i class="arrow right-arrow"></i></a>
         </div>
-        <p><p>@await Html.PartialAsync("_CurrencyTogglePartial")</p></p>
+        <p><a href="">Donate now using Alipay</a></p>
+        <p><a href="">See other ways to give</a></p>
+        
     </div>
 </div>
