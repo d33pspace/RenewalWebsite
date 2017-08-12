@@ -22,11 +22,6 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        public IActionResult WeChat()
-        {
-            return View();
-        }
-
         public IActionResult Error()
         {
             return View();
