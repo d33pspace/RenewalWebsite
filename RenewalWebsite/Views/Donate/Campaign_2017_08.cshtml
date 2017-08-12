@@ -32,27 +32,30 @@
 }
 
 <div class="row">
+
+    @if (ViewBag.Browser.Contains("QQBrowser"))
+    {
+        if (ViewBag.Browser.Contains("Mac OS X"))
+        {
+            <h2 class="m4-t">Please open this page in Safari.</h2>
+                    <p>WeChat isn't compatible with Alipay. To continue, please select "Open in Safari" from the context menu (three dots) at the top of your screen.</p>
+        }
+        else
+        {
+            <h2 class="m4-t">Please open this page in your browser.</h2>
+                    <p>WeChat isn't compatible with Alipay. To continue, please select "Open in Browser" from the context menu (thee dots) at the top of your screen.</p>
+        }
+        <div class="clearfix mt-4 mb-5">
+            <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
+        </div>
+    }
+    else
+    {
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <img src="~/images/campaigns/slide-matching.jpg" class="figure-img img-fluid" alt="donate page image">
         <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal to a homeless person."]</figcaption>
     </div>
-    <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-
-        @if (ViewBag.Browser.Contains("QQBrowser"))
-        {
-            if (ViewBag.Browser.Contains("Mac OS X"))
-            {
-                <h2 class="m4-t">Please open this page in Safari.</h2>
-                <p>How rude! The WeChat browser isn't compatible with Alipay. To continue, please select "Open in Safari" from the context menu (three dots) at the top of your screen.</p>
-            }
-            else
-            {
-                <h2 class="m4-t">Please open this page in your browser.</h2>
-                <p>How rude! The WeChat browser isn't compatible with Alipay. To continue, please select "Open in Browser" from the context menu (thee dots) at the top of your screen.</p>
-            }
-        }
-        else
-        {
+    <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">   
             <h2 class="mt-4">@Localizer["Double my gift to save and shelter more people"]</h2>
             <p>@Localizer["Please double my gift to save more people from the cold streets this winter through the board's generous matching grant! I'm sending my gift today:"]</p>
             <!-- <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p> -->
@@ -69,9 +72,6 @@
             <img src="~/images/zhifubao.jpg" width="125" />
             <p><a href="">Donate now using credit card</a></p>
             <p><a href="">See other ways to give</a></p>
-        }
-
-        
-        
     </div>
+    }
 </div>
