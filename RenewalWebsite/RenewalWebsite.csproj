@@ -38,7 +38,7 @@
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Update="Resources\Views.Shared._HeaderPartial.zh-CN.resx">
+    <EmbeddedResource Update="Resources\Views.Shared._HeadPartial.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
   </ItemGroup>
