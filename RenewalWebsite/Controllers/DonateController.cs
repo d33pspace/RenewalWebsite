@@ -13,12 +13,17 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        public IActionResult Campaign1708()
+        public IActionResult Campaign_2017_08()
         {
             var agent = Request.Headers["User-Agent"];
             Console.WriteLine(agent.ToString());
             ViewBag.Browser = agent.ToString();
 
+            return View();
+        }
+
+        public IActionResult WeChat_2017_08()
+        {
             return View();
         }
 

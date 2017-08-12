@@ -40,11 +40,19 @@
 
         @if (ViewBag.Browser.Contains("QQBrowser"))
         {
-            <h2 class="m4-t">Please open this page in Safari.</h2>
-            <p>How rude! The WeChat browser isn't compatible with Alipay. To continue, please select "Open in Browser" from the context menu at the top of your screen.</p>
+            if (ViewBag.Browser.Contains("Mac OS X"))
+            {
+                <h2 class="m4-t">Please open this page in Safari.</h2>
+                <p>How rude! The WeChat browser isn't compatible with Alipay. To continue, please select "Open in Safari" from the context menu (three dots) at the top of your screen.</p>
+            }
+            else
+            {
+                <h2 class="m4-t">Please open this page in your browser.</h2>
+                <p>How rude! The WeChat browser isn't compatible with Alipay. To continue, please select "Open in Browser" from the context menu (thee dots) at the top of your screen.</p>
+            }
         }
         else
-        { 
+        {
             <h2 class="mt-4">@Localizer["Double my gift to save and shelter more people"]</h2>
             <p>@Localizer["Please double my gift to save more people from the cold streets this winter through the board's generous matching grant! I'm sending my gift today:"]</p>
             <!-- <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p> -->
