@@ -15,6 +15,15 @@ namespace RenewalWebsite.Controllers
 
         public IActionResult Campaign1708()
         {
+            var agent = Request.Headers["User-Agent"];
+            Console.WriteLine(agent.ToString());
+            ViewBag.Browser = agent.ToString();
+
+            return View();
+        }
+
+        public IActionResult WeChat()
+        {
             return View();
         }
 
