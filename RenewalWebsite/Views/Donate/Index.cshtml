@@ -23,6 +23,9 @@
         giftOption2 = giftOption2 / exchangeRate;
         giftOption3 = giftOption3 / exchangeRate;
     }
+
+    //TODO: How to handle excessive decimal digits?
+
 }
 
 <div class="row">
@@ -31,7 +34,7 @@
         <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal to a homeless person."]</figcaption>
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2 class="mt-4">@Localizer["My gift of hot meals for homeless men and women"]</h2>
+        <h2>@Localizer["My gift of hot meals for homeless men and women"]</h2>
         <p>@Localizer["Yes, I want to offer the basic kindness of a hot meal while I hold the door open for people who want to walk through and into a new life. Please use my support to also offer showers, clean clothes, shelter and valuable job training. I'm sending:"]</p>
         <ul class="list-unstyled rmb-options mb-5">
             <li><input id="radio1" name="RMB-options" type="radio" value="178" checked /> <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>

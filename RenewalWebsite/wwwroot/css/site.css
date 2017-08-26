@@ -448,6 +448,20 @@ hr {
     font-size: 14px;
 }
 
+ul.gift-options {
+    list-style-type: none;
+}
+
+    ul.gift-options li {
+        background-image: url(../images/bullet.png);
+        background-position: left;
+        background-position: 0px 5px;
+        background-repeat: no-repeat;
+        background-size: 20px 20px;
+        padding-left: 40px;
+        margin-top: 12px;
+    }
+
 
 /*-----------------------------------------------------------------------------------*/
 /*  4 - FORMS
@@ -591,6 +605,9 @@ form.contact {
 
 input#choose-amount {
     width: 15%;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: none;
     margin-top: 0px;
     margin-bottom: 0px;
     border: 1px solid rgba(0,0,0,.15);
@@ -681,7 +698,7 @@ a.dropdown-toggle {
     border: solid 2px;
 }
 
-    .btn-primary:focus, .btn-primary.focus {
+    .btn-primary:focus, .btn-primary.focus, .btn-secondary:focus {
         color: white;
         border-color: #d11241 !important;
         background-color: #d11241 !important;
@@ -755,7 +772,7 @@ fieldset[disabled] .btn-primary.focus {
 
     .btn-secondary:hover {
         color: #d11241;
-        background-color: white;
+        background-color: white !IMPORTANT;
         border-color: #d11241;
         border: 2px solid;
         cursor: pointer;
@@ -1002,7 +1019,7 @@ a.news-link:hover {
 }
 
 .news.issue-8 {
-    background-image: url(../images/news/issue8/news-web-header.jpg);
+    background-image: url(../img/news-web-header.jpg);
     background-size: cover;
     min-height: 500px;
 }
@@ -1264,6 +1281,11 @@ p.excerpt {
         width: 109%;
         max-width: 109%;
         margin-left: -15px;
+    }
+
+    .btn {
+        font-size: 12px;
+        max-width: 100%;
     }
 }
 
