@@ -56,11 +56,11 @@
             <h2 class="mt-4">@Localizer["Double my gift to save and shelter more people"]</h2>
             <p>@Localizer["Please double my gift to save more people from the cold streets this winter through the board's generous matching grant! I'm sending my gift today:"]</p>
             <!-- <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p> -->
-            <ul class="list-unstyled rmb-options mb-5">
-                <li><!--<input id="radio1" name="RMB-options" type="radio" value="178" checked /> -->A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["will matched, and doubled to"] <strong>@giftOption1x2.ToString("C", currency)</strong></li>
-                <li><!--<input id="radio2" name="RMB-options" type="radio" value="356" /> -->A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption2x2.ToString("C", currency)</strong></li>
-                <li><!--<input id="radio3" name="RMB-options" type="radio" value="712" /> -->A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption3x2.ToString("C", currency)</strong></li>
-                <li><!--<input id="radio4" name="RMB-options" type="radio" value="choose-amount" /> <strong>@CurrencyService.GetSymbol(currency)</strong> <input id="choose-amount" type="text" /> -->@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
+            <ul class="list-unstyled gift-options mb-5">
+                <li>A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["will matched, and doubled to"] <strong>@giftOption1x2.ToString("C", currency)</strong></li>
+                <li>A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption2x2.ToString("C", currency)</strong></li>
+                <li>A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption3x2.ToString("C", currency)</strong></li>
+                <li>@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
             </ul>
             <div class="clearfix mt-4 mb-5">
                 <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
