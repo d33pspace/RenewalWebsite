@@ -29,25 +29,59 @@
 }
 
 <div class="row">
-    <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
-        <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal to a homeless person."]</figcaption>
-    </div>
-    <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["My gift of hot meals for homeless men and women"]</h2>
-        <p>@Localizer["Yes, I want to offer the basic kindness of a hot meal while I hold the door open for people who want to walk through and into a new life. Please use my support to also offer showers, clean clothes, shelter and valuable job training. I'm sending:"]</p>
-        <ul class="list-unstyled rmb-options mb-5">
-            <li><input id="radio1" name="RMB-options" type="radio" value="178" checked /> <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
-            <li><input id="radio2" name="RMB-options" type="radio" value="356" /> <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
-            <li><input id="radio3" name="RMB-options" type="radio" value="712" /> <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
-            <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" /> <strong>@CurrencyService.GetSymbol(currency)</strong> <input id="choose-amount" type="text" /> @Localizer["to help as much as I can."]</li>
-        </ul>
-        <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
-        <div class="clearfix mt-4 mb-5">
-            <a class="btn btn-secondary" href="#">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"] <i class="arrow right-arrow"></i></a>
+
+    @if (ViewBag.Browser.Contains("QQBrowser"))
+    {
+        if (ViewBag.Browser.Contains("Mac OS X"))
+        {
+            <h2>Please open this page in Safari.</h2>
+            <p>Our site isn't compatible with WeChat. To continue, please select "Open in Safari" from the context menu (three dots) at the top of your screen.</p>
+        }
+        else
+        {
+            <h2>Please open this page in your browser.</h2>
+            <p>Our site isn't compatible with WeChat. To continue, please select "Open in Browser" from the context menu (thee dots) at the top of your screen.</p>
+        }
+    }
+    else
+    {
+        <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+            <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
+            <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal to a homeless person."]</figcaption>
         </div>
-        <p><a href="">Donate now using Alipay</a></p>
-        <p><a href="">See other ways to give</a></p>
-        
-    </div>
+        <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+            <h2>@Localizer["My gift of hot meals for homeless men and women"]</h2>
+            <p>@Localizer["Yes, I want to offer the basic kindness of a hot meal while I hold the door open for people who want to walk through and into a new life. Please use my support to also offer showers, clean clothes, shelter and valuable job training. I'm sending:"]</p>
+
+            @if (currency.Name.Contains("en"))
+            {
+                <p>I would like to make a [monthly | quarterly | yearly | one time] gift of:</p>
+                <ul class="list-unstyled rmb-options mb-5">
+                    <li><input id="radio1" name="RMB-options" type="radio" value="" checked /> <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
+                    <li><input id="radio2" name="RMB-options" type="radio" value="" /> <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
+                    <li><input id="radio3" name="RMB-options" type="radio" value="" /> <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
+                    <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" /> <strong>@CurrencyService.GetSymbol(currency)</strong> <input id="choose-amount" type="text" /> @Localizer["to help as much as I can."]</li>
+                </ul>
+                <div class="clearfix mt-4 mb-5">
+                    <a class="btn btn-secondary" asp-controller="Donate" asp-action="Details">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"] <i class="arrow right-arrow"></i></a>
+                </div>
+                <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+            }
+            else
+            {
+                <ul class="list-unstyled gift-options mb-5">
+                    <li>A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
+                    <li>A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
+                    <li>A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
+                    <li>@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
+                </ul>
+                <div class="clearfix mt-4 mb-5">
+                    <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
+                </div>
+                <p>Or scan the QR code below with your Alipay app to donate now:</p>
+                <img src="~/images/zhifubao.jpg" width="125" />
+                <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+            }
+        </div>
+    }
 </div>

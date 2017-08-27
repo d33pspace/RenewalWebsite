@@ -10,11 +10,26 @@ namespace RenewalWebsite.Controllers
     {
         public IActionResult Index()
         {
+            var agent = Request.Headers["User-Agent"];
+            Console.WriteLine(agent.ToString());
+            ViewBag.Browser = agent.ToString();
+
+            return View();
+        }
+
+        public IActionResult Details()
+        {
+            return View();
+        }
+
+        public IActionResult Thanks()
+        {
             return View();
         }
 
         public IActionResult Campaign_2017_08()
         {
+            //TODO: This code repeated
             var agent = Request.Headers["User-Agent"];
             Console.WriteLine(agent.ToString());
             ViewBag.Browser = agent.ToString();

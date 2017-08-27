@@ -1,0 +1,17 @@
+﻿@using Microsoft.AspNetCore.Mvc.Localization
+
+@inject IViewLocalizer Localizer
+
+<div class="row">
+        <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+            <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
+            <figcaption class="figure-caption caption">@Localizer["The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes."]</figcaption>
+        </div>
+        <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+            <h2>Thank you!</h2>
+            <p>Your card was charged successfully. Thank you for your kind gift of $100.</p>
+            <p>[For subscriptions only:]</p>
+            <p>Your gift will repeat [monthly | quarterly | yearly]. To manage or cancel your subscription anytime, follow the link below.</p>
+            <a href="">@Localizer["See my subscriptions"] <i class="arrow right-arrow"></i></a>
+        </div>
+</div>
