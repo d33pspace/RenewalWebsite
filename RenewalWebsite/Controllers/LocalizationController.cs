@@ -1,10 +1,10 @@
 ﻿using System;
-using RenewalWebsite.Services;
-using Microsoft.AspNetCore.Hosting.Internal;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Http.Extensions;
-using Microsoft.AspNetCore.Localization;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using RenewalWebsite.Services;
+using Microsoft.AspNetCore.Localization;
 
 namespace RenewalWebsite.Controllers
 {
@@ -48,6 +48,5 @@ namespace RenewalWebsite.Controllers
             SetCurrency(culture);
             return LocalRedirect(returnUrl);
         }
-
     }
 }

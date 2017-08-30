@@ -1,6 +1,7 @@
 ﻿@using System.Globalization
 @using RenewalWebsite.Services
 @using Microsoft.AspNetCore.Mvc.Localization
+@model DonationViewModel
 
 @inject IViewLocalizer Localizer
 @inject ICurrencyService CurrencyService
@@ -12,20 +13,9 @@
     double exchangeRate = 6.8;
 
     double giftBase = 10;
-    double giftOption1 = 100;
-    double giftOption2 = 350;
-    double giftOption3 = 600;
-
-    if (currency.Name.Contains("en"))
-    {
-        giftBase = giftBase / exchangeRate;
-        giftOption1 = giftOption1 / exchangeRate;
-        giftOption2 = giftOption2 / exchangeRate;
-        giftOption3 = giftOption3 / exchangeRate;
-    }
+    giftBase = giftBase / exchangeRate;
 
     //TODO: How to handle excessive decimal digits?
-
 }
 
 <div class="row">
@@ -52,36 +42,96 @@
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
             <h2>@Localizer["My gift of hot meals for homeless men and women"]</h2>
             <p>@Localizer["Yes, I want to offer the basic kindness of a hot meal while I hold the door open for people who want to walk through and into a new life. Please use my support to also offer showers, clean clothes, shelter and valuable job training. I'm sending:"]</p>
+            <form asp-controller="Donate" asp-action="Create">
 
-            @if (currency.Name.Contains("en"))
-            {
-                <p>I would like to make a [monthly | quarterly | yearly | one time] gift of:</p>
+                <div asp-validation-summary="All" class="text-danger"></div>
+                <div id="textMainMessage" class="text-danger" style="display:none;">
+                    <ul>
+                        <li id="textMainErrorMessage"></li>
+                    </ul>
+                </div>
+                <p>
+                    I would like to make a
+                    <select asp-for="CycleId"
+                            asp-items="@Model.DonationCycles"></select>
+
+                    gift of:
+                </p>
+
                 <ul class="list-unstyled rmb-options mb-5">
-                    <li><input id="radio1" name="RMB-options" type="radio" value="" checked /> <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
-                    <li><input id="radio2" name="RMB-options" type="radio" value="" /> <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
-                    <li><input id="radio3" name="RMB-options" type="radio" value="" /> <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
-                    <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" /> <strong>@CurrencyService.GetSymbol(currency)</strong> <input id="choose-amount" type="text" /> @Localizer["to help as much as I can."]</li>
+                    @foreach (var donation in Model.DonationOptions)
+                    {
+                        if (donation.IsCustom)
+                        {
+                            <li>
+                                <input asp-for="SelectedAmount" type="radio" value="@donation.Id" />
+                                <strong>@CurrencyService.GetSymbol(currency)</strong>
+                                <input asp-for="DonationAmount" /> @donation.Reason
+                            </li>
+                        }
+                        else
+                        {
+                            if (donation.Id == 1)
+                            {
+                                <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @donation.Reason</li>
+                            }
+                            else
+                            {
+                                <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" /> <strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @donation.Reason</li>
+                            }
+
+                        }
+                    }
                 </ul>
                 <div class="clearfix mt-4 mb-5">
-                    <a class="btn btn-secondary" asp-controller="Donate" asp-action="Details">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"] <i class="arrow right-arrow"></i></a>
+                    <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]</button>
+                    <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]</button>
                 </div>
-                <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
-            }
-            else
-            {
-                <ul class="list-unstyled gift-options mb-5">
-                    <li>A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
-                    <li>A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
-                    <li>A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
-                    <li>@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
-                </ul>
-                <div class="clearfix mt-4 mb-5">
-                    <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
-                </div>
-                <p>Or scan the QR code below with your Alipay app to donate now:</p>
-                <img src="~/images/zhifubao.jpg" width="125" />
-                <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
-            }
+            </form>
+            @*@if (currency.Name.Contains("en"))
+                {
+                    <p>I would like to make a [monthly | quarterly | yearly | one time] gift of:</p>
+                    <ul class="list-unstyled rmb-options mb-5">
+                        <li><input id="radio1" name="RMB-options" type="radio" value="" checked /> <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
+                        <li><input id="radio2" name="RMB-options" type="radio" value="" /> <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
+                        <li><input id="radio3" name="RMB-options" type="radio" value="" /> <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
+                        <li><input id="radio4" name="RMB-options" type="radio" value="choose-amount" /> <strong>@CurrencyService.GetSymbol(currency)</strong> <input id="choose-amount" type="text" /> @Localizer["to help as much as I can."]</li>
+                    </ul>
+                    <div class="clearfix mt-4 mb-5">
+                        <a class="btn btn-secondary" asp-controller="Donate" asp-action="Details">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"] <i class="arrow right-arrow"></i></a>
+                    </div>
+                    <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+                }
+                else
+                {
+                    <ul class="list-unstyled gift-options mb-5">
+                        <li>A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
+                        <li>A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
+                        <li>A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
+                        <li>@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
+                    </ul>
+                    <div class="clearfix mt-4 mb-5">
+                        <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
+                    </div>
+                    <p>Or scan the QR code below with your Alipay app to donate now:</p>
+                    <img src="~/images/zhifubao.jpg" width="125" />
+                    <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+                }*@
         </div>
     }
 </div>
+<script type="text/javascript">
+    function checkAmount() {
+        var item = $('input[name=SelectedAmount]:checked').val();
+        if (item == "4") {
+            if ($('#DonationAmount').val() == "") {
+                $('#textMainMessage').show();
+                $('#textMainErrorMessage').text('Amount is required.');
+                return;
+            }
+        }
+        $('#textMainMessage').hide();
+        $('#textMainErrorMessage').text('');
+        $("#btnSaveFinal").trigger("click");
+    };
+</script>

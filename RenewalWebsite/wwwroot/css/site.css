@@ -534,9 +534,9 @@ form .form-group:first-child .floating-label-form-group {
     padding-top: 30px;
 }
 
-form, input {
+/*form, input {
     font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
-}
+}*/
 
 label {
     font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
@@ -1296,4 +1296,20 @@ p.excerpt {
         max-width: 110%;
         margin-left: -15px;
     }
+}
+
+input#DonationAmount {
+    width: 15%;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    border: 1px solid rgba(0,0,0,.15);
+    border-radius: 5px;
+}
+
+.hide 
+{
+    display : none;
 }

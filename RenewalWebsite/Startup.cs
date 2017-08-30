@@ -18,6 +18,7 @@ using System.Globalization;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
+using Microsoft.AspNetCore.Identity;
 
 namespace RenewalWebsite
 {
@@ -45,7 +46,13 @@ namespace RenewalWebsite
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Stripe settings
+            services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
+
+            // Session cache
+            services.AddDistributedMemoryCache();
+            services.AddSession();
 
             // Add framework services.
             services.AddDbContext<ApplicationDbContext>(options =>
@@ -74,6 +81,7 @@ namespace RenewalWebsite
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.AddTransient<IDonationService, DonationService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
         }
 
@@ -85,6 +93,8 @@ namespace RenewalWebsite
 
             var options = new RewriteOptions()
                 .AddRedirectToHttps();
+
+            app.UseSession();
 
             if (env.IsDevelopment())
             {
@@ -127,9 +137,7 @@ namespace RenewalWebsite
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });
-
-            appDbContext.Database.Migrate();
+            });            
         }
     }
 }

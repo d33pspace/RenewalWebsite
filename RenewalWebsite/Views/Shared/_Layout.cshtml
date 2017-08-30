@@ -1,11 +1,9 @@
 ﻿@using System.Globalization
-@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
 
 <!DOCTYPE html>
 <html>
 <head>
     @await Html.PartialAsync("_HeadPartial")
-    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body>
     <nav class="navbar navbar-toggleable-md navbar-light" id="mainNav">

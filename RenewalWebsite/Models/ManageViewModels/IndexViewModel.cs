@@ -10,6 +10,28 @@ namespace RenewalWebsite.Models.ManageViewModels
 {
     public class IndexViewModel
     {
+
+        [Display(Name = "Full Name")]
+        public string FullName { get; set; }
+
+        [Display(Name = "Address Line 1")]
+        public string AddressLine1 { get; set; }
+
+        [Display(Name = "Address Line 2")]
+        public string AddressLine2 { get; set; }
+
+        [Display(Name = "State")]
+        public string State { get; set; }
+
+        [Display(Name = "Zip")]
+        public string Zip { get; set; }
+
+        [Display(Name = "City")]
+        public string City { get; set; }
+
+        [Display(Name = "Country")]
+        public string Country { get; set; }
+
         public bool HasPassword { get; set; }
 
         public IList<UserLoginInfo> Logins { get; set; }
@@ -20,17 +42,14 @@ namespace RenewalWebsite.Models.ManageViewModels
 
         public bool BrowserRemembered { get; set; }
 
-        [Display(Name = "Full Name")]
-        public string FullName { get; set; }
+        public string UserId { get; set; }
 
-        [Display(Name = "Select Currency")]
-        public string Currency { get; set; }
+        public string TokenId { get; set; }
 
-        [Display(Name = "Select Language")]
-        public string Culture { get; set; }
+        public string Message { get; set; }
 
-        public List<SelectListItem> CurrencyList { get; set; }
+        public CardViewModel card { get; set; }
 
-        public List<SelectListItem> CultureList { get; set; }
+        public int TabId { get; set; }
     }
 }

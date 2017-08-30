@@ -1,10 +1,12 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using RenewalWebsite.Models;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Options;
+using RenewalWebsite.Models;
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RenewalWebsite.Services
 {
@@ -43,7 +45,7 @@ namespace RenewalWebsite.Services
             if (!string.IsNullOrEmpty(currencyCookie))
             {
                 var cultureName = CookieRequestCultureProvider.ParseCookieValue(currencyCookie).Cultures.First();
-                return new CultureInfo(cultureName);
+                return new CultureInfo(Convert.ToString(cultureName));
             }
 
             if (CultureInfo.CurrentCulture.Name.Contains("zh"))
@@ -68,6 +70,6 @@ namespace RenewalWebsite.Services
         {
             var regionInfo = culture.Name.Contains("zh") ? new RegionInfo("zh-CN") : new RegionInfo(culture.Name);
             return regionInfo.ISOCurrencySymbol;
-        }
+        }        
     }
 }
