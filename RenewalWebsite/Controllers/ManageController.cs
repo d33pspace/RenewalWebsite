@@ -112,9 +112,7 @@ namespace RenewalWebsite.Controllers
             {
                 ModelState.AddModelError("CustomerNoFound", sex.Message);
             }
-                        
-            model.TabId = tabId;
-
+            ViewBag.TabId = tabId;
             return View(model);
         }
         

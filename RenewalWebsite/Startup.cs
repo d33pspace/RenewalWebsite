@@ -49,6 +49,7 @@ namespace RenewalWebsite
             // Stripe settings
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
 
             // Session cache
             services.AddDistributedMemoryCache();

@@ -49,7 +49,5 @@ namespace RenewalWebsite.Models.ManageViewModels
         public string Message { get; set; }
 
         public CardViewModel card { get; set; }
-
-        public int TabId { get; set; }
     }
 }
