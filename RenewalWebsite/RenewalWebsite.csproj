@@ -5,10 +5,6 @@
   </PropertyGroup>
 
   <PropertyGroup>
-    <PackageTargetFallback>$(PackageTargetFallback);portable-net45+win8+wp8+wpa81;</PackageTargetFallback>
-  </PropertyGroup>
-
-  <PropertyGroup>
     <UserSecretsId>aspnet-RenewalWebsite-d3947413-e3ea-45b0-8884-7a058d6ff7b9</UserSecretsId>
   </PropertyGroup>
   <ItemGroup>
