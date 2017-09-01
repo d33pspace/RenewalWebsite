@@ -146,10 +146,6 @@ namespace RenewalWebsite.Data.Migrations
 
                     b.Property<string>("Country");
 
-                    b.Property<string>("Culture");
-
-                    b.Property<string>("Currency");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 

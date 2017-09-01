@@ -11,8 +11,8 @@ using System;
 namespace RenewalWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170829134536_currency")]
-    partial class currency
+    [Migration("20170901090006_currency-field-added")]
+    partial class currencyfieldadded
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -146,10 +146,6 @@ namespace RenewalWebsite.Data.Migrations
                         .IsConcurrencyToken();
 
                     b.Property<string>("Country");
-
-                    b.Property<string>("Culture");
-
-                    b.Property<string>("Currency");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
