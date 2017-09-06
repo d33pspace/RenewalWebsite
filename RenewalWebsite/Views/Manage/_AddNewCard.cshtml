@@ -77,6 +77,7 @@
             $('#textMainMessage').removeClass('alert alert-success');
             $('#textMainMessage').addClass('alert alert-danger');
             $('#textMainMessage').text(data.data);
+            $("html, body").animate({ scrollTop: 0 }, "slow");
         }
     }
 
@@ -85,6 +86,7 @@
         $('#textMainMessage').removeClass('alert alert-success');
         $('#textMainMessage').addClass('alert alert-danger');
         $('#textMainMessage').text('Something went wrong, please try again.');
+        $("html, body").animate({ scrollTop: 0 }, "slow");
     };
 
     function showEditDetail() {

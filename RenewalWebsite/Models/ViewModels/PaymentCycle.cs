@@ -14,7 +14,7 @@ namespace RenewalWebsite.Models
         Quarter = 2,
         [Description("Yearly")]
         Year = 3,
-        [Description("One Off")]
-        OneOff = 4
+        [Description("One Time")]
+        OneTime = 4
     }
 }

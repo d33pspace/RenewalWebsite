@@ -29,7 +29,7 @@ namespace RenewalWebsite.Data.Migrations
                 name: "DonationAmount",
                 table: "Donations",
                 nullable: true,
-                oldClrType: typeof(int),
+                oldClrType: typeof(decimal),
                 oldNullable: true);
 
             migrationBuilder.CreateTable(

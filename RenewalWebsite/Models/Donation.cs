@@ -11,7 +11,7 @@ namespace RenewalWebsite.Models
 
         public string CycleId { get; set; }
 
-        public int? DonationAmount { get; set; }
+        public decimal? DonationAmount { get; set; }
 
         public string UserId { get; set; }
 

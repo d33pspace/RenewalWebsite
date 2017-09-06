@@ -50,6 +50,9 @@ namespace RenewalWebsite
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.Configure<ExchangeRate>(Configuration.GetSection("ExchangeRate"));
+            services.Configure<CampaignSettings>(Configuration.GetSection("CampaignSettings"));
+            services.Configure<DonationSettings>(Configuration.GetSection("DonationSettings"));
 
             // Session cache
             services.AddDistributedMemoryCache();
@@ -84,6 +87,7 @@ namespace RenewalWebsite
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<IDonationService, DonationService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
+            services.AddTransient<ICampaignService, CampaignService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -138,7 +142,12 @@ namespace RenewalWebsite
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-            });            
+                
+                //routes.MapRoute(
+                //    name: "CustomRoute",
+                //    template: "{controller=Donation}/{action=Payment/campaign}/{id?}"
+                //    );
+            });
         }
     }
 }

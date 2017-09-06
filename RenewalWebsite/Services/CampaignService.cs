@@ -1,45 +1,47 @@
-﻿using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using RenewalWebsite.Models;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using RenewalWebsite.Data;
 using RenewalWebsite.Helpers;
+using RenewalWebsite.Models;
 using Stripe;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace RenewalWebsite.Services
 {
-    public class DonationService : IDonationService
+    public class CampaignService : ICampaignService
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IOptions<StripeSettings> _stripeSettings;
+        private List<DonationListOption> donationOptions = new List<DonationListOption>();
+        private readonly IOptions<CampaignSettings> _campaignSettings;
         private readonly IOptions<ExchangeRate> _exchangeSettings;
-        private readonly IOptions<DonationSettings> _donateSettings;
-        private List<DonationListOption> donationOptions = new List<DonationListOption>
-        {
-            new DonationListOption {Id = 1, Reason = "to provide one day of showers, laundry and care for five people."},
-            new DonationListOption {Id = 2, Reason = "to provide a week of shelter and training for one person."},
-            new DonationListOption {Id = 3, Reason = "towards shower renovations or the purchase of a new van."},
-            new DonationListOption {Id = 4, Reason = "to help as many people as possible today!", IsCustom = true},
-        };
 
-        public DonationService(ApplicationDbContext dbContext,
+        public CampaignService(ApplicationDbContext dbContext,
             IOptions<StripeSettings> stripeSettings,
-            IOptions<ExchangeRate> exchangeSettings,
-            IOptions<DonationSettings> donateSettings)
+            IOptions<CampaignSettings> campaignSettings,
+            IOptions<ExchangeRate> exchangeSettings)
         {
             _dbContext = dbContext;
             _stripeSettings = stripeSettings;
+            _campaignSettings = campaignSettings;
             _exchangeSettings = exchangeSettings;
-            _donateSettings = donateSettings;
+            List<Campaign> campaigns = _campaignSettings.Value.Campaign.Where(a => a.Type == _campaignSettings.Value.Defaultcamp).ToList();
 
-            foreach (DonationListOption item in donationOptions)
+            int i = 1;
+            DonationListOption option;
+            foreach (var item in campaigns)
             {
-                item.Amount = _donateSettings.Value.Donate.Where(a => a.Id == item.Id).Select(a => a.Value).FirstOrDefault();
+                option = new DonationListOption();
+                option.Amount = item.Value;
+                option.Id = i;
+                option.IsCustom = false;
+                option.Reason = "to be matched and doubled to";
+                donationOptions.Add(option);
+                i++;
             }
+            donationOptions.Add(new DonationListOption { Id = i++, Amount = 0, Reason = "my most generous possible gift to be doubled.", IsCustom = true });
         }
 
         public Dictionary<PaymentCycle, string> GetCycles()
@@ -92,7 +94,7 @@ namespace RenewalWebsite.Services
                 var model = (DonationViewModel)donation;
                 model.DonationOptions = DonationOptions;
 
-                amount = Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2); ;
+                amount = Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
             }
             var planName = $"{frequency}_{amount}_{currency}".ToLower(); //
 

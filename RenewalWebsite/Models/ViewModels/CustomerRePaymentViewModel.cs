@@ -28,10 +28,10 @@ namespace RenewalWebsite.Models
         [Display(Name = "Address Line 2")]
         public string AddressLine2 { get; set; }
 
-        [Display(Name = "State")]
+        [Display(Name = "State/Province")]
         public string State { get; set; }
 
-        [Display(Name = "Zip")]
+        [Display(Name = "Zip/Postal Code")]
         public string Zip { get; set; }
 
         [Display(Name = "City")]
@@ -44,16 +44,20 @@ namespace RenewalWebsite.Models
 
         public string Description { get; set; }
 
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
 
         public string Last4Digit { get; set; }
         public string CardId { get; set; }
 
-        [Required]
-        public string Currency { get; set; }
+        //[Required]
+        //public string Currency { get; set; }
 
         public string Paymentgatway { get; set; }
 
         public string DisableCurrencySelection { get; set; }
+
+        public decimal ExchangeRate { get; set; }
+
+        public bool IsCustom { get; set; }
     }
 }

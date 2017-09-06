@@ -9,7 +9,7 @@ namespace RenewalWebsite.Models
     {
         public int Id { get; set; }
 
-        public int Amount { get; set; }
+        public decimal Amount { get; set; }
 
         public string Reason { get; set; }
 

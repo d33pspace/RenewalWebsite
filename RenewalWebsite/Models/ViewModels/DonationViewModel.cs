@@ -1,7 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Options;
 using RenewalWebsite.Helpers;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -13,7 +15,8 @@ namespace RenewalWebsite.Models
 
         public string CycleId { get; set; }
 
-        public int? DonationAmount { get; set; }
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price")]
+        public decimal? DonationAmount { get; set; }
 
         public List<SelectListItem> DonationCycles { get; set; }
 
@@ -25,7 +28,8 @@ namespace RenewalWebsite.Models
 
         public string PaymentGatway { get; set; }
 
-
+        public decimal ExchangeRate { get; set; }
+        
         public DonationViewModel()
         {
         }
@@ -35,7 +39,7 @@ namespace RenewalWebsite.Models
             DonationOptions = donationOptions;
         }
 
-        public int GetAmount()
+        public decimal GetAmount()
         {
             if (DonationAmount > 0)
                 return DonationAmount.Value * StripeMultiplier;
@@ -52,7 +56,7 @@ namespace RenewalWebsite.Models
             return EnumInfo<PaymentCycle>.GetDescription(pc);
         }
 
-        public int GetDisplayAmount()
+        public decimal GetDisplayAmount()
         {
             if (DonationAmount > 0)
                 return DonationAmount.Value;
@@ -80,7 +84,7 @@ namespace RenewalWebsite.Models
                 Id = donation.Id,
                 CycleId = donation.CycleId,
                 DonationAmount = donation.DonationAmount,
-                SelectedAmount = donation.SelectedAmount,
+                SelectedAmount = donation.SelectedAmount
             };
         }
     }

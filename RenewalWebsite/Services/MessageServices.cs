@@ -42,7 +42,7 @@ namespace RenewalWebsite.Services
                 smtp.Host = _emailSettings.Value.Host; //Or Your SMTP Server Address
                 smtp.Port = _emailSettings.Value.Port;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new System.Net.NetworkCredential(_emailSettings.Value.EmailUserName, _emailSettings.Value.Password);
+                smtp.Credentials = new System.Net.NetworkCredential(_emailSettings.Value.FromEmail, _emailSettings.Value.Password);
 
                 //Or your Smtp Email ID and Password
                 smtp.EnableSsl = _emailSettings.Value.EnableSsl;
