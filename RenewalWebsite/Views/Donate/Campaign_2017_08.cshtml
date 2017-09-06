@@ -65,7 +65,7 @@
                             if (donation.IsCustom)
                             {
                                 <li>
-                                    <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" onclick="donationtFocus(this)"/>
+                                    <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" onclick="setFocus(this)"/>
                                     <strong>@CurrencyService.GetSymbol(currency)</strong>
                                     <input asp-for="DonationAmount" onfocus="checkSelection()" /> @donation.Reason
                                 </li>
