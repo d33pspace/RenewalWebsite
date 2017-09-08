@@ -117,40 +117,37 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="After a time of working at Renewal, most program participants are ready to find a full-time job in the marketplace. Our local employment partners including restaurants, Element Fresh, and Maya help us match our residents with a job they value. Once they settle in and establish a personal budget, we give them further assistance to help them find a permanent home." xml:space="preserve">
-    <value>在日新中心工作一段时间后，大多数朋友们都可以在市场上找到一份还不错的工作。我们的合作伙伴包括新元素餐厅可以在这方面提供帮助。当朋友们工作稳定，有固定的收入后，我们还帮助这些朋友们在上海找一个长久的住所。</value>
+  <data name="After a time of working at Renewal, most program participants are ready to find a full-time job. Our local employment partners including popular restaurants help us match our residents with a job they value. Once they settle in and establish a personal budget, we give them further assistance to help them find a permanent home." xml:space="preserve">
+    <value>在日新中心工作一段时间后，大多数计划参与者都具备了找到全职工作的能力。我们在当地的合作伙伴包括著名的餐厅，他们能为我们的学员提供宝贵的工作。一旦他们安顿下来并有了一定存款后，我们会给他们进一步的协助，帮他们找到永久的住所。</value>
   </data>
-  <data name="After years of living on the fringes of society, it can seem impossible to find a good job – and the determination and discipline of full-time work is not something you learn overnight. Renewal’s Work Experience program invites people to serve in our laundry room, maintaining the center or managing our essential services. Here, they gain valuable job skills while helping out other people in need." xml:space="preserve">
-    <value>被社会边缘化几年后，找一个不错的工作似乎是不可能的。工作的技能亦非一天就可以学到。日新中心的工作计划邀请碰们们加入洗衣、清洁和接待等工作。等学会工作技能后，再帮助朋友们走入社会。</value>
-  </data>
-  <data name="As we get to know people, many show an interest in gaining further support. For them, our dedicated team of volunteers run life skills workshops that help men and women begin to set goals, resolve conflicts, and express themselves more confidently through art and music. Many people start the process of renewing broken relationships or reconciling with family." xml:space="preserve">
-    <value>我们认识了这些朋友后，他们当中的大部分人会表示需要更多的帮助。志愿者们会帮助他们一起设立目标、解决矛盾，帮助他们重塑信心。很多人已经破裂的家庭关系得到了修复。</value>
+  <data name="After years of living on the streets, finding a job can seem impossible – even for those who are disciplined enough to hold down a full-time job. Your support for our Work Experience program invites people to serve in our laundry room, clean and maintain the center or manage our essential services. They each gain valuable job skills while helping out other people in need." xml:space="preserve">
+    <value>在街头生活得太久，使他们很难再找到工作，即使有些人完全具备工作所需的能力。您的支持让我们开启了“工作经验”计划，邀请这些人们在我们的洗衣间工作，帮助我们打扫和维护中心的整洁或管理我们的基础服务。他们在此积累了宝贵的工作经验，同时还能够帮助其他有需求的人们。</value>
   </data>
   <data name="Employment and Support" xml:space="preserve">
-    <value>工作和支持</value>
+    <value>工作与支持</value>
   </data>
   <data name="Essential Services" xml:space="preserve">
-    <value>基本卫生服务</value>
-  </data>
-  <data name="Every person who comes to Renewal is offered a hot shower, a change of clothes, laundry facilities, and a chance to let someone know what help they need. Each one will often receive a hot, nutritious meal. The streets can be tough, day and night. With continued support, Renewal will be here for everyone who needs friendship or a helping hand." xml:space="preserve">
-    <value>每位来到日新中心的朋友都可以洗一个热水澡、换一身干净的衣服、吃一顿热呼呼的简餐。日新中心提供洗衣机，他们可以把换下来的脏衣服洗掉。日新中心会了解他们有什么具体的需要。只要他们有需要，日新中心就一直会在他们身边。</value>
+    <value>基本服务</value>
   </data>
   <data name="Life Skills Workshops" xml:space="preserve">
-    <value>生活技能练习</value>
+    <value>生存技能工作坊</value>
   </data>
-  <data name="People come to Renewal with complex problems. Some have addictions. Others have lost touch with family or been in trouble with the law. Some have spent many years without stability, have lost confidence and are unable to find a job, a permanent home, or in some cases even to stay clean and eat well." xml:space="preserve">
-    <value>来到日新中心的朋友都有各种各样的复杂问题，有的需要紧急帮助，有的与家里失去联系，有的带有各种法律纠纷，有的流浪已久没有信心开始一份新的工作，找到一个稳定的住所，有的甚至不能正常地吃东西和保持整洁干净。</value>
+  <data name="People who want further support find a dedicated team of volunteers offering workshops that help them set goals, build friendships and express themselves. Many people begin to broken relationships, reconcile with family or make a return visit to their home province, which is the only way to obtain or renew an essential national identity card." xml:space="preserve">
+    <value>我们敬业的志愿者团队还为他们提供了进一步的支持，帮助他们设定目标，建立友谊并展示自己。许多人开始结交新朋友，与家人和解或回到自己的家乡，这样他们才能获得或更新最基础的个人身份。</value>
   </data>
-  <data name="Renewal offers our guests four stages of progress to a better life, tailored to the individual..." xml:space="preserve">
-    <value>日新中心为我们的朋友们提供四个阶段的计划，因人而异</value>
+  <data name="Renewal offers displaced people a range of services on the road to a better life" xml:space="preserve">
+    <value>日新中心为无家可归人士提供一系列通向更美好生活的服务</value>
   </data>
-  <data name="The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes." xml:space="preserve">
-    <value>日新中心帮助有需要的人找到朋友、工作和家。日新中心需要您的支持。</value>
+  <data name="Starting with basic help for men and women living on the streets, Renewal also offers longer-term support to help people build friendships, find satisfying work and move into a permanent home." xml:space="preserve">
+    <value>除了最基本的帮助外，日新中心还为街头的无家可归人士提供长期的支持，帮助他们建立友谊，寻找满意的工作并组建永久的家庭。</value>
+  </data>
+  <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
+    <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
   </data>
   <data name="Work Experience" xml:space="preserve">
-    <value>实习</value>
+    <value>工作经验</value>
   </data>
-  <data name="Your support helps us work with each person as an individual, through four important stages..." xml:space="preserve">
-    <value>你的支持可以帮助我们通过四种方式为他们提供帮助...</value>
+  <data name="Your support offers every person who comes to Renewal a good meal, a hot shower, a change of clothes, the use of free laundry facilities and a chance to let someone know what help they need. The streets are an incredibly dangerous and difficult place to live, but with your continued support, Renewal will be here for everyone who needs friendship and a helping hand." xml:space="preserve">
+    <value>您的支持能够为每一位来到日新中心寻求帮助的人提供一顿饱餐，一次热水澡，一套干净的衣服，免费使用洗衣机和一次让别人了解他的需求的机会。露宿街头的生活危险而艰难，但在您的持续帮助下，日新中心将会为每一个需要的人提供友谊与援助之手。</value>
   </data>
 </root>

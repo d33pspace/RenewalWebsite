@@ -117,46 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Every" xml:space="preserve">
-    <value>每</value>
+  <data name="Monthly" xml:space="preserve">
+    <value>每个月</value>
   </data>
-  <data name="to help as many people as I can." xml:space="preserve">
-    <value>尽可能多地帮助他们。</value>
+  <data name="One Time" xml:space="preserve">
+    <value>一次</value>
   </data>
-  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
-    <value>立即用国际信用卡捐款</value>
+  <data name="Quarterly" xml:space="preserve">
+    <value>每三个月</value>
   </data>
-  <data name="My gift of hot meals, shelter and support for homeless men and women" xml:space="preserve">
-    <value>我愿为无家可归人士提供食品、住处与帮助</value>
-  </data>
-  <data name="of your gift will provide a hot meal for a homeless person." xml:space="preserve">
-    <value>就能为一位无家可归人士提供一顿热腾腾的饱餐。</value>
-  </data>
-  <data name="to provide 10 hot meals." xml:space="preserve">
-    <value>提供10顿饭菜。</value>
-  </data>
-  <data name="to provide 30 hot meals." xml:space="preserve">
-    <value>提供30顿饭菜。</value>
-  </data>
-  <data name="to provide 60 hot meals." xml:space="preserve">
-    <value>提供60顿饭菜。</value>
-  </data>
-  <data name="Yes, I’ll rescue a homeless person from the streets by providing the food, shelter and support they need to start a new life!" xml:space="preserve">
-    <value>是的，我愿意帮助无家可归人士远离街头，为他们提供食品、住处，并帮助他们开始新的生活！</value>
-  </data>
-  <data name="An amount of your choice to help as many people as you can." xml:space="preserve">
-    <value>我自己选择的余额尽可能多地帮助他们。</value>
-  </data>
-  <data name="gift of:" xml:space="preserve">
-    <value>捐款：</value>
-  </data>
-  <data name="I would like to make a" xml:space="preserve">
-    <value>我想</value>
-  </data>
-  <data name="OPEN ALIPAY APP AND DONATE NOW" xml:space="preserve">
-    <value>立即打开支付宝APP捐款</value>
-  </data>
-  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
-    <value>或者用支付宝扫描下面的二维码：</value>
+  <data name="Yearly" xml:space="preserve">
+    <value>每年</value>
   </data>
 </root>

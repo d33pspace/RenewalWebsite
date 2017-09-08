@@ -20,10 +20,10 @@ namespace RenewalWebsite.Services
         private readonly IOptions<DonationSettings> _donateSettings;
         private List<DonationListOption> donationOptions = new List<DonationListOption>
         {
-            new DonationListOption {Id = 1, Reason = "to provide one day of showers, laundry and care for five people."},
-            new DonationListOption {Id = 2, Reason = "to provide a week of shelter and training for one person."},
-            new DonationListOption {Id = 3, Reason = "towards shower renovations or the purchase of a new van."},
-            new DonationListOption {Id = 4, Reason = "to help as many people as possible today!", IsCustom = true},
+            new DonationListOption {Id = 1, Reason = "to provide 10 hot meals."},
+            new DonationListOption {Id = 2, Reason = "to provide 30 hot meals."},
+            new DonationListOption {Id = 3, Reason = "to provide 60 hot meals."},
+            new DonationListOption {Id = 4, Reason = "to help as many people as I can.", IsCustom = true},
         };
 
         public DonationService(ApplicationDbContext dbContext,

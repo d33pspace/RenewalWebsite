@@ -24,18 +24,18 @@
         else
         {
             <h2>Please open this page in your browser.</h2>
-            <p>Our site isn't compatible with WeChat. To continue, please select "Open in Browser" from the context menu (thee dots) at the top of your screen.</p>
+            <p>Our site isn't compatible with WeChat. To continue, please select "Open in Browser" from the context menu (three dots) at the top of your screen.</p>
         }
     }
     else
     {
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
             <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
-            <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal to a homeless person."]</figcaption>
+            <figcaption class="figure-caption caption">@Localizer["Every"] @giftBase.ToString("C", currency) @Localizer["of your gift will provide a hot meal for a homeless person."]</figcaption>
         </div>
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-            <h2>@Localizer["My gift of hot meals for homeless men and women"]</h2>
-            <p>@Localizer["Yes, I want to offer the basic kindness of a hot meal while I hold the door open for people who want to walk through and into a new life. Please use my support to also offer showers, clean clothes, shelter and valuable job training. I'm sending:"]</p>
+            <h2>@Localizer["My gift of hot meals, shelter and support for homeless men and women"]</h2>
+            <p>@Localizer["Yes, I’ll rescue a homeless person from the streets by providing the food, shelter and support they need to start a new life!"]</p>
 
             @if (currency.Name.Contains("en"))
                 {
@@ -49,11 +49,11 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            I would like to make a&nbsp;
+                            @Localizer["I would like to make a"]&nbsp;
                             <select asp-for="CycleId" class="form-control"
                                     asp-items="@Model.DonationCycles"></select>&nbsp;
 
-                            gift of:
+                            @Localizer["gift of:"]
                         </div>
                     </div>
 
@@ -65,18 +65,18 @@
                                 <li>
                                     <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" onclick="setFocus(this)"/>
                                     <strong>@CurrencyService.GetSymbol(currency)</strong>
-                                    <input asp-for="DonationAmount" onfocus="checkSelection()"/> @donation.Reason
+                                    <input asp-for="DonationAmount" onfocus="checkSelection()"/> @Localizer[donation.Reason]
                                 </li>
                             }
                             else
                             {
                                 if (donation.Id == 1)
                                 {
-                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency) @(Math.Round((donation.Amount / Model.ExchangeRate),2))</strong> @donation.Reason</li>
+                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency) @(Math.Round((donation.Amount / Model.ExchangeRate),2))</strong> @Localizer[donation.Reason]</li>
                                 }
                                 else
                                 {
-                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom"/> <strong>@CurrencyService.GetSymbol(currency)@(Math.Round((donation.Amount / Model.ExchangeRate),2))</strong> @donation.Reason</li>
+                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom"/> <strong>@CurrencyService.GetSymbol(currency)@(Math.Round((donation.Amount / Model.ExchangeRate),2))</strong> @Localizer[donation.Reason]</li>
                                 }
 
                             }
@@ -96,17 +96,17 @@
                     {
                         if (donation.IsCustom)
                         {
-                            <li>@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
+                            <li>@Localizer["An amount of your choice to help as many people as you can."]</li>
                         }
                         else
                         {
                             if (donation.Id == 1)
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @donation.Reason</li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]</li>
                             }
                             else
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @donation.Reason</li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]</li>
                             }
                         }
                     }
@@ -118,7 +118,7 @@
                 <div class="clearfix mt-4 mb-5">
                     <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
                 </div>
-                <p>Or scan the QR code below with your Alipay app to donate now:</p>
+                <p>@Localizer["Or scan the QR code below with your Alipay app to donate now:"]</p>
                 <img src="~/images/zhifubao.jpg" width="125" />
                 <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
             }

@@ -12,10 +12,10 @@
 <a asp-controller="Localization" asp-action="ToggleCurrency" asp-route-returnUrl="@Context.Request.Path">
     @if (CurrencyService.GetSymbol(culture) == "$")
     {
-        <span>@Localizer["Donate now using Alipay"]</span>
+        <span>@Localizer["Donate using Alipay"]</span>
     }
     else
     {
-        <span>@Localizer["Donate now using credit or debit card"]</span>
+        <span>@Localizer["Donate using a credit or debit card"]</span>
     }
 </a>
