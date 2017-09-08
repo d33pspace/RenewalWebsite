@@ -37,7 +37,7 @@ namespace RenewalWebsite.Services
                 option.Amount = item.Value;
                 option.Id = i;
                 option.IsCustom = false;
-                option.Reason = "to be matched and doubled to";
+                option.Reason = "will be doubled to";
                 donationOptions.Add(option);
                 i++;
             }
