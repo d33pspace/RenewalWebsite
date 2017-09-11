@@ -33,21 +33,7 @@
                         <a class="nav-link" asp-controller="Donate" asp-action="Index">@Localizer["Donate"]</a>
                     </li>
                 </ul>
-                @if (SignInManager.IsSignedIn(User))
-                {
-                    await Html.PartialAsync("_LoginPartial");
-                }
-                else
-                {
-                    <ul class="navbar-nav ml-auto right">
-                        <!--<li class="nav-item">
-                            <a class="nav-link" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
-                        </li>-->
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Account"]</a>
-                        </li>
-                    </ul>
-                }
+                @await Html.PartialAsync("_LoginPartial")
             </div>
             @if (!SignInManager.IsSignedIn(User))
             {
