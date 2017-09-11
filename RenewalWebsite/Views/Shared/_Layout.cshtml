@@ -1,4 +1,9 @@
 ﻿@using System.Globalization
+@using Microsoft.AspNetCore.Identity
+@using RenewalWebsite.Models
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
 
 <!DOCTYPE html>
 <html>
@@ -28,8 +33,27 @@
                         <a class="nav-link" asp-controller="Donate" asp-action="Index">@Localizer["Donate"]</a>
                     </li>
                 </ul>
-                @await Html.PartialAsync("_LoginPartial")
+                @if (SignInManager.IsSignedIn(User))
+                {
+                    await Html.PartialAsync("_LoginPartial");
+                }
+                else
+                {
+                    <ul class="navbar-nav ml-auto right">
+                        <!--<li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
+                        </li>-->
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Account"]</a>
+                        </li>
+                    </ul>
+                }
             </div>
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                @await Html.PartialAsync("_LanguageTogglePartial");
+            }
+
         </div>
     </nav>
     <div class="container pad-top">

@@ -17,17 +17,30 @@ namespace RenewalWebsite.Services
         private List<DonationListOption> donationOptions = new List<DonationListOption>();
         private readonly IOptions<CampaignSettings> _campaignSettings;
         private readonly IOptions<ExchangeRate> _exchangeSettings;
+        private readonly ICurrencyService _currencyService;
 
         public CampaignService(ApplicationDbContext dbContext,
             IOptions<StripeSettings> stripeSettings,
             IOptions<CampaignSettings> campaignSettings,
-            IOptions<ExchangeRate> exchangeSettings)
+            IOptions<ExchangeRate> exchangeSettings,
+            ICurrencyService currencyService)
         {
             _dbContext = dbContext;
             _stripeSettings = stripeSettings;
             _campaignSettings = campaignSettings;
             _exchangeSettings = exchangeSettings;
-            List<Campaign> campaigns = _campaignSettings.Value.Campaign.Where(a => a.Type == _campaignSettings.Value.Defaultcamp).ToList();
+            _currencyService = currencyService;
+
+            List<Campaign> campaigns;
+
+            if (_currencyService.GetCurrent().Name.Contains("en"))
+            {
+                campaigns = _campaignSettings.Value.Campaign.Where(a => a.Type == _campaignSettings.Value.Defaultcamp && a.CurrencyType == "USD").ToList();
+            }
+            else
+            {
+                campaigns = _campaignSettings.Value.Campaign.Where(a => a.Type == _campaignSettings.Value.Defaultcamp && a.CurrencyType == "CNY").ToList();
+            }
 
             int i = 1;
             DonationListOption option;
@@ -94,7 +107,8 @@ namespace RenewalWebsite.Services
                 var model = (DonationViewModel)donation;
                 model.DonationOptions = DonationOptions;
 
-                amount = Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
+                //amount = Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
+                amount = model.GetDisplayAmount();
             }
             var planName = $"{frequency}_{amount}_{currency}".ToLower(); //
 
@@ -148,11 +162,13 @@ namespace RenewalWebsite.Services
                     {
                         if (option.Amount > 0)
                         {
-                            var planName = $"{cycle.Value}_{(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2))}".ToLower();
+                            //var planName = $"{cycle.Value}_{(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2))}".ToLower();
+                            var planName = $"{cycle.Value}_{option.Amount}".ToLower();
                             var plan = new StripePlanCreateOptions
                             {
                                 Id = planName,
-                                Amount = Convert.ToInt32(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2) * 100),
+                                //Amount = Convert.ToInt32(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2) * 100),
+                                Amount = Convert.ToInt32(option.Amount * 100),
                                 Currency = "usd",
                                 Name = planName,
                                 StatementDescriptor = _stripeSettings.Value.StatementDescriptor

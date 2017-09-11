@@ -14,5 +14,6 @@ namespace RenewalWebsite
     {
         public int Id { get; set; }
         public decimal Value { get; set; }
+        public string CurrencyType { get; set; }
     }
 }

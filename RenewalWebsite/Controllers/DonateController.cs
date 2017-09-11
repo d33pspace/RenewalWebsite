@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Extensions.Localization;
 
 namespace RenewalWebsite.Controllers
 {
@@ -22,6 +23,7 @@ namespace RenewalWebsite.Controllers
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly IOptions<CampaignSettings> _campaignSettings;
+        private readonly IStringLocalizer<DonateController> _localizer;
 
         const string SessionKey = "sessionKey";
 
@@ -30,7 +32,8 @@ namespace RenewalWebsite.Controllers
             IOptions<StripeSettings> stripeSettings,
             IOptions<ExchangeRate> exchangeSettings,
             IOptions<CampaignSettings> campaignSettings,
-            ICampaignService campaignService)
+            ICampaignService campaignService,
+            IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
             _donationService = donationService;
@@ -38,6 +41,7 @@ namespace RenewalWebsite.Controllers
             _exchangeSettings = exchangeSettings;
             _campaignSettings = campaignSettings;
             _campaignService = campaignService;
+            _localizer = localizer;
         }
 
         public IActionResult Index()
@@ -125,7 +129,7 @@ namespace RenewalWebsite.Controllers
             }
 
             if (!ModelState.IsValid)
-            {                
+            {
                 return View("Index", donation);
             }
 
@@ -229,7 +233,7 @@ namespace RenewalWebsite.Controllers
             .Select(b => new SelectListItem
             {
                 Value = ((int)b.Key).ToString(),
-                Text = b.Value
+                Text = _localizer[b.Value]
             }).ToList();
 
         private Task<ApplicationUser> GetCurrentUserAsync() =>

@@ -11,11 +11,14 @@
 <div class="jumbotron">
     <div class="container">
         @*<h4>@Model.Frequency @Model.Amount @Model.Description </h4>*@
-        <h2>
+        @*<h2>
             Your @Model.Frequency.ToLower() gift of @CurrencyService.GetSymbol(currency)@if (!Model.IsCustom)
             {@(Math.Round((Model.Amount / Model.ExchangeRate), 2))}
             else
             { @Model.Amount}
+        </h2>*@
+        <h2>
+            Your @Model.Frequency.ToLower() gift of @CurrencyService.GetSymbol(currency)@Model.Amount
         </h2>
     </div>
 </div>
@@ -26,7 +29,7 @@
             <legend>Donation</legend>
             <div asp-validation-summary="All" class="text-danger"></div>
             @*<input hidden asp-for="Currency" />*@
-            <input hidden asp-for="IsCustom" />
+            @*<input hidden asp-for="IsCustom" />*@
             <input hidden asp-for="Frequency" />
             <input hidden asp-for="Amount" />
             <input hidden asp-for="Description" />

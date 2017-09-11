@@ -54,7 +54,7 @@
 body {
     font-size: 18px;
     color: #393939;
-    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", sans-serif;
     -webkit-tap-highlight-color: #d11241;
 }
 
@@ -74,7 +74,7 @@ h3,
 h4,
 h5,
 h6 {
-    font-weight: 600;
+    font-weight: bold;
     font-family: 'dpt65',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
@@ -101,7 +101,7 @@ a.styled-link, p a {
     color: #393939;
     text-decoration: none;
     border-bottom: 2px solid #d11241;
-    font-family: 'dpt65',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    /*font-family: 'dpt65',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
 }
 
     a.styled-link:hover, p a:hover {
@@ -156,11 +156,15 @@ a.styled-link, p a {
         color: #d11241;
     }
 
-        #mainNav .navbar-nav > li.nav-item > a:hover, .btn.btn-link.navbar-btn.navbar-link:hover {
-            background-color: #d11241;
-            color: white;
-            cursor: pointer;
-        }
+    #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom {
+        color: white;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > a:hover, .btn.btn-link.navbar-btn.navbar-link:hover {
+        background-color: #d11241;
+        color: white;
+        cursor: pointer;
+    }
 
 .btn.btn-link.navbar-btn.navbar-link {
     padding: 0px 20px;
@@ -204,12 +208,20 @@ a.styled-link, p a {
             line-height: 24px;
         }
 
-            #mainNav .navbar-nav > li.nav-item > a:hover, #mainNav .navbar-nav > li.nav-item > a:focus, .btn.btn-link.navbar-btn.navbar-link:hover {
-                background-color: #d11241;
+        #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom {
+            color: #d11241;
+        }
+
+            #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom:hover {
                 color: white;
-                cursor: pointer;
-                text-decoration: none;
             }
+
+        #mainNav .navbar-nav > li.nav-item > a:hover, #mainNav .navbar-nav > li.nav-item > a:focus, .btn.btn-link.navbar-btn.navbar-link:hover {
+            background-color: #d11241;
+            color: white;
+            cursor: pointer;
+            text-decoration: none;
+        }
 }
 
 @media only screen and (min-width: 1170px) {
@@ -346,6 +358,10 @@ header.masthead .post-heading .meta {
     border-bottom-left-radius: 5px;
 }
 
+.chinese {
+    font-style: normal;
+}
+
 ::-moz-selection {
     color: white;
     background: #d11241;
@@ -459,7 +475,7 @@ ul.gift-options {
         background-repeat: no-repeat;
         background-size: 20px 20px;
         padding-left: 40px;
-        margin-top: 12px;
+        margin-top: 15px;
     }
 
 
@@ -600,7 +616,7 @@ form.contact {
     float: left;
     margin-right: 15px;
     margin-top: 7px;
-    margin-bottom: 30px;
+    /*margin-bottom: 30px;*/
 }
 
 input#choose-amount {
@@ -616,7 +632,7 @@ input#choose-amount {
 
 .form-control:focus {
     border: 1px solid #d11241;
-    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    /*font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
 }
 
 
@@ -681,7 +697,7 @@ a.dropdown-toggle {
     font-size: 15px;
     font-weight: 800;
     padding: 15px 25px;
-    letter-spacing: 1px;
+    /*letter-spacing: 1px;*/
     text-transform: uppercase;
     border-radius: 5px;
     font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
@@ -929,7 +945,7 @@ i.arrow {
 
 
 footer {
-    border-top: 1px solid #d11241;
+    border-top: 2px solid #d11241;
     padding: 50px 0 65px;
     margin: auto;
 }
@@ -1223,6 +1239,7 @@ p.excerpt {
 
     #mainNav .navbar-nav > li.nav-item > a {
         text-align: right;
+        padding-right: 10px;
     }
 
     #mainNav .navbar-brand.red {
@@ -1265,10 +1282,6 @@ p.excerpt {
     }
 }
 
-
-
-
-
 @media (max-width:576px) {
     footer {
         width: 100%;
@@ -1307,9 +1320,26 @@ input#DonationAmount {
     margin-bottom: 0px;
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 5px;
+    padding-left: 5px;
 }
 
-.hide 
-{
-    display : none;
+.hide {
+    display: none;
+}
+
+.red-border {
+    border: 2px solid #d11241;
+    padding: 15px;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0px;
+}
+
+.m-tb-15 {
+    margin-top:15px;
+    margin-bottom :15px;
 }

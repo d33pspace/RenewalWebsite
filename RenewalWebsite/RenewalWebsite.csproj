@@ -38,6 +38,9 @@
     <PackageReference Include="Stripe.net" Version="10.4.0" />
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Update="Resources\Controllers.DonateController.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\ViewModels.PaymentCycle.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>

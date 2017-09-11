@@ -16,6 +16,7 @@ namespace RenewalWebsite
     {
         public decimal Value { get; set; }
         public int Type { get; set; }
+        public string CurrencyType { get; set; }
     }
 
     public class ExchangeRate

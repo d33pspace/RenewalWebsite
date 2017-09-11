@@ -18,6 +18,8 @@ namespace RenewalWebsite.Services
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly IOptions<DonationSettings> _donateSettings;
+        private readonly ICurrencyService _currencyService;
+
         private List<DonationListOption> donationOptions = new List<DonationListOption>
         {
             new DonationListOption {Id = 1, Reason = "to provide 10 hot meals."},
@@ -29,16 +31,28 @@ namespace RenewalWebsite.Services
         public DonationService(ApplicationDbContext dbContext,
             IOptions<StripeSettings> stripeSettings,
             IOptions<ExchangeRate> exchangeSettings,
-            IOptions<DonationSettings> donateSettings)
+            IOptions<DonationSettings> donateSettings,
+            ICurrencyService currencyService)
         {
             _dbContext = dbContext;
             _stripeSettings = stripeSettings;
             _exchangeSettings = exchangeSettings;
             _donateSettings = donateSettings;
+            _currencyService = currencyService;
 
-            foreach (DonationListOption item in donationOptions)
+            if (_currencyService.GetCurrent().Name.Contains("en"))
             {
-                item.Amount = _donateSettings.Value.Donate.Where(a => a.Id == item.Id).Select(a => a.Value).FirstOrDefault();
+                foreach (DonationListOption item in donationOptions)
+                {
+                    item.Amount = _donateSettings.Value.Donate.Where(a => a.Id == item.Id && a.CurrencyType == "USD").Select(a => a.Value).FirstOrDefault();
+                }
+            }
+            else
+            {
+                foreach (DonationListOption item in donationOptions)
+                {
+                    item.Amount = _donateSettings.Value.Donate.Where(a => a.Id == item.Id && a.CurrencyType == "CNY").Select(a => a.Value).FirstOrDefault();
+                }
             }
         }
 
@@ -92,7 +106,8 @@ namespace RenewalWebsite.Services
                 var model = (DonationViewModel)donation;
                 model.DonationOptions = DonationOptions;
 
-                amount = Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2); ;
+                //amount = Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
+                amount = model.GetDisplayAmount();
             }
             var planName = $"{frequency}_{amount}_{currency}".ToLower(); //
 
@@ -146,11 +161,13 @@ namespace RenewalWebsite.Services
                     {
                         if (option.Amount > 0)
                         {
-                            var planName = $"{cycle.Value}_{(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2))}".ToLower();
+                            //var planName = $"{cycle.Value}_{(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2))}".ToLower();
+                            var planName = $"{cycle.Value}_{option.Amount}".ToLower();
                             var plan = new StripePlanCreateOptions
                             {
                                 Id = planName,
-                                Amount = Convert.ToInt32(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2) * 100),
+                                //Amount = Convert.ToInt32(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2) * 100),
+                                Amount = Convert.ToInt32(option.Amount * 100),
                                 Currency = "usd",
                                 Name = planName,
                                 StatementDescriptor = _stripeSettings.Value.StatementDescriptor

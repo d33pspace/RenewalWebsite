@@ -229,7 +229,8 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        Amount = Convert.ToInt32(model.GetAmount()),
                         Description = DonationCaption,
                         Currency = "usd",//payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
@@ -239,10 +240,10 @@ namespace RenewalWebsite.Controllers
 
                     if (charge.Paid)
                     {
-                        decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
+                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${value}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -367,7 +368,8 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        Amount = Convert.ToInt32(model.GetAmount()),
                         Description = DonationCaption,
                         Currency = "usd", //payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
@@ -377,10 +379,10 @@ namespace RenewalWebsite.Controllers
 
                     if (charge.Paid)
                     {
-                        decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
+                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${value}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -632,7 +634,8 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        Amount = Convert.ToInt32(model.GetAmount()),
                         Description = DonationCaption,
                         Currency = "usd",//payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
@@ -642,10 +645,10 @@ namespace RenewalWebsite.Controllers
 
                     if (charge.Paid)
                     {
-                        decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
+                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${value}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -770,7 +773,8 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
+                        Amount = Convert.ToInt32(model.GetAmount()),
                         Description = DonationCaption,
                         Currency = "usd", //payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
@@ -780,10 +784,10 @@ namespace RenewalWebsite.Controllers
 
                     if (charge.Paid)
                     {
-                        decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
+                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${value}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);

@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Options;
 
 namespace RenewalWebsite
 {
@@ -115,7 +116,7 @@ namespace RenewalWebsite
             app.UseStaticFiles();
 
             app.UseIdentity();
-
+            
             var supportedCultures = new[]
             {
                 new CultureInfo("en-US"),

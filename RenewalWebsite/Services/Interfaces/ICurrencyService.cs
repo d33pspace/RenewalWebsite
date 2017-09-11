@@ -10,6 +10,7 @@ namespace RenewalWebsite.Services
     public interface ICurrencyService
     {
         CultureInfo GetCurrent();
+        CultureInfo GetCurrentLanguage();
         List<Currency> GetAll();
         string GetSymbol(CultureInfo culture);
         string GetISOName(CultureInfo culture);
