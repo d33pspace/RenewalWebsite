@@ -26,6 +26,11 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
+        public IActionResult Subscription()
+        {
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View();
