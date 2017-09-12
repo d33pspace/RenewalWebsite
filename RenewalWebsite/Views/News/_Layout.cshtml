@@ -1,9 +1,7 @@
-﻿@inject Microsoft.ApplicationInsights.AspNetCore.JavaScriptSnippet JavaScriptSnippet
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     @await Html.PartialAsync("_HeadPartial")
-    @Html.Raw(JavaScriptSnippet.FullScript)
 </head>
 <body class="news-page">
     <header class="masthead">
