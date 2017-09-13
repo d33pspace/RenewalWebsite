@@ -20,6 +20,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Rewrite;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Http;
 
 namespace RenewalWebsite
 {
@@ -66,6 +68,27 @@ namespace RenewalWebsite
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
+            
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.CallbackPath = new PathString("/signin-google");
+            });
+
+            services.AddAuthentication().AddFacebook(facebookOptions =>
+            {
+                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+                facebookOptions.CallbackPath = new PathString("/signin-facebook");
+            });
+
+            services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
+            {
+                microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+                microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
+                microsoftOptions.CallbackPath = new PathString("/signin-microsoft");
+            });
 
             services.AddScoped<LanguageActionFilter>();
 
@@ -116,7 +139,7 @@ namespace RenewalWebsite
             app.UseStaticFiles();
 
             app.UseIdentity();
-            
+
             var supportedCultures = new[]
             {
                 new CultureInfo("en-US"),
@@ -143,11 +166,6 @@ namespace RenewalWebsite
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
-                
-                //routes.MapRoute(
-                //    name: "CustomRoute",
-                //    template: "{controller=Donation}/{action=Payment/campaign}/{id?}"
-                //    );
             });
         }
     }

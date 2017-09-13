@@ -1202,7 +1202,7 @@ p.excerpt {
         color: #d11241 !important;
     }
 
-/*.news-page footer {
+.news-page footer {
     background-color: #d11241;
     max-width: 100%;
 }
@@ -1214,7 +1214,7 @@ p.excerpt {
 
     .news-page footer .fa {
         color: white;
-    }*/
+    }
 
 
 
