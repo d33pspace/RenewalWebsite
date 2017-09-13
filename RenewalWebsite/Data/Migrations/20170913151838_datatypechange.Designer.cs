@@ -5,13 +5,14 @@ using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
+using RenewalWebsite.Data;
 using System;
 
 namespace RenewalWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170822110350_[currency]")]
-    partial class currency
+    [Migration("20170913151838_datatypechange")]
+    partial class datatypechange
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -128,7 +129,7 @@ namespace RenewalWebsite.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("Stripe.Models.ApplicationUser", b =>
+            modelBuilder.Entity("RenewalWebsite.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -195,14 +196,14 @@ namespace RenewalWebsite.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
-            modelBuilder.Entity("Stripe.Models.Donation", b =>
+            modelBuilder.Entity("RenewalWebsite.Models.Donation", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd();
 
                     b.Property<string>("CycleId");
 
-                    b.Property<int?>("DonationAmount");
+                    b.Property<decimal?>("DonationAmount");
 
                     b.Property<int>("SelectedAmount");
 
@@ -229,7 +230,7 @@ namespace RenewalWebsite.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Stripe.Models.ApplicationUser")
+                    b.HasOne("RenewalWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -237,7 +238,7 @@ namespace RenewalWebsite.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Stripe.Models.ApplicationUser")
+                    b.HasOne("RenewalWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -250,7 +251,7 @@ namespace RenewalWebsite.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("Stripe.Models.ApplicationUser")
+                    b.HasOne("RenewalWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -258,15 +259,15 @@ namespace RenewalWebsite.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Stripe.Models.ApplicationUser")
+                    b.HasOne("RenewalWebsite.Models.ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("Stripe.Models.Donation", b =>
+            modelBuilder.Entity("RenewalWebsite.Models.Donation", b =>
                 {
-                    b.HasOne("Stripe.Models.ApplicationUser", "User")
+                    b.HasOne("RenewalWebsite.Models.ApplicationUser", "User")
                         .WithMany("Donations")
                         .HasForeignKey("UserId");
                 });

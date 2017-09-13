@@ -72,7 +72,7 @@ namespace RenewalWebsite.Data.Migrations
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CycleId = table.Column<string>(nullable: true),
-                    DonationAmount = table.Column<double>(nullable: false),
+                    DonationAmount = table.Column<int>(nullable: false),
                     TransactionDate = table.Column<DateTime>(nullable: true),
                     UserId = table.Column<string>(nullable: true)
                 },
