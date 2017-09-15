@@ -73,7 +73,7 @@
                                 <li>
                                     <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" onclick="setFocus(this)"/>
                                     <strong>@CurrencyService.GetSymbol(currency)</strong>
-                                    <input asp-for="DonationAmount" onfocus="checkSelection()" /> @Localizer[donation.Reason]
+                                    <input type="text" asp-for="DonationAmount" onfocus="checkSelection()" class="form-control"/> @Localizer[donation.Reason]
                                 </li>
                             }
                             else

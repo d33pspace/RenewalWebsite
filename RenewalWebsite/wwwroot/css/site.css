@@ -28,11 +28,7 @@
 
 @font-face {
     font-family: 'dpt35';
-    src: url('../fonts/dpt35-webfont.woff2') format('woff2'),
-        url('../fonts/dpt35-webfont.woff') format('woff'),
-        url('../fonts/dpt35-webfont.eot') format('embedded-opentype'),
-        url('../fonts/dpt35-webfont.svg') format('svg'),
-        url('../fonts/dpt35-webfont.ttf') format('truetype');
+    src: url('../fonts/dpt35-webfont.woff2') format('woff2'), url('../fonts/dpt35-webfont.woff') format('woff'), url('../fonts/dpt35-webfont.eot') format('embedded-opentype'), url('../fonts/dpt35-webfont.svg') format('svg'), url('../fonts/dpt35-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -41,11 +37,7 @@
 
 @font-face {
     font-family: 'dpt65';
-    src: url('../fonts/dpt65-webfont.woff2') format('woff2'),
-        url('../fonts/dpt65-webfont.woff') format('woff'),
-        url('../fonts/dpt65-webfont.eot') format('embedded-opentype'),
-        url('../fonts/dpt65-webfont.svg') format('svg'),
-        url('../fonts/dpt65-webfont.ttf') format('truetype');
+    src: url('../fonts/dpt65-webfont.woff2') format('woff2'), url('../fonts/dpt65-webfont.woff') format('woff'), url('../fonts/dpt65-webfont.eot') format('embedded-opentype'), url('../fonts/dpt65-webfont.svg') format('svg'), url('../fonts/dpt65-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -1202,7 +1194,7 @@ p.excerpt {
         color: #d11241 !important;
     }
 
-.news-page footer {
+/*.news-page footer {
     background-color: #d11241;
     max-width: 100%;
 }
@@ -1214,7 +1206,7 @@ p.excerpt {
 
     .news-page footer .fa {
         color: white;
-    }
+    }*/
 
 
 
@@ -1382,10 +1374,17 @@ input#DonationAmount {
     float: none;
     margin-top: 0px;
     margin-bottom: 0px;
-    border: 1px solid rgba(0,0,0,.15);
+    display: inline-block;
+    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    /*border: 1px solid rgba(0,0,0,.15);*/
     border-radius: 5px;
     padding-left: 5px;
+    font-weight: normal !important;
 }
+
+    input#DonationAmount:focus {
+        font-weight: bold !important;
+    }
 
 .hide {
     display: none;
