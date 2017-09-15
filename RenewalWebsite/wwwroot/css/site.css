@@ -1072,7 +1072,7 @@ a.news-link:hover {
 }
 
 .news.issue-8 {
-    background-image: url(../images/news-web-header.jpg);
+    background-image: url(../images/news/issue8/news-web-header.jpg);
     background-size: cover;
     min-height: 500px;
 }
