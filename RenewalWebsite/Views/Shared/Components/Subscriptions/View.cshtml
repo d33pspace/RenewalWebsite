@@ -24,21 +24,21 @@
                 @foreach (var subscription in Model.Subscriptions)
                 {
                     <tr>
-                        <td>@subscription.Name</td>
-                        <td>@subscription.Currency</td>
-                        <td>@Math.Round((subscription.Amount / 100),2)</td>
-                        <td>@subscription.Status</td>
-                        <td><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">Delete</a></td>
+                        <td style="vertical-align:middle;">@subscription.Name</td>
+                        <td style="vertical-align:middle;">@subscription.Currency</td>
+                        <td style="vertical-align:middle;" class="text-right">@Math.Round((subscription.Amount / 100),2)</td>
+                        <td style="vertical-align:middle;">@subscription.Status</td>
+                        <td style="vertical-align:middle;"><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">Cancel</a></td>
                     </tr>
                 }
             </tbody>
         </table>
     }
 </div>
-<a asp-action="Index" asp-controller="Home" class="btn btn-default">Add New Subscription</a>
+<a asp-action="Index" asp-controller="Donate" class="btn btn-default">Add New Subscription</a>
 <script type="text/javascript">
     function deleteSubscription(item) {
-        var result = confirm("Are you sure you want to delete?");
+        var result = confirm("Are you sure you want to cancel?");
         if (result) {
             //Logic to delete the item
             var id = $(item).attr("data-ajax-value");

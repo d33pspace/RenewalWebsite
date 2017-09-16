@@ -6,7 +6,7 @@
 @{
     var culture = Context.Features.Get<IRequestCultureFeature>();
 }
-<a class="btn btn-xs btn-secondary nav-link" asp-controller="Localization" asp-action="ToggleLanguage" asp-route-returnUrl="@Context.Request.Path">
+<a class="btnLang btn-xs btn-secondary nav-link" asp-controller="Localization" asp-action="ToggleLanguage" asp-route-returnUrl="@Context.Request.Path">
     @if (@culture.RequestCulture.UICulture.Name == "en-US")
     {
         <span>中文</span>

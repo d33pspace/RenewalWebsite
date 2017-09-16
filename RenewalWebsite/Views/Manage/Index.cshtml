@@ -32,10 +32,10 @@
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#logins" role="tab">External Logins</a></li>
             </ul>
             <div class="tab-content">
-                <div class="tab-pane  active" id="subscriptions">
+                <div class="tab-pane active" id="subscriptions">
                     @await Component.InvokeAsync("Subscriptions")
                 </div>
-                <div id="card" class="tab-pane">
+                <div id="card" class="tab-pane mt-3">
                     <h4>Change your card details</h4>
                     <hr />
                     @if (!string.IsNullOrEmpty(Model.card.cardId))
@@ -66,8 +66,8 @@
                         <h2>There are no cards for now</h2>
                     }
                 </div>
-                <div class="tab-pane" id="profile">
-                    <div>
+                <div class="tab-pane mt-3" id="profile">
+                    <div> 
                         <h4>Change your profile defaults</h4>
                         <hr />
                         <form asp-controller="Manage" asp-action="SaveProfile"class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_ProfileSuccess(this,data,xhr);" data-ajax-failure="fun_ProfileFail(this,data,xhr);">
@@ -370,7 +370,7 @@
                 </div>
 
 
-                <div class="tab-pane" id="password">
+                <div class="tab-pane mt-3" id="password">
                     <dl class="dl-horizontal">
                         <dt>Password:</dt>
                         <dd>
@@ -414,7 +414,7 @@
                     </dl>
                 </div>
 
-                <div class="tab-pane" id="logins">
+                <div class="tab-pane mt-3" id="logins">
 
                     <h2>Two-Factor Authentication:</h2>
                     <div>

@@ -13,11 +13,26 @@
 <body>
     <nav class="navbar navbar-toggleable-md navbar-light" id="mainNav">
         <div class="container">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fa fa-bars"></i>
-            </button>
-            <a class="navbar-brand hide-small" href="/"><img src="~/images/renewal-logo.png" data-at2x="~/images/renewal-logo@2x.png" width="100" /></a>
             <a class="navbar-brand hide-large red" href="/">@Localizer["RENEWAL"]</a>
+            <div class="form-horizontal">
+                <div class="form-group row">                    
+                    <div class="navbar-toggler navbar-toggler-right">
+                        <div class="input-group">
+                            @if (!SignInManager.IsSignedIn(User))
+                            {
+                                <div class="langBig input-group-btn mtp-auto">
+                                    @await Html.PartialAsync("_LanguageTogglePartial")
+                                </div>
+                            }
+                            <button class="navbar-toggler input-group-btn" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                                <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <a class="navbar-brand hide-small" href="/"><img src="~/images/renewal-logo.png" data-at2x="~/images/renewal-logo@2x.png" width="100" /></a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav left">
                     <li class="nav-item">
@@ -26,6 +41,7 @@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Home" asp-action="Services">@Localizer["Services"]</a>
                     </li>
+
                     <!--<li class="nav-item">
                         <a class="nav-link" asp-controller="News" asp-action="Index">@Localizer["News"]</a>
                     </li>-->
@@ -37,7 +53,9 @@
             </div>
             @if (!SignInManager.IsSignedIn(User))
             {
-                @await Html.PartialAsync("_LanguageTogglePartial");
+                <div class="lang">
+                    @await Html.PartialAsync("_LanguageTogglePartial")
+                </div>
             }
 
         </div>

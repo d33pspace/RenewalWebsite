@@ -263,7 +263,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -401,7 +401,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -668,7 +668,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -806,7 +806,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);

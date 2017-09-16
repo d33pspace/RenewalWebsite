@@ -165,6 +165,10 @@ a.styled-link, p a {
         color: white;
     }
 
+    /*#mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.lang {
+        display: block;
+    }*/
+
     #mainNav .navbar-nav > li.nav-item > a:hover, .btn.btn-link.navbar-btn.navbar-link:hover {
         background-color: #d11241;
         color: white;
@@ -217,16 +221,24 @@ a.styled-link, p a {
             color: #d11241;
         }
 
-            #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom:hover {
-                color: white;
-            }
+    .lang {
+        display: block;
+    }
 
-        #mainNav .navbar-nav > li.nav-item > a:hover, #mainNav .navbar-nav > li.nav-item > a:focus, .btn.btn-link.navbar-btn.navbar-link:hover {
-            background-color: #d11241;
-            color: white;
-            cursor: pointer;
-            text-decoration: none;
-        }
+    .langBig {
+        display: none;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom:hover {
+        color: white;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > a:hover, #mainNav .navbar-nav > li.nav-item > a:focus, .btn.btn-link.navbar-btn.navbar-link:hover {
+        background-color: #d11241;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+    }
 }
 
 @media only screen and (min-width: 1170px) {
@@ -570,7 +582,7 @@ form .form-group:first-child .floating-label-form-group {
 }*/
 
 label {
-    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    /*font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
 }
 
 /*button, input, optgroup, select, textarea {
@@ -650,6 +662,10 @@ input#choose-amount {
     padding-left: 5px;
 }
 
+.form-control {
+    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+}
+
     .form-control:focus, input#choose-amount:focus {
         border: 1px solid #d11241;
         /*font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
@@ -721,7 +737,7 @@ a.dropdown-toggle {
     font-size: 15px;
     font-weight: 800;
     padding: 15px 25px;
-    /*letter-spacing: 1px;*/
+    letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 5px;
     font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
@@ -729,6 +745,22 @@ a.dropdown-toggle {
     border-color: #d11241;
     background-color: #d11241;
     border: solid 2px;
+    white-space: normal;
+}
+
+.btnLang {
+    font-size: 15px;
+    font-weight: 800;
+    padding: 15px 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    color: white;
+    border-color: #d11241;
+    background-color: #d11241;
+    border: solid 2px;
+    white-space:nowrap;
 }
 
 .btn-primary {
@@ -1009,7 +1041,7 @@ footer {
 
 @media (min-width:769px) {
     footer {
-        max-width: 1140px;
+        /*max-width: 1140px;*/
     }
 }
 
@@ -1072,7 +1104,7 @@ a.news-link:hover {
 }
 
 .news.issue-8 {
-    background-image: url(../images/news/issue8/news-web-header.jpg);
+    background-image: url(../images/news-web-header.jpg);
     background-size: cover;
     min-height: 500px;
 }
@@ -1194,7 +1226,7 @@ p.excerpt {
         color: #d11241 !important;
     }
 
-/*.news-page footer {
+.news-page footer {
     background-color: #d11241;
     max-width: 100%;
 }
@@ -1206,8 +1238,39 @@ p.excerpt {
 
     .news-page footer .fa {
         color: white;
+    }
+
+        .news-page footer .fa:hover {
+            color: #393939;
+        }
+
+.news-page .btn-secondary {
+    color: #d11241;
+    background-color: white !IMPORTANT;
+    border-color: #d11241;
+    border: 2px solid;
+    cursor: pointer;
+}
+
+    /*.news-page .btn-secondary:hover {
+        color: white;
+        background-color: black !IMPORTANT;
+        border-color: #d11241;
+        border: 2px solid;
+        cursor: pointer;
     }*/
 
+    .news-page .btn-secondary i.arrow {
+        color: #d11241;
+        border-color: #d11241;
+        cursor: pointer;
+    }
+
+        /*.news-page .btn-secondary i.arrow:hover {
+            color: white;
+            border-color: white;
+            cursor: pointer;
+        }*/
 
 
 @media (max-width:1284px) {
@@ -1295,6 +1358,7 @@ p.excerpt {
 
     .hide-large {
         display: block;
+        /*float: left;*/
     }
 
     #mainNav {
@@ -1304,6 +1368,14 @@ p.excerpt {
         #mainNav .container {
             border-bottom: none;
         }
+
+    .lang {
+        display: none;
+    }
+
+    .langBig {
+        display: block;
+    }
 }
 
 @media (max-width:767px) {
@@ -1400,4 +1472,9 @@ input#DonationAmount {
 .m-tb-15 {
     margin-top: 15px;
     margin-bottom: 15px;
+}
+
+.mtp-auto {
+    margin-top: auto;
+    margin-bottom: auto;
 }
