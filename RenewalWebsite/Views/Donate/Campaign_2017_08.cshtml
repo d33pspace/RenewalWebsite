@@ -94,8 +94,8 @@
                         }
                     </ul>
                     <div class="clearfix mt-3 mb-3">
-                        <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]</button>
-                        <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]</button>
+                        <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"] <i class="arrow right-arrow"></i></button>
+                        <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"] <i class="arrow right-arrow"></i></button>
                     </div>
                     <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
                 </form>
@@ -117,7 +117,7 @@
                             }
                             else
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency) @(donation.Amount * 2)</strong></li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong></li>
                             }
                         }
                     }

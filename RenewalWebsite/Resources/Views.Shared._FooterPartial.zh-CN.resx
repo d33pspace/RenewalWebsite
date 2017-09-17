@@ -120,4 +120,13 @@
   <data name="Copyright Renewal 365 Inc" xml:space="preserve">
     <value>日新中心</value>
   </data>
+  <data name="Email" xml:space="preserve">
+    <value>电子邮箱</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="Sign Up" xml:space="preserve">
+    <value>同意</value>
+  </data>
 </root>
