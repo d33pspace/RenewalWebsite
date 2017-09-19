@@ -13,6 +13,7 @@ using RenewalWebsite.Models;
 using RenewalWebsite.Models.AccountViewModels;
 using RenewalWebsite.Services;
 using Microsoft.AspNetCore.Authentication;
+using RenewalWebsite.Utility;
 
 namespace RenewalWebsite.Controllers
 {
@@ -24,6 +25,7 @@ namespace RenewalWebsite.Controllers
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly ILogger _logger;
+        private readonly IViewRenderService _viewRenderService;
         //private readonly string _externalCookieScheme;
 
         public AccountController(
@@ -32,7 +34,8 @@ namespace RenewalWebsite.Controllers
             //IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            ILoggerFactory loggerFactory,
+            IViewRenderService viewRenderService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -40,6 +43,7 @@ namespace RenewalWebsite.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<AccountController>();
+            _viewRenderService = viewRenderService;
         }
 
         //
@@ -281,15 +285,19 @@ namespace RenewalWebsite.Controllers
                 // Send an email with this link
                 var code = await _userManager.GeneratePasswordResetTokenAsync(user);
                 string callbackUrl = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                ForgotPasswordMailModel mailModel = new ForgotPasswordMailModel();
+                mailModel.Name = user.FullName;
+                mailModel.message = callbackUrl;
+                string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
                 await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   callbackUrl, user.FullName);
+                   callbackUrl, user.FullName, template);
                 return View("ForgotPasswordConfirmation");
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
-
+        
         //
         // GET: /Account/ForgotPasswordConfirmation
         [HttpGet]
