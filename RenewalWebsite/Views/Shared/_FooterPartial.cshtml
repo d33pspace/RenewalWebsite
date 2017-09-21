@@ -1,6 +1,13 @@
-﻿<footer class="mt-5">
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@{
+    var culture = Context.Features.Get<IRequestCultureFeature>();
+}
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+<footer class="mt-5">
     <div class="container">
-        <!--<div class="row">
+        <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <ul class="list-inline text-center">
                     <li class="list-inline-item">
@@ -37,7 +44,7 @@
                     </li>
                 </ul>
             </div>
-        </div> -->
+        </div>
         <div class="row">
             <div class="col-md-3"></div>
             <div class="col-md-6">
@@ -47,14 +54,19 @@
                     <div class="form-group row">
                         <div class="col-6">
                             <label for="drip-contact-name" class="col-form-label sr-only">Name</label><br />
-                            <input type="text" id="drip-contact-name" name="fields[contact_name]" class="form-control" value="" placeholder="@Localizer["Name"]" />
+                            <input type="text" id="drip-contact-name" name="fields[contact_name]" class="form-control" value="" placeholder="Name"/>                            
                         </div>
                         <div class="col-6">
                             <label for="drip-email" class="col-form-label sr-only">Email Address</label><br />
-                            <input type="email" id="drip-email" name="fields[email]" class="form-control" value="" placeholder="@Localizer["Email"]" />
+                            <input type="email" id="drip-email" name="fields[email]" class="form-control" value="" placeholder="Email"/>
                         </div>
+                        @*<div class="col-4 hide">
+                            <label for="drip-language-preference" class="col-form-label sr-only">Language</label><br />
+                            <input type="text" id="drip-language-preference" name="fields[language_preference]" class="form-control" value="@culture.RequestCulture.UICulture.IetfLanguageTag" placeholder="language"/>
+                        </div>*@
+                        <input type="hidden" id="drip-language-preference" name="fields[language_preference]" value="@culture.RequestCulture.UICulture.IetfLanguageTag"/>
                     </div>
-                    <button type="submit" name="submit" data-drip-attribute="sign-up-button" class="btn btn-secondary mb-5">@Localizer["Sign Up"] <i class="arrow right-arrow"></i></button>
+                    <button type="submit" name="submit" data-drip-attribute="sign-up-button" class="btn btn-secondary mb-5">Sign Up<i class="arrow right-arrow"></i></button>
                 </form>
             </div>
             <div class="col-md-3"></div>
@@ -62,7 +74,7 @@
         <div class="row">
             <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
                 <p class="copyright text-muted"> &copy; @Localizer["Copyright Renewal 365 Inc"] 2017.</p>
-                <!--<p class="copyright text-muted"> 沪ICP备102XXXX2号 | 上海工商 <img src="~/images/chines-cert.png"></p>-->
+                <p class="copyright text-muted"> 沪ICP备102XXXX2号 | 上海工商 <img src="~/images/chines-cert.png"></p>
             </div>
         </div>
     </div>

@@ -7,6 +7,6 @@ namespace RenewalWebsite.Services
 {
     public interface IEmailSender
     {
-        Task SendEmailAsync(string email, string subject, string message,string FullName);
+        Task SendEmailAsync(string email, string subject, string message,string FullName,string template= null);
     }
 }

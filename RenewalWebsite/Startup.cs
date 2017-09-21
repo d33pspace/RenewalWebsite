@@ -22,6 +22,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Http;
+using RenewalWebsite.Utility;
 
 namespace RenewalWebsite
 {
@@ -105,6 +106,8 @@ namespace RenewalWebsite
             })
                 .AddViewLocalization(LanguageViewLocationExpanderFormat.Suffix)
                 .AddDataAnnotationsLocalization();
+
+            services.AddScoped<IViewRenderService, ViewRenderService>();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
