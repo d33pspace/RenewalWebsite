@@ -28,21 +28,24 @@ namespace RenewalWebsite.Services
             {
                 // Plug in your email service here to send an email.
                 MailMessage mail = new MailMessage();
-                mail.To.Add(email);
                 mail.From = new MailAddress(_emailSettings.Value.FromEmail);
                 mail.Subject = subject;
+                mail.Body = template;
                 mail.IsBodyHtml = true;
+                mail.Sender = new MailAddress(_emailSettings.Value.FromEmail);
+                mail.To.Add(email);
                 //string contentRootPath = _hostingEnvironment.ContentRootPath;                
                 //string Body = File.ReadAllText(contentRootPath + "\\MailTemplate\\password_reset.html");
                 //Body = Body.Replace("{{name}}", FullName);
                 //Body = Body.Replace("{{action_url}}", message);
                 //"<!DOCTYPE html><html lang='en' class='no-js'><head></head><body>" + message + "</body></html>";
-                mail.Body = template;
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = _emailSettings.Value.Host; //Or Your SMTP Server Address
                 smtp.Port = _emailSettings.Value.Port;
                 smtp.UseDefaultCredentials = false;
-                smtp.Credentials = new System.Net.NetworkCredential(_emailSettings.Value.FromEmail, _emailSettings.Value.Password);
+                //smtp.DeliveryFormat = SmtpDeliveryFormat.International;
+                smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
+                smtp.Credentials = new System.Net.NetworkCredential(_emailSettings.Value.EmailUserName, _emailSettings.Value.Password);
 
                 //Or your Smtp Email ID and Password
                 smtp.EnableSsl = _emailSettings.Value.EnableSsl;
