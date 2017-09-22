@@ -24,7 +24,7 @@ namespace RenewalWebsite.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ILogger _logger;
+        private readonly ILogger<AccountController> _logger;
         private readonly IViewRenderService _viewRenderService;
         //private readonly string _externalCookieScheme;
 
@@ -34,7 +34,7 @@ namespace RenewalWebsite.Controllers
             //IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory,
+            ILogger<AccountController> logger,
             IViewRenderService viewRenderService)
         {
             _userManager = userManager;
@@ -42,7 +42,7 @@ namespace RenewalWebsite.Controllers
             // _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<AccountController>();
+            _logger = logger;
             _viewRenderService = viewRenderService;
         }
 
@@ -88,6 +88,7 @@ namespace RenewalWebsite.Controllers
                 }
                 else
                 {
+                    _logger.LogError((int)LoggingEvents.GET_ITEM, "Invlid Log in attempt.");
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
@@ -117,7 +118,7 @@ namespace RenewalWebsite.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true, PhoneNumberConfirmed = true };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -170,6 +171,7 @@ namespace RenewalWebsite.Controllers
         {
             if (remoteError != null)
             {
+                _logger.LogError((int)LoggingEvents.GET_ITEM, "Error from external provider.");
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
                 return View(nameof(Login));
             }
@@ -217,6 +219,7 @@ namespace RenewalWebsite.Controllers
                 var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
+                    _logger.LogError((int)LoggingEvents.GET_ITEM, "External login gets failed.");
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
@@ -272,32 +275,41 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (ModelState.IsValid)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                    {
+                        // Don't reveal that the user does not exist or is not confirmed
+                        _logger.LogInformation((int)LoggingEvents.GET_ITEM, "User doee not exists or not confirmed.");
+                        return View("ForgotPasswordConfirmation");
+                    }
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
+                    // Send an email with this link
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    string callbackUrl = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    ForgotPasswordMailModel mailModel = new ForgotPasswordMailModel();
+                    mailModel.Name = user.FullName;
+                    mailModel.message = callbackUrl;
+                    string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
+                    await _emailSender.SendEmailAsync(model.Email, "Reset Password",
+                       callbackUrl, user.FullName, template);
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
-                // Send an email with this link
-                var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                string callbackUrl = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                ForgotPasswordMailModel mailModel = new ForgotPasswordMailModel();
-                mailModel.Name = user.FullName;
-                mailModel.message = callbackUrl;
-                string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
-                await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                   callbackUrl, user.FullName, template);
-                return View("ForgotPasswordConfirmation");
+                // If we got this far, something failed, redisplay form
+                return View(model);
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            catch (Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                return View(model);
+            }
         }
-        
+
         //
         // GET: /Account/ForgotPasswordConfirmation
         [HttpGet]
@@ -331,11 +343,13 @@ namespace RenewalWebsite.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
+                _logger.LogInformation((int)LoggingEvents.GET_ITEM, "User does not exists.");
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
+                _logger.LogInformation((int)LoggingEvents.SET_ITEM, "Password reset");
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
             AddErrors(result);
@@ -395,7 +409,7 @@ namespace RenewalWebsite.Controllers
             var message = "Your security code is: " + code;
             if (model.SelectedProvider == "Email")
             {
-                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", message, "");
+                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", "", "", message);
             }
             else if (model.SelectedProvider == "Phone")
             {

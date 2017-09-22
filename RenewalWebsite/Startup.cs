@@ -23,6 +23,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Http;
 using RenewalWebsite.Utility;
+using RenewalWebsite.LogProvider;
 
 namespace RenewalWebsite
 {
@@ -69,7 +70,7 @@ namespace RenewalWebsite
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
-            
+
             services.AddAuthentication().AddGoogle(googleOptions =>
             {
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
@@ -90,7 +91,7 @@ namespace RenewalWebsite
                 microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
                 microsoftOptions.CallbackPath = new PathString("/signin-microsoft");
             });
-
+                        
             services.AddScoped<LanguageActionFilter>();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -120,14 +121,39 @@ namespace RenewalWebsite
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext appDbContext)
         {
+            app.Use(async (context, next) =>
+            {
+                await next();
+
+                //After going down the pipeline check if we 404'd. 
+                if (context.Response.StatusCode == StatusCodes.Status404NotFound)
+                {
+                    context.Request.Path = "/Error/Error404";
+                    await next();
+                }
+                if (context.Response.StatusCode == StatusCodes.Status500InternalServerError)
+                {
+                    context.Request.Path = "/Error/Error500";
+                    await next();
+                }
+                //else
+                //{
+                //    context.Request.Path = "/Error/Error500";
+                //    await next();
+                //}
+                
+            });
+
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
+            loggerFactory.AddContext(LogLevel.Error, Configuration.GetConnectionString("DefaultConnection"));
+            loggerFactory.AddContext(LogLevel.Information, Configuration.GetConnectionString("DefaultConnection"));
+            loggerFactory.AddContext(LogLevel.Warning, Configuration.GetConnectionString("DefaultConnection"));
 
             var options = new RewriteOptions()
                 .AddRedirectToHttps();
 
             app.UseSession();
-
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -136,9 +162,10 @@ namespace RenewalWebsite
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Shared/Error");
             }
 
+            //app.UseStatusCodePagesWithRedirects("/error/{0}");
             app.UseStaticFiles();
 
             app.UseIdentity();

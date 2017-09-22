@@ -12,6 +12,8 @@ using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
+using Microsoft.Extensions.Logging;
+using RenewalWebsite.Utility;
 
 namespace RenewalWebsite.Controllers
 {
@@ -24,6 +26,7 @@ namespace RenewalWebsite.Controllers
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly IOptions<CampaignSettings> _campaignSettings;
         private readonly IStringLocalizer<DonateController> _localizer;
+        private readonly ILogger<DonateController> _logger;
 
         const string SessionKey = "sessionKey";
 
@@ -33,7 +36,8 @@ namespace RenewalWebsite.Controllers
             IOptions<ExchangeRate> exchangeSettings,
             IOptions<CampaignSettings> campaignSettings,
             ICampaignService campaignService,
-            IStringLocalizer<DonateController> localizer)
+            IStringLocalizer<DonateController> localizer,
+            ILogger<DonateController> logger)
         {
             _userManager = userManager;
             _donationService = donationService;
@@ -42,20 +46,29 @@ namespace RenewalWebsite.Controllers
             _campaignSettings = campaignSettings;
             _campaignService = campaignService;
             _localizer = localizer;
+            _logger = logger;
         }
 
         public IActionResult Index()
         {
-            var agent = Request.Headers["User-Agent"];
-            Console.WriteLine(agent.ToString());
-            ViewBag.Browser = agent.ToString();
-            var model = new DonationViewModel(_donationService.DonationOptions)
+            try
             {
-                DonationCycles = GetDonationCycles,
-                ExchangeRate = _exchangeSettings.Value.Rate
-            };
+                var agent = Request.Headers["User-Agent"];
+                Console.WriteLine(agent.ToString());
+                ViewBag.Browser = agent.ToString();
+                var model = new DonationViewModel(_donationService.DonationOptions)
+                {
+                    DonationCycles = GetDonationCycles,
+                    ExchangeRate = _exchangeSettings.Value.Rate
+                };
 
-            return View(model);
+                return View(model);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                return View(null);
+            }
         }
 
         public IActionResult Details()
@@ -70,16 +83,24 @@ namespace RenewalWebsite.Controllers
 
         public IActionResult Campaign_2017_08()
         {
-            //TODO: This code repeated
-            var agent = Request.Headers["User-Agent"];
-            Console.WriteLine(agent.ToString());
-            ViewBag.Browser = agent.ToString();
-            var model = new DonationViewModel(_campaignService.DonationOptions)
+            try
             {
-                DonationCycles = GetDonationCycles,
-                ExchangeRate = _exchangeSettings.Value.Rate
-            };
-            return View(model);
+                //TODO: This code repeated
+                var agent = Request.Headers["User-Agent"];
+                Console.WriteLine(agent.ToString());
+                ViewBag.Browser = agent.ToString();
+                var model = new DonationViewModel(_campaignService.DonationOptions)
+                {
+                    DonationCycles = GetDonationCycles,
+                    ExchangeRate = _exchangeSettings.Value.Rate
+                };
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                return View(null);
+            }
         }
 
         public IActionResult WeChat_2017_08()
@@ -95,137 +116,169 @@ namespace RenewalWebsite.Controllers
         [Authorize]
         public async Task<IActionResult> Create()
         {
-            var value = HttpContext.Session.GetString(SessionKey);
-            if (!string.IsNullOrEmpty(value))
+            try
             {
-                var model = JsonConvert.DeserializeObject<Donation>(value);
-                return RedirectToAction("Payment", "Donation", new { Id = model.Id });
+                var value = HttpContext.Session.GetString(SessionKey);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    var model = JsonConvert.DeserializeObject<Donation>(value);
+                    return RedirectToAction("Payment", "Donation", new { Id = model.Id });
+                }
+                return NotFound();
             }
-            return NotFound();
+            catch (Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                return View(null);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> Create(DonationViewModel donation)
         {
-            var agent = Request.Headers["User-Agent"];
-            Console.WriteLine(agent.ToString());
-            ViewBag.Browser = agent.ToString();
-
-            donation.DonationOptions = _donationService.DonationOptions;
-            donation.ExchangeRate = _exchangeSettings.Value.Rate;
-            donation.DonationCycles = GetDonationCycles;
-
-            if (donation.SelectedAmount == 0) //Could be better
+            try
             {
-                ModelState.AddModelError("amount", "Select amount");
-                return View("Index", donation);
-            }
+                var agent = Request.Headers["User-Agent"];
+                Console.WriteLine(agent.ToString());
+                ViewBag.Browser = agent.ToString();
 
+                donation.DonationOptions = _donationService.DonationOptions;
+                donation.ExchangeRate = _exchangeSettings.Value.Rate;
+                donation.DonationCycles = GetDonationCycles;
 
-            if (Math.Abs(donation.GetAmount()) < 1)
-            {
-                ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
-                return View("Index", donation);
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return View("Index", donation);
-            }
-
-            var model = new Donation
-            {
-                CycleId = donation.CycleId,
-                DonationAmount = donation.DonationAmount,
-                SelectedAmount = donation.SelectedAmount,
-                currency = "",
-                TransactionDate = DateTime.Now
-            };
-            _donationService.Save(model);
-
-            // If user is not authenticated, lets save the details on the session cache and we get them after authentication
-            if (!User.Identity.IsAuthenticated)
-            {
-                var value = HttpContext.Session.GetString(SessionKey);
-                if (string.IsNullOrEmpty(value))
+                if (donation.SelectedAmount == 0) //Could be better
                 {
-                    var donationJson = JsonConvert.SerializeObject(model);
-                    HttpContext.Session.SetString(SessionKey, donationJson);
+                    ModelState.AddModelError("amount", "Select amount");
+                    return View("Index", donation);
                 }
-                return RedirectToAction("Login", "Account", new { returnUrl = Request.Path });
-            }
 
-            return RedirectToAction("Payment", "Donation", new { id = model.Id });
+
+                if (Math.Abs(donation.GetAmount()) < 1)
+                {
+                    ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
+                    return View("Index", donation);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View("Index", donation);
+                }
+
+                var model = new Donation
+                {
+                    CycleId = donation.CycleId,
+                    DonationAmount = donation.DonationAmount,
+                    SelectedAmount = donation.SelectedAmount,
+                    currency = "",
+                    TransactionDate = DateTime.Now
+                };
+                _donationService.Save(model);
+
+                // If user is not authenticated, lets save the details on the session cache and we get them after authentication
+                if (!User.Identity.IsAuthenticated)
+                {
+                    var value = HttpContext.Session.GetString(SessionKey);
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        var donationJson = JsonConvert.SerializeObject(model);
+                        HttpContext.Session.SetString(SessionKey, donationJson);
+                    }
+                    return RedirectToAction("Login", "Account", new { returnUrl = Request.Path });
+                }
+
+                return RedirectToAction("Payment", "Donation", new { id = model.Id });
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GENERATE_ITEMS, ex.Message);
+                return View(null);
+            }
         }
 
         [Authorize]
         public async Task<IActionResult> CreateCampaign()
         {
-            var value = HttpContext.Session.GetString(SessionKey);
-            if (!string.IsNullOrEmpty(value))
+            try
             {
-                var model = JsonConvert.DeserializeObject<Donation>(value);
-                return Redirect("/Donation/Payment/campaign/" + model.Id);
-                //return RedirectToAction("Payment/campaign", "Donation", new { Id = model.Id });
+                var value = HttpContext.Session.GetString(SessionKey);
+                if (!string.IsNullOrEmpty(value))
+                {
+                    var model = JsonConvert.DeserializeObject<Donation>(value);
+                    return Redirect("/Donation/Payment/campaign/" + model.Id);
+                    //return RedirectToAction("Payment/campaign", "Donation", new { Id = model.Id });
+                }
+                return NotFound();
             }
-            return NotFound();
+            catch (Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GENERATE_ITEMS, ex.Message);
+                return View(null);
+            }
         }
 
         [HttpPost]
         public async Task<IActionResult> CreateCampaign(DonationViewModel donation)
         {
-            var agent = Request.Headers["User-Agent"];
-            Console.WriteLine(agent.ToString());
-            ViewBag.Browser = agent.ToString();
-
-            donation.DonationOptions = _campaignService.DonationOptions;
-            donation.ExchangeRate = _exchangeSettings.Value.Rate;
-            donation.DonationCycles = GetDonationCycles;
-
-            if (donation.SelectedAmount == 0) //Could be better
+            try
             {
-                ModelState.AddModelError("amount", "Select amount");
-                return View("Campaign_2017_08", donation);
-            }
+                var agent = Request.Headers["User-Agent"];
+                Console.WriteLine(agent.ToString());
+                ViewBag.Browser = agent.ToString();
 
+                donation.DonationOptions = _campaignService.DonationOptions;
+                donation.ExchangeRate = _exchangeSettings.Value.Rate;
+                donation.DonationCycles = GetDonationCycles;
 
-            if (Math.Abs(donation.GetAmount()) < 1)
-            {
-                ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
-                return View("Campaign_2017_08", donation);
-            }
-
-            if (!ModelState.IsValid)
-            {
-                return View("Campaign_2017_08", donation);
-            }
-
-            var model = new Donation
-            {
-                CycleId = donation.CycleId,
-                DonationAmount = donation.DonationAmount,
-                SelectedAmount = donation.SelectedAmount,
-                currency = "",
-                TransactionDate = DateTime.Now
-            };
-            _donationService.Save(model);
-
-            // If user is not authenticated, lets save the details on the session cache and we get them after authentication
-            if (!User.Identity.IsAuthenticated)
-            {
-                var value = HttpContext.Session.GetString(SessionKey);
-                if (string.IsNullOrEmpty(value))
+                if (donation.SelectedAmount == 0) //Could be better
                 {
-                    var donationJson = JsonConvert.SerializeObject(model);
-                    HttpContext.Session.SetString(SessionKey, donationJson);
+                    ModelState.AddModelError("amount", "Select amount");
+                    return View("Campaign_2017_08", donation);
                 }
-                return RedirectToAction("Login", "Account", new { returnUrl = Request.Path });
-            }
 
-            //return RedirectToRoute("CustomRoute");
-            //string action = "Payment/campaign";
-            //return RedirectToAction(action.Replace("%2f","/"), "Donation", new { id = model.Id });
-            return Redirect("/Donation/Payment/campaign/" + model.Id);
+
+                if (Math.Abs(donation.GetAmount()) < 1)
+                {
+                    ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
+                    return View("Campaign_2017_08", donation);
+                }
+
+                if (!ModelState.IsValid)
+                {
+                    return View("Campaign_2017_08", donation);
+                }
+
+                var model = new Donation
+                {
+                    CycleId = donation.CycleId,
+                    DonationAmount = donation.DonationAmount,
+                    SelectedAmount = donation.SelectedAmount,
+                    currency = "",
+                    TransactionDate = DateTime.Now
+                };
+                _donationService.Save(model);
+
+                // If user is not authenticated, lets save the details on the session cache and we get them after authentication
+                if (!User.Identity.IsAuthenticated)
+                {
+                    var value = HttpContext.Session.GetString(SessionKey);
+                    if (string.IsNullOrEmpty(value))
+                    {
+                        var donationJson = JsonConvert.SerializeObject(model);
+                        HttpContext.Session.SetString(SessionKey, donationJson);
+                    }
+                    return RedirectToAction("Login", "Account", new { returnUrl = Request.Path });
+                }
+
+                //return RedirectToRoute("CustomRoute");
+                //string action = "Payment/campaign";
+                //return RedirectToAction(action.Replace("%2f","/"), "Donation", new { id = model.Id });
+                return Redirect("/Donation/Payment/campaign/" + model.Id);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GENERATE_ITEMS, ex.Message);
+                return View(null);
+            }
         }
 
         private List<SelectListItem> GetDonationCycles => _donationService

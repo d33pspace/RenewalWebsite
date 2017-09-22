@@ -663,8 +663,8 @@ input#choose-amount {
 }
 
 .form-control {
-    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     /*font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;*/
+    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
     .form-control:focus, input#choose-amount:focus {
@@ -1042,7 +1042,7 @@ footer {
 
 @media (min-width:769px) {
     footer {
-        /*max-width: 1140px;*/
+        max-width: 1140px;
     }
 }
 
@@ -1484,6 +1484,10 @@ input#DonationAmount {
     font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
 }
 
-.select-font:focus {
-    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    .select-font:focus {
+        font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    }
+
+.rb-align {
+    float: none !important;
 }

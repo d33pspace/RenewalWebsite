@@ -9,9 +9,14 @@ namespace RenewalWebsite.Controllers
 {
     public class ErrorController : Controller
     {
-        public IActionResult Error(ErrorViewModel model)
+        public IActionResult Error404(ErrorViewModel model)
         {
-            return View(model);
+            return View("404");
+        }
+
+        public IActionResult Error500(ErrorViewModel model)
+        {
+            return View("500");
         }
     }
 }

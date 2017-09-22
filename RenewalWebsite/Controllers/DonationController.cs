@@ -10,6 +10,8 @@ using Microsoft.AspNetCore.Identity;
 using RenewalWebsite.Models;
 using Stripe;
 using RenewalWebsite.Helpers;
+using Microsoft.Extensions.Logging;
+using RenewalWebsite.Utility;
 
 namespace RenewalWebsite.Controllers
 {
@@ -22,19 +24,22 @@ namespace RenewalWebsite.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly ICampaignService _campaignService;
+        private readonly ILogger<DonationController> _logger;
 
         public DonationController(
             UserManager<ApplicationUser> userManager,
             IDonationService donationService,
             IOptions<StripeSettings> stripeSettings,
             IOptions<ExchangeRate> exchangeSettings,
-            ICampaignService campaignService)
+            ICampaignService campaignService,
+            ILogger<DonationController> logger)
         {
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
             _exchangeSettings = exchangeSettings;
             _campaignService = campaignService;
+            _logger = logger;
         }
 
         [Route("Donation/Payment")]
@@ -47,77 +52,87 @@ namespace RenewalWebsite.Controllers
         [Route("Donation/Payment/{id}")]
         public async Task<IActionResult> Payment(int id)
         {
-            var user = await GetCurrentUserAsync();
-            var donation = _donationService.GetById(id);
-            var detail = (DonationViewModel)donation;
-            detail.DonationOptions = _donationService.DonationOptions;
-
-            // Check for existing customer
-            // edit = 1 means user wants to edit the credit card information
-            if (!string.IsNullOrEmpty(user.StripeCustomerId))
+            try
             {
-                try
+                var user = await GetCurrentUserAsync();
+                var donation = _donationService.GetById(id);
+                var detail = (DonationViewModel)donation;
+                detail.DonationOptions = _donationService.DonationOptions;
+
+                // Check for existing customer
+                // edit = 1 means user wants to edit the credit card information
+                if (!string.IsNullOrEmpty(user.StripeCustomerId))
                 {
-                    var CustomerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
-                    StripeCustomer objStripeCustomer = CustomerService.Get(user.StripeCustomerId);
-                    StripeCard objStripeCard = null;
-
-                    if (objStripeCustomer.Sources != null && objStripeCustomer.Sources.TotalCount > 0 && objStripeCustomer.Sources.Data.Any())
+                    try
                     {
-                        objStripeCard = objStripeCustomer.Sources.Data.FirstOrDefault().Card;
-                    }
+                        var CustomerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
+                        StripeCustomer objStripeCustomer = CustomerService.Get(user.StripeCustomerId);
+                        StripeCard objStripeCard = null;
 
-                    if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
-                    {
-                        var objCustomerRePaymentViewModel = new CustomerRePaymentViewModel
+                        if (objStripeCustomer.Sources != null && objStripeCustomer.Sources.TotalCount > 0 && objStripeCustomer.Sources.Data.Any())
                         {
-                            Name = user.FullName,
-                            AddressLine1 = user.AddressLine1,
-                            AddressLine2 = user.AddressLine2,
-                            City = user.City,
-                            State = user.State,
-                            Country = user.Country,
-                            Zip = user.Zip,
-                            DonationId = donation.Id,
-                            Description = detail.GetDescription(),
-                            Frequency = detail.GetCycle(),
-                            Amount = detail.GetDisplayAmount(),
-                            Last4Digit = objStripeCard.Last4,
-                            CardId = objStripeCard.Id,
-                            //Currency = (objStripeCustomer.Currency + "").ToUpper(),
-                            DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
-                            ExchangeRate = _exchangeSettings.Value.Rate,
-                            IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                        };
+                            objStripeCard = objStripeCustomer.Sources.Data.FirstOrDefault().Card;
+                        }
 
-                        return View("RePayment", objCustomerRePaymentViewModel);
+                        if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
+                        {
+                            var objCustomerRePaymentViewModel = new CustomerRePaymentViewModel
+                            {
+                                Name = user.FullName,
+                                AddressLine1 = user.AddressLine1,
+                                AddressLine2 = user.AddressLine2,
+                                City = user.City,
+                                State = user.State,
+                                Country = user.Country,
+                                Zip = user.Zip,
+                                DonationId = donation.Id,
+                                Description = detail.GetDescription(),
+                                Frequency = detail.GetCycle(),
+                                Amount = detail.GetDisplayAmount(),
+                                Last4Digit = objStripeCard.Last4,
+                                CardId = objStripeCard.Id,
+                                //Currency = (objStripeCustomer.Currency + "").ToUpper(),
+                                DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
+                                ExchangeRate = _exchangeSettings.Value.Rate,
+                                IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                            };
+
+                            return View("RePayment", objCustomerRePaymentViewModel);
+                        }
                     }
+                    catch (StripeException sex)
+                    {
+                        _logger.LogError((int)LoggingEvents.GET_ITEM, sex.Message);
+                        ModelState.AddModelError("CustomerNotFound", sex.Message);
+                    }
+
                 }
-                catch (StripeException sex)
+
+                var model = new CustomerPaymentViewModel
                 {
-                    ModelState.AddModelError("CustomerNotFound", sex.Message);
-                }
+                    Name = user.FullName,
+                    AddressLine1 = user.AddressLine1,
+                    AddressLine2 = user.AddressLine2,
+                    City = user.City,
+                    State = user.State,
+                    Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
+                    Zip = user.Zip,
+                    DonationId = donation.Id,
+                    Description = detail.GetDescription(),
+                    Frequency = detail.GetCycle(),
+                    Amount = detail.GetDisplayAmount(),
+                    ExchangeRate = _exchangeSettings.Value.Rate,
+                    IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                    //Currency = "USD"
+                };
+
+                return View("Payment", model);
             }
-
-            var model = new CustomerPaymentViewModel
+            catch (Exception ex)
             {
-                Name = user.FullName,
-                AddressLine1 = user.AddressLine1,
-                AddressLine2 = user.AddressLine2,
-                City = user.City,
-                State = user.State,
-                Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
-                Zip = user.Zip,
-                DonationId = donation.Id,
-                Description = detail.GetDescription(),
-                Frequency = detail.GetCycle(),
-                Amount = detail.GetDisplayAmount(),
-                ExchangeRate = _exchangeSettings.Value.Rate,
-                IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                //Currency = "USD"
-            };
-
-            return View("Payment", model);
+                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                return View(null);
+            }
         }
 
         [HttpPost]
@@ -181,7 +196,8 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (Exception exSub)
                     {
-                        return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = exSub.Message });
+                        _logger.LogError((int)LoggingEvents.GET_CUSTOMER, exSub.Message);
+                        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = exSub.Message });
                     }
 
                     var customer = new StripeCustomerUpdateOptions
@@ -272,9 +288,10 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
                 }
                 else
                 {
@@ -285,6 +302,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
                 return View("Error");
             }
@@ -295,41 +313,50 @@ namespace RenewalWebsite.Controllers
         [Route("Donation/Payment/{id}/{edit?}")]
         public async Task<IActionResult> Payment(int id, int edit)
         {
-            var user = await GetCurrentUserAsync();
-            var donation = _donationService.GetById(id);
-            var detail = (DonationViewModel)donation;
-            detail.DonationOptions = _donationService.DonationOptions;
-            CustomerPaymentViewModel model = new CustomerPaymentViewModel();
-
             try
             {
-                var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
-                var ExistingCustomer = customerService.Get(user.StripeCustomerId);
-                model = new CustomerPaymentViewModel
-                {
-                    Name = user.FullName,
-                    AddressLine1 = user.AddressLine1,
-                    AddressLine2 = user.AddressLine2,
-                    City = user.City,
-                    State = user.State,
-                    Country = user.Country,
-                    Zip = user.Zip,
-                    DonationId = donation.Id,
-                    Description = detail.GetDescription(),
-                    Frequency = detail.GetCycle(),
-                    Amount = detail.GetDisplayAmount(),
-                    //Currency = string.IsNullOrEmpty(ExistingCustomer.Currency) ? string.Empty : ExistingCustomer.Currency.ToUpper(),
-                    DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
-                    ExchangeRate = _exchangeSettings.Value.Rate,
-                    IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                };
-            }
-            catch (StripeException sex)
-            {
-                ModelState.AddModelError("CustomerNotFound", sex.Message);
-            }
+                var user = await GetCurrentUserAsync();
+                var donation = _donationService.GetById(id);
+                var detail = (DonationViewModel)donation;
+                detail.DonationOptions = _donationService.DonationOptions;
+                CustomerPaymentViewModel model = new CustomerPaymentViewModel();
 
-            return View("Payment", model);
+                try
+                {
+                    var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
+                    var ExistingCustomer = customerService.Get(user.StripeCustomerId);
+                    model = new CustomerPaymentViewModel
+                    {
+                        Name = user.FullName,
+                        AddressLine1 = user.AddressLine1,
+                        AddressLine2 = user.AddressLine2,
+                        City = user.City,
+                        State = user.State,
+                        Country = user.Country,
+                        Zip = user.Zip,
+                        DonationId = donation.Id,
+                        Description = detail.GetDescription(),
+                        Frequency = detail.GetCycle(),
+                        Amount = detail.GetDisplayAmount(),
+                        //Currency = string.IsNullOrEmpty(ExistingCustomer.Currency) ? string.Empty : ExistingCustomer.Currency.ToUpper(),
+                        DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
+                        ExchangeRate = _exchangeSettings.Value.Rate,
+                        IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                    };
+                }
+                catch (StripeException sex)
+                {
+                    _logger.LogError((int)LoggingEvents.GET_CUSTOMER, sex.Message);
+                    ModelState.AddModelError("CustomerNotFound", sex.Message);
+                }
+
+                return View("Payment", model);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.GET_CUSTOMER, ex.Message);
+                return View(null);
+            }
         }
 
         [HttpPost]
@@ -410,9 +437,10 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
                 }
                 else
                 {
@@ -423,6 +451,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
                 return View("Error");
             }
@@ -452,77 +481,86 @@ namespace RenewalWebsite.Controllers
         [Route("Donation/Payment/campaign/{id}")]
         public async Task<IActionResult> CampaignPayment(int id)
         {
-            var user = await GetCurrentUserAsync();
-            var donation = _campaignService.GetById(id);
-            var detail = (DonationViewModel)donation;
-            detail.DonationOptions = _campaignService.DonationOptions;
-
-            // Check for existing customer
-            // edit = 1 means user wants to edit the credit card information
-            if (!string.IsNullOrEmpty(user.StripeCustomerId))
+            try
             {
-                try
+                var user = await GetCurrentUserAsync();
+                var donation = _campaignService.GetById(id);
+                var detail = (DonationViewModel)donation;
+                detail.DonationOptions = _campaignService.DonationOptions;
+
+                // Check for existing customer
+                // edit = 1 means user wants to edit the credit card information
+                if (!string.IsNullOrEmpty(user.StripeCustomerId))
                 {
-                    var CustomerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
-                    StripeCustomer objStripeCustomer = CustomerService.Get(user.StripeCustomerId);
-                    StripeCard objStripeCard = null;
-
-                    if (objStripeCustomer.Sources != null && objStripeCustomer.Sources.TotalCount > 0 && objStripeCustomer.Sources.Data.Any())
+                    try
                     {
-                        objStripeCard = objStripeCustomer.Sources.Data.FirstOrDefault().Card;
-                    }
+                        var CustomerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
+                        StripeCustomer objStripeCustomer = CustomerService.Get(user.StripeCustomerId);
+                        StripeCard objStripeCard = null;
 
-                    if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
-                    {
-                        var objCustomerRePaymentViewModel = new CustomerRePaymentViewModel
+                        if (objStripeCustomer.Sources != null && objStripeCustomer.Sources.TotalCount > 0 && objStripeCustomer.Sources.Data.Any())
                         {
-                            Name = user.FullName,
-                            AddressLine1 = user.AddressLine1,
-                            AddressLine2 = user.AddressLine2,
-                            City = user.City,
-                            State = user.State,
-                            Country = user.Country,
-                            Zip = user.Zip,
-                            DonationId = donation.Id,
-                            Description = detail.GetDescription(),
-                            Frequency = detail.GetCycle(),
-                            Amount = detail.GetDisplayAmount(),
-                            Last4Digit = objStripeCard.Last4,
-                            CardId = objStripeCard.Id,
-                            //Currency = (objStripeCustomer.Currency + "").ToUpper(),
-                            DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
-                            ExchangeRate = _exchangeSettings.Value.Rate,
-                            IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                        };
+                            objStripeCard = objStripeCustomer.Sources.Data.FirstOrDefault().Card;
+                        }
 
-                        return View("CampaignRePayment", objCustomerRePaymentViewModel);
+                        if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
+                        {
+                            var objCustomerRePaymentViewModel = new CustomerRePaymentViewModel
+                            {
+                                Name = user.FullName,
+                                AddressLine1 = user.AddressLine1,
+                                AddressLine2 = user.AddressLine2,
+                                City = user.City,
+                                State = user.State,
+                                Country = user.Country,
+                                Zip = user.Zip,
+                                DonationId = donation.Id,
+                                Description = detail.GetDescription(),
+                                Frequency = detail.GetCycle(),
+                                Amount = detail.GetDisplayAmount(),
+                                Last4Digit = objStripeCard.Last4,
+                                CardId = objStripeCard.Id,
+                                //Currency = (objStripeCustomer.Currency + "").ToUpper(),
+                                DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
+                                ExchangeRate = _exchangeSettings.Value.Rate,
+                                IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                            };
+
+                            return View("CampaignRePayment", objCustomerRePaymentViewModel);
+                        }
+                    }
+                    catch (StripeException sex)
+                    {
+                        _logger.LogError((int)LoggingEvents.GET_CUSTOMER, "Customer not found.");
+                        ModelState.AddModelError("CustomerNotFound", sex.Message);
                     }
                 }
-                catch (StripeException sex)
+
+                var model = new CustomerPaymentViewModel
                 {
-                    ModelState.AddModelError("CustomerNotFound", sex.Message);
-                }
+                    Name = user.FullName,
+                    AddressLine1 = user.AddressLine1,
+                    AddressLine2 = user.AddressLine2,
+                    City = user.City,
+                    State = user.State,
+                    Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
+                    Zip = user.Zip,
+                    DonationId = donation.Id,
+                    Description = detail.GetDescription(),
+                    Frequency = detail.GetCycle(),
+                    Amount = detail.GetDisplayAmount(),
+                    ExchangeRate = _exchangeSettings.Value.Rate,
+                    IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                    //Currency = "USD"
+                };
+
+                return View("CampaignPayment", model);
             }
-
-            var model = new CustomerPaymentViewModel
+            catch(Exception ex)
             {
-                Name = user.FullName,
-                AddressLine1 = user.AddressLine1,
-                AddressLine2 = user.AddressLine2,
-                City = user.City,
-                State = user.State,
-                Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
-                Zip = user.Zip,
-                DonationId = donation.Id,
-                Description = detail.GetDescription(),
-                Frequency = detail.GetCycle(),
-                Amount = detail.GetDisplayAmount(),
-                ExchangeRate = _exchangeSettings.Value.Rate,
-                IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                //Currency = "USD"
-            };
-
-            return View("CampaignPayment", model);
+                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                return View(null);
+            }
         }
 
         [HttpPost]
@@ -586,7 +624,8 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (Exception exSub)
                     {
-                        return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = exSub.Message });
+                        _logger.LogError((int)LoggingEvents.INSERT_ITEM, exSub.Message);
+                        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = exSub.Message });
                     }
 
                     var customer = new StripeCustomerUpdateOptions
@@ -677,9 +716,10 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
                 }
                 else
                 {
@@ -690,6 +730,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
                 return View("Error");
             }
@@ -700,41 +741,50 @@ namespace RenewalWebsite.Controllers
         [Route("Donation/Payment/campaign/{id}/{edit?}")]
         public async Task<IActionResult> CampaignPayment(int id, int edit)
         {
-            var user = await GetCurrentUserAsync();
-            var donation = _campaignService.GetById(id);
-            var detail = (DonationViewModel)donation;
-            detail.DonationOptions = _campaignService.DonationOptions;
-            CustomerPaymentViewModel model = new CustomerPaymentViewModel();
-
             try
             {
-                var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
-                var ExistingCustomer = customerService.Get(user.StripeCustomerId);
-                model = new CustomerPaymentViewModel
-                {
-                    Name = user.FullName,
-                    AddressLine1 = user.AddressLine1,
-                    AddressLine2 = user.AddressLine2,
-                    City = user.City,
-                    State = user.State,
-                    Country = user.Country,
-                    Zip = user.Zip,
-                    DonationId = donation.Id,
-                    Description = detail.GetDescription(),
-                    Frequency = detail.GetCycle(),
-                    Amount = detail.GetDisplayAmount(),
-                    //Currency = string.IsNullOrEmpty(ExistingCustomer.Currency) ? string.Empty : ExistingCustomer.Currency.ToUpper(),
-                    DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
-                    ExchangeRate = _exchangeSettings.Value.Rate,
-                    IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                };
-            }
-            catch (StripeException sex)
-            {
-                ModelState.AddModelError("CustomerNotFound", sex.Message);
-            }
+                var user = await GetCurrentUserAsync();
+                var donation = _campaignService.GetById(id);
+                var detail = (DonationViewModel)donation;
+                detail.DonationOptions = _campaignService.DonationOptions;
+                CustomerPaymentViewModel model = new CustomerPaymentViewModel();
 
-            return View("CampaignPayment", model);
+                try
+                {
+                    var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
+                    var ExistingCustomer = customerService.Get(user.StripeCustomerId);
+                    model = new CustomerPaymentViewModel
+                    {
+                        Name = user.FullName,
+                        AddressLine1 = user.AddressLine1,
+                        AddressLine2 = user.AddressLine2,
+                        City = user.City,
+                        State = user.State,
+                        Country = user.Country,
+                        Zip = user.Zip,
+                        DonationId = donation.Id,
+                        Description = detail.GetDescription(),
+                        Frequency = detail.GetCycle(),
+                        Amount = detail.GetDisplayAmount(),
+                        //Currency = string.IsNullOrEmpty(ExistingCustomer.Currency) ? string.Empty : ExistingCustomer.Currency.ToUpper(),
+                        DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
+                        ExchangeRate = _exchangeSettings.Value.Rate,
+                        IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                    };
+                }
+                catch (StripeException sex)
+                {
+                    _logger.LogError((int)LoggingEvents.GET_CUSTOMER, sex.Message);
+                    ModelState.AddModelError("CustomerNotFound", sex.Message);
+                }
+
+                return View("CampaignPayment", model);
+            }
+            catch(Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
+                return View(null);
+            }
         }
 
         [HttpPost]
@@ -815,9 +865,10 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
                 }
                 else
                 {
@@ -828,6 +879,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
                 return View("Error");
             }

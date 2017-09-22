@@ -14,6 +14,7 @@ using RenewalWebsite.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stripe;
+using RenewalWebsite.Utility;
 
 namespace RenewalWebsite.Controllers
 {
@@ -25,7 +26,7 @@ namespace RenewalWebsite.Controllers
         private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ILogger _logger;
+        private readonly ILogger<ManageController> _logger;
         private readonly IOptions<StripeSettings> _stripeSettings;
 
         public ManageController(
@@ -34,7 +35,7 @@ namespace RenewalWebsite.Controllers
           //IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
-          ILoggerFactory loggerFactory,
+          ILogger<ManageController> logger,
           IOptions<StripeSettings> stripeSettings)
         {
             _userManager = userManager;
@@ -42,7 +43,7 @@ namespace RenewalWebsite.Controllers
             //_externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<ManageController>();
+            _logger = logger;
             _stripeSettings = stripeSettings;
         }
 
@@ -51,71 +52,81 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null, int tabId = 0)
         {
-            // Optionaly use the region info to get default currency for user
-
-            ViewData["StatusMessage"] =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
-            var user = await GetCurrentUserAsync();
-            if (user == null)
-            {
-                return View("Error");
-            }
-            
-            var model = new IndexViewModel
-            {
-                HasPassword = await _userManager.HasPasswordAsync(user),
-                PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
-                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
-                Logins = await _userManager.GetLoginsAsync(user),
-                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-                UserId = user.Id,
-                TokenId = user.StripeCustomerId,
-                Message = GetTempMessage(),
-                FullName = user.FullName,
-                AddressLine1 = user.AddressLine1,
-                AddressLine2 = user.AddressLine2,
-                State = user.State,
-                Zip = user.Zip,
-                City = user.City,
-                Country = user.Country
-            };
-
-            model.card = new CardViewModel();
-            model.card.Name = user.FullName;
-
             try
             {
-                var CustomerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
-                if (!string.IsNullOrEmpty(user.StripeCustomerId))
+                // Optionaly use the region info to get default currency for user
+
+                ViewData["StatusMessage"] =
+                    message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                    : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                    : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                    : message == ManageMessageId.Error ? "An error has occurred."
+                    : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                    : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                    : "";
+
+                var user = await GetCurrentUserAsync();
+                if (user == null)
                 {
-                    StripeCustomer objStripeCustomer = CustomerService.Get(user.StripeCustomerId);
-                    if (objStripeCustomer.Sources != null && objStripeCustomer.Sources.TotalCount > 0 && objStripeCustomer.Sources.Data.Any())
+                    _logger.LogError((int)LoggingEvents.GET_ITEM, "User not found");
+                    return View("Error");
+                }
+
+                var model = new IndexViewModel
+                {
+                    HasPassword = await _userManager.HasPasswordAsync(user),
+                    PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
+                    TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
+                    Logins = await _userManager.GetLoginsAsync(user),
+                    BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+                    UserId = user.Id,
+                    TokenId = user.StripeCustomerId,
+                    Message = GetTempMessage(),
+                    FullName = user.FullName,
+                    AddressLine1 = user.AddressLine1,
+                    AddressLine2 = user.AddressLine2,
+                    State = user.State,
+                    Zip = user.Zip,
+                    City = user.City,
+                    Country = user.Country
+                };
+
+                model.card = new CardViewModel();
+                model.card.Name = user.FullName;
+
+                try
+                {
+                    var CustomerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
+                    if (!string.IsNullOrEmpty(user.StripeCustomerId))
                     {
-                        var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
-                        foreach (var cardSource in objStripeCustomer.Sources.Data)
+                        StripeCustomer objStripeCustomer = CustomerService.Get(user.StripeCustomerId);
+                        if (objStripeCustomer.Sources != null && objStripeCustomer.Sources.TotalCount > 0 && objStripeCustomer.Sources.Data.Any())
                         {
-                            model.card.Name = cardSource.Card.Name;
-                            model.card.cardId = cardSource.Card.Id;
-                            model.card.Last4Digit = cardSource.Card.Last4;
+                            var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
+                            foreach (var cardSource in objStripeCustomer.Sources.Data)
+                            {
+                                model.card.Name = cardSource.Card.Name;
+                                model.card.cardId = cardSource.Card.Id;
+                                model.card.Last4Digit = cardSource.Card.Last4;
+                            }
                         }
                     }
                 }
+                catch (StripeException sex)
+                {
+                    _logger.LogError((int)LoggingEvents.GET_CUSTOMER, sex.Message);
+                    ModelState.AddModelError("CustomerNoFound", sex.Message);
+                }
+                ViewBag.TabId = tabId;
+                return View(model);
             }
-            catch (StripeException sex)
+            catch (Exception ex)
             {
-                ModelState.AddModelError("CustomerNoFound", sex.Message);
+                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                return View(null);
             }
-            ViewBag.TabId = tabId;
-            return View(model);
         }
-        
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]
@@ -269,24 +280,32 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
-            }
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-                if (result.Succeeded)
+                if (!ModelState.IsValid)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User changed their password successfully.");
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    return View(model);
                 }
-                AddErrors(result);
-                return View(model);
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        _logger.LogInformation(3, "User changed their password successfully.");
+                        return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    }
+                    AddErrors(result);
+                    return View(model);
+                }
+                return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
             }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+            catch (Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
+                return View(null);
+            }
         }
 
         //
@@ -303,24 +322,33 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
+                    }
+                    AddErrors(result);
+                    return View(model);
+                }
+                return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError((int)LoggingEvents.SET_ITEM, ex.Message);
+                return View(null);
             }
 
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
-                }
-                AddErrors(result);
-                return View(model);
-            }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
         }
 
         //GET: /Manage/ManageLogins
@@ -451,6 +479,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
+                _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
                 result.data = "Something went wrong, please try again";
                 result.status = "0";
             }
@@ -483,11 +512,13 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex1)
                 {
+                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex1.Message);
                     result.data = ex1.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
+                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }
@@ -545,11 +576,13 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex1)
                 {
+                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex1.Message);
                     result.data = ex1.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
+                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }

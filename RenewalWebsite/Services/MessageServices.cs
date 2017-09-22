@@ -30,8 +30,8 @@ namespace RenewalWebsite.Services
                 MailMessage mail = new MailMessage();
                 mail.From = new MailAddress(_emailSettings.Value.FromEmail);
                 mail.Subject = subject;
-                mail.Body = template;
                 mail.IsBodyHtml = true;
+                mail.Body = template;
                 mail.Sender = new MailAddress(_emailSettings.Value.FromEmail);
                 mail.To.Add(email);
                 //string contentRootPath = _hostingEnvironment.ContentRootPath;                
@@ -46,7 +46,6 @@ namespace RenewalWebsite.Services
                 //smtp.DeliveryFormat = SmtpDeliveryFormat.International;
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = new System.Net.NetworkCredential(_emailSettings.Value.EmailUserName, _emailSettings.Value.Password);
-
                 //Or your Smtp Email ID and Password
                 smtp.EnableSsl = _emailSettings.Value.EnableSsl;
                 smtp.Send(mail);

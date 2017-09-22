@@ -418,11 +418,11 @@
 
                     <h2>Two-Factor Authentication:</h2>
                     <div>
-                        <p>
+                        @*<p>
                             There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
                             for setting up this application to support two-factor authentication.
-                        </p>
-                        @*@if (Model.TwoFactor)
+                        </p>*@
+                        @if (Model.TwoFactor)
                         {
                             <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
                                 Enabled <button type="submit" class="btn-link btn-bracketed">Disable</button>
@@ -433,7 +433,7 @@
                             <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
                                 <button type="submit" class="btn-link btn-bracketed">Enable</button> Disabled
                             </form>
-                        }*@
+                        }
                     </div>
 
                 </div>

@@ -8,13 +8,13 @@ namespace RenewalWebsite.Models
 {
     public enum PaymentCycle
     {
-        [Description("Monthly")]
+        [Description("monthly")]
         Month = 1,
-        [Description("Quarterly")]
+        [Description("quarterly")]
         Quarter = 2,
-        [Description("Yearly")]
+        [Description("yearly")]
         Year = 3,
-        [Description("One Time")]
+        [Description("one time")]
         OneTime = 4
     }
 }
