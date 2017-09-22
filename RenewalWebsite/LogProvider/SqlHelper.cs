@@ -44,7 +44,17 @@ namespace RenewalWebsite.LogProvider
             paramList.Add(new SqlParameter("LogLevel", log.LogLevel));
             paramList.Add(new SqlParameter("Message", log.Message));
             paramList.Add(new SqlParameter("CreatedTime", log.CreatedTime));
-            return ExecuteNonQuery(command, paramList);
+
+            try
+            {
+                return ExecuteNonQuery(command, paramList);
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            return true;
         }
     }
 }
