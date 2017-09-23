@@ -310,6 +310,7 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
+                ModelState.AddModelError(string.Empty, "Something went wrong, Please try again.");
                 return View(model);
             }
         }
