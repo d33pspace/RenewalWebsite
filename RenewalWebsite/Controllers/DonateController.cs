@@ -26,7 +26,8 @@ namespace RenewalWebsite.Controllers
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly IOptions<CampaignSettings> _campaignSettings;
         private readonly IStringLocalizer<DonateController> _localizer;
-        private readonly ILogger<DonateController> _logger;
+        private readonly ILoggerServicecs _loggerService;
+        private EventLog log;
 
         const string SessionKey = "sessionKey";
 
@@ -37,7 +38,7 @@ namespace RenewalWebsite.Controllers
             IOptions<CampaignSettings> campaignSettings,
             ICampaignService campaignService,
             IStringLocalizer<DonateController> localizer,
-            ILogger<DonateController> logger)
+            ILoggerServicecs loggerService)
         {
             _userManager = userManager;
             _donationService = donationService;
@@ -46,7 +47,8 @@ namespace RenewalWebsite.Controllers
             _campaignSettings = campaignSettings;
             _campaignService = campaignService;
             _localizer = localizer;
-            _logger = logger;
+            _loggerService = loggerService;
+
         }
 
         public IActionResult Index()
@@ -66,7 +68,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -98,7 +101,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -128,7 +132,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -190,7 +195,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GENERATE_ITEMS, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -211,7 +217,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GENERATE_ITEMS, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -276,7 +283,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GENERATE_ITEMS, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }

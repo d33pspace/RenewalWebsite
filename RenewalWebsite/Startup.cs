@@ -23,7 +23,6 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Http;
 using RenewalWebsite.Utility;
-using RenewalWebsite.LogProvider;
 
 namespace RenewalWebsite
 {
@@ -116,6 +115,7 @@ namespace RenewalWebsite
             services.AddTransient<IDonationService, DonationService>();
             services.AddTransient<ICurrencyService, CurrencyService>();
             services.AddTransient<ICampaignService, CampaignService>();
+            services.AddTransient<ILoggerServicecs, LoggerServicecs>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -146,9 +146,6 @@ namespace RenewalWebsite
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));
             loggerFactory.AddDebug();
-            loggerFactory.AddContext(LogLevel.Error, Configuration.GetConnectionString("DefaultConnection"));
-            loggerFactory.AddContext(LogLevel.Information, Configuration.GetConnectionString("DefaultConnection"));
-            loggerFactory.AddContext(LogLevel.Warning, Configuration.GetConnectionString("DefaultConnection"));
 
             var options = new RewriteOptions()
                 .AddRedirectToHttps();

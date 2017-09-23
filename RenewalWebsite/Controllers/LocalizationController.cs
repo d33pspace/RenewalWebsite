@@ -7,18 +7,20 @@ using RenewalWebsite.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Logging;
 using RenewalWebsite.Utility;
+using RenewalWebsite.Models;
 
 namespace RenewalWebsite.Controllers
 {
     public class LocalizationController : BaseController
     {
         private readonly ICurrencyService _currencyService;
-        private readonly ILogger<LocalizationController> _logger;
+        private readonly ILoggerServicecs _loggerService;
+        private EventLog log;
 
-        public LocalizationController(ICurrencyService currencyService, ILogger<LocalizationController> logger)
+        public LocalizationController(ICurrencyService currencyService, ILoggerServicecs loggerService)
         {
             _currencyService = currencyService;
-            _logger = logger;
+            _loggerService = loggerService;
         }
 
         [HttpPost]
@@ -31,7 +33,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.SET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -46,7 +49,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.SET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -64,7 +68,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -80,7 +85,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }

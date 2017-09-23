@@ -26,8 +26,9 @@ namespace RenewalWebsite.Controllers
         private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ILogger<ManageController> _logger;
         private readonly IOptions<StripeSettings> _stripeSettings;
+        private readonly ILoggerServicecs _loggerService;
+        private EventLog log;   
 
         public ManageController(
           UserManager<ApplicationUser> userManager,
@@ -35,15 +36,15 @@ namespace RenewalWebsite.Controllers
           //IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
-          ILogger<ManageController> logger,
-          IOptions<StripeSettings> stripeSettings)
+          IOptions<StripeSettings> stripeSettings,
+          ILoggerServicecs loggerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             //_externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = logger;
+            _loggerService = loggerService;
             _stripeSettings = stripeSettings;
         }
 
@@ -68,7 +69,8 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
-                    _logger.LogError((int)LoggingEvents.GET_ITEM, "User not found");
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "User not found." };
+                    _loggerService.SaveEventLog(log);
                     return View("Error");
                 }
 
@@ -114,7 +116,8 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException sex)
                 {
-                    _logger.LogError((int)LoggingEvents.GET_CUSTOMER, sex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                    _loggerService.SaveEventLog(log);
                     ModelState.AddModelError("CustomerNoFound", sex.Message);
                 }
                 ViewBag.TabId = tabId;
@@ -122,7 +125,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -303,7 +307,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -345,7 +350,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.SET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
 
@@ -479,7 +485,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 result.data = "Something went wrong, please try again";
                 result.status = "0";
             }
@@ -512,13 +519,15 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex1)
                 {
-                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex1.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex1.Message };
+                    _loggerService.SaveEventLog(log);
                     result.data = ex1.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                    _loggerService.SaveEventLog(log);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }
@@ -576,13 +585,15 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex1)
                 {
-                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex1.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex1.Message };
+                    _loggerService.SaveEventLog(log);
                     result.data = ex1.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError((int)LoggingEvents.UPDATE_ITEM, ex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                    _loggerService.SaveEventLog(log);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }

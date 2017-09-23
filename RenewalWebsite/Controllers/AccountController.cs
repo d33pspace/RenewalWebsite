@@ -24,8 +24,9 @@ namespace RenewalWebsite.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ILogger<AccountController> _logger;
         private readonly IViewRenderService _viewRenderService;
+        private readonly ILoggerServicecs _loggerService;
+        private EventLog log;
         //private readonly string _externalCookieScheme;
 
         public AccountController(
@@ -34,16 +35,16 @@ namespace RenewalWebsite.Controllers
             //IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILogger<AccountController> logger,
-            IViewRenderService viewRenderService)
+            IViewRenderService viewRenderService,
+            ILoggerServicecs loggerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             // _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = logger;
             _viewRenderService = viewRenderService;
+            _loggerService = loggerService;
         }
 
         //
@@ -171,7 +172,8 @@ namespace RenewalWebsite.Controllers
         {
             if (remoteError != null)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, "Error from external provider.");
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "Error from external provider." };
+                _loggerService.SaveEventLog(log);
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
                 return View(nameof(Login));
             }
@@ -219,7 +221,8 @@ namespace RenewalWebsite.Controllers
                 var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
-                    _logger.LogError((int)LoggingEvents.GET_ITEM, "External login gets failed.");
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "External login gets failed." };
+                    _loggerService.SaveEventLog(log);
                     return View("ExternalLoginFailure");
                 }
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
@@ -305,7 +308,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(model);
             }
         }
@@ -456,7 +460,6 @@ namespace RenewalWebsite.Controllers
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning(7, "User account locked out.");
                 return View("Lockout");
             }
             else

@@ -24,7 +24,8 @@ namespace RenewalWebsite.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly ICampaignService _campaignService;
-        private readonly ILogger<DonationController> _logger;
+        private readonly ILoggerServicecs _loggerService;
+        private EventLog log;
 
         public DonationController(
             UserManager<ApplicationUser> userManager,
@@ -32,14 +33,14 @@ namespace RenewalWebsite.Controllers
             IOptions<StripeSettings> stripeSettings,
             IOptions<ExchangeRate> exchangeSettings,
             ICampaignService campaignService,
-            ILogger<DonationController> logger)
+            ILoggerServicecs loggerServicer)
         {
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
             _exchangeSettings = exchangeSettings;
             _campaignService = campaignService;
-            _logger = logger;
+            _loggerService = loggerServicer;
         }
 
         [Route("Donation/Payment")]
@@ -102,7 +103,8 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (StripeException sex)
                     {
-                        _logger.LogError((int)LoggingEvents.GET_ITEM, sex.Message);
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                        _loggerService.SaveEventLog(log);
                         ModelState.AddModelError("CustomerNotFound", sex.Message);
                     }
 
@@ -130,7 +132,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -196,7 +199,8 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (Exception exSub)
                     {
-                        _logger.LogError((int)LoggingEvents.GET_CUSTOMER, exSub.Message);
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = exSub.Message };
+                        _loggerService.SaveEventLog(log);
                         return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = exSub.Message });
                     }
 
@@ -288,7 +292,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                _loggerService.SaveEventLog(log);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
                     return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
@@ -302,7 +307,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
                 return View("Error");
             }
@@ -346,7 +352,8 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException sex)
                 {
-                    _logger.LogError((int)LoggingEvents.GET_CUSTOMER, sex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                    _loggerService.SaveEventLog(log);
                     ModelState.AddModelError("CustomerNotFound", sex.Message);
                 }
 
@@ -354,7 +361,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_CUSTOMER, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -437,7 +445,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                _loggerService.SaveEventLog(log);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
                     return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
@@ -451,7 +460,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
                 return View("Error");
             }
@@ -531,7 +541,8 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (StripeException sex)
                     {
-                        _logger.LogError((int)LoggingEvents.GET_CUSTOMER, "Customer not found.");
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = "Customer not found." };
+                        _loggerService.SaveEventLog(log);
                         ModelState.AddModelError("CustomerNotFound", sex.Message);
                     }
                 }
@@ -558,7 +569,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.GET_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -624,7 +636,8 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (Exception exSub)
                     {
-                        _logger.LogError((int)LoggingEvents.INSERT_ITEM, exSub.Message);
+                        log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = exSub.Message };
+                        _loggerService.SaveEventLog(log);
                         return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = exSub.Message });
                     }
 
@@ -716,7 +729,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                _loggerService.SaveEventLog(log);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
                     return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
@@ -730,7 +744,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
                 return View("Error");
             }
@@ -774,7 +789,8 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException sex)
                 {
-                    _logger.LogError((int)LoggingEvents.GET_CUSTOMER, sex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = "Customer not found." };
+                    _loggerService.SaveEventLog(log);
                     ModelState.AddModelError("CustomerNotFound", sex.Message);
                 }
 
@@ -782,7 +798,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
@@ -865,7 +882,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException sex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, sex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                _loggerService.SaveEventLog(log);
                 if (sex.Message.ToLower().Contains("customer"))
                 {
                     return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
@@ -879,7 +897,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.INSERT_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
                 return View("Error");
             }

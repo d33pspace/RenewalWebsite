@@ -18,17 +18,18 @@ namespace RenewalWebsite.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly IDonationService _donationService;
         private readonly IOptions<StripeSettings> _stripeSettings;
-        private readonly ILogger<SubscriptionController> _logger;
+        private readonly ILoggerServicecs _loggerService;
+        private EventLog log;
 
         public SubscriptionController(UserManager<ApplicationUser> userManager,
             IDonationService donationService,
             IOptions<StripeSettings> stripeSettings,
-            ILogger<SubscriptionController> logger)
+            ILoggerServicecs loggerService)
         {
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
-            _logger = logger;
+            _loggerService = loggerService;
         }
         public IActionResult Delete(string subscriptionId)
         {
@@ -42,7 +43,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                _logger.LogError((int)LoggingEvents.DELETE_ITEM, ex.Message);
+                log = new EventLog() { EventId = (int)LoggingEvents.DELETE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
                 return View(null);
             }
         }
