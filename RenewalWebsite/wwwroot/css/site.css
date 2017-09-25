@@ -1274,6 +1274,10 @@ p.excerpt {
         }*/
 
 
+.news-page h6.text-danger {
+    color: white !important;
+}
+
 @media (max-width:1284px) {
     .renewal-logo-news {
         padding-top: 70px;
