@@ -126,6 +126,9 @@
   <data name="Double my gift" xml:space="preserve">
     <value>将我的捐赠翻倍</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>首页</value>
+  </data>
   <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
     <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
   </data>

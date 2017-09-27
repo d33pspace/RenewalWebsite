@@ -150,4 +150,7 @@
   <data name="Your most generous possible gift of any amount will be doubled." xml:space="preserve">
     <value>请将我的捐赠翻倍，来帮助更多的人们</value>
   </data>
+  <data name="Donate" xml:space="preserve">
+    <value>捐款</value>
+  </data>
 </root>
