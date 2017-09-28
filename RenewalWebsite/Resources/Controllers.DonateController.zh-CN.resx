@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Monthly" xml:space="preserve">
+  <data name="monthly" xml:space="preserve">
     <value>每个月</value>
   </data>
-  <data name="One Time" xml:space="preserve">
+  <data name="one time" xml:space="preserve">
     <value>一次</value>
   </data>
-  <data name="Quarterly" xml:space="preserve">
+  <data name="quarterly" xml:space="preserve">
     <value>每三个月</value>
   </data>
-  <data name="Yearly" xml:space="preserve">
+  <data name="yearly" xml:space="preserve">
     <value>每年</value>
   </data>
 </root>
