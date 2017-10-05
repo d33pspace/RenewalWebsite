@@ -16,14 +16,13 @@
 
 <div class="row">
 
-    @if (ViewBag.Browser.Contains("QQBrowser"))
+    @if (ViewBag.Browser.Contains("MicroMessenger"))
     {
         if (ViewBag.Browser.Contains("Mac OS X"))
         {
             <div class="col-md-12">
                 <h2>Please open this page in Safari.</h2>
                 <p>Our site isn't compatible with WeChat. To continue, please select "Open in Safari" from the context menu (three dots) at the top of your screen.</p>
-                <p>@ViewBag.Browser</p>
             </div>
         }
         else
@@ -31,7 +30,6 @@
             <div class="col-md-12">
                 <h2>Please open this page in your browser.</h2>
                 <p>Our site isn't compatible with WeChat. To continue, please select "Open with Browser" from the context menu (three dots) at the top of your screen.</p>
-                <p>@ViewBag.Browser</p>
             </div>
         }
     }
@@ -76,8 +74,7 @@
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
             <h2>@Localizer["My gift of hot meals, shelter and support for homeless men and women"]</h2>
             <p>@Localizer["Yes, I’ll rescue a homeless person from the streets by providing the food, shelter and support they need to start a new life!"]</p>
-            <p>@ViewBag.Browser</p>
-
+            
             @if (currency.Name.Contains("en"))
             {
                 <form asp-controller="Donate" asp-action="Create">
