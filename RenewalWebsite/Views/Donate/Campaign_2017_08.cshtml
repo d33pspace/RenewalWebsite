@@ -15,17 +15,21 @@
 
 <div class="row">
 
-    @if (ViewBag.Browser.Contains("QQBrowser"))
+    @if (ViewBag.Browser.Contains("MicroMessenger"))
     {
         if (ViewBag.Browser.Contains("Mac OS X"))
         {
-            <h2 class="m4-t">Please open this page in Safari.</h2>
-            <p>Our site isn't compatible with WeChat. To continue, please select "Open in Safari" from the context menu (three dots) at the top of your screen.</p>
+            <div class="col-md-12">
+                <h2 class="m4-t">Please open this page in Safari.</h2>
+                <p>Our site isn't compatible with WeChat. To continue, please select "Open in Safari" from the context menu (three dots) at the top of your screen.</p>
+            </div>
         }
         else
         {
-            <h2 class="m4-t">Please open this page in your browser.</h2>
-            <p>Our site isn't compatible with WeChat. To continue, please select "Open in Browser" from the context menu (thee dots) at the top of your screen.</p>
+            <div class="col-md-12">
+                <h2 class="m4-t">Please open this page in your browser.</h2>
+                <p>Our site isn't compatible with WeChat. To continue, please select "Open with Browser" from the context menu (thee dots) at the top of your screen.</p>
+            </div>
         }
     }
     else
@@ -71,8 +75,7 @@
                             if (donation.IsCustom)
                             {
                                 <li>
-                                    <input asp-for="SelectedAmount" type="radio" value="@donation.Id" class="rb-align" data-value="@donation.IsCustom" onclick="setFocus(this)" />
-                                    <strong>@CurrencyService.GetSymbol(currency)</strong>
+                                    <input asp-for="SelectedAmount" type="radio" value="@donation.Id" class="rb-align" data-value="@donation.IsCustom" onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
                                     <input type="text" asp-for="DonationAmount" onfocus="checkSelection()" class="form-control" /> @Localizer[donation.Reason]
                                 </li>
                             }
@@ -117,7 +120,7 @@
                             }
                             else
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency) @(donation.Amount * 2)</strong></li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong></li>
                             }
                         }
                     }

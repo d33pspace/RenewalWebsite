@@ -22,9 +22,9 @@ namespace RenewalWebsite.Services
 
         private List<DonationListOption> donationOptions = new List<DonationListOption>
         {
-            new DonationListOption {Id = 1, Reason = "to provide 10 hot meals."},
-            new DonationListOption {Id = 2, Reason = "to provide 30 hot meals."},
-            new DonationListOption {Id = 3, Reason = "to provide 60 hot meals."},
+            new DonationListOption {Id = 1, Reason = "to provide 20 hot meals."},
+            new DonationListOption {Id = 2, Reason = "to provide 35 hot meals."},
+            new DonationListOption {Id = 3, Reason = "to provide 70 hot meals."},
             new DonationListOption {Id = 4, Reason = "to help as many people as I can.", IsCustom = true},
         };
 

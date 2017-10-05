@@ -114,7 +114,7 @@
                                 {
                                     @*
                                         <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency) @(Math.Round((donation.Amount / Model.ExchangeRate),2))</strong> @Localizer[donation.Reason]</li>*@
-                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency) @donation.Amount</strong> @Localizer[donation.Reason]</li>
+                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]</li>
                                 }
                                 else
                                 {
