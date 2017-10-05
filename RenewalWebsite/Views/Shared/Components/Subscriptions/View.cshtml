@@ -1,44 +1,48 @@
 ﻿@model RenewalWebsite.Models.CustomerPaymentViewModel
 
-<div class="col-lg-12" style="margin-top:15px;">
+
 
     @if (Model.Subscriptions == null || !Model.Subscriptions.Any())
     {
-        <h2>There are no subscriptions for now</h2>
+        <h4>Manage your subscriptions</h4>
+        <hr />
+        <p>You have no subscriptions.</p>
     }
     else
     {
-
-        <table class="table table-hover table-responsive" width="100%">
-            <thead>
-                <tr>
-                    <th>Subscription Name</th>
-                    <th>Currency</th>
-                    <th>Amount (USD)</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach (var subscription in Model.Subscriptions)
-                {
+        <div class="col-lg-12" style="margin-top:15px;">
+            <table class="table table-hover table-responsive" width="100%">
+                <thead>
                     <tr>
-                        <td style="vertical-align:middle;">@subscription.Name</td>
-                        <td style="vertical-align:middle;">@subscription.Currency</td>
-                        <td style="vertical-align:middle;" class="text-right">@Math.Round((subscription.Amount / 100),2)</td>
-                        <td style="vertical-align:middle;">@subscription.Status</td>
-                        <td style="vertical-align:middle;"><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">Cancel</a></td>
+                        <th>Subscription Name</th>
+                        <th>Currency</th>
+                        <th>Amount (USD)</th>
+                        <th>Status</th>
+                        <th>Action</th>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+
+                <tbody>
+                    @foreach (var subscription in Model.Subscriptions)
+                {
+                        <tr>
+                            <td style="vertical-align:middle;">@subscription.Name</td>
+                            <td style="vertical-align:middle;">@subscription.Currency</td>
+                            <td style="vertical-align:middle;" class="text-right">@Math.Round((subscription.Amount / 100), 2)</td>
+                            <td style="vertical-align:middle;">@subscription.Status</td>
+                            <td style="vertical-align:middle;"><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">Cancel</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
     }
-</div>
+
 <a asp-action="Index" asp-controller="Donate" class="btn btn-default">Add New Subscription</a>
+
 <script type="text/javascript">
     function deleteSubscription(item) {
-        var result = confirm("Are you sure you want to cancel?");
+        var result = confirm("Are you sure you want to cancel this subscription?");
         if (result) {
             //Logic to delete the item
             var id = $(item).attr("data-ajax-value");
