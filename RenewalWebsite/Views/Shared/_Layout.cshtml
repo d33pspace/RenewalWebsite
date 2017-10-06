@@ -64,12 +64,18 @@
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
-            @*@if (!SignInManager.IsSignedIn(User))
-                {*@
-            <div class="lang">
-                @await Html.PartialAsync("_LanguageTogglePartial")
-            </div>
-            @*}*@
+            @if (!SignInManager.IsSignedIn(User))
+            {
+                <div class="lang" style="margin-top:0px;">
+                    @await Html.PartialAsync("_LanguageTogglePartial")
+                </div>
+            }
+            else
+            {
+                <div class="lang">
+                    @await Html.PartialAsync("_LanguageTogglePartial")
+                </div>
+            }
         </div>
     </nav>
     <div class="container pad-top">
