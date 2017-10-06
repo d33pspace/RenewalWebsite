@@ -71,7 +71,8 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "User not found." };
                     _loggerService.SaveEventLog(log);
-                    return View("Error");
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = "User not found" });
+                    //return View("Error");
                 }
 
                 var model = new IndexViewModel
@@ -309,7 +310,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -352,7 +354,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
 
         }
@@ -508,7 +511,7 @@ namespace RenewalWebsite.Controllers
                     StripeCard objStripeCard = await CardService.GetAsync(user.StripeCustomerId, card.cardId);
 
                     StripeCardUpdateOptions updateCardOptions = new StripeCardUpdateOptions();
-                    updateCardOptions.Name = card.Name;
+                    //updateCardOptions.Name = card.Name;
                     updateCardOptions.ExpirationMonth = card.ExpiryMonth;
                     updateCardOptions.ExpirationYear = card.ExpiryYear;
 

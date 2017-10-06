@@ -50,7 +50,6 @@
     font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
-
 body {
     font-size: 18px;
     color: #393939;
@@ -165,6 +164,11 @@ a.styled-link, p a {
         color: white;
     }
 
+    #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.signin-margin {
+        float: right;
+        margin-right: 20px;
+    }
+
     /*#mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.lang {
         display: block;
     }*/
@@ -221,8 +225,14 @@ a.styled-link, p a {
             color: #d11241;
         }
 
+        #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.signin-margin {
+            float: none;
+            margin-right: 0px;
+        }
+
     .lang {
         display: block;
+        margin-top: -3px;
     }
 
     .langBig {
@@ -310,6 +320,7 @@ header.masthead .page-heading {
         font-size: 80px;
     }
 }
+
 
 header.masthead .post-heading h1 {
     font-size: 33em;
@@ -1494,4 +1505,14 @@ input#DonationAmount {
 
 .rb-align {
     float: none !important;
+}
+
+.btn-vertical {
+    display: block;
+}
+
+@media(max-width:992px) {
+    .btn-vertical {
+        display: grid;
+    }
 }

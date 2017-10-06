@@ -70,7 +70,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -103,7 +104,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -134,7 +136,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -197,7 +200,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -219,7 +223,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -285,7 +290,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 

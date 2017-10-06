@@ -45,7 +45,7 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.DELETE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
     }

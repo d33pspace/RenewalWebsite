@@ -12,7 +12,7 @@ namespace RenewalWebsite.Models.ManageViewModels
 
         public string Last4Digit { get; set; }
 
-        [Required(ErrorMessage = "Name is required")]
+        //[Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
         [Required]
@@ -20,6 +20,7 @@ namespace RenewalWebsite.Models.ManageViewModels
         public string Cvc { get; set; }
 
         [Range(1, 12, ErrorMessage = "Invalid month")]
+        [Display(Name = "Expiry Date")]
         public int ExpiryMonth { get; set; }
 
         [Range(17, 30, ErrorMessage = "Invalid year")]

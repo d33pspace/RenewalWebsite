@@ -2,13 +2,14 @@
 @{
     ViewData["Title"] = "Your account";
 }
+<link href="~/css/jquery.scrolling-tabs.css" rel="stylesheet" />
 
 <h2><i class="fa fa-user fa-2x"></i> @ViewData["Title"]</h2>
 @*<link href="~/css/demo.css" rel="stylesheet" />
-<link href="~/css/normalize.css" rel="stylesheet" />
-<link href="~/css/tabs.css" rel="stylesheet" />
-<link href="~/css/tabstyles.css" rel="stylesheet" />
-<script src="~/js/modernizr.custom.js"></script>*@
+    <link href="~/css/normalize.css" rel="stylesheet" />
+    <link href="~/css/tabs.css" rel="stylesheet" />
+    <link href="~/css/tabstyles.css" rel="stylesheet" />
+    <script src="~/js/modernizr.custom.js"></script>*@
 <input type="hidden" id="TabId" name="TabId" value="@ViewBag.TabId" />
 <div class="row">
     <div class="col-md-12">
@@ -57,11 +58,11 @@
                                 @Html.Partial("_UpdateCard", Model.card)
                             </div>
                         </div>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <div id="divAdd" style="display:none;"></div>
-                                </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="divAdd" style="display:none;"></div>
                             </div>
+                        </div>
                     }
                     else
                     {
@@ -72,10 +73,10 @@
                 </div>
 
                 <div class="tab-pane mt-3" id="profile">
-                    <div> 
+                    <div>
                         <h4>Change your contact information</h4>
                         <hr />
-                        <form asp-controller="Manage" asp-action="SaveProfile"class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_ProfileSuccess(this,data,xhr);" data-ajax-failure="fun_ProfileFail(this,data,xhr);">
+                        <form asp-controller="Manage" asp-action="SaveProfile" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_ProfileSuccess(this,data,xhr);" data-ajax-failure="fun_ProfileFail(this,data,xhr);">
                             <div class="form-group">
                                 <label asp-for="FullName" class="col-sm-3 control-label"></label>
                                 <div class="col-sm-9">
@@ -391,7 +392,7 @@
                         </dd>
                         <dt>External Logins: (@Model.Logins.Count)</dt>
                         <dd>
-                             <a asp-controller="Manage" asp-action="ManageLogins" class="btn btn-default">Manage</a>
+                            <a asp-controller="Manage" asp-action="ManageLogins" class="btn btn-default">Manage</a>
                         </dd>
                         <!--<dt>Phone Number:</dt>
                         <dd>
@@ -424,9 +425,9 @@
                     <h2>Two-Factor Authentication:</h2>
                     <div>
                         @*<p>
-                            There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
-                            for setting up this application to support two-factor authentication.
-                        </p>*@
+                                There are no two-factor authentication providers configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532713">this article</a>
+                                for setting up this application to support two-factor authentication.
+                            </p>*@
                         @if (Model.TwoFactor)
                         {
                             <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
@@ -449,6 +450,7 @@
     </div>
 </div> <!-- /row -->
 @*<script src="~/js/cbpFWTabs.js"></script>*@
+<script src="~/js/jquery.scrolling-tabs.js"></script>
 <script src="~/lib/jquery-ajax-unobtrusive/jquery.unobtrusive-ajax.min.js"></script>
 <script type="text/javascript">
     //(function () {
@@ -458,10 +460,14 @@
     //    });
 
     //})();
-
+    $('.nav-tabs').scrollingTabs(
+        {
+            scrollToTabEdge: true
+        });
     $(document).ready(function () {
         var tabId = $('#TabId').val();
         selectedTab(tabId);
+
     });
 
     function fun_ProfileSuccess(ele, data, xhr) {

@@ -28,21 +28,21 @@
         <div class="container">
             <a class="navbar-brand hide-large red" href="/">@Localizer["RENEWAL"]</a>
             <div class="form-horizontal">
-                <div class="form-group row">                    
+                <div class="form-group row">
                     <div class="navbar-toggler navbar-toggler-right">
                         <div class="input-group">
-                            @if (!SignInManager.IsSignedIn(User))
-                            {
-                                <div class="langBig input-group-btn mtp-auto">
-                                    @await Html.PartialAsync("_LanguageTogglePartial")
-                                </div>
-                            }
+                            @*@if (!SignInManager.IsSignedIn(User))
+                                {*@
+                            <div class="langBig input-group-btn mtp-auto">
+                                @await Html.PartialAsync("_LanguageTogglePartial")
+                            </div>
+                            @*}*@
                             <button class="navbar-toggler input-group-btn" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                                 <i class="fa fa-bars"></i>
                             </button>
                         </div>
                     </div>
-                    
+
                 </div>
             </div>
             <a class="navbar-brand hide-small" href="/"><img src="~/images/renewal-logo.png" data-at2x="~/images/renewal-logo@2x.png" width="100" /></a>
@@ -64,13 +64,12 @@
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
             </div>
-            @if (!SignInManager.IsSignedIn(User))
-            {
-                <div class="lang">
-                    @await Html.PartialAsync("_LanguageTogglePartial")
-                </div>
-            }
-
+            @*@if (!SignInManager.IsSignedIn(User))
+                {*@
+            <div class="lang">
+                @await Html.PartialAsync("_LanguageTogglePartial")
+            </div>
+            @*}*@
         </div>
     </nav>
     <div class="container pad-top">

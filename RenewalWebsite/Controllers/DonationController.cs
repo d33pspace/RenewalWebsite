@@ -134,7 +134,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -269,8 +270,8 @@ namespace RenewalWebsite.Controllers
                         return RedirectToAction("Thanks", completedMessage);
                         //return View("Thanks", completedMessage);
                     }
-                    //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    return View("Error");
+                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+                    //return View("Error");
                 }
 
                 // Add to existing subscriptions and charge 
@@ -309,11 +310,11 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
-                return View("Error");
+                return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
+                //return View("Error");
             }
-            //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            return View("Error");
+            return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+            //return View("Error");
         }
 
         [Route("Donation/Payment/{id}/{edit?}")]
@@ -363,7 +364,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -423,8 +425,8 @@ namespace RenewalWebsite.Controllers
                         return RedirectToAction("Thanks", completedMessage);
                         //return View("Thanks", completedMessage);
                     }
-                    //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    return View("Error");
+                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+                    //return View("Error");
                 }
                 donation.currency = "usd";//payment.Currency;
                 // Add to existing subscriptions and charge 
@@ -462,11 +464,11 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                return View("Error");
+                return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
+                //return View("Error");
             }
-            //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            return View("Error");
+            return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+            //return View("Error");
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
@@ -571,7 +573,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -706,8 +709,8 @@ namespace RenewalWebsite.Controllers
                         return RedirectToAction("Thanks", completedMessage);
                         //return View("Thanks", completedMessage);
                     }
-                    //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    return View("Error");
+                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+                    //return View("Error");
                 }
 
                 // Add to existing subscriptions and charge 
@@ -746,11 +749,11 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
-                return View("Error");
+                return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
+                //return View("Error");
             }
-            //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            return View("Error");
+            return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+            //return View("Error");
         }
 
         [Route("Donation/Payment/campaign/{id}/{edit?}")]
@@ -800,7 +803,8 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                return View(null);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
         }
 
@@ -860,8 +864,8 @@ namespace RenewalWebsite.Controllers
                         return RedirectToAction("Thanks", completedMessage);
                         //return View("Thanks", completedMessage);
                     }
-                    //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    return View("Error");
+                    return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+                    //return View("Error");
                 }
                 donation.currency = "usd";//payment.Currency;
                 // Add to existing subscriptions and charge 
@@ -899,11 +903,11 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
-                //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                return View("Error");
+                return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
+                //return View("Error");
             }
-            //return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            return View("Error");
+            return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+            //return View("Error");
         }
     }
 }
