@@ -1,6 +1,6 @@
 ﻿@model IndexViewModel
 @{
-    ViewData["Title"] = "Your account";
+    ViewData["Title"] = Localizer["Your account"];
 }
 <link href="~/css/jquery.scrolling-tabs.css" rel="stylesheet" />
 
@@ -26,23 +26,23 @@
     <div class="col-md-12">
         <div class="tabbable">
             <ul class="nav nav-tabs" id="account-tabs" role="tablist" style="height: 42px;">
-                <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">Subscriptions</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card" role="tab">Card</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">Details</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab">Password</a></li>
+                <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">@Localizer["Subscriptions"]</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card" role="tab">@Localizer["Card"]</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">@Localizer["Details"]</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab">@Localizer["Password"]</a></li>
                 <!--<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#logins" role="tab">External Logins</a></li>-->
             </ul>
             <div class="tab-content">
 
-                <div id="subscriptions" class="tab-pane active mt-3">
+                <div id = "subscriptions" class="tab-pane active mt-3">
                     @await Component.InvokeAsync("Subscriptions")
                 </div>
 
-                <div id="card" class="tab-pane mt-3">
-                    <h4>Change your card details</h4>
+                <div id = "card" class="tab-pane mt-3">
+                    <h4>@Localizer["Change your card details"]</h4>
                     <hr />
                     @if (!string.IsNullOrEmpty(Model.card.cardId))
-                    {
+                {
                         @*<div id="textUpdateMessage" class="text-danger" style="display:none;">
                                 <ul>
                                     <li id="textErrorUpdateMessage"></li>
@@ -66,15 +66,15 @@
                     }
                     else
                     {
-                        <p>You have no card on file.</p>
+                        <p>@Localizer["You have no card on file."]</p>
 
-                        <a asp-action="Index" asp-controller="Donate" class="btn btn-default">Add New Subscription</a>
+                        <a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Add New Subscription"]</a>
                     }
                 </div>
 
                 <div class="tab-pane mt-3" id="profile">
                     <div>
-                        <h4>Change your contact information</h4>
+                        <h4>@Localizer["Change your contact information"]</h4>
                         <hr />
                         <form asp-controller="Manage" asp-action="SaveProfile" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_ProfileSuccess(this,data,xhr);" data-ajax-failure="fun_ProfileFail(this,data,xhr);">
                             <div class="form-group">
@@ -377,22 +377,22 @@
 
                 <div class="tab-pane mt-3" id="password">
                     <dl class="dl-horizontal">
-                        <h4>Manage your password and external logins</h4>
+                        <h4>@Localizer["Manage your password and external logins"]</h4>
                         <hr />
-                        <dt>Password:</dt>
+                        <dt>@Localizer["Password:"]</dt>
                         <dd>
                             @if (Model.HasPassword)
                             {
-                                <a asp-controller="Manage" asp-action="ChangePassword" class="btn btn-default">Change</a>
+                                <a asp-controller="Manage" asp-action="ChangePassword" class="btn btn-default">@Localizer["Change"]</a>
                             }
                             else
                             {
-                                <a asp-controller="Manage" asp-action="SetPassword" class="btn btn-default">Create</a>
+                                <a asp-controller="Manage" asp-action="SetPassword" class="btn btn-default">@Localizer["Create"]</a>
                             }
                         </dd>
-                        <dt>External Logins: (@Model.Logins.Count)</dt>
+                        <dt>@Localizer["External Logins:"] (@Model.Logins.Count)</dt>
                         <dd>
-                            <a asp-controller="Manage" asp-action="ManageLogins" class="btn btn-default">Manage</a>
+                            <a asp-controller="Manage" asp-action="ManageLogins" class="btn btn-default">@Localizer["Manage"]</a>
                         </dd>
                         <!--<dt>Phone Number:</dt>
                         <dd>

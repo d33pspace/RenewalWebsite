@@ -117,19 +117,52 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Forgot your password?" xml:space="preserve">
-    <value>忘记密码</value>
+  <data name="Add New Subscription" xml:space="preserve">
+    <value>新增一项定期捐赠</value>
   </data>
-  <data name="Log in" xml:space="preserve">
-    <value>登陆</value>
+  <data name="Card" xml:space="preserve">
+    <value>信用卡</value>
   </data>
-  <data name="Register as a new user?" xml:space="preserve">
-    <value>注册一个新用户</value>
+  <data name="Change" xml:space="preserve">
+    <value>更换</value>
   </data>
-  <data name="Use a local account to log in." xml:space="preserve">
-    <value>用日新的账户登陆</value>
+  <data name="Change your card details" xml:space="preserve">
+    <value>更改信用卡信息</value>
   </data>
-  <data name="Use another service to log in." xml:space="preserve">
-    <value>用第三方账号登陆</value>
+  <data name="Change your contact information" xml:space="preserve">
+    <value>更改你的个人信息</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>个人资料</value>
+  </data>
+  <data name="External Logins:" xml:space="preserve">
+    <value>第三方账号管理：</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="Manage your password and external logins" xml:space="preserve">
+    <value>账号管理</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="Password:" xml:space="preserve">
+    <value>密码：</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="Subscriptions" xml:space="preserve">
+    <value>定期捐赠</value>
+  </data>
+  <data name="You have no card on file." xml:space="preserve">
+    <value>你还没有添加任何信用卡</value>
+  </data>
+  <data name="Your account" xml:space="preserve">
+    <value>个人主页</value>
   </data>
 </root>

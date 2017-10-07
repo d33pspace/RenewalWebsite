@@ -14,11 +14,11 @@ else
         <table class="table table-bordered table-hover table-responsive" width="100%">
             <thead>
                 <tr>
-                    <th>Frequency</th>
-                    <th>Amount</th>
-                    <th>Currency</th>
-                    <th>Status</th>
-                    <th>Action</th>
+                    <th>@Localizer["Frequency"]</th>
+                    <th>@Localizer["Amount"]</th>
+                    <th>@Localizer["Currency"]</th>
+                    <th>@Localizer["Status"]</th>
+                    <th>@Localizer["Action"]</th>
                 </tr>
             </thead>
 
@@ -30,7 +30,7 @@ else
                         <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", Convert.ToDecimal(subscription.Amount) / 100).Replace("$", ""))</td>
                         <td style="vertical-align:middle;">@subscription.Currency.ToUpper()</td>
                         <td style="vertical-align:middle;">@(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(subscription.Status))</td>
-                        <td style="vertical-align:middle;"><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">Cancel</a></td>
+                        <td style="vertical-align:middle;"><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">@Localizer["Cancel"]</a></td>
                     </tr>
                 }
             </tbody>
@@ -38,11 +38,11 @@ else
     </div>
 }
 
-<a asp-action="Index" asp-controller="Donate" class="btn btn-default">Add New Subscription</a>
+<a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Add New Subscription"]</a>
 
 <script type="text/javascript">
     function deleteSubscription(item) {
-        var result = confirm("Are you sure you want to cancel this subscription?");
+        var result = confirm("@Localizer["Are you sure you want to cancel this subscription?"]");
         if (result) {
             //Logic to delete the item
             var id = $(item).attr("data-ajax-value");
