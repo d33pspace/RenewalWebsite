@@ -7,10 +7,11 @@
 @inject ICurrencyService CurrencyService
 
 @{
-    ViewData["Title"] = Localizer["Donate"].Value;
-
+    ViewData["Title"] = Localizer["Donate"];
     var currency = CurrencyService.GetCurrent();
     var language = CurrencyService.GetCurrentLanguage();
+    double baseAmountCNY = 10;
+    double baseAmountUSD = 1.47;
 }
 
 <div class="row">
@@ -35,23 +36,48 @@
     else
     {
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-            <img src="~/images/campaigns/slide-matching.jpg" class="figure-img img-fluid" alt="donate page image">
+            <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
             @if (language.Name.Contains("zh"))
             {
-                <figcaption class="figure-caption caption chinese">@Localizer["Double my gift to save and shelter more people."]</figcaption>
+                <figcaption class="figure-caption caption chinese">
+                    @Localizer["Every"]
+                    @if (currency.Name.Contains("zh"))
+                    {
+                        <span>@baseAmountCNY.ToString("C", currency)</span>
+                    }
+                    else
+                    {
+                        <span>@baseAmountUSD.ToString("C", currency)</span>
+                    }
+                    @Localizer["of your gift will provide a hot meal for a homeless person."]
+                </figcaption>
+
             }
             else
             {
-                <figcaption class="figure-caption caption">@Localizer["Double my gift to save and shelter more people."]</figcaption>
+                <figcaption class="figure-caption caption">
+                    @Localizer["Every"]
+                    @if (currency.Name.Contains("zh"))
+                    {
+                        <span>@baseAmountCNY.ToString("C", currency)</span>
+                    }
+                    else
+                    {
+                        <span>@baseAmountUSD.ToString("C", currency)</span>
+                    }
+                    @Localizer["of your gift will provide a hot meal for a homeless person."]
+                </figcaption>
+
             }
+
         </div>
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-            <h2>@Localizer["Double my gift for Renewal today"]</h2>
-            <p>@Localizer["Yes, please use your generous matching grant to double every dollar of my gift today -- to offer hope and support for people who would otherwise be living on the streets."]</p>
-
+            <h2>@Localizer["My gift of hot meals, shelter and support for homeless men and women"]</h2>
+            <p>@Localizer["Yes, I’ll rescue a homeless person from the streets by providing the food, shelter and support they need to start a new life!"]</p>
+            
             @if (currency.Name.Contains("en"))
             {
-                <form asp-controller="Donate" asp-action="CreateCampaign">
+                <form asp-controller="Donate" asp-action="Create">
 
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <div id="textMainMessage" class="text-danger" style="display:none;">
@@ -61,7 +87,9 @@
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <label class="mtp-auto">@Localizer["I would like to make a"]&nbsp;</label>
+                            <label class="mtp-auto">
+                                @Localizer["I would like to make a"]&nbsp;
+                            </label>
                             <select asp-for="CycleId" class="form-control select-font" style="min-width:100px; max-width:100px;border-radius:0.25rem;"
                                     asp-items="@Model.DonationCycles"></select>&nbsp;
 
@@ -75,7 +103,8 @@
                             if (donation.IsCustom)
                             {
                                 <li>
-                                    <input asp-for="SelectedAmount" type="radio" value="@donation.Id" class="rb-align" data-value="@donation.IsCustom" onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
+                                    <input asp-for="SelectedAmount" type="radio" value="@donation.Id" class="rb-align" data-value="@donation.IsCustom" onclick="setFocus(this)" />
+                                    <strong>@CurrencyService.GetSymbol(currency)</strong>
                                     <input type="text" asp-for="DonationAmount" onfocus="checkSelection()" class="form-control" /> @Localizer[donation.Reason]
                                 </li>
                             }
@@ -83,20 +112,21 @@
                             {
                                 if (donation.Id == 1)
                                 {
-                                    @*<li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@(Math.Round((donation.Amount / Model.ExchangeRate), 2))</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@((Math.Round((donation.Amount / Model.ExchangeRate), 2)) * 2)</strong></li>*@
-                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
-
+                                    @*
+                                        <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency) @(Math.Round((donation.Amount / Model.ExchangeRate),2))</strong> @Localizer[donation.Reason]</li>*@
+                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]</li>
                                 }
                                 else
                                 {
-                                    @*<li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom"/> <strong>@CurrencyService.GetSymbol(currency)@(Math.Round((donation.Amount / Model.ExchangeRate), 2))</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@((Math.Round((donation.Amount / Model.ExchangeRate), 2)) * 2)</strong></li>*@
-                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" /> <strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
+                                    @*
+                                        <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" /> <strong>@CurrencyService.GetSymbol(currency)@(Math.Round((donation.Amount / Model.ExchangeRate),2))</strong> @Localizer[donation.Reason]</li>*@
+                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" /> <strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]</li>
                                 }
 
                             }
                         }
                     </ul>
-                    <div class="clearfix mt-3 mb-3">
+                    <div class="clearfix">
                         <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
                         <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
                     </div>
@@ -110,26 +140,27 @@
                     {
                         if (donation.IsCustom)
                         {
-                            <li>@Localizer["Your most generous possible gift of any amount will be doubled."]</li>
+                            <li>@Localizer["An amount of your choice to help as many people as you can."]</li>
                         }
                         else
                         {
                             if (donation.Id == 1)
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]</li>
                             }
                             else
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]</li>
                             }
                         }
                     }
-                    @*<li>A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["will matched, and doubled to"] <strong>@giftOption1x2.ToString("C", currency)</strong></li>
-                        <li>A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption2x2.ToString("C", currency)</strong></li>
-                        <li>A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to be matched, and doubled to"] <strong>@giftOption3x2.ToString("C", currency)</strong></li>
+                    @*
+                        <li>A gift of <strong>@giftOption1.ToString("C", currency)</strong> @Localizer["to provide"] 10 @Localizer["hot meals."]</li>
+                        <li>A gift of <strong>@giftOption2.ToString("C", currency)</strong> @Localizer["to provide"] 35 @Localizer["hot meals."]</li>
+                        <li>A gift of <strong>@giftOption3.ToString("C", currency)</strong> @Localizer["to provide"] 60 @Localizer["hot meals."]</li>
                         <li>@Localizer["Your most generous possible gift of any amount will be doubled."]</li>*@
                 </ul>
-                <div class="clearfix mt-3 mb-3">
+                <div class="clearfix">
                     <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
                 </div>
                 <p class="m-tb-15">@Localizer["Or scan the QR code below with your Alipay app to donate now:"]</p>
@@ -146,7 +177,6 @@
             if ($('#DonationAmount').val() == "") {
                 $('#textMainMessage').show();
                 $('#textMainErrorMessage').text('Amount is required.');
-                $('#DonationAmount').focus();
                 return;
             }
         }
