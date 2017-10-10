@@ -4,9 +4,9 @@
 
 @if (Model.Subscriptions == null || !Model.Subscriptions.Any())
 {
-    <h4>Manage your subscriptions</h4>
+    <h4>@Localizer["Manage your subscriptions"]</h4>
         <hr />
-        <p>You have no subscriptions.</p>
+        <p>@Localizer["You have no subscriptions."]</p>
 }
 else
 {

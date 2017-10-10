@@ -127,7 +127,7 @@
     <value>更换</value>
   </data>
   <data name="Change your card details" xml:space="preserve">
-    <value>更改信用卡信息</value>
+    <value>更改你的信用卡信息</value>
   </data>
   <data name="Change your contact information" xml:space="preserve">
     <value>更改你的个人信息</value>
@@ -139,13 +139,13 @@
     <value>个人资料</value>
   </data>
   <data name="External Logins:" xml:space="preserve">
-    <value>第三方账号管理：</value>
+    <value>第三方账号：</value>
   </data>
   <data name="Manage" xml:space="preserve">
     <value>管理</value>
   </data>
   <data name="Manage your password and external logins" xml:space="preserve">
-    <value>账号管理</value>
+    <value>管理你的账号</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密码</value>

@@ -138,7 +138,13 @@
   <data name="Frequency" xml:space="preserve">
     <value> 周期</value>
   </data>
+  <data name="Manage your subscriptions" xml:space="preserve">
+    <value>管理你的定期捐赠</value>
+  </data>
   <data name="Status" xml:space="preserve">
     <value>状态</value>
+  </data>
+  <data name="You have no subscriptions." xml:space="preserve">
+    <value>你没有定期捐赠。</value>
   </data>
 </root>
