@@ -120,6 +120,12 @@
   <data name="Add New Subscription" xml:space="preserve">
     <value>新增一项定期捐赠</value>
   </data>
+  <data name="Address Line 1" xml:space="preserve">
+    <value>地址栏1</value>
+  </data>
+  <data name="Address Line 2" xml:space="preserve">
+    <value>地址行2</value>
+  </data>
   <data name="Card" xml:space="preserve">
     <value>信用卡</value>
   </data>
@@ -132,6 +138,12 @@
   <data name="Change your contact information" xml:space="preserve">
     <value>更改你的个人信息</value>
   </data>
+  <data name="City" xml:space="preserve">
+    <value>市</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>国家</value>
+  </data>
   <data name="Create" xml:space="preserve">
     <value>创建</value>
   </data>
@@ -140,6 +152,9 @@
   </data>
   <data name="External Logins:" xml:space="preserve">
     <value>第三方账号：</value>
+  </data>
+  <data name="Full Name" xml:space="preserve">
+    <value>全名</value>
   </data>
   <data name="FullName" xml:space="preserve">
     <value>全名</value>
@@ -159,6 +174,9 @@
   <data name="Save" xml:space="preserve">
     <value>保存</value>
   </data>
+  <data name="State" xml:space="preserve">
+    <value>州</value>
+  </data>
   <data name="Subscriptions" xml:space="preserve">
     <value>定期捐赠</value>
   </data>
@@ -167,5 +185,8 @@
   </data>
   <data name="Your account" xml:space="preserve">
     <value>个人主页</value>
+  </data>
+  <data name="Zip" xml:space="preserve">
+    <value>压缩</value>
   </data>
 </root>

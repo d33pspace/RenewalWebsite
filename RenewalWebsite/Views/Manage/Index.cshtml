@@ -78,49 +78,49 @@
                         <hr />
                         <form asp-controller="Manage" asp-action="SaveProfile" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_ProfileSuccess(this,data,xhr);" data-ajax-failure="fun_ProfileFail(this,data,xhr);">
                             <div class="form-group">
-                                <label asp-for="FullName" class="col-sm-3 control-label"></label>
+                                <label asp-for="FullName" class="col-sm-3 control-label">@Localizer["Full Name"]</label>
                                 <div class="col-sm-9">
                                     <input asp-for="FullName" class="form-control" />
                                     <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" asp-for="AddressLine1"></label>
+                                <label class="col-sm-3 control-label" asp-for="AddressLine1">@Localizer["Address Line 1"]</label>
                                 <div class="col-sm-9">
                                     <input asp-for="AddressLine1" class="form-control" />
                                     <span asp-validation-for="AddressLine1" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" asp-for="AddressLine2"></label>
+                                <label class="col-sm-3 control-label" asp-for="AddressLine2">@Localizer["Address Line 2"]</label>
                                 <div class="col-sm-9">
                                     <input asp-for="AddressLine2" class="form-control" />
                                     <span asp-validation-for="AddressLine2" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" asp-for="City"></label>
+                                <label class="col-sm-3 control-label" asp-for="City">@Localizer["City"]</label>
                                 <div class="col-sm-9">
                                     <input asp-for="City" class="form-control" />
                                     <span asp-validation-for="City" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" asp-for="State"></label>
+                                <label class="col-sm-3 control-label" asp-for="State">@Localizer["State"]</label>
                                 <div class="col-sm-9">
                                     <input asp-for="State" class="form-control" />
                                     <span asp-validation-for="State" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" asp-for="Zip"></label>
+                                <label class="col-sm-3 control-label" asp-for="Zip">@Localizer["Zip"]</label>
                                 <div class="col-sm-9">
                                     <input asp-for="Zip" class="form-control" />
                                     <span asp-validation-for="Zip" class="text-danger"></span>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-sm-3 control-label" asp-for="Country"></label>
+                                <label class="col-sm-3 control-label" asp-for="Country">@Localizer["Country"]</label>
                                 <div class="col-sm-9">
                                     <input asp-for="Country" class="form-control" />
                                     <span asp-validation-for="Country" class="text-danger"></span>
