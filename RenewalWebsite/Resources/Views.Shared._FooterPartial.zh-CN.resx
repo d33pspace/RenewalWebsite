@@ -124,9 +124,9 @@
     <value>姓名</value>
   </data>
   <data name="Sign Up" xml:space="preserve">
-    <value>注册</value>
+    <value>订阅</value>
   </data>
   <data name="Sign up for our email communications:" xml:space="preserve">
-    <value>注册我们的电子邮件通讯：</value>
+    <value>订阅我们的电子邮件通讯：</value>
   </data>
 </root>

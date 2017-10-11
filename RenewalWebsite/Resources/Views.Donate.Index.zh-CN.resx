@@ -163,13 +163,13 @@
     <value>捐款</value>
   </data>
   <data name="Our site isn't compatible with WeChat. To continue, please select 'Open with Browser' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角-&gt;在浏览器打开 访问此页面。</value>
+    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角按钮，通过“在浏览器打开”选项访问此页面。</value>
   </data>
   <data name="Please open this page in your browser." xml:space="preserve">
     <value>请在您的浏览器中打开此页面</value>
   </data>
   <data name="Our site isn't compatible with WeChat. To continue, please select 'Open in Safari' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角-&gt;在Safari中打开 访问此页面。</value>
+    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角按钮，通过“在Safari中打开”选项访问此页面。</value>
   </data>
   <data name="." xml:space="preserve">
     <value>。</value>
