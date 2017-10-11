@@ -162,4 +162,7 @@
   <data name="Please open this page in your browser." xml:space="preserve">
     <value>请在您的浏览器中打开此页面</value>
   </data>
+  <data name="." xml:space="preserve">
+    <value>。</value>
+  </data>
 </root>

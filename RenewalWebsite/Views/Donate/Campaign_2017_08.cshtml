@@ -84,13 +84,13 @@
                                 if (donation.Id == 1)
                                 {
                                     @*<li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@(Math.Round((donation.Amount / Model.ExchangeRate), 2))</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@((Math.Round((donation.Amount / Model.ExchangeRate), 2)) * 2)</strong></li>*@
-                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong></li>
+                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" checked="checked" /><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
 
                                 }
                                 else
                                 {
                                     @*<li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom"/> <strong>@CurrencyService.GetSymbol(currency)@(Math.Round((donation.Amount / Model.ExchangeRate), 2))</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@((Math.Round((donation.Amount / Model.ExchangeRate), 2)) * 2)</strong></li>*@
-                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" /> <strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong></li>
+                                    <li> <input asp-for="SelectedAmount" type="radio" value="@donation.Id" data-value="@donation.IsCustom" /> <strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
                                 }
 
                             }
@@ -116,11 +116,11 @@
                         {
                             if (donation.Id == 1)
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong></li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
                             }
                             else
                             {
-                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong></li>
+                                <li><strong>@CurrencyService.GetSymbol(currency)@donation.Amount</strong> @Localizer[donation.Reason]&nbsp;<strong>@CurrencyService.GetSymbol(currency)@(donation.Amount * 2)</strong>@Localizer["."]</li>
                             }
                         }
                     }
