@@ -15,6 +15,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stripe;
 using RenewalWebsite.Utility;
+using Microsoft.Extensions.Localization;
 
 namespace RenewalWebsite.Controllers
 {
@@ -28,6 +29,7 @@ namespace RenewalWebsite.Controllers
         private readonly ISmsSender _smsSender;
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly ILoggerServicecs _loggerService;
+        //private readonly IStringLocalizer<DonateController> _localizer;
         private EventLog log;   
 
         public ManageController(
@@ -38,6 +40,7 @@ namespace RenewalWebsite.Controllers
           ISmsSender smsSender,
           IOptions<StripeSettings> stripeSettings,
           ILoggerServicecs loggerService)
+          //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -46,6 +49,7 @@ namespace RenewalWebsite.Controllers
             _smsSender = smsSender;
             _loggerService = loggerService;
             _stripeSettings = stripeSettings;
+            //_localizer = localizer;
         }
 
         //

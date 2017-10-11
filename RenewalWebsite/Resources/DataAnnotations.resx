@@ -117,55 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add New Subscription" xml:space="preserve">
-    <value>新增一项定期捐赠</value>
+  <data name="AddressLine1" xml:space="preserve">
+    <value>Address Line 1</value>
   </data>
-  <data name="Card" xml:space="preserve">
-    <value>信用卡</value>
+  <data name="AddressLine2" xml:space="preserve">
+    <value>Address Line 2</value>
   </data>
-  <data name="Change" xml:space="preserve">
-    <value>更换</value>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
   </data>
-  <data name="Change your card details" xml:space="preserve">
-    <value>更改你的信用卡信息</value>
-  </data>
-  <data name="Change your contact information" xml:space="preserve">
-    <value>更改你的个人信息</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>创建</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>个人资料</value>
-  </data>
-  <data name="External Logins:" xml:space="preserve">
-    <value>第三方账号：</value>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
   </data>
   <data name="FullName" xml:space="preserve">
-    <value>全名</value>
+    <value>Full Name</value>
   </data>
-  <data name="Manage" xml:space="preserve">
-    <value>管理</value>
+  <data name="State" xml:space="preserve">
+    <value>State</value>
   </data>
-  <data name="Manage your password and external logins" xml:space="preserve">
-    <value>管理你的账号</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>密码</value>
-  </data>
-  <data name="Password:" xml:space="preserve">
-    <value>密码：</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="Subscriptions" xml:space="preserve">
-    <value>定期捐赠</value>
-  </data>
-  <data name="You have no card on file." xml:space="preserve">
-    <value>你还没有添加任何信用卡</value>
-  </data>
-  <data name="Your account" xml:space="preserve">
-    <value>个人主页</value>
+  <data name="Zip" xml:space="preserve">
+    <value>Zip</value>
   </data>
 </root>
