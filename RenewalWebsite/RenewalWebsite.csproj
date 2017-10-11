@@ -41,6 +41,13 @@
     <PackageReference Include="Stripe.net" Version="10.4.0" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Update="Resources\DataAnnotations.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataAnnotations.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <Content Update="wwwroot\fonts\dpt35-webfont.eot">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -75,6 +82,13 @@
   <ItemGroup>
     <EmbeddedResource Update="Resources\Controllers.DonateController.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DataAnnotations.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>DataAnnotations.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\DataAnnotations.zh-CN.resx">
+      <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\ViewModels.PaymentCycle.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>

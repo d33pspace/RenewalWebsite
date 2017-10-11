@@ -198,6 +198,10 @@ a.styled-link, p a {
     padding-right: 0px;
 }
 
+.btn-block {
+    display: inline;
+}
+
 @media only screen and (min-width: 992px) {
     #mainNav {
         border-bottom: 1px solid transparent;
@@ -1428,11 +1432,15 @@ p.excerpt {
 
     .btn {
         font-size: 12px;
-        max-width: 100%;
+        width: 100%;
     }
 
     blockquote {
         padding-left: 15px;
+    }
+
+    .btn-block {
+        display: block;
     }
 }
 
