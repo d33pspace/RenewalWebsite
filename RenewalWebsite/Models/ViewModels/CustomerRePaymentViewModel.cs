@@ -10,8 +10,8 @@ namespace RenewalWebsite.Models
     {
         public string UserName { get; set; }
 
-        [Required]
-        [Display(Name = "Name*")]
+        [Required(ErrorMessageResourceName = "NameRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "PersonName", ResourceType = typeof(Resources.DataAnnotations))]
         public string Name { get; set; }
 
         // Donation attributes
@@ -22,22 +22,22 @@ namespace RenewalWebsite.Models
 
         // Address
 
-        [Display(Name = "Address Line 1")]
+        [Display(Name = "AddressLine1", ResourceType = typeof(Resources.DataAnnotations))]
         public string AddressLine1 { get; set; }
 
-        [Display(Name = "Address Line 2")]
+        [Display(Name = "AddressLine2", ResourceType = typeof(Resources.DataAnnotations))]
         public string AddressLine2 { get; set; }
 
-        [Display(Name = "State/Province")]
+        [Display(Name = "StateProvince", ResourceType = typeof(Resources.DataAnnotations))]
         public string State { get; set; }
 
-        [Display(Name = "Zip/Postal Code")]
+        [Display(Name = "ZipPostalCode", ResourceType = typeof(Resources.DataAnnotations))]
         public string Zip { get; set; }
 
-        [Display(Name = "City")]
+        [Display(Name = "City", ResourceType = typeof(Resources.DataAnnotations))]
         public string City { get; set; }
 
-        [Display(Name = "Country")]
+        [Display(Name = "Country", ResourceType = typeof(Resources.DataAnnotations))]
         public string Country { get; set; }
 
         public string Frequency { get; set; }

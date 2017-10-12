@@ -90,7 +90,7 @@ namespace RenewalWebsite
                 microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
                 microsoftOptions.CallbackPath = new PathString("/signin-microsoft");
             });
-                        
+
             services.AddScoped<LanguageActionFilter>();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -141,7 +141,7 @@ namespace RenewalWebsite
                 //    context.Request.Path = "/Error/Error500";
                 //    await next();
                 //}
-                
+
             });
 
             loggerFactory.AddConsole(Configuration.GetSection("Logging"));

@@ -117,64 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Every" xml:space="preserve">
-    <value>每</value>
-  </data>
-  <data name="to help as many people as I can." xml:space="preserve">
-    <value>尽可能多地帮助他们。</value>
-  </data>
-  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
-    <value>立即用国际信用卡捐款</value>
-  </data>
-  <data name="My gift of hot meals, shelter and support for homeless men and women" xml:space="preserve">
-    <value>我愿为无家可归人士提供食品、住处与帮助</value>
-  </data>
-  <data name="of your gift will provide a hot meal for a homeless person." xml:space="preserve">
-    <value>就能为一位无家可归人士提供一顿热腾腾的饱餐。</value>
-  </data>
-  <data name="to provide 20 hot meals." xml:space="preserve">
-    <value>提供20顿饭菜。</value>
-  </data>
-  <data name="to provide 35 hot meals." xml:space="preserve">
-    <value>提供35顿饭菜。</value>
-  </data>
-  <data name="to provide 70 hot meals." xml:space="preserve">
-    <value>提供70顿饭菜。</value>
-  </data>
-  <data name="Yes, I’ll rescue a homeless person from the streets by providing the food, shelter and support they need to start a new life!" xml:space="preserve">
-    <value>是的，我愿意帮助无家可归人士远离街头，为他们提供食品、住处，并帮助他们开始新的生活！</value>
-  </data>
-  <data name="An amount of your choice to help as many people as you can." xml:space="preserve">
-    <value>我自己选择的余额尽可能多地帮助他们。</value>
-  </data>
-  <data name="gift of:" xml:space="preserve">
-    <value>捐款：</value>
-  </data>
-  <data name="I would like to make a" xml:space="preserve">
-    <value>我想</value>
-  </data>
-  <data name="OPEN ALIPAY APP AND DONATE NOW" xml:space="preserve">
-    <value>立即打开支付宝APP捐款</value>
-  </data>
-  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
-    <value>或者用支付宝扫描下面的二维码：</value>
-  </data>
-  <data name="Donate" xml:space="preserve">
-    <value>捐款</value>
-  </data>
-  <data name="Our site isn't compatible with WeChat. To continue, please select 'Open with Browser' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角-&gt;在浏览器打开 访问此页面。</value>
-  </data>
-  <data name="Please open this page in your browser." xml:space="preserve">
-    <value>请在您的浏览器中打开此页面</value>
-  </data>
-  <data name="Our site isn't compatible with WeChat. To continue, please select 'Open in Safari' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角-&gt;在Safari中打开 访问此页面。</value>
-  </data>
-  <data name="." xml:space="preserve">
-    <value>。</value>
-  </data>
-  <data name="to be doubled to" xml:space="preserve">
-    <value>翻倍到</value>
+  <data name="Name is required" xml:space="preserve">
+    <value>姓名是必填项</value>
   </data>
 </root>

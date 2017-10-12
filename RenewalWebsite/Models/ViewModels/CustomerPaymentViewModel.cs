@@ -10,24 +10,25 @@ namespace RenewalWebsite.Models
     {
         public string UserName { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "NameRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "PersonName", ResourceType = typeof(Resources.DataAnnotations))]
         public string Name { get; set; }
 
-        [Required]
-        [CreditCard]
-        [Display(Name = "Card Number")]
+        [Required(ErrorMessageResourceName = "CardRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [CreditCard(ErrorMessageResourceName = "InvalidCard", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "CardNumber", ResourceType = typeof(Resources.DataAnnotations))]
         public string CardNumber { get; set; }
 
-        [Required]
-        [Display(Name = "Security Code")]
-        [RegularExpression(@"\d{3}", ErrorMessage = "Invalid CVC number")]
+        [Required(ErrorMessageResourceName = "SecurityCodeRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "SecurityCode", ResourceType = typeof(Resources.DataAnnotations))]
+        [RegularExpression(@"\d{3}", ErrorMessageResourceName = "InvalidCVC", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string Cvc { get; set; }
 
-        [Display(Name = "Expiration Date")]
-        [Range(1, 12, ErrorMessage = "Invalid month")]
+        [Display(Name = "ExpirationDate", ResourceType = typeof(Resources.DataAnnotations))]
+        [Range(1, 12, ErrorMessageResourceName = "InvalidMonth", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryMonth { get; set; }
 
-        [Range(17, 30, ErrorMessage = "Invalid year")]
+        [Range(17, 30, ErrorMessageResourceName = "InvalidYear", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryYear { get; set; }
 
         // Donation attributes
@@ -38,22 +39,22 @@ namespace RenewalWebsite.Models
 
         // Address
 
-        [Display(Name = "Address Line 1")]
+        [Display(Name = "AddressLine1", ResourceType = typeof(Resources.DataAnnotations))]
         public string AddressLine1 { get; set; }
 
-        [Display(Name = "Address Line 2")]
+        [Display(Name = "AddressLine2", ResourceType = typeof(Resources.DataAnnotations))]
         public string AddressLine2 { get; set; }
 
-        [Display(Name = "State/Province")]
+        [Display(Name = "StateProvince", ResourceType = typeof(Resources.DataAnnotations))]
         public string State { get; set; }
 
-        [Display(Name = "Zip/Postal Code")]
+        [Display(Name = "ZipPostalCode", ResourceType = typeof(Resources.DataAnnotations))]
         public string Zip { get; set; }
 
-        [Display(Name = "City")]
+        [Display(Name = "City", ResourceType = typeof(Resources.DataAnnotations))]
         public string City { get; set; }
 
-        [Display(Name = "Country")]
+        [Display(Name = "Country", ResourceType = typeof(Resources.DataAnnotations))]
         public string Country { get; set; }
 
         public string Frequency { get; set; }
