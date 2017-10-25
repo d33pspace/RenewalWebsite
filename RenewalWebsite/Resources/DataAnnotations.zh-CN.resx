@@ -121,7 +121,7 @@
     <value>地址栏1</value>
   </data>
   <data name="AddressLine2" xml:space="preserve">
-    <value>地址行2</value>
+    <value>地址栏2</value>
   </data>
   <data name="CardNumber" xml:space="preserve">
     <value>卡号</value>

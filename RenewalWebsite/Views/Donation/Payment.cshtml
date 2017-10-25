@@ -26,39 +26,39 @@
                 <input hidden asp-for="DonationId" />
                 <div class="form-group row">
                     <div class="col-lg-12">
-                        <label asp-for="Name" class="col-form-label sr-only">Name</label>
-                        <input type="text" class="form-control" asp-for="Name" placeholder="Name">
+                        <label asp-for="Name" class="col-form-label sr-only">@Localizer["Full Name"]</label>
+                        <input type="text" class="form-control" asp-for="Name" placeholder="@Localizer["Full Name"]">
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-12">
-                        <label asp-for="AddressLine1" class="col-form-label sr-only">Address Line One</label>
-                        <input asp-for="AddressLine1" class="form-control" placeholder="Address Line One" />
+                        <label asp-for="AddressLine1" class="col-form-label sr-only">@Localizer["Address Line 1"]</label>
+                        <input asp-for="AddressLine1" class="form-control" placeholder="@Localizer["Address Line 1"]" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-12">
-                        <label asp-for="AddressLine2" class="col-form-label sr-only">Address Line Two</label>
-                        <input asp-for="AddressLine2" class="form-control" placeholder="Address Line Two" />
+                        <label asp-for="AddressLine2" class="col-form-label sr-only">@Localizer["Address Line Two"]</label>
+                        <input asp-for="AddressLine2" class="form-control" placeholder="@Localizer["Address Line Two"]" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-6 pr5">
-                        <label asp-for="City" class="col-form-label sr-only">City</label>
-                        <input asp-for="City" class="form-control" placeholder="City" />
+                        <label asp-for="City" class="col-form-label sr-only">@Localizer["City"]</label>
+                        <input asp-for="City" class="form-control" placeholder="@Localizer["City"]" />
                     </div>
                     <div class="col-6 p15">
-                        <label asp-for="State" class="col-form-label sr-only">State / Province</label>
-                        <input asp-for="State" class="form-control" placeholder="State / Province" />
+                        <label asp-for="State" class="col-form-label sr-only">@Localizer["State/Province"]</label>
+                        <input asp-for="State" class="form-control" placeholder="@Localizer["State/Province"]" />
                     </div>
                 </div>
                 <div class="form-group row">
                     <div class="col-6 pr5">
-                        <label asp-for="Zip" class="col-form-label sr-only">City</label>
-                        <input asp-for="Zip" class="form-control" placeholder="Zip / Postal Code" />
+                        <label asp-for="Zip" class="col-form-label sr-only">@Localizer["ZIP/Postal Code"]</label>
+                        <input asp-for="Zip" class="form-control" placeholder="@Localizer["ZIP/Postal Code"]" />
                     </div>
                     <div class="col-6 p15">
-                        <label asp-for="City" class="col-form-label sr-only">Country</label>
+                        <label asp-for="City" class="col-form-label sr-only">@Localizer["Country"]</label>
                         <select asp-for="Country" class="form-control">
                             <option value="">(please select a country)</option>
                             <option value="AF">Afghanistan</option>
@@ -305,13 +305,13 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-lg-12">
-                        <label asp-for="CardNumber" class="col-form-label sr-only">Card Numbers</label>
-                        <input type="text" class="form-control" asp-for="CardNumber" placeholder="Debit/Credit Card Number">
+                        <label asp-for="CardNumber" class="col-form-label sr-only">@Localizer["Card Number"]</label>
+                        <input type="text" class="form-control" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]">
                     </div>
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-6 col-sm-12">
-                        <label class="control-label" asp-for="ExpiryMonth"></label>
+                        <label class="control-label" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
                         <div>
                             <div class="row">
                                 <div class="col-6 pr5">
@@ -345,10 +345,10 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 form-group">
-                        <label class="control-label" asp-for="Cvc"></label>
+                        <label class="control-label" asp-for="Cvc">@Localizer["Security Code"]</label>
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control" asp-for="Cvc" placeholder="Security Code">
+                                <input type="text" class="form-control" asp-for="Cvc" placeholder="@Localizer["CVV/CVC"]">
                             </div>
                         </div>
                     </div>
@@ -356,7 +356,7 @@
 
                 <div class="form-group row">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <button class="btn btn-secondary" type="submit">Submit Payment</button>
+                        <button class="btn btn-secondary" type="submit">@Localizer["Submit Payment"]</button>
                     </div>
                 </div>
             </fieldset>

@@ -39,7 +39,8 @@ namespace RenewalWebsite.Models
 
         // Address
 
-        [Display(Name = "AddressLine1", ResourceType = typeof(Resources.DataAnnotations))]
+        //[Display(Name = "AddressLine1", ResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "Address Line 1 Modified")]
         public string AddressLine1 { get; set; }
 
         [Display(Name = "AddressLine2", ResourceType = typeof(Resources.DataAnnotations))]

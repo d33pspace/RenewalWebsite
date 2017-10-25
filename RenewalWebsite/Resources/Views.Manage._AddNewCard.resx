@@ -117,73 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Add New Subscription" xml:space="preserve">
-    <value>新增一项定期捐赠</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
   </data>
-  <data name="Address Line 1" xml:space="preserve">
-    <value>县区、街道</value>
+  <data name="Card Number" xml:space="preserve">
+    <value>卡号</value>
   </data>
-  <data name="Address Line 2" xml:space="preserve">
-    <value>详细地址</value>
+  <data name="CVV/CVC" xml:space="preserve">
+    <value />
   </data>
-  <data name="Card" xml:space="preserve">
-    <value>信用卡</value>
+  <data name="Debit/Credit Card Number" xml:space="preserve">
+    <value />
   </data>
-  <data name="Change" xml:space="preserve">
-    <value>更换</value>
-  </data>
-  <data name="Change your card details" xml:space="preserve">
-    <value>更改你的信用卡信息</value>
-  </data>
-  <data name="Change your contact information" xml:space="preserve">
-    <value>更改你的个人信息</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>城市</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>国家</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>创建</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>个人资料</value>
-  </data>
-  <data name="External Logins:" xml:space="preserve">
-    <value>第三方账号：</value>
-  </data>
-  <data name="Full Name" xml:space="preserve">
-    <value>姓名</value>
-  </data>
-  <data name="Manage" xml:space="preserve">
-    <value>管理</value>
-  </data>
-  <data name="Manage your password and external logins" xml:space="preserve">
-    <value>管理你的账号</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>密码</value>
-  </data>
-  <data name="Password:" xml:space="preserve">
-    <value>密码：</value>
+  <data name="Expiration Date" xml:space="preserve">
+    <value>期限</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
   </data>
-  <data name="State" xml:space="preserve">
-    <value>省份</value>
-  </data>
-  <data name="Subscriptions" xml:space="preserve">
-    <value>定期捐赠</value>
-  </data>
-  <data name="You have no card on file." xml:space="preserve">
-    <value>你还没有添加任何信用卡</value>
-  </data>
-  <data name="Your account" xml:space="preserve">
-    <value>个人主页</value>
-  </data>
-  <data name="Zip" xml:space="preserve">
-    <value>邮编</value>
+  <data name="Security Code" xml:space="preserve">
+    <value>卡确认的价值</value>
   </data>
 </root>

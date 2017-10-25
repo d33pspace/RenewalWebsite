@@ -4,7 +4,7 @@
         <div asp-validation-summary="All" class="text-danger"></div>        
         <input hidden asp-for="cardId" />
         <div class="form-group">
-            <label class="col-sm-3 control-label">Card Number</label>
+            <label class="col-sm-3 control-label">@Localizer["Card Number"]</label>
             <div class="col-sm-6">
                 <input type="text" readonly class="form-control" asp-for="Last4Digit" value="****@Model.Last4Digit" />
             </div>
@@ -19,7 +19,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group col-md-12 col-sm-12">
-                    <label class="control-label" asp-for="ExpiryMonth"></label>
+                    <label class="control-label" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
                     <div>
                         <div class="row">
                             <div class="col-3 pr5">
@@ -58,8 +58,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="submit" value="Save" class="btn btn-secondary" />
-                <input type="button" value="Delete & Add New Card" class="btn btn-secondary" onclick="deleteAddNewCard()" />
+                <input type="submit" value="@Localizer["Save"]" class="btn btn-secondary" />
+                <input type="button" value="@Localizer["Delete & Add New Card"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
             </div>
         </div>
     </fieldset>
