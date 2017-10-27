@@ -1,12 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using System.Reflection;
+using System.Resources;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Authorization;
 using RenewalWebsite.Services;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Localization;
 using RenewalWebsite.Models;
 using Stripe;
 using RenewalWebsite.Helpers;
@@ -145,7 +149,8 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
+                ResourceManager resourceManager = new ResourceManager("RenewalWebsite.Resources.DataAnnotations",
+                    Assembly.GetExecutingAssembly());
                 if (!ModelState.IsValid)
                 {
                     payment.ExchangeRate = _exchangeSettings.Value.Rate;
@@ -264,7 +269,7 @@ namespace RenewalWebsite.Controllers
                         //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"${resourceManager.GetString("ToManageOneTime", CultureInfo.CurrentCulture)} ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -284,7 +289,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"${resourceManager.GetString("YourGift", CultureInfo.CurrentCulture)} ${result.StripePlan.Name.Split("_")[1]} ${resourceManager.GetString("WillRepeat", CultureInfo.CurrentCulture)} {result.StripePlan.Name.Split("_")[0]}. ${resourceManager.GetString("ToManageSubscription", CultureInfo.CurrentCulture)}",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -360,7 +365,7 @@ namespace RenewalWebsite.Controllers
 
                 return View("Payment", model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
@@ -375,7 +380,8 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
+                ResourceManager resourceManager = new ResourceManager("RenewalWebsite.Resources.DataAnnotations",
+                    Assembly.GetExecutingAssembly());
                 if (!ModelState.IsValid)
                 {
                     payment.ExchangeRate = _exchangeSettings.Value.Rate;
@@ -419,7 +425,7 @@ namespace RenewalWebsite.Controllers
                         //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"${resourceManager.GetString("ToManageOneTime", CultureInfo.CurrentCulture)} ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -438,7 +444,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"${resourceManager.GetString("YourGift", CultureInfo.CurrentCulture)} ${result.StripePlan.Name.Split("_")[1]} ${resourceManager.GetString("WillRepeat", CultureInfo.CurrentCulture)} {result.StripePlan.Name.Split("_")[0]}. ${resourceManager.GetString("ToManageSubscription", CultureInfo.CurrentCulture)}",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -569,7 +575,7 @@ namespace RenewalWebsite.Controllers
 
                 return View("CampaignPayment", model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
@@ -584,7 +590,8 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
+                ResourceManager resourceManager = new ResourceManager("RenewalWebsite.Resources.DataAnnotations",
+                    Assembly.GetExecutingAssembly());
                 if (!ModelState.IsValid)
                 {
                     payment.ExchangeRate = _exchangeSettings.Value.Rate;
@@ -703,7 +710,7 @@ namespace RenewalWebsite.Controllers
                         //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"${resourceManager.GetString("ToManageOneTime", CultureInfo.CurrentCulture)} ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -723,7 +730,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"${resourceManager.GetString("YourGift", CultureInfo.CurrentCulture)} ${result.StripePlan.Name.Split("_")[1]} ${resourceManager.GetString("WillRepeat", CultureInfo.CurrentCulture)} {result.StripePlan.Name.Split("_")[0]}. ${resourceManager.GetString("ToManageSubscription", CultureInfo.CurrentCulture)}",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -799,7 +806,7 @@ namespace RenewalWebsite.Controllers
 
                 return View("CampaignPayment", model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
@@ -814,7 +821,8 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
+                ResourceManager resourceManager = new ResourceManager("RenewalWebsite.Resources.DataAnnotations",
+                    Assembly.GetExecutingAssembly());
                 if (!ModelState.IsValid)
                 {
                     payment.ExchangeRate = _exchangeSettings.Value.Rate;
@@ -858,7 +866,7 @@ namespace RenewalWebsite.Controllers
                         //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"${resourceManager.GetString("ToManageOneTime", CultureInfo.CurrentCulture)} ${model.GetDisplayAmount()}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -877,7 +885,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"${resourceManager.GetString("YourGift", CultureInfo.CurrentCulture)} ${result.StripePlan.Name.Split("_")[1]} ${resourceManager.GetString("WillRepeat", CultureInfo.CurrentCulture)} {result.StripePlan.Name.Split("_")[0]}. ${resourceManager.GetString("ToManageSubscription", CultureInfo.CurrentCulture)}",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);

@@ -1,6 +1,5 @@
 ﻿@using System.Globalization
-@using Microsoft.AspNetCore.Identity
-@using RenewalWebsite.Models
+@using RenewalWebsite.Resources
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -26,7 +25,7 @@
 <body>
     <nav class="navbar navbar-toggleable-md navbar-light" id="mainNav">
         <div class="container">
-            <a class="navbar-brand hide-large red" href="/">@Localizer["RENEWAL"]</a>
+            <a class="navbar-brand hide-large red" href="/">@DataAnnotations.Renewal</a>
             <div class="form-horizontal">
                 <div class="form-group row">
                     <div class="navbar-toggler navbar-toggler-right">
@@ -49,17 +48,17 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav left">
                     <li class="nav-item">
-                        <a class="nav-link" href="/">@Localizer["Home"]</a>
+                        <a class="nav-link" href="/">@DataAnnotations.Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Home" asp-action="Services">@Localizer["Services"]</a>
+                        <a class="nav-link" asp-controller="Home" asp-action="Services">@DataAnnotations.Services</a>
                     </li>
 
                     <!--<li class="nav-item">
-                        <a class="nav-link" asp-controller="News" asp-action="Index">@Localizer["News"]</a>
+                        <a class="nav-link" asp-controller="News" asp-action="Index">@DataAnnotations.News</a>
                     </li>-->
                     <li class="nav-item">
-                        <a class="nav-link" asp-controller="Donate" asp-action="Index">@Localizer["Donate"]</a>
+                        <a class="nav-link" asp-controller="Donate" asp-action="Index">@DataAnnotations.Donate</a>
                     </li>
                 </ul>
                 @await Html.PartialAsync("_LoginPartial")
@@ -72,7 +71,7 @@
             }
             else
             {
-                <div class="lang">
+                <div class="lang" style="margin-top:1px;">
                     @await Html.PartialAsync("_LanguageTogglePartial")
                 </div>
             }

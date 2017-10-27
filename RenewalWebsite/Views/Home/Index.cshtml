@@ -1,9 +1,9 @@
 ﻿@using RenewalWebsite.Services
-
+@using RenewalWebsite.Resources
 @inject ICurrencyService CurrencyService
 
 @{
-    ViewData["Title"] = Localizer["Home"];
+    ViewData["Title"] = DataAnnotations.Home;
 
     var currency = CurrencyService.GetCurrent();
     var language = CurrencyService.GetCurrentLanguage();
@@ -17,34 +17,34 @@
         <img src="~/images/home/slide-laundry.jpg" class="figure-img img-fluid" alt="donate page image">
         @if (language.Name.Contains("zh"))
         {
-            <figcaption class="figure-caption caption chinese">@Localizer["The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life."]</figcaption>
+            <figcaption class="figure-caption caption chinese">@DataAnnotations.RenewalCenterRelies</figcaption>
         }
         else
         {
-            <figcaption class="figure-caption caption">@Localizer["The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life."]</figcaption>
+            <figcaption class="figure-caption caption">@DataAnnotations.RenewalCenterRelies</figcaption>
         }
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Your support helps displaced people gain employment, stability and a permanent home"]</h2>
-        <p>@Localizer["We can’t do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home."]</p>
+        <h2>@DataAnnotations.SupportHelpsDisplacedPeople</h2>
+        <p>@DataAnnotations.LivesOfHomelessPeopleShanghi</p>
 
-        <h2 class="red-border">@Localizer["Your gift will be doubled today!"]</h2>
+        <h2 class="red-border">@DataAnnotations.GiftDouble</h2>
         <p>
-            @Localizer["To help meet the urgent need for shelter and support before the cold weather hits, a group of generous donors will match your gift to the Renewal Center today up to a total of"]
+            @DataAnnotations.ToHelpMeetTheUrgentNeed
         @if (currency.Name.Contains("zh"))
             {
-            <span>@matchAmountCNY.ToString("C0", currency)@Localizer["."]</span>
+            <span>@matchAmountCNY.ToString("C0", currency)@DataAnnotations.Dot</span>
         }
         else
         {
-            <span>@matchAmountUSD.ToString("C0", currency)@Localizer["."]</span>
+            <span>@matchAmountUSD.ToString("C0", currency)@DataAnnotations.Dot</span>
         }
     </p>
 
-    <p>@Localizer["Any gift you send before midnight on October 31, 2017 will be doubled!"]</p>
+    <p>@DataAnnotations.AnyGiftYouSend</p>
 
     <div class="clearfix mt-4 mb-5">
-        <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_08">@Localizer["Double my gift"] <i class="arrow right-arrow"></i></a>
+        <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_08">@DataAnnotations.DoubleMyGift <i class="arrow right-arrow"></i></a>
     </div>
 </div>
 </div>

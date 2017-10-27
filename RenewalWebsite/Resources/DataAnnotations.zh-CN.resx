@@ -177,4 +177,439 @@
   <data name="ZipPostalCode" xml:space="preserve">
     <value>邮编/邮政编码</value>
   </data>
+  <data name="Account" xml:space="preserve">
+    <value>帐户</value>
+  </data>
+  <data name="Action" xml:space="preserve">
+    <value>行动</value>
+  </data>
+  <data name="AddNewSubscription" xml:space="preserve">
+    <value>添加新订阅</value>
+  </data>
+  <data name="AfterYearsOfLiving" xml:space="preserve">
+    <value>经过多年的街头生活，找工作似乎是不可能的 - 即使是那些有足够纪律的人来压制全职工作。 您对我们的工作经验计划的支持邀请人们在我们的洗衣房内服务，清洁和维护中心或管理我们的基本服务。 他们每个人都能获得宝贵的工作技能，同时帮助其他有需要的人</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>量</value>
+  </data>
+  <data name="AmountRequired" xml:space="preserve">
+    <value>需要金额</value>
+  </data>
+  <data name="AnyGiftYouSend" xml:space="preserve">
+    <value>2017年10月31日午夜之前发送的任何礼物都会翻倍！</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="CancelSubscription" xml:space="preserve">
+    <value>您确定要取消订阅吗？</value>
+  </data>
+  <data name="Card" xml:space="preserve">
+    <value>卡</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>更改</value>
+  </data>
+  <data name="ChangePassword" xml:space="preserve">
+    <value>更改密码</value>
+  </data>
+  <data name="ChangePasswordForm" xml:space="preserve">
+    <value>更改密码表单</value>
+  </data>
+  <data name="ChangeYourCardDetails" xml:space="preserve">
+    <value>更改你的卡详细信息</value>
+  </data>
+  <data name="ChangeYourContactInformation" xml:space="preserve">
+    <value>更改您的联系信息</value>
+  </data>
+  <data name="CheckResetPasswordEmail" xml:space="preserve">
+    <value>请检查您的电子邮件以重置您的密码。</value>
+  </data>
+  <data name="ClickHereToLogin" xml:space="preserve">
+    <value>点击此处登录</value>
+  </data>
+  <data name="Code" xml:space="preserve">
+    <value>码</value>
+  </data>
+  <data name="Colon" xml:space="preserve">
+    <value>：</value>
+  </data>
+  <data name="ConfirmPassword" xml:space="preserve">
+    <value>确认密码</value>
+  </data>
+  <data name="Create" xml:space="preserve">
+    <value>创建</value>
+  </data>
+  <data name="CreateNewAccount" xml:space="preserve">
+    <value>创建一个新账户。</value>
+  </data>
+  <data name="CreditCard" xml:space="preserve">
+    <value>信用卡</value>
+  </data>
+  <data name="CreditDebitCard" xml:space="preserve">
+    <value>借方/信用卡号码</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="CurrentPassword" xml:space="preserve">
+    <value>当前密码</value>
+  </data>
+  <data name="CurrentPasswordRequired" xml:space="preserve">
+    <value>需要当前密码。</value>
+  </data>
+  <data name="DeleteAddNewCard" xml:space="preserve">
+    <value>删除并添加新卡</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>细节</value>
+  </data>
+  <data name="Disable" xml:space="preserve">
+    <value>禁用</value>
+  </data>
+  <data name="Disabled" xml:space="preserve">
+    <value>残</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>捐</value>
+  </data>
+  <data name="DonateWithCreditCard" xml:space="preserve">
+    <value>捐赠信用证或债务卡现在</value>
+  </data>
+  <data name="Dot" xml:space="preserve">
+    <value>。</value>
+  </data>
+  <data name="DoubleGiftRenewal" xml:space="preserve">
+    <value>双倍我今天的续约礼物</value>
+  </data>
+  <data name="DoubleMyGift" xml:space="preserve">
+    <value>双倍我的礼物</value>
+  </data>
+  <data name="Edit" xml:space="preserve">
+    <value>编辑</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>电子邮件</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>电子邮件是必需的</value>
+  </data>
+  <data name="EmploymentAndSupport" xml:space="preserve">
+    <value>就业与支持</value>
+  </data>
+  <data name="Enable" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="Enabled" xml:space="preserve">
+    <value>启用</value>
+  </data>
+  <data name="EnterDetails" xml:space="preserve">
+    <value>请在下面输入您的细节：</value>
+  </data>
+  <data name="EnterEmail" xml:space="preserve">
+    <value>输入你的电子邮箱。</value>
+  </data>
+  <data name="EssentialServices" xml:space="preserve">
+    <value>基本服务</value>
+  </data>
+  <data name="ExternalLogins" xml:space="preserve">
+    <value>外部登录：</value>
+  </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>Facebook的</value>
+  </data>
+  <data name="ForgotPassword" xml:space="preserve">
+    <value>忘记密码了吗？</value>
+  </data>
+  <data name="ForgotPasswordConfirmation" xml:space="preserve">
+    <value>忘记密码确认</value>
+  </data>
+  <data name="ForgotYourPassword" xml:space="preserve">
+    <value>忘记密码了吗？</value>
+  </data>
+  <data name="Frequency" xml:space="preserve">
+    <value>频率</value>
+  </data>
+  <data name="GiftDouble" xml:space="preserve">
+    <value>你的礼物今天会翻倍！</value>
+  </data>
+  <data name="Giftof" xml:space="preserve">
+    <value>礼物</value>
+  </data>
+  <data name="Google" xml:space="preserve">
+    <value>谷歌</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>家</value>
+  </data>
+  <data name="InvalidCurrentPassword" xml:space="preserve">
+    <value>当前密码无效</value>
+  </data>
+  <data name="InvalidEmail" xml:space="preserve">
+    <value>不合规电邮</value>
+  </data>
+  <data name="InvalidNewPassword" xml:space="preserve">
+    <value>新密码无效</value>
+  </data>
+  <data name="InvalidPassword" xml:space="preserve">
+    <value>无效的密码</value>
+  </data>
+  <data name="IWouldLikeToMakeA" xml:space="preserve">
+    <value>我想做一个</value>
+  </data>
+  <data name="LifeSkillsWorkshops" xml:space="preserve">
+    <value>生活技能研讨会</value>
+  </data>
+  <data name="LivesOfHomelessPeopleShanghi" xml:space="preserve">
+    <value>没有你，我们不能做到。 更新中心依靠捐款改变上海无家可归者的生活。 你的礼物提供基本的支持，膳食，友谊和温暖。 除此之外，您还提供安全，临时的住宿，职业培训，帮助获得必要的国民身份证，令人满意的工作和永久的家园。</value>
+  </data>
+  <data name="LogIn" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="LoginYour" xml:space="preserve">
+    <value>使用您的登录</value>
+  </data>
+  <data name="Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
+  <data name="ManageYourPasswordAndExternalLogins" xml:space="preserve">
+    <value>管理您的密码和外部登录</value>
+  </data>
+  <data name="ManageYourSubscriptions" xml:space="preserve">
+    <value>管理您的订阅</value>
+  </data>
+  <data name="MatchingDoubleGrant" xml:space="preserve">
+    <value>是的，请用你慷慨的配套资助，今天兑换我每一美元的礼物 - 为那些不在街上生活的人们提供希望和支持。</value>
+  </data>
+  <data name="Microsoft" xml:space="preserve">
+    <value>微软</value>
+  </data>
+  <data name="monthly" xml:space="preserve">
+    <value>每个月</value>
+  </data>
+  <data name="MostGenerousGift" xml:space="preserve">
+    <value>你最慷慨的可能的任何数量的礼物将增加一倍。</value>
+  </data>
+  <data name="MyMostGenerousPossibleGifToBeDoubled" xml:space="preserve">
+    <value>我最慷慨的可能的礼物要加倍。</value>
+  </data>
+  <data name="NewPassword" xml:space="preserve">
+    <value>新密码</value>
+  </data>
+  <data name="NoCard" xml:space="preserve">
+    <value>你没有任何档案卡。</value>
+  </data>
+  <data name="NoExternalLogin" xml:space="preserve">
+    <value>没有配置外部认证服务。 看到</value>
+  </data>
+  <data name="oneTime" xml:space="preserve">
+    <value>一次</value>
+  </data>
+  <data name="OpenAlipayApp" xml:space="preserve">
+    <value>现在开启阿拉伯语应用程序并立即下载</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>密码</value>
+  </data>
+  <data name="PasswordLength" xml:space="preserve">
+    <value>{0}必须至少为{2}，长度最多为{1}个字符。</value>
+  </data>
+  <data name="PasswordMatch" xml:space="preserve">
+    <value>密码和确认密码不匹配。</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>密码是必需的。</value>
+  </data>
+  <data name="PeopleWantFurther" xml:space="preserve">
+    <value>想要进一步支持的人们找到一个专门的志愿者团队，提供讲习班，帮助他们设定目标，建立友谊和表达自己。 许多人开始破坏关系，与家人和解，或者返回家乡，这是获得或更新必需的国民身份证的唯一途径。</value>
+  </data>
+  <data name="PleaseOpenThisPageInYourBrowser" xml:space="preserve">
+    <value>请在浏览器中打开此页面。</value>
+  </data>
+  <data name="QRCodePay" xml:space="preserve">
+    <value>或者您的支付宝应用程序扫描QR码如下：</value>
+  </data>
+  <data name="quarterly" xml:space="preserve">
+    <value>每三个月</value>
+  </data>
+  <data name="Register" xml:space="preserve">
+    <value>寄存器</value>
+  </data>
+  <data name="RegisterNewUser" xml:space="preserve">
+    <value>注册为新用户？</value>
+  </data>
+  <data name="RememberMe" xml:space="preserve">
+    <value>记住我？</value>
+  </data>
+  <data name="RenewalCenterRelies" xml:space="preserve">
+    <value>更新中心依靠像你这样的朋友帮助上海的无家可归者开始新的生活。</value>
+  </data>
+  <data name="RenewalOfferDisaplacedPeople" xml:space="preserve">
+    <value>更新为流离失所者提供了一系列的服务，以求更美好的生活</value>
+  </data>
+  <data name="Reset" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="ResetPassword" xml:space="preserve">
+    <value>重设密码</value>
+  </data>
+  <data name="ResetPasswordConfirmation" xml:space="preserve">
+    <value>重置密码确认</value>
+  </data>
+  <data name="ResetYourPassword" xml:space="preserve">
+    <value>重置你的密码。</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
+  </data>
+  <data name="SeeMySubscriptions" xml:space="preserve">
+    <value>查看我的订阅</value>
+  </data>
+  <data name="Services" xml:space="preserve">
+    <value>服务</value>
+  </data>
+  <data name="ShelterPeople" xml:space="preserve">
+    <value>双倍我的礼物拯救和收容更多的人。</value>
+  </data>
+  <data name="SiteNotWorking" xml:space="preserve">
+    <value>我们的网站与WeChat不兼容。 要继续，请从屏幕顶部的上下文菜单（三个点）中选择“使用浏览器打开”。</value>
+  </data>
+  <data name="StartingWithBasicHelp" xml:space="preserve">
+    <value>从对街头生活的男女的基本帮助开始，续约还提供长期支持，帮助人们建立友谊，找到满意的工作，进入永久的家园。</value>
+  </data>
+  <data name="Status" xml:space="preserve">
+    <value>状态</value>
+  </data>
+  <data name="Submit" xml:space="preserve">
+    <value>提交</value>
+  </data>
+  <data name="SubmitPayment" xml:space="preserve">
+    <value>提交付款</value>
+  </data>
+  <data name="Subscriptions" xml:space="preserve">
+    <value>订阅</value>
+  </data>
+  <data name="SupportExternalLogging" xml:space="preserve">
+    <value>有关设置此ASP.NET应用程序以支持通过外部服务登录的详细信息。</value>
+  </data>
+  <data name="SupportHelpsDisplacedPeople" xml:space="preserve">
+    <value>你的支持帮助流离失所的人获得就业，稳定和永久的家园</value>
+  </data>
+  <data name="ThanksContent" xml:space="preserve">
+    <value>更新中心依靠时间和金钱的礼物，帮助上海的流离失所者找到支持，就业和永久居所。</value>
+  </data>
+  <data name="ThankYou" xml:space="preserve">
+    <value>谢谢</value>
+  </data>
+  <data name="ThisArticle" xml:space="preserve">
+    <value>本文</value>
+  </data>
+  <data name="TimeOfWorkingAtRenewal" xml:space="preserve">
+    <value>在续约工作一段时间后，大多数课程参与者都准备找到全职工作。 我们当地的就业合作伙伴，包括受欢迎的餐馆，帮助我们与居民相匹配，他们重视工作 一旦他们定居并建立了个人预算，我们给予他们进一步的帮助，帮助他们找到一个永久的家园。</value>
+  </data>
+  <data name="ToBeDoubledTo" xml:space="preserve">
+    <value>要加倍</value>
+  </data>
+  <data name="ToHelpMeetTheUrgentNeed" xml:space="preserve">
+    <value>为了满足在寒冷天气袭击之前迫切需要住房和支持的机会，一群慷慨的捐助者今天将把你的礼物送给更新中心，总共</value>
+  </data>
+  <data name="ToManageOneTime" xml:space="preserve">
+    <value>您的卡已成功收费。 谢谢你的礼物</value>
+  </data>
+  <data name="ToManageSubscription" xml:space="preserve">
+    <value>要随时管理或取消订阅，请点击下面的链接。</value>
+  </data>
+  <data name="TwoFactorAuthentication" xml:space="preserve">
+    <value>双因素认证：</value>
+  </data>
+  <data name="UseALoginAccount" xml:space="preserve">
+    <value>使用本地帐户登录。</value>
+  </data>
+  <data name="UseAnotherService" xml:space="preserve">
+    <value>使用其他服务登录。</value>
+  </data>
+  <data name="WillRepeat" xml:space="preserve">
+    <value>将重复</value>
+  </data>
+  <data name="WorkExperience" xml:space="preserve">
+    <value>工作经验</value>
+  </data>
+  <data name="yearly" xml:space="preserve">
+    <value>每年</value>
+  </data>
+  <data name="YouHaveNoSubscriptions" xml:space="preserve">
+    <value>您没有订阅。</value>
+  </data>
+  <data name="Your" xml:space="preserve">
+    <value>你的</value>
+  </data>
+  <data name="YourAccount" xml:space="preserve">
+    <value>你的帐户</value>
+  </data>
+  <data name="YourGift" xml:space="preserve">
+    <value>你的礼物</value>
+  </data>
+  <data name="YourPasswordReset" xml:space="preserve">
+    <value>您的密码已重置。 请</value>
+  </data>
+  <data name="YourSupportOffers" xml:space="preserve">
+    <value>您的支持为每一位来到更新餐厅，热水淋浴，换衣服，使用免费洗衣设施的人员提供了机会让别人知道他们需要什么帮助。 街道是一个难以置信的危险和困难的地方，但随着你的持续支持，续约将在每个需要友谊和帮助的人身上。</value>
+  </data>
+  <data name="Active" xml:space="preserve">
+    <value>活性</value>
+  </data>
+  <data name="AddAnotherService" xml:space="preserve">
+    <value>添加另一个服务以登录。</value>
+  </data>
+  <data name="Canceled" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="DonateAlipay" xml:space="preserve">
+    <value>使用支付宝捐款</value>
+  </data>
+  <data name="DonateUsingCreditDebitCard" xml:space="preserve">
+    <value>使用信用卡或借记卡进行捐赠</value>
+  </data>
+  <data name="InvalidConfirmPassword" xml:space="preserve">
+    <value>确认密码无效</value>
+  </data>
+  <data name="LoginFromAccount" xml:space="preserve">
+    <value>从您的帐户登录</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>登出</value>
+  </data>
+  <data name="ManageExternalLogin" xml:space="preserve">
+    <value>管理您的外部登录。</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>名称</value>
+  </data>
+  <data name="NewPasswordRequired" xml:space="preserve">
+    <value>需要新密码。</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>新闻</value>
+  </data>
+  <data name="PastDue" xml:space="preserve">
+    <value>逾期</value>
+  </data>
+  <data name="RemoveThis" xml:space="preserve">
+    <value>删除这个</value>
+  </data>
+  <data name="Renewal" xml:space="preserve">
+    <value>日新中心</value>
+  </data>
+  <data name="Signup" xml:space="preserve">
+    <value>注册</value>
+  </data>
+  <data name="SignupEmail" xml:space="preserve">
+    <value>注册我们的电子邮件通信：</value>
+  </data>
+  <data name="Trialing" xml:space="preserve">
+    <value>试运行</value>
+  </data>
+  <data name="Unpaid" xml:space="preserve">
+    <value>未付</value>
+  </data>
 </root>

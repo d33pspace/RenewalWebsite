@@ -8,8 +8,9 @@ namespace RenewalWebsite.Models.AccountViewModels
 {
     public class ForgotPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [EmailAddress(ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "Email", ResourceType = typeof(Resources.DataAnnotations))]
         public string Email { get; set; }
     }
 }

@@ -8,20 +8,23 @@ namespace RenewalWebsite.Models.AccountViewModels
 {
     public class ResetPasswordViewModel
     {
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [EmailAddress(ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "Email", ResourceType = typeof(Resources.DataAnnotations))]
         public string Email { get; set; }
 
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
-        [DataType(DataType.Password)]
+        [Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [StringLength(100, ErrorMessageResourceName = "PasswordLength", ErrorMessageResourceType = typeof(Resources.DataAnnotations), MinimumLength = 6)]
+        [DataType(DataType.Password, ErrorMessageResourceName = "InvalidPassword", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "Password", ResourceType = typeof(Resources.DataAnnotations))]
         public string Password { get; set; }
 
-        [DataType(DataType.Password)]
-        [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [DataType(DataType.Password, ErrorMessageResourceName = "InvalidPassword", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(Resources.DataAnnotations))]
+        [Compare("Password", ErrorMessageResourceName = "PasswordMatch", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string ConfirmPassword { get; set; }
 
+        [Display(Name = "Code", ResourceType = typeof(Resources.DataAnnotations))]
         public string Code { get; set; }
     }
 }

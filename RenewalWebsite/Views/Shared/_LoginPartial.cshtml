@@ -1,5 +1,6 @@
 ﻿@using Microsoft.AspNetCore.Identity
 @using RenewalWebsite.Models
+@using RenewalWebsite.Resources
 
 @inject SignInManager<ApplicationUser> SignInManager
 @inject UserManager<ApplicationUser> UserManager
@@ -12,8 +13,8 @@
                 <a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="javascript:void(0);" onclick="Logout();" title="@Localizer["Log out"]">@Localizer["Log out"]</a>
-                <button id="btnLogout" type="submit" class="btn btn-link navbar-btn navbar-link custom signin-margin hide">@Localizer["Log out"]</button>
+                <a class="nav-link" href="javascript:void(0);" onclick="Logout();" title="@DataAnnotations.LogOut">@DataAnnotations.LogOut</a>
+                <button id="btnLogout" type="submit" class="btn btn-link navbar-btn navbar-link custom signin-margin hide">@DataAnnotations.LogOut</button>
             </li>
         </ul>
     </form>
@@ -22,10 +23,10 @@ else
 {
     <ul class="navbar-nav ml-auto right">
         <!--<li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Register">@Localizer["Register"]</a>
+            <a class="nav-link" asp-controller="Account" asp-action="Register">@DataAnnotations.Register</a>
         </li>-->
         <li class="nav-item">
-            <a class="nav-link" asp-controller="Account" asp-action="Login">@Localizer["Account"]</a>
+            <a class="nav-link" asp-controller="Account" asp-action="Login">@DataAnnotations.Account</a>
         </li>
         @*<li class="nav-item">
             @await Html.PartialAsync("_LanguageTogglePartial")

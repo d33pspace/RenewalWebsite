@@ -1,13 +1,10 @@
-﻿@using System.Collections.Generic
-@using Microsoft.AspNetCore.Http
-@using Microsoft.AspNetCore.Http.Authentication
-@using Microsoft.AspNetCore.Mvc.Localization
+﻿@using RenewalWebsite.Resources
 @model LoginViewModel
 @inject IViewLocalizer Localizer
 @inject SignInManager<ApplicationUser> SignInManager
 
 @{
-    ViewData["Title"] = Localizer["Log in"];
+    ViewData["Title"] = DataAnnotations.LogIn;
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -15,7 +12,7 @@
     <div class="col-md-6">
         <section>
             <form asp-controller="Account" asp-action="Login" asp-route-returnurl="@ViewData["ReturnUrl"]" method="post" class="form-horizontal">
-                <h4>@Localizer["Use a local account to log in."]</h4>
+                <h4>@DataAnnotations.UseALoginAccount</h4>
                 <hr />
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <div class="form-group">
@@ -44,21 +41,21 @@
                 </div>
                 <div class="form-group">
                     <div class="col-md-offset-2 col-md-10">
-                        <button type="submit" class="btn btn-default">@Localizer["Log in"]</button>
+                        <button type="submit" class="btn btn-default">@DataAnnotations.LogIn</button>
                     </div>
                 </div>
                 <p>
-                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">@Localizer["Register as a new user?"]</a>
+                    <a asp-action="Register" asp-route-returnurl="@ViewData["ReturnUrl"]">@DataAnnotations.RegisterNewUser</a>
                 </p>
                 <p>
-                    <a asp-action="ForgotPassword">@Localizer["Forgot your password?"]</a>
+                    <a asp-action="ForgotPassword">@DataAnnotations.ForgotPassword</a>
                 </p>
             </form>
         </section>
     </div>
     <div class="col-md-6">
         <section>
-            <h4>@Localizer["Use another service to log in."]</h4>
+            <h4>@DataAnnotations.UseAnotherService</h4>
             <hr />
             @{
                 var loginProviders = SignInManager.GetExternalAuthenticationSchemesAsync().Result.ToList();
@@ -66,8 +63,8 @@
                 {
                     <div>
                         <p>
-                            There are no external authentication services configured. See <a href="https://go.microsoft.com/fwlink/?LinkID=532715">this article</a>
-                            for details on setting up this ASP.NET application to support logging in via external services.
+                            @DataAnnotations.NoExternalLogin <a href="https://go.microsoft.com/fwlink/?LinkID=532715">@DataAnnotations.ThisArticle</a>
+                            @DataAnnotations.SupportExternalLogging
                         </p>
                     </div>
                 }
@@ -77,7 +74,20 @@
                         <div class="btn-vertical">
                             @foreach (var provider in loginProviders)
                             {
-                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
+                                string externalLogin;
+                                if (provider.Name.ToLower().Equals("google"))
+                                {
+                                    externalLogin = DataAnnotations.Google;
+                                }
+                                else if (provider.Name.ToLower().Equals("microsoft"))
+                                {
+                                    externalLogin = DataAnnotations.Microsoft;
+                                }
+                                else
+                                {
+                                    externalLogin = DataAnnotations.Facebook;
+                                }
+                                <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="@DataAnnotations.LoginYour @externalLogin @DataAnnotations.Account">@externalLogin</button>
                             }
                         </div>
                     </form>

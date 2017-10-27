@@ -15,12 +15,13 @@ namespace RenewalWebsite.Models.ManageViewModels
         //[Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "SecurityCodeRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "SecurityCode", ResourceType = typeof(Resources.DataAnnotations))]
         [RegularExpression(@"\d{3}", ErrorMessageResourceName = "InvalidCVC", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string Cvc { get; set; }
-
+        
         [Range(1, 12, ErrorMessageResourceName = "InvalidMonth", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
-        [Display(Name = "Expiry Date")]
+        [Display(Name = "ExpirationDate", ResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryMonth { get; set; }
 
         [Range(17, 30, ErrorMessageResourceName = "InvalidYear", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
@@ -34,10 +35,12 @@ namespace RenewalWebsite.Models.ManageViewModels
         [Display(Name = "CardNumber", ResourceType = typeof(Resources.DataAnnotations))]
         public string CardNumber { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "SecurityCodeRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "SecurityCode", ResourceType = typeof(Resources.DataAnnotations))]
         [RegularExpression(@"\d{3}", ErrorMessageResourceName = "InvalidCVC", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string Cvc { get; set; }
 
+        [Display(Name = "ExpirationDate", ResourceType = typeof(Resources.DataAnnotations))]
         [Range(1, 12, ErrorMessageResourceName = "InvalidMonth", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryMonth { get; set; }
 
