@@ -1,26 +1,25 @@
-﻿@using RenewalWebsite.Resources
-@model RenewalWebsite.Models.ManageViewModels.CardViewModel
+﻿@model RenewalWebsite.Models.ManageViewModels.CardViewModel
 <form asp-controller="Manage" asp-action="UpdateCard" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_success(this,data,xhr);" data-ajax-failure="fun_fail(this,data,xhr);">
     <fieldset>
-        <div asp-validation-summary="All" class="text-danger"></div>
+        <div asp-validation-summary="All" class="text-danger"></div>        
         <input hidden asp-for="cardId" />
         <div class="form-group">
-            <label class="col-sm-3 control-label">@DataAnnotations.CardNumber</label>
+            <label class="col-sm-3 control-label">@Localizer["Card Number"]</label>
             <div class="col-sm-6">
                 <input type="text" readonly class="form-control" asp-for="Last4Digit" value="****@Model.Last4Digit" />
             </div>
         </div>
         @*<div class="form-group">
-                <label class="col-sm-3 control-label" asp-for="Name"></label>
-                <div class="col-sm-6">
-                    <input type="text" class="form-control" asp-for="Name">
-                    <span asp-validation-for="Name" class="text-danger"></span>
-                </div>
-            </div>*@
+            <label class="col-sm-3 control-label" asp-for="Name"></label>
+            <div class="col-sm-6">
+                <input type="text" class="form-control" asp-for="Name">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>*@
         <div class="row">
             <div class="col-md-12">
                 <div class="form-group col-md-12 col-sm-12">
-                    <label class="control-label" asp-for="ExpiryMonth"></label>
+                    <label class="control-label" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
                     <div>
                         <div class="row">
                             <div class="col-3 pr5">
@@ -48,27 +47,10 @@
                                     <option value="21">2021</option>
                                     <option value="22">2022</option>
                                     <option value="23">2023</option>
-                                    <option value="24">2024</option>
-                                    <option value="25">2025</option>
-                                    <option value="26">2026</option>
-                                    <option value="27">2027</option>
-                                    <option value="28">2028</option>
-                                    <option value="29">2029</option>
-                                    <option value="30">2030</option>
-                                    <option value="31">2031</option>
-                                    <option value="32">2032</option>
-                                    <option value="33">2033</option>
-                                    <option value="34">2034</option>
-                                    <option value="35">2035</option>
-                                    <option value="36">2036</option>
-                                    <option value="37">2037</option>
-                                    <option value="38">2038</option>
-                                    <option value="39">2039</option>
-                                    <option value="40">2040</option>
                                 </select>
                             </div>
                             @*<span asp-validation-for="ExpiryMonth" class="text-danger"></span>
-                                <span asp-validation-for="ExpiryYear" class="text-danger"></span>*@
+                            <span asp-validation-for="ExpiryYear" class="text-danger"></span>*@
                         </div>
                     </div>
                 </div>
@@ -76,8 +58,8 @@
         </div>
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="submit" value="@DataAnnotations.Save" class="btn btn-secondary" />
-                <input type="button" value="@DataAnnotations.DeleteAddNewCard" class="btn btn-secondary" onclick="deleteAddNewCard()" />
+                <input type="submit" value="@Localizer["Save"]" class="btn btn-secondary" />
+                <input type="button" value="@Localizer["Delete & Add New Card"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
             </div>
         </div>
     </fieldset>

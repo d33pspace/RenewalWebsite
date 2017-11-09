@@ -1,9 +1,9 @@
-﻿@model CompletedViewModel
-@using RenewalWebsite.Resources
+﻿@model RenewalWebsite.Models.CompletedViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
 
 @inject IViewLocalizer Localizer
 @{
-    ViewBag.Title = DataAnnotations.ThankYou;
+    ViewBag.Title = "Thank you";
 }
 @*<div>
         <h3>@Model.Message</h3>
@@ -13,17 +13,17 @@
 <div class="row">
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
-        <figcaption class="figure-caption caption">@DataAnnotations.ThanksContent</figcaption>
+        <figcaption class="figure-caption caption">@Localizer["The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes."]</figcaption>
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@DataAnnotations.ThankYou!</h2>
+        <h2>Thank you!</h2>
         @*<p>Your card was charged successfully. Thank you for your kind gift of $100.</p>*@
         @if (Model.HasSubscriptions)
         {
             <p>@Model.Message</p>
             @*<p>[For subscriptions only:]</p>
                 <p>Your gift will repeat [monthly | quarterly | yearly]. To manage or cancel your subscription anytime, follow the link below.</p>*@
-            <a asp-controller="Manage" asp-action="Index" class="styled-link">@DataAnnotations.SeeMySubscriptions</a>
+            <a asp-controller="Manage" asp-action="Index" class="styled-link">See my subscriptions</a>
         }
         else
         {

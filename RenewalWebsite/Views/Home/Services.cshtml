@@ -1,9 +1,9 @@
 ﻿@using RenewalWebsite.Services
-@using RenewalWebsite.Resources
+
 @inject ICurrencyService CurrencyService
 
 @{
-    ViewData["Title"] = DataAnnotations.Services;
+    ViewData["Title"] = Localizer["Services"];
     var language = CurrencyService.GetCurrentLanguage();
 }
 
@@ -12,27 +12,27 @@
         <img src="~/images/home/slide-ziggy.jpg" class="figure-img img-fluid" alt="donate page image">
         @if (language.Name.Contains("zh"))
         {
-            <figcaption class="figure-caption caption chinese">@DataAnnotations.RenewalCenterRelies</figcaption>
+            <figcaption class="figure-caption caption chinese">@Localizer["The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life."]</figcaption>
         }
         else
         {
-            <figcaption class="figure-caption caption">@DataAnnotations.RenewalCenterRelies</figcaption>
+            <figcaption class="figure-caption caption">@Localizer["The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life."]</figcaption>
         }
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@DataAnnotations.RenewalOfferDisaplacedPeople</h2>
-        <p>@DataAnnotations.StartingWithBasicHelp</p>
+        <h2>@Localizer["Renewal offers displaced people a range of services on the road to a better life"]</h2>
+        <p>@Localizer["Starting with basic help for men and women living on the streets, Renewal also offers longer-term support to help people build friendships, find satisfying work and move into a permanent home."]</p>
 
-        <h4 class="mb-4">@DataAnnotations.EssentialServices</h4>
-        <p>@DataAnnotations.YourSupportOffers</p>
+        <h4 class="mb-4">@Localizer["Essential Services"]</h4>
+        <p>@Localizer["Your support offers every person who comes to Renewal a good meal, a hot shower, a change of clothes, the use of free laundry facilities and a chance to let someone know what help they need. The streets are an incredibly dangerous and difficult place to live, but with your continued support, Renewal will be here for everyone who needs friendship and a helping hand."]</p>
 
-        <h4 class="mb-4">@DataAnnotations.LifeSkillsWorkshops</h4>
-        <p>@DataAnnotations.PeopleWantFurther</p>
+        <h4 class="mb-4">@Localizer["Life Skills Workshops"]</h4>
+        <p>@Localizer["People who want further support find a dedicated team of volunteers offering workshops that help them set goals, build friendships and express themselves. Many people begin to broken relationships, reconcile with family or make a return visit to their home province, which is the only way to obtain or renew an essential national identity card."]</p>
 
-        <h4 class="mb-4">@DataAnnotations.WorkExperience</h4>
-        <p>@DataAnnotations.AfterYearsOfLiving</p>
+        <h4 class="mb-4">@Localizer["Work Experience"]</h4>
+        <p>@Localizer["After years of living on the streets, finding a job can seem impossible – even for those who are disciplined enough to hold down a full-time job. Your support for our Work Experience program invites people to serve in our laundry room, clean and maintain the center or manage our essential services. They each gain valuable job skills while helping out other people in need."]</p>
 
-        <h4 class="mb-4">@DataAnnotations.EmploymentAndSupport</h4>
-        <p>@DataAnnotations.TimeOfWorkingAtRenewal</p>
+        <h4 class="mb-4">@Localizer["Employment and Support"]</h4>
+        <p>@Localizer["After a time of working at Renewal, most program participants are ready to find a full-time job. Our local employment partners including popular restaurants help us match our residents with a job they value. Once they settle in and establish a personal budget, we give them further assistance to help them find a permanent home."]</p>
     </div>
 </div>

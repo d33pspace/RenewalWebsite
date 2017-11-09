@@ -117,64 +117,40 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddressLine1" xml:space="preserve">
-    <value>地址栏1</value>
+  <data name="After a time of working at Renewal, most program participants are ready to find a full-time job. Our local employment partners including popular restaurants help us match our residents with a job they value. Once they settle in and establish a personal budget, we give them further assistance to help them find a permanent home." xml:space="preserve">
+    <value>在日新中心工作一段时间后，大多数计划参与者都具备了找到全职工作的能力。我们在当地的合作伙伴包括著名的餐厅，他们能为我们的学员提供宝贵的工作。一旦他们安顿下来并有了一定存款后，我们会给他们进一步的协助，帮他们找到永久的住所。</value>
   </data>
-  <data name="AddressLine2" xml:space="preserve">
-    <value>地址栏2</value>
+  <data name="After years of living on the streets, finding a job can seem impossible – even for those who are disciplined enough to hold down a full-time job. Your support for our Work Experience program invites people to serve in our laundry room, clean and maintain the center or manage our essential services. They each gain valuable job skills while helping out other people in need." xml:space="preserve">
+    <value>在街头生活得太久，使他们很难再找到工作，即使有些人完全具备工作所需的能力。您的支持让我们开启了“工作经验”计划，邀请这些人们在我们的洗衣间工作，帮助我们打扫和维护中心的整洁或管理我们的基础服务。他们在此积累了宝贵的工作经验，同时还能够帮助其他有需求的人们。</value>
   </data>
-  <data name="CardNumber" xml:space="preserve">
-    <value>卡号</value>
+  <data name="Employment and Support" xml:space="preserve">
+    <value>工作与支持</value>
   </data>
-  <data name="CardRequired" xml:space="preserve">
-    <value>信用卡号是必需的</value>
+  <data name="Essential Services" xml:space="preserve">
+    <value>基本服务</value>
   </data>
-  <data name="City" xml:space="preserve">
-    <value>市</value>
+  <data name="Life Skills Workshops" xml:space="preserve">
+    <value>生存技能工作坊</value>
   </data>
-  <data name="Country" xml:space="preserve">
-    <value>国家</value>
+  <data name="People who want further support find a dedicated team of volunteers offering workshops that help them set goals, build friendships and express themselves. Many people begin to broken relationships, reconcile with family or make a return visit to their home province, which is the only way to obtain or renew an essential national identity card." xml:space="preserve">
+    <value>我们敬业的志愿者团队还为他们提供了进一步的支持，帮助他们设定目标，建立友谊并展示自己。许多人开始结交新朋友，与家人和解或回到自己的家乡，这样他们才能获得或更新最基础的个人身份。</value>
   </data>
-  <data name="ExpirationDate" xml:space="preserve">
-    <value>截止日期</value>
+  <data name="Renewal offers displaced people a range of services on the road to a better life" xml:space="preserve">
+    <value>日新中心为无家可归人士提供一系列通向更美好生活的服务</value>
   </data>
-  <data name="FullName" xml:space="preserve">
-    <value>全名</value>
+  <data name="Services" xml:space="preserve">
+    <value>服务</value>
   </data>
-  <data name="InvalidCard" xml:space="preserve">
-    <value>无效卡号</value>
+  <data name="Starting with basic help for men and women living on the streets, Renewal also offers longer-term support to help people build friendships, find satisfying work and move into a permanent home." xml:space="preserve">
+    <value>除了最基本的帮助外，日新中心还为街头的无家可归人士提供长期的支持，帮助他们建立友谊，寻找满意的工作并组建永久的家庭。</value>
   </data>
-  <data name="InvalidCVC" xml:space="preserve">
-    <value>无效CVC号码</value>
+  <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
+    <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
   </data>
-  <data name="InvalidMonth" xml:space="preserve">
-    <value>月份无效</value>
+  <data name="Work Experience" xml:space="preserve">
+    <value>工作经验</value>
   </data>
-  <data name="InvalidYear" xml:space="preserve">
-    <value>年度无效</value>
-  </data>
-  <data name="NameRequired" xml:space="preserve">
-    <value>姓名是必填项</value>
-  </data>
-  <data name="PersonName" xml:space="preserve">
-    <value>名称</value>
-  </data>
-  <data name="SecurityCode" xml:space="preserve">
-    <value>安全码</value>
-  </data>
-  <data name="SecurityCodeRequired" xml:space="preserve">
-    <value>安全码是必需的</value>
-  </data>
-  <data name="State" xml:space="preserve">
-    <value>州</value>
-  </data>
-  <data name="StateProvince" xml:space="preserve">
-    <value>州/省</value>
-  </data>
-  <data name="Zip" xml:space="preserve">
-    <value>压缩</value>
-  </data>
-  <data name="ZipPostalCode" xml:space="preserve">
-    <value>邮编/邮政编码</value>
+  <data name="Your support offers every person who comes to Renewal a good meal, a hot shower, a change of clothes, the use of free laundry facilities and a chance to let someone know what help they need. The streets are an incredibly dangerous and difficult place to live, but with your continued support, Renewal will be here for everyone who needs friendship and a helping hand." xml:space="preserve">
+    <value>您的支持能够为每一位来到日新中心寻求帮助的人提供一顿饱餐，一次热水澡，一套干净的衣服，免费使用洗衣机和一次让别人了解他的需求的机会。露宿街头的生活危险而艰难，但在您的持续帮助下，日新中心将会为每一个需要的人提供友谊与援助之手。</value>
   </data>
 </root>

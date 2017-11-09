@@ -25,6 +25,7 @@ namespace RenewalWebsite.Controllers
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly IOptions<CampaignSettings> _campaignSettings;
+        private readonly IStringLocalizer<DonateController> _localizer;
         private readonly ILoggerServicecs _loggerService;
         private EventLog log;
 
@@ -36,6 +37,7 @@ namespace RenewalWebsite.Controllers
             IOptions<ExchangeRate> exchangeSettings,
             IOptions<CampaignSettings> campaignSettings,
             ICampaignService campaignService,
+            IStringLocalizer<DonateController> localizer,
             ILoggerServicecs loggerService)
         {
             _userManager = userManager;
@@ -44,7 +46,9 @@ namespace RenewalWebsite.Controllers
             _exchangeSettings = exchangeSettings;
             _campaignSettings = campaignSettings;
             _campaignService = campaignService;
+            _localizer = localizer;
             _loggerService = loggerService;
+
         }
 
         public IActionResult Index()
@@ -296,7 +300,7 @@ namespace RenewalWebsite.Controllers
             .Select(b => new SelectListItem
             {
                 Value = ((int)b.Key).ToString(),
-                Text = b.Value
+                Text = _localizer[b.Value]
             }).ToList();
 
         private Task<ApplicationUser> GetCurrentUserAsync() =>

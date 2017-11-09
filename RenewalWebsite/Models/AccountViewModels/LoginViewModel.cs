@@ -8,17 +8,15 @@ namespace RenewalWebsite.Models.AccountViewModels
 {
     public class LoginViewModel
     {
-        [Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
-        [Display(Name = "Email", ResourceType = typeof(Resources.DataAnnotations))]
-        [EmailAddress(ErrorMessageResourceName = "InvalidEmail", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Required]
+        [EmailAddress]
         public string Email { get; set; }
 
-        [Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
-        [Display(Name = "Password", ResourceType = typeof(Resources.DataAnnotations))]
-        [DataType(DataType.Password,ErrorMessageResourceName = "InvalidPassword",ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [Required]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
 
-        [Display(Name = "RememberMe", ResourceType = typeof(Resources.DataAnnotations))]
+        [Display(Name = "Remember me?")]
         public bool RememberMe { get; set; }
     }
 }

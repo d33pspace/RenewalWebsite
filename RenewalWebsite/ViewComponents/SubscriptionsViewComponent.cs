@@ -5,10 +5,7 @@ using RenewalWebsite.Models;
 using Stripe;
 using System;
 using System.Collections.Generic;
-using System.Globalization;
 using System.Linq;
-using System.Reflection;
-using System.Resources;
 using System.Threading.Tasks;
 
 namespace RenewalWebsite.ViewComponents
@@ -51,18 +48,12 @@ namespace RenewalWebsite.ViewComponents
                         Subscriptions = subscriptions.Select(s => new CustomerSubscriptionViewModel
                         {
                             Id = s.Id,
-                            Name = s.StripePlan.Name.Split('_')[0].ToLower(),
+                            Name = s.StripePlan.Name,
                             Amount = s.StripePlan.Amount,
                             Currency = s.StripePlan.Currency,
                             Status = s.Status
                         }).ToList()
                     };
-
-                    foreach (CustomerSubscriptionViewModel subscriptionVal in customerSubscription.Subscriptions)
-                    {
-                        subscriptionVal.Status = GetStatus(subscriptionVal.Status);
-                        subscriptionVal.Name = GetPlanName(subscriptionVal.Name);
-                    }
                 }
                 catch (StripeException sex)
                 {
@@ -79,44 +70,6 @@ namespace RenewalWebsite.ViewComponents
                 Subscriptions = new List<CustomerSubscriptionViewModel>()
             };
             return View("View", subscription);
-        }
-
-        private string GetPlanName(string subscriptionValName)
-        {
-            ResourceManager resourceManager = new ResourceManager("RenewalWebsite.Resources.DataAnnotations",
-                Assembly.GetExecutingAssembly());
-            switch (subscriptionValName.ToLower())
-            {
-                case "monthly":
-                    return resourceManager.GetString("monthly", CultureInfo.CurrentCulture);
-                case "quarterly":
-                    return resourceManager.GetString("quarterly", CultureInfo.CurrentCulture);
-                case "yearly":
-                    return resourceManager.GetString("yearly", CultureInfo.CurrentCulture);
-                default:
-                    return resourceManager.GetString("monthly", CultureInfo.CurrentCulture);
-            }
-        }
-
-        private string GetStatus(string subscriptionValStatus)
-        {
-            ResourceManager resourceManager = new ResourceManager("RenewalWebsite.Resources.DataAnnotations",
-                Assembly.GetExecutingAssembly());
-            switch (subscriptionValStatus.ToLower())
-            {
-                case "trialing":
-                    return resourceManager.GetString("Trialing", CultureInfo.CurrentCulture);
-                case "active":
-                    return resourceManager.GetString("Active", CultureInfo.CurrentCulture);
-                case "past_due":
-                    return resourceManager.GetString("PastDue", CultureInfo.CurrentCulture);
-                case "canceled":
-                    return resourceManager.GetString("Canceled", CultureInfo.CurrentCulture);
-                case "unpaid":
-                    return resourceManager.GetString("Unpaid", CultureInfo.CurrentCulture);
-                default:
-                    return resourceManager.GetString("Active", CultureInfo.CurrentCulture);
-            }
         }
 
         private ApplicationUser GetCurrentUserAsync()

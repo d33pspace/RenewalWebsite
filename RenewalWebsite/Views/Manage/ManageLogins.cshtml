@@ -1,11 +1,10 @@
 ﻿@model ManageLoginsViewModel
-@using RenewalWebsite.Resources
 @using Microsoft.AspNetCore.Http.Authentication
 @{
-    ViewData["Title"] = DataAnnotations.ManageExternalLogin;
+    ViewData["Title"] = "Manage your external logins";
 }
 
-<h2>@ViewData["Title"]</h2>
+<h2>@ViewData["Title"].</h2>
 
 <p class="text-success">@ViewData["StatusMessage"]</p>
 @if (Model.CurrentLogins.Count > 0)
@@ -24,7 +23,7 @@
                                 <div>
                                     <input asp-for="@Model.CurrentLogins[index].LoginProvider" name="LoginProvider" type="hidden" />
                                     <input asp-for="@Model.CurrentLogins[index].ProviderKey" name="ProviderKey" type="hidden" />
-                                    <input type="submit" class="btn btn-default" value="Remove" title="@DataAnnotations.RemoveThis @Model.CurrentLogins[index].LoginProvider @DataAnnotations.LoginFromAccount" />
+                                    <input type="submit" class="btn btn-default" value="Remove" title="Remove this @Model.CurrentLogins[index].LoginProvider login from your account" />
                                 </div>
                             </form>
                         }
@@ -40,27 +39,14 @@
 }
 @if (Model.OtherLogins.Count > 0)
 {
-    <h4>@DataAnnotations.AddAnotherService</h4>
+    <h4>Add another service to log in.</h4>
     <hr />
     <form asp-controller="Manage" asp-action="LinkLogin" method="post" class="form-horizontal">
         <div id="socialLoginList">
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    string externalLogin;
-                    if (provider.Name.ToLower().Equals("google"))
-                    {
-                        externalLogin = DataAnnotations.Google;
-                    }
-                    else if (provider.Name.ToLower().Equals("microsoft"))
-                    {
-                        externalLogin = DataAnnotations.Microsoft;
-                    }
-                    else
-                    {
-                        externalLogin = DataAnnotations.Facebook;
-                    }
-                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="@DataAnnotations.LoginYour @externalLogin @DataAnnotations.Account">@externalLogin</button>
+                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.Name</button>
                 }
             </p>
         </div>

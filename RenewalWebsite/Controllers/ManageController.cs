@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -12,7 +11,6 @@ using Microsoft.Extensions.Options;
 using RenewalWebsite.Models;
 using RenewalWebsite.Models.ManageViewModels;
 using RenewalWebsite.Services;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Stripe;
@@ -26,7 +24,7 @@ namespace RenewalWebsite.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        //private readonly string _externalCookieScheme;
+        private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly IOptions<StripeSettings> _stripeSettings;
@@ -37,7 +35,7 @@ namespace RenewalWebsite.Controllers
         public ManageController(
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
-          //IOptions<IdentityConstants> identityCookieOptions,
+          //IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
           IOptions<StripeSettings> stripeSettings,
@@ -46,7 +44,7 @@ namespace RenewalWebsite.Controllers
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            //_externalCookieScheme = IdentityConstants.ExternalScheme;
+            //_externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _loggerService = loggerService;
@@ -381,10 +379,7 @@ namespace RenewalWebsite.Controllers
                 return View("Error");
             }
             var userLogins = await _userManager.GetLoginsAsync(user);
-            var otherLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync())
-                .Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider))
-                .ToList();
-            //var otherLogins = _signInManager.GetExternalAuthenticationSchemesAsync().Result.ToList();
+            var otherLogins = _signInManager.GetExternalAuthenticationSchemesAsync().Result.ToList();
             ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
             {
@@ -400,7 +395,7 @@ namespace RenewalWebsite.Controllers
         public async Task<IActionResult> LinkLogin(string provider)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+            await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
 
             // Request a redirect to the external login provider to link a login for the current user
             var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
@@ -429,7 +424,7 @@ namespace RenewalWebsite.Controllers
             {
                 message = ManageMessageId.AddLoginSuccess;
                 // Clear the existing external cookie to ensure a clean login process
-                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
+                await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
             }
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
         }

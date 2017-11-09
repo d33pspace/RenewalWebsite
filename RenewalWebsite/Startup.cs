@@ -165,7 +165,7 @@ namespace RenewalWebsite
             //app.UseStatusCodePagesWithRedirects("/error/{0}");
             app.UseStaticFiles();
 
-            app.UseAuthentication();
+            app.UseIdentity();
 
             var supportedCultures = new[]
             {

@@ -9,8 +9,6 @@ using RenewalWebsite.Data;
 using RenewalWebsite.Helpers;
 using Stripe;
 using System;
-using System.Reflection;
-using System.Resources;
 
 namespace RenewalWebsite.Services
 {
@@ -21,15 +19,13 @@ namespace RenewalWebsite.Services
         private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly IOptions<DonationSettings> _donateSettings;
         private readonly ICurrencyService _currencyService;
-        private static ResourceManager resourceManager = new ResourceManager("RenewalWebsite.Resources.DataAnnotations",
-            Assembly.GetExecutingAssembly());
 
         private List<DonationListOption> donationOptions = new List<DonationListOption>
         {
-            new DonationListOption {Id = 1, Reason = resourceManager.GetString("ToBeDoubledTo",CultureInfo.CurrentCulture)},
-            new DonationListOption {Id = 2, Reason = resourceManager.GetString("ToBeDoubledTo",CultureInfo.CurrentCulture)},
-            new DonationListOption {Id = 3, Reason = resourceManager.GetString("ToBeDoubledTo",CultureInfo.CurrentCulture)},
-            new DonationListOption {Id = 4, Reason = resourceManager.GetString("MyMostGenerousPossibleGifToBeDoubled",CultureInfo.CurrentCulture), IsCustom = true},
+            new DonationListOption {Id = 1, Reason = "to be doubled to"},
+            new DonationListOption {Id = 2, Reason = "to be doubled to"},
+            new DonationListOption {Id = 3, Reason = "to be doubled to"},
+            new DonationListOption {Id = 4, Reason = "My most generous possible gift to be doubled.", IsCustom = true},
         };
 
         public DonationService(ApplicationDbContext dbContext,
@@ -101,8 +97,8 @@ namespace RenewalWebsite.Services
             var planService = new StripePlanService(_stripeSettings.Value.SecretKey);
 
             // Construct plan name from the selected donation type and the cycle
-            var cycle = EnumInfo<PaymentCycleEn>.GetValue(donation.CycleId);
-            var frequency = EnumInfo<PaymentCycleEn>.GetDescription(cycle);
+            var cycle = EnumInfo<PaymentCycle>.GetValue(donation.CycleId);
+            var frequency = EnumInfo<PaymentCycle>.GetDescription(cycle);
             decimal amount = donation.DonationAmount ?? 0;
             string currency = donation.currency;
             if (donation.DonationAmount == null)
@@ -128,7 +124,7 @@ namespace RenewalWebsite.Services
                 };
 
                 // Take care intervals
-                if (cycle == PaymentCycleEn.Quarter)
+                if (cycle == PaymentCycle.Quarter)
                 {
                     plan.IntervalCount = 3;
                     plan.Interval = "month";

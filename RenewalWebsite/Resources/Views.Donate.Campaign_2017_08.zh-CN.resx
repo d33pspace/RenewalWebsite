@@ -117,64 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddressLine1" xml:space="preserve">
-    <value>地址栏1</value>
+  <data name="Double my gift for Renewal today" xml:space="preserve">
+    <value>将我给日新中心的捐赠翻倍</value>
   </data>
-  <data name="AddressLine2" xml:space="preserve">
-    <value>地址栏2</value>
+  <data name="to be doubled to" xml:space="preserve">
+    <value>翻倍到</value>
   </data>
-  <data name="CardNumber" xml:space="preserve">
-    <value>卡号</value>
+  <data name="Yes, please use your generous matching grant to double every dollar of my gift today -- to offer hope and support for people who would otherwise be living on the streets." xml:space="preserve">
+    <value>是的，请利用你们慷慨的等额资助基金将我的捐赠翻倍，为更多生活于街头的无家可归人士带来希望与帮助。</value>
   </data>
-  <data name="CardRequired" xml:space="preserve">
-    <value>信用卡号是必需的</value>
+  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
+    <value>立即用国际信用卡捐款</value>
   </data>
-  <data name="City" xml:space="preserve">
-    <value>市</value>
+  <data name="Double my gift to save and shelter more people." xml:space="preserve">
+    <value>让你的捐赠翻倍来拯救和庇护更多的人。</value>
   </data>
-  <data name="Country" xml:space="preserve">
-    <value>国家</value>
+  <data name="gift of:" xml:space="preserve">
+    <value>捐款：</value>
   </data>
-  <data name="ExpirationDate" xml:space="preserve">
-    <value>截止日期</value>
+  <data name="I would like to make a" xml:space="preserve">
+    <value>我想</value>
   </data>
-  <data name="FullName" xml:space="preserve">
-    <value>全名</value>
+  <data name="my most generous possible gift to be doubled." xml:space="preserve">
+    <value>我用来翻倍的慷慨捐赠。</value>
   </data>
-  <data name="InvalidCard" xml:space="preserve">
-    <value>无效卡号</value>
+  <data name="OPEN ALIPAY APP AND DONATE NOW" xml:space="preserve">
+    <value>立即打开支付宝APP捐款</value>
   </data>
-  <data name="InvalidCVC" xml:space="preserve">
-    <value>无效CVC号码</value>
+  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
+    <value>或者用支付宝扫描下面的二维码：</value>
   </data>
-  <data name="InvalidMonth" xml:space="preserve">
-    <value>月份无效</value>
+  <data name="Your most generous possible gift of any amount will be doubled." xml:space="preserve">
+    <value>请将我的捐赠翻倍，来帮助更多的人们</value>
   </data>
-  <data name="InvalidYear" xml:space="preserve">
-    <value>年度无效</value>
+  <data name="Donate" xml:space="preserve">
+    <value>捐款</value>
   </data>
-  <data name="NameRequired" xml:space="preserve">
-    <value>姓名是必填项</value>
+  <data name="Our site isn't compatible with WeChat. To continue, please select 'Open in Safari' from the context menu (three dots) at the top of your screen." xml:space="preserve">
+    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角-&gt;在Safari中打开 访问此页面。</value>
   </data>
-  <data name="PersonName" xml:space="preserve">
-    <value>名称</value>
+  <data name="Our site isn't compatible with WeChat. To continue, please select 'Open with Browser' from the context menu (three dots) at the top of your screen." xml:space="preserve">
+    <value>因为微信暂不支持支付宝相关操作，所以请点击右上角-&gt;在浏览器打开 访问此页面。</value>
   </data>
-  <data name="SecurityCode" xml:space="preserve">
-    <value>安全码</value>
-  </data>
-  <data name="SecurityCodeRequired" xml:space="preserve">
-    <value>安全码是必需的</value>
-  </data>
-  <data name="State" xml:space="preserve">
-    <value>州</value>
-  </data>
-  <data name="StateProvince" xml:space="preserve">
-    <value>州/省</value>
-  </data>
-  <data name="Zip" xml:space="preserve">
-    <value>压缩</value>
-  </data>
-  <data name="ZipPostalCode" xml:space="preserve">
-    <value>邮编/邮政编码</value>
+  <data name="Please open this page in your browser." xml:space="preserve">
+    <value>请在您的浏览器中打开此页面</value>
   </data>
 </root>
