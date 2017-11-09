@@ -9,16 +9,19 @@ namespace RenewalWebsite.Controllers
 {
     public class BaseController : Controller
     {
-        private readonly ICurrencyService _currencyService;
+        public const string TempMessage = "$tempMessage";
         public readonly string DefaultCurrencyCookieName = ".AspNetCore.Currency";
 
-        public BaseController()
+        public string GetTempMessage()
         {
+            var tempMessage = HttpContext.Session.GetString(TempMessage);
+            HttpContext.Session.Remove(TempMessage);
+            return tempMessage;
         }
 
-        public BaseController(ICurrencyService currencyService)
+        public void SetTempMessage(string message)
         {
-            _currencyService = currencyService;
+            HttpContext.Session.SetString(TempMessage, message);
         }
 
         public void SetLanguage(string culture)
@@ -38,5 +41,6 @@ namespace RenewalWebsite.Controllers
                 new CookieOptions { Expires = DateTime.UtcNow.AddYears(1) }
             );
         }
+
     }
 }

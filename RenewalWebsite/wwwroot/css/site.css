@@ -28,7 +28,7 @@
 
 @font-face {
     font-family: 'dpt35';
-    src: url('../fonts/dpt35-webfont.woff2') format('woff2'), url('../fonts/dpt35-webfont.woff') format('woff');
+    src: url('../fonts/dpt35-webfont.woff2') format('woff2'), url('../fonts/dpt35-webfont.woff') format('woff'), url('../fonts/dpt35-webfont.eot') format('embedded-opentype'), url('../fonts/dpt35-webfont.svg') format('svg'), url('../fonts/dpt35-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -37,19 +37,18 @@
 
 @font-face {
     font-family: 'dpt65';
-    src: url('../fonts/dpt65-webfont.woff2') format('woff2'), url('../fonts/dpt65-webfont.woff') format('woff');
+    src: url('../fonts/dpt65-webfont.woff2') format('woff2'), url('../fonts/dpt65-webfont.woff') format('woff'), url('../fonts/dpt65-webfont.eot') format('embedded-opentype'), url('../fonts/dpt65-webfont.svg') format('svg'), url('../fonts/dpt65-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
 
 .din-demi {
-    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif !important;
 }
 
 .din-extra-light {
     font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
-
 
 body {
     font-size: 18px;
@@ -102,6 +101,7 @@ a.styled-link, p a {
     text-decoration: none;
     border-bottom: 2px solid #d11241;
     font-family: 'dpt65',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    /*font-family: inherit;*/
 }
 
     a.styled-link:hover, p a:hover {
@@ -110,6 +110,10 @@ a.styled-link, p a {
         cursor: pointer;
         text-decoration: none;
     }
+
+:lang(zh) .figure-caption.caption {
+    font-style: normal;
+}
 
 /*-----------------------------------------------------------------------------------*/
 /*  2 - NAVIGATION
@@ -156,18 +160,31 @@ a.styled-link, p a {
         color: #d11241;
     }
 
-        #mainNav .navbar-nav > li.nav-item > a:hover, .btn.btn-link.navbar-btn.navbar-link:hover {
-            background-color: #d11241;
-            color: white;
-            cursor: pointer;
-        }
+    #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom {
+        color: white;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.signin-margin {
+        float: right;
+        margin-right: 20px;
+    }
+
+    /*#mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.lang {
+        display: block;
+    }*/
+
+    #mainNav .navbar-nav > li.nav-item > a:hover, .btn.btn-link.navbar-btn.navbar-link:hover {
+        background-color: #d11241;
+        color: white;
+        cursor: pointer;
+    }
 
 .btn.btn-link.navbar-btn.navbar-link {
     padding: 0px 20px;
 }
 
 #mainNav .container {
-    border-bottom: 1px solid #d11241;
+    border-bottom: 2px solid #d11241;
 }
 
 .navbar-light .navbar-toggler {
@@ -179,6 +196,10 @@ a.styled-link, p a {
     right: 0;
     padding-left: 0px;
     padding-right: 0px;
+}
+
+.btn-block {
+    display: inline;
 }
 
 @media only screen and (min-width: 992px) {
@@ -204,12 +225,34 @@ a.styled-link, p a {
             line-height: 24px;
         }
 
-            #mainNav .navbar-nav > li.nav-item > a:hover, #mainNav .navbar-nav > li.nav-item > a:focus, .btn.btn-link.navbar-btn.navbar-link:hover {
-                background-color: #d11241;
-                color: white;
-                cursor: pointer;
-                text-decoration: none;
-            }
+        #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom {
+            color: #d11241;
+        }
+
+        #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.signin-margin {
+            float: none;
+            margin-right: 0px;
+        }
+
+    .lang {
+        display: block;
+        margin-top: -3px;
+    }
+
+    .langBig {
+        display: none;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > .btn.btn-link.navbar-btn.navbar-link.custom:hover {
+        color: white;
+    }
+
+    #mainNav .navbar-nav > li.nav-item > a:hover, #mainNav .navbar-nav > li.nav-item > a:focus, .btn.btn-link.navbar-btn.navbar-link:hover {
+        background-color: #d11241;
+        color: white;
+        cursor: pointer;
+        text-decoration: none;
+    }
 }
 
 @media only screen and (min-width: 1170px) {
@@ -282,6 +325,7 @@ header.masthead .page-heading {
     }
 }
 
+
 header.masthead .post-heading h1 {
     font-size: 33em;
 }
@@ -346,6 +390,10 @@ header.masthead .post-heading .meta {
     border-bottom-left-radius: 5px;
 }
 
+.chinese {
+    font-style: normal;
+}
+
 ::-moz-selection {
     color: white;
     background: #d11241;
@@ -373,7 +421,7 @@ body {
 }
 
 hr {
-    border-top: 1px solid #d11241;
+    border-top: 2px solid #d11241;
 }
 
 .post-preview > a {
@@ -439,13 +487,18 @@ hr {
 }
 
 #repeated-month {
-    width: 20%;
+    width: 22%;
     display: inline-block;
 }
 
 
 .text-muted {
     font-size: 14px;
+}
+
+.row.no-margin {
+    margin-left: 0px;
+    margin-right: 0px;
 }
 
 ul.gift-options {
@@ -459,8 +512,13 @@ ul.gift-options {
         background-repeat: no-repeat;
         background-size: 20px 20px;
         padding-left: 40px;
-        margin-top: 12px;
+        margin-top: 15px;
     }
+
+.red-border {
+    border: 2px solid #d11241;
+    padding: 15px;
+}
 
 
 /*-----------------------------------------------------------------------------------*/
@@ -534,13 +592,17 @@ form .form-group:first-child .floating-label-form-group {
     padding-top: 30px;
 }
 
-form, input {
+/*form, input {
     font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
-}
+}*/
 
 label {
-    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    /*font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
 }
+
+/*button, input, optgroup, select, textarea {
+    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+}*/
 
 form.contact input {
     border: 1px solid #d11241;
@@ -581,7 +643,7 @@ form.contact {
 .rmb-options li {
     padding-left: 10px;
     clear: both;
-    margin-bottom: 19px;
+    margin-bottom: 16px;
     line-height: 24px;
     overflow: hidden;
 }
@@ -600,7 +662,7 @@ form.contact {
     float: left;
     margin-right: 15px;
     margin-top: 7px;
-    margin-bottom: 30px;
+    margin-bottom: 10px;
 }
 
 input#choose-amount {
@@ -612,34 +674,40 @@ input#choose-amount {
     margin-bottom: 0px;
     border: 1px solid rgba(0,0,0,.15);
     border-radius: 5px;
+    padding-left: 5px;
 }
 
-.form-control:focus {
-    border: 1px solid #d11241;
-    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+.form-control {
+    /*font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;*/
+    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
-
-    /*chrome*/
-    .form-control:focus::-webkit-input-placeholder {
-        color: transparent;
+    .form-control:focus, input#choose-amount:focus {
+        border: 1px solid #d11241;
+        font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     }
 
-    /*firefox*/
-    .form-control:focus:-moz-placeholder {
-        color: transparent;
-    }
 
-    /*newer versions of firefox*/
-    .form-control:focus::-moz-placeholder {
-        color: transparent;
-    }
+        /*chrome*/
+        .form-control:focus::-webkit-input-placeholder {
+            color: transparent;
+        }
 
-    /*ie*/
+        /*firefox*/
+        .form-control:focus:-moz-placeholder {
+            color: transparent;
+        }
 
-    .form-control:focus:-ms-input-placeholder {
-        color: transparent;
-    }
+        /*newer versions of firefox*/
+        .form-control:focus::-moz-placeholder {
+            color: transparent;
+        }
+
+        /*ie*/
+
+        .form-control:focus:-ms-input-placeholder {
+            color: transparent;
+        }
 
 
 
@@ -657,6 +725,10 @@ a.dropdown-toggle {
 .form-group .col-lg-6 {
     padding-left: 7.5px;
     padding-right: 7.5px;
+}
+
+.form-group {
+    overflow: hidden;
 }
 
 
@@ -689,6 +761,22 @@ a.dropdown-toggle {
     border-color: #d11241;
     background-color: #d11241;
     border: solid 2px;
+    white-space: normal;
+}
+
+.btnLang {
+    font-size: 15px;
+    font-weight: 800;
+    padding: 15px 25px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    color: white;
+    border-color: #d11241;
+    background-color: #d11241;
+    border: solid 2px;
+    white-space: nowrap;
 }
 
 .btn-primary {
@@ -776,6 +864,19 @@ fieldset[disabled] .btn-primary.focus {
         border-color: #d11241;
         border: 2px solid;
         cursor: pointer;
+    }
+
+.transparent-btn {
+    color: #d11241;
+    font-size: 14px;
+    text-decoration: underline;
+    background-color: transparent;
+    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+}
+
+    .transparent-btn:hover, .transparent-btn:focus, .transparent-btn:active {
+        background-color: #d11241;
+        color: white;
     }
 
 button:focus {
@@ -929,7 +1030,7 @@ i.arrow {
 
 
 footer {
-    border-top: 1px solid #d11241;
+    border-top: 2px solid #d11241;
     padding: 50px 0 65px;
     margin: auto;
 }
@@ -1019,7 +1120,7 @@ a.news-link:hover {
 }
 
 .news.issue-8 {
-    background-image: url(../img/news-web-header.jpg);
+    background-image: url(../images/news-web-header.jpg);
     background-size: cover;
     min-height: 500px;
 }
@@ -1120,6 +1221,7 @@ p.excerpt {
     padding: 0px;
     margin-left: 0px;
     font-size: 16px;
+    margin-top: 0px;
 }
 
 .news-subheader {
@@ -1128,7 +1230,7 @@ p.excerpt {
 }
 
 .sub-menu-a.styled-link {
-    color: #d11241;
+    color: #d11241 !important;
     text-decoration: none;
     border-bottom: none;
     font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
@@ -1154,7 +1256,42 @@ p.excerpt {
         color: white;
     }
 
+        .news-page footer .fa:hover {
+            color: #393939;
+        }
 
+.news-page .btn-secondary {
+    color: #d11241;
+    background-color: white !IMPORTANT;
+    border-color: #d11241;
+    border: 2px solid;
+    cursor: pointer;
+}
+
+    /*.news-page .btn-secondary:hover {
+        color: white;
+        background-color: black !IMPORTANT;
+        border-color: #d11241;
+        border: 2px solid;
+        cursor: pointer;
+    }*/
+
+    .news-page .btn-secondary i.arrow {
+        color: #d11241;
+        border-color: #d11241;
+        cursor: pointer;
+    }
+
+/*.news-page .btn-secondary i.arrow:hover {
+            color: white;
+            border-color: white;
+            cursor: pointer;
+        }*/
+
+
+.news-page h6.text-danger {
+    color: white !important;
+}
 
 @media (max-width:1284px) {
     .renewal-logo-news {
@@ -1223,6 +1360,7 @@ p.excerpt {
 
     #mainNav .navbar-nav > li.nav-item > a {
         text-align: right;
+        padding-right: 20px;
     }
 
     #mainNav .navbar-brand.red {
@@ -1240,15 +1378,24 @@ p.excerpt {
 
     .hide-large {
         display: block;
+        /*float: left;*/
     }
 
     #mainNav {
-        border-bottom: 1px solid #d11241;
+        border-bottom: 2px solid #d11241;
     }
 
         #mainNav .container {
             border-bottom: none;
         }
+
+    .lang {
+        display: none;
+    }
+
+    .langBig {
+        display: block;
+    }
 }
 
 @media (max-width:767px) {
@@ -1285,7 +1432,15 @@ p.excerpt {
 
     .btn {
         font-size: 12px;
-        max-width: 100%;
+        width: 100%;
+    }
+
+    blockquote {
+        padding-left: 15px;
+    }
+
+    .btn-block {
+        display: block;
     }
 }
 
@@ -1295,5 +1450,77 @@ p.excerpt {
         width: 110%;
         max-width: 110%;
         margin-left: -15px;
+    }
+
+    .btn {
+        font-size: 10px;
+    }
+}
+
+@media(max-width:300px) {
+    .btn {
+        font-size: 8px;
+    }
+}
+
+input#DonationAmount {
+    width: 15%;
+    margin-left: 5px;
+    margin-right: 5px;
+    float: none;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    display: inline-block;
+    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    /*border: 1px solid rgba(0,0,0,.15);*/
+    border-radius: 5px;
+    padding-left: 5px;
+    font-weight: normal !important;
+}
+
+    input#DonationAmount:focus {
+        font-weight: bold !important;
+    }
+
+.hide {
+    display: none;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+    padding: 1px 5px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0px;
+}
+
+.m-tb-15 {
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.mtp-auto {
+    margin-top: auto;
+    margin-bottom: auto;
+}
+
+.select-font {
+    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+}
+
+    .select-font:focus {
+        font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    }
+
+.rb-align {
+    float: none !important;
+}
+
+.btn-vertical {
+    display: block;
+}
+
+@media(max-width:992px) {
+    .btn-vertical {
+        display: grid;
     }
 }

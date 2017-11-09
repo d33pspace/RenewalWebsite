@@ -1,0 +1,55 @@
+﻿@model RenewalWebsite.Models.CustomerPaymentViewModel
+@using System.Globalization
+
+
+@if (Model.Subscriptions == null || !Model.Subscriptions.Any())
+{
+    <h4>@Localizer["Manage your subscriptions"]</h4>
+        <hr />
+        <p>@Localizer["You have no subscriptions."]</p>
+}
+else
+{
+    <div class="col-lg-12" style="margin-top:15px;">
+        <table class="table table-bordered table-hover table-responsive" width="100%">
+            <thead>
+                <tr>
+                    <th>@Localizer["Frequency"]</th>
+                    <th>@Localizer["Amount"]</th>
+                    <th>@Localizer["Currency"]</th>
+                    <th>@Localizer["Status"]</th>
+                    <th>@Localizer["Action"]</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var subscription in Model.Subscriptions)
+                {
+                    <tr>
+                        <td style="vertical-align:middle;">@(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(subscription.Name.Split('_')[0].ToLower()))</td>
+                        <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", Convert.ToDecimal(subscription.Amount) / 100).Replace("$", ""))</td>
+                        <td style="vertical-align:middle;">@subscription.Currency.ToUpper()</td>
+                        <td style="vertical-align:middle;">@(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(subscription.Status))</td>
+                        <td style="vertical-align:middle;"><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">@Localizer["Cancel"]</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+
+<a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Add New Subscription"]</a>
+
+<script type="text/javascript">
+    function deleteSubscription(item) {
+        var result = confirm("@Localizer["Are you sure you want to cancel this subscription?"]");
+        if (result) {
+            //Logic to delete the item
+            var id = $(item).attr("data-ajax-value");
+            window.location = "/Subscription/Delete?subscriptionId=" + id;
+        }
+        else {
+            return;
+        }
+    };
+</script>

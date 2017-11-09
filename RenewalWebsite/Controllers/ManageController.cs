@@ -13,6 +13,9 @@ using RenewalWebsite.Models.ManageViewModels;
 using RenewalWebsite.Services;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Stripe;
+using RenewalWebsite.Utility;
+using Microsoft.Extensions.Localization;
 
 namespace RenewalWebsite.Controllers
 {
@@ -24,112 +27,113 @@ namespace RenewalWebsite.Controllers
         private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ICurrencyService _currencyService;
-        private readonly ILogger _logger;
+        private readonly IOptions<StripeSettings> _stripeSettings;
+        private readonly ILoggerServicecs _loggerService;
+        //private readonly IStringLocalizer<DonateController> _localizer;
+        private EventLog log;   
 
         public ManageController(
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
-          IOptions<IdentityCookieOptions> identityCookieOptions,
+          //IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
-          ILoggerFactory loggerFactory,
-          ICurrencyService currencyService)
+          IOptions<StripeSettings> stripeSettings,
+          ILoggerServicecs loggerService)
+          //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
+            //_externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<ManageController>();
-            _currencyService = currencyService;
+            _loggerService = loggerService;
+            _stripeSettings = stripeSettings;
+            //_localizer = localizer;
         }
 
         //
         // GET: /Manage/Index
         [HttpGet]
-        public async Task<IActionResult> Index(ManageMessageId? message = null)
+        public async Task<IActionResult> Index(ManageMessageId? message = null, int tabId = 0)
         {
-            // Optionaly use the region info to get default currency for user
-
-            ViewData["StatusMessage"] =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
-            var user = await GetCurrentUserAsync();
-            if (user == null)
+            try
             {
-                return View("Error");
-            }
+                // Optionaly use the region info to get default currency for user
 
-            // Give the user a default currency if they dont have
-            if (string.IsNullOrEmpty(user.Currency))
-            {
-                var requestCulture = Request.HttpContext.Features.Get<IRequestCultureFeature>();
-                var culture = requestCulture.RequestCulture.Culture;
-                user.Currency = _currencyService.GetCurrent().Name;
-            }
+                ViewData["StatusMessage"] =
+                    message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
+                    : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
+                    : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
+                    : message == ManageMessageId.Error ? "An error has occurred."
+                    : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
+                    : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                    : "";
 
-            var currencies = _currencyService.GetAll();
-
-            var model = new IndexViewModel
-            {
-                HasPassword = await _userManager.HasPasswordAsync(user),
-                PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
-                TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
-                Logins = await _userManager.GetLoginsAsync(user),
-                BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-                FullName = user.FullName,
-                Culture = user.Culture,
-                Currency = user.Currency,
-                CurrencyList = new List<SelectListItem>(currencies.Select(c =>
-                                        new SelectListItem
-                                        {
-                                            Text = c.Symbol,
-                                            Value = c.CultureName
-                                        })),
-                CultureList = new List<SelectListItem>
+                var user = await GetCurrentUserAsync();
+                if (user == null)
                 {
-                    new SelectListItem
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "User not found." };
+                    _loggerService.SaveEventLog(log);
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = "User not found" });
+                    //return View("Error");
+                }
+
+                var model = new IndexViewModel
+                {
+                    HasPassword = await _userManager.HasPasswordAsync(user),
+                    PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
+                    TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
+                    Logins = await _userManager.GetLoginsAsync(user),
+                    BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
+                    UserId = user.Id,
+                    TokenId = user.StripeCustomerId,
+                    Message = GetTempMessage(),
+                    FullName = user.FullName,
+                    AddressLine1 = user.AddressLine1,
+                    AddressLine2 = user.AddressLine2,
+                    State = user.State,
+                    Zip = user.Zip,
+                    City = user.City,
+                    Country = user.Country
+                };
+
+                model.card = new CardViewModel();
+                model.card.Name = user.FullName;
+
+                try
+                {
+                    var CustomerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
+                    if (!string.IsNullOrEmpty(user.StripeCustomerId))
                     {
-                        Value = "en-US",
-                        Text = "English"
-                    },
-                    new SelectListItem
-                    {
-                        Value = "zh-CN",
-                        Text = "Chinese"
+                        StripeCustomer objStripeCustomer = CustomerService.Get(user.StripeCustomerId);
+                        if (objStripeCustomer.Sources != null && objStripeCustomer.Sources.TotalCount > 0 && objStripeCustomer.Sources.Data.Any())
+                        {
+                            var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
+                            foreach (var cardSource in objStripeCustomer.Sources.Data)
+                            {
+                                model.card.Name = cardSource.Card.Name;
+                                model.card.cardId = cardSource.Card.Id;
+                                model.card.Last4Digit = cardSource.Card.Last4;
+                            }
+                        }
                     }
                 }
-            };
-            return View(model);
-        }
-
-        // POST: /Manage/RemoveLogin
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> SaveProfile(IndexViewModel profile)
-        {
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                user.Currency = profile.Currency;
-                user.Culture = profile.Culture;
-                user.FullName = profile.FullName;
-                await _userManager.UpdateAsync(user);
-
-                // Update Localisation if is has changed
-                SetLanguage(profile.Culture);
-                SetCurrency(profile.Currency);
-
-                ViewData["StatusMessage"] = "Saved Profile";
+                catch (StripeException sex)
+                {
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
+                    _loggerService.SaveEventLog(log);
+                    ModelState.AddModelError("CustomerNoFound", sex.Message);
+                }
+                ViewBag.TabId = tabId;
+                return View(model);
             }
-            return RedirectToAction(nameof(Index), "Manage");
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
+                return View(null);
+            }
         }
 
         //
@@ -191,7 +195,7 @@ namespace RenewalWebsite.Controllers
             {
                 await _userManager.SetTwoFactorEnabledAsync(user, true);
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                _logger.LogInformation(1, "User enabled two-factor authentication.");
+                //_logger.LogInformation(1, "User enabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
         }
@@ -207,7 +211,7 @@ namespace RenewalWebsite.Controllers
             {
                 await _userManager.SetTwoFactorEnabledAsync(user, false);
                 await _signInManager.SignInAsync(user, isPersistent: false);
-                _logger.LogInformation(2, "User disabled two-factor authentication.");
+                //_logger.LogInformation(2, "User disabled two-factor authentication.");
             }
             return RedirectToAction(nameof(Index), "Manage");
         }
@@ -285,24 +289,34 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
-            }
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
-                if (result.Succeeded)
+                if (!ModelState.IsValid)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User changed their password successfully.");
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    return View(model);
                 }
-                AddErrors(result);
-                return View(model);
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        //_logger.LogInformation(3, "User changed their password successfully.");
+                        return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    }
+                    AddErrors(result);
+                    return View(model);
+                }
+                return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
             }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
+            }
         }
 
         //
@@ -319,24 +333,35 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
+                    }
+                    AddErrors(result);
+                    return View(model);
+                }
+                return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                //return View(null);
             }
 
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
-                }
-                AddErrors(result);
-                return View(model);
-            }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
         }
 
         //GET: /Manage/ManageLogins
@@ -354,7 +379,7 @@ namespace RenewalWebsite.Controllers
                 return View("Error");
             }
             var userLogins = await _userManager.GetLoginsAsync(user);
-            var otherLogins = _signInManager.GetExternalAuthenticationSchemes().Where(auth => userLogins.All(ul => auth.AuthenticationScheme != ul.LoginProvider)).ToList();
+            var otherLogins = _signInManager.GetExternalAuthenticationSchemesAsync().Result.ToList();
             ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
             return View(new ManageLoginsViewModel
             {
@@ -404,6 +429,12 @@ namespace RenewalWebsite.Controllers
             return RedirectToAction(nameof(ManageLogins), new { Message = message });
         }
 
+        public ActionResult AddNewCard()
+        {
+            NewCardViewModel card = new NewCardViewModel();
+            return PartialView("_AddNewCard", card);
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
@@ -432,5 +463,150 @@ namespace RenewalWebsite.Controllers
         }
 
         #endregion
+
+
+        // POST: /Manage/RemoveLogin
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> SaveProfile(IndexViewModel profile)
+        {
+            ResultModel result = new ResultModel();
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    user.FullName = profile.FullName;
+                    user.AddressLine1 = profile.AddressLine1;
+                    user.AddressLine2 = profile.AddressLine2;
+                    user.State = profile.State;
+                    user.Zip = profile.Zip;
+                    user.City = profile.City;
+                    user.Country = profile.Country;
+
+                    await _userManager.UpdateAsync(user);
+
+                    result.data = "Profile updated successfully";
+                    result.status = "1";
+                }
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
+                result.data = "Something went wrong, please try again";
+                result.status = "0";
+            }
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> UpdateCard(CardViewModel card)
+        {
+            ResultModel result = new ResultModel();
+            var user = await GetCurrentUserAsync();
+            if (user != null)
+            {
+                try
+                {
+                    var CardService = new StripeCardService(_stripeSettings.Value.SecretKey);
+                    StripeCard objStripeCard = await CardService.GetAsync(user.StripeCustomerId, card.cardId);
+
+                    StripeCardUpdateOptions updateCardOptions = new StripeCardUpdateOptions();
+                    //updateCardOptions.Name = card.Name;
+                    updateCardOptions.ExpirationMonth = card.ExpiryMonth;
+                    updateCardOptions.ExpirationYear = card.ExpiryYear;
+
+                    await CardService.UpdateAsync(user.StripeCustomerId, card.cardId, updateCardOptions);
+                    result.data = "Card updated successfully";
+                    result.status = "1";
+                    return Json(result);
+                }
+                catch (StripeException ex1)
+                {
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex1.Message };
+                    _loggerService.SaveEventLog(log);
+                    result.data = ex1.Message;
+                    result.status = "0";
+                }
+                catch (Exception ex)
+                {
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                    _loggerService.SaveEventLog(log);
+                    result.data = "Something went wrong, please try again";
+                    result.status = "0";
+                }
+            }
+
+            return Json(result);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<JsonResult> AddNewCard(NewCardViewModel card)
+        {
+            ResultModel result = new ResultModel();
+            var user = await GetCurrentUserAsync();
+            if (user != null)
+            {
+                try
+                {
+                    var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
+                    var ExistingCustomer = customerService.Get(user.StripeCustomerId);
+                    if (ExistingCustomer.Sources != null && ExistingCustomer.Sources.TotalCount > 0 && ExistingCustomer.Sources.Data.Any())
+                    {
+                        var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
+                        foreach (var cardSource in ExistingCustomer.Sources.Data)
+                        {
+                            cardService.Delete(user.StripeCustomerId, cardSource.Card.Id);
+                        }
+                    }
+
+                    var customer = new StripeCustomerUpdateOptions
+                    {
+                        SourceCard = new SourceCard
+                        {
+                            Name = user.FullName,
+                            Number = card.CardNumber,
+                            Cvc = card.Cvc,
+                            ExpirationMonth = card.ExpiryMonth,
+                            ExpirationYear = card.ExpiryYear,
+                            StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
+                            Description = "",
+                            AddressLine1 = user.AddressLine1,
+                            AddressLine2 = user.AddressLine2,
+                            AddressCity = user.City,
+                            AddressState = user.State,
+                            AddressCountry = user.Country,
+                            AddressZip = user.Zip
+                        }
+                    };
+
+                    var stripeCustomer = customerService.Update(user.StripeCustomerId, customer);
+                    user.StripeCustomerId = stripeCustomer.Id;
+                    result.data = "Card added successfully";
+                    result.status = "1";
+                    return Json(result);
+                }
+                catch (StripeException ex1)
+                {
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex1.Message };
+                    _loggerService.SaveEventLog(log);
+                    result.data = ex1.Message;
+                    result.status = "0";
+                }
+                catch (Exception ex)
+                {
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                    _loggerService.SaveEventLog(log);
+                    result.data = "Something went wrong, please try again";
+                    result.status = "0";
+                }
+            }
+
+            return Json(result);
+        }
     }
 }

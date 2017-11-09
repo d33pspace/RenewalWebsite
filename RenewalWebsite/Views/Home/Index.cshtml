@@ -1,24 +1,50 @@
-﻿@{
+﻿@using RenewalWebsite.Services
+
+@inject ICurrencyService CurrencyService
+
+@{
     ViewData["Title"] = Localizer["Home"];
+
+    var currency = CurrencyService.GetCurrent();
+    var language = CurrencyService.GetCurrentLanguage();
+
+    decimal matchAmountCNY = 180000;
+    decimal matchAmountUSD = 27500;
 }
 
 <div class="row">
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <img src="~/images/home/slide-laundry.jpg" class="figure-img img-fluid" alt="donate page image">
-        <figcaption class="figure-caption caption">@Localizer["The Renewal Center relies on gifts of time and money to help displaced people in Shanghai find support, employment and permanent homes."]</figcaption>
+        @if (language.Name.Contains("zh"))
+        {
+            <figcaption class="figure-caption caption chinese">@Localizer["The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life."]</figcaption>
+        }
+        else
+        {
+            <figcaption class="figure-caption caption">@Localizer["The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life."]</figcaption>
+        }
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Renewal helps displaced people find employment, stability and a permanent home..."]</h2>
-        <p>@Localizer["People come to the city seeking wealth... opportunity... freedom... or an escape. Sadly, many find the city offers no support network and no way out. Concerned for those trapped in poverty, a small group opened Renewal in a city-center storefront in 2008, and we invite you to join us today in reaching people who are friendless, desperate and displaced."]</p>
-        <p>@Localizer["People come to Renewal looking for basic support, friendship and warmth. Many find that and more, including employment, independence and renewed confidence. With a full-time staff of just four people, Renewal relies on support from partners to offer people essential help on the road to full-time work."]</p>
-        <p>@Localizer["Renewal can become a temporary home to those committed to finding a good job. Those who do settle into employment get help finding a home they can call their own, and support gaining the resources they need to pursue their dreams. We can even help people renew broken relationships with family, and tailor all of our support to what they tell us they need."]</p>
+        <h2>@Localizer["Your support helps displaced people gain employment, stability and a permanent home"]</h2>
+        <p>@Localizer["We can’t do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home."]</p>
 
-        <h2 class="mt-4">@Localizer["For a short time your gift will be doubled"]</h2>
-        <p>@Localizer["The Renewal Center board of trustees will match every dollar of your gift, up to a grand total of $38,800. <b>Please send your gift to be doubled today.</b> Every $5 of your gift will become $10! Every $20 of your gift will become $40!"]</p>
-        <p>@Localizer["This match must end at midnight on December 31st so please send your gift now. All unmatched funds will be returned to the board. So it's urgent that we match every single dollar! The Renewal Center's heating and hot water bills shoot up at this time of year. In addition, more and more people come to us seeking shelter from the cold, wet streets."]</p>
+        <h2 class="red-border">@Localizer["Your gift will be doubled today!"]</h2>
+        <p>
+            @Localizer["To help meet the urgent need for shelter and support before the cold weather hits, a group of generous donors will match your gift to the Renewal Center today up to a total of"]
+        @if (currency.Name.Contains("zh"))
+            {
+            <span>@matchAmountCNY.ToString("C0", currency)@Localizer["."]</span>
+        }
+        else
+        {
+            <span>@matchAmountUSD.ToString("C0", currency)@Localizer["."]</span>
+        }
+    </p>
 
-        <div class="clearfix mt-4 mb-5">
-            <a class="btn btn-secondary" asp-controller="Donate" asp-action="Campaign_2017_08">@Localizer["DOUBLE MY GIFT NOW"] <i class="arrow right-arrow"></i></a>
-        </div>
+    <p>@Localizer["Any gift you send before midnight on October 31, 2017 will be doubled!"]</p>
+
+    <div class="clearfix mt-4 mb-5">
+        <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_08">@Localizer["Double my gift"] <i class="arrow right-arrow"></i></a>
+    </div>
 </div>
 </div>

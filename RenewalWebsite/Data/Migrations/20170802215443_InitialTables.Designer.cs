@@ -3,13 +3,12 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
-using RenewalWebsite.Data;
 
 namespace RenewalWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170801082833_AddLocalization")]
-    partial class AddLocalization
+    [Migration("20170802215443_InitialTables")]
+    partial class InitialTables
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -124,7 +123,7 @@ namespace RenewalWebsite.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("RenewalWebsite.Models.ApplicationUser", b =>
+            modelBuilder.Entity("Stripe.Models.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
                         .ValueGeneratedOnAdd();
@@ -134,16 +133,14 @@ namespace RenewalWebsite.Data.Migrations
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
 
-                    b.Property<string>("Culture");
-
-                    b.Property<string>("Currency");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FullName");
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -163,6 +160,8 @@ namespace RenewalWebsite.Data.Migrations
 
                     b.Property<string>("SecurityStamp");
 
+                    b.Property<string>("StripeCustomerId");
+
                     b.Property<bool>("TwoFactorEnabled");
 
                     b.Property<string>("UserName")
@@ -180,6 +179,101 @@ namespace RenewalWebsite.Data.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("Stripe.Models.CreditCard", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("AddressCity");
+
+                    b.Property<string>("AddressCountry");
+
+                    b.Property<string>("AddressLine1");
+
+                    b.Property<string>("AddressState");
+
+                    b.Property<string>("AddressZip");
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<string>("CardCountry");
+
+                    b.Property<string>("CardType");
+
+                    b.Property<string>("Cvc");
+
+                    b.Property<string>("ExpirationMonth");
+
+                    b.Property<string>("ExpirationYear");
+
+                    b.Property<string>("Last4");
+
+                    b.Property<string>("Name");
+
+                    b.Property<string>("StripeId");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("CreditCards");
+                });
+
+            modelBuilder.Entity("Stripe.Models.Donation", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("CycleId");
+
+                    b.Property<double>("DonationAmount");
+
+                    b.Property<DateTime?>("TransactionDate");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Donations");
+                });
+
+            modelBuilder.Entity("Stripe.Models.Subscription", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<DateTime?>("End");
+
+                    b.Property<string>("ReasonToCancel");
+
+                    b.Property<DateTime?>("Start");
+
+                    b.Property<string>("Status");
+
+                    b.Property<string>("StripeId")
+                        .HasMaxLength(50);
+
+                    b.Property<string>("SubscriptionPlanId");
+
+                    b.Property<decimal>("TaxPercent");
+
+                    b.Property<DateTime?>("TrialEnd");
+
+                    b.Property<DateTime?>("TrialStart");
+
+                    b.Property<string>("UserId");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Subscriptions");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityRole")
@@ -190,7 +284,7 @@ namespace RenewalWebsite.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("RenewalWebsite.Models.ApplicationUser")
+                    b.HasOne("Stripe.Models.ApplicationUser")
                         .WithMany("Claims")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -198,7 +292,7 @@ namespace RenewalWebsite.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.EntityFrameworkCore.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("RenewalWebsite.Models.ApplicationUser")
+                    b.HasOne("Stripe.Models.ApplicationUser")
                         .WithMany("Logins")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
@@ -211,10 +305,31 @@ namespace RenewalWebsite.Data.Migrations
                         .HasForeignKey("RoleId")
                         .OnDelete(DeleteBehavior.Cascade);
 
-                    b.HasOne("RenewalWebsite.Models.ApplicationUser")
+                    b.HasOne("Stripe.Models.ApplicationUser")
                         .WithMany("Roles")
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("Stripe.Models.CreditCard", b =>
+                {
+                    b.HasOne("Stripe.Models.ApplicationUser")
+                        .WithMany("CreditCards")
+                        .HasForeignKey("ApplicationUserId");
+                });
+
+            modelBuilder.Entity("Stripe.Models.Donation", b =>
+                {
+                    b.HasOne("Stripe.Models.ApplicationUser", "User")
+                        .WithMany("Donations")
+                        .HasForeignKey("UserId");
+                });
+
+            modelBuilder.Entity("Stripe.Models.Subscription", b =>
+                {
+                    b.HasOne("Stripe.Models.ApplicationUser", "User")
+                        .WithMany("Subscriptions")
+                        .HasForeignKey("UserId");
                 });
         }
     }

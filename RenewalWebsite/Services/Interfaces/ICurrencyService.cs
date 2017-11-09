@@ -1,13 +1,16 @@
-﻿using System.Collections.Generic;
+﻿using RenewalWebsite.Models;
+using System;
+using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 using System.Threading.Tasks;
-using RenewalWebsite.Models;
 
 namespace RenewalWebsite.Services
 {
     public interface ICurrencyService
     {
         CultureInfo GetCurrent();
+        CultureInfo GetCurrentLanguage();
         List<Currency> GetAll();
         string GetSymbol(CultureInfo culture);
         string GetISOName(CultureInfo culture);

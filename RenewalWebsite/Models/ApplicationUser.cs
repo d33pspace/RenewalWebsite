@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace RenewalWebsite.Models
 {
@@ -10,7 +11,21 @@ namespace RenewalWebsite.Models
     public class ApplicationUser : IdentityUser
     {
         public string FullName { get; set; }
-        public string Currency { get; set; }
-        public string Culture { get; set; }
+
+        public string StripeCustomerId { get; set; }
+
+        public string AddressLine1 { get; set; }
+
+        public string AddressLine2 { get; set; }
+
+        public string City { get; set; }
+
+        public string State { get; set; }
+
+        public string Zip { get; set; }
+
+        public string Country { get; set; }
+
+        public virtual IList<Donation> Donations { get; set; }
     }
 }

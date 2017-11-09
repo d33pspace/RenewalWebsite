@@ -12,6 +12,8 @@ using Microsoft.Extensions.Options;
 using RenewalWebsite.Models;
 using RenewalWebsite.Models.AccountViewModels;
 using RenewalWebsite.Services;
+using Microsoft.AspNetCore.Authentication;
+using RenewalWebsite.Utility;
 
 namespace RenewalWebsite.Controllers
 {
@@ -22,23 +24,27 @@ namespace RenewalWebsite.Controllers
         private readonly SignInManager<ApplicationUser> _signInManager;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
-        private readonly ILogger _logger;
-        private readonly string _externalCookieScheme;
+        private readonly IViewRenderService _viewRenderService;
+        private readonly ILoggerServicecs _loggerService;
+        private EventLog log;
+        //private readonly string _externalCookieScheme;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
             SignInManager<ApplicationUser> signInManager,
-            IOptions<IdentityCookieOptions> identityCookieOptions,
+            //IOptions<IdentityCookieOptions> identityCookieOptions,
             IEmailSender emailSender,
             ISmsSender smsSender,
-            ILoggerFactory loggerFactory)
+            IViewRenderService viewRenderService,
+            ILoggerServicecs loggerService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
+            // _externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            _logger = loggerFactory.CreateLogger<AccountController>();
+            _viewRenderService = viewRenderService;
+            _loggerService = loggerService;
         }
 
         //
@@ -48,7 +54,7 @@ namespace RenewalWebsite.Controllers
         public async Task<IActionResult> Login(string returnUrl = null)
         {
             // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+            await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
             ViewData["ReturnUrl"] = returnUrl;
             return View();
@@ -69,7 +75,7 @@ namespace RenewalWebsite.Controllers
                 var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation(1, "User logged in.");
+                    //_logger.LogInformation(1, "User logged in.");
                     return RedirectToLocal(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -78,11 +84,12 @@ namespace RenewalWebsite.Controllers
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning(2, "User account locked out.");
+                    //_logger.LogWarning(2, "User account locked out.");
                     return View("Lockout");
                 }
                 else
                 {
+                    //_logger.LogError((int)LoggingEvents.GET_ITEM, "Invlid Log in attempt.");
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return View(model);
                 }
@@ -112,7 +119,7 @@ namespace RenewalWebsite.Controllers
             ViewData["ReturnUrl"] = returnUrl;
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true, PhoneNumberConfirmed = true };
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -123,7 +130,7 @@ namespace RenewalWebsite.Controllers
                     //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
                     //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    _logger.LogInformation(3, "User created a new account with password.");
+                    //_logger.LogInformation(3, "User created a new account with password.");
                     return RedirectToLocal(returnUrl);
                 }
                 AddErrors(result);
@@ -140,7 +147,7 @@ namespace RenewalWebsite.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
-            _logger.LogInformation(4, "User logged out.");
+            //_logger.LogInformation(4, "User logged out.");
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
@@ -165,6 +172,8 @@ namespace RenewalWebsite.Controllers
         {
             if (remoteError != null)
             {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "Error from external provider." };
+                _loggerService.SaveEventLog(log);
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
                 return View(nameof(Login));
             }
@@ -178,7 +187,7 @@ namespace RenewalWebsite.Controllers
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
             if (result.Succeeded)
             {
-                _logger.LogInformation(5, "User logged in with {Name} provider.", info.LoginProvider);
+                //_logger.LogInformation(5, "User logged in with {Name} provider.", info.LoginProvider);
                 return RedirectToLocal(returnUrl);
             }
             if (result.RequiresTwoFactor)
@@ -212,9 +221,11 @@ namespace RenewalWebsite.Controllers
                 var info = await _signInManager.GetExternalLoginInfoAsync();
                 if (info == null)
                 {
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "External login gets failed." };
+                    _loggerService.SaveEventLog(log);
                     return View("ExternalLoginFailure");
                 }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
                 var result = await _userManager.CreateAsync(user);
                 if (result.Succeeded)
                 {
@@ -222,7 +233,7 @@ namespace RenewalWebsite.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        _logger.LogInformation(6, "User created an account using {Name} provider.", info.LoginProvider);
+                        //_logger.LogInformation(6, "User created an account using {Name} provider.", info.LoginProvider);
                         return RedirectToLocal(returnUrl);
                     }
                 }
@@ -267,26 +278,42 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            if (ModelState.IsValid)
+            try
             {
-                var user = await _userManager.FindByEmailAsync(model.Email);
-                if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                if (ModelState.IsValid)
                 {
-                    // Don't reveal that the user does not exist or is not confirmed
+                    var user = await _userManager.FindByEmailAsync(model.Email);
+                    if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+                    {
+                        // Don't reveal that the user does not exist or is not confirmed
+                        //_logger.LogInformation((int)LoggingEvents.GET_ITEM, "User doee not exists or not confirmed.");
+                        return View("ForgotPasswordConfirmation");
+                    }
+
+                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
+                    // Send an email with this link
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    string callbackUrl = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
+                    ForgotPasswordMailModel mailModel = new ForgotPasswordMailModel();
+                    mailModel.Name = user.FullName;
+                    mailModel.message = callbackUrl;
+                    string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
+                    await _emailSender.SendEmailAsync(model.Email, "Reset Password",
+                       callbackUrl, user.FullName, template);
                     return View("ForgotPasswordConfirmation");
                 }
 
-                // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
-                // Send an email with this link
-                //var code = await _userManager.GeneratePasswordResetTokenAsync(user);
-                //var callbackUrl = Url.Action(nameof(ResetPassword), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                //await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                //   $"Please reset your password by clicking here: <a href='{callbackUrl}'>link</a>");
-                //return View("ForgotPasswordConfirmation");
+                // If we got this far, something failed, redisplay form
+                return View(model);
             }
-
-            // If we got this far, something failed, redisplay form
-            return View(model);
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
+                _loggerService.SaveEventLog(log);
+                //ModelState.AddModelError(string.Empty, "Something went wrong, Please try again.");
+                //return View(model);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
         //
@@ -322,11 +349,13 @@ namespace RenewalWebsite.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
+                //_logger.LogInformation((int)LoggingEvents.GET_ITEM, "User does not exists.");
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
+                //_logger.LogInformation((int)LoggingEvents.SET_ITEM, "Password reset");
                 return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
             AddErrors(result);
@@ -386,7 +415,7 @@ namespace RenewalWebsite.Controllers
             var message = "Your security code is: " + code;
             if (model.SelectedProvider == "Email")
             {
-                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", message);
+                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", "", "", message);
             }
             else if (model.SelectedProvider == "Phone")
             {
@@ -433,7 +462,6 @@ namespace RenewalWebsite.Controllers
             }
             if (result.IsLockedOut)
             {
-                _logger.LogWarning(7, "User account locked out.");
                 return View("Lockout");
             }
             else
@@ -474,5 +502,15 @@ namespace RenewalWebsite.Controllers
         }
 
         #endregion
+
+        public async Task<IActionResult> DeleteSubcription(int subscriptionId)
+        {
+            return View("Index");
+        }
+
+        public IActionResult AddSubscription()
+        {
+            return View();
+        }
     }
 }

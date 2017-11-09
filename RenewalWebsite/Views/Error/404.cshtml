@@ -1,0 +1,37 @@
+﻿
+@{
+    ViewData["Title"] = "Error";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    body {
+        /*background: #2E95EF;
+        background-image: -moz-radial-gradient(center 45deg,circle cover, #9BD1FF, #2E95EF);*/
+        /*background-image: -webkit-gradient(radial, 50% 50%, 0, 50% 50%,800, from(#9BD1FF), to(#2E95EF));*/
+        /*padding-top: 15%;*/
+    }
+
+    .img-error {
+        width: 250px;
+        height: 250px;
+    }
+</style>
+@*<div class="container bootstrap snippet">*@
+<div class="row">
+    <div class="col-md-12 text-center">
+        @*<div style="margin:0 auto;max-width:500px;text-align:center;">
+            <div class="col-md-10 pull-right">*@
+        <p style="font-size:48px;">¯\_(ツ)_/¯</p>
+        <h2>404 Page Not Found</h2>
+        <p>Sorry, an error has occured, Requested page not found!</p>
+        <div class="error-actions">
+            <a href="/Home/Index" class="btn btn-secondary">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                Back Home
+            </a>
+        </div>
+        @*</div>
+            </div>*@
+    </div>
+</div>
+@*</div>*@

@@ -21,7 +21,7 @@ namespace RenewalWebsite.Filters
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             string culture = context.RouteData.Values["culture"].ToString();
-            _logger.LogInformation($"Setting the culture from the URL: {culture}");
+            //_logger.LogInformation($"Setting the culture from the URL: {culture}");
 
             CultureInfo.CurrentCulture = new CultureInfo(culture);
             CultureInfo.CurrentUICulture = new CultureInfo(culture);
