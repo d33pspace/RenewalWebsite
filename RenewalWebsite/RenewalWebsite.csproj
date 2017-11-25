@@ -120,6 +120,9 @@
     <EmbeddedResource Update="Resources\Views.Manage._UpdateCard.zh-cn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views.News.Index.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Shared.Components.Subscriptions.View.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
