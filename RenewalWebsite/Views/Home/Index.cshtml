@@ -28,23 +28,13 @@
         <h2>@Localizer["Your support helps displaced people gain employment, stability and a permanent home"]</h2>
         <p>@Localizer["We can’t do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home."]</p>
 
-        <h2 class="red-border">@Localizer["Your gift will be doubled today!"]</h2>
-        <p>
-            @Localizer["To help meet the urgent need for shelter and support before the cold weather hits, a group of generous donors will match your gift to the Renewal Center today up to a total of"]
-        @if (currency.Name.Contains("zh"))
-            {
-            <span>@matchAmountCNY.ToString("C0", currency)@Localizer["."]</span>
-        }
-        else
-        {
-            <span>@matchAmountUSD.ToString("C0", currency)@Localizer["."]</span>
-        }
-    </p>
-
-    <p>@Localizer["Any gift you send before midnight on October 31, 2017 will be doubled!"]</p>
+        <h2 class="red-border">@Localizer["Give the gift of warmth this winter!"]</h2>
+        <p>@Localizer["Your gifts provide life-changing opportunities for people like Wu Xueli. Before he joined our job program, his life was at a dead end. In our recent newsletter, read about Wu Xueli's new life at Renewal made possible through your generosity."]</p>
+        <p><a asp-controller="News" asp-action="Index">@Localizer["Read our winter newsletter"]</a></p>
+        <p>@Localizer["Your partnership allows us to continue to help homeless people in Shanghai like Wu Xueli. As we prepare for winter, we need your support to provide warm clothes and food to our guests."]</p>
 
     <div class="clearfix mt-4 mb-5">
-        <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_08">@Localizer["Double my gift"] <i class="arrow right-arrow"></i></a>
+        <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_12">@Localizer["Give winter clothes today"] <i class="arrow right-arrow"></i></a>
     </div>
 </div>
 </div>

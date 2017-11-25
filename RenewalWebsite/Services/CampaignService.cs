@@ -50,7 +50,7 @@ namespace RenewalWebsite.Services
                 option.Amount = item.Value;
                 option.Id = i;
                 option.IsCustom = false;
-                option.Reason = "to be doubled to";
+                option.Reason = "to provide a winter coat, shoes, socks and thermal underwear for a homeless person.";
                 donationOptions.Add(option);
                 i++;
             }
