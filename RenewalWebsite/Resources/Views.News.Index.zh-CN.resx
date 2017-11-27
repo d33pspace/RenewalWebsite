@@ -159,9 +159,9 @@
   <data name="I did not know how to begin a new life, he said. That changed when Wei Jiazhen came to the Renewal Center. He wanted food and a shower but found more when he joined the job program. Wei Jiazhen loved the community at the center and liked serving others." xml:space="preserve">
     <value>“我不知道如何开始新生活，”他这样说道。但当魏佳真来到日新中心后，一切都变了。起初，他只是想要一些食物和洗个澡，但后来，他在工作培训计划中发现了更多生活的目标。魏佳真开始爱上了中心的生活，并乐于为其他人服务。</value>
   </data>
-  <data name="I wandered around during the day. At night,I'd sleep any place I could find,” said Yang Qin." xml:space="preserve">
+  <data name="I wandered around during the day. At night,I'd sleep any place I could find, said Yang Qin." xml:space="preserve">
     <value>杨勤说：“我白天就在闲逛。到了晚上，我就睡在任何可以睡觉的地方。”
-他来到日新中心，希望我们能</value>
+</value>
   </data>
   <data name="I will live my life positively, he said." xml:space="preserve">
     <value>他说：“我一定会积极地生活下去！”</value>
@@ -182,13 +182,13 @@ Jimmy McWhinney，筹募干事和项目顾问</value>
   <data name="Now our friend is building confidence and working towards independence. Wu Xueli has you to thank for that. Because of your support, he has found a home and hope in Shanghai." xml:space="preserve">
     <value>现在，我们内向的朋友正在努力获得自力更生的能力。吴学利要谢谢您的帮助。正是您的慷慨支持，让他在上海找到了家和希望。</value>
   </data>
-  <data name="Now, said Yang Qin,“Without this place, my difficulties would have taken years to overcome or I might just be homeless forever." xml:space="preserve">
+  <data name="Now, said Yang Qin,Without this place, my difficulties would have taken years to overcome or I might just be homeless forever." xml:space="preserve">
     <value>现在，杨勤认为：“如果没有日新中心，我可能需要花费许多年才能克服目前的困难，也可能永远生活在街头。”</value>
   </data>
   <data name="Our job training program gives people a fresh start" xml:space="preserve">
     <value>我们的工作培训计划给人们提供了全新的开始</value>
   </data>
-  <data name="Purposeless to purposeful&quot;" xml:space="preserve">
+  <data name="Purposeless to purposeful" xml:space="preserve">
     <value>从漫无目的到充满希望</value>
   </data>
   <data name="Recently, he started a job at a teashop. Wei Jiazhen will have a steep learning curve, but he has shown himself to be an intelligent and kind young man." xml:space="preserve">
@@ -277,5 +277,8 @@ Jimmy McWhinney，筹募干事和项目顾问</value>
   </data>
   <data name="“I’d like to work for two years and then start some kind of small business or sell vegetables,” he said. “I’d like to make some money and return home and build a house.”" xml:space="preserve">
     <value>他说：“我打算在这里工作两年，然后开始做点小生意，或者去卖菜。我希望能存些钱，然后回到家乡盖一座房子。”</value>
+  </data>
+  <data name="Yang Qin came to Shanghai looking for work and escaping a difficult home life in Hubei Province. Months passed and he couldn't a find a job. Then he ran out of money and options." xml:space="preserve">
+    <value>为了告别家乡湖北困难的生活，杨勤来到上海希望找到新的工作。几个月过去了，他仍未找到工作。身上的钱花光后，他不得不流落街头</value>
   </data>
 </root>
