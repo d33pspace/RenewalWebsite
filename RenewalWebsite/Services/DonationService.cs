@@ -59,7 +59,7 @@ namespace RenewalWebsite.Services
             var cycle = EnumInfo<PaymentCycle>.GetValue(donation.CycleId);
             var frequency = EnumInfo<PaymentCycle>.GetDescription(cycle);
             decimal amount = donation.DonationAmount ?? 0;
-            string currency = donation.currency;
+            string currency = donation.Currency;
             var planName = $"{frequency}_{amount}_{currency}".ToLower(); //
 
             // Create new plan is this one does not exist

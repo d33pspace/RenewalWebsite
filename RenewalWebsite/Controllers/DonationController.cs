@@ -259,7 +259,7 @@ namespace RenewalWebsite.Controllers
                 }
 
                 // Add to existing subscriptions and charge 
-                donation.currency = "usd"; //payment.Currency;
+                donation.Currency = "usd"; //payment.Currency;
                 var plan = _donationService.GetOrCreatePlan(donation);
 
                 var subscriptionService = new StripeSubscriptionService(_stripeSettings.Value.SecretKey);
@@ -397,7 +397,7 @@ namespace RenewalWebsite.Controllers
                     }
                     return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
                 }
-                donation.currency = "usd";//payment.Currency;
+                donation.Currency = "usd";//payment.Currency;
                 // Add to existing subscriptions and charge 
                 var plan = _donationService.GetOrCreatePlan(donation);
 
@@ -664,7 +664,7 @@ namespace RenewalWebsite.Controllers
                 }
 
                 // Add to existing subscriptions and charge 
-                donation.currency = "usd"; //payment.Currency;
+                donation.Currency = "usd"; //payment.Currency;
                 var plan = _campaignService.GetOrCreatePlan(donation);
 
                 var subscriptionService = new StripeSubscriptionService(_stripeSettings.Value.SecretKey);
@@ -802,7 +802,7 @@ namespace RenewalWebsite.Controllers
                     }
                     return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
                 }
-                donation.currency = "usd";//payment.Currency;
+                donation.Currency = "usd";//payment.Currency;
                 // Add to existing subscriptions and charge 
                 var plan = _campaignService.GetOrCreatePlan(donation);
 

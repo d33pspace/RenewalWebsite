@@ -164,7 +164,7 @@ namespace RenewalWebsite.Controllers
                     CycleId = donation.CycleId,
                     DonationAmount = donation.DonationAmount,
                     SelectedAmount = donation.SelectedAmount,
-                    currency = "",
+                    Currency = "",
                     TransactionDate = DateTime.Now,
                     Reason = donation.Reason,
                     IsCustom = donation.IsCustom
@@ -248,7 +248,7 @@ namespace RenewalWebsite.Controllers
                     CycleId = donation.CycleId,
                     DonationAmount = donation.DonationAmount,
                     SelectedAmount = donation.SelectedAmount,
-                    currency = "",
+                    Currency = "",
                     TransactionDate = DateTime.Now,
                     Reason = donation.Reason,
                     IsCustom = donation.IsCustom
