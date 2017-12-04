@@ -22,5 +22,9 @@ namespace RenewalWebsite.Models
         public int SelectedAmount { get; set; }
 
         public string currency { get; set; }
+
+        public string Reason { get; set; }
+
+        public bool IsCustom { get; set; }
     }
 }

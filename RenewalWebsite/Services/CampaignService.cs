@@ -14,47 +14,15 @@ namespace RenewalWebsite.Services
     {
         private readonly ApplicationDbContext _dbContext;
         private readonly IOptions<StripeSettings> _stripeSettings;
-        private List<DonationListOption> donationOptions = new List<DonationListOption>();
-        private readonly IOptions<CampaignSettings> _campaignSettings;
-        private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly ICurrencyService _currencyService;
 
         public CampaignService(ApplicationDbContext dbContext,
             IOptions<StripeSettings> stripeSettings,
-            IOptions<CampaignSettings> campaignSettings,
-            IOptions<ExchangeRate> exchangeSettings,
             ICurrencyService currencyService)
         {
             _dbContext = dbContext;
             _stripeSettings = stripeSettings;
-            _campaignSettings = campaignSettings;
-            _exchangeSettings = exchangeSettings;
             _currencyService = currencyService;
-
-            List<Campaign> campaigns;
-
-            if (_currencyService.GetCurrent().Name.Contains("en"))
-            {
-                campaigns = _campaignSettings.Value.Campaign.Where(a => a.Type == _campaignSettings.Value.Defaultcamp && a.CurrencyType == "USD").ToList();
-            }
-            else
-            {
-                campaigns = _campaignSettings.Value.Campaign.Where(a => a.Type == _campaignSettings.Value.Defaultcamp && a.CurrencyType == "CNY").ToList();
-            }
-
-            int i = 1;
-            DonationListOption option;
-            foreach (var item in campaigns)
-            {
-                option = new DonationListOption();
-                option.Amount = item.Value;
-                option.Id = i;
-                option.IsCustom = false;
-                option.Reason = "to provide a winter coat, shoes, socks and thermal underwear for a homeless person.";
-                donationOptions.Add(option);
-                i++;
-            }
-            donationOptions.Add(new DonationListOption { Id = i++, Amount = 0, Reason = "my most generous possible gift to be doubled.", IsCustom = true });
         }
 
         public Dictionary<PaymentCycle, string> GetCycles()
@@ -62,18 +30,6 @@ namespace RenewalWebsite.Services
             return EnumInfo<PaymentCycle>
                 .GetValues()
                 .ToDictionary(o => o.Key, o => o.Value);
-        }
-
-        public List<DonationListOption> DonationOptions
-        {
-            get
-            {
-                return donationOptions;
-            }
-            set
-            {
-                donationOptions = value;
-            }
         }
 
         public void Save(Donation donation)
@@ -102,14 +58,6 @@ namespace RenewalWebsite.Services
             var frequency = EnumInfo<PaymentCycle>.GetDescription(cycle);
             decimal amount = donation.DonationAmount ?? 0;
             string currency = donation.currency;
-            if (donation.DonationAmount == null)
-            {
-                var model = (DonationViewModel)donation;
-                model.DonationOptions = DonationOptions;
-
-                //amount = Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
-                amount = model.GetDisplayAmount();
-            }
             var planName = $"{frequency}_{amount}_{currency}".ToLower(); //
 
             // Create new plan is this one does not exist
@@ -144,55 +92,7 @@ namespace RenewalWebsite.Services
         {
             return _dbContext.Donations.Last(d => d.UserId == userId).Id;
         }
-
-        /// <summary>
-        /// Automatically create the standard plans to enable, new users to be able to subscribe. These
-        /// are managed in Stripe
-        /// </summary>
-        public void EnsurePlansExist()
-        {
-            var planService = new StripePlanService(_stripeSettings.Value.SecretKey);
-
-            var options = new DonationViewModel(DonationOptions).DonationOptions;
-            foreach (var cycle in GetCycles())
-            {
-                foreach (var option in options)
-                {
-                    if (cycle.Key != PaymentCycle.OneTime)
-                    {
-                        if (option.Amount > 0)
-                        {
-                            //var planName = $"{cycle.Value}_{(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2))}".ToLower();
-                            var planName = $"{cycle.Value}_{option.Amount}".ToLower();
-                            var plan = new StripePlanCreateOptions
-                            {
-                                Id = planName,
-                                //Amount = Convert.ToInt32(Math.Round((option.Amount / _exchangeSettings.Value.Rate), 2) * 100),
-                                Amount = Convert.ToInt32(option.Amount * 100),
-                                Currency = "usd",
-                                Name = planName,
-                                StatementDescriptor = _stripeSettings.Value.StatementDescriptor
-                            };
-
-                            // Take care intervals
-                            if (cycle.Key == PaymentCycle.Quarter)
-                            {
-                                plan.IntervalCount = 3;
-                                plan.Interval = "month";
-                            }
-                            else
-                            {
-                                plan.Interval = cycle.Key.ToString().ToLower(); // day/month/year 
-                            }
-
-                            if (!Exists(planService, planName))
-                                planService.Create(plan);
-                        }
-                    }
-                }
-            }
-        }
-
+        
         /// <summary>
         /// Check is the plan exists. The API does not have an exists endpoint so we have to use an
         /// exception to detemine existence. 

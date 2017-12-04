@@ -22,7 +22,6 @@ namespace RenewalWebsite.Controllers
         private readonly IDonationService _donationService;
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly UserManager<ApplicationUser> _userManager;
-        private readonly IOptions<ExchangeRate> _exchangeSettings;
         private readonly ICampaignService _campaignService;
         private readonly ILoggerServicecs _loggerService;
         private EventLog log;
@@ -31,14 +30,12 @@ namespace RenewalWebsite.Controllers
             UserManager<ApplicationUser> userManager,
             IDonationService donationService,
             IOptions<StripeSettings> stripeSettings,
-            IOptions<ExchangeRate> exchangeSettings,
             ICampaignService campaignService,
             ILoggerServicecs loggerServicer)
         {
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
-            _exchangeSettings = exchangeSettings;
             _campaignService = campaignService;
             _loggerService = loggerServicer;
         }
@@ -58,7 +55,6 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 var donation = _donationService.GetById(id);
                 var detail = (DonationViewModel)donation;
-                detail.DonationOptions = _donationService.DonationOptions;
 
                 // Check for existing customer
                 // edit = 1 means user wants to edit the credit card information
@@ -87,15 +83,13 @@ namespace RenewalWebsite.Controllers
                                 Country = user.Country,
                                 Zip = user.Zip,
                                 DonationId = donation.Id,
-                                Description = detail.GetDescription(),
-                                Frequency = detail.GetCycle(),
-                                Amount = detail.GetDisplayAmount(),
+                                Description = donation.Reason,
+                                Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                                Amount = (decimal)donation.DonationAmount,
                                 Last4Digit = objStripeCard.Last4,
                                 CardId = objStripeCard.Id,
-                                //Currency = (objStripeCustomer.Currency + "").ToUpper(),
                                 DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
-                                ExchangeRate = _exchangeSettings.Value.Rate,
-                                IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                                IsCustom = donation.IsCustom
                             };
 
                             return View("RePayment", objCustomerRePaymentViewModel);
@@ -120,12 +114,10 @@ namespace RenewalWebsite.Controllers
                     Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
                     Zip = user.Zip,
                     DonationId = donation.Id,
-                    Description = detail.GetDescription(),
-                    Frequency = detail.GetCycle(),
-                    Amount = detail.GetDisplayAmount(),
-                    ExchangeRate = _exchangeSettings.Value.Rate,
-                    IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                    //Currency = "USD"
+                    Description = donation.Reason,
+                    Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                    Amount = (decimal)donation.DonationAmount,
+                    IsCustom = donation.IsCustom
                 };
 
                 return View("Payment", model);
@@ -135,7 +127,6 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -148,7 +139,6 @@ namespace RenewalWebsite.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
 
@@ -243,35 +233,29 @@ namespace RenewalWebsite.Controllers
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-                    model.DonationOptions = _donationService.DonationOptions;
 
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
-                        Amount = Convert.ToInt32(model.GetAmount()),
+                        Amount = Convert.ToInt32(donation.DonationAmount),
                         Description = DonationCaption,
                         Currency = "usd",//payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
-                        //ReceiptEmail = user.Email,
                         StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
                     });
 
                     if (charge.Paid)
                     {
-                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
-                        //return View("Thanks", completedMessage);
                     }
                     return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    //return View("Error");
                 }
 
                 // Add to existing subscriptions and charge 
@@ -288,7 +272,6 @@ namespace RenewalWebsite.Controllers
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
-                    //return View("Thanks", completedMessage);
                 }
             }
             catch (StripeException sex)
@@ -302,7 +285,6 @@ namespace RenewalWebsite.Controllers
                 else
                 {
                     ModelState.AddModelError("error", sex.Message);
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
             }
@@ -311,10 +293,8 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
-                //return View("Error");
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            //return View("Error");
         }
 
         [Route("Donation/Payment/{id}/{edit?}")]
@@ -325,7 +305,6 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 var donation = _donationService.GetById(id);
                 var detail = (DonationViewModel)donation;
-                detail.DonationOptions = _donationService.DonationOptions;
                 CustomerPaymentViewModel model = new CustomerPaymentViewModel();
 
                 try
@@ -342,13 +321,11 @@ namespace RenewalWebsite.Controllers
                         Country = user.Country,
                         Zip = user.Zip,
                         DonationId = donation.Id,
-                        Description = detail.GetDescription(),
-                        Frequency = detail.GetCycle(),
-                        Amount = detail.GetDisplayAmount(),
-                        //Currency = string.IsNullOrEmpty(ExistingCustomer.Currency) ? string.Empty : ExistingCustomer.Currency.ToUpper(),
+                        Description = donation.Reason,
+                        Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                        Amount = (decimal)donation.DonationAmount,
                         DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
-                        ExchangeRate = _exchangeSettings.Value.Rate,
-                        IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                        IsCustom = donation.IsCustom
                     };
                 }
                 catch (StripeException sex)
@@ -360,12 +337,11 @@ namespace RenewalWebsite.Controllers
 
                 return View("Payment", model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -378,7 +354,6 @@ namespace RenewalWebsite.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
 
@@ -398,35 +373,29 @@ namespace RenewalWebsite.Controllers
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-                    model.DonationOptions = _donationService.DonationOptions;
 
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
-                        Amount = Convert.ToInt32(model.GetAmount()),
+                        Amount = Convert.ToInt32(donation.DonationAmount),
                         Description = DonationCaption,
                         Currency = "usd", //payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
-                        //ReceiptEmail = user.Email,
                         StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
                     });
 
                     if (charge.Paid)
                     {
-                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
-                        //return View("Thanks", completedMessage);
                     }
                     return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    //return View("Error");
                 }
                 donation.currency = "usd";//payment.Currency;
                 // Add to existing subscriptions and charge 
@@ -442,7 +411,6 @@ namespace RenewalWebsite.Controllers
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
-                    //return View("Thanks", completedMessage);
                 }
             }
             catch (StripeException sex)
@@ -456,7 +424,6 @@ namespace RenewalWebsite.Controllers
                 else
                 {
                     ModelState.AddModelError("error", sex.Message);
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
             }
@@ -465,17 +432,13 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
-                //return View("Error");
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            //return View("Error");
         }
 
         private Task<ApplicationUser> GetCurrentUserAsync()
         {
             return _userManager.GetUserAsync(HttpContext.User);
-            //Source src = new Source();
-            //src.Type = SourceType.
         }
 
         public ActionResult Thanks(CompletedViewModel model)
@@ -498,7 +461,6 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 var donation = _campaignService.GetById(id);
                 var detail = (DonationViewModel)donation;
-                detail.DonationOptions = _campaignService.DonationOptions;
 
                 // Check for existing customer
                 // edit = 1 means user wants to edit the credit card information
@@ -527,15 +489,13 @@ namespace RenewalWebsite.Controllers
                                 Country = user.Country,
                                 Zip = user.Zip,
                                 DonationId = donation.Id,
-                                Description = detail.GetDescription(),
-                                Frequency = detail.GetCycle(),
-                                Amount = detail.GetDisplayAmount(),
+                                Description = donation.Reason,
+                                Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                                Amount = (decimal)donation.DonationAmount,
                                 Last4Digit = objStripeCard.Last4,
                                 CardId = objStripeCard.Id,
-                                //Currency = (objStripeCustomer.Currency + "").ToUpper(),
                                 DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
-                                ExchangeRate = _exchangeSettings.Value.Rate,
-                                IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                                IsCustom = donation.IsCustom
                             };
 
                             return View("CampaignRePayment", objCustomerRePaymentViewModel);
@@ -559,22 +519,19 @@ namespace RenewalWebsite.Controllers
                     Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
                     Zip = user.Zip,
                     DonationId = donation.Id,
-                    Description = detail.GetDescription(),
-                    Frequency = detail.GetCycle(),
-                    Amount = detail.GetDisplayAmount(),
-                    ExchangeRate = _exchangeSettings.Value.Rate,
-                    IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
-                    //Currency = "USD"
+                    Description = donation.Reason,
+                    Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                    Amount = (decimal)donation.DonationAmount,
+                    IsCustom = donation.IsCustom
                 };
 
                 return View("CampaignPayment", model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -587,7 +544,6 @@ namespace RenewalWebsite.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
 
@@ -682,35 +638,29 @@ namespace RenewalWebsite.Controllers
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-                    model.DonationOptions = _campaignService.DonationOptions;
 
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
-                        Amount = Convert.ToInt32(model.GetAmount()),
+                        Amount = Convert.ToInt32(donation.DonationAmount),
                         Description = DonationCaption,
                         Currency = "usd",//payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
-                        //ReceiptEmail = user.Email,
                         StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
                     });
 
                     if (charge.Paid)
                     {
-                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
-                        //return View("Thanks", completedMessage);
                     }
                     return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    //return View("Error");
                 }
 
                 // Add to existing subscriptions and charge 
@@ -727,7 +677,6 @@ namespace RenewalWebsite.Controllers
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
-                    //return View("Thanks", completedMessage);
                 }
             }
             catch (StripeException sex)
@@ -741,7 +690,6 @@ namespace RenewalWebsite.Controllers
                 else
                 {
                     ModelState.AddModelError("error", sex.Message);
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
             }
@@ -750,10 +698,8 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
-                //return View("Error");
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            //return View("Error");
         }
 
         [Route("Donation/Payment/campaign/{id}/{edit?}")]
@@ -764,7 +710,6 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 var donation = _campaignService.GetById(id);
                 var detail = (DonationViewModel)donation;
-                detail.DonationOptions = _campaignService.DonationOptions;
                 CustomerPaymentViewModel model = new CustomerPaymentViewModel();
 
                 try
@@ -781,13 +726,11 @@ namespace RenewalWebsite.Controllers
                         Country = user.Country,
                         Zip = user.Zip,
                         DonationId = donation.Id,
-                        Description = detail.GetDescription(),
-                        Frequency = detail.GetCycle(),
-                        Amount = detail.GetDisplayAmount(),
-                        //Currency = string.IsNullOrEmpty(ExistingCustomer.Currency) ? string.Empty : ExistingCustomer.Currency.ToUpper(),
+                        Description = donation.Reason,
+                        Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                        Amount = (decimal)donation.DonationAmount,
                         DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
-                        ExchangeRate = _exchangeSettings.Value.Rate,
-                        IsCustom = detail.DonationOptions.Where(a => a.Id == donation.SelectedAmount).Select(a => a.IsCustom).FirstOrDefault()
+                        IsCustom = donation.IsCustom
                     };
                 }
                 catch (StripeException sex)
@@ -799,12 +742,11 @@ namespace RenewalWebsite.Controllers
 
                 return View("CampaignPayment", model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -817,7 +759,6 @@ namespace RenewalWebsite.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
 
@@ -837,35 +778,29 @@ namespace RenewalWebsite.Controllers
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-                    model.DonationOptions = _campaignService.DonationOptions;
 
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        //Amount = payment.IsCustom ? Convert.ToInt32(Math.Round((model.GetAmount()), 2)) : Convert.ToInt32(Math.Round((model.GetAmount() / _exchangeSettings.Value.Rate), 2)),
-                        Amount = Convert.ToInt32(model.GetAmount()),
+                        Amount = Convert.ToInt32(donation.DonationAmount),
                         Description = DonationCaption,
                         Currency = "usd", //payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
-                        //ReceiptEmail = user.Email,
                         StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
                     });
 
                     if (charge.Paid)
                     {
-                        //decimal value = payment.IsCustom ? Math.Round(model.GetDisplayAmount(), 2) : Math.Round((model.GetDisplayAmount() / _exchangeSettings.Value.Rate), 2);
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${model.GetDisplayAmount()}.",
+                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
-                        //return View("Thanks", completedMessage);
                     }
                     return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-                    //return View("Error");
                 }
                 donation.currency = "usd";//payment.Currency;
                 // Add to existing subscriptions and charge 
@@ -881,7 +816,6 @@ namespace RenewalWebsite.Controllers
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
-                    //return View("Thanks", completedMessage);
                 }
             }
             catch (StripeException sex)
@@ -895,7 +829,6 @@ namespace RenewalWebsite.Controllers
                 else
                 {
                     ModelState.AddModelError("error", sex.Message);
-                    payment.ExchangeRate = _exchangeSettings.Value.Rate;
                     return View(payment);
                 }
             }
@@ -904,10 +837,8 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
-                //return View("Error");
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-            //return View("Error");
         }
     }
 }

@@ -39,7 +39,6 @@ namespace RenewalWebsite.Models
 
         // Address
 
-        //[Display(Name = "AddressLine1", ResourceType = typeof(Resources.DataAnnotations))]
         [Display(Name = "Address Line 1 Modified")]
         public string AddressLine1 { get; set; }
 
@@ -63,9 +62,6 @@ namespace RenewalWebsite.Models
         public string Description { get; set; }
 
         public decimal Amount { get; set; }
-
-        //[Required]
-        //public string Currency { get; set; }
 
         public string Paymentgatway { get; set; }
 

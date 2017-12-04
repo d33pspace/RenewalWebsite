@@ -54,9 +54,6 @@ namespace RenewalWebsite
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
-            services.Configure<ExchangeRate>(Configuration.GetSection("ExchangeRate"));
-            services.Configure<CampaignSettings>(Configuration.GetSection("CampaignSettings"));
-            services.Configure<DonationSettings>(Configuration.GetSection("DonationSettings"));
 
             // Session cache
             services.AddDistributedMemoryCache();

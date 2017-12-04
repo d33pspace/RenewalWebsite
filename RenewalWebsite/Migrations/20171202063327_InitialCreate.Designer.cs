@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.Internal;
 using RenewalWebsite.Data;
 using System;
 
-namespace RenewalWebsite.Data.Migrations
+namespace RenewalWebsite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20170922082511_EventLog")]
-    partial class EventLog
+    [Migration("20171202063327_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -205,6 +205,10 @@ namespace RenewalWebsite.Data.Migrations
 
                     b.Property<decimal?>("DonationAmount");
 
+                    b.Property<bool>("IsCustom");
+
+                    b.Property<string>("Reason");
+
                     b.Property<int>("SelectedAmount");
 
                     b.Property<DateTime?>("TransactionDate");
@@ -223,19 +227,15 @@ namespace RenewalWebsite.Data.Migrations
             modelBuilder.Entity("RenewalWebsite.Models.EventLog", b =>
                 {
                     b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnName("ID");
+                        .ValueGeneratedOnAdd();
 
                     b.Property<DateTime?>("CreatedTime");
 
-                    b.Property<int?>("EventId")
-                        .HasColumnName("EventID");
+                    b.Property<int?>("EventId");
 
-                    b.Property<string>("LogLevel")
-                        .HasMaxLength(50);
+                    b.Property<string>("LogLevel");
 
-                    b.Property<string>("Message")
-                        .HasMaxLength(4000);
+                    b.Property<string>("Message");
 
                     b.HasKey("Id");
 

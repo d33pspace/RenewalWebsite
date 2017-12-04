@@ -23,8 +23,6 @@ namespace RenewalWebsite.Controllers
         private readonly IDonationService _donationService;
         private readonly ICampaignService _campaignService;
         private readonly IOptions<StripeSettings> _stripeSettings;
-        private readonly IOptions<ExchangeRate> _exchangeSettings;
-        private readonly IOptions<CampaignSettings> _campaignSettings;
         private readonly IStringLocalizer<DonateController> _localizer;
         private readonly ILoggerServicecs _loggerService;
         private EventLog log;
@@ -34,8 +32,6 @@ namespace RenewalWebsite.Controllers
         public DonateController(UserManager<ApplicationUser> userManager,
             IDonationService donationService,
             IOptions<StripeSettings> stripeSettings,
-            IOptions<ExchangeRate> exchangeSettings,
-            IOptions<CampaignSettings> campaignSettings,
             ICampaignService campaignService,
             IStringLocalizer<DonateController> localizer,
             ILoggerServicecs loggerService)
@@ -43,8 +39,6 @@ namespace RenewalWebsite.Controllers
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
-            _exchangeSettings = exchangeSettings;
-            _campaignSettings = campaignSettings;
             _campaignService = campaignService;
             _localizer = localizer;
             _loggerService = loggerService;
@@ -58,10 +52,9 @@ namespace RenewalWebsite.Controllers
                 var agent = Request.Headers["User-Agent"];
                 Console.WriteLine(agent.ToString());
                 ViewBag.Browser = agent.ToString();
-                var model = new DonationViewModel(_donationService.DonationOptions)
+                var model = new DonationViewModel()
                 {
-                    DonationCycles = GetDonationCycles,
-                    ExchangeRate = _exchangeSettings.Value.Rate
+                    DonationCycles = GetDonationCycles
                 };
 
                 return View(model);
@@ -71,7 +64,6 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -93,10 +85,9 @@ namespace RenewalWebsite.Controllers
                 var agent = Request.Headers["User-Agent"];
                 Console.WriteLine(agent.ToString());
                 ViewBag.Browser = agent.ToString();
-                var model = new DonationViewModel(_campaignService.DonationOptions)
+                var model = new DonationViewModel()
                 {
-                    DonationCycles = GetDonationCycles,
-                    ExchangeRate = _exchangeSettings.Value.Rate
+                    DonationCycles = GetDonationCycles
                 };
                 return View(model);
             }
@@ -105,7 +96,6 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -137,7 +127,6 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -150,8 +139,6 @@ namespace RenewalWebsite.Controllers
                 Console.WriteLine(agent.ToString());
                 ViewBag.Browser = agent.ToString();
 
-                donation.DonationOptions = _donationService.DonationOptions;
-                donation.ExchangeRate = _exchangeSettings.Value.Rate;
                 donation.DonationCycles = GetDonationCycles;
 
                 if (donation.SelectedAmount == 0) //Could be better
@@ -161,7 +148,7 @@ namespace RenewalWebsite.Controllers
                 }
 
 
-                if (Math.Abs(donation.GetAmount()) < 1)
+                if (Math.Abs((decimal)donation.DonationAmount) < 1)
                 {
                     ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
                     return View("Index", donation);
@@ -178,7 +165,9 @@ namespace RenewalWebsite.Controllers
                     DonationAmount = donation.DonationAmount,
                     SelectedAmount = donation.SelectedAmount,
                     currency = "",
-                    TransactionDate = DateTime.Now
+                    TransactionDate = DateTime.Now,
+                    Reason = donation.Reason,
+                    IsCustom = donation.IsCustom
                 };
                 _donationService.Save(model);
 
@@ -201,7 +190,6 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -215,7 +203,6 @@ namespace RenewalWebsite.Controllers
                 {
                     var model = JsonConvert.DeserializeObject<Donation>(value);
                     return Redirect("/Donation/Payment/campaign/" + model.Id);
-                    //return RedirectToAction("Payment/campaign", "Donation", new { Id = model.Id });
                 }
                 return NotFound();
             }
@@ -224,7 +211,6 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
@@ -237,8 +223,6 @@ namespace RenewalWebsite.Controllers
                 Console.WriteLine(agent.ToString());
                 ViewBag.Browser = agent.ToString();
 
-                donation.DonationOptions = _campaignService.DonationOptions;
-                donation.ExchangeRate = _exchangeSettings.Value.Rate;
                 donation.DonationCycles = GetDonationCycles;
 
                 if (donation.SelectedAmount == 0) //Could be better
@@ -248,7 +232,7 @@ namespace RenewalWebsite.Controllers
                 }
 
 
-                if (Math.Abs(donation.GetAmount()) < 1)
+                if (Math.Abs((decimal)donation.DonationAmount) < 1)
                 {
                     ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
                     return View("Campaign_2017_08", donation);
@@ -265,7 +249,9 @@ namespace RenewalWebsite.Controllers
                     DonationAmount = donation.DonationAmount,
                     SelectedAmount = donation.SelectedAmount,
                     currency = "",
-                    TransactionDate = DateTime.Now
+                    TransactionDate = DateTime.Now,
+                    Reason = donation.Reason,
+                    IsCustom = donation.IsCustom
                 };
                 _donationService.Save(model);
 
@@ -280,10 +266,7 @@ namespace RenewalWebsite.Controllers
                     }
                     return RedirectToAction("Login", "Account", new { returnUrl = Request.Path });
                 }
-
-                //return RedirectToRoute("CustomRoute");
-                //string action = "Payment/campaign";
-                //return RedirectToAction(action.Replace("%2f","/"), "Donation", new { id = model.Id });
+                
                 return Redirect("/Donation/Payment/campaign/" + model.Id);
             }
             catch (Exception ex)
@@ -291,7 +274,6 @@ namespace RenewalWebsite.Controllers
                 log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
                 _loggerService.SaveEventLog(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 

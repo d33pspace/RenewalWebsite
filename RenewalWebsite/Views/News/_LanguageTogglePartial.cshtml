@@ -1,0 +1,16 @@
+﻿@using Microsoft.AspNetCore.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+
+@{
+    var culture = Context.Features.Get<IRequestCultureFeature>();
+}
+<a class="news-link" asp-controller="Localization" asp-action="ToggleLanguage" asp-route-returnUrl="@Context.Request.Path">
+    @if (@culture.RequestCulture.UICulture.Name == "en-US")
+    {
+        <span>中文</span>
+    }
+    else
+    {
+        <span>English</span>
+    }
+</a>
