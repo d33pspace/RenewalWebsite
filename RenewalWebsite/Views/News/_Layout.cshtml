@@ -11,18 +11,18 @@
                     <div class="right">
                         @await Html.PartialAsync("_LanguageTogglePartial")
                     </div>
-                    <a class="news-link" href="/">Home</a>
+                    <a class="news-link" href="/">@Localizer["Home"]</a>
                     <img class="renewal-logo-news" src="~/images/renewal-logo-white.png" data-at2x="~/images/renewal-logo-white@2x.png" width="190" />
                     <h1>Re:news</h1>
-                    <h2 class="subheading">How your gifts are transforming lives in Shanghai</h2>
-                    <div class="left"><h6>ISSUE 9</h6></div><div class="right"><h6>DECEMBER 2017</h6></div>
+                    <h2 class="subheading">@Localizer["How your gifts are transforming lives in Shanghai"]</h2>
+                    <div class="left"><h6>@Localizer["ISSUE 9"]</h6></div><div class="right"><h6>@Localizer["DECEMBER 2017"]</h6></div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 news issue-8">
                 @*<img src="~/images/news/issue8/news-web-header.jpg" height="629px" width="100%" />*@
             </div>
         </div>
-        <figcaption class="figure-caption caption news-caption">Men like Chen Zhen rely on Renewal for a place to shower, and a change of clothes and a healthy meal.</figcaption>
+        <figcaption class="figure-caption caption news-caption">@Localizer["We are thankful for your gifts that allow the Renewal Center to continue to provide showers, meals, job training, and more to Shanghai’s homeless population."]</figcaption>
     </header>
     <article class="mb-5">
         @RenderBody()
