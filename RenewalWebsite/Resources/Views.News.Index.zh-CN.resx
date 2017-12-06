@@ -127,10 +127,10 @@
     <value>他告诉我们：“我身无分文还弄丢了身份证，无法找到工作。”</value>
   </data>
   <data name="-Wu Xueli" xml:space="preserve">
-    <value>吴学理</value>
+    <value>— 吴学理</value>
   </data>
   <data name="-Yang Qin" xml:space="preserve">
-    <value>——杨琴</value>
+    <value>— 杨琴</value>
   </data>
   <data name="A home and hope" xml:space="preserve">
     <value>家与希望</value>
@@ -172,9 +172,8 @@
   <data name="It's not surprising that free showers, clothes, and food are a popular topic of conversation among Shanghai' s homeless. That's how Zhou Guoqiang, a 49-year-old man from Jiangsu Province, heard about our drop-in center." xml:space="preserve">
     <value>显而易见的，免费食物、洗澡和换洗衣物的服务是上海街头无家可归人士最需要的福利。这也是来自江苏省49岁的周国强对日新中心最初的了解。</value>
   </data>
-  <data name="Jimmy McWhinney Executive Director Hanson Ye Operations Director" xml:space="preserve">
-    <value>叶海生，项目运营总监
-Jimmy McWhinney，筹募干事和项目顾问</value>
+  <data name="By Jimmy McWhinney and Hanson Ye" xml:space="preserve">
+    <value>作者：叶海生和 Jimmy McWhinney</value>
   </data>
   <data name="Moving the Renewal Center to a new location has been great. But in the shuffle and set up, we unfortunately lost touch with one of our residential job program trainees, Wu Xueli." xml:space="preserve">
     <value>搬迁到新地址是日新中心的一件大喜事。但在繁忙的搬迁和重建过程中，我们遗憾地与一位工作培训计划学员失去了联系，他的名字叫吴学理。</value>
@@ -289,5 +288,14 @@ Jimmy McWhinney，筹募干事和项目顾问</value>
   </data>
   <data name="The Friend Network" xml:space="preserve">
     <value>日新中心的朋友网络</value>
+  </data>
+  <data name="." xml:space="preserve">
+    <value>，给无家可归人士购买过冬鞋袜。</value>
+  </data>
+  <data name="Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for" xml:space="preserve">
+    <value>捐赠</value>
+  </data>
+  <data name="Give winter clothes today" xml:space="preserve">
+    <value>现在就提供过冬衣物</value>
   </data>
 </root>

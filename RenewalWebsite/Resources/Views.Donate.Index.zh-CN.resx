@@ -132,14 +132,14 @@
   <data name="of your gift will provide a hot meal for a homeless person." xml:space="preserve">
     <value>就能为一位无家可归人士提供一顿热腾腾的饱餐。</value>
   </data>
-  <data name="to provide 20 hot meals." xml:space="preserve">
-    <value>提供20顿饭菜。</value>
+  <data name="to provide 10 hot meals." xml:space="preserve">
+    <value>提供10顿饭菜。</value>
   </data>
-  <data name="to provide 35 hot meals." xml:space="preserve">
-    <value>提供35顿饭菜。</value>
+  <data name="to provide 30 hot meals." xml:space="preserve">
+    <value>提供30顿饭菜。</value>
   </data>
-  <data name="to provide 70 hot meals." xml:space="preserve">
-    <value>提供70顿饭菜。</value>
+  <data name="to provide 60 hot meals." xml:space="preserve">
+    <value>提供60顿饭菜。</value>
   </data>
   <data name="Yes, I’ll rescue a homeless person from the streets by providing the food, shelter and support they need to start a new life!" xml:space="preserve">
     <value>是的，我愿意帮助无家可归人士远离街头，为他们提供食品、住处，并帮助他们开始新的生活！</value>

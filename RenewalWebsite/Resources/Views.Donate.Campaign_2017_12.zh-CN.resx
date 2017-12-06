@@ -118,33 +118,46 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="." xml:space="preserve">
-    <value>。</value>
+    <value>，给无家可归人士购买过冬鞋袜。</value>
   </data>
-  <data name="Give the gift of warmth this winter!" xml:space="preserve">
-    <value>送出冬日温暖的礼物！</value>
+  <data name="Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for" xml:space="preserve">
+    <value>捐赠</value>
   </data>
-  <data name="Give winter clothes today" xml:space="preserve">
-    <value>现在就提供过冬衣物</value>
+  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
+    <value>立即用国际信用卡捐款</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>首页</value>
+  <data name="gift of:" xml:space="preserve">
+    <value>捐款：</value>
   </data>
-  <data name="Read our winter newsletter" xml:space="preserve">
-    <value>阅读我们冬季简报</value>
+  <data name="I would like to make a" xml:space="preserve">
+    <value>我想</value>
   </data>
-  <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
-    <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
+  <data name="OPEN ALIPAY APP AND DONATE NOW" xml:space="preserve">
+    <value>立即打开支付宝APP捐款</value>
   </data>
-  <data name="We can’t do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
-    <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
+  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
+    <value>或者用支付宝扫描下面的二维码：</value>
   </data>
-  <data name="Your gifts provide life-changing opportunities for people like Wu Xueli. Before he joined our job program, his life was at a dead end. In our recent newsletter, read about Wu Xueli's new life at Renewal made possible through your generosity." xml:space="preserve">
-    <value>您的捐赠能够给吴学利这样的人带来改变一生的机会。在加入我们的培训计划前，吴学利的生活曾陷入困境。在我们冬季简报里了解他的近况，而这都要感谢您的慷慨相助。</value>
+  <data name="to help has many people as I can stay warm this winter!" xml:space="preserve">
+    <value>我希望帮助许多人温暖地度过这个冬天！</value>
   </data>
-  <data name="Your partnership allows us to continue to help homeless people in Shanghai like Wu Xueli. As we prepare for winter, we need your support to provide warm clothes and food to our guests." xml:space="preserve">
-    <value>您的帮助使我们能够持续帮助上海街头的无家可归男女。为了抵御冬天的严寒，我们需要您的帮助来为我们的客人提供温暖的衣物和食物。</value>
+  <data name="to provide a winter coat, shoes, socks and thermal underwear for a homeless person." xml:space="preserve">
+    <value>为需要的人提供一件外套、一双
+鞋子、一双袜子和一条秋裤。</value>
   </data>
-  <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
-    <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
+  <data name="to provide essential winter clothing for six people." xml:space="preserve">
+    <value>为六个需要的人提供冬季衣服。</value>
+  </data>
+  <data name="to provide essential winter clothing for three people." xml:space="preserve">
+    <value>为三个需要的人提供冬季衣服。</value>
+  </data>
+  <data name="Use my gift for winter coats and warm clothes" xml:space="preserve">
+    <value>用我的捐赠提供过冬衣物</value>
+  </data>
+  <data name="Yes, I want to help homeless men and women in Shanghai stay warm, dry, and healthy this winter by providing them with critically needed winter clothes." xml:space="preserve">
+    <value>是的，我想要帮助上海的无家可归男女，为他们提供急需的过冬衣物，让他们温暖、健康地度过这个冬天。</value>
+  </data>
+  <data name="Your most generous gift to help has many people as you can stay warm this winter!" xml:space="preserve">
+    <value>请将我的捐赠翻倍，来帮助许多人温暖地度过这个冬天！</value>
   </data>
 </root>
