@@ -67,7 +67,7 @@
             <div id="story-2">
                 <h2>@Localizer["Renewal is happening in Shanghai"]</h2>
                 <div class="news-subheader">@Localizer["We are helping the marginalized and forgotten thanks to your support"]</div>
-                <p class="mb4"><em>@Localizer["By Jimmy McWhinney and Hanson Ye"]</em></p>
+                <p class="mb4">@Localizer["By Jimmy McWhinney and Hanson Ye"]</p>
                 <p class="clear">@Localizer["Great things are unfolding at the Renewal Center! We just celebrated our first full year in our new location. It's been a whirlwind filled with new guests, returning friends and great successes."]</p>
                 <p>@Localizer["As you may remember, we asked for help to purchase a van in our last newsletter. Through many generous gifts, we were able to order it. The new vehicle will allow us to provide a shuttle service from the city center to our drop-in center, meeting a need for our most vulnerable elderly and disabled guests. It's thanks to your generosity that we could extend this service to a population that is often forgotten in Shanghai."]</p>
                 <p>@Localizer["We've also been able to reconnect with old friends like Wu Xueli (page 1) and ramp up our residential job training program (opposite page). Thank you for being a part of this exciting and life-giving work. It truly makes a difference in so many lives."]</p>
@@ -120,19 +120,21 @@
                 <div class="news-subheader">@Localizer["Your gifts provide nourishment and warmth to the homeless"]</div>
                 <p>@Localizer["The days are getting shorter and cold here. That means we're expecting more guests to visit the drop-in center who need clothing to protect them against the freezing temperatures in January and February. Thanks to your gifts, we are beginning to prepare for the busy months ahead, but we still need more help to meet the high demand."]</p>
                 <p>@Localizer["In some ways, this is our favorite time of year. Guests are more likely to come and stay awhile. This gives us a chance to get to know them. Our volunteers and staff are here to provide basic services, but they're also here to help us build trust and relationships with our guests."]</p>
-                <blockquote>
-                    @Localizer["Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for"]
+                <div class="red-border">
+                    <span class="blockquote-winter">@Localizer["Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for"]</span>
                     @if (currency.Name.Contains("zh"))
                     {
-                        <span>@baseAmountCNY.ToString("C", currency)</span>@Localizer["."]
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>@Localizer["."]
                     }
                     else
                     {
-                        <span>@baseAmountUSD.ToString("C", currency)</span>@Localizer["."]
-                    }<br />
-
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>@Localizer["."]
+                    }
+                    <br />
+                    <br />
                     <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_12">@Localizer["Give winter clothes today"] <i class="arrow right-arrow"></i></a>
-                </blockquote>
+                    <div style="margin-bottom:15px;"></div>
+                </div>
                 <p>@Localizer["These men and women had hard lives even before they ended up on the streets. As they share their stories with us, we develop friendships with them. I can't tell you how important that is. We want the Renewal Center to be personal and relational because that is the only way we can help our guests live better, healthier lives."]</p>
                 <p>@Localizer["Although this is a big city, there are hardly any services for homeless people. The drop-in center is the only safe place for many of them. And the more we know about them, the more we can do! Some people are great candidates for our residential job program. Others need help getting medical care or applying for a new ID card. We are able to devote time, attention, and services to these people because of your investment in our work."]</p>
                 <p>@Localizer["The showers and clothing we provide are the first step to developing relationships with our guests. It's often damp, drizzling, or downright pouring during Shanghai's cold winters, so, they may spend days in clammy clothes even as the weather freezes. As you can imagine, socks, shoes, thermal underwear, and coats fly off our shelves."]</p>

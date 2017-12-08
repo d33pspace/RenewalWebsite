@@ -1067,7 +1067,7 @@ footer {
 /*-----------------------------------------------------------------------------------*/
 
 header.masthead .post-heading .subheading {
-    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    font-family: "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", sans-serif;
     font-size: 20px;
     font-weight: 400;
 }
@@ -1128,7 +1128,7 @@ a.news-link:hover {
 .news.issue-9 {
     background-image: url(/images/news/issue9/news-web-header.jpg);
     background-size: cover;
-    min-height: 500px;
+    min-height: 100vh;
 }
 
 .p-20 {
@@ -1174,7 +1174,7 @@ blockquote {
 }
 
     blockquote italic {
-        font-style: italic;
+        font-style: normal;
         color: #777777;
         font-size: 18px;
         font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
@@ -1470,7 +1470,8 @@ p.excerpt {
 }
 
 input#CustomAmount {
-    width: 15%;
+    max-width: 15%;
+    min-width:15%;
     margin-left: 5px;
     margin-right: 5px;
     float: none;
@@ -1529,4 +1530,13 @@ input#CustomAmount {
     .btn-vertical {
         display: grid;
     }
+}
+
+.blockquote-winter {
+    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-size: 26px;
+    color: #393939;
+    font-style: normal;
+    padding-left: 60px;
+    font-weight: 600;
 }
