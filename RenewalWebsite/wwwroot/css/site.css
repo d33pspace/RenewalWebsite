@@ -1213,7 +1213,7 @@ h6.sub-menu-h6 {
 }
 
 .news-caption {
-    width: 40%;
+    width: 33%;
     color: #777777;
 }
 
@@ -1267,8 +1267,8 @@ p.excerpt {
         }
 
 .news-page .btn-secondary {
-    color: #d11241;
-    background-color: white !IMPORTANT;
+    /*color: #d11241;
+    background-color: white !IMPORTANT;*/
     border-color: #d11241;
     border: 2px solid;
     cursor: pointer;
@@ -1537,7 +1537,6 @@ input#CustomAmount {
     font-size: 26px;
     color: #393939;
     font-style: normal;
-    padding-left: 60px;
     font-weight: 600;
 }
 
@@ -1546,6 +1545,6 @@ input#CustomAmount {
         background-image: url(/images/news/issue9/news-web-header.jpg);
         background-size: cover;
         min-height: 100vh;
-        min-width: 100vh;
+        min-width: 50vw;
     }
 }
