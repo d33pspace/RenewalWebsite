@@ -1128,7 +1128,7 @@ a.news-link:hover {
 .news.issue-9 {
     background-image: url(/images/news/issue9/news-web-header.jpg);
     background-size: cover;
-    min-height: 100vh;
+    min-height:500px;
 }
 
 .p-20 {
@@ -1471,7 +1471,7 @@ p.excerpt {
 
 input#CustomAmount {
     max-width: 15%;
-    min-width:15%;
+    min-width: 15%;
     margin-left: 5px;
     margin-right: 5px;
     float: none;
@@ -1539,4 +1539,13 @@ input#CustomAmount {
     font-style: normal;
     padding-left: 60px;
     font-weight: 600;
+}
+
+@media(min-width:1024px) {
+    .news.issue-9 {
+        background-image: url(/images/news/issue9/news-web-header.jpg);
+        background-size: cover;
+        min-height: 100vh;
+        min-width: 100vh;
+    }
 }
