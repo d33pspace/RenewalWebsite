@@ -121,17 +121,8 @@
                 <p>@Localizer["The days are getting shorter and cold here. That means we're expecting more guests to visit the drop-in center who need clothing to protect them against the freezing temperatures in January and February. Thanks to your gifts, we are beginning to prepare for the busy months ahead, but we still need more help to meet the high demand."]</p>
                 <p>@Localizer["In some ways, this is our favorite time of year. Guests are more likely to come and stay awhile. This gives us a chance to get to know them. Our volunteers and staff are here to provide basic services, but they're also here to help us build trust and relationships with our guests."]</p>
                 <div class="red-border">
-
-                    @if (currency.Name.Contains("zh"))
-                    {
-                        <span>@Localizer["Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for"]</span>
-                        <span style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>@Localizer["."]
-                    }
-                    else
-                    {
                         <span class="blockquote-winter">@Localizer["Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for"]</span>
-                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>@Localizer["."]
-                    }
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)@Localizer["."]</span>
                     <br />
                     <br />
                     <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_12">@Localizer["Give winter clothes today"] <i class="arrow right-arrow"></i></a>
