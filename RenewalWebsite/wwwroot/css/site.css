@@ -1540,11 +1540,3 @@ input#CustomAmount {
     font-weight: 600;
 }
 
-@media(min-width:1024px) {
-    .news.issue-9 {
-        background-image: url(/images/news/issue9/news-web-header.jpg);
-        background-size: cover;
-        min-height: 100vh;
-        min-width: 50vw;
-    }
-}

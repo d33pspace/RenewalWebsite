@@ -239,7 +239,7 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = Convert.ToInt32(donation.DonationAmount),
+                        Amount = Convert.ToInt32(donation.DonationAmount * 100),
                         Description = DonationCaption,
                         Currency = "usd",//payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
@@ -379,7 +379,7 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = Convert.ToInt32(donation.DonationAmount),
+                        Amount = Convert.ToInt32(donation.DonationAmount * 100),
                         Description = DonationCaption,
                         Currency = "usd", //payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
@@ -644,7 +644,7 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = Convert.ToInt32(donation.DonationAmount),
+                        Amount = Convert.ToInt32(donation.DonationAmount * 100),
                         Description = DonationCaption,
                         Currency = "usd",//payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
@@ -784,7 +784,7 @@ namespace RenewalWebsite.Controllers
                     // Charge the customer
                     var charge = charges.Create(new StripeChargeCreateOptions
                     {
-                        Amount = Convert.ToInt32(donation.DonationAmount),
+                        Amount = Convert.ToInt32(donation.DonationAmount * 100),
                         Description = DonationCaption,
                         Currency = "usd", //payment.Currency.ToLower(),
                         CustomerId = user.StripeCustomerId,
