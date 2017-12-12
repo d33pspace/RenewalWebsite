@@ -117,7 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="'A lot of very dirty people came here to take showers. was very surprised,'aid Zhou Guoqiang." xml:space="preserve">
+  <data name="'A lot of very dirty people came here to take showers. I was very surprised,' said Zhou Guoqiang." xml:space="preserve">
     <value>周国强说：“很多脏兮兮的人来这里洗澡。一开始我对此非常吃惊。”</value>
   </data>
   <data name="'I slept in the waiting hall of the railway station and ferry terminal. In the daytime, I would pick up bottles, help assemble temporary stages or any other work I could find,' said Wu Xueli." xml:space="preserve">
@@ -126,10 +126,10 @@
   <data name="'I spent all of my money and lost my ID and couldn't find a job,' he told us." xml:space="preserve">
     <value>他告诉我们：“我身无分文还弄丢了身份证，无法找到工作。”</value>
   </data>
-  <data name="-Wu Xueli" xml:space="preserve">
+  <data name="- Wu Xueli" xml:space="preserve">
     <value>— 吴学理</value>
   </data>
-  <data name="-Yang Qin" xml:space="preserve">
+  <data name="- Yang Qin" xml:space="preserve">
     <value>— 杨琴</value>
   </data>
   <data name="A home and hope" xml:space="preserve">
@@ -156,14 +156,14 @@
   <data name="He came to the Renewal Center hoping we could help him find work. When he found out about our residential job program, he knew it was a way to get his life back on track." xml:space="preserve">
     <value>他来到日新中心，希望我们能帮他找到工作。当他了解了我们的工作培训计划后，他知道这就是他开始新生的最佳机遇。</value>
   </data>
-  <data name="I did not know how to begin a new life, he said. That changed when Wei Jiazhen came to the Renewal Center. He wanted food and a shower but found more when he joined the job program. Wei Jiazhen loved the community at the center and liked serving others." xml:space="preserve">
+  <data name="'I did not know how to begin a new life,' he said. That changed when Wei Jiazhen came to the Renewal Center. He wanted food and a shower but found more when he joined the job program. Wei Jiazhen loved the community at the center and liked serving others." xml:space="preserve">
     <value>“我不知道如何开始新生活，”他这样说道。但当魏佳珍来到日新中心后，一切都变了。起初，他只是想要一些食物和洗个澡，但后来，他在工作培训计划中发现了更多生活的目标。魏佳真开始爱上了中心的生活，并乐于为其他人服务。</value>
   </data>
-  <data name="I wandered around during the day. At night,I'd sleep any place I could find, said Yang Qin." xml:space="preserve">
+  <data name="'I wandered around during the day. At night, I'd sleep any place I could find,' said Yang Qin." xml:space="preserve">
     <value>杨琴说：“我白天就在闲逛。到了晚上，我就睡在任何可以睡觉的地方。”
 </value>
   </data>
-  <data name="I will live my life positively, he said." xml:space="preserve">
+  <data name="'I will live my life positively,' he said." xml:space="preserve">
     <value>他说：“我一定会积极地生活下去！”</value>
   </data>
   <data name="In some ways, this is our favorite time of year. Guests are more likely to come and stay awhile. This gives us a chance to get to know them. Our volunteers and staff are here to provide basic services, but they're also here to help us build trust and relationships with our guests." xml:space="preserve">
@@ -181,7 +181,7 @@
   <data name="Now our friend is building confidence and working towards independence. Wu Xueli has you to thank for that. Because of your support, he has found a home and hope in Shanghai." xml:space="preserve">
     <value>现在，我们内向的朋友正在努力获得自力更生的能力。吴学理要谢谢您的帮助。正是您的慷慨支持，让他在上海找到了家和希望。</value>
   </data>
-  <data name="Now, said Yang Qin,Without this place, my difficulties would have taken years to overcome or I might just be homeless forever." xml:space="preserve">
+  <data name="'Now,' said Yang Qin, 'without this place, my difficulties would have taken years to overcome or I might just be homeless forever.'" xml:space="preserve">
     <value>现在，杨琴认为：“如果没有日新中心，我可能需要花费许多年才能克服目前的困难，也可能永远生活在街头。”</value>
   </data>
   <data name="Our job training program gives people a fresh start" xml:space="preserve">
@@ -220,7 +220,7 @@
   <data name="These men and women had hard lives even before they ended up on the streets. As they share their stories with us, we develop friendships with them. I can't tell you how important that is. We want the Renewal Center to be personal and relational because that is the only way we can help our guests live better, healthier lives." xml:space="preserve">
     <value>即使在流落街头以前，这些人们的生活也十分艰苦。在他们与我们分享自己的故事时，我们希望与他们建立友谊。这对我们的工作非常重要。我们希望日新中心能提供更多的人性关怀与友谊，因为只有这样，我们才能帮助客人获得更美好、更健康的生活。</value>
   </data>
-  <data name="These services are only available because of your generosity.Without the drop-in center, Zhou Guoqiang said,would feel desperate when times get hard." xml:space="preserve">
+  <data name="These services are only available because of your generosity. Without the drop-in center, Zhou Guoqiang said he would feel desperate when times get hard." xml:space="preserve">
     <value>与大部分无家可归人士不同的是，他的废品生意一直还不错。但即便如此，他还是付不起租房的房租。因为，周国强非常感激每周能够在日新中心洗澡和换洗衣物。</value>
   </data>
   <data name="These successes are only possible because of your partnership. Thank you for giving Wei Jiazhen and Yang Qin the chance to become productive members of society." xml:space="preserve">
@@ -274,7 +274,7 @@
   <data name="Zhou Guoqiang enjoys a hot bowl of noodles during one of his weekly visits." xml:space="preserve">
     <value>周国强每周来到日新中心一次。在您的资助下，他可以享受一碗热腾腾的面条，在严寒之中得到温暖，并清洗自己的衣服.</value>
   </data>
-  <data name="“I’d like to work for two years and then start some kind of small business or sell vegetables,” he said. “I’d like to make some money and return home and build a house.”" xml:space="preserve">
+  <data name="'I'd like to work for two years and then start some kind of small business or sell vegetables,' he said. 'I'd like to make some money and return home and build a house.'" xml:space="preserve">
     <value>他说：“我打算在这里工作两年，然后开始做点小生意，或者去卖菜。我希望能存些钱，然后回到家乡盖一座房子。”</value>
   </data>
   <data name="Home" xml:space="preserve">
@@ -297,5 +297,11 @@
   </data>
   <data name="Give winter clothes today" xml:space="preserve">
     <value>现在就提供过冬衣物</value>
+  </data>
+  <data name="By Hanson Ye" xml:space="preserve">
+    <value>作者：叶海生</value>
+  </data>
+  <data name="By Jimmy McWhinney" xml:space="preserve">
+    <value>作者：Jimmy McWhinney</value>
   </data>
 </root>
