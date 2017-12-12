@@ -127,7 +127,14 @@
                 <p>@Localizer["Although this is a big city, there are hardly any services for homeless people. The drop-in center is the only safe place for many of them. And the more we know about them, the more we can do! Some people are great candidates for our residential job program. Others need help getting medical care or applying for a new ID card. We are able to devote time, attention, and services to these people because of your investment in our work."]</p>
                 <div class="red-border">
                     <span class="blockquote-winter">@Localizer["Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for"]</span>
+                    @if (currency.Name.Contains("zh"))
+                    {
+                    <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)@Localizer["."]</span>
+                    }
+                    else
+                    {
                     <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)@Localizer["."]</span>
+                    }
                     <br />
                     <br />
                     <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_12">@Localizer["Give winter clothes today"] <i class="arrow right-arrow"></i></a>

@@ -41,11 +41,11 @@
                 @Localizer["Buy a winter coat, shoes, socks and thermal underwear for a homeless person this winter for"]
                 @if (currency.Name.Contains("zh"))
                 {
-                    <span>@baseAmountCNY.ToString("C", currency)</span>@Localizer["."]
+                <span>@baseAmountCNY.ToString("C", currency)@Localizer["."]</span>
                 }
                 else
                 {
-                    <span>@baseAmountUSD.ToString("C", currency)</span>@Localizer["."]
+                <span>@baseAmountUSD.ToString("C", currency)@Localizer["."]</span>
                 }
             </figcaption>
         </div>
