@@ -129,6 +129,9 @@
   <data name="Essential Services" xml:space="preserve">
     <value>基本服务</value>
   </data>
+  <data name="From a shower and clean clothes to safe shelter and job training, your gifts provide everything a person needs to turn their life around." xml:space="preserve">
+    <value>从洗澡到换洗衣物，从安全的住所到工作培训机会，您的捐赠能够帮助一位无家可归人士开始新的生活。</value>
+  </data>
   <data name="Life Skills Workshops" xml:space="preserve">
     <value>生存技能工作坊</value>
   </data>
@@ -143,9 +146,6 @@
   </data>
   <data name="Starting with basic help for men and women living on the streets, Renewal also offers longer-term support to help people build friendships, find satisfying work and move into a permanent home." xml:space="preserve">
     <value>除了最基本的帮助外，日新中心还为街头的无家可归人士提供长期的支持，帮助他们建立友谊，寻找满意的工作并组建永久的家庭。</value>
-  </data>
-  <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
-    <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
   </data>
   <data name="Work Experience" xml:space="preserve">
     <value>工作经验</value>
