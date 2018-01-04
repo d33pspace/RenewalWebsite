@@ -3,13 +3,11 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<h2>
-    Thank you for
-    subscribing, you’ll hear from us soon!
-</h2>
+<h2>@Localizer["Thank you for subscribing!"]</h2>
+<p>@Localizer["Please check your email to confirm your subscription."]</p>
 <div class="row" style="margin-top:20px;">
     <div class="col-md-12">
-        <a href="/Home/index" class="btn btn-secondary btn-block">@Localizer["Home"] <i class="arrow right-arrow"></i></a>
+        <a href="/home/index" class="btn btn-secondary btn-block">@Localizer["Home"] <i class="arrow right-arrow"></i></a>
     </div>
 </div>
 <script type="text/javascript">
