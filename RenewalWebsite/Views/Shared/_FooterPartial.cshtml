@@ -103,37 +103,39 @@
 </footer>
 <!-- Drip -->
 <script type="text/javascript">
-    $('#btnDripData').on('click', function () {
-        var emailExpression = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-        if (!emailExpression.test($('#drip-email').val().toLowerCase())) {
-            $('#emailValid').css("display", "table");
-            $('#emailValid').show();
-            return;
-        }
-        else {
-            $('#emailValid').css("display", "none");
-            $('#emailValid').hide();
-        }
-
-        $.ajax({
-            url: "https://hooks.zapier.com/hooks/catch/2318707/86m3yd/",
-            data: {
-                "email": $('#drip-email').val(),
-                "landing_url": "www.renewal.org.cn",
-                "custom_field": {
-                    "contact_name": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val(),
-                    "email": $('#drip-email').val(),
-                    "language_preference": $('#drip-language-preference').val(),
-                    "salutation": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val().split(' ')[0]
-                }
-            },
-            type: "post",
-            datatype: "application/json",
-            success: function (result) {
-                if (result.status = "success") {
-                    window.location.href = "/thankyou";
-                }
+    $(document).ready(function () {
+        $('#btnDripData').on('click', function () {
+            var emailExpression = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+            if (!emailExpression.test($('#drip-email').val().toLowerCase())) {
+                $('#emailValid').css("display", "table");
+                $('#emailValid').show();
+                return;
             }
+            else {
+                $('#emailValid').css("display", "none");
+                $('#emailValid').hide();
+            }
+
+            $.ajax({
+                url: "https://hooks.zapier.com/hooks/catch/2318707/86m3yd/",
+                data: {
+                    "email": $('#drip-email').val(),
+                    "landing_url": "www.renewal.org.cn",
+                    "custom_field": {
+                        "contact_name": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val(),
+                        "email": $('#drip-email').val(),
+                        "language_preference": $('#drip-language-preference').val(),
+                        "salutation": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val().split(' ')[0]
+                    }
+                },
+                type: "post",
+                datatype: "application/json",
+                success: function (result) {
+                    if (result.status = "success") {
+                        window.location.href = "/thankyou";
+                    }
+                }
+            });
         });
     });
 </script>
