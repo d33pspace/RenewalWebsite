@@ -117,16 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Email" xml:space="preserve">
-    <value>电子邮箱</value>
+  <data name="Home" xml:space="preserve">
+    <value>主页</value>
   </data>
-  <data name="Name" xml:space="preserve">
-    <value>姓名</value>
-  </data>
-  <data name="Sign Up" xml:space="preserve">
+  <data name="Subscribe" xml:space="preserve">
     <value>订阅</value>
   </data>
-  <data name="Sign up for our email communications:" xml:space="preserve">
-    <value>订阅我们的电子邮件通讯：</value>
+  <data name="Thank you for subscribing!" xml:space="preserve">
+    <value>谢谢您的订阅！</value>
+  </data>
+  <data name="You'll be hearing from us soon!" xml:space="preserve">
+    <value>您会很快就收到我们的来信！</value>
   </data>
 </root>

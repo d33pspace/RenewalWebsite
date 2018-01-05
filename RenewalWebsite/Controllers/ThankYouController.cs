@@ -12,5 +12,10 @@ namespace RenewalWebsite.Controllers
         {
             return View();
         }
+
+        public IActionResult Confirm()
+        {
+            return View();
+        }
     }
 }

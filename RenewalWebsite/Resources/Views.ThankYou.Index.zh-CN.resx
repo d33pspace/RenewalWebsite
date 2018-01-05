@@ -117,13 +117,16 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Check your email and follow the link to confirm your subscription. Thank you!" xml:space="preserve">
+    <value>请查看您的邮件来确认你的订阅。谢谢！</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>主页</value>
   </data>
-  <data name="Please check your email to confirm your subscription." xml:space="preserve">
-    <value>请查看您的邮件来确认你的订阅</value>
+  <data name="Please confirm your subscription" xml:space="preserve">
+    <value>请确认您的订阅</value>
   </data>
-  <data name="Thank you for subscribing!" xml:space="preserve">
-    <value>谢谢您的订阅！</value>
+  <data name="Subscribe" xml:space="preserve">
+    <value>订阅</value>
   </data>
 </root>
