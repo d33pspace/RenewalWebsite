@@ -54,7 +54,7 @@ namespace RenewalWebsite
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
-
+            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Session cache
             services.AddDistributedMemoryCache();
             services.AddSession();
@@ -113,6 +113,7 @@ namespace RenewalWebsite
             services.AddTransient<ICurrencyService, CurrencyService>();
             services.AddTransient<ICampaignService, CampaignService>();
             services.AddTransient<ILoggerServicecs, LoggerServicecs>();
+            services.AddTransient<IUnsubscribeUserService, UnsubscribeUserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

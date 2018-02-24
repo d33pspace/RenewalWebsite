@@ -1,0 +1,122 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string email = ViewBag.email;
+    string lang = ViewBag.lang;
+}
+
+
+<div class="container">
+    <h2>Update Renewal communication preferences</h2>
+</div>
+
+<div class="container" style="margin-top:10px;margin-bottom:10px;">
+    <span id="message" class="text-danger">
+    </span>
+</div>
+
+<div class="container">
+    <form>
+        <fieldset>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button type="button" id="btnUnsubscribe" class="btn btn-secondary" onclick="unsubscribeUser()">@("Unsubscribe [" + email + "] from all emails")</button>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button type="button" id="btnChangeCommunication" class="btn btn-secondary" onclick="changePreference()">Change email communications to English/Chinese</button>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <label class="col-form-label sr-only">Special instructions or feedback</label>
+                    <textarea id="txtFeedback" rows="5" class="form-control" placeholder="Special instructions or feedback"></textarea>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12 text-right">
+                    <button type="button" id="btnFeedBack" class="btn btn-secondary" onclick="sendFeedback()">Submit Feedback</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#message').hide();
+    });
+
+    function unsubscribeUser() {
+        $.ajax({
+            url: "/Contact/Unsubscribe",
+            data: {
+                "email": "@email",
+                "language" :"@lang",
+                "isUnsubscribe": false
+            },
+            type: "post",
+            datatype: "application/json",
+            success: function (result) {
+                if (result.status = "1") {
+                    $('#message').show();
+                    $('#message').text(result.data);
+                    setInterval(function () {
+                        window.location.href = "/home";
+                    }, 30000);
+                }
+            }
+        });
+    };
+
+    function changePreference() {
+        $.ajax({
+            url: "/Contact/ChangePreference",
+            data: {
+                "email": "@email",
+                "language" :"@lang"
+            },
+            type: "post",
+            datatype: "application/json",
+            success: function (result) {
+                if (result.status = "1") {
+                    $('#message').show();
+                    $('#message').text(result.data);
+                    setInterval(function () {
+                        window.location.href = "/home";
+                    }, 30000);
+                }
+            }
+        });
+    };
+
+    function sendFeedback() {
+        if ($('#txtFeedback').val() == "") {
+            return;
+        }
+
+        $.ajax({
+            url: "/Contact/SendFeedBack",
+            data: {
+                "email": "@email",
+                "language": "@lang",
+                "feedback": $('#txtFeedback').val()
+            },
+            type: "post",
+            datatype: "application/json",
+            success: function (result) {
+                if (result.status = "1") {
+                    $('#message').show();
+                    $('#message').text(result.data);
+                    setInterval(function () {
+                        window.location.href = "/home";
+                    }, 30000);
+                }
+            }
+        });
+    };
+</script>

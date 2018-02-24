@@ -1,9 +1,10 @@
 ﻿@using Microsoft.AspNetCore.Localization
 @using Microsoft.AspNetCore.Mvc.Localization
-
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     var culture = Context.Features.Get<IRequestCultureFeature>();
     string controller = this.ViewContext.RouteData.Values["controller"].ToString();
+    string ipAddress = @HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
 }
 <footer class="mt-5">
     <div class="container">
@@ -116,6 +117,11 @@
                 $('#emailValid').hide();
             }
 
+            var sone = moment.tz.guess();
+            var timezone = moment.tz(sone).zoneAbbr();
+            var geolocation = "@ipAddress";
+            var lastname = $('#drip-contact-name').val().split(' ').length == 1 ? "" : $('#drip-contact-name').val().split(' ')[$('#drip-contact-name').val().split(' ').length - 1];
+
             $.ajax({
                 url: "https://hooks.zapier.com/hooks/catch/2318707/86m3yd/",
                 data: {
@@ -125,7 +131,10 @@
                         "contact_name": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val(),
                         "email": $('#drip-email').val(),
                         "language_preference": $('#drip-language-preference').val(),
-                        "salutation": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val().split(' ')[0]
+                        "salutation": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val().split(' ')[0],
+                        "last_name": lastname,
+                        "time_zone": timezone,
+                        "geolocation": geolocation
                     }
                 },
                 type: "post",

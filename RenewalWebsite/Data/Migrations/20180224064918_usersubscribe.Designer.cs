@@ -11,9 +11,10 @@ using System;
 namespace RenewalWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180224064918_usersubscribe")]
+    partial class usersubscribe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -249,8 +250,6 @@ namespace RenewalWebsite.Data.Migrations
                     b.Property<string>("email");
 
                     b.Property<string>("feedback");
-
-                    b.Property<bool>("isUnsubscribe");
 
                     b.Property<string>("language");
 
