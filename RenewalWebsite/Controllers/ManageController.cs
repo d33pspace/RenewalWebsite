@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Stripe;
 using RenewalWebsite.Utility;
 using Microsoft.Extensions.Localization;
+using RestSharp;
 
 namespace RenewalWebsite.Controllers
 {
@@ -485,6 +486,14 @@ namespace RenewalWebsite.Controllers
                     user.Country = profile.Country;
 
                     await _userManager.UpdateAsync(user);
+
+                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                    var request = new RestRequest(Method.POST);
+                    request.AddParameter("email", user.Email);
+                    request.AddParameter("name", profile.FullName);
+                    request.AddParameter("address", profile.AddressLine1 + "<br/>" + profile.AddressLine2);
+                    // execute the request
+                    IRestResponse response = client.Execute(request);
 
                     result.data = "Profile updated successfully";
                     result.status = "1";

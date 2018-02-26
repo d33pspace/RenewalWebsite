@@ -14,6 +14,7 @@ using RenewalWebsite.Models.AccountViewModels;
 using RenewalWebsite.Services;
 using Microsoft.AspNetCore.Authentication;
 using RenewalWebsite.Utility;
+using RestSharp;
 
 namespace RenewalWebsite.Controllers
 {
@@ -117,6 +118,14 @@ namespace RenewalWebsite.Controllers
                 var result = await _userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z07xtw/");
+                    var request = new RestRequest(Method.POST);
+                    request.AddParameter("email", model.Email);
+                    request.AddParameter("name", string.Empty);
+                    request.AddParameter("address", string.Empty);
+                    // execute the request
+                    IRestResponse response = client.Execute(request);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
                     // Send an email with this link
                     //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
