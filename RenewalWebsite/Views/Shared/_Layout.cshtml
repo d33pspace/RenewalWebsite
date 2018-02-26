@@ -11,6 +11,11 @@
     @await Html.PartialAsync("_HeadPartial")
 </head>
 <body>
+    <div id="loader-wrapper">
+        <div id="loader"></div>
+        <div class="loader-section section-left"></div>
+        <div class="loader-section section-right"></div>
+    </div>
     <nav class="navbar navbar-toggleable-md navbar-light" id="mainNav">
         <div class="container">
             <a class="navbar-brand hide-large red" href="/">@Localizer["RENEWAL"]</a>
@@ -86,6 +91,56 @@
             dc.src = '//tag.getdrip.com/7811515.js';
             var s = document.getElementsByTagName('script')[0];
         })();
+
+        $(document).ready(function () {
+            if (document.readyState == "complete") {
+                StopProgress();
+            }
+
+            $(document).ajaxStart(function () {
+                debugger;
+                try {
+                    ShowSendingProgress();
+                    //run_waitMe('win8');
+                } catch (e) {
+                }
+            });
+
+            $(document).ajaxStop(function () {
+                try {
+                    StopProgress();
+                    //$('.loader-class').waitMe('hide');
+                } catch (e) {
+                    //$(".waitMe").remove();
+                }
+            });
+
+            $(document).ajaxError(function () {
+                try {
+                    StopProgress();
+                    //$('.loader-class').waitMe('hide');
+                } catch (e) {
+                    //$(".waitMe").remove();
+                }
+            });
+
+            $(document).ajaxComplete(function () {
+                try {
+                    StopProgress();
+                    //$('.loader-class').waitMe('hide');
+                } catch (e) {
+                    //$(".waitMe").remove();
+                }
+            });
+
+            function ShowSendingProgress() {
+                $('#loader-wrapper').show();
+            }
+
+            function StopProgress() {
+                $('#loader-wrapper').hide();
+            }
+        });
     </script>
     @RenderSection("Scripts", required: false)
 </body>
