@@ -492,6 +492,10 @@ namespace RenewalWebsite.Controllers
                     request.AddParameter("email", user.Email);
                     request.AddParameter("name", profile.FullName);
                     request.AddParameter("address", profile.AddressLine1 + "<br/>" + profile.AddressLine2);
+                    request.AddParameter("city", profile.City);
+                    request.AddParameter("state", profile.State);
+                    request.AddParameter("zip", profile.Zip);
+                    request.AddParameter("country", profile.Country);
                     // execute the request
                     IRestResponse response = client.Execute(request);
 

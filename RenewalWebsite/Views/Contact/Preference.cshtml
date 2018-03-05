@@ -1,0 +1,54 @@
+﻿
+@{
+    ViewData["Title"] = "Preference";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@{
+    string email = ViewBag.email;
+}
+
+<div class="container">
+    <h2>Update Renewal communication preferences</h2>
+</div>
+
+<div class="container">
+    <form>
+        <fieldset>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="radio" id="rbChinese" name="language" value="Chinese" /> Chinese
+                    <input type="radio" id="rbEnglish" name="language" value="English" /> English
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <button type="button" id="btnChangeCommunication" class="btn btn-secondary" onclick="changePreference()">Change email communications to English/Chinese</button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<script type="text/javascript">
+    function changePreference() {
+        var selValue = $('input[name=language]:checked').val();
+        $.ajax({
+            url: "/Contact/ChangePreference",
+            data: {
+                "email": "@email",
+                "language" :selValue
+            },
+            type: "post",
+            datatype: "application/json",
+            success: function (result) {
+                if (result.status = "1") {
+                    $('#message').show();
+                    $('#message').text(result.data);
+                    setInterval(function () {
+                        window.location.href = "/contact/thankyou?id=2";
+                    }, 30000);
+                }
+            }
+        });
+    };
+</script>

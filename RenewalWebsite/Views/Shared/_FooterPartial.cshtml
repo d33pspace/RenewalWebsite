@@ -1,10 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Localization
 @using Microsoft.AspNetCore.Mvc.Localization
+@using Microsoft.Extensions.Options;
+@inject IOptions<CurrencySettings> currencySettings
 @inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
 @{
     var culture = Context.Features.Get<IRequestCultureFeature>();
     string controller = this.ViewContext.RouteData.Values["controller"].ToString();
     string ipAddress = @HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+    string serverLocation = currencySettings.Value.ServerLocation;
 }
 <footer class="mt-5">
     <div class="container">
@@ -120,6 +123,7 @@
             var sone = moment.tz.guess();
             var timezone = moment.tz(sone).zoneAbbr();
             var geolocation = "@ipAddress";
+            var serverLocation = "@serverLocation";
             var lastname = $('#drip-contact-name').val().split(' ').length == 1 ? "" : $('#drip-contact-name').val().split(' ')[$('#drip-contact-name').val().split(' ').length - 1];
 
             $.ajax({
@@ -134,7 +138,8 @@
                         "salutation": $('#drip-contact-name').val().split(' ').length == 1 ? $('#drip-contact-name').val() : $('#drip-contact-name').val().split(' ')[0],
                         "last_name": lastname,
                         "time_zone": timezone,
-                        "geolocation": geolocation
+                        "ip_address": geolocation,
+                        "server_location": serverLocation 
                     }
                 },
                 type: "post",

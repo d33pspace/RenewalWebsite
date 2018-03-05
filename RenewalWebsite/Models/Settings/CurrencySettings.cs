@@ -8,5 +8,6 @@ namespace RenewalWebsite.Models
     public class CurrencySettings
     {
         public string DefaultCurrencyCulture { get; set; }
+        public string ServerLocation { get; set; }
     }
 }
