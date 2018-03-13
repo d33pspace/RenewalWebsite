@@ -529,19 +529,31 @@ namespace RenewalWebsite.Controllers
             AddCellToHeader(tableLayout, "Method");
             AddCellToHeader(tableLayout, "Invoice Number");
 
-            ////Add body  
-            foreach (InvoiceHistory invoice in invoicehistoryList)
+            if (invoicehistoryList != null && invoicehistoryList.Count > 0)
             {
-                AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy") : "", "");
-                AddCellToBody(tableLayout, invoice.Currency, "center");
-                AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", ""), "right");
-                AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", ""), "right");
-                AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", ""), "right");
-                AddCellToBody(tableLayout, invoice.Method, "");
-                AddCellToBody(tableLayout, invoice.InvoiceNumber, "");
-
+                ////Add body  
+                foreach (InvoiceHistory invoice in invoicehistoryList)
+                {
+                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy") : "", "");
+                    AddCellToBody(tableLayout, invoice.Currency, "center");
+                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", ""), "right");
+                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", ""), "right");
+                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", ""), "right");
+                    AddCellToBody(tableLayout, invoice.Method, "");
+                    AddCellToBody(tableLayout, invoice.InvoiceNumber, "");
+                }
             }
-
+            else
+            {
+                tableLayout.AddCell(new PdfPCell(new Phrase("No Record Found", new Font(Font.FontFamily.HELVETICA, 10, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+                {
+                    Colspan = 7,
+                    HorizontalAlignment = Element.ALIGN_CENTER,
+                    Padding = 5,
+                    BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                    BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                });
+            }
             return tableLayout;
         }
 
