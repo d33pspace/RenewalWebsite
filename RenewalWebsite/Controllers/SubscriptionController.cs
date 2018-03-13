@@ -38,7 +38,7 @@ namespace RenewalWebsite.Controllers
                 var subscriptionService = new StripeSubscriptionService(_stripeSettings.Value.SecretKey);
                 var result = subscriptionService.Cancel(subscriptionId);
 
-                SetTempMessage($"You have successfully deleted '{result.StripePlan.Name}' subscription");
+                SetTempMessage($"You have successfully deleted '{result.StripePlan.Nickname}' subscription");
                 return RedirectToAction("Index", "Manage");
             }
             catch(Exception ex)

@@ -68,8 +68,8 @@ namespace RenewalWebsite.Services
                     Id = planName,
                     Amount = Convert.ToInt32(amount * 100),
                     Currency = currency.ToLower(),
-                    Name = planName,
-                    StatementDescriptor = _stripeSettings.Value.StatementDescriptor
+                    Nickname = planName,
+                    //StatementDescriptor = _stripeSettings.Value.StatementDescriptor
                 };
 
                 // Take care intervals

@@ -1,0 +1,31 @@
+﻿using RenewalWebsite.Data;
+using RenewalWebsite.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace RenewalWebsite.Services
+{
+    public class InvoiceHistoryService : IInvoiceHistoryService
+    {
+        private readonly ApplicationDbContext _dbContext;
+
+        public InvoiceHistoryService(ApplicationDbContext dbContext)
+        {
+            _dbContext = dbContext;
+        }
+
+        public List<InvoiceHistory> GetInvoiceHistory(DateTime FromDate, DateTime ToDate, string Email)
+        {
+            try
+            {
+                return _dbContext.InvoiceHistory.Where(a => a.Date >= FromDate && a.Date <= ToDate && a.Email.ToLower().Equals(Email.ToLower())).ToList();
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+    }
+}

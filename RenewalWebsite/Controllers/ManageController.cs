@@ -17,6 +17,10 @@ using Stripe;
 using RenewalWebsite.Utility;
 using Microsoft.Extensions.Localization;
 using RestSharp;
+using System.IO;
+using System.Text;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 
 namespace RenewalWebsite.Controllers
 {
@@ -30,8 +34,9 @@ namespace RenewalWebsite.Controllers
         private readonly ISmsSender _smsSender;
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly ILoggerServicecs _loggerService;
+        private readonly IInvoiceHistoryService _invoiceHistoryService;
         //private readonly IStringLocalizer<DonateController> _localizer;
-        private EventLog log;   
+        private EventLog log;
 
         public ManageController(
           UserManager<ApplicationUser> userManager,
@@ -40,8 +45,9 @@ namespace RenewalWebsite.Controllers
           IEmailSender emailSender,
           ISmsSender smsSender,
           IOptions<StripeSettings> stripeSettings,
-          ILoggerServicecs loggerService)
-          //IStringLocalizer<DonateController> localizer)
+          ILoggerServicecs loggerService,
+          IInvoiceHistoryService invoiceHistoryService)
+        //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -51,6 +57,7 @@ namespace RenewalWebsite.Controllers
             _loggerService = loggerService;
             _stripeSettings = stripeSettings;
             //_localizer = localizer;
+            _invoiceHistoryService = invoiceHistoryService;
         }
 
         //
@@ -436,6 +443,132 @@ namespace RenewalWebsite.Controllers
             return PartialView("_AddNewCard", card);
         }
 
+        [HttpGet]
+        public ActionResult PaymentHistory()
+        {
+            SearchViewModel model = new SearchViewModel();
+            model.FromDate = new DateTime(DateTime.Now.Year, 1, 1).ToString("dd-MMM-yyyy");
+            model.ToDate = new DateTime(DateTime.Now.Year, 12, 31).ToString("dd-MMM-yyyy");
+            return PartialView("_PaymentHistory", model);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> GetPaymentHistory(SearchViewModel model)
+        {
+            var user = await GetCurrentUserAsync();
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+            return PartialView("_InvoiceHistory", invoicehistoryList);
+        }
+
+        [HttpPost]
+        public async Task<FileResult> GetInvoicePdf(SearchViewModel model)
+        {
+            var user = await GetCurrentUserAsync();
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+
+            List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+            MemoryStream workStream = new MemoryStream();
+            StringBuilder status = new StringBuilder("");
+            DateTime dTime = DateTime.Now;
+            //file name to be created   
+            string strPDFFileName = string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyys") + "-" + ".pdf");
+            Document doc = new Document();
+            doc.SetPageSize(PageSize.A4);
+            doc.SetMargins(0f, 0f, 0f, 0f);
+            //Create PDF Table with 5 columns  
+            PdfPTable tableLayout = new PdfPTable(7);
+            doc.SetMargins(15f, 15f, 10f, 10f);
+            //Create PDF Table  
+
+            PdfWriter.GetInstance(doc, workStream).CloseStream = false;
+            doc.Open();
+
+            //Add Content to PDF   
+            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList));
+
+            // Closing the document  
+            doc.Close();
+
+            byte[] byteInfo = workStream.ToArray();
+            workStream.Write(byteInfo, 0, byteInfo.Length);
+            workStream.Position = 0;
+
+            return File(workStream.ToArray(), "application/pdf", strPDFFileName);
+        }
+
+        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList)
+        {
+
+            float[] headers = { 40, 30, 30, 40, 35, 40, 40 }; //Header Widths  
+            tableLayout.SetWidths(headers); //Set the pdf headers  
+            tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
+            tableLayout.HeaderRows = 1;
+            //Add Title to the PDF file at the top  
+
+            tableLayout.AddCell(new PdfPCell(new Phrase("Invoice History", new Font(Font.FontFamily.HELVETICA, 14, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+            {
+                Colspan = 12,
+                Border = 0,
+                PaddingBottom = 15,
+                HorizontalAlignment = Element.ALIGN_CENTER,
+            });
+
+
+            ////Add header  
+            AddCellToHeader(tableLayout, "Date");
+            AddCellToHeader(tableLayout, "Currency");
+            AddCellToHeader(tableLayout, "Amount");
+            AddCellToHeader(tableLayout, "Exchange Rate");
+            AddCellToHeader(tableLayout, "USD Amount");
+            AddCellToHeader(tableLayout, "Method");
+            AddCellToHeader(tableLayout, "Invoice Number");
+
+            ////Add body  
+            foreach (InvoiceHistory invoice in invoicehistoryList)
+            {
+                AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy") : "", "");
+                AddCellToBody(tableLayout, invoice.Currency, "center");
+                AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", ""), "right");
+                AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", ""), "right");
+                AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", ""), "right");
+                AddCellToBody(tableLayout, invoice.Method, "");
+                AddCellToBody(tableLayout, invoice.InvoiceNumber, "");
+
+            }
+
+            return tableLayout;
+        }
+
+        // Method to add single cell to the Header  
+        private static void AddCellToHeader(PdfPTable tableLayout, string cellText)
+        {
+            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 10, 1, iTextSharp.text.BaseColor.BLACK)))
+            {
+                HorizontalAlignment = Element.ALIGN_CENTER,
+                Padding = 5,
+                BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.LightGray),
+                BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+            });
+        }
+
+        // Method to add single cell to the body  
+        private static void AddCellToBody(PdfPTable tableLayout, string cellText, string align)
+        {
+            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 10, 1, iTextSharp.text.BaseColor.BLACK)))
+            {
+                HorizontalAlignment = string.IsNullOrEmpty(align) ? Element.ALIGN_LEFT : align.Equals("center") ? Element.ALIGN_CENTER : Element.ALIGN_RIGHT,
+                Padding = 5,
+                BackgroundColor = new iTextSharp.text.BaseColor(255, 255, 255),
+                BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+            });
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
@@ -586,8 +719,8 @@ namespace RenewalWebsite.Controllers
                             Cvc = card.Cvc,
                             ExpirationMonth = card.ExpiryMonth,
                             ExpirationYear = card.ExpiryYear,
-                            StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            Description = "",
+                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
+                            //Description = "",
                             AddressLine1 = user.AddressLine1,
                             AddressLine2 = user.AddressLine2,
                             AddressCity = user.City,

@@ -48,7 +48,7 @@ namespace RenewalWebsite.ViewComponents
                         Subscriptions = subscriptions.Select(s => new CustomerSubscriptionViewModel
                         {
                             Id = s.Id,
-                            Name = s.StripePlan.Name,
+                            Name = s.StripePlan.Id,
                             Amount = s.StripePlan.Amount,
                             Currency = s.StripePlan.Currency,
                             Status = s.Status

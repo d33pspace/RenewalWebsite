@@ -159,8 +159,8 @@ namespace RenewalWebsite.Controllers
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
                             ExpirationYear = payment.ExpiryYear,
-                            StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            Description = DonationCaption,
+                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
+                            //Description = DonationCaption,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -204,8 +204,8 @@ namespace RenewalWebsite.Controllers
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
                             ExpirationYear = payment.ExpiryYear,
-                            StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            Description = DonationCaption,
+                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
+                            //Description = DonationCaption,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -268,7 +268,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -407,7 +407,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -564,8 +564,8 @@ namespace RenewalWebsite.Controllers
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
                             ExpirationYear = payment.ExpiryYear,
-                            StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            Description = DonationCaption,
+                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
+                            //Description = DonationCaption,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -609,8 +609,8 @@ namespace RenewalWebsite.Controllers
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
                             ExpirationYear = payment.ExpiryYear,
-                            StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            Description = DonationCaption,
+                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
+                            //Description = DonationCaption,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -673,7 +673,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -812,7 +812,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Name.Split("_")[1]} will repeat {result.StripePlan.Name.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);

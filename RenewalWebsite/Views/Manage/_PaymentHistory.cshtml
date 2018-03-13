@@ -1,0 +1,70 @@
+﻿@model RenewalWebsite.Models.SearchViewModel
+@{
+    Layout = null;
+}
+
+<link href="~/js/DatePicker/jquery.datetimepicker.css" rel="stylesheet" />
+<script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
+<script src="~/js/DatePicker/jquery.datetimepicker.full.js" type="text/javascript"></script>
+
+<form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="control-labe" for="@Model.FromDate">Date From:</label>
+            <div class="">
+                @Html.TextBoxFor(model => model.FromDate, "{0:dd-MMM-yyyy}", new { @class = "form-control datetimepicker", @Text = Model.FromDate })
+                @Html.ValidationMessageFor(model => Model.FromDate)
+            </div>
+        </div>
+        <div class="form-group col-md-6">
+            <label class="control-label" for="@Model.ToDate">Date To :</label>
+            <div class="">
+                @Html.TextBoxFor(model => model.ToDate, "{0:dd-MMM-yyyy}", new { @class = "form-control datetimepicker", @Text = Model.ToDate })
+                @Html.ValidationMessageFor(model => model.ToDate)
+            </div>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <input type="button" id="btnSave" class="btn btn-default" value="Search" onclick="GenerateData()" />
+            <input type="submit" id="btnPDF" class="btn btn-default" value="PDF" />
+        </div>
+    </div>
+</form>
+<div id="divInvoiceHistory">
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('.datetimepicker').datetimepicker({
+            datepicker: true,
+            format: 'd-M-Y',
+            timepicker: false
+        });
+
+        GenerateData();
+    });
+
+    function GenerateData() {
+        var fromDate = $('#FromDate').val();
+        var toDate = $('#ToDate').val();
+
+        if (fromDate == "" || toDate == "") {
+            return;
+        }
+        $('#loader-wrapper').show();
+        $('#divInvoiceHistory').html('');
+        $.ajax({
+            url: "/Manage/GetPaymentHistory",
+            data: {
+                fromDate: fromDate,
+                toDate: toDate
+            },
+            type: 'POST',
+            success: function (data) {
+                $('#divInvoiceHistory').append(data);
+                $('#loader-wrapper').hide();
+            }
+        });
+    };
+</script>

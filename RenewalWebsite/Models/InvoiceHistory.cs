@@ -1,0 +1,21 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace RenewalWebsite.Models
+{
+    public class InvoiceHistory
+    {
+        public int Id { get; set; }
+        public string Email { get; set; }
+        public DateTime Date { get; set; }
+        public decimal Amount { get; set; }
+        public string Currency { get; set; }
+        public decimal ExchangeRate { get; set; }
+        public decimal USDAmount { get; set; }
+        public string Method { get; set; }
+        public string InvoiceNumber { get; set; }
+        public string Description { get; set; }
+    }
+}

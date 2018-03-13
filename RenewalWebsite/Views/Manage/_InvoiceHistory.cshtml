@@ -1,0 +1,41 @@
+﻿@model IEnumerable<RenewalWebsite.Models.InvoiceHistory>
+@using System.Globalization
+
+
+@if (Model == null || !Model.Any())
+{
+    <p>@Localizer["You have no invoices."]</p>
+}
+else
+{
+    <div class="col-lg-12" style="margin-top:15px;">
+        <table class="table table-bordered table-hover table-responsive" width="100%">
+            <thead>
+                <tr>
+                    <th>@Localizer["Date"]</th>
+                    <th>@Localizer["Currency"]</th>
+                    <th>@Localizer["Amount"]</th>
+                    <th>@Localizer["Exchange Rate"]</th>
+                    <th>@Localizer["USD Amount"]</th>
+                    <th>@Localizer["Method"]</th>
+                    <th>@Localizer["Invoice Number"]</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var subscription in Model)
+                {
+                <tr>
+                    <td style="vertical-align:middle;" class="text-left">@(subscription.Date != null ? subscription.Date.ToString("dd-MMM-yyyy") : "")</td>
+                    <td style="vertical-align:middle;" class="text-center">@subscription.Currency</td>
+                    <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.Amount).Replace("$", ""))</td>
+                    <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.ExchangeRate).Replace("$", ""))</td>
+                    <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.USDAmount).Replace("$", ""))</td>
+                    <td style="vertical-align:middle;" class="text-left">@subscription.Method</td>
+                    <td style="vertical-align:middle;" class="text-left">@subscription.InvoiceNumber</td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}

@@ -5,8 +5,8 @@
 @if (Model.Subscriptions == null || !Model.Subscriptions.Any())
 {
     <h4>@Localizer["Manage your subscriptions"]</h4>
-        <hr />
-        <p>@Localizer["You have no subscriptions."]</p>
+    <hr />
+    <p>@Localizer["You have no subscriptions."]</p>
 }
 else
 {
@@ -26,7 +26,7 @@ else
                 @foreach (var subscription in Model.Subscriptions)
                 {
                     <tr>
-                        <td style="vertical-align:middle;">@(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(subscription.Name.Split('_')[0].ToLower()))</td>
+                        <td style="vertical-align:middle;">@(string.IsNullOrEmpty(subscription.Name) ? "" : CultureInfo.CurrentCulture.TextInfo.ToTitleCase(subscription.Name.Split('_')[0].ToLower()))</td>
                         <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", Convert.ToDecimal(subscription.Amount) / 100).Replace("$", ""))</td>
                         <td style="vertical-align:middle;">@subscription.Currency.ToUpper()</td>
                         <td style="vertical-align:middle;">@(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(subscription.Status))</td>

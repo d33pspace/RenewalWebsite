@@ -28,5 +28,6 @@ namespace RenewalWebsite.Data
         public DbSet<Donation> Donations { get; set; }
         public DbSet<EventLog> EventLog { get; set; }
         public DbSet<UnsubscribeUsers> UnsubscribeUsers { get; set; }
+        public DbSet<InvoiceHistory> InvoiceHistory { get; set; }
     }
 }
