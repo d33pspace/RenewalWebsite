@@ -31,7 +31,7 @@
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">@Localizer["Details"]</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab">@Localizer["Password"]</a></li>
                 <!--<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#logins" role="tab">External Logins</a></li>-->
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history" role="tab" onclick="getUserPaymentHistory()">@Localizer["History"]</a></li>
+                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history" role="tab" onclick="getUserPaymentHistory()">@Localizer["History"]</a></li>*@
             </ul>
             <div class="tab-content">
 
@@ -447,10 +447,10 @@
 
                 </div>
 
-                <div id="history" class="tab-pane mt-3">
+                @*<div id="history" class="tab-pane mt-3">
                     <div id="paymentHistory">
                     </div>
-                </div>
+                </div>*@
             </div>
 
         </div>
@@ -515,14 +515,14 @@
         $('#account-tabs li:eq(' + selectedTab + ') a').tab('show');
     };
 
-    function getUserPaymentHistory() {
-        $('#paymentHistory').html('');
-        $.ajax({
-            url: "/Manage/PaymentHistory",
-            data: {},
-            success: function (data) {
-                $('#paymentHistory').append(data);
-            }
-        });
-    }
+    //function getUserPaymentHistory() {
+    //    $('#paymentHistory').html('');
+    //    $.ajax({
+    //        url: "/Manage/PaymentHistory",
+    //        data: {},
+    //        success: function (data) {
+    //            $('#paymentHistory').append(data);
+    //        }
+    //    });
+    //}
 </script>

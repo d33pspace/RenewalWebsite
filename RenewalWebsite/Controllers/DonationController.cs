@@ -12,6 +12,7 @@ using Stripe;
 using RenewalWebsite.Helpers;
 using Microsoft.Extensions.Logging;
 using RenewalWebsite.Utility;
+using RestSharp;
 
 namespace RenewalWebsite.Controllers
 {
@@ -219,6 +220,27 @@ namespace RenewalWebsite.Controllers
                     user.StripeCustomerId = stripeCustomer.Id;
                 }
 
+                if (user.FullName != payment.Name ||
+                   user.AddressLine1 != payment.AddressLine1 ||
+                   user.AddressLine2 != payment.AddressLine2 ||
+                   user.City != payment.City ||
+                   user.State != payment.State ||
+                   user.Country != payment.Country ||
+                   user.Zip != payment.Zip)
+                {
+                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                    var request = new RestRequest(Method.POST);
+                    request.AddParameter("email", user.Email);
+                    request.AddParameter("name", payment.Name);
+                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("city", payment.City);
+                    request.AddParameter("state", payment.State);
+                    request.AddParameter("zip", payment.Zip);
+                    request.AddParameter("country", payment.Country);
+                    // execute the request
+                    IRestResponse response = client.Execute(request);
+                }
+
                 user.FullName = payment.Name;
                 user.AddressLine1 = payment.AddressLine1;
                 user.AddressLine2 = payment.AddressLine2;
@@ -227,7 +249,6 @@ namespace RenewalWebsite.Controllers
                 user.Country = payment.Country;
                 user.Zip = payment.Zip;
                 await _userManager.UpdateAsync(user);
-
 
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
@@ -360,6 +381,27 @@ namespace RenewalWebsite.Controllers
                 var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                 var donation = _donationService.GetById(payment.DonationId);
 
+                if (user.FullName != payment.Name ||
+                   user.AddressLine1 != payment.AddressLine1 ||
+                   user.AddressLine2 != payment.AddressLine2 ||
+                   user.City != payment.City ||
+                   user.State != payment.State ||
+                   user.Country != payment.Country ||
+                   user.Zip != payment.Zip)
+                {
+                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                    var request = new RestRequest(Method.POST);
+                    request.AddParameter("email", user.Email);
+                    request.AddParameter("name", payment.Name);
+                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("city", payment.City);
+                    request.AddParameter("state", payment.State);
+                    request.AddParameter("zip", payment.Zip);
+                    request.AddParameter("country", payment.Country);
+                    // execute the request
+                    IRestResponse response = client.Execute(request);
+                }
+
                 user.FullName = payment.Name;
                 user.AddressLine1 = payment.AddressLine1;
                 user.AddressLine2 = payment.AddressLine2;
@@ -368,7 +410,7 @@ namespace RenewalWebsite.Controllers
                 user.Country = payment.Country;
                 user.Zip = payment.Zip;
                 await _userManager.UpdateAsync(user);
-
+                
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
@@ -624,6 +666,27 @@ namespace RenewalWebsite.Controllers
                     user.StripeCustomerId = stripeCustomer.Id;
                 }
 
+                if (user.FullName != payment.Name ||
+                   user.AddressLine1 != payment.AddressLine1 ||
+                   user.AddressLine2 != payment.AddressLine2 ||
+                   user.City != payment.City ||
+                   user.State != payment.State ||
+                   user.Country != payment.Country ||
+                   user.Zip != payment.Zip)
+                {
+                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                    var request = new RestRequest(Method.POST);
+                    request.AddParameter("email", user.Email);
+                    request.AddParameter("name", payment.Name);
+                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("city", payment.City);
+                    request.AddParameter("state", payment.State);
+                    request.AddParameter("zip", payment.Zip);
+                    request.AddParameter("country", payment.Country);
+                    // execute the request
+                    IRestResponse response = client.Execute(request);
+                }
+
                 user.FullName = payment.Name;
                 user.AddressLine1 = payment.AddressLine1;
                 user.AddressLine2 = payment.AddressLine2;
@@ -632,7 +695,6 @@ namespace RenewalWebsite.Controllers
                 user.Country = payment.Country;
                 user.Zip = payment.Zip;
                 await _userManager.UpdateAsync(user);
-
 
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
@@ -764,6 +826,27 @@ namespace RenewalWebsite.Controllers
 
                 var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                 var donation = _campaignService.GetById(payment.DonationId);
+
+                if (user.FullName != payment.Name ||
+                   user.AddressLine1 != payment.AddressLine1 ||
+                   user.AddressLine2 != payment.AddressLine2 ||
+                   user.City != payment.City ||
+                   user.State != payment.State ||
+                   user.Country != payment.Country ||
+                   user.Zip != payment.Zip)
+                {
+                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                    var request = new RestRequest(Method.POST);
+                    request.AddParameter("email", user.Email);
+                    request.AddParameter("name", payment.Name);
+                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("city", payment.City);
+                    request.AddParameter("state", payment.State);
+                    request.AddParameter("zip", payment.Zip);
+                    request.AddParameter("country", payment.Country);
+                    // execute the request
+                    IRestResponse response = client.Execute(request);
+                }
 
                 user.FullName = payment.Name;
                 user.AddressLine1 = payment.AddressLine1;

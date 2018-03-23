@@ -52,7 +52,6 @@
         if (fromDate == "" || toDate == "") {
             return;
         }
-        $('#loader-wrapper').show();
         $('#divInvoiceHistory').html('');
         $.ajax({
             url: "/Manage/GetPaymentHistory",
@@ -63,7 +62,6 @@
             type: 'POST',
             success: function (data) {
                 $('#divInvoiceHistory').append(data);
-                $('#loader-wrapper').hide();
             }
         });
     };

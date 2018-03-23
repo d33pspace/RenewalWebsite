@@ -620,8 +620,31 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
+
                 if (user != null)
                 {
+                    if (user.FullName != profile.FullName ||
+                   user.AddressLine1 != profile.AddressLine1 ||
+                   user.AddressLine2 != profile.AddressLine2 ||
+                   user.City != profile.City ||
+                   user.State != profile.State ||
+                   user.Country != profile.Country ||
+                   user.Zip != profile.Zip)
+                    {
+
+                        var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                        var request = new RestRequest(Method.POST);
+                        request.AddParameter("email", user.Email);
+                        request.AddParameter("name", profile.FullName);
+                        request.AddParameter("address", profile.AddressLine1 + "<br/>" + profile.AddressLine2);
+                        request.AddParameter("city", profile.City);
+                        request.AddParameter("state", profile.State);
+                        request.AddParameter("zip", profile.Zip);
+                        request.AddParameter("country", profile.Country);
+                        // execute the request
+                        IRestResponse response = client.Execute(request);
+                    }
+
                     user.FullName = profile.FullName;
                     user.AddressLine1 = profile.AddressLine1;
                     user.AddressLine2 = profile.AddressLine2;
@@ -629,20 +652,7 @@ namespace RenewalWebsite.Controllers
                     user.Zip = profile.Zip;
                     user.City = profile.City;
                     user.Country = profile.Country;
-
                     await _userManager.UpdateAsync(user);
-
-                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
-                    var request = new RestRequest(Method.POST);
-                    request.AddParameter("email", user.Email);
-                    request.AddParameter("name", profile.FullName);
-                    request.AddParameter("address", profile.AddressLine1 + "<br/>" + profile.AddressLine2);
-                    request.AddParameter("city", profile.City);
-                    request.AddParameter("state", profile.State);
-                    request.AddParameter("zip", profile.Zip);
-                    request.AddParameter("country", profile.Country);
-                    // execute the request
-                    IRestResponse response = client.Execute(request);
 
                     result.data = "Profile updated successfully";
                     result.status = "1";
