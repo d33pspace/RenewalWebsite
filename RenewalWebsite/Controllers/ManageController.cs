@@ -21,6 +21,7 @@ using System.IO;
 using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
+using Microsoft.AspNetCore.Http;
 
 namespace RenewalWebsite.Controllers
 {
@@ -35,6 +36,8 @@ namespace RenewalWebsite.Controllers
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly ILoggerServicecs _loggerService;
         private readonly IInvoiceHistoryService _invoiceHistoryService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOptions<CurrencySettings> _currencySettings;
         //private readonly IStringLocalizer<DonateController> _localizer;
         private EventLog log;
 
@@ -46,7 +49,9 @@ namespace RenewalWebsite.Controllers
           ISmsSender smsSender,
           IOptions<StripeSettings> stripeSettings,
           ILoggerServicecs loggerService,
-          IInvoiceHistoryService invoiceHistoryService)
+          IInvoiceHistoryService invoiceHistoryService,
+          IHttpContextAccessor httpContextAccessor,
+          IOptions<CurrencySettings> currencySettings)
         //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
@@ -58,6 +63,8 @@ namespace RenewalWebsite.Controllers
             _stripeSettings = stripeSettings;
             //_localizer = localizer;
             _invoiceHistoryService = invoiceHistoryService;
+            _httpContextAccessor = httpContextAccessor;
+            _currencySettings = currencySettings;
         }
 
         //
@@ -635,8 +642,14 @@ namespace RenewalWebsite.Controllers
                         var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
                         var request = new RestRequest(Method.POST);
                         request.AddParameter("email", user.Email);
-                        request.AddParameter("name", profile.FullName);
-                        request.AddParameter("address", profile.AddressLine1 + "<br/>" + profile.AddressLine2);
+                        request.AddParameter("contact_name", profile.FullName);
+                        request.AddParameter("salutation", profile.FullName.Split(' ').Length == 1 ? profile.FullName : profile.FullName.Split(' ')[0]);
+                        request.AddParameter("last_name", profile.FullName.Split(' ').Length == 1 ? "" : profile.FullName.Split(' ')[(profile.FullName.Split(' ').Length - 1)]);
+                        request.AddParameter("address_line_1", profile.AddressLine1);
+                        request.AddParameter("address_line_2", profile.AddressLine2);
+                        request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                        request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                        request.AddParameter("time_zone", profile.TimeZone);
                         request.AddParameter("city", profile.City);
                         request.AddParameter("state", profile.State);
                         request.AddParameter("zip", profile.Zip);

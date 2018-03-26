@@ -50,5 +50,7 @@ namespace RenewalWebsite.Models.ManageViewModels
         public string Message { get; set; }
 
         public CardViewModel card { get; set; }
+
+        public string TimeZone { get; set; }
     }
 }

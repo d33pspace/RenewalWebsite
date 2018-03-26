@@ -69,6 +69,10 @@ namespace RenewalWebsite.Services
                     Amount = Convert.ToInt32(amount * 100),
                     Currency = currency.ToLower(),
                     Nickname = planName,
+                    Product = new StripePlanProductCreateOptions()
+                    {
+                        Name = planName
+                    }
                     //StatementDescriptor = _stripeSettings.Value.StatementDescriptor
                 };
 

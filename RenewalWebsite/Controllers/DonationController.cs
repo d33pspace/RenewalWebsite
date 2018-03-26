@@ -13,6 +13,7 @@ using RenewalWebsite.Helpers;
 using Microsoft.Extensions.Logging;
 using RenewalWebsite.Utility;
 using RestSharp;
+using Microsoft.AspNetCore.Http;
 
 namespace RenewalWebsite.Controllers
 {
@@ -25,6 +26,8 @@ namespace RenewalWebsite.Controllers
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly ICampaignService _campaignService;
         private readonly ILoggerServicecs _loggerService;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOptions<CurrencySettings> _currencySettings;
         private EventLog log;
 
         public DonationController(
@@ -32,13 +35,17 @@ namespace RenewalWebsite.Controllers
             IDonationService donationService,
             IOptions<StripeSettings> stripeSettings,
             ICampaignService campaignService,
-            ILoggerServicecs loggerServicer)
+            ILoggerServicecs loggerServicer,
+            IHttpContextAccessor httpContextAccessor,
+            IOptions<CurrencySettings> currencySettings)
         {
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
             _campaignService = campaignService;
             _loggerService = loggerServicer;
+            _httpContextAccessor = httpContextAccessor;
+            _currencySettings = currencySettings; 
         }
 
         [Route("Donation/Payment")]
@@ -231,8 +238,14 @@ namespace RenewalWebsite.Controllers
                     var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
-                    request.AddParameter("name", payment.Name);
-                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
+                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
+                    request.AddParameter("address_line_1", payment.AddressLine1);
+                    request.AddParameter("address_line_2", payment.AddressLine2);
+                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                    request.AddParameter("time_zone", payment.TimeZone);
                     request.AddParameter("city", payment.City);
                     request.AddParameter("state", payment.State);
                     request.AddParameter("zip", payment.Zip);
@@ -392,8 +405,14 @@ namespace RenewalWebsite.Controllers
                     var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
-                    request.AddParameter("name", payment.Name);
-                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
+                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
+                    request.AddParameter("address_line_1", payment.AddressLine1);
+                    request.AddParameter("address_line_2", payment.AddressLine2);
+                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                    request.AddParameter("time_zone", payment.TimeZone);
                     request.AddParameter("city", payment.City);
                     request.AddParameter("state", payment.State);
                     request.AddParameter("zip", payment.Zip);
@@ -677,8 +696,14 @@ namespace RenewalWebsite.Controllers
                     var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
-                    request.AddParameter("name", payment.Name);
-                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
+                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
+                    request.AddParameter("address_line_1", payment.AddressLine1);
+                    request.AddParameter("address_line_2", payment.AddressLine2);
+                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                    request.AddParameter("time_zone", payment.TimeZone);
                     request.AddParameter("city", payment.City);
                     request.AddParameter("state", payment.State);
                     request.AddParameter("zip", payment.Zip);
@@ -838,8 +863,14 @@ namespace RenewalWebsite.Controllers
                     var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
-                    request.AddParameter("name", payment.Name);
-                    request.AddParameter("address", payment.AddressLine1 + "<br/>" + payment.AddressLine2);
+                    request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
+                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
+                    request.AddParameter("address_line_1", payment.AddressLine1);
+                    request.AddParameter("address_line_2", payment.AddressLine2);
+                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                    request.AddParameter("time_zone", payment.TimeZone);
                     request.AddParameter("city", payment.City);
                     request.AddParameter("state", payment.State);
                     request.AddParameter("zip", payment.Zip);

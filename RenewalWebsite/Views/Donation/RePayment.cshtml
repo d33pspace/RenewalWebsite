@@ -22,6 +22,7 @@
                 <input hidden asp-for="Amount" />
                 <input hidden asp-for="Description" />
                 <input hidden asp-for="DonationId" />
+                <input asp-for="TimeZone" type="hidden">
                 <div class="form-group row">
                     <div class="col-lg-12">
                         <label asp-for="Name" class="col-form-label sr-only">Name</label>
@@ -319,12 +320,11 @@
 </div>
 
 <script type="text/javascript">
-
-    //$(document).ready(function () {
-    //    $("#ddlCurrency").val($("#Currency").val());
-    //});
-
-    //function SetCurrency(item) {
-    //    $("#Currency").val($(item).val());
-    //}
+    $(document).ready(function () {
+        var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";
+        var hour = (moment(new Date()).zone()) < 0 ? (Math.round(((moment(new Date()).zone()) / 60)) * -1) : Math.floor(((moment(new Date()).zone()) / 60));
+        var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
+        var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
+        $('#TimeZone').val(timezone);
+    });
 </script>

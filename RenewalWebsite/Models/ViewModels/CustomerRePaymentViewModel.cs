@@ -59,5 +59,7 @@ namespace RenewalWebsite.Models
         public decimal ExchangeRate { get; set; }
 
         public bool IsCustom { get; set; }
+
+        public string TimeZone { get; set; }
     }
 }

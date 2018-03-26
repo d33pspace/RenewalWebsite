@@ -17,7 +17,7 @@ namespace RenewalWebsite.Services
         private readonly ApplicationDbContext _dbContext;
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly ICurrencyService _currencyService;
-        
+
         public DonationService(ApplicationDbContext dbContext,
             IOptions<StripeSettings> stripeSettings,
             ICurrencyService currencyService)
@@ -33,7 +33,7 @@ namespace RenewalWebsite.Services
                 .GetValues()
                 .ToDictionary(o => o.Key, o => o.Value);
         }
-        
+
         public void Save(Donation donation)
         {
             _dbContext.Donations.Add(donation);
@@ -71,6 +71,10 @@ namespace RenewalWebsite.Services
                     Amount = Convert.ToInt32(amount * 100),
                     Currency = currency.ToLower(),
                     Nickname = planName,
+                    Product = new StripePlanProductCreateOptions()
+                    {
+                        Name = planName
+                    }
                     //StatementDescriptor = _stripeSettings.Value.StatementDescriptor
                 };
 
@@ -84,6 +88,8 @@ namespace RenewalWebsite.Services
                 {
                     plan.Interval = cycle.ToString().ToLower(); // day/month/year 
                 }
+
+
                 return planService.Create(plan);
             }
             else
@@ -94,7 +100,7 @@ namespace RenewalWebsite.Services
         {
             return _dbContext.Donations.Last(d => d.UserId == userId).Id;
         }
-        
+
         /// <summary>
         /// Check is the plan exists. The API does not have an exists endpoint so we have to use an
         /// exception to detemine existence. 
