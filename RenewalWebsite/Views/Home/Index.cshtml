@@ -7,9 +7,11 @@
 
     var currency = CurrencyService.GetCurrent();
     var language = CurrencyService.GetCurrentLanguage();
+    double baseAmountCNY = 10;
+    double baseAmountUSD = 1.47;
 
-    decimal matchAmountCNY = 180000;
-    decimal matchAmountUSD = 27500;
+    //decimal matchAmountCNY = 180000;
+    //decimal matchAmountUSD = 27500;
 }
 
 <div class="row">
@@ -21,13 +23,24 @@
         <h2>@Localizer["Your support helps displaced people gain employment, stability and a permanent home"]</h2>
         <p>@Localizer["We can’t do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home."]</p>
 
-        <h2 class="red-border">@Localizer["Give the gift of warmth this winter!"]</h2>
-        <p>@Localizer["Your gifts provide life-changing opportunities for people like Wu Xueli. Before he joined our job program, his life was at a dead end. In our recent newsletter, read about Wu Xueli's new life at Renewal made possible through your generosity."]</p>
-        <p><a asp-controller="News" asp-action="Index">@Localizer["Read our winter newsletter"]</a></p>
-        <p>@Localizer["Your partnership allows us to continue to help homeless people in Shanghai like Wu Xueli. As we prepare for winter, we need your support to provide warm clothes and food to our guests."]</p>
+        <p><a asp-controller="News" asp-action="Index">@Localizer["Read our Spring Festival newsletter"]</a></p>
+        <h2 class="red-border">
 
-    <div class="clearfix mt-4 mb-5">
-        <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign_2017_12">@Localizer["Give winter clothes today"] <i class="arrow right-arrow"></i></a>
+            @if (currency.Name.Contains("zh"))
+            {
+                <span>@baseAmountCNY.ToString("C", currency)</span>
+            }
+            else
+            {
+                <span>@baseAmountUSD.ToString("C", currency)</span>
+            }
+
+            @Localizer["provides a hot meal"]
+        </h2>
+        <p>@Localizer["Please give hot meals and hope to a homeless person and put them on the path to new life. Your gift below for food, shelter, and basic support like showers, laundry and access to our clothing bank will open a door for someone to start a new life away from the streets."]</p>
+        
+        <div class="clearfix mt-4 mb-5">
+            <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["My gift today"] <i class="arrow right-arrow"></i></a>
+        </div>
     </div>
-</div>
 </div>
