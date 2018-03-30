@@ -126,10 +126,16 @@
   <data name="How your gifts are transforming lives in Shanghai" xml:space="preserve">
     <value>您的捐赠，是如何在上海改变生活</value>
   </data>
+  <data name="ISSUE 10" xml:space="preserve">
+    <value>第10期</value>
+  </data>
   <data name="ISSUE 9" xml:space="preserve">
     <value>第9期</value>
   </data>
-  <data name="We are thankful for your gifts that allow the Renewal Center to continue to provide showers, meals, job training, and more to Shanghai’s homeless population." xml:space="preserve">
-    <value>感谢您的捐赠，是您的支持让日新中心能够继续为上海无家可归人士提供洗澡、食物、工作培训和更多服务。</value>
+  <data name="Read how your gifts are changing lives in the New Year..." xml:space="preserve">
+    <value>您的捐赠在新年里改变了他们的生活。。。</value>
+  </data>
+  <data name="SPRING 2018" xml:space="preserve">
+    <value>2018年春天</value>
   </data>
 </root>
