@@ -15,6 +15,7 @@ using RenewalWebsite.Services;
 using Microsoft.AspNetCore.Authentication;
 using RenewalWebsite.Utility;
 using RestSharp;
+using Microsoft.AspNetCore.Http;
 
 namespace RenewalWebsite.Controllers
 {
@@ -28,6 +29,8 @@ namespace RenewalWebsite.Controllers
         private readonly IViewRenderService _viewRenderService;
         private readonly ILoggerServicecs _loggerService;
         private EventLog log;
+        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IOptions<CurrencySettings> _currencySettings;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -35,7 +38,9 @@ namespace RenewalWebsite.Controllers
             IEmailSender emailSender,
             ISmsSender smsSender,
             IViewRenderService viewRenderService,
-            ILoggerServicecs loggerService)
+            ILoggerServicecs loggerService,
+            IHttpContextAccessor httpContextAccessor,
+            IOptions<CurrencySettings> currencySettings)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -43,6 +48,8 @@ namespace RenewalWebsite.Controllers
             _smsSender = smsSender;
             _viewRenderService = viewRenderService;
             _loggerService = loggerService;
+            _httpContextAccessor = httpContextAccessor;
+            _currencySettings = currencySettings;
         }
 
         //
@@ -123,6 +130,9 @@ namespace RenewalWebsite.Controllers
                     request.AddParameter("email", model.Email);
                     request.AddParameter("name", string.Empty);
                     request.AddParameter("address", string.Empty);
+                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                    request.AddParameter("time_zone", model.TimeZone);
                     // execute the request
                     IRestResponse response = client.Execute(request);
 

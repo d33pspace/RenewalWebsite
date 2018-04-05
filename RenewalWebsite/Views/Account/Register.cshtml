@@ -9,6 +9,7 @@
     <h4>Create a new account.</h4>
     <hr />
     <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="TimeZone" type="hidden">
     <div class="form-group">
         <label asp-for="Email" class="col-md-2 control-label"></label>
         <div class="col-md-10">
@@ -40,3 +41,13 @@
 @section Scripts {
     @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
 }
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";
+        var hour = (moment(new Date()).zone()) < 0 ? (Math.round(((moment(new Date()).zone()) / 60)) * -1) : Math.floor(((moment(new Date()).zone()) / 60));
+        var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
+        var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
+        $('#TimeZone').val(timezone);
+    });
+</script>

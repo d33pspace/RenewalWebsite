@@ -318,6 +318,8 @@
 
 <script type="text/javascript">
     $(document).ready(function () {
+        var country = @Html.Raw(Json.Serialize(Model.Country));
+        $('#Country').val(country);
         var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";
         var hour = (moment(new Date()).zone()) < 0 ? (Math.round(((moment(new Date()).zone()) / 60)) * -1) : Math.floor(((moment(new Date()).zone()) / 60));
         var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
