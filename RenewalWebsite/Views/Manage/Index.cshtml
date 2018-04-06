@@ -470,64 +470,7 @@
     //    });
 
     //})();
-
-
-    var $cardinput = $('#CardNumber');
-    $('#CardNumber').validateCreditCard(function (result) {
-        debugger;
-        //console.log(result);
-        if (result.card_type != null) {
-            switch (result.card_type.name) {
-                case "visa":
-                    $cardinput.css('background-position', '3px -34px');
-                    $cardinput.addClass('card_visa');
-                    break;
-
-                case "visa_electron":
-                    $cardinput.css('background-position', '3px -72px');
-                    $cardinput.addClass('card_visa_electron');
-                    break;
-
-                case "mastercard":
-                    $cardinput.css('background-position', '3px -110px');
-                    $cardinput.addClass('card_mastercard');
-                    break;
-
-                case "maestro":
-                    $cardinput.css('background-position', '3px -148px');
-                    $cardinput.addClass('card_maestro');
-                    break;
-
-                case "discover":
-                    $cardinput.css('background-position', '3px -186px');
-                    $cardinput.addClass('card_discover');
-                    break;
-
-                case "amex":
-                    $cardinput.css('background-position', '3px -223px');
-                    $cardinput.addClass('card_amex');
-                    break;
-
-                default:
-                    $cardinput.css('background-position', '3px 3px');
-                    break;
-            }
-        } else {
-            $cardinput.css('background-position', '3px 3px');
-        }
-
-        // Check for valid card numbere - only show validation checks for invalid Luhn when length is correct so as not to confuse user as they type.
-        if (result.length_valid || $cardinput.val().length > 16) {
-            if (result.luhn_valid) {
-                $cardinput.parent().removeClass('has-error').addClass('has-success');
-            } else {
-                $cardinput.parent().removeClass('has-success').addClass('has-error');
-            }
-        } else {
-            $cardinput.parent().removeClass('has-success').removeClass('has-error');
-        }
-    });
-
+    
     $('.nav-tabs').scrollingTabs(
         {
             scrollToTabEdge: true

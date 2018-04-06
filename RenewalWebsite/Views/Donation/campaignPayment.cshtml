@@ -10,7 +10,7 @@
     #CardNumber {
         background-image: url('/images/cards.png');
         background-position: 3px 3px;
-        background-size: 40px 252px; /* 89 x 560 */
+        background-size: 40px 504px; /* 89 x 560 */
         background-repeat: no-repeat;
         padding-left: 48px;
     }
@@ -380,47 +380,73 @@
         $('#TimeZone').val(timezone);
     });
 
+
     var $cardinput = $('#CardNumber');
     $('#CardNumber').validateCreditCard(function (result) {
         //console.log(result);
         if (result.card_type != null) {
             switch (result.card_type.name) {
                 case "visa":
-                    $cardinput.css('background-position', '3px -34px');
+                    $cardinput.css('background-position', '3px -48px');
                     $cardinput.addClass('card_visa');
                     break;
 
                 case "visa_electron":
-                    $cardinput.css('background-position', '3px -72px');
+                    $cardinput.css('background-position', '3px -102px');
                     $cardinput.addClass('card_visa_electron');
                     break;
 
                 case "mastercard":
-                    $cardinput.css('background-position', '3px -110px');
+                    $cardinput.css('background-position', '3px -155px');
                     $cardinput.addClass('card_mastercard');
                     break;
 
+                case "mastercardseries":
+                    $cardinput.css('background-position', '3px -155px');
+                    $cardinput.addClass('card_mastercardseries');
+                    break;
+
                 case "maestro":
-                    $cardinput.css('background-position', '3px -148px');
+                    $cardinput.css('background-position', '3px -207px');
                     $cardinput.addClass('card_maestro');
                     break;
 
                 case "discover":
-                    $cardinput.css('background-position', '3px -186px');
+                    $cardinput.css('background-position', '3px -261px');
                     $cardinput.addClass('card_discover');
                     break;
 
                 case "amex":
-                    $cardinput.css('background-position', '3px -223px');
+                    $cardinput.css('background-position', '3px -314px');
                     $cardinput.addClass('card_amex');
                     break;
 
+                case "diners_club_carte_blanche":
+                    $cardinput.css('background-position', '3px -367px');
+                    $cardinput.addClass('card_diners_club_carte_blanche');
+                    break;
+
+                case "diners_club_international":
+                    $cardinput.css('background-position', '3px -367px');
+                    $cardinput.addClass('card_diners_club_international');
+                    break;
+
+                case "jcb":
+                    $cardinput.css('background-position', '3px -420px');
+                    $cardinput.addClass('card_jcb');
+                    break;
+
+                case "unionpay":
+                    $cardinput.css('background-position', '3px -473px');
+                    $cardinput.addClass('card_unionpay');
+                    break;
+
                 default:
-                    $cardinput.css('background-position', '3px 3px');
+                    $cardinput.css('background-position', '3px 4px');
                     break;
             }
         } else {
-            $cardinput.css('background-position', '3px 3px');
+            $cardinput.css('background-position', '3px 4px');
         }
 
         // Check for valid card numbere - only show validation checks for invalid Luhn when length is correct so as not to confuse user as they type.
