@@ -9,7 +9,9 @@
 
 
 <div class="container">
-    <h2>Unsubscribe</h2>
+    <h4>@Localizer["Just one more step to unsubscribe..."]</h4>
+    <h2>@email</h2>
+    <p>@Localizer["Use the button below to unsubscribe from all mailings."]</p>
 </div>
 
 <div class="container">
@@ -17,7 +19,8 @@
         <fieldset>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button type="button" id="btnUnsubscribe" class="btn btn-secondary" onclick="unsubscribeUser()">@("Unsubscribe [" + email + "] from all emails")</button>
+                    <!--<button type="button" id="btnUnsubscribe" class="btn btn-secondary" onclick="unsubscribeUser()">@("Unsubscribe " + email + " from all mailings")</button>-->
+                    <button type="button" id="btnUnsubscribe" class="btn btn-secondary" onclick="unsubscribeUser()">@Localizer["Unsubscribe from all mailings"]</button>
                 </div>
             </div>
         </fieldset>
