@@ -8,18 +8,68 @@
     var currency = CurrencyService.GetCurrent();
 }
 <style>
-    #CardNumber {
-        background-image: url('/images/cards.png');
-        background-position: 3px 3px;
-        background-size: 40px 504px; /* 89 x 560 */
-        background-repeat: no-repeat;
-        padding-left: 48px;
+    .ccFormatMonitor p::after {
+        content: url('/images/Default.png');
+    }
+
+    .ccFormatMonitor.cc_type_vs + p::after {
+        content: url('/images/Visa.png');
+    }
+
+    .ccFormatMonitor.cc_type_jc + p::after {
+        content: url('/images/JCB.png');
+    }
+
+    .ccFormatMonitor.cc_type_dci + p::after {
+        content: url('/images/Diners-Club-International-icon.png');
+    }
+
+    .ccFormatMonitor.cc_type_dccb + p::after {
+        content: url('/images/Diners-Club-International-icon.png');
+    }
+
+    .ccFormatMonitor.cc_type_mc + p::after {
+        content: url('/images/MasterCard.png');
+    }
+
+     .ccFormatMonitor.cc_type_mcs + p::after {
+        content: url('/images/MasterCard.png');
+    }
+
+    .ccFormatMonitor.cc_type_mas + p::after {
+        content: url('/images/Mastro.png');
+    }
+
+    .ccFormatMonitor.cc_type_dis + p::after {
+        content: url('/images/Discover.png');
+    }
+
+    .ccFormatMonitor.cc_type_union + p::after {
+        content: url('/images/UnionPay.png');
+    }
+
+    .ccFormatMonitor.cc_type_ax + p::after {
+        content: url('/images/AmericalExpress.png');
+    }
+
+    .ccFormatMonitor.cc_type_unknown + p::after {
+        content: url('/images/Default.png');
     }
 </style>
 <div class="container">
     <h2 class="red-border">
         Your @Model.Frequency.ToLower() gift of @CurrencyService.GetSymbol(currency)@Model.Amount
     </h2>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success">
+                For your security, Renewal does not store credit card details. Stripe is our secure payment provider.
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="container">
@@ -33,6 +83,7 @@
                 <input hidden asp-for="Description" />
                 <input hidden asp-for="DonationId" />
                 <input asp-for="TimeZone" type="hidden">
+                <input type="hidden" asp-for="ExpiryYear" />
                 <div class="form-group row">
                     <div class="col-lg-12">
                         <label asp-for="Name" class="col-form-label sr-only">@Localizer["Full Name"]</label>
@@ -315,8 +366,10 @@
                 <div class="form-group row">
                     <div class="col-lg-12">
                         <label asp-for="CardNumber" class="col-form-label sr-only">@Localizer["Card Number"]</label>
-                        <input type="text" class="form-control" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" size="19" maxlength="19" data-stripe="number">
-                        <span class="payment-errors required"></span>
+                        <div class="input-group">
+                            <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card autocomplete="off">
+                            <p class="well" style="margin-top:5px;margin-bottom:0px;margin-left:5px;"></p>
+                        </div>
                     </div>
                 </div>
                 <div class="row">
@@ -341,15 +394,7 @@
                                     </select>
                                 </div>
                                 <div class="col-6 pl5">
-                                    <select class="form-control" asp-for="ExpiryYear">
-                                        <option value="17">2017</option>
-                                        <option value="18">2018</option>
-                                        <option value="19">2019</option>
-                                        <option value="20">2020</option>
-                                        <option value="21">2021</option>
-                                        <option value="22">2022</option>
-                                        <option value="23">2023</option>
-                                    </select>
+                                    <select class="form-control" id="AddExpiryYear" name="AddExpiryYear" onchange="setNewExpiryYear(this)"></select>
                                 </div>
                             </div>
                         </div>
@@ -358,7 +403,7 @@
                         <label class="control-label" asp-for="Cvc">@Localizer["Security Code"]</label>
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control" asp-for="Cvc" placeholder="@Localizer["CVV/CVC"]">
+                                <input type="text" class="form-control" asp-for="Cvc" placeholder="@Localizer["CVV/CVC"]" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -374,7 +419,6 @@
     </div>
 </div>
 
-
 <script type="text/javascript">
     $(document).ready(function () {
         var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";
@@ -382,85 +426,22 @@
         var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
         var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         $('#TimeZone').val(timezone);
-    });
 
-    var $cardinput = $('#CardNumber');
-    $('#CardNumber').validateCreditCard(function (result) {
-        //console.log(result);
-        if (result.card_type != null) {
-            switch (result.card_type.name) {
-                case "visa":
-                    $cardinput.css('background-position', '3px -48px');
-                    $cardinput.addClass('card_visa');
-                    break;
-
-                case "visa_electron":
-                    $cardinput.css('background-position', '3px -102px');
-                    $cardinput.addClass('card_visa_electron');
-                    break;
-
-                case "mastercard":
-                    $cardinput.css('background-position', '3px -155px');
-                    $cardinput.addClass('card_mastercard');
-                    break;
-
-                case "mastercardseries":
-                    $cardinput.css('background-position', '3px -155px');
-                    $cardinput.addClass('card_mastercardseries');
-                    break;
-
-                case "maestro":
-                    $cardinput.css('background-position', '3px -207px');
-                    $cardinput.addClass('card_maestro');
-                    break;
-
-                case "discover":
-                    $cardinput.css('background-position', '3px -261px');
-                    $cardinput.addClass('card_discover');
-                    break;
-
-                case "amex":
-                    $cardinput.css('background-position', '3px -314px');
-                    $cardinput.addClass('card_amex');
-                    break;
-
-                case "diners_club_carte_blanche":
-                    $cardinput.css('background-position', '3px -367px');
-                    $cardinput.addClass('card_diners_club_carte_blanche');
-                    break;
-
-                case "diners_club_international":
-                    $cardinput.css('background-position', '3px -367px');
-                    $cardinput.addClass('card_diners_club_international');
-                    break;
-
-                case "jcb":
-                    $cardinput.css('background-position', '3px -420px');
-                    $cardinput.addClass('card_jcb');
-                    break;
-
-                case "unionpay":
-                    $cardinput.css('background-position', '3px -473px');
-                    $cardinput.addClass('card_unionpay');
-                    break;
-
-                default:
-                    $cardinput.css('background-position', '3px 4px');
-                    break;
-            }
-        } else {
-            $cardinput.css('background-position', '3px 4px');
+        var year = new Date().getFullYear();
+        for (var i = 0; i < 10; i++) {
+            var value = (year + i).toString();
+            var opt = new Option(value, value.slice(-2));
+            $('#AddExpiryYear').append(opt);
         }
 
-        // Check for valid card numbere - only show validation checks for invalid Luhn when length is correct so as not to confuse user as they type.
-        if (result.length_valid || $cardinput.val().length > 16) {
-            if (result.luhn_valid) {
-                $cardinput.parent().removeClass('has-error').addClass('has-success');
-            } else {
-                $cardinput.parent().removeClass('has-success').addClass('has-error');
-            }
-        } else {
-            $cardinput.parent().removeClass('has-success').removeClass('has-error');
-        }
+        var value = (year).toString();
+        $('#ExpiryYear').val(parseInt(value.slice(-2)));
     });
+
+    function setNewExpiryYear(item) {
+        var selectedVal = parseInt(item.value);
+        $('#ExpiryYear').val(selectedVal);
+    }
+    
+    $('input[data-blur-credit-card]').ccmask({});
 </script>

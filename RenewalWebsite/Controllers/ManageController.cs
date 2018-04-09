@@ -38,6 +38,7 @@ namespace RenewalWebsite.Controllers
         private readonly IInvoiceHistoryService _invoiceHistoryService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOptions<CurrencySettings> _currencySettings;
+        private readonly ICurrencyService _currencyService;
         //private readonly IStringLocalizer<DonateController> _localizer;
         private EventLog log;
 
@@ -51,7 +52,8 @@ namespace RenewalWebsite.Controllers
           ILoggerServicecs loggerService,
           IInvoiceHistoryService invoiceHistoryService,
           IHttpContextAccessor httpContextAccessor,
-          IOptions<CurrencySettings> currencySettings)
+          IOptions<CurrencySettings> currencySettings,
+          ICurrencyService currencyService)
         //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
@@ -65,6 +67,7 @@ namespace RenewalWebsite.Controllers
             _invoiceHistoryService = invoiceHistoryService;
             _httpContextAccessor = httpContextAccessor;
             _currencySettings = currencySettings;
+            _currencyService = currencyService;
         }
 
         //
@@ -643,6 +646,7 @@ namespace RenewalWebsite.Controllers
                         var request = new RestRequest(Method.POST);
                         request.AddParameter("email", user.Email);
                         request.AddParameter("contact_name", profile.FullName);
+                        request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
                         request.AddParameter("salutation", profile.FullName.Split(' ').Length == 1 ? profile.FullName : profile.FullName.Split(' ')[0]);
                         request.AddParameter("last_name", profile.FullName.Split(' ').Length == 1 ? "" : profile.FullName.Split(' ')[(profile.FullName.Split(' ').Length - 1)]);
                         request.AddParameter("address_line_1", profile.AddressLine1);
@@ -753,7 +757,7 @@ namespace RenewalWebsite.Controllers
                             Number = card.CardNumber,
                             Cvc = card.Cvc,
                             ExpirationMonth = card.ExpiryMonth,
-                            ExpirationYear = card.ExpiryYear,
+                            ExpirationYear = card.NewExpiryYear,
                             //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
                             //Description = "",
                             AddressLine1 = user.AddressLine1,

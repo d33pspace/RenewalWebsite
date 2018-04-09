@@ -25,9 +25,8 @@ namespace RenewalWebsite.Controllers
         }
 
         [Route("/unsubscribe")]
-        public IActionResult Index()
+        public IActionResult Index(string email)
         {
-            string email;
             try
             {
                 email = Convert.ToString(HttpContext.Request.Query["email"]);
@@ -42,9 +41,8 @@ namespace RenewalWebsite.Controllers
         }
 
         [Route("/preference")]
-        public IActionResult Preference()
+        public IActionResult Preference(string email)
         {
-            string email;
             try
             {
                 email = Convert.ToString(HttpContext.Request.Query["email"]);

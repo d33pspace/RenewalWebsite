@@ -41,7 +41,7 @@ namespace RenewalWebsite.Models.ManageViewModels
         [Range(1, 12, ErrorMessageResourceName = "InvalidMonth", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryMonth { get; set; }
 
-        [Range(17, 30, ErrorMessageResourceName = "InvalidYear", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
-        public int ExpiryYear { get; set; }
+        //[Range(17, 30, ErrorMessageResourceName = "InvalidYear", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        public int NewExpiryYear { get; set; }
     }
 }

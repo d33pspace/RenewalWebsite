@@ -28,6 +28,7 @@ namespace RenewalWebsite.Controllers
         private readonly ILoggerServicecs _loggerService;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOptions<CurrencySettings> _currencySettings;
+        private readonly ICurrencyService _currencyService;
         private EventLog log;
 
         public DonationController(
@@ -37,7 +38,8 @@ namespace RenewalWebsite.Controllers
             ICampaignService campaignService,
             ILoggerServicecs loggerServicer,
             IHttpContextAccessor httpContextAccessor,
-            IOptions<CurrencySettings> currencySettings)
+            IOptions<CurrencySettings> currencySettings,
+            ICurrencyService currencyService)
         {
             _userManager = userManager;
             _donationService = donationService;
@@ -45,7 +47,8 @@ namespace RenewalWebsite.Controllers
             _campaignService = campaignService;
             _loggerService = loggerServicer;
             _httpContextAccessor = httpContextAccessor;
-            _currencySettings = currencySettings; 
+            _currencySettings = currencySettings;
+            _currencyService = currencyService;
         }
 
         [Route("Donation/Payment")]
@@ -239,6 +242,7 @@ namespace RenewalWebsite.Controllers
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
                     request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
                     request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
                     request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
                     request.AddParameter("address_line_1", payment.AddressLine1);
@@ -406,6 +410,7 @@ namespace RenewalWebsite.Controllers
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
                     request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
                     request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
                     request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
                     request.AddParameter("address_line_1", payment.AddressLine1);
@@ -697,6 +702,7 @@ namespace RenewalWebsite.Controllers
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
                     request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
                     request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
                     request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
                     request.AddParameter("address_line_1", payment.AddressLine1);
@@ -864,6 +870,7 @@ namespace RenewalWebsite.Controllers
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", user.Email);
                     request.AddParameter("contact_name", payment.Name);
+                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
                     request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
                     request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
                     request.AddParameter("address_line_1", payment.AddressLine1);

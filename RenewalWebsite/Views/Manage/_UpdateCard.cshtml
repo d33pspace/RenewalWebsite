@@ -1,7 +1,8 @@
 ﻿@model RenewalWebsite.Models.ManageViewModels.CardViewModel
 <form asp-controller="Manage" asp-action="UpdateCard" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_success(this,data,xhr);" data-ajax-failure="fun_fail(this,data,xhr);">
     <fieldset>
-        <div asp-validation-summary="All" class="text-danger"></div>        
+        <div asp-validation-summary="All" class="text-danger"></div> 
+        <input type="hidden" asp-for="ExpiryYear">
         <input hidden asp-for="cardId" />
         <div class="form-group">
             <label class="col-sm-3 control-label">@Localizer["Card Number"]</label>
@@ -39,15 +40,7 @@
                                 </select>
                             </div>
                             <div class="col-3 pr5">
-                                <select class="form-control" asp-for="ExpiryYear">
-                                    <option value="17">2017</option>
-                                    <option value="18">2018</option>
-                                    <option value="19">2019</option>
-                                    <option value="20">2020</option>
-                                    <option value="21">2021</option>
-                                    <option value="22">2022</option>
-                                    <option value="23">2023</option>
-                                </select>
+                                <select class="form-control" id="UpdateExpiryYear" name="UpdateExpiryYear" onchange="setExpiryYear(this)"></select>
                             </div>
                             @*<span asp-validation-for="ExpiryMonth" class="text-danger"></span>
                             <span asp-validation-for="ExpiryYear" class="text-danger"></span>*@
@@ -65,6 +58,24 @@
     </fieldset>
 </form>
 <script type="text/javascript">
+    $(document).ready(function () {
+        
+        var year = new Date().getFullYear();
+        for (var i = 0; i < 10; i++) {
+            var value = (year + i).toString();
+            var opt = new Option(value, value.slice(-2));
+            $('#UpdateExpiryYear').append(opt);
+        }
+
+        var value = (year).toString();
+        $('#UpdateExpiryYear').val(parseInt(value.slice(-2)));
+    });
+
+    function setExpiryYear(item) {
+        var selectedVal = parseInt(item.value);
+        $('#ExpiryYear').val(selectedVal);
+    }
+
     function fun_success(ele, data, xhr) {
         if (data.status == "1") {
             window.location = "/Manage/Index?message=&tabId=1";
