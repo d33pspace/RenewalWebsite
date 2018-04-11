@@ -51,10 +51,10 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>DataAnnotations.resx</DependentUpon>
     </Compile>
-    <Compile Update="Resources\Views.Manage._AddNewCard.Designer.cs">
+    <Compile Update="Resources\Views.Manage._AddNewCard.zh-CN.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Views.Manage._AddNewCard.resx</DependentUpon>
+      <DependentUpon>Views.Manage._AddNewCard.zh-CN.resx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -124,9 +124,9 @@
     <EmbeddedResource Update="Resources\Views.Manage.Index.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views.Manage._AddNewCard.resx">
+    <EmbeddedResource Update="Resources\Views.Manage._AddNewCard.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Views.Manage._AddNewCard.Designer.cs</LastGenOutput>
+      <LastGenOutput>Views.Manage._AddNewCard.zh-CN.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Manage._UpdateCard.zh-cn.resx">
       <Generator>ResXFileCodeGenerator</Generator>

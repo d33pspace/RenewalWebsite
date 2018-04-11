@@ -31,6 +31,7 @@ namespace RenewalWebsite.Controllers
         private EventLog log;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOptions<CurrencySettings> _currencySettings;
+        private readonly ICurrencyService _currencyService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -40,7 +41,8 @@ namespace RenewalWebsite.Controllers
             IViewRenderService viewRenderService,
             ILoggerServicecs loggerService,
             IHttpContextAccessor httpContextAccessor,
-            IOptions<CurrencySettings> currencySettings)
+            IOptions<CurrencySettings> currencySettings,
+            ICurrencyService currencyService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -50,6 +52,7 @@ namespace RenewalWebsite.Controllers
             _loggerService = loggerService;
             _httpContextAccessor = httpContextAccessor;
             _currencySettings = currencySettings;
+            _currencyService = currencyService;
         }
 
         //
@@ -129,6 +132,7 @@ namespace RenewalWebsite.Controllers
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", model.Email);
                     request.AddParameter("name", string.Empty);
+                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
                     request.AddParameter("address", string.Empty);
                     request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
                     request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());

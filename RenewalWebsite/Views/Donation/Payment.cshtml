@@ -32,7 +32,7 @@
         content: url('/images/MasterCard.png');
     }
 
-     .ccFormatMonitor.cc_type_mcs + p::after {
+    .ccFormatMonitor.cc_type_mcs + p::after {
         content: url('/images/MasterCard.png');
     }
 
@@ -60,16 +60,6 @@
     <h2 class="red-border">
         Your @Model.Frequency.ToLower() gift of @CurrencyService.GetSymbol(currency)@Model.Amount
     </h2>
-</div>
-
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success">
-                For your security, Renewal does not store credit card details. Stripe is our secure payment provider.
-            </div>
-        </div>
-    </div>
 </div>
 
 <div class="container">
@@ -367,7 +357,7 @@
                     <div class="col-lg-12">
                         <label asp-for="CardNumber" class="col-form-label sr-only">@Localizer["Card Number"]</label>
                         <div class="input-group">
-                            <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card autocomplete="off">
+                            <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card maxlength="19" autocomplete="off">
                             <p class="well" style="margin-top:5px;margin-bottom:0px;margin-left:5px;"></p>
                         </div>
                     </div>
@@ -403,7 +393,7 @@
                         <label class="control-label" asp-for="Cvc">@Localizer["Security Code"]</label>
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control" asp-for="Cvc" placeholder="@Localizer["CVV/CVC"]" autocomplete="off">
+                                <input type="text" class="form-control" asp-for="Cvc" placeholder="@Localizer["CVV/CVC"]" maxlength="3" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -416,6 +406,14 @@
                 </div>
             </fieldset>
         </form>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <span>For your security, Renewal does not store credit card details. Stripe is our secure payment provider.</span>
+        </div>
     </div>
 </div>
 
@@ -442,6 +440,6 @@
         var selectedVal = parseInt(item.value);
         $('#ExpiryYear').val(selectedVal);
     }
-    
+
     $('input[data-blur-credit-card]').ccmask({});
 </script>

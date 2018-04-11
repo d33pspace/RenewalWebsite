@@ -6,7 +6,7 @@
         <input hidden asp-for="cardId" />
         <div class="form-group">
             <label class="col-sm-3 control-label">@Localizer["Card Number"]</label>
-            <div class="col-sm-6">
+            <div class="col-sm-4">
                 <input type="text" readonly class="form-control" asp-for="Last4Digit" value="****@Model.Last4Digit" />
             </div>
         </div>
@@ -19,11 +19,11 @@
         </div>*@
         <div class="row">
             <div class="col-md-12">
-                <div class="form-group col-md-12 col-sm-12">
+                <div class="form-group col-md-6 col-sm-6">
                     <label class="control-label" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
                     <div>
                         <div class="row">
-                            <div class="col-3 pr5">
+                            <div class="col-3">
                                 <select class="form-control" asp-for="ExpiryMonth">
                                     <option value="01">Jan (01)</option>
                                     <option value="02">Feb (02)</option>
@@ -39,7 +39,7 @@
                                     <option value="12">Dec (12)</option>
                                 </select>
                             </div>
-                            <div class="col-3 pr5">
+                            <div class="col-3">
                                 <select class="form-control" id="UpdateExpiryYear" name="UpdateExpiryYear" onchange="setExpiryYear(this)"></select>
                             </div>
                             @*<span asp-validation-for="ExpiryMonth" class="text-danger"></span>
@@ -57,6 +57,13 @@
         </div>
     </fieldset>
 </form>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <span>For your security, Renewal does not store credit card details. Stripe is our secure payment provider.</span>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     $(document).ready(function () {
         

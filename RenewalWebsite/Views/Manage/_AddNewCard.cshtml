@@ -24,8 +24,8 @@
     .ccFormatMonitor.cc_type_mc + p::after {
         content: url('/images/MasterCard.png');
     }
-    
-     .ccFormatMonitor.cc_type_mcs + p::after {
+
+    .ccFormatMonitor.cc_type_mcs + p::after {
         content: url('/images/MasterCard.png');
     }
 
@@ -55,10 +55,10 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <input type="hidden" asp-for="NewExpiryYear">
             <div class="form-group row">
-                <div class="col-lg-12">
+                <div class="col-lg-9">
                     <label asp-for="CardNumber" class="control-label">@Localizer["Card Number"]</label>
                     <div class="input-group">
-                        <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card autocomplete="off">
+                        <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card maxlength="19" autocomplete="off">
                         <p class="well" style="margin-top:5px;margin-bottom:0px;margin-left:5px;"></p>
                     </div>
                 </div>
@@ -93,8 +93,8 @@
                 <div class="col-lg-6 col-md-12 form-group">
                     <label class="control-label" asp-for="Cvc">@Localizer["Security Code"]</label>
                     <div class="row">
-                        <div class="col-12">
-                            <input type="text" class="form-control" asp-for="Cvc" placeholder="@Localizer["CVV/CVC"]" autocomplete="off">
+                        <div class="col-6">
+                            <input type="text" class="form-control" asp-for="Cvc" placeholder="@Localizer["CVV/CVC"]" maxlength="3" autocomplete="off">
                         </div>
                     </div>
                 </div>
@@ -107,6 +107,13 @@
             </div>
         </fieldset>
     </form>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <span>For your security, Renewal does not store credit card details. Stripe is our secure payment provider.</span>
+        </div>
+    </div>
 </div>
 <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
 <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
@@ -122,7 +129,7 @@
 
         var value = (year).toString();
         $('#NewExpiryYear').val(parseInt(value.slice(-2)));
-        
+
     });
 
     function setNewExpiryYear(item) {

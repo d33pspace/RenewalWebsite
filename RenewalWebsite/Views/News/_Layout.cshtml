@@ -15,14 +15,14 @@
                     <img class="renewal-logo-news" src="~/images/renewal-logo-white.png" data-at2x="~/images/renewal-logo-white@2x.png" width="190" />
                     <h1>Re:news</h1>
                     <h2 class="subheading">@Localizer["How your gifts are transforming lives in Shanghai"]</h2>
-                    <div class="left"><h6>@ViewData["IssueNo"]</h6></div><div class="right"><h6>@ViewData["IssueDate"]</h6></div>
+                    <div class="left"><h6>@Localizer["ISSUE 10"]</h6></div><div class="right"><h6>@Localizer["SPRING 2018"]</h6></div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 news issue-10">
                 @*<img src="~/images/news/issue8/news-web-header.jpg" height="629px" width="100%" />*@
             </div>
         </div>
-        <figcaption class="figure-caption caption news-caption chinese">@ViewData["CoverPhotoCaption"]</figcaption>
+        <figcaption class="figure-caption caption news-caption chinese">@Localizer["Read how your gifts are changing lives in the New Year..."]</figcaption>
     </header>
     <article class="mb-5">
         @RenderBody()

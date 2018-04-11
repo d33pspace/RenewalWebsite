@@ -61,15 +61,6 @@
     </h2>
 </div>
 <div class="container">
-    <div class="row">
-        <div class="col-md-12">
-            <div class="alert alert-success">
-                For your security, Renewal does not store credit card details. Stripe is our secure payment provider.
-            </div>
-        </div>
-    </div>
-</div>
-<div class="container">
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <form action="/donation/CampaignPayment" method="POST" role="form">
             <fieldset>
@@ -364,7 +355,7 @@
                     <div class="col-lg-12">
                         <label asp-for="CardNumber" class="col-form-label sr-only">Card Numbers</label>
                         <div class="input-group">
-                            <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card autocomplete="off">
+                            <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card maxlength="19" autocomplete="off">
                             <p class="well" style="margin-top:5px;margin-bottom:0px;margin-left:5px;"></p>
                         </div>
                     </div>
@@ -400,7 +391,7 @@
                         <label class="control-label" asp-for="Cvc"></label>
                         <div class="row">
                             <div class="col-8">
-                                <input type="text" class="form-control" asp-for="Cvc" placeholder="Security Code" autocomplete="off">
+                                <input type="text" class="form-control" asp-for="Cvc" placeholder="Security Code" maxlength="3" autocomplete="off">
                             </div>
                         </div>
                     </div>
@@ -414,7 +405,13 @@
         </form>
     </div>
 </div>
-
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <span>For your security, Renewal does not store credit card details. Stripe is our secure payment provider.</span>
+        </div>
+    </div>
+</div>
 <script type="text/javascript">
     $(document).ready(function () {
         var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";

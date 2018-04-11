@@ -117,25 +117,25 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DECEMBER 2017" xml:space="preserve">
-    <value>2017年12月</value>
+  <data name="Cancel" xml:space="preserve">
+    <value>取消</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>主页</value>
+  <data name="Card Number" xml:space="preserve">
+    <value>卡号</value>
   </data>
-  <data name="How your gifts are transforming lives in Shanghai" xml:space="preserve">
-    <value>您的捐赠，是如何在上海改变生活</value>
+  <data name="CVV/CVC" xml:space="preserve">
+    <value />
   </data>
-  <data name="ISSUE 10" xml:space="preserve">
-    <value>第10期</value>
+  <data name="Debit/Credit Card Number" xml:space="preserve">
+    <value />
   </data>
-  <data name="ISSUE 9" xml:space="preserve">
-    <value>第9期</value>
+  <data name="Expiration Date" xml:space="preserve">
+    <value>期限</value>
   </data>
-  <data name="Read how your gifts are changing lives in the New Year..." xml:space="preserve">
-    <value>您的捐赠在新年里改变了他们的生活。。。</value>
+  <data name="Save" xml:space="preserve">
+    <value>保存</value>
   </data>
-  <data name="SPRING 2018" xml:space="preserve">
-    <value>2018年春天</value>
+  <data name="Security Code" xml:space="preserve">
+    <value>卡确认的价值</value>
   </data>
 </root>
