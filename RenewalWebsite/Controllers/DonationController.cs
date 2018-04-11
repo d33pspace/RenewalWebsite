@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Http;
 namespace RenewalWebsite.Controllers
 {
     [Authorize]
-    public class DonationController : Controller
+    public class DonationController : Controller 
     {
         private const string DonationCaption = "Renewal Center donation";
         private readonly IDonationService _donationService;
