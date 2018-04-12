@@ -355,7 +355,7 @@
                     <div class="col-lg-12">
                         <label asp-for="CardNumber" class="col-form-label sr-only">Card Numbers</label>
                         <div class="input-group">
-                            <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card maxlength="19" autocomplete="off">
+                            <input type="text" class="ccFormatMonitor form-control cc_type_unknown" asp-for="CardNumber" placeholder="@Localizer["Debit/Credit Card Number"]" data-blur-credit-card autocomplete="off">
                             <p class="well" style="margin-top:5px;margin-bottom:0px;margin-left:5px;"></p>
                         </div>
                     </div>
@@ -435,6 +435,4 @@
         var selectedVal = parseInt(item.value);
         $('#ExpiryYear').val(selectedVal);
     }
-
-    $('input[data-blur-credit-card]').ccmask({});
 </script>

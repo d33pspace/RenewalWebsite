@@ -16,6 +16,7 @@
             code: 'ax',
             pattern: /^3[47]/,
             valid_length: [15],
+            space_length: [2],
             formats: [
                 {
                     length: 15,
@@ -27,6 +28,7 @@
             code: 'dccb',
             pattern: /^30[0-5]/,
             valid_length: [14],
+            space_length: [3],
             formats: [
                 {
                     length: 14,
@@ -38,6 +40,7 @@
             code: 'dci',
             pattern: /^38/,
             valid_length: [14],
+            space_length: [3],
             formats: [
                 {
                     length: 14,
@@ -49,6 +52,7 @@
             code: 'jc',
             pattern: /^35(2[89]|[3-8][0-9])/,
             valid_length: [16],
+            space_length: [3],
             formats: [
                 {
                     length: 16,
@@ -60,6 +64,7 @@
             code: 'vs',
             pattern: /^4/,
             valid_length: [16],
+            space_length: [3],
             formats: [
                 {
                     length: 16,
@@ -71,6 +76,7 @@
             code: 'mc',
             pattern: /^5[1-5]/,
             valid_length: [16],
+            space_length: [3],
             formats: [
                 {
                     length: 16,
@@ -82,6 +88,7 @@
             code: 'mas',
             pattern: /^(5018|5020|5038|6304|6759|6761|6763)[0-9]{8,15}/,
             valid_length: [16],
+            space_length: [3],
             formats: [
                 {
                     length: 16,
@@ -93,6 +100,7 @@
             code: 'dis',
             pattern: /^(6011|622(12[6-9]|1[3-9][0-9]|[2-8][0-9]{2}|9[0-1][0-9]|92[0-5]|64[4-9])|65)/,
             valid_length: [16],
+            space_length: [3],
             formats: [
                 {
                     length: 16,
@@ -104,20 +112,21 @@
             code: 'union',
             pattern: /^(62[0-9])/,
             valid_length: [16, 17, 18, 19],
+            space_length: [4],
             formats: [
                 {
                     length: 16,
                     format: 'xxxx xxxx xxxx xxxx'
                 }, {
                     length: 17,
-                    format: 'xxxx xxxx xxxx xxxxx'
+                    format: 'xxxx xxxx xxxx xxxx x'
                 },
                 , {
                     length: 18,
-                    format: 'xxxx xxxx xxxx xxxxxx'
+                    format: 'xxxx xxxx xxxx xxxx xx'
                 }, {
                     length: 19,
-                    format: 'xxxx xxxx xxxx xxxxxxx'
+                    format: 'xxxx xxxx xxxx xxxx xxx'
                 }
             ]
         }, {
@@ -125,6 +134,20 @@
             code: 'mcs',
             pattern: /^22[0-9]/,
             valid_length: [16],
+            space_length: [3],
+            formats: [
+                {
+                    length: 16,
+                    format: 'xxxx xxxx xxxx xxxx'
+                }
+            ]
+        },
+        {
+            name: 'unknown',
+            code: 'unknown',
+            pattern: '',
+            valid_length: [16],
+            space_length: [3],
             formats: [
                 {
                     length: 16,
@@ -150,6 +173,15 @@
 	  *
 	  */
     this.getCardType = function (cc_num) {
+        for (var i in _self.card_types) {
+            var card_type = _self.card_types[i];
+            if (cc_num.match(card_type.pattern) && _self.isValidLength(cc_num, card_type)) {
+                return card_type;
+            }
+        }
+    };
+
+    this.getCardLength = function (cc_num) {
         for (var i in _self.card_types) {
             var card_type = _self.card_types[i];
             if (cc_num.match(card_type.pattern) && _self.isValidLength(cc_num, card_type)) {
@@ -205,6 +237,11 @@
     this.monitorCcFormat = function ($elem) {
         var cc_num = $elem.val().replace(/\D/g, '');
         var card_type = _self.getCardType(cc_num);
+        if (card_type != null) {
+            var card_length = Math.max.apply(Math, card_type.valid_length);
+            var space_length = Math.max(card_type.space_length);
+            ($elem).attr('maxlength', (card_length + space_length));
+        }
         $elem.val(_self.formatCardNumber(cc_num, card_type));
         _self.addCardClassIdentifier($elem, card_type);
     };
@@ -235,9 +272,10 @@
         $(document).find('.ccFormatMonitor').each(function () {
             var $elem = $(this);
             if ($elem.is('input')) {
-                $elem.on('input', function () {
+                $elem.bind('input', function () {
                     _self.monitorCcFormat($elem);
                 });
+                _self.monitorCcFormat($elem);
             }
         });
     });

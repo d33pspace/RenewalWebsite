@@ -66,7 +66,7 @@ namespace RenewalWebsite.Controllers
                 var currentCulture = feature.RequestCulture.Culture;
                 var culture = currentCulture.Name == "en-US" ? "zh-CN" : "en-US";
                 SetLanguage(culture);
-                return LocalRedirect(returnUrl);
+                return Redirect(Request.Headers["Referer"].ToString());
             }
             catch (Exception ex)
             {
