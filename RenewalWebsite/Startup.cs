@@ -54,6 +54,7 @@ namespace RenewalWebsite
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Session cache
             services.AddDistributedMemoryCache();
@@ -177,7 +178,7 @@ namespace RenewalWebsite
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 // Indicate default culture here.
-                DefaultRequestCulture = new RequestCulture("zh-CN"),
+                DefaultRequestCulture = new RequestCulture("en-US"),
                 //DefaultRequestCulture = new RequestCulture("en-US"),
                 // Formatting numbers, dates, etc.
                 SupportedCultures = supportedCultures,

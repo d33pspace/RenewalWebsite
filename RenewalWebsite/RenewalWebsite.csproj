@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
+    <UserSecretsId>User-Secret-ID</UserSecretsId>
   </PropertyGroup>
 
 
@@ -91,6 +92,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Controllers.DonateController.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.ManageController.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\DataAnnotations.resx">

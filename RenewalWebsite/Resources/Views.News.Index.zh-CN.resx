@@ -291,4 +291,16 @@
   <data name="Your generous help has changed lives over an amazing decade of outreach" xml:space="preserve">
     <value>您慷慨的资助在过去的十年间给这个最容易受影响的人群带来了让人不可思议的改变</value>
   </data>
+  <data name="ISSUE 10" xml:space="preserve">
+    <value>第10期</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>简报</value>
+  </data>
+  <data name="Read how your gifts are changing lives in the New Year..." xml:space="preserve">
+    <value>Read how your gifts are changing lives in the New Year...</value>
+  </data>
+  <data name="SPRING 2018" xml:space="preserve">
+    <value>SPRING 2018</value>
+  </data>
 </root>

@@ -22,6 +22,7 @@ using System.Text;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Hosting;
 
 namespace RenewalWebsite.Controllers
 {
@@ -39,6 +40,8 @@ namespace RenewalWebsite.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOptions<CurrencySettings> _currencySettings;
         private readonly ICurrencyService _currencyService;
+        private readonly IHostingEnvironment _hostingEnvironment;
+        private readonly IStringLocalizer<ManageController> _localizer;
         //private readonly IStringLocalizer<DonateController> _localizer;
         private EventLog log;
 
@@ -53,7 +56,9 @@ namespace RenewalWebsite.Controllers
           IInvoiceHistoryService invoiceHistoryService,
           IHttpContextAccessor httpContextAccessor,
           IOptions<CurrencySettings> currencySettings,
-          ICurrencyService currencyService)
+          ICurrencyService currencyService,
+          IHostingEnvironment hostingEnvironment,
+          IStringLocalizer<ManageController> localizer)
         //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
@@ -68,6 +73,8 @@ namespace RenewalWebsite.Controllers
             _httpContextAccessor = httpContextAccessor;
             _currencySettings = currencySettings;
             _currencyService = currencyService;
+            _hostingEnvironment = hostingEnvironment;
+            _localizer = localizer;
         }
 
         //
@@ -456,9 +463,11 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public ActionResult PaymentHistory()
         {
+            CultureInfo us = new CultureInfo("en-US");
             SearchViewModel model = new SearchViewModel();
-            model.FromDate = new DateTime(DateTime.Now.Year, 1, 1).ToString("dd-MMM-yyyy");
-            model.ToDate = new DateTime(DateTime.Now.Year, 12, 31).ToString("dd-MMM-yyyy");
+            model.FromDate = new DateTime(DateTime.Now.Year, 1, 1).ToString("dd-MMM-yyyy", us);
+            model.ToDate = new DateTime(DateTime.Now.Year, 12, 31).ToString("dd-MMM-yyyy", us);
+            model.showUSD = true;
             return PartialView("_PaymentHistory", model);
         }
 
@@ -466,22 +475,29 @@ namespace RenewalWebsite.Controllers
         public async Task<ActionResult> GetPaymentHistory(SearchViewModel model)
         {
             var user = await GetCurrentUserAsync();
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
 
-            List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+            InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
+            invoiceHistoryModel.showUSDConversion = model.showUSD;
+            invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
 
-            return PartialView("_InvoiceHistory", invoicehistoryList);
+            return PartialView("_InvoiceHistory", invoiceHistoryModel);
         }
 
         [HttpPost]
         public async Task<FileResult> GetInvoicePdf(SearchViewModel model)
         {
+            string language = _currencyService.GetCurrentLanguage().Name;
             var user = await GetCurrentUserAsync();
             DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
             DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
 
             List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+            BaseFont baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            Font headerFont = new Font(baseFont, 14, 1, BaseColor.BLACK);
+            Font font = new Font(baseFont, 10, 1, BaseColor.BLACK);
 
             MemoryStream workStream = new MemoryStream();
             StringBuilder status = new StringBuilder("");
@@ -492,16 +508,25 @@ namespace RenewalWebsite.Controllers
             doc.SetPageSize(PageSize.A4);
             doc.SetMargins(0f, 0f, 0f, 0f);
             //Create PDF Table with 5 columns  
-            PdfPTable tableLayout = new PdfPTable(7);
+            PdfPTable tableLayout;
+            if (model.showUSD)
+            {
+                tableLayout = new PdfPTable(7);
+            }
+            else
+            {
+                tableLayout = new PdfPTable(6);
+            }
             doc.SetMargins(15f, 15f, 10f, 10f);
             //Create PDF Table  
 
-            PdfWriter.GetInstance(doc, workStream).CloseStream = false;
+            PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
+            writer.CloseStream = false;
+            writer.SetLanguage(language);
             doc.Open();
 
             //Add Content to PDF   
-            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList));
-
+            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont));
             // Closing the document  
             doc.Close();
 
@@ -512,18 +537,26 @@ namespace RenewalWebsite.Controllers
             return File(workStream.ToArray(), "application/pdf", strPDFFileName);
         }
 
-        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList)
+        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont)
         {
-
-            float[] headers = { 40, 30, 30, 40, 35, 40, 40 }; //Header Widths  
-            tableLayout.SetWidths(headers); //Set the pdf headers  
-            tableLayout.WidthPercentage = 100; //Set the PDF File witdh percentage  
-            tableLayout.HeaderRows = 1;
+            int colspan = 0;
+            if (showUSD)
+            {
+                float[] headers = { 40, 30, 30, 40, 35, 40, 40 }; //Header Widths  
+                tableLayout.SetWidths(headers); //Set the pdf headers  
+                colspan = 7;
+            }
+            else
+            {
+                float[] headers = { 40, 30, 30, 40, 50, 65 }; //Header Widths  
+                tableLayout.SetWidths(headers); //Set the pdf headers  
+                colspan = 6;
+            }
             //Add Title to the PDF file at the top  
 
-            tableLayout.AddCell(new PdfPCell(new Phrase("Invoice History", new Font(Font.FontFamily.HELVETICA, 14, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+            tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Invoice History"], headerFont))
             {
-                Colspan = 12,
+                Colspan = colspan,
                 Border = 0,
                 PaddingBottom = 15,
                 HorizontalAlignment = Element.ALIGN_CENTER,
@@ -531,33 +564,39 @@ namespace RenewalWebsite.Controllers
 
 
             ////Add header  
-            AddCellToHeader(tableLayout, "Date");
-            AddCellToHeader(tableLayout, "Currency");
-            AddCellToHeader(tableLayout, "Amount");
-            AddCellToHeader(tableLayout, "Exchange Rate");
-            AddCellToHeader(tableLayout, "USD Amount");
-            AddCellToHeader(tableLayout, "Method");
-            AddCellToHeader(tableLayout, "Invoice Number");
+            AddCellToHeader(tableLayout, _localizer["Date"], font);
+            AddCellToHeader(tableLayout, _localizer["Currency"], font);
+            AddCellToHeader(tableLayout, _localizer["Amount"], font);
+            AddCellToHeader(tableLayout, _localizer["Exchange Rate"], font);
+            if (showUSD)
+            {
+                AddCellToHeader(tableLayout, _localizer["USD Amount"], font);
+            }
+            AddCellToHeader(tableLayout, _localizer["Method"], font);
+            AddCellToHeader(tableLayout, _localizer["Invoice Number"], font);
 
             if (invoicehistoryList != null && invoicehistoryList.Count > 0)
             {
                 ////Add body  
                 foreach (InvoiceHistory invoice in invoicehistoryList)
                 {
-                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy") : "", "");
-                    AddCellToBody(tableLayout, invoice.Currency, "center");
-                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", ""), "right");
-                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", ""), "right");
-                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", ""), "right");
-                    AddCellToBody(tableLayout, invoice.Method, "");
-                    AddCellToBody(tableLayout, invoice.InvoiceNumber, "");
+                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy",new CultureInfo("en-US")) : "", "", font);
+                    AddCellToBody(tableLayout, invoice.Currency, "center", font);
+                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", font);
+                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
+                    if (showUSD)
+                    {
+                        AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", "").Replace("¥", ""), "right", font);
+                    }
+                    AddCellToBody(tableLayout, invoice.Method, "", font);
+                    AddCellToBody(tableLayout, invoice.InvoiceNumber, "", font);
                 }
             }
             else
             {
-                tableLayout.AddCell(new PdfPCell(new Phrase("No Record Found", new Font(Font.FontFamily.HELVETICA, 10, 1, new iTextSharp.text.BaseColor(0, 0, 0))))
+                tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["No Record Found"], font))
                 {
-                    Colspan = 7,
+                    Colspan = colspan,
                     HorizontalAlignment = Element.ALIGN_CENTER,
                     Padding = 5,
                     BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
@@ -568,9 +607,9 @@ namespace RenewalWebsite.Controllers
         }
 
         // Method to add single cell to the Header  
-        private static void AddCellToHeader(PdfPTable tableLayout, string cellText)
+        private static void AddCellToHeader(PdfPTable tableLayout, string cellText, Font font)
         {
-            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 10, 1, iTextSharp.text.BaseColor.BLACK)))
+            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, font))
             {
                 HorizontalAlignment = Element.ALIGN_CENTER,
                 Padding = 5,
@@ -580,9 +619,9 @@ namespace RenewalWebsite.Controllers
         }
 
         // Method to add single cell to the body  
-        private static void AddCellToBody(PdfPTable tableLayout, string cellText, string align)
+        private static void AddCellToBody(PdfPTable tableLayout, string cellText, string align, Font font)
         {
-            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, new Font(Font.FontFamily.HELVETICA, 10, 1, iTextSharp.text.BaseColor.BLACK)))
+            tableLayout.AddCell(new PdfPCell(new Phrase(cellText, font))
             {
                 HorizontalAlignment = string.IsNullOrEmpty(align) ? Element.ALIGN_LEFT : align.Equals("center") ? Element.ALIGN_CENTER : Element.ALIGN_RIGHT,
                 Padding = 5,

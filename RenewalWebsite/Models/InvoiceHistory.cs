@@ -5,6 +5,12 @@ using System.Threading.Tasks;
 
 namespace RenewalWebsite.Models
 {
+    public class InvoiceHistoryModel
+    {
+        public bool showUSDConversion { get; set; }
+        public List<InvoiceHistory> InvoiceHistory { get; set; }
+    }
+
     public class InvoiceHistory
     {
         public int Id { get; set; }
