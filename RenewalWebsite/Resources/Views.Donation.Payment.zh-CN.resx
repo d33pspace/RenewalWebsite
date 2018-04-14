@@ -120,10 +120,16 @@
   <data name="Address Line 1" xml:space="preserve">
     <value>县区、街道</value>
   </data>
+  <data name="China" xml:space="preserve">
+    <value>中国</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>城市</value>
   </data>
   <data name="Country" xml:space="preserve">
     <value>国家</value>
+  </data>
+  <data name="United States" xml:space="preserve">
+    <value>美国</value>
   </data>
 </root>

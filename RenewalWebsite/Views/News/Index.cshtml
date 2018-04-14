@@ -2,10 +2,10 @@
 @inject ICurrencyService CurrencyService
 @{
     ViewData["Title"] = "News";
-    +ViewData["Title"] = Localizer["News"];
-    +ViewData["IssueNo"] = Localizer["ISSUE 10"];
-    +ViewData["IssueDate"] = Localizer["SPRING 2018"];
-    +ViewData["CoverPhotoCaption"] = Localizer["Read how your gifts are changing lives in the New Year..."];
+    ViewData["Title"] = Localizer["News"];
+    ViewData["IssueNo"] = Localizer["ISSUE 10"];
+    ViewData["IssueDate"] = Localizer["SPRING 2018"];
+    ViewData["CoverPhotoCaption"] = Localizer["Read how your gifts are changing lives in the New Year..."];
     var currency = CurrencyService.GetCurrent();
     var language = CurrencyService.GetCurrentLanguage();
     double baseAmountCNY = 150;
