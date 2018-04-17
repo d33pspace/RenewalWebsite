@@ -461,13 +461,40 @@ namespace RenewalWebsite.Controllers
         }
 
         [HttpGet]
-        public ActionResult PaymentHistory()
+        public async Task<ActionResult> PaymentHistory()
         {
+            var user = await GetCurrentUserAsync();
             CultureInfo us = new CultureInfo("en-US");
             SearchViewModel model = new SearchViewModel();
             model.FromDate = new DateTime(DateTime.Now.Year, 1, 1).ToString("dd-MMM-yyyy", us);
             model.ToDate = new DateTime(DateTime.Now.Year, 12, 31).ToString("dd-MMM-yyyy", us);
-            model.showUSD = true;
+
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+
+            model.showUSD = false;
+
+            List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+            if (InvoiceHistory.Count > 0)
+            {
+                if (InvoiceHistory.Where(a => a.Currency == "cny").Any() && InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                {
+                    model.displayUSD = false;
+                    return PartialView("_PaymentHistory", model);
+                }
+                else if (InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                {
+                    model.displayUSD = false;
+                    return PartialView("_PaymentHistory", model);
+                }
+                else
+                {
+                    model.displayUSD = true;
+                    return PartialView("_PaymentHistory", model);
+                }
+            }
+
             return PartialView("_PaymentHistory", model);
         }
 
@@ -482,7 +509,63 @@ namespace RenewalWebsite.Controllers
             invoiceHistoryModel.showUSDConversion = model.showUSD;
             invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
 
+            if (invoiceHistoryModel.InvoiceHistory.Count > 0)
+            {
+                if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency == "cny").Any() && invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                {
+                    invoiceHistoryModel.displayConversion = true;
+                    invoiceHistoryModel.showUSDOption = false;
+                    invoiceHistoryModel.showUSDConversion = true;
+                    invoiceHistoryModel.Type = 1;
+                    return PartialView("_InvoiceHistory", invoiceHistoryModel);
+                }
+                else if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                {
+                    invoiceHistoryModel.displayConversion = false;
+                    invoiceHistoryModel.showUSDOption = false;
+                    invoiceHistoryModel.showUSDConversion = false;
+                    invoiceHistoryModel.Type = 2;
+                    return PartialView("_InvoiceHistory", invoiceHistoryModel);
+                }
+                else
+                {
+                    invoiceHistoryModel.displayConversion = model.showUSD;
+                    invoiceHistoryModel.showUSDOption = true;
+                    invoiceHistoryModel.showUSDConversion = model.showUSD;
+                    invoiceHistoryModel.Type = 3;
+                    return PartialView("_InvoiceHistory", invoiceHistoryModel);
+                }
+            }
+
             return PartialView("_InvoiceHistory", invoiceHistoryModel);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> DisplayUsdOption(SearchViewModel model)
+        {
+            var user = await GetCurrentUserAsync();
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+
+            List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+            if (InvoiceHistory.Count > 0)
+            {
+                if (InvoiceHistory.Where(a => a.Currency == "cny").Any() && InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                {
+                    return Json(false);
+                }
+                else if (InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                {
+                    return Json(false);
+                }
+                else
+                {
+                    return Json(true);
+                }
+            }
+
+            return Json(false);
         }
 
         [HttpPost]
@@ -508,15 +591,7 @@ namespace RenewalWebsite.Controllers
             doc.SetPageSize(PageSize.A4);
             doc.SetMargins(0f, 0f, 0f, 0f);
             //Create PDF Table with 5 columns  
-            PdfPTable tableLayout;
-            if (model.showUSD)
-            {
-                tableLayout = new PdfPTable(7);
-            }
-            else
-            {
-                tableLayout = new PdfPTable(6);
-            }
+            PdfPTable tableLayout = null;
             doc.SetMargins(15f, 15f, 10f, 10f);
             //Create PDF Table  
 
@@ -526,7 +601,7 @@ namespace RenewalWebsite.Controllers
             doc.Open();
 
             //Add Content to PDF   
-            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont));
+            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model));
             // Closing the document  
             doc.Close();
 
@@ -537,23 +612,66 @@ namespace RenewalWebsite.Controllers
             return File(workStream.ToArray(), "application/pdf", strPDFFileName);
         }
 
-        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont)
+        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont, SearchViewModel model)
         {
-            int colspan = 0;
-            if (showUSD)
+            bool displayConversion = false, showUSDConversion = false;
+            int Type = 1;
+            if (invoicehistoryList.Count > 0)
             {
-                float[] headers = { 40, 30, 30, 40, 35, 40, 40 }; //Header Widths  
-                tableLayout.SetWidths(headers); //Set the pdf headers  
-                colspan = 7;
+                if (invoicehistoryList.Where(a => a.Currency == "cny").Any() && invoicehistoryList.Where(a => a.Currency == "usd").Any())
+                {
+                    displayConversion = true;
+                    showUSDConversion = true;
+                    Type = 1;
+                }
+                else if (invoicehistoryList.Where(a => a.Currency == "usd").Any())
+                {
+                    displayConversion = false;
+                    showUSDConversion = false;
+                    Type = 2;
+                }
+                else
+                {
+                    displayConversion = model.showUSD;
+                    showUSDConversion = model.showUSD;
+                    Type = 3;
+                }
+            }
+
+            int colspan = 0;
+            if (Type == 1)
+            {
+                tableLayout = new PdfPTable(6);
+                float[] headers = { 40, 30, 30, 40, 35, 40 };
+                tableLayout.SetWidths(headers);
+                colspan = 6;
+            }
+            else if (Type == 2)
+            {
+                tableLayout = new PdfPTable(4);
+                float[] headers = { 40, 30, 30, 40 };
+                tableLayout.SetWidths(headers);
+                colspan = 4;
             }
             else
             {
-                float[] headers = { 40, 30, 30, 40, 50, 65 }; //Header Widths  
-                tableLayout.SetWidths(headers); //Set the pdf headers  
-                colspan = 6;
+                if (displayConversion == true)
+                {
+                    tableLayout = new PdfPTable(6);
+                    float[] headers = { 40, 30, 30, 40, 35, 40 };
+                    tableLayout.SetWidths(headers);
+                    colspan = 6;
+                }
+                else
+                {
+                    tableLayout = new PdfPTable(4);
+                    float[] headers = { 40, 30, 30, 40 };
+                    tableLayout.SetWidths(headers);
+                    colspan = 4;
+                }
             }
-            //Add Title to the PDF file at the top  
 
+            //Add Title to the PDF file at the top  
             tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Invoice History"], headerFont))
             {
                 Colspan = colspan,
@@ -567,12 +685,14 @@ namespace RenewalWebsite.Controllers
             AddCellToHeader(tableLayout, _localizer["Date"], font);
             AddCellToHeader(tableLayout, _localizer["Currency"], font);
             AddCellToHeader(tableLayout, _localizer["Amount"], font);
-            AddCellToHeader(tableLayout, _localizer["Exchange Rate"], font);
-            if (showUSD)
+            if (displayConversion == true)
+            {
+                AddCellToHeader(tableLayout, _localizer["Exchange Rate"], font);
+            }
+            if (showUSDConversion == true)
             {
                 AddCellToHeader(tableLayout, _localizer["USD Amount"], font);
             }
-            AddCellToHeader(tableLayout, _localizer["Method"], font);
             AddCellToHeader(tableLayout, _localizer["Invoice Number"], font);
 
             if (invoicehistoryList != null && invoicehistoryList.Count > 0)
@@ -580,16 +700,138 @@ namespace RenewalWebsite.Controllers
                 ////Add body  
                 foreach (InvoiceHistory invoice in invoicehistoryList)
                 {
-                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy",new CultureInfo("en-US")) : "", "", font);
+                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) : "", "", font);
                     AddCellToBody(tableLayout, invoice.Currency, "center", font);
                     AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", font);
-                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
-                    if (showUSD)
+                    if (displayConversion == true)
+                    {
+                        AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
+                    }
+                    if (showUSDConversion == true)
                     {
                         AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", "").Replace("¥", ""), "right", font);
                     }
-                    AddCellToBody(tableLayout, invoice.Method, "", font);
                     AddCellToBody(tableLayout, invoice.InvoiceNumber, "", font);
+                }
+
+                if (Type == 1)
+                {
+                    tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Total"], font))
+                    {
+                        Colspan = 4,
+                        HorizontalAlignment = Element.ALIGN_RIGHT,
+                        Padding = 5,
+                        BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                        BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                    });
+                    tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.USDAmount).ToString(), font))
+                    {
+                        Colspan = 1,
+                        HorizontalAlignment = Element.ALIGN_RIGHT,
+                        Padding = 5,
+                        BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                        BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                    });
+                    tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                    {
+                        Colspan = 1,
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5,
+                        BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                        BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                    });
+                }
+                else if (Type == 2)
+                {
+                    tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Total"], font))
+                    {
+                        Colspan = 2,
+                        HorizontalAlignment = Element.ALIGN_RIGHT,
+                        Padding = 5,
+                        BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                        BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                    });
+                    tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), font))
+                    {
+                        Colspan = 1,
+                        HorizontalAlignment = Element.ALIGN_RIGHT,
+                        Padding = 5,
+                        BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                        BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                    });
+                    tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                    {
+                        Colspan = 1,
+                        HorizontalAlignment = Element.ALIGN_CENTER,
+                        Padding = 5,
+                        BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                        BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                    });
+                }
+                else
+                {
+                    if (displayConversion == true)
+                    {
+                        tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Total"], font))
+                        {
+                            Colspan = 2,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            Padding = 5,
+                            BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                            BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                        });
+                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), font))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            Padding = 5,
+                            BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                            BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                        });
+                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.USDAmount).ToString(), font))
+                        {
+                            Colspan = 2,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            Padding = 5,
+                            BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                            BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                        });
+                        tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_CENTER,
+                            Padding = 5,
+                            BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                            BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                        });
+                    }
+                    else
+                    {
+                        tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Total"], font))
+                        {
+                            Colspan = 2,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            Padding = 5,
+                            BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                            BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                        });
+                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), font))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_RIGHT,
+                            Padding = 5,
+                            BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                            BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                        });
+                        tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                        {
+                            Colspan = 1,
+                            HorizontalAlignment = Element.ALIGN_CENTER,
+                            Padding = 5,
+                            BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
+                            BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
+                        });
+                    }
                 }
             }
             else

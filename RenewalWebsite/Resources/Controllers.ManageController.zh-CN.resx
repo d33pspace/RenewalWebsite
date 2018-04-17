@@ -141,6 +141,9 @@
   <data name="No Record Found" xml:space="preserve">
     <value>没有找到记录</value>
   </data>
+  <data name="Total" xml:space="preserve">
+    <value>总</value>
+  </data>
   <data name="USD Amount" xml:space="preserve">
     <value>美元金额</value>
   </data>

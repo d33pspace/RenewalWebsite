@@ -20,7 +20,7 @@ namespace RenewalWebsite.Services
         {
             try
             {
-                return _dbContext.InvoiceHistory.Where(a => a.Date >= FromDate && a.Date <= ToDate && a.Email.ToLower().Equals(Email.ToLower())).ToList();
+                return _dbContext.InvoiceHistory.Where(a => a.Date.Date >= FromDate.Date && a.Date.Date <= ToDate.Date && a.Email.ToLower().Equals(Email.ToLower())).ToList();
             }
             catch (Exception)
             {

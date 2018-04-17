@@ -14,8 +14,10 @@ namespace RenewalWebsite.Models
         [Required]
         public string ToDate { get; set; }
 
-        [Required]
         public bool showUSD { get; set; }
+
+        [Required]
+        public bool displayUSD { get; set; }
     }
 
     public class InvoiceHistoryViewModel

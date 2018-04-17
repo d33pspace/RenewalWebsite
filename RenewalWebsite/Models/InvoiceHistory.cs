@@ -8,6 +8,9 @@ namespace RenewalWebsite.Models
     public class InvoiceHistoryModel
     {
         public bool showUSDConversion { get; set; }
+        public bool displayConversion { get; set; }
+        public bool showUSDOption { get; set; }
+        public int Type { get; set; }
         public List<InvoiceHistory> InvoiceHistory { get; set; }
     }
 
