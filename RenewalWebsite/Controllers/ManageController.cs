@@ -478,12 +478,12 @@ namespace RenewalWebsite.Controllers
 
             if (InvoiceHistory.Count > 0)
             {
-                if (InvoiceHistory.Where(a => a.Currency == "cny").Any() && InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     model.displayUSD = false;
                     return PartialView("_PaymentHistory", model);
                 }
-                else if (InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     model.displayUSD = false;
                     return PartialView("_PaymentHistory", model);
@@ -511,7 +511,7 @@ namespace RenewalWebsite.Controllers
 
             if (invoiceHistoryModel.InvoiceHistory.Count > 0)
             {
-                if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency == "cny").Any() && invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     invoiceHistoryModel.displayConversion = true;
                     invoiceHistoryModel.showUSDOption = false;
@@ -519,7 +519,7 @@ namespace RenewalWebsite.Controllers
                     invoiceHistoryModel.Type = 1;
                     return PartialView("_InvoiceHistory", invoiceHistoryModel);
                 }
-                else if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                else if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     invoiceHistoryModel.displayConversion = false;
                     invoiceHistoryModel.showUSDOption = false;
@@ -551,11 +551,11 @@ namespace RenewalWebsite.Controllers
 
             if (InvoiceHistory.Count > 0)
             {
-                if (InvoiceHistory.Where(a => a.Currency == "cny").Any() && InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     return Json(false);
                 }
-                else if (InvoiceHistory.Where(a => a.Currency == "usd").Any())
+                else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     return Json(false);
                 }
@@ -618,13 +618,13 @@ namespace RenewalWebsite.Controllers
             int Type = 1;
             if (invoicehistoryList.Count > 0)
             {
-                if (invoicehistoryList.Where(a => a.Currency == "cny").Any() && invoicehistoryList.Where(a => a.Currency == "usd").Any())
+                if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     displayConversion = true;
                     showUSDConversion = true;
                     Type = 1;
                 }
-                else if (invoicehistoryList.Where(a => a.Currency == "usd").Any())
+                else if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     displayConversion = false;
                     showUSDConversion = false;
