@@ -559,9 +559,13 @@ namespace RenewalWebsite.Controllers
                 {
                     return Json(false);
                 }
-                else
+                else if(InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any())
                 {
                     return Json(true);
+                }
+                else
+                {
+                    return Json(false);
                 }
             }
 
