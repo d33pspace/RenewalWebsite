@@ -8,6 +8,7 @@
 <script src="~/js/DatePicker/jquery.datetimepicker.full.js" type="text/javascript"></script>
 
 <form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
+    @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
     <div class="form-row">
         <div class="form-group col-md-6">
             <label class="control-labe" for="@Model.FromDate">Date From:</label>
@@ -37,8 +38,7 @@
 </div>
 <div class="row">
     <div class="col-md-12">
-        <div class="form-group col-md-6" id="divUSD" style="display:none;">
-            @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
+        <div class="form-group col-md-6" id="divUSD" style="display:none;">            
             <input type="checkbox" id="usd" name="usd" onclick="changeValue(this)" /> show USD conversion
             @Html.ValidationMessageFor(model => model.showUSD)
         </div>
