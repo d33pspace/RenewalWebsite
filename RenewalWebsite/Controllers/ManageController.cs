@@ -127,7 +127,7 @@ namespace RenewalWebsite.Controllers
                                                          }).OrderBy(a => a.Country).ToList();
                 }
 
-                var model = new IndexViewModel
+                var model = new IndexViewModel  
                 {
                     HasPassword = await _userManager.HasPasswordAsync(user),
                     PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
