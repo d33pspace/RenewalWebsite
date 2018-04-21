@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Http;
 namespace RenewalWebsite.Controllers
 {
     [Authorize]
-    public class DonationController : Controller 
+    public class DonationController : Controller
     {
         private const string DonationCaption = "Renewal Center donation";
         private readonly IDonationService _donationService;
@@ -29,6 +29,7 @@ namespace RenewalWebsite.Controllers
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOptions<CurrencySettings> _currencySettings;
         private readonly ICurrencyService _currencyService;
+        private readonly ICountryService _countryService;
         private EventLog log;
 
         public DonationController(
@@ -39,7 +40,8 @@ namespace RenewalWebsite.Controllers
             ILoggerServicecs loggerServicer,
             IHttpContextAccessor httpContextAccessor,
             IOptions<CurrencySettings> currencySettings,
-            ICurrencyService currencyService)
+            ICurrencyService currencyService,
+            ICountryService countryService)
         {
             _userManager = userManager;
             _donationService = donationService;
@@ -49,6 +51,7 @@ namespace RenewalWebsite.Controllers
             _httpContextAccessor = httpContextAccessor;
             _currencySettings = currencySettings;
             _currencyService = currencyService;
+            _countryService = countryService;
         }
 
         [Route("Donation/Payment")]
@@ -66,6 +69,26 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 var donation = _donationService.GetById(id);
                 var detail = (DonationViewModel)donation;
+
+                List<CountryViewModel> countryList;
+                if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                {
+                    countryList = _countryService.GetAllCountry()
+                                                         .Select(a => new CountryViewModel()
+                                                         {
+                                                             Code = a.ShortCode,
+                                                             Country = a.CountryEnglish
+                                                         }).OrderBy(a => a.Country).ToList();
+                }
+                else
+                {
+                    countryList = _countryService.GetAllCountry()
+                                                         .Select(a => new CountryViewModel()
+                                                         {
+                                                             Code = a.ShortCode,
+                                                             Country = a.CountryChinese
+                                                         }).OrderBy(a => a.Country).ToList();
+                }
 
                 // Check for existing customer
                 // edit = 1 means user wants to edit the credit card information
@@ -100,7 +123,8 @@ namespace RenewalWebsite.Controllers
                                 Last4Digit = objStripeCard.Last4,
                                 CardId = objStripeCard.Id,
                                 DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
-                                IsCustom = donation.IsCustom
+                                IsCustom = donation.IsCustom,
+                                countries = countryList
                             };
 
                             return View("RePayment", objCustomerRePaymentViewModel);
@@ -128,7 +152,8 @@ namespace RenewalWebsite.Controllers
                     Description = donation.Reason,
                     Frequency = detail.GetCycle(donation.CycleId.ToString()),
                     Amount = (decimal)donation.DonationAmount,
-                    IsCustom = donation.IsCustom
+                    IsCustom = donation.IsCustom,
+                    countries = countryList
                 };
 
                 return View("Payment", model);
@@ -349,6 +374,27 @@ namespace RenewalWebsite.Controllers
                 {
                     var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                     var ExistingCustomer = customerService.Get(user.StripeCustomerId);
+
+                    List<CountryViewModel> countryList;
+                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                    {
+                        countryList = _countryService.GetAllCountry()
+                                                             .Select(a => new CountryViewModel()
+                                                             {
+                                                                 Code = a.ShortCode,
+                                                                 Country = a.CountryEnglish
+                                                             }).OrderBy(a => a.Country).ToList();
+                    }
+                    else
+                    {
+                        countryList = _countryService.GetAllCountry()
+                                                             .Select(a => new CountryViewModel()
+                                                             {
+                                                                 Code = a.ShortCode,
+                                                                 Country = a.CountryChinese
+                                                             }).OrderBy(a => a.Country).ToList();
+                    }
+
                     model = new CustomerPaymentViewModel
                     {
                         Name = user.FullName,
@@ -363,7 +409,8 @@ namespace RenewalWebsite.Controllers
                         Frequency = detail.GetCycle(donation.CycleId.ToString()),
                         Amount = (decimal)donation.DonationAmount,
                         DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
-                        IsCustom = donation.IsCustom
+                        IsCustom = donation.IsCustom,
+                        countries = countryList
                     };
                 }
                 catch (StripeException sex)
@@ -434,7 +481,7 @@ namespace RenewalWebsite.Controllers
                 user.Country = payment.Country;
                 user.Zip = payment.Zip;
                 await _userManager.UpdateAsync(user);
-                
+
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {

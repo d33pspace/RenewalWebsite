@@ -116,6 +116,7 @@ namespace RenewalWebsite
             services.AddTransient<ILoggerServicecs, LoggerServicecs>();
             services.AddTransient<IUnsubscribeUserService, UnsubscribeUserService>();
             services.AddTransient<IInvoiceHistoryService, InvoiceHistoryService>();
+            services.AddTransient<ICountryService, CountryService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

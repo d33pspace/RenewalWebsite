@@ -42,6 +42,7 @@ namespace RenewalWebsite.Controllers
         private readonly ICurrencyService _currencyService;
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IStringLocalizer<ManageController> _localizer;
+        private readonly ICountryService _countryService;
         //private readonly IStringLocalizer<DonateController> _localizer;
         private EventLog log;
 
@@ -58,7 +59,8 @@ namespace RenewalWebsite.Controllers
           IOptions<CurrencySettings> currencySettings,
           ICurrencyService currencyService,
           IHostingEnvironment hostingEnvironment,
-          IStringLocalizer<ManageController> localizer)
+          IStringLocalizer<ManageController> localizer,
+          ICountryService countryService)
         //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
@@ -75,6 +77,7 @@ namespace RenewalWebsite.Controllers
             _currencyService = currencyService;
             _hostingEnvironment = hostingEnvironment;
             _localizer = localizer;
+            _countryService = countryService;
         }
 
         //
@@ -104,6 +107,26 @@ namespace RenewalWebsite.Controllers
                     //return View("Error");
                 }
 
+                List<CountryViewModel> countryList;
+                if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                {
+                    countryList = _countryService.GetAllCountry()
+                                                         .Select(a => new CountryViewModel()
+                                                         {
+                                                             Code = a.ShortCode,
+                                                             Country = a.CountryEnglish
+                                                         }).OrderBy(a => a.Country).ToList();
+                }
+                else
+                {
+                    countryList = _countryService.GetAllCountry()
+                                                         .Select(a => new CountryViewModel()
+                                                         {
+                                                             Code = a.ShortCode,
+                                                             Country = a.CountryChinese
+                                                         }).OrderBy(a => a.Country).ToList();
+                }
+
                 var model = new IndexViewModel
                 {
                     HasPassword = await _userManager.HasPasswordAsync(user),
@@ -120,7 +143,8 @@ namespace RenewalWebsite.Controllers
                     State = user.State,
                     Zip = user.Zip,
                     City = user.City,
-                    Country = user.Country
+                    Country = user.Country,
+                    countries = countryList
                 };
 
                 model.card = new CardViewModel();

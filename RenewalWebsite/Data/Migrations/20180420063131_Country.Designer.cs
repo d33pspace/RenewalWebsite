@@ -11,9 +11,10 @@ using System;
 namespace RenewalWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180420063131_Country")]
+    partial class Country
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -203,8 +204,6 @@ namespace RenewalWebsite.Data.Migrations
                     b.Property<string>("CountryChinese");
 
                     b.Property<string>("CountryEnglish");
-
-                    b.Property<string>("ShortCode");
 
                     b.Property<int>("order");
 

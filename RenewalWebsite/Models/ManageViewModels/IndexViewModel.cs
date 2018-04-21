@@ -52,5 +52,7 @@ namespace RenewalWebsite.Models.ManageViewModels
         public CardViewModel card { get; set; }
 
         public string TimeZone { get; set; }
+
+        public List<CountryViewModel> countries { get; set; }
     }
 }

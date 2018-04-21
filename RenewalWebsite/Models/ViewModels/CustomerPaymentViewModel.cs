@@ -72,5 +72,13 @@ namespace RenewalWebsite.Models
         public bool IsCustom { get; set; }
 
         public string TimeZone { get; set; }
+
+        public List<CountryViewModel> countries { get; set; }
+    }
+
+    public class CountryViewModel
+    {
+        public string Code { get; set; }
+        public string Country { get; set; }
     }
 }
