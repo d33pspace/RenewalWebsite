@@ -721,7 +721,7 @@ namespace RenewalWebsite.Controllers
             {
                 AddCellToHeader(tableLayout, _localizer["USD Amount"], font);
             }
-            AddCellToHeader(tableLayout, _localizer["Invoice Number"], font);
+            AddCellToHeader(tableLayout, _localizer["Transaction Reference"], font);
 
             if (invoicehistoryList != null && invoicehistoryList.Count > 0)
             {
