@@ -147,6 +147,9 @@
   <data name="Method" xml:space="preserve">
     <value>方式</value>
   </data>
+  <data name="No contributions found for this date range." xml:space="preserve">
+    <value>这日期范围没有捐款。</value>
+  </data>
   <data name="No Record Found" xml:space="preserve">
     <value>没有找到记录</value>
   </data>

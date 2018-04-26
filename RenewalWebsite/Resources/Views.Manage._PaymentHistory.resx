@@ -126,6 +126,9 @@
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
+  <data name="Show USD conversion" xml:space="preserve">
+    <value>显示美元转换</value>
+  </data>
   <data name="To:" xml:space="preserve">
     <value>报告终止日期</value>
   </data>
