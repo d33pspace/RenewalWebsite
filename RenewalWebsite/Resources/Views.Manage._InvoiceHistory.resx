@@ -117,7 +117,64 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Alipay" xml:space="preserve">
+    <value>支付宝</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>金额</value>
+  </data>
+  <data name="Bank transfer" xml:space="preserve">
+    <value>银行转账</value>
+  </data>
+  <data name="Cash" xml:space="preserve">
+    <value>现金</value>
+  </data>
+  <data name="Check" xml:space="preserve">
+    <value>支票</value>
+  </data>
+  <data name="CNY" xml:space="preserve">
+    <value>人民币</value>
+  </data>
+  <data name="Currency" xml:space="preserve">
+    <value>货币</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>日期</value>
+  </data>
+  <data name="Exchange Rate" xml:space="preserve">
+    <value>汇率</value>
+  </data>
   <data name="Method" xml:space="preserve">
     <value>方式</value>
+  </data>
+  <data name="No Record Found" xml:space="preserve">
+    <value>没有找到记录</value>
+  </data>
+  <data name="PayPal" xml:space="preserve">
+    <value>贝宝</value>
+  </data>
+  <data name="POS" xml:space="preserve">
+    <value>POS机</value>
+  </data>
+  <data name="Stripe" xml:space="preserve">
+    <value>信用卡</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>合计</value>
+  </data>
+  <data name="Transaction Reference" xml:space="preserve">
+    <value>编号</value>
+  </data>
+  <data name="USD" xml:space="preserve">
+    <value>美元</value>
+  </data>
+  <data name="USD Amount" xml:space="preserve">
+    <value>美元金额</value>
+  </data>
+  <data name="WeChat" xml:space="preserve">
+    <value>微信</value>
+  </data>
+  <data name="Wire" xml:space="preserve">
+    <value>电汇</value>
   </data>
 </root>

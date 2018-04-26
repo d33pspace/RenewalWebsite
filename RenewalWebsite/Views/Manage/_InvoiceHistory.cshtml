@@ -24,7 +24,7 @@ else
                         <th>@Localizer["USD Amount"]</th>
                     }
                     <th>@Localizer["Method"]</th>
-                    <th>@Localizer["Invoice Number"]</th>
+                    <th>@Localizer["Transaction Reference"]</th>
                 </tr>
             </thead>
 
@@ -44,7 +44,7 @@ else
                             <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.USDAmount).Replace("$", "").Replace("¥", ""))</td>
                         }
 
-                        <td style="vertical-align:middle;" class="text-left">@subscription.Method</td>
+                        <td style="vertical-align:middle;" class="text-left">@Localizer[subscription.Method]</td>
                         <td style="vertical-align:middle;" class="text-left">@subscription.InvoiceNumber</td>
                     </tr>
                 }
