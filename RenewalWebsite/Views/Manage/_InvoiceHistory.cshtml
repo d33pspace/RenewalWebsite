@@ -33,7 +33,7 @@ else
                 {
                     <tr>
                         <td style="vertical-align:middle;" class="text-left">@(subscription.Date != null ? subscription.Date.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) : "")</td>
-                        <td style="vertical-align:middle;" class="text-center">@subscription.Currency</td>
+                        <td style="vertical-align:middle;" class="text-center">@Localizer[subscription.Currency]</td>
                         <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.Amount).Replace("$", "").Replace("¥", ""))</td>
                         @if (Model.displayConversion == true)
                         {
@@ -81,7 +81,7 @@ else
                     else
                     {
                         <tr>
-                            <td colspan="2" class="text-right"><strong>Total</strong></td>
+                            <td colspan="2" class="text-right"><strong>@Localizer["Total"]</strong></td>
                             <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.Amount)</strong></td>
                             <td colspan="2"></td>
                         </tr>

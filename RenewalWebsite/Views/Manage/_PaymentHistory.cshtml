@@ -11,14 +11,14 @@
     @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
     <div class="form-row">
         <div class="form-group col-md-6">
-            <label class="control-labe" for="@Model.FromDate">Date From:</label>
+            <label class="control-labe" for="@Model.FromDate">@Localizer["From:"]</label>
             <div class="">
                 @Html.TextBoxFor(model => model.FromDate, "{0:dd-MMM-yyyy}", new { @class = "form-control datetimepicker", @Text = Model.FromDate })
                 @Html.ValidationMessageFor(model => Model.FromDate)
             </div>
         </div>
         <div class="form-group col-md-6">
-            <label class="control-label" for="@Model.ToDate">Date To :</label>
+            <label class="control-label" for="@Model.ToDate">@Localizer["To:"]</label>
             <div class="">
                 @Html.TextBoxFor(model => model.ToDate, "{0:dd-MMM-yyyy}", new { @class = "form-control datetimepicker", @Text = Model.ToDate })
                 @Html.ValidationMessageFor(model => model.ToDate)
@@ -27,8 +27,8 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
-            <input type="button" id="btnSave" class="btn btn-default" value="Search" onclick="GenerateData()" />
-            <input type="button" id="btnSubmitPDF" class="btn btn-default" value="PDF" onclick="GeneratePDF()" />
+            <input type="button" id="btnSave" class="btn btn-default" value="@Localizer["Search"]" onclick="GenerateData()" />
+            <input type="button" id="btnSubmitPDF" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
             <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
         </div>
     </div>
