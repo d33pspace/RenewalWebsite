@@ -117,10 +117,11 @@ namespace RenewalWebsite
             services.AddTransient<IUnsubscribeUserService, UnsubscribeUserService>();
             services.AddTransient<IInvoiceHistoryService, InvoiceHistoryService>();
             services.AddTransient<ICountryService, CountryService>();
+            services.AddTransient<CountrySeeder>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext appDbContext)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext appDbContext,CountrySeeder countrySeeder)
         {
             app.Use(async (context, next) =>
             {
@@ -195,6 +196,8 @@ namespace RenewalWebsite
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
+
+            countrySeeder.Seed();
         }
     }
 }

@@ -22,7 +22,7 @@ namespace RenewalWebsite.Data
             // Customize the ASP.NET Identity model and override the defaults if needed.
             // For example, you can rename the ASP.NET Identity table names and more.
             // Add your customizations after calling base.OnModelCreating(builder);
-
+            builder.Entity<InvoiceHistory>().Property(propertyExpression: p => p.ExchangeRate).HasColumnType("decimal(18,3)");
         }
 
         public DbSet<Donation> Donations { get; set; }

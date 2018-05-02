@@ -127,7 +127,7 @@ namespace RenewalWebsite.Controllers
                                                          }).OrderBy(a => a.Country).ToList();
                 }
 
-                var model = new IndexViewModel  
+                var model = new IndexViewModel
                 {
                     HasPassword = await _userManager.HasPasswordAsync(user),
                     PhoneNumber = await _userManager.GetPhoneNumberAsync(user),
@@ -490,7 +490,7 @@ namespace RenewalWebsite.Controllers
             var user = await GetCurrentUserAsync();
             CultureInfo us = new CultureInfo("en-US");
             SearchViewModel model = new SearchViewModel();
-            model.FromDate = new DateTime((DateTime.Now.Year- 1), 1, 1).ToString("yyyy-MM-dd", us);
+            model.FromDate = new DateTime((DateTime.Now.Year - 1), 1, 1).ToString("yyyy-MM-dd", us);
             model.ToDate = new DateTime((DateTime.Now.Year - 1), 12, 31).ToString("yyyy-MM-dd", us);
 
             DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
@@ -583,7 +583,7 @@ namespace RenewalWebsite.Controllers
                 {
                     return Json(false);
                 }
-                else if(InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any())
+                else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any())
                 {
                     return Json(true);
                 }
@@ -620,8 +620,37 @@ namespace RenewalWebsite.Controllers
             doc.SetMargins(0f, 0f, 0f, 0f);
             //Create PDF Table with 5 columns  
             PdfPTable tableLayout = null;
-            doc.SetMargins(15f, 15f, 10f, 10f);
             //Create PDF Table  
+
+            bool isAdd = true;
+            if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+            {
+                isAdd = true;
+            }
+            else if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+            {
+                isAdd = true;
+            }
+            else
+            {
+                if (model.showUSD == true)
+                {
+                    isAdd = true;
+                }
+                else
+                {
+                    isAdd = false;
+                }
+            }
+
+            if (isAdd == true)
+            {
+                doc.SetMargins(15f, 15f, 140f, 110f);
+            }
+            else
+            {
+                doc.SetMargins(15f, 15f, 140f, 90f);
+            }
 
             PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
             writer.CloseStream = false;
@@ -629,15 +658,15 @@ namespace RenewalWebsite.Controllers
             pDFHelper.startDate = model.FromDate;
             pDFHelper.endDate = model.ToDate;
             pDFHelper.fullName = user.FullName;
+            pDFHelper.logoPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\Renewal Logo.jpg";
+            pDFHelper.isAdd = isAdd;
+            pDFHelper.sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
             writer.PageEvent = pDFHelper;
 
             writer.SetLanguage(language);
+            
             doc.Open();
-            for (int i = 0; i < 5; i++)
-            {
-                doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model));
-                doc.NewPage();
-            }
+            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model));
 
             //Add Content to PDF   
             //doc.Add();
@@ -745,7 +774,7 @@ namespace RenewalWebsite.Controllers
                     AddCellToBody(tableLayout, _localizer[invoice.Currency], "center", font);
                     if (displayConversion == true)
                     {
-                        AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
+                        AddCellToBody(tableLayout, string.Format("{0:C3}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
                     }
                     if (showUSDConversion == true)
                     {
@@ -940,7 +969,7 @@ namespace RenewalWebsite.Controllers
         }
 
         #endregion
-        
+
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]

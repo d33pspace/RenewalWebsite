@@ -37,7 +37,7 @@ else
                         <td style="vertical-align:middle;" class="text-center">@Localizer[subscription.Currency]</td>
                         @if (Model.displayConversion == true)
                         {
-                            <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.ExchangeRate).Replace("$", "").Replace("¥", ""))</td>
+                            <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C3}", subscription.ExchangeRate).Replace("$", "").Replace("¥", ""))</td>
                         }
                         @if (Model.showUSDConversion == true)
                         {
