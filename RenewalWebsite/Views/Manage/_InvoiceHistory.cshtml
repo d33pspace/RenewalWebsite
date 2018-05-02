@@ -8,13 +8,13 @@
 }
 else
 {
-    <div class="col-lg-12" style="margin-top:15px;">
+    <div style="margin-top:15px;">
         <table class="table table-bordered table-hover table-responsive" width="100%">
             <thead>
                 <tr>
                     <th>@Localizer["Date"]</th>
-                    <th>@Localizer["Currency"]</th>
                     <th>@Localizer["Amount"]</th>
+                    <th>@Localizer["Currency"]</th>
                     @if (Model.displayConversion == true)
                     {
                         <th>@Localizer["Exchange Rate"]</th>
@@ -32,9 +32,9 @@ else
                 @foreach (var subscription in Model.InvoiceHistory)
                 {
                     <tr>
-                        <td style="vertical-align:middle;" class="text-left">@(subscription.Date != null ? subscription.Date.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) : "")</td>
-                        <td style="vertical-align:middle;" class="text-center">@Localizer[subscription.Currency]</td>
+                        <td style="vertical-align:middle;" class="text-left">@(subscription.Date != null ? subscription.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "")</td>
                         <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.Amount).Replace("$", "").Replace("¥", ""))</td>
+                        <td style="vertical-align:middle;" class="text-center">@Localizer[subscription.Currency]</td>
                         @if (Model.displayConversion == true)
                         {
                             <td style="vertical-align:middle;" class="text-right">@(string.Format("{0:C}", subscription.ExchangeRate).Replace("$", "").Replace("¥", ""))</td>

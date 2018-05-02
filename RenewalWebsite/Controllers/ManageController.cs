@@ -490,11 +490,11 @@ namespace RenewalWebsite.Controllers
             var user = await GetCurrentUserAsync();
             CultureInfo us = new CultureInfo("en-US");
             SearchViewModel model = new SearchViewModel();
-            model.FromDate = new DateTime(DateTime.Now.Year, 1, 1).ToString("dd-MMM-yyyy", us);
-            model.ToDate = new DateTime(DateTime.Now.Year, 12, 31).ToString("dd-MMM-yyyy", us);
+            model.FromDate = new DateTime((DateTime.Now.Year- 1), 1, 1).ToString("yyyy-MM-dd", us);
+            model.ToDate = new DateTime((DateTime.Now.Year - 1), 12, 31).ToString("yyyy-MM-dd", us);
 
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
             model.showUSD = false;
 
@@ -526,8 +526,8 @@ namespace RenewalWebsite.Controllers
         public async Task<ActionResult> GetPaymentHistory(SearchViewModel model)
         {
             var user = await GetCurrentUserAsync();
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
             InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
             invoiceHistoryModel.showUSDConversion = model.showUSD;
@@ -568,8 +568,8 @@ namespace RenewalWebsite.Controllers
         public async Task<JsonResult> DisplayUsdOption(SearchViewModel model)
         {
             var user = await GetCurrentUserAsync();
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", CultureInfo.InvariantCulture);
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
             List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
 
@@ -601,8 +601,8 @@ namespace RenewalWebsite.Controllers
         {
             string language = _currencyService.GetCurrentLanguage().Name;
             var user = await GetCurrentUserAsync();
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "dd-MMM-yyyy", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
 
             List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
 
@@ -625,11 +625,22 @@ namespace RenewalWebsite.Controllers
 
             PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
             writer.CloseStream = false;
+            PDFHelper pDFHelper = new PDFHelper();
+            pDFHelper.startDate = model.FromDate;
+            pDFHelper.endDate = model.ToDate;
+            pDFHelper.fullName = user.FullName;
+            writer.PageEvent = pDFHelper;
+
             writer.SetLanguage(language);
             doc.Open();
+            for (int i = 0; i < 5; i++)
+            {
+                doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model));
+                doc.NewPage();
+            }
 
             //Add Content to PDF   
-            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model));
+            //doc.Add();
             // Closing the document  
             doc.Close();
 
@@ -699,6 +710,7 @@ namespace RenewalWebsite.Controllers
                 }
             }
 
+            tableLayout.PaddingTop = 200f;
             //Add Title to the PDF file at the top  
             tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Invoice History"], headerFont))
             {
@@ -711,8 +723,8 @@ namespace RenewalWebsite.Controllers
 
             ////Add header  
             AddCellToHeader(tableLayout, _localizer["Date"], font);
-            AddCellToHeader(tableLayout, _localizer["Currency"], font);
             AddCellToHeader(tableLayout, _localizer["Amount"], font);
+            AddCellToHeader(tableLayout, _localizer["Currency"], font);
             if (displayConversion == true)
             {
                 AddCellToHeader(tableLayout, _localizer["Exchange Rate"], font);
@@ -728,9 +740,9 @@ namespace RenewalWebsite.Controllers
                 ////Add body  
                 foreach (InvoiceHistory invoice in invoicehistoryList)
                 {
-                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) : "", "", font);
-                    AddCellToBody(tableLayout, invoice.Currency, "center", font);
+                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "", font);
                     AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", font);
+                    AddCellToBody(tableLayout, _localizer[invoice.Currency], "center", font);
                     if (displayConversion == true)
                     {
                         AddCellToBody(tableLayout, string.Format("{0:C}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
@@ -928,8 +940,7 @@ namespace RenewalWebsite.Controllers
         }
 
         #endregion
-
-
+        
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]

@@ -361,6 +361,7 @@ namespace RenewalWebsite.Controllers
         }
 
         [Route("Donation/Payment/{id}/{edit?}")]
+        [HttpGet]
         public async Task<IActionResult> Payment(int id, int edit)
         {
             try

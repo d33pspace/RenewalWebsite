@@ -11,8 +11,8 @@ using System;
 namespace RenewalWebsite.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20180420065456_Country1")]
-    partial class Country1
+    [Migration("20180421050529_Country")]
+    partial class Country
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

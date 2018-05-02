@@ -17,6 +17,7 @@ namespace RenewalWebsite.Data.Migrations
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
                     CountryChinese = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CountryEnglish = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ShortCode = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     order = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
