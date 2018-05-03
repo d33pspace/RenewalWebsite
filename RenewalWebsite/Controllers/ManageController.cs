@@ -606,17 +606,14 @@ namespace RenewalWebsite.Controllers
 
             List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
             BaseFont baseFont;
+            BaseFont baseFontEnglish;
 
-            if (language == "en-US")
-            {
-                baseFont = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
-            }
-            else
-            {
-                baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            }
+            baseFontEnglish = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+            baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
             Font headerFont = new Font(baseFont, 14, 1, BaseColor.BLACK);
             Font font = new Font(baseFont, 10, 1, BaseColor.BLACK);
+            Font fontEnglish = new Font(baseFontEnglish, 10, 1, BaseColor.BLACK);
 
             MemoryStream workStream = new MemoryStream();
             StringBuilder status = new StringBuilder("");
@@ -676,7 +673,7 @@ namespace RenewalWebsite.Controllers
             //}
 
             doc.Open();
-            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model, isAdd));
+            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model, isAdd, fontEnglish));
 
             //Add Content to PDF   
             //doc.Add();
@@ -690,7 +687,7 @@ namespace RenewalWebsite.Controllers
             return File(workStream.ToArray(), "application/pdf", strPDFFileName);
         }
 
-        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont, SearchViewModel model, bool isAdd)
+        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont, SearchViewModel model, bool isAdd,Font fontEnglish)
         {
             string sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
             bool displayConversion = false, showUSDConversion = false;
@@ -780,18 +777,18 @@ namespace RenewalWebsite.Controllers
                 ////Add body  
                 foreach (InvoiceHistory invoice in invoicehistoryList)
                 {
-                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "", font);
+                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "", fontEnglish);
                     AddCellToBody(tableLayout, _localizer[invoice.Currency], "center", font);
-                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", font);
+                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", fontEnglish);
                     if (displayConversion == true)
                     {
-                        AddCellToBody(tableLayout, invoice.ExchangeRate == null ? "" : string.Format("{0:C3}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
+                        AddCellToBody(tableLayout, invoice.ExchangeRate == null ? "" : string.Format("{0:C3}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", fontEnglish);
                     }
                     if (showUSDConversion == true)
                     {
-                        AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", "").Replace("¥", ""), "right", font);
+                        AddCellToBody(tableLayout, string.Format("{0:C}", invoice.USDAmount).Replace("$", "").Replace("¥", ""), "right", fontEnglish);
                     }
-                    AddCellToBody(tableLayout, invoice.InvoiceNumber, "", font);
+                    AddCellToBody(tableLayout, invoice.InvoiceNumber, "", fontEnglish);
                 }
 
                 if (Type == 1)
@@ -804,7 +801,7 @@ namespace RenewalWebsite.Controllers
                         BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                         BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                     });
-                    tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.USDAmount).ToString(), font))
+                    tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.USDAmount).ToString(), fontEnglish))
                     {
                         Colspan = 1,
                         HorizontalAlignment = Element.ALIGN_RIGHT,
@@ -812,7 +809,7 @@ namespace RenewalWebsite.Controllers
                         BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                         BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                     });
-                    tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                    tableLayout.AddCell(new PdfPCell(new Phrase("", fontEnglish))
                     {
                         Colspan = 1,
                         HorizontalAlignment = Element.ALIGN_CENTER,
@@ -831,7 +828,7 @@ namespace RenewalWebsite.Controllers
                         BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                         BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                     });
-                    tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), font))
+                    tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), fontEnglish))
                     {
                         Colspan = 1,
                         HorizontalAlignment = Element.ALIGN_RIGHT,
@@ -839,7 +836,7 @@ namespace RenewalWebsite.Controllers
                         BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                         BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                     });
-                    tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                    tableLayout.AddCell(new PdfPCell(new Phrase("", fontEnglish))
                     {
                         Colspan = 1,
                         HorizontalAlignment = Element.ALIGN_CENTER,
@@ -860,7 +857,7 @@ namespace RenewalWebsite.Controllers
                             BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                             BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                         });
-                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), font))
+                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), fontEnglish))
                         {
                             Colspan = 1,
                             HorizontalAlignment = Element.ALIGN_RIGHT,
@@ -868,7 +865,7 @@ namespace RenewalWebsite.Controllers
                             BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                             BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                         });
-                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.USDAmount).ToString(), font))
+                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.USDAmount).ToString(), fontEnglish))
                         {
                             Colspan = 2,
                             HorizontalAlignment = Element.ALIGN_RIGHT,
@@ -876,7 +873,7 @@ namespace RenewalWebsite.Controllers
                             BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                             BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                         });
-                        tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                        tableLayout.AddCell(new PdfPCell(new Phrase("", fontEnglish))
                         {
                             Colspan = 1,
                             HorizontalAlignment = Element.ALIGN_CENTER,
@@ -895,7 +892,7 @@ namespace RenewalWebsite.Controllers
                             BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                             BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                         });
-                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), font))
+                        tableLayout.AddCell(new PdfPCell(new Phrase(invoicehistoryList.Sum(a => a.Amount).ToString(), fontEnglish))
                         {
                             Colspan = 1,
                             HorizontalAlignment = Element.ALIGN_RIGHT,
@@ -903,7 +900,7 @@ namespace RenewalWebsite.Controllers
                             BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White),
                             BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                         });
-                        tableLayout.AddCell(new PdfPCell(new Phrase("", font))
+                        tableLayout.AddCell(new PdfPCell(new Phrase("", fontEnglish))
                         {
                             Colspan = 1,
                             HorizontalAlignment = Element.ALIGN_CENTER,
@@ -938,7 +935,7 @@ namespace RenewalWebsite.Controllers
 
             if (isAdd == true)
             {
-                PdfPCell pdfCellFooter = new PdfPCell(new Phrase("The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States.Donors may deduct contributions as provided in section 170 of the Code.", font));
+                PdfPCell pdfCellFooter = new PdfPCell(new Phrase("The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States.Donors may deduct contributions as provided in section 170 of the Code.", fontEnglish));
                 pdfCellFooter.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCellFooter.Border = 0;
                 pdfCellFooter.Colspan = 7;
