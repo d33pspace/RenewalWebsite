@@ -605,8 +605,16 @@ namespace RenewalWebsite.Controllers
             DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
 
             List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+            BaseFont baseFont;
 
-            BaseFont baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            if (language == "en-US")
+            {
+                baseFont = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+            }
+            else
+            {
+                baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            }
             Font headerFont = new Font(baseFont, 14, 1, BaseColor.BLACK);
             Font font = new Font(baseFont, 10, 1, BaseColor.BLACK);
 
@@ -643,14 +651,7 @@ namespace RenewalWebsite.Controllers
                 }
             }
 
-            if (isAdd == true)
-            {
-                doc.SetMargins(15f, 15f, 140f, 110f);
-            }
-            else
-            {
-                doc.SetMargins(15f, 15f, 140f, 90f);
-            }
+            doc.SetMargins(15f, 15f, 130f, 15f);
 
             PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
             writer.CloseStream = false;
@@ -664,9 +665,18 @@ namespace RenewalWebsite.Controllers
             writer.PageEvent = pDFHelper;
 
             writer.SetLanguage(language);
-            
+
+            //if (writer.PageNumber == 1)
+            //{
+            //    doc.SetMargins(15f, 15f, 130f, 110f);
+            //}
+            //else
+            //{
+            //    doc.SetMargins(15f, 15f, 10f, 10f);
+            //}
+
             doc.Open();
-            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model));
+            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model, isAdd));
 
             //Add Content to PDF   
             //doc.Add();
@@ -680,8 +690,9 @@ namespace RenewalWebsite.Controllers
             return File(workStream.ToArray(), "application/pdf", strPDFFileName);
         }
 
-        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont, SearchViewModel model)
+        protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont, SearchViewModel model, bool isAdd)
         {
+            string sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
             bool displayConversion = false, showUSDConversion = false;
             int Type = 1;
             if (invoicehistoryList.Count > 0)
@@ -752,8 +763,8 @@ namespace RenewalWebsite.Controllers
 
             ////Add header  
             AddCellToHeader(tableLayout, _localizer["Date"], font);
-            AddCellToHeader(tableLayout, _localizer["Amount"], font);
             AddCellToHeader(tableLayout, _localizer["Currency"], font);
+            AddCellToHeader(tableLayout, _localizer["Amount"], font);
             if (displayConversion == true)
             {
                 AddCellToHeader(tableLayout, _localizer["Exchange Rate"], font);
@@ -770,11 +781,11 @@ namespace RenewalWebsite.Controllers
                 foreach (InvoiceHistory invoice in invoicehistoryList)
                 {
                     AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "", font);
-                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", font);
                     AddCellToBody(tableLayout, _localizer[invoice.Currency], "center", font);
+                    AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", font);
                     if (displayConversion == true)
                     {
-                        AddCellToBody(tableLayout, string.Format("{0:C3}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
+                        AddCellToBody(tableLayout, invoice.ExchangeRate == null ? "" : string.Format("{0:C3}", invoice.ExchangeRate).Replace("$", "").Replace("¥", ""), "right", font);
                     }
                     if (showUSDConversion == true)
                     {
@@ -914,6 +925,28 @@ namespace RenewalWebsite.Controllers
                     BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black)
                 });
             }
+
+            iTextSharp.text.Image footerImage = iTextSharp.text.Image.GetInstance(sealImagePath);
+            footerImage.ScaleToFit(100f, 100f);
+            PdfPCell pdfCellFooterImage = new PdfPCell(footerImage);
+            pdfCellFooterImage.VerticalAlignment = Element.ALIGN_BOTTOM;
+            pdfCellFooterImage.HorizontalAlignment = Element.ALIGN_LEFT;
+            pdfCellFooterImage.Border = 0;
+            pdfCellFooterImage.PaddingTop = 10f;
+            pdfCellFooterImage.Colspan = 7;
+            tableLayout.AddCell(pdfCellFooterImage);
+
+            if (isAdd == true)
+            {
+                PdfPCell pdfCellFooter = new PdfPCell(new Phrase("The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States.Donors may deduct contributions as provided in section 170 of the Code.", font));
+                pdfCellFooter.HorizontalAlignment = Element.ALIGN_CENTER;
+                pdfCellFooter.Border = 0;
+                pdfCellFooter.Colspan = 7;
+                pdfCellFooter.BackgroundColor = new iTextSharp.text.BaseColor(System.Drawing.Color.White);
+                pdfCellFooter.BorderColor = new iTextSharp.text.BaseColor(System.Drawing.Color.Black);
+                tableLayout.AddCell(pdfCellFooter);
+            }
+
             return tableLayout;
         }
 
