@@ -935,7 +935,7 @@ namespace RenewalWebsite.Controllers
 
             if (isAdd == true)
             {
-                PdfPCell pdfCellFooter = new PdfPCell(new Phrase("The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States.Donors may deduct contributions as provided in section 170 of the Code.", fontEnglish));
+                PdfPCell pdfCellFooter = new PdfPCell(new Phrase(_localizer["The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States. Donors may deduct contributions as provided in section 170 of the Code."], fontEnglish));
                 pdfCellFooter.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCellFooter.Border = 0;
                 pdfCellFooter.Colspan = 7;
