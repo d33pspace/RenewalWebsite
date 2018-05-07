@@ -69,8 +69,8 @@ namespace RenewalWebsite.Utility
             base.OnEndPage(writer, document);
 
             iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
-            iTextSharp.text.Font baseFontFooter = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 10f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
             iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font baseFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
 
             if (writer.PageNumber == 1)
             {
@@ -78,23 +78,26 @@ namespace RenewalWebsite.Utility
                 PdfPTable pdfTab = new PdfPTable(3);
 
                 //Row 2
-                PdfPCell pdfCell8 = new PdfPCell(new Phrase(fullName, baseFontBig));
-
+                PdfPCell pdfCell8 = new PdfPCell(new Phrase(fullName, baseFontBold));
+                pdfCell8.PaddingLeft = 70f;
                 PdfPCell pdfCell4 = new PdfPCell(new Phrase("A record of your giving from " + startDate + " to " + endDate, baseFontNormal));
+                pdfCell4.PaddingLeft = 70f;
                 //Row 3
 
                 iTextSharp.text.Image myImage = iTextSharp.text.Image.GetInstance(logoPath);
                 myImage.ScaleToFit(50f, 50f);
                 PdfPCell pdfCell5 = new PdfPCell(new Phrase("The Renewal Center", baseFontBig));
+                pdfCell5.PaddingTop = 0f;
                 pdfCell5.PaddingLeft = 70f;
                 PdfPCell pdfCell6 = new PdfPCell();
                 PdfPCell pdfCell7 = new PdfPCell(myImage);
+                pdfCell7.PaddingTop = 0f;
                 pdfCell7.PaddingRight = 10f;
 
 
                 //set the alignment of all three cells and set border to 0
-                pdfCell8.HorizontalAlignment = Element.ALIGN_CENTER;
-                pdfCell4.HorizontalAlignment = Element.ALIGN_CENTER;
+                pdfCell8.HorizontalAlignment = Element.ALIGN_LEFT;
+                pdfCell4.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell5.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCell6.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCell7.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -102,9 +105,9 @@ namespace RenewalWebsite.Utility
 
                 pdfCell4.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell8.VerticalAlignment = Element.ALIGN_TOP;
-                pdfCell5.VerticalAlignment = Element.ALIGN_MIDDLE;
+                pdfCell5.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell6.VerticalAlignment = Element.ALIGN_MIDDLE;
-                pdfCell7.VerticalAlignment = Element.ALIGN_MIDDLE;
+                pdfCell7.VerticalAlignment = Element.ALIGN_TOP;
 
 
                 pdfCell4.Colspan = 3;
