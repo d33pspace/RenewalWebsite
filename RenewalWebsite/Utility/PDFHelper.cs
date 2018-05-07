@@ -89,9 +89,13 @@ namespace RenewalWebsite.Utility
                 PdfPCell pdfCell5 = new PdfPCell(new Phrase("The Renewal Center", baseFontBig));
                 pdfCell5.PaddingTop = 0f;
                 pdfCell5.PaddingLeft = 70f;
+                pdfCell5.Top = 0f;
                 PdfPCell pdfCell6 = new PdfPCell();
+                pdfCell6.PaddingTop = 0f;
+                pdfCell6.Top = 0f;
                 PdfPCell pdfCell7 = new PdfPCell(myImage);
-                pdfCell7.PaddingTop = 0f;
+                pdfCell7.Top = 0f;
+                pdfCell7.PaddingTop = 4f;
                 pdfCell7.PaddingRight = 10f;
 
 
@@ -106,7 +110,7 @@ namespace RenewalWebsite.Utility
                 pdfCell4.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell8.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell5.VerticalAlignment = Element.ALIGN_TOP;
-                pdfCell6.VerticalAlignment = Element.ALIGN_MIDDLE;
+                pdfCell6.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell7.VerticalAlignment = Element.ALIGN_TOP;
 
 
