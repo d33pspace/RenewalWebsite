@@ -19,6 +19,11 @@ namespace RenewalWebsite.Utility
         public string logoPath;
         public bool isAdd;
         public string sealImagePath;
+        public string RenewalHeader;
+        public string recordHeader;
+        public string To;
+        public string language;
+        public string fontPath;
 
         // this is the BaseFont we are going to use for the header / footer
         BaseFont bf = null;
@@ -72,6 +77,8 @@ namespace RenewalWebsite.Utility
             iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
             iTextSharp.text.Font baseFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
 
+            BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
             if (writer.PageNumber == 1)
             {
                 //Create PdfTable object
@@ -80,13 +87,20 @@ namespace RenewalWebsite.Utility
                 //Row 2
                 PdfPCell pdfCell8 = new PdfPCell(new Phrase(fullName, baseFontBold));
                 pdfCell8.PaddingLeft = 70f;
-                PdfPCell pdfCell4 = new PdfPCell(new Phrase("A record of your giving from " + startDate + " to " + endDate, baseFontNormal));
+                Phrase phrase = new Phrase();
+                phrase.Add(new Chunk(recordHeader, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + startDate + " ", baseFontNormal));
+                phrase.Add(new Chunk(To, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + endDate, baseFontNormal));
+
+                PdfPCell pdfCell4 = new PdfPCell(phrase);
                 pdfCell4.PaddingLeft = 70f;
                 //Row 3
 
                 iTextSharp.text.Image myImage = iTextSharp.text.Image.GetInstance(logoPath);
                 myImage.ScaleToFit(50f, 50f);
-                PdfPCell pdfCell5 = new PdfPCell(new Phrase("The Renewal Center", baseFontBig));
+
+                PdfPCell pdfCell5 = new PdfPCell(new Phrase(RenewalHeader, language == "en-US" ? baseFontBig : new Font(baseFont, 14f, 1, BaseColor.BLACK)));
                 pdfCell5.PaddingTop = 0f;
                 pdfCell5.PaddingLeft = 70f;
                 pdfCell5.Top = 0f;
@@ -102,7 +116,7 @@ namespace RenewalWebsite.Utility
                 //set the alignment of all three cells and set border to 0
                 pdfCell8.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell4.HorizontalAlignment = Element.ALIGN_LEFT;
-                pdfCell5.HorizontalAlignment = Element.ALIGN_CENTER;
+                pdfCell5.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell6.HorizontalAlignment = Element.ALIGN_CENTER;
                 pdfCell7.HorizontalAlignment = Element.ALIGN_CENTER;
 

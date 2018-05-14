@@ -12,21 +12,22 @@
     @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
     @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
     @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
+    <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-row">
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-3">
             <label class="control-labe" for="@Model.FromDate">@Localizer["From:"]</label>
             <div class="">
                 <input id="FromMaskDate" name="FromMaskDate" class="form-control" value="@Model.FromDate" placeholder="yyyy-mm-dd" data-inputmask="'alias': 'yyyy-mm-dd'" />
                 @*@Html.TextBoxFor(model => model.FromDate, "{0:yyyy-mm-dd}", new { @class = "form-control datetimepicker", @Text = Model.FromDate })*@
-                @Html.ValidationMessageFor(model => Model.FromDate)
+                <span id="spanFromDate" class="text-danger" style="display:none;">@Localizer["From Date is required"]</span>
             </div>
         </div>
-        <div class="form-group col-md-6">
+        <div class="form-group col-md-3">
             <label class="control-label" for="@Model.ToDate">@Localizer["To:"]</label>
             <div class="">
                 <input id="ToMaskDate" name="ToMaskDate" class="form-control" value="@Model.ToDate" placeholder="yyyy-mm-dd" data-inputmask="'alias': 'yyyy-mm-dd'" />
                 @*@Html.TextBoxFor(model => model.ToDate, "{0:yyyy-mm-dd}", new { @class = "form-control datetimepicker", @Text = Model.ToDate })*@
-                @Html.ValidationMessageFor(model => model.ToDate)
+                <span id="spanToDate" class="text-danger" style="display:none;">@Localizer["To Date is required"]</span>
             </div>
         </div>
     </div>
@@ -100,9 +101,22 @@
         $('#ToDate').val(toDate);
         var showUsd = $('#showUSD').val();
 
-        if (fromDate == "" || toDate == "") {
+        if (fromDate == "") {
+            $('#spanFromDate').css('display', 'block');
             return;
         }
+        else {
+            $('#spanFromDate').css('display', 'none');
+        }
+
+        if (toDate == "") {
+            $('#spanToDate').css('display', 'block');
+            return;
+        }
+        else {
+            $('#spanToDate').css('display', 'none');
+        }
+
         $('#divInvoiceHistory').html('');
         $.ajax({
             url: "/Manage/GetPaymentHistory",
@@ -126,11 +140,23 @@
         $('#FromDate').val(fromDate);
         $('#ToDate').val(toDate);
 
-        if (fromDate == "" || toDate == "") {
+        if (fromDate == "") {
+            $('#spanFromDate').css('display', 'block');
             return;
         }
         else {
-            $('#btnPDF').trigger('click');
+            $('#spanFromDate').css('display', 'none');
         }
+
+        if (toDate == "") {
+            $('#spanToDate').css('display', 'block');
+            return;
+        }
+        else {
+            $('#spanToDate').css('display', 'none');
+        }
+
+        $('#btnPDF').trigger('click');
+
     };
 </script>

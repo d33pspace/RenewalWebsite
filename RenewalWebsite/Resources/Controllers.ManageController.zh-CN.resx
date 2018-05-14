@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="A record of your giving from" xml:space="preserve">
+    <value>你的捐赠记录</value>
+  </data>
   <data name="Amount" xml:space="preserve">
     <value>金额</value>
   </data>
@@ -141,8 +144,14 @@
   <data name="No Record Found" xml:space="preserve">
     <value>没有找到记录</value>
   </data>
+  <data name="The Renewal Center" xml:space="preserve">
+    <value>更新中心</value>
+  </data>
   <data name="The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States. Donors may deduct contributions as provided in section 170 of the Code." xml:space="preserve">
     <value>根据美国国内税收法典第501（c）（3）条，续约中心被确认为免税。 捐赠者可以按照守则第170条的规定扣除捐款。</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>至</value>
   </data>
   <data name="Total" xml:space="preserve">
     <value>合计</value>

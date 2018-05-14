@@ -659,6 +659,11 @@ namespace RenewalWebsite.Controllers
             pDFHelper.logoPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\Renewal Logo.jpg";
             pDFHelper.isAdd = isAdd;
             pDFHelper.sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
+            pDFHelper.RenewalHeader = _localizer["The Renewal Center"];
+            pDFHelper.recordHeader = _localizer["A record of your giving from"];
+            pDFHelper.To = _localizer["to"];
+            pDFHelper.language = language;
+            pDFHelper.fontPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf";
             writer.PageEvent = pDFHelper;
 
             writer.SetLanguage(language);

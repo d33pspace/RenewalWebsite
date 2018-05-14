@@ -124,6 +124,15 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From Date is required.
+        /// </summary>
+        public static string FromDateRequired {
+            get {
+                return ResourceManager.GetString("FromDateRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Full Name.
         /// </summary>
         public static string FullName {
@@ -219,6 +228,15 @@ namespace RenewalWebsite.Resources {
         public static string StateProvince {
             get {
                 return ResourceManager.GetString("StateProvince", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to To Date is reqquired.
+        /// </summary>
+        public static string ToDateRequired {
+            get {
+                return ResourceManager.GetString("ToDateRequired", resourceCulture);
             }
         }
         

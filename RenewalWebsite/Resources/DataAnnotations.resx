@@ -177,4 +177,10 @@
   <data name="ZipPostalCode" xml:space="preserve">
     <value>Zip/PostalCode</value>
   </data>
+  <data name="FromDateRequired" xml:space="preserve">
+    <value>From Date is required</value>
+  </data>
+  <data name="ToDateRequired" xml:space="preserve">
+    <value>To Date is reqquired</value>
+  </data>
 </root>

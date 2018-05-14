@@ -8,10 +8,10 @@ namespace RenewalWebsite.Models
 {
     public class SearchViewModel
     {
-        [Required]
+        [Required(ErrorMessageResourceName = "FromDateRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string FromDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessageResourceName = "ToDateRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string ToDate { get; set; }
 
         public bool showUSD { get; set; }
