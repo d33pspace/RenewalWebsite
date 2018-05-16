@@ -11,6 +11,5 @@ namespace RenewalWebsite.Models
         public string CountryEnglish { get; set; }
         public string CountryChinese { get; set; }
         public string ShortCode { get; set; }
-        public int order { get; set; }
     }
 }

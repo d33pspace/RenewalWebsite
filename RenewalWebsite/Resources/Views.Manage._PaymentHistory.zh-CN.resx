@@ -123,6 +123,12 @@
   <data name="From:" xml:space="preserve">
     <value>报告开支日期</value>
   </data>
+  <data name="Invalid From Date" xml:space="preserve">
+    <value>从日期无效</value>
+  </data>
+  <data name="Invalid To Date" xml:space="preserve">
+    <value>无效的日期</value>
+  </data>
   <data name="PDF" xml:space="preserve">
     <value>PDF报告</value>
   </data>

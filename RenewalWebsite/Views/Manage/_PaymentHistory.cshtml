@@ -20,6 +20,7 @@
                 <input id="FromMaskDate" name="FromMaskDate" class="form-control" value="@Model.FromDate" placeholder="yyyy-mm-dd" data-inputmask="'alias': 'yyyy-mm-dd'" />
                 @*@Html.TextBoxFor(model => model.FromDate, "{0:yyyy-mm-dd}", new { @class = "form-control datetimepicker", @Text = Model.FromDate })*@
                 <span id="spanFromDate" class="text-danger" style="display:none;">@Localizer["From Date is required"]</span>
+                <span id="spanInvalidFromDate" class="text-danger" style="display:none;">@Localizer["Invalid From Date"]</span>
             </div>
         </div>
         <div class="form-group col-md-3">
@@ -28,6 +29,7 @@
                 <input id="ToMaskDate" name="ToMaskDate" class="form-control" value="@Model.ToDate" placeholder="yyyy-mm-dd" data-inputmask="'alias': 'yyyy-mm-dd'" />
                 @*@Html.TextBoxFor(model => model.ToDate, "{0:yyyy-mm-dd}", new { @class = "form-control datetimepicker", @Text = Model.ToDate })*@
                 <span id="spanToDate" class="text-danger" style="display:none;">@Localizer["To Date is required"]</span>
+                <span id="spanInvalidToDate" class="text-danger" style="display:none;">@Localizer["Invalid To Date"]</span>
             </div>
         </div>
     </div>
@@ -117,6 +119,22 @@
             $('#spanToDate').css('display', 'none');
         }
 
+        if (fromDate.includes("y") || fromDate.includes("m") || fromDate.includes("d")) {
+            $('#spanInvalidFromDate').css('display', 'block');
+            return;
+        }
+        else {
+            $('#spanInvalidFromDate').css('display', 'none');
+        }
+
+        if (toDate.includes("y") || toDate.includes("m") || toDate.includes("d")) {
+            $('#spanInvalidToDate').css('display', 'block');
+            return;
+        }
+        else {
+            $('#spanInvalidToDate').css('display', 'none');
+        }
+
         $('#divInvoiceHistory').html('');
         $.ajax({
             url: "/Manage/GetPaymentHistory",
@@ -154,6 +172,22 @@
         }
         else {
             $('#spanToDate').css('display', 'none');
+        }
+
+        if (fromDate.includes("y") || fromDate.includes("m") || fromDate.includes("d")) {
+            $('#spanInvalidFromDate').css('display', 'block');
+            return;
+        }
+        else {
+            $('#spanInvalidFromDate').css('display', 'none');
+        }
+
+        if (toDate.includes("y") || toDate.includes("m") || toDate.includes("d")) {
+            $('#spanInvalidToDate').css('display', 'block');
+            return;
+        }
+        else {
+            $('#spanInvalidToDate').css('display', 'none');
         }
 
         $('#btnPDF').trigger('click');
