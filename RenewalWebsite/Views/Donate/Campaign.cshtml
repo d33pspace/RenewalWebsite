@@ -1,0 +1,152 @@
+﻿@using System.Globalization
+@using RenewalWebsite.Services
+@using Microsoft.AspNetCore.Mvc.Localization
+@model DonationViewModel
+
+@inject IViewLocalizer Localizer
+@inject ICurrencyService CurrencyService
+
+@{
+    ViewData["Title"] = Localizer["Donate"];
+    var currency = CurrencyService.GetCurrent();
+    var language = CurrencyService.GetCurrentLanguage();
+    double baseAmountCNY = 10;
+    double baseAmountUSD = 1.47;
+}
+
+<div class="row">
+
+    @if (ViewBag.Browser.Contains("MicroMessenger"))
+    {
+        if (ViewBag.Browser.Contains("Mac OS X"))
+        {
+            <div class="col-md-12">
+                <h2>@Localizer["Please open this page in your browser."]</h2>
+                <p>@Localizer["Our site isn't compatible with WeChat. To continue, please select 'Open in Safari' from the context menu (three dots) at the top of your screen."]</p>
+            </div>
+        }
+        else
+        {
+            <div class="col-md-12">
+                <h2>@Localizer["Please open this page in your browser."]</h2>
+                <p>@Localizer["Our site isn't compatible with WeChat. To continue, please select 'Open with Browser' from the context menu (three dots) at the top of your screen."]</p>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+            <img src="~/images/home/slide-eating.jpg" class="figure-img img-fluid" alt="donate page image">
+            <figcaption class="figure-caption caption chinese">
+                @Localizer["When people come to the Renewal Center, we want to be able to help!  Thanks for your summer gift to ensure programs continue all summer long."]
+            </figcaption>
+        </div>
+
+        <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
+            <h2>@Localizer["The summer slump hurts homeless men and women"]</h2>
+            <p>@Localizer["When giving drops off in the summer months, it’s more than just a reminder that people need our help every day of the year..."]</p>
+            <p>@Localizer["The Renewal Center has to work hard to find the money to sustain our programs and services during the “summer slump” in giving, which happens because supportive friends are on summer holidays or spending more time with family."]</p>
+            <p>@Localizer["Please can you be one of our valued supporters who finds the time to send a gift this summer? Demand can increase this time of year, which is why we and the people we serve will be so grateful for your supportive gift this month."]</p>
+
+            @if (currency.Name.Contains("en"))
+            {
+                <form asp-controller="Donate" asp-action="Create">
+
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div id="textMainMessage" class="text-danger" style="display:none;">
+                        <ul>
+                            <li id="textMainErrorMessage"></li>
+                        </ul>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <label class="mtp-auto">
+                                @Localizer["I would like to make a"]&nbsp;
+                            </label>
+                            <select asp-for="CycleId" class="form-control select-font" style="min-width:100px; max-width:100px;border-radius:0.25rem;"
+                                    asp-items="@Model.DonationCycles"></select>&nbsp;
+
+                            <label class="mtp-auto">@Localizer["gift of:"]</label>
+                        </div>
+                    </div>
+                    <input type="hidden" id="Reason" name="Reason" />
+                    <input type="hidden" id="IsCustom" name="IsCustom" />
+                    <input type="hidden" id="DonationAmount" name="DonationAmount" />
+                    <ul class="list-unstyled rmb-options mb-5">
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="14.70" data-reason="to provide 10 hot meals." /><strong>@CurrencyService.GetSymbol(currency)14.70</strong> @Localizer["to provide 10 hot meals."]</li>
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="44.10" data-reason="to provide 30 hot meals." /><strong>@CurrencyService.GetSymbol(currency)44.10</strong> @Localizer["to provide 30 hot meals."]</li>
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="88.20" data-reason="to provide 60 hot meals." /><strong>@CurrencyService.GetSymbol(currency)88.20</strong> @Localizer["to provide 60 hot meals."]</li>
+                        <li>
+                            <div class="input-group">
+                                <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="to help as many people as I can." onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
+                                <input type="text" id="CustomAmount" name="CustomAmount" onfocus="checkSelection()" class="form-control" style="height:38px;" /> @Localizer["to help as many people as I can."]
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix mt-3 mb-3">
+                        <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
+                        <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
+                    </div>
+                    <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+                </form>
+            }
+            else
+            {
+                <ul class="list-unstyled gift-options">
+                    <li><strong>@CurrencyService.GetSymbol(currency)100</strong> @Localizer["to provide 10 hot meals."]</li>
+                    <li><strong>@CurrencyService.GetSymbol(currency)300</strong> @Localizer["to provide 30 hot meals."]</li>
+                    <li><strong>@CurrencyService.GetSymbol(currency)600</strong> @Localizer["to provide 60 hot meals."]</li>
+                    <li>@Localizer["An amount of your choice to help as many people as you can."]</li>
+                </ul>
+                <div class="clearfix mt-3 mb-3">
+                    <a class="btn btn-secondary" target="_blank" href="https://qr.alipay.com/apr23wsb7xjd8usf04">@Localizer["OPEN ALIPAY APP AND DONATE NOW"] <i class="arrow right-arrow"></i></a>
+                </div>
+                <p class="m-tb-15">@Localizer["Or scan the QR code below with your Alipay app to donate now:"]</p>
+                <img src="~/images/zhifubao.jpg" width="125" />
+                <p class="m-tb-15">@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+            }
+        </div>
+    }
+</div>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+        $("#CycleId").prop('selectedIndex', 3);
+    });
+
+    function checkAmount() {
+        var item = $('input[name=SelectedAmount]:checked').val();
+        if (item == "4") {
+            if ($('#CustomAmount').val() == "") {
+                $('#textMainMessage').show();
+                $('#textMainErrorMessage').text('Amount is required.');
+                $('#CustomAmount').focus();
+                return;
+            }
+
+            $('#DonationAmount').val($('#CustomAmount').val());
+        }
+        else {
+            var value = $('input[name=SelectedAmount]:checked').data('donation-value');
+            $('#DonationAmount').val(value);
+        }
+
+        var reason = $('input[name=SelectedAmount]:checked').data('reason');
+        $('#Reason').val(reason);
+
+        var iscustom = $('input[name=SelectedAmount]:checked').data('value');
+        $('#IsCustom').val(iscustom);
+
+        $('#textMainMessage').hide();
+        $('#textMainErrorMessage').text('');
+        $("#btnSaveFinal").trigger("click");
+    };
+
+    function setFocus(item) {
+        $('#CustomAmount').focus();
+    };
+
+    function checkSelection() {
+        $('[data-value=true]').prop('checked', true);
+    };
+</script>

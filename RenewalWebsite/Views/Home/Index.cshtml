@@ -24,23 +24,12 @@
         <p>@Localizer["We can’t do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home."]</p>
 
         <p><a asp-controller="News" asp-action="Index">@Localizer["Read our Spring Festival newsletter"]</a></p>
-        <h2 class="red-border">
+        <h2 class="red-border">@Localizer["Help beat the summer slump"]</h2>
+        <p>@Localizer["The Renewal Center needs your support now to overcome the “summer slump.” During the hot summer months, giving drops off for our vital services to homeless people because supportive friends like you are more likely to be travelling."]</p> 
+        <p>@Localizer["This can hurt, because our homeless guests rely on your kind support every day of the year.Please send your gift to beat the summer slump and continue helping homeless people when others can’t."]</p>
 
-            @if (currency.Name.Contains("zh"))
-            {
-                <span>@baseAmountCNY.ToString("C", currency)</span>
-            }
-            else
-            {
-                <span>@baseAmountUSD.ToString("C", currency)</span>
-            }
-
-            @Localizer["provides a hot meal"]
-        </h2>
-        <p>@Localizer["Please give hot meals and hope to a homeless person and put them on the path to new life. Your gift below for food, shelter, and basic support like showers, laundry and access to our clothing bank will open a door for someone to start a new life away from the streets."]</p>
-        
         <div class="clearfix mt-4 mb-5">
-            <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["My gift today"] <i class="arrow right-arrow"></i></a>
+            <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign">@Localizer["My gift to beat the summer slump"] <i class="arrow right-arrow"></i></a>
         </div>
     </div>
 </div>
