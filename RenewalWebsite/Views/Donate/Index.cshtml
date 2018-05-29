@@ -11,7 +11,7 @@
     var currency = CurrencyService.GetCurrent();
     var language = CurrencyService.GetCurrentLanguage();
     double baseAmountCNY = 10;
-    double baseAmountUSD = 1.47;
+    double baseAmountUSD = 1.57;
 }
 
 <div class="row">
@@ -80,9 +80,9 @@
                     <input type="hidden" id="IsCustom" name="IsCustom" />
                     <input type="hidden" id="DonationAmount" name="DonationAmount" />
                     <ul class="list-unstyled rmb-options mb-5">
-                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="14.70" data-reason="to provide 10 hot meals." /><strong>@CurrencyService.GetSymbol(currency)14.70</strong> @Localizer["to provide 10 hot meals."]</li>
-                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="44.10" data-reason="to provide 30 hot meals." /><strong>@CurrencyService.GetSymbol(currency)44.10</strong> @Localizer["to provide 30 hot meals."]</li>
-                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="88.20" data-reason="to provide 60 hot meals." /><strong>@CurrencyService.GetSymbol(currency)88.20</strong> @Localizer["to provide 60 hot meals."]</li>
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="15.70" data-reason="to provide 10 hot meals." /><strong>@CurrencyService.GetSymbol(currency)15.70</strong> @Localizer["to provide 10 hot meals."]</li>
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="47.10" data-reason="to provide 30 hot meals." /><strong>@CurrencyService.GetSymbol(currency)47.10</strong> @Localizer["to provide 30 hot meals."]</li>
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="94.20" data-reason="to provide 60 hot meals." /><strong>@CurrencyService.GetSymbol(currency)94.20</strong> @Localizer["to provide 60 hot meals."]</li>
                         <li>
                             <div class="input-group">
                                 <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="to help as many people as I can." onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>

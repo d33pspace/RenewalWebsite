@@ -117,28 +117,46 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Email" xml:space="preserve">
-    <value>邮箱</value>
+  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
+    <value>立即用国际信用卡捐款</value>
   </data>
-  <data name="Forgot your password?" xml:space="preserve">
-    <value>忘记密码</value>
+  <data name="gift of:" xml:space="preserve">
+    <value>捐款：</value>
   </data>
-  <data name="Log in" xml:space="preserve">
-    <value>登陆</value>
+  <data name="I would like to make a" xml:space="preserve">
+    <value>我想</value>
   </data>
-  <data name="Password" xml:space="preserve">
-    <value>密码</value>
+  <data name="OPEN ALIPAY APP AND DONATE NOW" xml:space="preserve">
+    <value>立即打开支付宝APP捐款</value>
   </data>
-  <data name="Register as a new user?" xml:space="preserve">
-    <value>注册一个新用户</value>
+  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
+    <value>或者用支付宝扫描下面的二维码：</value>
   </data>
-  <data name="Remember me?" xml:space="preserve">
-    <value>自动登陆</value>
+  <data name="Please can you be one of our valued supporters who finds the time to send a gift this summer? Demand can increase this time of year, which is why we and the people we serve will be so grateful for your supportive gift this month." xml:space="preserve">
+    <value>您能否在这一关键时期再次向我们伸出援手？在一年中的这段炎热的时间里，无家可归人士更加需要帮助，因此，我们也将更加感激在这时为我们做出捐赠的朋友们</value>
   </data>
-  <data name="Use a local account to log in." xml:space="preserve">
-    <value>用日新的账户登陆</value>
+  <data name="The Renewal Center has to work hard to find the money to sustain our programs and services during the 'summer slump' in giving, which happens because supportive friends are on summer holidays or spending more time with family." xml:space="preserve">
+    <value>因为我们的捐赠者朋友们常在夏季选择外出度假或与家人待在一起，这会使日新中心的捐赠收入大大降低。而我们必须更努力地筹集资金来度过这一“夏日危机”。</value>
   </data>
-  <data name="Use another service to log in." xml:space="preserve">
-    <value>用第三方账号登陆</value>
+  <data name="The summer slump hurts homeless men and women" xml:space="preserve">
+    <value>夏日危机会严重影响无家可归人士的生活</value>
+  </data>
+  <data name="to help as many people as I can." xml:space="preserve">
+    <value>尽可能多地帮助他们。</value>
+  </data>
+  <data name="to provide 30 hot meals and seven nights of shelter." xml:space="preserve">
+    <value>提供30顿饭菜和7晚的住所。</value>
+  </data>
+  <data name="to provide 30 hot meals." xml:space="preserve">
+    <value>提供30顿饭菜。</value>
+  </data>
+  <data name="to provide seven nights of shelter." xml:space="preserve">
+    <value>提供7晚的住所。</value>
+  </data>
+  <data name="When giving drops off in the summer months, it's more than just a reminder that people need our help every day of the year..." xml:space="preserve">
+    <value>每当捐赠收入在夏季下滑的时候，我们总会更深刻地感受到，无家可归的人们在一年中的每一天都需要我们的帮助…</value>
+  </data>
+  <data name="When people come to the Renewal Center, we want to be able to help!  Thanks for your summer gift to ensure programs continue all summer long." xml:space="preserve">
+    <value>当无家可归的人们来到日新中心，我们希望能够帮助他们！感谢您的夏日捐赠，它帮助我们在整个夏天持续提供服务。</value>
   </data>
 </root>

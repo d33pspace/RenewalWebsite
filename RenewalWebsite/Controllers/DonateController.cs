@@ -77,7 +77,7 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        public IActionResult Campaign_2017_12()
+        public IActionResult Campaign()
         {
             try
             {
