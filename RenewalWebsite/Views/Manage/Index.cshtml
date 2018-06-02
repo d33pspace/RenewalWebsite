@@ -43,7 +43,7 @@
                 <div id="card" class="tab-pane mt-3">
                     <h4>@Localizer["Change your card details"]</h4>
                     <hr />
-                    @if (!string.IsNullOrEmpty(Model.card.cardId))
+                    @if (Model.card != null && !string.IsNullOrEmpty(Model.card.cardId))
                     {
                         @*<div id="textUpdateMessage" class="text-danger" style="display:none;">
                                 <ul>
