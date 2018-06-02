@@ -60,7 +60,8 @@ namespace RenewalWebsite.Controllers
           ICurrencyService currencyService,
           IHostingEnvironment hostingEnvironment,
           IStringLocalizer<ManageController> localizer,
-          ICountryService countryService)
+          ICountryService countryService,
+          CountrySeeder countrySeeder)
         //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
@@ -78,6 +79,7 @@ namespace RenewalWebsite.Controllers
             _hostingEnvironment = hostingEnvironment;
             _localizer = localizer;
             _countryService = countryService;
+            countrySeeder.Seed();
         }
 
         //

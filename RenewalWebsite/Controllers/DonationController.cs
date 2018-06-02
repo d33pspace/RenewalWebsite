@@ -41,7 +41,8 @@ namespace RenewalWebsite.Controllers
             IHttpContextAccessor httpContextAccessor,
             IOptions<CurrencySettings> currencySettings,
             ICurrencyService currencyService,
-            ICountryService countryService)
+            ICountryService countryService,
+            CountrySeeder countrySeeder)
         {
             _userManager = userManager;
             _donationService = donationService;
@@ -52,6 +53,7 @@ namespace RenewalWebsite.Controllers
             _currencySettings = currencySettings;
             _currencyService = currencyService;
             _countryService = countryService;
+            countrySeeder.Seed();
         }
 
         [Route("Donation/Payment")]
