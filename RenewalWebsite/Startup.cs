@@ -121,7 +121,7 @@ namespace RenewalWebsite
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext appDbContext,CountrySeeder countrySeeder)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext appDbContext)
         {
             app.Use(async (context, next) =>
             {
@@ -197,7 +197,6 @@ namespace RenewalWebsite
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            countrySeeder.Seed();
         }
     }
 }
