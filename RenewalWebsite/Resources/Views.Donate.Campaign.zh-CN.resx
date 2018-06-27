@@ -118,7 +118,7 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
-    <value>立即用国际信用卡捐款</value>
+    <value>立即用信用卡捐款</value>
   </data>
   <data name="gift of:" xml:space="preserve">
     <value>捐款：</value>

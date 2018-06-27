@@ -9,7 +9,7 @@
 }
 <div class="container">
     <h2 class="red-border">
-        Your @Model.Frequency.ToLower() gift of @CurrencyService.GetSymbol(currency)@Model.Amount
+        @Localizer["Your"] @Model.Frequency.ToLower() @Localizer["gift of"] @CurrencyService.GetSymbol(currency)@Model.Amount
     </h2>
 </div>
 <div class="container">
@@ -17,7 +17,7 @@
         <div class="col-lg-6 offset-lg-0 col-md-6">
             <form asp-action="RePayment" asp-controller="Donation" method="POST" role="form">
                 <fieldset>
-                    <legend>Please enter your details below:</legend>
+                    <legend>@Localizer["Please enter your details below:"]</legend>
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <input hidden asp-for="Frequency" />
                     <input hidden asp-for="Amount" />
@@ -32,35 +32,35 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-12">
-                            <label asp-for="AddressLine1" class="col-form-label sr-only">Address Line One</label>
-                            <input asp-for="AddressLine1" class="form-control" placeholder="Address Line One" />
+                            <label asp-for="AddressLine1" class="col-form-label sr-only">@Localizer["Address Line 1"]</label>
+                            <input asp-for="AddressLine1" class="form-control" placeholder="@Localizer["Address Line 1"]" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-lg-12">
-                            <label asp-for="AddressLine2" class="col-form-label sr-only">Address Line Two</label>
-                            <input asp-for="AddressLine2" class="form-control" placeholder="Address Line Two" />
+                            <label asp-for="AddressLine2" class="col-form-label sr-only">@Localizer["Address Line 2"]</label>
+                            <input asp-for="AddressLine2" class="form-control" placeholder="@Localizer["Address Line 2"]" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-6 pr5">
-                            <label asp-for="City" class="col-form-label sr-only">City</label>
-                            <input asp-for="City" class="form-control" placeholder="City" />
+                            <label asp-for="City" class="col-form-label sr-only">@Localizer["City"]</label>
+                            <input asp-for="City" class="form-control" placeholder="@Localizer["City"]" />
                         </div>
                         <div class="col-6 p15">
-                            <label asp-for="State" class="col-form-label sr-only">State / Province</label>
-                            <input asp-for="State" class="form-control" placeholder="State / Province" />
+                            <label asp-for="State" class="col-form-label sr-only">@Localizer["State/Province"]</label>
+                            <input asp-for="State" class="form-control" placeholder="@Localizer["State/Province"]" />
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-6 pr5">
-                            <label asp-for="Zip" class="col-form-label sr-only">City</label>
-                            <input asp-for="Zip" class="form-control" placeholder="Zip / Postal Code" />
+                            <label asp-for="Zip" class="col-form-label sr-only">@Localizer["ZIP/Postal Code"]</label>
+                            <input asp-for="Zip" class="form-control" placeholder="@Localizer["ZIP/Postal Code"]" />
                         </div>
                         <div class="col-6 p15">
-                            <label asp-for="City" class="col-form-label sr-only">Country</label>
+                            <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
                             <select asp-for="Country" class="form-control">
-                                <option value="">(please select a country)</option>
+                                <option value="">@Localizer["(Please select a country)"]</option>
                                 @foreach (var item in Model.countries)
                                 {
                                     <option value="@item.Code">@item.Country</option>
@@ -70,13 +70,13 @@
                     </div>
                     <div class="form-group row">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <a href="/Donation/Payment/@Model.DonationId/1" class="btn btn-secondary">****@Model.Last4Digit Edit</a>
+                            <a href="/Donation/Payment/@Model.DonationId/1" class="btn btn-secondary">****@Model.Last4Digit @Localizer["Edit"]</a>
                         </div>
                     </div>
 
                     <div class="form-group row">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <button class="btn btn-secondary" type="submit">Submit Payment</button>
+                            <button class="btn btn-secondary" type="submit">@Localizer["Submit Payment"]</button>
                         </div>
                     </div>
                 </fieldset>
@@ -87,7 +87,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <span>For your security, Renewal does not store credit card details. Stripe is our secure payment provider.</span>
+            <span>@Localizer["For your security, Renewal does not store credit card details. Stripe is our secure payment provider."]</span>
         </div>
     </div>
 </div>

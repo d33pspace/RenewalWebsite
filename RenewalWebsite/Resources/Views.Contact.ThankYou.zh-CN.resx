@@ -117,49 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="(Please select a country)" xml:space="preserve">
-    <value> 请选择一个国家</value>
+  <data name="Thank you!" xml:space="preserve">
+    <value>谢谢！</value>
   </data>
-  <data name="Address Line 1" xml:space="preserve">
-    <value>县区、街道</value>
-  </data>
-  <data name="Address Line 2" xml:space="preserve">
-    <value>详细地址</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>城市</value>
-  </data>
-  <data name="Debit/Credit Card Number" xml:space="preserve">
-    <value>卡号</value>
-  </data>
-  <data name="Expiration Date" xml:space="preserve">
-    <value>期限</value>
-  </data>
-  <data name="For your security, Renewal does not store credit card details. Stripe is our secure payment provider." xml:space="preserve">
-    <value>为了您的安全, 日新中心不会存储信用卡详细信息。Stripe是我们的安全支付提供商。</value>
-  </data>
-  <data name="gift of" xml:space="preserve">
-    <value>捐赠</value>
-  </data>
-  <data name="Name" xml:space="preserve">
-    <value>姓名</value>
-  </data>
-  <data name="Please enter your details below:" xml:space="preserve">
-    <value>请输入你的信息：</value>
-  </data>
-  <data name="Security Code" xml:space="preserve">
-    <value>卡确认的价值</value>
-  </data>
-  <data name="State/Province" xml:space="preserve">
-    <value>省份</value>
-  </data>
-  <data name="Submit Payment" xml:space="preserve">
-    <value>提交付款</value>
-  </data>
-  <data name="Your" xml:space="preserve">
-    <value>你的</value>
-  </data>
-  <data name="ZIP/Postal Code" xml:space="preserve">
-    <value>邮编</value>
+  <data name="Your communications preferences have been updated." xml:space="preserve">
+    <value>您的简讯设置已改变了！谢谢！</value>
   </data>
 </root>

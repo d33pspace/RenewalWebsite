@@ -177,7 +177,7 @@
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
-  <data name="State" xml:space="preserve">
+  <data name="State/Province" xml:space="preserve">
     <value>省份</value>
   </data>
   <data name="Subscriptions" xml:space="preserve">
