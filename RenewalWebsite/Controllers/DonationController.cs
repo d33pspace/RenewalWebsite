@@ -171,32 +171,32 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Payment(CustomerPaymentViewModel payment)
         {
+            List<CountryViewModel> countryList;
+            if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+            {
+                countryList = _countryService.GetAllCountry()
+                                                     .Select(a => new CountryViewModel()
+                                                     {
+                                                         Code = a.ShortCode,
+                                                         Country = a.CountryEnglish
+                                                     }).OrderBy(a => a.Country).ToList();
+            }
+            else
+            {
+                countryList = _countryService.GetAllCountry()
+                                                     .Select(a => new CountryViewModel()
+                                                     {
+                                                         Code = a.ShortCode,
+                                                         Country = a.CountryChinese
+                                                     }).OrderBy(a => a.Country).ToList();
+            }
+            payment.countries = countryList;
             try
             {
                 var user = await GetCurrentUserAsync();
-
+                
                 if (!ModelState.IsValid)
-                {
-                    List<CountryViewModel> countryList;
-                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-                    {
-                        countryList = _countryService.GetAllCountry()
-                                                             .Select(a => new CountryViewModel()
-                                                             {
-                                                                 Code = a.ShortCode,
-                                                                 Country = a.CountryEnglish
-                                                             }).OrderBy(a => a.Country).ToList();
-                    }
-                    else
-                    {
-                        countryList = _countryService.GetAllCountry()
-                                                             .Select(a => new CountryViewModel()
-                                                             {
-                                                                 Code = a.ShortCode,
-                                                                 Country = a.CountryChinese
-                                                             }).OrderBy(a => a.Country).ToList();
-                    }
-                    payment.countries = countryList;
+                {                    
                     return View(payment);
                 }
 
