@@ -53,11 +53,11 @@ namespace RenewalWebsite.Utility
                 cb = writer.DirectContent;
 
             }
-            catch (DocumentException de)
+            catch (DocumentException)
             {
                 //handle exception here
             }
-            catch (System.IO.IOException ioe)
+            catch (System.IO.IOException)
             {
                 //handle exception here
             }

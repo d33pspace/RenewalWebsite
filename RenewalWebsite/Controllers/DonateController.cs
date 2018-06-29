@@ -59,10 +59,10 @@ namespace RenewalWebsite.Controllers
 
                 return View(model);
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
@@ -81,7 +81,6 @@ namespace RenewalWebsite.Controllers
         {
             try
             {
-                //TODO: This code repeated
                 var agent = Request.Headers["User-Agent"];
                 Console.WriteLine(agent.ToString());
                 ViewBag.Browser = agent.ToString();
@@ -93,8 +92,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
@@ -110,7 +109,7 @@ namespace RenewalWebsite.Controllers
         }
 
         [Authorize]
-        public async Task<IActionResult> Create()
+        public IActionResult Create()
         {
             try
             {
@@ -124,47 +123,41 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(DonationViewModel donation)
+        public IActionResult Create(DonationViewModel donation)
         {
             try
             {
                 var agent = Request.Headers["User-Agent"];
                 Console.WriteLine(agent.ToString());
                 ViewBag.Browser = agent.ToString();
-
                 donation.DonationCycles = GetDonationCycles;
 
-                if (donation.SelectedAmount == 0) //Could be better
+                if (donation.SelectedAmount == 0)
                 {
                     ModelState.AddModelError("amount", "Select amount");
                     return View("Index", donation);
                 }
 
-
-                if (Math.Abs((decimal)donation.DonationAmount) < 1)
+                if (Math.Abs((decimal)donation.DonationAmount) <= 0)
                 {
                     ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
                     return View("Index", donation);
                 }
 
-                if (!ModelState.IsValid)
-                {
-                    return View("Index", donation);
-                }
+                if (!ModelState.IsValid) { return View("Index", donation); }
 
                 var model = new Donation
                 {
                     CycleId = donation.CycleId,
                     DonationAmount = donation.DonationAmount,
                     SelectedAmount = donation.SelectedAmount,
-                    //Currency = "",
                     TransactionDate = DateTime.Now,
                     Reason = donation.Reason,
                     IsCustom = donation.IsCustom
@@ -185,16 +178,16 @@ namespace RenewalWebsite.Controllers
 
                 return RedirectToAction("Payment", "Donation", new { id = model.Id });
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
 
         [Authorize]
-        public async Task<IActionResult> CreateCampaign()
+        public IActionResult CreateCampaign()
         {
             try
             {
@@ -208,21 +201,19 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateCampaign(DonationViewModel donation)
+        public IActionResult CreateCampaign(DonationViewModel donation)
         {
             try
             {
                 var agent = Request.Headers["User-Agent"];
-                Console.WriteLine(agent.ToString());
                 ViewBag.Browser = agent.ToString();
-
                 donation.DonationCycles = GetDonationCycles;
 
                 if (donation.SelectedAmount == 0) //Could be better
@@ -231,17 +222,13 @@ namespace RenewalWebsite.Controllers
                     return View("Campaign_2017_08", donation);
                 }
 
-
                 if (Math.Abs((decimal)donation.DonationAmount) < 1)
                 {
                     ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
                     return View("Campaign_2017_08", donation);
                 }
 
-                if (!ModelState.IsValid)
-                {
-                    return View("Campaign_2017_08", donation);
-                }
+                if (!ModelState.IsValid) { return View("Campaign_2017_08", donation); }
 
                 var model = new Donation
                 {
@@ -266,13 +253,13 @@ namespace RenewalWebsite.Controllers
                     }
                     return RedirectToAction("Login", "Account", new { returnUrl = Request.Path });
                 }
-                
+
                 return Redirect("/Donation/Payment/campaign/" + model.Id);
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }

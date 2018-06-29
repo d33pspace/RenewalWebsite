@@ -14,12 +14,10 @@ namespace RenewalWebsite.Services
     // For more details see this link https://go.microsoft.com/fwlink/?LinkID=532713
     public class AuthMessageSender : IEmailSender, ISmsSender
     {
-        private IOptions<EmailSettings> _emailSettings;
-        //private readonly IHostingEnvironment _hostingEnvironment;
-        public AuthMessageSender(IOptions<EmailSettings> emailSettings)//, IHostingEnvironment hostingEnvironment)
+        private IOptions<EmailSettings> _emailSettings;        
+        public AuthMessageSender(IOptions<EmailSettings> emailSettings)
         {
             this._emailSettings = emailSettings;
-            //this._hostingEnvironment = hostingEnvironment;
         }
 
         public Task SendEmailAsync(string email, string subject, string message, string FullName, string template)
@@ -33,17 +31,11 @@ namespace RenewalWebsite.Services
                 mail.IsBodyHtml = true;
                 mail.Body = template;
                 mail.Sender = new MailAddress(_emailSettings.Value.FromEmail);
-                mail.To.Add(email);
-                //string contentRootPath = _hostingEnvironment.ContentRootPath;                
-                //string Body = File.ReadAllText(contentRootPath + "\\MailTemplate\\password_reset.html");
-                //Body = Body.Replace("{{name}}", FullName);
-                //Body = Body.Replace("{{action_url}}", message);
-                //"<!DOCTYPE html><html lang='en' class='no-js'><head></head><body>" + message + "</body></html>";
+                mail.To.Add(email);                
                 SmtpClient smtp = new SmtpClient();
                 smtp.Host = _emailSettings.Value.Host; //Or Your SMTP Server Address
                 smtp.Port = _emailSettings.Value.Port;
-                smtp.UseDefaultCredentials = false;
-                //smtp.DeliveryFormat = SmtpDeliveryFormat.International;
+                smtp.UseDefaultCredentials = false;                
                 smtp.DeliveryMethod = SmtpDeliveryMethod.Network;
                 smtp.Credentials = new System.Net.NetworkCredential(_emailSettings.Value.EmailUserName, _emailSettings.Value.Password);
                 //Or your Smtp Email ID and Password

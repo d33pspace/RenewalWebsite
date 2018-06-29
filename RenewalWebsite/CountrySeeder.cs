@@ -264,7 +264,7 @@ namespace RenewalWebsite
                     _context.SaveChanges();
                 }
             }
-            catch (Exception Ex)
+            catch (Exception)
             {
 
             }

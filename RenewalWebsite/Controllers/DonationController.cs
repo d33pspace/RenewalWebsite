@@ -132,11 +132,11 @@ namespace RenewalWebsite.Controllers
                             return View("RePayment", objCustomerRePaymentViewModel);
                         }
                     }
-                    catch (StripeException sex)
+                    catch (StripeException ex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
-                        _loggerService.SaveEventLog(log);
-                        ModelState.AddModelError("CustomerNotFound", sex.Message);
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                        _loggerService.SaveEventLogAsync(log);
+                        ModelState.AddModelError("CustomerNotFound", ex.Message);
                     }
 
                 }
@@ -162,8 +162,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
@@ -171,34 +171,33 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Payment(CustomerPaymentViewModel payment)
         {
-            List<CountryViewModel> countryList;
-            if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-            {
-                countryList = _countryService.GetAllCountry()
-                                                     .Select(a => new CountryViewModel()
-                                                     {
-                                                         Code = a.ShortCode,
-                                                         Country = a.CountryEnglish
-                                                     }).OrderBy(a => a.Country).ToList();
-            }
-            else
-            {
-                countryList = _countryService.GetAllCountry()
-                                                     .Select(a => new CountryViewModel()
-                                                     {
-                                                         Code = a.ShortCode,
-                                                         Country = a.CountryChinese
-                                                     }).OrderBy(a => a.Country).ToList();
-            }
-            payment.countries = countryList;
             try
             {
-                var user = await GetCurrentUserAsync();
-                
-                if (!ModelState.IsValid)
-                {                    
-                    return View(payment);
+                List<CountryViewModel> countryList;
+                if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                {
+                    countryList = _countryService.GetAllCountry()
+                                                         .Select(a => new CountryViewModel()
+                                                         {
+                                                             Code = a.ShortCode,
+                                                             Country = a.CountryEnglish
+                                                         }).OrderBy(a => a.Country).ToList();
                 }
+                else
+                {
+                    countryList = _countryService.GetAllCountry()
+                                                         .Select(a => new CountryViewModel()
+                                                         {
+                                                             Code = a.ShortCode,
+                                                             Country = a.CountryChinese
+                                                         }).OrderBy(a => a.Country).ToList();
+                }
+
+                payment.countries = countryList;
+
+                var user = await GetCurrentUserAsync();
+
+                if (!ModelState.IsValid) { return View(payment); }
 
                 var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                 var donation = _donationService.GetById(payment.DonationId);
@@ -216,9 +215,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            //Description = DonationCaption,
+                            ExpirationYear = payment.ExpiryYear,                            
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -246,11 +243,11 @@ namespace RenewalWebsite.Controllers
                             }
                         }
                     }
-                    catch (Exception exSub)
+                    catch (Exception ex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = exSub.Message };
-                        _loggerService.SaveEventLog(log);
-                        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = exSub.Message });
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                        _loggerService.SaveEventLogAsync(log);
+                        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                     }
 
                     var customer = new StripeCustomerUpdateOptions
@@ -261,9 +258,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            //Description = DonationCaption,
+                            ExpirationYear = payment.ExpiryYear,                            
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -359,24 +354,24 @@ namespace RenewalWebsite.Controllers
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
-            catch (StripeException sex)
+            catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
-                _loggerService.SaveEventLog(log);
-                if (sex.Message.ToLower().Contains("customer"))
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                if (ex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                 }
                 else
                 {
-                    ModelState.AddModelError("error", sex.Message);
+                    ModelState.AddModelError("error", ex.Message);
                     return View(payment);
                 }
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
@@ -436,19 +431,19 @@ namespace RenewalWebsite.Controllers
                         countries = countryList
                     };
                 }
-                catch (StripeException sex)
+                catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
-                    _loggerService.SaveEventLog(log);
-                    ModelState.AddModelError("CustomerNotFound", sex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
+                    ModelState.AddModelError("CustomerNotFound", ex.Message);
                 }
 
                 return View("Payment", model);
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
@@ -569,24 +564,24 @@ namespace RenewalWebsite.Controllers
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
-            catch (StripeException sex)
+            catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
-                _loggerService.SaveEventLog(log);
-                if (sex.Message.ToLower().Contains("customer"))
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                if (ex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                 }
                 else
                 {
-                    ModelState.AddModelError("error", sex.Message);
+                    ModelState.AddModelError("error", ex.Message);
                     return View(payment);
                 }
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
@@ -659,8 +654,8 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (StripeException sex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = "Customer not found." };
-                        _loggerService.SaveEventLog(log);
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message, StackTrace = sex.StackTrace, Source = sex.Source };
+                        _loggerService.SaveEventLogAsync(log);
                         ModelState.AddModelError("CustomerNotFound", sex.Message);
                     }
                 }
@@ -685,8 +680,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
@@ -719,9 +714,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            //Description = DonationCaption,
+                            ExpirationYear = payment.ExpiryYear,                            
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -749,11 +742,11 @@ namespace RenewalWebsite.Controllers
                             }
                         }
                     }
-                    catch (Exception exSub)
+                    catch (Exception ex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = exSub.Message };
-                        _loggerService.SaveEventLog(log);
-                        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = exSub.Message });
+                        log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                        _loggerService.SaveEventLogAsync(log);
+                        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                     }
 
                     var customer = new StripeCustomerUpdateOptions
@@ -764,9 +757,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            //StatementDescriptor = _stripeSettings.Value.StatementDescriptor,
-                            //Description = DonationCaption,
+                            ExpirationYear = payment.ExpiryYear,                            
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -862,24 +853,24 @@ namespace RenewalWebsite.Controllers
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
-            catch (StripeException sex)
+            catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
-                _loggerService.SaveEventLog(log);
-                if (sex.Message.ToLower().Contains("customer"))
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                if (ex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                 }
                 else
                 {
-                    ModelState.AddModelError("error", sex.Message);
+                    ModelState.AddModelError("error", ex.Message);
                     return View(payment);
                 }
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
@@ -916,19 +907,19 @@ namespace RenewalWebsite.Controllers
                         IsCustom = donation.IsCustom
                     };
                 }
-                catch (StripeException sex)
+                catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = "Customer not found." };
-                    _loggerService.SaveEventLog(log);
-                    ModelState.AddModelError("CustomerNotFound", sex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
+                    ModelState.AddModelError("CustomerNotFound", ex.Message);
                 }
 
                 return View("CampaignPayment", model);
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
@@ -1029,24 +1020,24 @@ namespace RenewalWebsite.Controllers
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
-            catch (StripeException sex)
+            catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
-                _loggerService.SaveEventLog(log);
-                if (sex.Message.ToLower().Contains("customer"))
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                if (ex.Message.ToLower().Contains("customer"))
                 {
-                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = sex.Message });
+                    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                 }
                 else
                 {
-                    ModelState.AddModelError("error", sex.Message);
+                    ModelState.AddModelError("error", ex.Message);
                     return View(payment);
                 }
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });

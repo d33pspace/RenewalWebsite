@@ -31,6 +31,7 @@ namespace RenewalWebsite.Controllers
             _stripeSettings = stripeSettings;
             _loggerService = loggerService;
         }
+
         public IActionResult Delete(string subscriptionId)
         {
             try
@@ -43,8 +44,8 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.DELETE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.DELETE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }

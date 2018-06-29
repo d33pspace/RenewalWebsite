@@ -43,13 +43,11 @@ namespace RenewalWebsite.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IStringLocalizer<ManageController> _localizer;
         private readonly ICountryService _countryService;
-        //private readonly IStringLocalizer<DonateController> _localizer;
         private EventLog log;
 
         public ManageController(
           UserManager<ApplicationUser> userManager,
           SignInManager<ApplicationUser> signInManager,
-          //IOptions<IdentityCookieOptions> identityCookieOptions,
           IEmailSender emailSender,
           ISmsSender smsSender,
           IOptions<StripeSettings> stripeSettings,
@@ -62,16 +60,13 @@ namespace RenewalWebsite.Controllers
           IStringLocalizer<ManageController> localizer,
           ICountryService countryService,
           CountrySeeder countrySeeder)
-        //IStringLocalizer<DonateController> localizer)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            //_externalCookieScheme = identityCookieOptions.Value.ExternalCookieAuthenticationScheme;
             _emailSender = emailSender;
             _smsSender = smsSender;
             _loggerService = loggerService;
             _stripeSettings = stripeSettings;
-            //_localizer = localizer;
             _invoiceHistoryService = invoiceHistoryService;
             _httpContextAccessor = httpContextAccessor;
             _currencySettings = currencySettings;
@@ -82,7 +77,6 @@ namespace RenewalWebsite.Controllers
             countrySeeder.Seed();
         }
 
-        //
         // GET: /Manage/Index
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null, int tabId = 0)
@@ -90,7 +84,6 @@ namespace RenewalWebsite.Controllers
             try
             {
                 // Optionaly use the region info to get default currency for user
-
                 ViewData["StatusMessage"] =
                     message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                     : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
@@ -104,9 +97,8 @@ namespace RenewalWebsite.Controllers
                 if (user == null)
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "User not found." };
-                    _loggerService.SaveEventLog(log);
+                    _loggerService.SaveEventLogAsync(log);
                     return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = "User not found" });
-                    //return View("Error");
                 }
 
                 List<CountryViewModel> countryList;
@@ -170,175 +162,62 @@ namespace RenewalWebsite.Controllers
                         }
                     }
                 }
-                catch (StripeException sex)
+                catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message };
-                    _loggerService.SaveEventLog(log);
-                    ModelState.AddModelError("CustomerNoFound", sex.Message);
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
+                    ModelState.AddModelError("CustomerNoFound", ex.Message);
                 }
                 ViewBag.TabId = tabId;
                 return View(model);
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return View(null);
             }
         }
 
-        //
         // POST: /Manage/RemoveLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
         {
-            ManageMessageId? message = ManageMessageId.Error;
-            var user = await GetCurrentUserAsync();
-            if (user != null)
+            try
             {
-                var result = await _userManager.RemoveLoginAsync(user, account.LoginProvider, account.ProviderKey);
-                if (result.Succeeded)
+                ManageMessageId? message = ManageMessageId.Error;
+                var user = await GetCurrentUserAsync();
+                if (user != null)
                 {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    message = ManageMessageId.RemoveLoginSuccess;
+                    var result = await _userManager.RemoveLoginAsync(user, account.LoginProvider, account.ProviderKey);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        message = ManageMessageId.RemoveLoginSuccess;
+                    }
                 }
+
+                return RedirectToAction(nameof(ManageLogins), new { Message = message });
             }
-            return RedirectToAction(nameof(ManageLogins), new { Message = message });
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return View(null);
+            }
         }
 
-        //
         // GET: /Manage/AddPhoneNumber
         public IActionResult AddPhoneNumber()
         {
             return View();
         }
 
-        //
         // POST: /Manage/AddPhoneNumber
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            // Generate the token and send it
-            var user = await GetCurrentUserAsync();
-            if (user == null)
-            {
-                return View("Error");
-            }
-            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
-            await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
-            return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
-        }
-
-        //
-        // POST: /Manage/EnableTwoFactorAuthentication
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> EnableTwoFactorAuthentication()
-        {
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                await _userManager.SetTwoFactorEnabledAsync(user, true);
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                //_logger.LogInformation(1, "User enabled two-factor authentication.");
-            }
-            return RedirectToAction(nameof(Index), "Manage");
-        }
-
-        //
-        // POST: /Manage/DisableTwoFactorAuthentication
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DisableTwoFactorAuthentication()
-        {
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                await _userManager.SetTwoFactorEnabledAsync(user, false);
-                await _signInManager.SignInAsync(user, isPersistent: false);
-                //_logger.LogInformation(2, "User disabled two-factor authentication.");
-            }
-            return RedirectToAction(nameof(Index), "Manage");
-        }
-
-        //
-        // GET: /Manage/VerifyPhoneNumber
-        [HttpGet]
-        public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
-        {
-            var user = await GetCurrentUserAsync();
-            if (user == null)
-            {
-                return View("Error");
-            }
-            var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
-            // Send an SMS to verify the phone number
-            return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
-        }
-
-        //
-        // POST: /Manage/VerifyPhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View(model);
-            }
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess });
-                }
-            }
-            // If we got this far, something failed, redisplay the form
-            ModelState.AddModelError(string.Empty, "Failed to verify phone number");
-            return View(model);
-        }
-
-        //
-        // POST: /Manage/RemovePhoneNumber
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> RemovePhoneNumber()
-        {
-            var user = await GetCurrentUserAsync();
-            if (user != null)
-            {
-                var result = await _userManager.SetPhoneNumberAsync(user, null);
-                if (result.Succeeded)
-                {
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToAction(nameof(Index), new { Message = ManageMessageId.RemovePhoneSuccess });
-                }
-            }
-            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
-        }
-
-        //
-        // GET: /Manage/ChangePassword
-        [HttpGet]
-        public IActionResult ChangePassword()
-        {
-            return View();
-        }
-
-        //
-        // POST: /Manage/ChangePassword
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             try
             {
@@ -346,6 +225,169 @@ namespace RenewalWebsite.Controllers
                 {
                     return View(model);
                 }
+                // Generate the token and send it
+                var user = await GetCurrentUserAsync();
+                if (user == null)
+                {
+                    return View("Error");
+                }
+                var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
+                await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
+                return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return View(null);
+            }
+        }
+
+        // POST: /Manage/EnableTwoFactorAuthentication
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> EnableTwoFactorAuthentication()
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    await _userManager.SetTwoFactorEnabledAsync(user, true);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    //_logger.LogInformation(1, "User enabled two-factor authentication.");
+                }
+                return RedirectToAction(nameof(Index), "Manage");
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return View(null);
+            }
+        }
+
+        // POST: /Manage/DisableTwoFactorAuthentication
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DisableTwoFactorAuthentication()
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    await _userManager.SetTwoFactorEnabledAsync(user, false);
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    //_logger.LogInformation(2, "User disabled two-factor authentication.");
+                }
+                return RedirectToAction(nameof(Index), "Manage");
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return View(null);
+            }
+        }
+
+        // GET: /Manage/VerifyPhoneNumber
+        [HttpGet]
+        public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                if (user == null)
+                {
+                    return View("Error");
+                }
+                var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, phoneNumber);
+                // Send an SMS to verify the phone number
+                return phoneNumber == null ? View("Error") : View(new VerifyPhoneNumberViewModel { PhoneNumber = phoneNumber });
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return View(null);
+            }
+        }
+
+        // POST: /Manage/VerifyPhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid) { return View(model); }
+
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+            }
+
+            // If we got this far, something failed, redisplay the form
+            ModelState.AddModelError(string.Empty, "Failed to verify phone number");
+            return View(model);
+        }
+
+        // POST: /Manage/RemovePhoneNumber
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> RemovePhoneNumber()
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
+                if (user != null)
+                {
+                    var result = await _userManager.SetPhoneNumberAsync(user, null);
+                    if (result.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToAction(nameof(Index), new { Message = ManageMessageId.RemovePhoneSuccess });
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+            }
+
+            return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
+        }
+
+        // GET: /Manage/ChangePassword
+        [HttpGet]
+        public IActionResult ChangePassword()
+        {
+            return View();
+        }
+
+        // POST: /Manage/ChangePassword
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
+        {
+            try
+            {
+                if (!ModelState.IsValid) { return View(model); }
+
                 var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
@@ -353,7 +395,6 @@ namespace RenewalWebsite.Controllers
                     if (result.Succeeded)
                     {
                         await _signInManager.SignInAsync(user, isPersistent: false);
-                        //_logger.LogInformation(3, "User changed their password successfully.");
                         return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
                     AddErrors(result);
@@ -363,14 +404,12 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
         }
 
-        //
         // GET: /Manage/SetPassword
         [HttpGet]
         public IActionResult SetPassword()
@@ -378,7 +417,6 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        //
         // POST: /Manage/SetPassword
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -386,10 +424,7 @@ namespace RenewalWebsite.Controllers
         {
             try
             {
-                if (!ModelState.IsValid)
-                {
-                    return View(model);
-                }
+                if (!ModelState.IsValid) { return View(model); }
 
                 var user = await GetCurrentUserAsync();
                 if (user != null)
@@ -407,10 +442,9 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
             }
 
         }
@@ -419,39 +453,56 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
         {
-            ViewData["StatusMessage"] =
-                message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                : message == ManageMessageId.AddLoginSuccess ? "The external login was added."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : "";
-            var user = await GetCurrentUserAsync();
-            if (user == null)
+            try
             {
-                return View("Error");
+                ViewData["StatusMessage"] =
+                    message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
+                    : message == ManageMessageId.AddLoginSuccess ? "The external login was added."
+                    : message == ManageMessageId.Error ? "An error has occurred."
+                    : "";
+                var user = await GetCurrentUserAsync();
+                if (user == null)
+                {
+                    return View("Error");
+                }
+                var userLogins = await _userManager.GetLoginsAsync(user);
+                var otherLogins = _signInManager.GetExternalAuthenticationSchemesAsync().Result.ToList();
+                ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
+                return View(new ManageLoginsViewModel
+                {
+                    CurrentLogins = userLogins,
+                    OtherLogins = otherLogins
+                });
             }
-            var userLogins = await _userManager.GetLoginsAsync(user);
-            var otherLogins = _signInManager.GetExternalAuthenticationSchemesAsync().Result.ToList();
-            ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
-            return View(new ManageLoginsViewModel
+            catch (Exception ex)
             {
-                CurrentLogins = userLogins,
-                OtherLogins = otherLogins
-            });
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
-        //
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> LinkLogin(string provider)
         {
-            // Clear the existing external cookie to ensure a clean login process
-            await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+            try
+            {
+                // Clear the existing external cookie to ensure a clean login process
+                await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
 
-            // Request a redirect to the external login provider to link a login for the current user
-            var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
-            return Challenge(properties, provider);
+                // Request a redirect to the external login provider to link a login for the current user
+                var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
+                var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
+                return Challenge(properties, provider);
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
         //
@@ -459,25 +510,36 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<ActionResult> LinkLoginCallback()
         {
-            var user = await GetCurrentUserAsync();
-            if (user == null)
+            try
             {
-                return View("Error");
+
+
+                var user = await GetCurrentUserAsync();
+                if (user == null)
+                {
+                    return View("Error");
+                }
+                var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
+                if (info == null)
+                {
+                    return RedirectToAction(nameof(ManageLogins), new { Message = ManageMessageId.Error });
+                }
+                var result = await _userManager.AddLoginAsync(user, info);
+                var message = ManageMessageId.Error;
+                if (result.Succeeded)
+                {
+                    message = ManageMessageId.AddLoginSuccess;
+                    // Clear the existing external cookie to ensure a clean login process
+                    await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+                }
+                return RedirectToAction(nameof(ManageLogins), new { Message = message });
             }
-            var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
-            if (info == null)
+            catch (Exception ex)
             {
-                return RedirectToAction(nameof(ManageLogins), new { Message = ManageMessageId.Error });
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
-            var result = await _userManager.AddLoginAsync(user, info);
-            var message = ManageMessageId.Error;
-            if (result.Succeeded)
-            {
-                message = ManageMessageId.AddLoginSuccess;
-                // Clear the existing external cookie to ensure a clean login process
-                await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
-            }
-            return RedirectToAction(nameof(ManageLogins), new { Message = message });
         }
 
         public ActionResult AddNewCard()
@@ -489,209 +551,232 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<ActionResult> PaymentHistory()
         {
-            var user = await GetCurrentUserAsync();
-            CultureInfo us = new CultureInfo("en-US");
-            SearchViewModel model = new SearchViewModel();
-            model.FromDate = new DateTime((DateTime.Now.Year - 1), 1, 1).ToString("yyyy-MM-dd", us);
-            model.ToDate = new DateTime((DateTime.Now.Year - 1), 12, 31).ToString("yyyy-MM-dd", us);
-
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-            model.showUSD = false;
-
-            List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
-
-            if (InvoiceHistory.Count > 0)
+            try
             {
-                if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
-                {
-                    model.displayUSD = false;
-                    return PartialView("_PaymentHistory", model);
-                }
-                else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
-                {
-                    model.displayUSD = false;
-                    return PartialView("_PaymentHistory", model);
-                }
-                else
-                {
-                    model.displayUSD = true;
-                    return PartialView("_PaymentHistory", model);
-                }
-            }
 
-            return PartialView("_PaymentHistory", model);
+
+                var user = await GetCurrentUserAsync();
+                CultureInfo us = new CultureInfo("en-US");
+                SearchViewModel model = new SearchViewModel();
+                model.FromDate = new DateTime((DateTime.Now.Year - 1), 1, 1).ToString("yyyy-MM-dd", us);
+                model.ToDate = new DateTime((DateTime.Now.Year - 1), 12, 31).ToString("yyyy-MM-dd", us);
+
+                DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+                model.showUSD = false;
+
+                List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+                if (InvoiceHistory.Count > 0)
+                {
+                    if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+                    {
+                        model.displayUSD = false;
+                        return PartialView("_PaymentHistory", model);
+                    }
+                    else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+                    {
+                        model.displayUSD = false;
+                        return PartialView("_PaymentHistory", model);
+                    }
+                    else
+                    {
+                        model.displayUSD = true;
+                        return PartialView("_PaymentHistory", model);
+                    }
+                }
+
+                return PartialView("_PaymentHistory", model);
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
         [HttpPost]
         public async Task<ActionResult> GetPaymentHistory(SearchViewModel model)
         {
-            var user = await GetCurrentUserAsync();
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-            InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
-            invoiceHistoryModel.showUSDConversion = model.showUSD;
-            invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
-
-            if (invoiceHistoryModel.InvoiceHistory.Count > 0)
+            try
             {
-                if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
-                {
-                    invoiceHistoryModel.displayConversion = true;
-                    invoiceHistoryModel.showUSDOption = false;
-                    invoiceHistoryModel.showUSDConversion = true;
-                    invoiceHistoryModel.Type = 1;
-                    return PartialView("_InvoiceHistory", invoiceHistoryModel);
-                }
-                else if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
-                {
-                    invoiceHistoryModel.displayConversion = false;
-                    invoiceHistoryModel.showUSDOption = false;
-                    invoiceHistoryModel.showUSDConversion = false;
-                    invoiceHistoryModel.Type = 2;
-                    return PartialView("_InvoiceHistory", invoiceHistoryModel);
-                }
-                else
-                {
-                    invoiceHistoryModel.displayConversion = model.showUSD;
-                    invoiceHistoryModel.showUSDOption = true;
-                    invoiceHistoryModel.showUSDConversion = model.showUSD;
-                    invoiceHistoryModel.Type = 3;
-                    return PartialView("_InvoiceHistory", invoiceHistoryModel);
-                }
-            }
+                var user = await GetCurrentUserAsync();
+                DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-            return PartialView("_InvoiceHistory", invoiceHistoryModel);
+                InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
+                invoiceHistoryModel.showUSDConversion = model.showUSD;
+                invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+                if (invoiceHistoryModel.InvoiceHistory.Count > 0)
+                {
+                    if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+                    {
+                        invoiceHistoryModel.displayConversion = true;
+                        invoiceHistoryModel.showUSDOption = false;
+                        invoiceHistoryModel.showUSDConversion = true;
+                        invoiceHistoryModel.Type = 1;
+                        return PartialView("_InvoiceHistory", invoiceHistoryModel);
+                    }
+                    else if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+                    {
+                        invoiceHistoryModel.displayConversion = false;
+                        invoiceHistoryModel.showUSDOption = false;
+                        invoiceHistoryModel.showUSDConversion = false;
+                        invoiceHistoryModel.Type = 2;
+                        return PartialView("_InvoiceHistory", invoiceHistoryModel);
+                    }
+                    else
+                    {
+                        invoiceHistoryModel.displayConversion = model.showUSD;
+                        invoiceHistoryModel.showUSDOption = true;
+                        invoiceHistoryModel.showUSDConversion = model.showUSD;
+                        invoiceHistoryModel.Type = 3;
+                        return PartialView("_InvoiceHistory", invoiceHistoryModel);
+                    }
+                }
+
+                return PartialView("_InvoiceHistory", invoiceHistoryModel);
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
         [HttpPost]
-        public async Task<JsonResult> DisplayUsdOption(SearchViewModel model)
+        public async Task<ActionResult> DisplayUsdOption(SearchViewModel model)
         {
-            var user = await GetCurrentUserAsync();
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
-            List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
-
-            if (InvoiceHistory.Count > 0)
+            try
             {
-                if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
-                {
-                    return Json(false);
-                }
-                else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
-                {
-                    return Json(false);
-                }
-                else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any())
-                {
-                    return Json(true);
-                }
-                else
-                {
-                    return Json(false);
-                }
-            }
+                var user = await GetCurrentUserAsync();
+                DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+                DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
-            return Json(false);
+                List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+                if (InvoiceHistory.Count > 0)
+                {
+                    if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+                    {
+                        return Json(false);
+                    }
+                    else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+                    {
+                        return Json(false);
+                    }
+                    else if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any())
+                    {
+                        return Json(true);
+                    }
+                    else
+                    {
+                        return Json(false);
+                    }
+                }
+
+                return Json(false);
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
         [HttpPost]
-        public async Task<FileResult> GetInvoicePdf(SearchViewModel model)
+        public async Task<ActionResult> GetInvoicePdf(SearchViewModel model)
         {
-            string language = _currencyService.GetCurrentLanguage().Name;
-            var user = await GetCurrentUserAsync();
-            DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-            DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-
-            List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
-            BaseFont baseFont;
-            BaseFont baseFontEnglish;
-
-            baseFontEnglish = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
-            baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-
-            Font headerFont = new Font(baseFont, 14, 1, BaseColor.BLACK);
-            Font font = new Font(baseFont, 10, 1, BaseColor.BLACK);
-            Font fontEnglish = new Font(baseFontEnglish, 10, 1, BaseColor.BLACK);
-
-            MemoryStream workStream = new MemoryStream();
-            StringBuilder status = new StringBuilder("");
-            DateTime dTime = DateTime.Now;
-            //file name to be created   
-            string strPDFFileName = string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
-            Document doc = new Document();
-            doc.SetPageSize(PageSize.A4);
-            doc.SetMargins(0f, 0f, 0f, 0f);
-            //Create PDF Table with 5 columns  
-            PdfPTable tableLayout = null;
-            //Create PDF Table  
-
-            bool isAdd = true;
-            if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+            try
             {
-                isAdd = true;
-            }
-            else if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
-            {
-                isAdd = true;
-            }
-            else
-            {
-                if (model.showUSD == true)
+
+
+                string language = _currencyService.GetCurrentLanguage().Name;
+                var user = await GetCurrentUserAsync();
+                DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+
+                List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                BaseFont baseFont;
+                BaseFont baseFontEnglish;
+
+                baseFontEnglish = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+                baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
+                Font headerFont = new Font(baseFont, 14, 1, BaseColor.BLACK);
+                Font font = new Font(baseFont, 10, 1, BaseColor.BLACK);
+                Font fontEnglish = new Font(baseFontEnglish, 10, 1, BaseColor.BLACK);
+
+                MemoryStream workStream = new MemoryStream();
+                StringBuilder status = new StringBuilder("");
+                DateTime dTime = DateTime.Now;
+                //file name to be created   
+                string strPDFFileName = string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
+                Document doc = new Document();
+                doc.SetPageSize(PageSize.A4);
+                doc.SetMargins(0f, 0f, 0f, 0f);
+                //Create PDF Table with 5 columns  
+                PdfPTable tableLayout = null;
+                //Create PDF Table  
+
+                bool isAdd = true;
+                if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+                {
+                    isAdd = true;
+                }
+                else if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                 {
                     isAdd = true;
                 }
                 else
                 {
-                    isAdd = false;
+                    if (model.showUSD == true) { isAdd = true; }
+                    else { isAdd = false; }
                 }
+
+                doc.SetMargins(15f, 15f, 130f, 15f);
+
+                PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
+                writer.CloseStream = false;
+                PDFHelper pDFHelper = new PDFHelper();
+                pDFHelper.startDate = model.FromDate;
+                pDFHelper.endDate = model.ToDate;
+                pDFHelper.fullName = user.FullName;
+                pDFHelper.logoPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\Renewal Logo.jpg";
+                pDFHelper.isAdd = isAdd;
+                pDFHelper.sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
+                pDFHelper.RenewalHeader = _localizer["The Renewal Center"];
+                pDFHelper.recordHeader = _localizer["A record of your giving from"];
+                pDFHelper.To = _localizer["to"];
+                pDFHelper.language = language;
+                pDFHelper.fontPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf";
+                writer.PageEvent = pDFHelper;
+
+                writer.SetLanguage(language);
+
+                doc.Open();
+                doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model, isAdd, fontEnglish, language));
+
+                // Closing the document  
+                doc.Close();
+
+                byte[] byteInfo = workStream.ToArray();
+                workStream.Write(byteInfo, 0, byteInfo.Length);
+                workStream.Position = 0;
+
+                return File(workStream.ToArray(), "application/pdf", strPDFFileName);
             }
-
-            doc.SetMargins(15f, 15f, 130f, 15f);
-
-            PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
-            writer.CloseStream = false;
-            PDFHelper pDFHelper = new PDFHelper();
-            pDFHelper.startDate = model.FromDate;
-            pDFHelper.endDate = model.ToDate;
-            pDFHelper.fullName = user.FullName;
-            pDFHelper.logoPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\Renewal Logo.jpg";
-            pDFHelper.isAdd = isAdd;
-            pDFHelper.sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
-            pDFHelper.RenewalHeader = _localizer["The Renewal Center"];
-            pDFHelper.recordHeader = _localizer["A record of your giving from"];
-            pDFHelper.To = _localizer["to"];
-            pDFHelper.language = language;
-            pDFHelper.fontPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf";
-            writer.PageEvent = pDFHelper;
-
-            writer.SetLanguage(language);
-
-            //if (writer.PageNumber == 1)
-            //{
-            //    doc.SetMargins(15f, 15f, 130f, 110f);
-            //}
-            //else
-            //{
-            //    doc.SetMargins(15f, 15f, 10f, 10f);
-            //}
-
-            doc.Open();
-            doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model, isAdd, fontEnglish, language));
-
-            //Add Content to PDF   
-            //doc.Add();
-            // Closing the document  
-            doc.Close();
-
-            byte[] byteInfo = workStream.ToArray();
-            workStream.Write(byteInfo, 0, byteInfo.Length);
-            workStream.Position = 0;
-
-            return File(workStream.ToArray(), "application/pdf", strPDFFileName);
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
         protected PdfPTable Add_Content_To_PDF(PdfPTable tableLayout, List<InvoiceHistory> invoicehistoryList, bool showUSD, Font font, Font headerFont, SearchViewModel model, bool isAdd, Font fontEnglish, string language)
@@ -753,19 +838,8 @@ namespace RenewalWebsite.Controllers
                     colspan = 4;
                 }
             }
-
-            //tableLayout.PaddingTop = 200f;
-            ////Add Title to the PDF file at the top  
-            //tableLayout.AddCell(new PdfPCell(new Phrase(_localizer["Invoice History"], headerFont))
-            //{
-            //    Colspan = colspan,
-            //    Border = 0,
-            //    PaddingBottom = 15,
-            //    HorizontalAlignment = Element.ALIGN_CENTER,
-            //});
-
-
-            ////Add header  
+            
+            //Add header  
             AddCellToHeader(tableLayout, _localizer["Date"], language == "en-US" ? fontEnglish : font);
             AddCellToHeader(tableLayout, _localizer["Currency"], language == "en-US" ? fontEnglish : font);
             AddCellToHeader(tableLayout, _localizer["Amount"], language == "en-US" ? fontEnglish : font);
@@ -781,7 +855,7 @@ namespace RenewalWebsite.Controllers
 
             if (invoicehistoryList != null && invoicehistoryList.Count > 0)
             {
-                ////Add body  
+                //Add body  
                 foreach (InvoiceHistory invoice in invoicehistoryList)
                 {
                     AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "center", fontEnglish);
@@ -1063,8 +1137,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 result.data = "Something went wrong, please try again";
                 result.status = "0";
             }
@@ -1095,17 +1169,17 @@ namespace RenewalWebsite.Controllers
                     result.status = "1";
                     return Json(result);
                 }
-                catch (StripeException ex1)
+                catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex1.Message };
-                    _loggerService.SaveEventLog(log);
-                    result.data = ex1.Message;
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
+                    result.data = ex.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                    _loggerService.SaveEventLog(log);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }
@@ -1161,17 +1235,17 @@ namespace RenewalWebsite.Controllers
                     result.status = "1";
                     return Json(result);
                 }
-                catch (StripeException ex1)
+                catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex1.Message };
-                    _loggerService.SaveEventLog(log);
-                    result.data = ex1.Message;
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
+                    result.data = ex.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                    _loggerService.SaveEventLog(log);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }

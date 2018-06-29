@@ -55,7 +55,6 @@ namespace RenewalWebsite.Controllers
             _currencyService = currencyService;
         }
 
-        //
         // GET: /Account/Login
         [HttpGet]
         [AllowAnonymous]
@@ -68,43 +67,45 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginViewModel model, string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            try
             {
-                // This doesn't count login failures towards account lockout
-                // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
-                if (result.Succeeded)
+                ViewData["ReturnUrl"] = returnUrl;
+                if (ModelState.IsValid)
                 {
-                    return RedirectToLocal(returnUrl);
+                    // This doesn't count login failures towards account lockout
+                    // To enable password failures to trigger account lockout, set lockoutOnFailure: true
+                    var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                    if (result.Succeeded) { return RedirectToLocal(returnUrl); }
+
+                    if (result.RequiresTwoFactor)
+                    {
+                        return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                    }
+
+                    if (result.IsLockedOut) { return View("Lockout"); }
+                    else
+                    {
+                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        return View(model);
+                    }
                 }
-                if (result.RequiresTwoFactor)
-                {
-                    return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                }
-                if (result.IsLockedOut)
-                {
-                    return View("Lockout");
-                }
-                else
-                {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
-                    return View(model);
-                }
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
         // GET: /Account/Register
         [HttpGet]
         [AllowAnonymous]
@@ -114,49 +115,49 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Register(RegisterViewModel model, string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
-            if (ModelState.IsValid)
+            try
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true, PhoneNumberConfirmed = true };
-                var result = await _userManager.CreateAsync(user, model.Password);
-                if (result.Succeeded)
+                ViewData["ReturnUrl"] = returnUrl;
+                if (ModelState.IsValid)
                 {
-                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z07xtw/");
-                    var request = new RestRequest(Method.POST);
-                    request.AddParameter("email", model.Email);
-                    request.AddParameter("name", string.Empty);
-                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
-                    request.AddParameter("address", string.Empty);
-                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
-                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
-                    request.AddParameter("time_zone", model.TimeZone);
-                    // execute the request
-                    IRestResponse response = client.Execute(request);
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true, PhoneNumberConfirmed = true };
+                    var result = await _userManager.CreateAsync(user, model.Password);
+                    if (result.Succeeded)
+                    {
+                        var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z07xtw/");
+                        var request = new RestRequest(Method.POST);
+                        request.AddParameter("email", model.Email);
+                        request.AddParameter("name", string.Empty);
+                        request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
+                        request.AddParameter("address", string.Empty);
+                        request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                        request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                        request.AddParameter("time_zone", model.TimeZone);
+                        // execute the request
+                        IRestResponse response = client.Execute(request);
 
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
-                    // Send an email with this link
-                    //var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    //var callbackUrl = Url.Action(nameof(ConfirmEmail), "Account", new { userId = user.Id, code = code }, protocol: HttpContext.Request.Scheme);
-                    //await _emailSender.SendEmailAsync(model.Email, "Confirm your account",
-                    //    $"Please confirm your account by clicking this link: <a href='{callbackUrl}'>link</a>");
-                    await _signInManager.SignInAsync(user, isPersistent: false);
-                    return RedirectToLocal(returnUrl);
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToLocal(returnUrl);
+                    }
+                    AddErrors(result);
                 }
-                AddErrors(result);
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_REGISTER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
         }
 
-        //
         // POST: /Account/Logout
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -166,20 +167,27 @@ namespace RenewalWebsite.Controllers
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
-        //
         // POST: /Account/ExternalLogin
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public IActionResult ExternalLogin(string provider, string returnUrl = null)
         {
-            // Request a redirect to the external login provider.
-            var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl });
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
-            return Challenge(properties, provider);
+            try
+            {
+                // Request a redirect to the external login provider.
+                var redirectUrl = Url.Action(nameof(ExternalLoginCallback), "Account", new { ReturnUrl = returnUrl });
+                var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl);
+                return Challenge(properties, provider);
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
-        //
         // GET: /Account/ExternalLoginCallback
         [HttpGet]
         [AllowAnonymous]
@@ -188,7 +196,7 @@ namespace RenewalWebsite.Controllers
             if (remoteError != null)
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "Error from external provider." };
-                _loggerService.SaveEventLog(log);
+                _loggerService.SaveEventLogAsync(log);
                 ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
                 return View(nameof(Login));
             }
@@ -200,18 +208,14 @@ namespace RenewalWebsite.Controllers
 
             // Sign in the user with this external login provider if the user already has a login.
             var result = await _signInManager.ExternalLoginSignInAsync(info.LoginProvider, info.ProviderKey, isPersistent: false);
-            if (result.Succeeded)
-            {
-                return RedirectToLocal(returnUrl);
-            }
+            if (result.Succeeded) { return RedirectToLocal(returnUrl); }
+
             if (result.RequiresTwoFactor)
             {
                 return RedirectToAction(nameof(SendCode), new { ReturnUrl = returnUrl });
             }
-            if (result.IsLockedOut)
-            {
-                return View("Lockout");
-            }
+
+            if (result.IsLockedOut) { return View("Lockout"); }
             else
             {
                 // If the user does not have an account, then ask the user to create an account.
@@ -222,39 +226,47 @@ namespace RenewalWebsite.Controllers
             }
         }
 
-        //
         // POST: /Account/ExternalLoginConfirmation
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ExternalLoginConfirmation(ExternalLoginConfirmationViewModel model, string returnUrl = null)
         {
-            if (ModelState.IsValid)
+            try
             {
-                // Get the information about the user from the external login provider
-                var info = await _signInManager.GetExternalLoginInfoAsync();
-                if (info == null)
+                if (ModelState.IsValid)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "External login gets failed." };
-                    _loggerService.SaveEventLog(log);
-                    return View("ExternalLoginFailure");
-                }
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
-                var result = await _userManager.CreateAsync(user);
-                if (result.Succeeded)
-                {
-                    result = await _userManager.AddLoginAsync(user, info);
+                    // Get the information about the user from the external login provider
+                    var info = await _signInManager.GetExternalLoginInfoAsync();
+                    if (info == null)
+                    {
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "External login gets failed." };
+                        _loggerService.SaveEventLogAsync(log);
+                        return View("ExternalLoginFailure");
+                    }
+                    var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true };
+                    var result = await _userManager.CreateAsync(user);
                     if (result.Succeeded)
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return RedirectToLocal(returnUrl);
+                        result = await _userManager.AddLoginAsync(user, info);
+                        if (result.Succeeded)
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                            return RedirectToLocal(returnUrl);
+                        }
                     }
+                    AddErrors(result);
                 }
-                AddErrors(result);
-            }
 
-            ViewData["ReturnUrl"] = returnUrl;
-            return View(model);
+                ViewData["ReturnUrl"] = returnUrl;
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
         }
 
         // GET: /Account/ConfirmEmail
@@ -262,20 +274,15 @@ namespace RenewalWebsite.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> ConfirmEmail(string userId, string code)
         {
-            if (userId == null || code == null)
-            {
-                return View("Error");
-            }
+            if (userId == null || code == null) { return View("Error"); }
+
             var user = await _userManager.FindByIdAsync(userId);
-            if (user == null)
-            {
-                return View("Error");
-            }
+            if (user == null) { return View("Error"); }
+
             var result = await _userManager.ConfirmEmailAsync(user, code);
             return View(result.Succeeded ? "ConfirmEmail" : "Error");
         }
 
-        //
         // GET: /Account/ForgotPassword
         [HttpGet]
         [AllowAnonymous]
@@ -284,7 +291,6 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        //
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
@@ -310,8 +316,7 @@ namespace RenewalWebsite.Controllers
                     mailModel.Name = user.FullName;
                     mailModel.message = callbackUrl;
                     string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
-                    await _emailSender.SendEmailAsync(model.Email, "Reset Password",
-                       callbackUrl, user.FullName, template);
+                    await _emailSender.SendEmailAsync(model.Email, "Reset Password", callbackUrl, user.FullName, template);
                     return View("ForgotPasswordConfirmation");
                 }
 
@@ -320,13 +325,12 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
         }
 
-        //
         // GET: /Account/ForgotPasswordConfirmation
         [HttpGet]
         [AllowAnonymous]
@@ -335,7 +339,6 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        //
         // GET: /Account/ResetPassword
         [HttpGet]
         [AllowAnonymous]
@@ -344,33 +347,40 @@ namespace RenewalWebsite.Controllers
             return code == null ? View("Error") : View();
         }
 
-        //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ResetPassword(ResetPasswordViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
+                if (!ModelState.IsValid)
+                {
+                    return View(model);
+                }
+                var user = await _userManager.FindByEmailAsync(model.Email);
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                }
+                var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
+                if (result.Succeeded)
+                {
+                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                }
+                AddErrors(result);
+                return View();
             }
-            var user = await _userManager.FindByEmailAsync(model.Email);
-            if (user == null)
+            catch (Exception ex)
             {
-                // Don't reveal that the user does not exist
-                return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
-            var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
-            if (result.Succeeded)
-            {
-                return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
-            }
-            AddErrors(result);
-            return View();
         }
 
-        //
         // GET: /Account/ResetPasswordConfirmation
         [HttpGet]
         [AllowAnonymous]
@@ -379,61 +389,68 @@ namespace RenewalWebsite.Controllers
             return View();
         }
 
-        //
         // GET: /Account/SendCode
         [HttpGet]
         [AllowAnonymous]
         public async Task<ActionResult> SendCode(string returnUrl = null, bool rememberMe = false)
         {
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
+            try
             {
-                return View("Error");
+                var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+                if (user == null)
+                {
+                    return View("Error");
+                }
+                var userFactors = await _userManager.GetValidTwoFactorProvidersAsync(user);
+                var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
+                return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
             }
-            var userFactors = await _userManager.GetValidTwoFactorProvidersAsync(user);
-            var factorOptions = userFactors.Select(purpose => new SelectListItem { Text = purpose, Value = purpose }).ToList();
-            return View(new SendCodeViewModel { Providers = factorOptions, ReturnUrl = returnUrl, RememberMe = rememberMe });
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = "Something went wrong, please try again." });
+            }
         }
 
-        //
         // POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SendCode(SendCodeViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View();
-            }
+                if (!ModelState.IsValid) { return View(); }
 
-            var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                return View("Error");
-            }
+                var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
+                if (user == null) { return View("Error"); }
 
-            // Generate the token and send it
-            var code = await _userManager.GenerateTwoFactorTokenAsync(user, model.SelectedProvider);
-            if (string.IsNullOrWhiteSpace(code))
-            {
-                return View("Error");
-            }
+                // Generate the token and send it
+                var code = await _userManager.GenerateTwoFactorTokenAsync(user, model.SelectedProvider);
+                if (string.IsNullOrWhiteSpace(code)) { return View("Error"); }
 
-            var message = "Your security code is: " + code;
-            if (model.SelectedProvider == "Email")
-            {
-                await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", "", "", message);
-            }
-            else if (model.SelectedProvider == "Phone")
-            {
-                await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user), message);
-            }
+                var message = "Your security code is: " + code;
+                if (model.SelectedProvider == "Email")
+                {
+                    await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", "", "", message);
+                }
+                else if (model.SelectedProvider == "Phone")
+                {
+                    await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user), message);
+                }
 
-            return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+                return RedirectToAction(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = "Something went wrong, please try again." });
+            }
         }
 
-        //
         // GET: /Account/VerifyCode
         [HttpGet]
         [AllowAnonymous]
@@ -441,45 +458,47 @@ namespace RenewalWebsite.Controllers
         {
             // Require that the user has already logged in via username/password or external login
             var user = await _signInManager.GetTwoFactorAuthenticationUserAsync();
-            if (user == null)
-            {
-                return View("Error");
-            }
+            if (user == null) { return View("Error"); }
+
             return View(new VerifyCodeViewModel { Provider = provider, ReturnUrl = returnUrl, RememberMe = rememberMe });
         }
 
-        //
         // POST: /Account/VerifyCode
         [HttpPost]
         [AllowAnonymous]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyCode(VerifyCodeViewModel model)
         {
-            if (!ModelState.IsValid)
+            try
             {
-                return View(model);
-            }
+                if (!ModelState.IsValid) { return View(model); }
 
-            // The following code protects for brute force attacks against the two factor codes.
-            // If a user enters incorrect codes for a specified amount of time then the user account
-            // will be locked out for a specified amount of time.
-            var result = await _signInManager.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
-            if (result.Succeeded)
-            {
-                return RedirectToLocal(model.ReturnUrl);
+                // The following code protects for brute force attacks against the two factor codes.
+                // If a user enters incorrect codes for a specified amount of time then the user account
+                // will be locked out for a specified amount of time.
+                var result = await _signInManager.TwoFactorSignInAsync(model.Provider, model.Code, model.RememberMe, model.RememberBrowser);
+                if (result.Succeeded)
+                {
+                    return RedirectToLocal(model.ReturnUrl);
+                }
+                if (result.IsLockedOut)
+                {
+                    return View("Lockout");
+                }
+                else
+                {
+                    ModelState.AddModelError(string.Empty, "Invalid code.");
+                    return View(model);
+                }
             }
-            if (result.IsLockedOut)
+            catch (Exception ex)
             {
-                return View("Lockout");
-            }
-            else
-            {
-                ModelState.AddModelError(string.Empty, "Invalid code.");
-                return View(model);
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = "Something went wrong, please try again." });
             }
         }
 
-        //
         // GET /Account/AccessDenied
         [HttpGet]
         public IActionResult AccessDenied()
@@ -511,7 +530,7 @@ namespace RenewalWebsite.Controllers
 
         #endregion
 
-        public async Task<IActionResult> DeleteSubcription(int subscriptionId)
+        public IActionResult DeleteSubcription(int subscriptionId)
         {
             return View("Index");
         }

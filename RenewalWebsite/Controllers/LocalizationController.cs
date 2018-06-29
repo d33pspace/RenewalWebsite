@@ -33,10 +33,9 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
-                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });                
             }
         }
 
@@ -50,10 +49,9 @@ namespace RenewalWebsite.Controllers
             }
             catch(Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
-                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });                
             }
         }
 
@@ -70,10 +68,9 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
-                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });                
             }
         }
 
@@ -88,10 +85,9 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                _loggerService.SaveEventLog(log);
-                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                //return View(null);
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });                
             }
         }
     }

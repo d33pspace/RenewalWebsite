@@ -34,7 +34,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
             }
 
             return View();
@@ -50,18 +51,18 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
             }
 
             return View();
         }
 
         public IActionResult ThankYou()
-        {
-            int id;
+        {            
             try
-            {
-                id = Convert.ToInt32(HttpContext.Request.Query["id"]);
+            {                
+                int id = Convert.ToInt32(HttpContext.Request.Query["id"]);
                 if (id == 1)
                 {
                     ViewBag.Message = "You have been unsubscribed from all Renewal communications.";
@@ -73,7 +74,8 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
             }
 
             return View();
@@ -113,8 +115,8 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (Exception ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                    _loggerService.SaveEventLog(log);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }
@@ -159,8 +161,8 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (Exception ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message };
-                    _loggerService.SaveEventLog(log);
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    _loggerService.SaveEventLogAsync(log);
                     result.data = "Something went wrong, please try again";
                     result.status = "0";
                 }

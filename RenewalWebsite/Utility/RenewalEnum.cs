@@ -14,6 +14,8 @@ namespace RenewalWebsite.Utility
         UPDATE_ITEM,
         DELETE_ITEM,
         GET_CUSTOMER,
-        SET_ITEM
+        SET_ITEM,
+        USER_REGISTER,
+        USER_LOGIN
     }
 }
