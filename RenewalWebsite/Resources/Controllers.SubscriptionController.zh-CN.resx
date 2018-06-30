@@ -117,82 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="A record of your giving from" xml:space="preserve">
-    <value>你的捐赠记录</value>
+  <data name="subscription" xml:space="preserve">
+    <value>订阅</value>
   </data>
-  <data name="Amount" xml:space="preserve">
-    <value>金额</value>
-  </data>
-  <data name="CNY" xml:space="preserve">
-    <value>人民币</value>
-  </data>
-  <data name="Currency" xml:space="preserve">
-    <value>货币</value>
-  </data>
-  <data name="Date" xml:space="preserve">
-    <value>日期</value>
-  </data>
-  <data name="Exchange Rate" xml:space="preserve">
-    <value>汇率</value>
-  </data>
-  <data name="No Record Found" xml:space="preserve">
-    <value>没有找到记录</value>
-  </data>
-  <data name="The Renewal Center" xml:space="preserve">
-    <value>更新中心</value>
-  </data>
-  <data name="The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States. Donors may deduct contributions as provided in section 170 of the Code." xml:space="preserve">
-    <value>根据美国国内税收法典第501（c）（3）条，续约中心被确认为免税。 捐赠者可以按照守则第170条的规定扣除捐款。</value>
-  </data>
-  <data name="to" xml:space="preserve">
-    <value>至</value>
-  </data>
-  <data name="Total" xml:space="preserve">
-    <value>合计</value>
-  </data>
-  <data name="Transaction Reference" xml:space="preserve">
-    <value>编号</value>
-  </data>
-  <data name="USD Amount" xml:space="preserve">
-    <value>美元金额</value>
-  </data>
-  <data name="An error has occurred." xml:space="preserve">
-    <value>发生了错误。</value>
-  </data>
-  <data name="Card added successfully" xml:space="preserve">
-    <value>卡成功添加</value>
-  </data>
-  <data name="Card updated successfully" xml:space="preserve">
-    <value>卡更新成功</value>
-  </data>
-  <data name="Profile updated successfully" xml:space="preserve">
-    <value>资料更新成功</value>
-  </data>
-  <data name="Something went wrong, please try again" xml:space="preserve">
-    <value>出了点问题，请再试一次</value>
-  </data>
-  <data name="Your password has been changed." xml:space="preserve">
-    <value>您的密码已被更改。</value>
-  </data>
-  <data name="Your password has been set." xml:space="preserve">
-    <value>您的密码已设置。</value>
-  </data>
-  <data name="Your phone number was added." xml:space="preserve">
-    <value>您的电话号码已添加。</value>
-  </data>
-  <data name="Your phone number was removed." xml:space="preserve">
-    <value>您的电话号码已被删除。</value>
-  </data>
-  <data name="Your security code is:" xml:space="preserve">
-    <value>您的安全代码是：</value>
-  </data>
-  <data name="Your two-factor authentication provider has been set." xml:space="preserve">
-    <value>您的双因素身份验证提供程序已设置。</value>
-  </data>
-  <data name="The external login was added." xml:space="preserve">
-    <value>外部登录已添加。</value>
-  </data>
-  <data name="The external login was removed." xml:space="preserve">
-    <value>外部登录已被删除。</value>
+  <data name="You have successfully deleted" xml:space="preserve">
+    <value>您已成功删除</value>
   </data>
 </root>

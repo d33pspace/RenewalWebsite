@@ -96,10 +96,10 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Update="Resources\Controllers.DonateController.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Controllers.ManageController.zh-CN.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
+      <Generator></Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\DataAnnotations.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
