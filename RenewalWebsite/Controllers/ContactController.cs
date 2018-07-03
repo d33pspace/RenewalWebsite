@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using RenewalWebsite.Models;
 using RenewalWebsite.Services;
@@ -16,12 +17,16 @@ namespace RenewalWebsite.Controllers
         private readonly ILoggerServicecs _loggerService;
         private readonly IUnsubscribeUserService _unsubscribeUserService;
         private EventLog log;
+        private readonly IStringLocalizer<ContactController> _localizer;
 
         public ContactController(ILoggerServicecs loggerService,
-            IUnsubscribeUserService unsubscribeUserService)
+            IUnsubscribeUserService unsubscribeUserService,
+            IStringLocalizer<ContactController> localizer
+        )
         {
             _loggerService = loggerService;
             _unsubscribeUserService = unsubscribeUserService;
+            _localizer = localizer;
         }
 
         [Route("/unsubscribe")]
@@ -59,17 +64,17 @@ namespace RenewalWebsite.Controllers
         }
 
         public IActionResult ThankYou()
-        {            
+        {
             try
-            {                
+            {
                 int id = Convert.ToInt32(HttpContext.Request.Query["id"]);
                 if (id == 1)
                 {
-                    ViewBag.Message = "You have been unsubscribed from all Renewal communications.";
+                    ViewBag.Message = _localizer["You have been unsubscribed from all Renewal communications."];
                 }
                 else
                 {
-                    ViewBag.Message = "Your communication preferences have been updated.";
+                    ViewBag.Message = _localizer["Your communication preferences have been updated."];
                 }
             }
             catch (Exception ex)
@@ -109,7 +114,7 @@ namespace RenewalWebsite.Controllers
                     // execute the request
                     IRestResponse response = client.Execute(request);
 
-                    result.data = "You have been unsubscribed from all Renewal communications.";
+                    result.data = _localizer["You have been unsubscribed from all Renewal communications."];
                     result.status = "1";
                     return Json(result);
                 }
@@ -117,7 +122,7 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
                     _loggerService.SaveEventLogAsync(log);
-                    result.data = "Something went wrong, please try again";
+                    result.data = _localizer["Something went wrong, please try again"];
                     result.status = "0";
                 }
             }
@@ -155,7 +160,7 @@ namespace RenewalWebsite.Controllers
                     // execute the request
                     IRestResponse response = client.Execute(request);
 
-                    result.data = "Your communication preferences have been updated.";
+                    result.data = _localizer["Your communication preferences have been updated."];
                     result.status = "1";
                     return Json(result);
                 }
@@ -163,7 +168,7 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
                     _loggerService.SaveEventLogAsync(log);
-                    result.data = "Something went wrong, please try again";
+                    result.data = _localizer["Something went wrong, please try again"];
                     result.status = "0";
                 }
             }

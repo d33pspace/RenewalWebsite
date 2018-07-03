@@ -1128,7 +1128,7 @@ a.news-link:hover {
 .news.issue-9 {
     background-image: url(/images/news/issue9/news-web-header.jpg);
     background-size: cover;
-    min-height:500px;
+    min-height: 500px;
 }
 
 .news.issue-10 {
@@ -1543,4 +1543,31 @@ input#CustomAmount {
     color: #393939;
     font-style: normal;
     font-weight: 600;
+}
+
+/*add tooltripcss*/
+
+.CellWithComment {
+    position: relative;
+}
+
+.CellComment {
+    display: none;
+    position: absolute;
+    z-index: 100;
+    border: 1px;
+    background-color: #ffffff;
+    border-style: solid;
+    border-width: 1px;
+    /* border-color: red; */
+    padding: 3px;
+    color: red;
+    top: 36px;
+    left: 0;
+    box-shadow: 2px 2px 2px 2px #eceeef;
+    border-radius: 2px;
+}
+
+.CellWithComment:hover span.CellComment {
+    display: block;
 }

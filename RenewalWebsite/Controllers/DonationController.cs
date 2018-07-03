@@ -14,6 +14,7 @@ using Microsoft.Extensions.Logging;
 using RenewalWebsite.Utility;
 using RestSharp;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Localization;
 
 namespace RenewalWebsite.Controllers
 {
@@ -31,6 +32,7 @@ namespace RenewalWebsite.Controllers
         private readonly ICurrencyService _currencyService;
         private readonly ICountryService _countryService;
         private EventLog log;
+        private readonly IStringLocalizer<DonationController> _localizer;
 
         public DonationController(
             UserManager<ApplicationUser> userManager,
@@ -41,6 +43,7 @@ namespace RenewalWebsite.Controllers
             IHttpContextAccessor httpContextAccessor,
             IOptions<CurrencySettings> currencySettings,
             ICurrencyService currencyService,
+            IStringLocalizer<DonationController> localizer,
             ICountryService countryService,
             CountrySeeder countrySeeder)
         {
@@ -53,6 +56,7 @@ namespace RenewalWebsite.Controllers
             _currencySettings = currencySettings;
             _currencyService = currencyService;
             _countryService = countryService;
+            _localizer = localizer;
             countrySeeder.Seed();
         }
 
@@ -120,7 +124,7 @@ namespace RenewalWebsite.Controllers
                                 Zip = user.Zip,
                                 DonationId = donation.Id,
                                 Description = donation.Reason,
-                                Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                                Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
                                 Amount = (decimal)donation.DonationAmount,
                                 Last4Digit = objStripeCard.Last4,
                                 CardId = objStripeCard.Id,
@@ -152,7 +156,7 @@ namespace RenewalWebsite.Controllers
                     Zip = user.Zip,
                     DonationId = donation.Id,
                     Description = donation.Reason,
-                    Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                    Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
                     Amount = (decimal)donation.DonationAmount,
                     IsCustom = donation.IsCustom,
                     countries = countryList
@@ -215,7 +219,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,                            
+                            ExpirationYear = payment.ExpiryYear,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -258,7 +262,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,                            
+                            ExpirationYear = payment.ExpiryYear,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -330,7 +334,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
+                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -348,7 +352,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -364,7 +368,7 @@ namespace RenewalWebsite.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError("error", ex.Message);
+                    ModelState.AddModelError("error", _localizer[ex.Message]);
                     return View(payment);
                 }
             }
@@ -424,7 +428,7 @@ namespace RenewalWebsite.Controllers
                         Zip = user.Zip,
                         DonationId = donation.Id,
                         Description = donation.Reason,
-                        Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                        Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
                         Amount = (decimal)donation.DonationAmount,
                         DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
                         IsCustom = donation.IsCustom,
@@ -541,7 +545,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
+                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -558,7 +562,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -641,7 +645,7 @@ namespace RenewalWebsite.Controllers
                                 Zip = user.Zip,
                                 DonationId = donation.Id,
                                 Description = donation.Reason,
-                                Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                                Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
                                 Amount = (decimal)donation.DonationAmount,
                                 Last4Digit = objStripeCard.Last4,
                                 CardId = objStripeCard.Id,
@@ -671,7 +675,7 @@ namespace RenewalWebsite.Controllers
                     Zip = user.Zip,
                     DonationId = donation.Id,
                     Description = donation.Reason,
-                    Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                    Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
                     Amount = (decimal)donation.DonationAmount,
                     IsCustom = donation.IsCustom
                 };
@@ -714,7 +718,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,                            
+                            ExpirationYear = payment.ExpiryYear,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -757,7 +761,7 @@ namespace RenewalWebsite.Controllers
                             Number = payment.CardNumber,
                             Cvc = payment.Cvc,
                             ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,                            
+                            ExpirationYear = payment.ExpiryYear,
                             AddressLine1 = payment.AddressLine1,
                             AddressLine2 = payment.AddressLine2,
                             AddressCity = payment.City,
@@ -829,7 +833,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
+                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -847,7 +851,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -901,7 +905,7 @@ namespace RenewalWebsite.Controllers
                         Zip = user.Zip,
                         DonationId = donation.Id,
                         Description = donation.Reason,
-                        Frequency = detail.GetCycle(donation.CycleId.ToString()),
+                        Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
                         Amount = (decimal)donation.DonationAmount,
                         DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
                         IsCustom = donation.IsCustom
@@ -997,7 +1001,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = $"Your card was charged successfully. Thank you for your kind gift of ${donation.DonationAmount}.",
+                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -1014,7 +1018,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = $"Your gift ${result.StripePlan.Nickname.Split("_")[1]} will repeat {result.StripePlan.Nickname.Split("_")[0]}. To manage or cancel your subscription anytime, follow the link below.",
+                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);

@@ -85,12 +85,12 @@ namespace RenewalWebsite.Controllers
             {
                 // Optionaly use the region info to get default currency for user
                 ViewData["StatusMessage"] =
-                    message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                    : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                    : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                    : message == ManageMessageId.Error ? "An error has occurred."
-                    : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                    : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
+                    message == ManageMessageId.ChangePasswordSuccess ? _localizer["Your password has been changed."]
+                    : message == ManageMessageId.SetPasswordSuccess ? _localizer["Your password has been set."]
+                    : message == ManageMessageId.SetTwoFactorSuccess ? _localizer["Your two-factor authentication provider has been set."]
+                    : message == ManageMessageId.Error ? _localizer["An error has occurred."]
+                    : message == ManageMessageId.AddPhoneSuccess ? _localizer["Your phone number was added."]
+                    : message == ManageMessageId.RemovePhoneSuccess ? _localizer["Your phone number was removed."]
                     : "";
 
                 var user = await GetCurrentUserAsync();
@@ -232,7 +232,7 @@ namespace RenewalWebsite.Controllers
                     return View("Error");
                 }
                 var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
-                await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
+                await _smsSender.SendSmsAsync(model.PhoneNumber, _localizer["Your security code is:"] + code);
                 return RedirectToAction(nameof(VerifyPhoneNumber), new { PhoneNumber = model.PhoneNumber });
             }
             catch (Exception ex)
@@ -456,9 +456,9 @@ namespace RenewalWebsite.Controllers
             try
             {
                 ViewData["StatusMessage"] =
-                    message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
-                    : message == ManageMessageId.AddLoginSuccess ? "The external login was added."
-                    : message == ManageMessageId.Error ? "An error has occurred."
+                    message == ManageMessageId.RemoveLoginSuccess ? _localizer["The external login was removed."]
+                    : message == ManageMessageId.AddLoginSuccess ? _localizer["The external login was added."]
+                    : message == ManageMessageId.Error ? _localizer["An error has occurred."]
                     : "";
                 var user = await GetCurrentUserAsync();
                 if (user == null)
@@ -512,8 +512,6 @@ namespace RenewalWebsite.Controllers
         {
             try
             {
-
-
                 var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
@@ -694,8 +692,6 @@ namespace RenewalWebsite.Controllers
         {
             try
             {
-
-
                 string language = _currencyService.GetCurrentLanguage().Name;
                 var user = await GetCurrentUserAsync();
                 DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
@@ -838,7 +834,7 @@ namespace RenewalWebsite.Controllers
                     colspan = 4;
                 }
             }
-            
+
             //Add header  
             AddCellToHeader(tableLayout, _localizer["Date"], language == "en-US" ? fontEnglish : font);
             AddCellToHeader(tableLayout, _localizer["Currency"], language == "en-US" ? fontEnglish : font);
@@ -1131,7 +1127,7 @@ namespace RenewalWebsite.Controllers
                     user.Country = profile.Country;
                     await _userManager.UpdateAsync(user);
 
-                    result.data = "Profile updated successfully";
+                    result.data = _localizer["Profile updated successfully"];
                     result.status = "1";
                 }
             }
@@ -1139,7 +1135,7 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
                 _loggerService.SaveEventLogAsync(log);
-                result.data = "Something went wrong, please try again";
+                result.data = _localizer["Something went wrong, please try again"];
                 result.status = "0";
             }
 
@@ -1165,7 +1161,7 @@ namespace RenewalWebsite.Controllers
                     updateCardOptions.ExpirationYear = card.ExpiryYear;
 
                     await CardService.UpdateAsync(user.StripeCustomerId, card.cardId, updateCardOptions);
-                    result.data = "Card updated successfully";
+                    result.data = _localizer["Card updated successfully"];
                     result.status = "1";
                     return Json(result);
                 }
@@ -1180,7 +1176,7 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
                     _loggerService.SaveEventLogAsync(log);
-                    result.data = "Something went wrong, please try again";
+                    result.data = _localizer["Something went wrong, please try again"];
                     result.status = "0";
                 }
             }
@@ -1231,7 +1227,7 @@ namespace RenewalWebsite.Controllers
 
                     var stripeCustomer = customerService.Update(user.StripeCustomerId, customer);
                     user.StripeCustomerId = stripeCustomer.Id;
-                    result.data = "Card added successfully";
+                    result.data = _localizer["Card added successfully"];
                     result.status = "1";
                     return Json(result);
                 }
@@ -1246,7 +1242,7 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
                     _loggerService.SaveEventLogAsync(log);
-                    result.data = "Something went wrong, please try again";
+                    result.data = _localizer["Something went wrong, please try again"];
                     result.status = "0";
                 }
             }

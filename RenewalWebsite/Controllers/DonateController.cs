@@ -47,6 +47,7 @@ namespace RenewalWebsite.Controllers
 
         public IActionResult Index()
         {
+
             try
             {
                 var agent = Request.Headers["User-Agent"];
@@ -141,13 +142,13 @@ namespace RenewalWebsite.Controllers
 
                 if (donation.SelectedAmount == 0)
                 {
-                    ModelState.AddModelError("amount", "Select amount");
+                    ModelState.AddModelError("amount", _localizer["Select amount"]);
                     return View("Index", donation);
                 }
 
                 if (Math.Abs((decimal)donation.DonationAmount) <= 0)
                 {
-                    ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
+                    ModelState.AddModelError("amount", _localizer["Donation amount cannot be zero or less"]);
                     return View("Index", donation);
                 }
 
@@ -218,13 +219,13 @@ namespace RenewalWebsite.Controllers
 
                 if (donation.SelectedAmount == 0) //Could be better
                 {
-                    ModelState.AddModelError("amount", "Select amount");
+                    ModelState.AddModelError("amount", _localizer["Select amount"]);
                     return View("Campaign_2017_08", donation);
                 }
 
                 if (Math.Abs((decimal)donation.DonationAmount) < 1)
                 {
-                    ModelState.AddModelError("amount", "Donation amount cannot be zero or less");
+                    ModelState.AddModelError("amount", _localizer["Donation amount cannot be zero or less"]);
                     return View("Campaign_2017_08", donation);
                 }
 

@@ -16,6 +16,7 @@ using Microsoft.AspNetCore.Authentication;
 using RenewalWebsite.Utility;
 using RestSharp;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Localization;
 
 namespace RenewalWebsite.Controllers
 {
@@ -31,6 +32,7 @@ namespace RenewalWebsite.Controllers
         private EventLog log;
         private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly IOptions<CurrencySettings> _currencySettings;
+        private readonly IStringLocalizer<AccountController> _localizer;
         private readonly ICurrencyService _currencyService;
 
         public AccountController(
@@ -42,6 +44,7 @@ namespace RenewalWebsite.Controllers
             ILoggerServicecs loggerService,
             IHttpContextAccessor httpContextAccessor,
             IOptions<CurrencySettings> currencySettings,
+            IStringLocalizer<AccountController> localizer,
             ICurrencyService currencyService)
         {
             _userManager = userManager;
@@ -53,6 +56,7 @@ namespace RenewalWebsite.Controllers
             _httpContextAccessor = httpContextAccessor;
             _currencySettings = currencySettings;
             _currencyService = currencyService;
+            _localizer = localizer;
         }
 
         // GET: /Account/Login
@@ -91,7 +95,7 @@ namespace RenewalWebsite.Controllers
                     if (result.IsLockedOut) { return View("Lockout"); }
                     else
                     {
-                        ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                        ModelState.AddModelError(string.Empty, _localizer["Invalid login attempt."]);
                         return View(model);
                     }
                 }
@@ -197,7 +201,7 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "Error from external provider." };
                 _loggerService.SaveEventLogAsync(log);
-                ModelState.AddModelError(string.Empty, $"Error from external provider: {remoteError}");
+                ModelState.AddModelError(string.Empty, _localizer["Error from external provider:"] + remoteError);
                 return View(nameof(Login));
             }
             var info = await _signInManager.GetExternalLoginInfoAsync();
@@ -430,7 +434,7 @@ namespace RenewalWebsite.Controllers
                 var code = await _userManager.GenerateTwoFactorTokenAsync(user, model.SelectedProvider);
                 if (string.IsNullOrWhiteSpace(code)) { return View("Error"); }
 
-                var message = "Your security code is: " + code;
+                var message = _localizer["Your security code is:"] + code;
                 if (model.SelectedProvider == "Email")
                 {
                     await _emailSender.SendEmailAsync(await _userManager.GetEmailAsync(user), "Security Code", "", "", message);
@@ -487,7 +491,7 @@ namespace RenewalWebsite.Controllers
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid code.");
+                    ModelState.AddModelError(string.Empty, _localizer["Invalid code."]);
                     return View(model);
                 }
             }
