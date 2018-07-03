@@ -54,6 +54,7 @@ namespace RenewalWebsite
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+            services.Configure<EmailNotification>(Configuration.GetSection("EmailErrorNotification"));
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Session cache

@@ -123,10 +123,16 @@
   <data name="Home" xml:space="preserve">
     <value>主页</value>
   </data>
+  <data name="Please add connect@renewal.org.cn to your address book. You'll be hearing from us soon!" xml:space="preserve">
+    <value>请将connect@renewal.org.cn添加到您的地址簿中。您很快就会收到我们的回复！</value>
+  </data>
   <data name="Please confirm your subscription" xml:space="preserve">
     <value>请确认您的订阅</value>
   </data>
   <data name="Subscribe" xml:space="preserve">
     <value>订阅</value>
+  </data>
+  <data name="Thank you for your interest in Renewal!" xml:space="preserve">
+    <value>感谢您对Renewal的兴趣！</value>
   </data>
 </root>

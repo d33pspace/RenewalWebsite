@@ -162,4 +162,19 @@
   <data name="Please open this page in your browser." xml:space="preserve">
     <value>请在您的浏览器中打开此页面</value>
   </data>
+  <data name="monthly" xml:space="preserve">
+    <value>每月一次</value>
+  </data>
+  <data name="one time" xml:space="preserve">
+    <value>一次</value>
+  </data>
+  <data name="quarterly" xml:space="preserve">
+    <value>季刊</value>
+  </data>
+  <data name="yearly" xml:space="preserve">
+    <value>每年</value>
+  </data>
+  <data name="Amount is required." xml:space="preserve">
+    <value>金额是必需的。</value>
+  </data>
 </root>

@@ -159,4 +159,19 @@
   <data name="When people come to the Renewal Center, we want to be able to help!  Thanks for your summer gift to ensure programs continue all summer long." xml:space="preserve">
     <value>当无家可归的人们来到日新中心，我们希望能够帮助他们！感谢您的夏日捐赠，它帮助我们在整个夏天持续提供服务。</value>
   </data>
+  <data name="monthly" xml:space="preserve">
+    <value>每月一次</value>
+  </data>
+  <data name="one time" xml:space="preserve">
+    <value>一次</value>
+  </data>
+  <data name="quarterly" xml:space="preserve">
+    <value>季刊</value>
+  </data>
+  <data name="yearly" xml:space="preserve">
+    <value>每年</value>
+  </data>
+  <data name="Amount is required." xml:space="preserve">
+    <value>金额是必需的。</value>
+  </data>
 </root>

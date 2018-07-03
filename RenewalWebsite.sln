@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26430.16
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RenewalWebsite", "RenewalWebsite\RenewalWebsite.csproj", "{FD1ADCE5-C681-422E-8158-12593AC9BA1F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RenewalWebsite", "RenewalWebsite\RenewalWebsite.csproj", "{FD1ADCE5-C681-422E-8158-12593AC9BA1F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -18,5 +18,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8CC99CE3-42EC-48D1-B8FC-A821732906F9}
 	EndGlobalSection
 EndGlobal

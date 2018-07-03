@@ -146,7 +146,7 @@
         if (item == "4") {
             if ($('#DonationAmount').val() == "") {
                 $('#textMainMessage').show();
-                $('#textMainErrorMessage').text('Amount is required.');
+                $('#textMainErrorMessage').text('@Localizer["Amount is required."]');
                 $('#DonationAmount').focus();
                 return;
             }
