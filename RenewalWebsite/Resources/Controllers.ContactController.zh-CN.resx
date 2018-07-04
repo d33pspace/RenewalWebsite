@@ -118,9 +118,9 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Home" xml:space="preserve">
-    <value>家</value>
+    <value>主页</value>
   </data>
-  <data name="Something went wrong, please try again" xml:space="preserve">
+  <data name="Something went wrong, please try again." xml:space="preserve">
     <value>出了点问题，请再试一次</value>
   </data>
   <data name="You have been unsubscribed from all Renewal communications." xml:space="preserve">

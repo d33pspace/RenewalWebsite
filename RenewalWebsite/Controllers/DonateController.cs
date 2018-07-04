@@ -99,11 +99,6 @@ namespace RenewalWebsite.Controllers
             }
         }
 
-        public IActionResult WeChat_2017_08()
-        {
-            return View();
-        }
-
         public IActionResult Error()
         {
             return View();

@@ -122,7 +122,7 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
                     _loggerService.SaveEventLogAsync(log);
-                    result.data = _localizer["Something went wrong, please try again"];
+                    result.data = _localizer["Something went wrong, please try again."];
                     result.status = "0";
                 }
             }
@@ -168,7 +168,7 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
                     _loggerService.SaveEventLogAsync(log);
-                    result.data = _localizer["Something went wrong, please try again"];
+                    result.data = _localizer["Something went wrong, please try again."];
                     result.status = "0";
                 }
             }
