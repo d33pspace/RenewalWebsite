@@ -183,6 +183,9 @@
   <data name="Subscriptions" xml:space="preserve">
     <value>定期捐赠</value>
   </data>
+  <data name="View your valuable donation history" xml:space="preserve">
+    <value>查看您宝贵的捐赠历史记录</value>
+  </data>
   <data name="You have no card on file." xml:space="preserve">
     <value>你还没有添加任何信用卡</value>
   </data>

@@ -195,4 +195,7 @@
   <data name="The external login was removed." xml:space="preserve">
     <value>外部登录已被删除。</value>
   </data>
+  <data name="View your valuable donation history" xml:space="preserve">
+    <value>查看您宝贵的捐赠历史记录</value>
+  </data>
 </root>
