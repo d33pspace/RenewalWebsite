@@ -261,3 +261,4 @@ __pycache__/
 *.pyc
 /RenewalWebsite.zip
 /RenewalWebsite/wwwroot/css/StyleSheet.css
+/RenewalWebsite/Views/Donate

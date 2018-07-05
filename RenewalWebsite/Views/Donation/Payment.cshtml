@@ -58,7 +58,17 @@
 </style>
 <div class="container">
     <h2 class="red-border">
-        @Localizer["Your"] @Model.Frequency.ToLower() @Localizer["gift of"] @CurrencyService.GetSymbol(currency)@Model.Amount
+        @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
+        {
+            <text> 你的 @Model.Frequency.ToLower() 捐赠 @CurrencyService.GetSymbol(currency)@Model.Amount</text>
+        }
+
+        @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+        {
+            <text> Your @Model.Frequency.ToLower() gift of @CurrencyService.GetSymbol(currency)@Model.Amount</text>
+        }
+
+        @*@Localizer["Your"] @Model.Frequency.ToLower() @Localizer["gift of"] @CurrencyService.GetSymbol(currency)@Model.Amount*@
     </h2>
 </div>
 
@@ -81,16 +91,19 @@
                             <input type="text" class="form-control" asp-for="Name" placeholder="@Localizer["Name"]">
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <div class="col-6 pr5">
-                            <label asp-for="State" class="col-form-label sr-only">@Localizer["State/Province"]</label>
-                            <input asp-for="State" class="form-control" placeholder="@Localizer["State/Province"]" />
+                    @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
+                    {
+                        <div class="form-group row">
+                            <div class="col-6 pr5">
+                                <label asp-for="State" class="col-form-label sr-only">@Localizer["State/Province"]</label>
+                                <input asp-for="State" class="form-control" placeholder="@Localizer["State/Province"]" />
+                            </div>
+                            <div class="col-6 p15">
+                                <label asp-for="City" class="col-form-label sr-only">@Localizer["City"]</label>
+                                <input asp-for="City" class="form-control" placeholder="@Localizer["City"]" />
+                            </div>
                         </div>
-                        <div class="col-6 p15">
-                            <label asp-for="City" class="col-form-label sr-only">@Localizer["City"]</label>
-                            <input asp-for="City" class="form-control" placeholder="@Localizer["City"]" />
-                        </div>
-                    </div>
+                    }
                     <div class="form-group row">
                         <div class="col-lg-12">
                             <label asp-for="AddressLine1" class="col-form-label sr-only">@Localizer["Address Line 1"]</label>
@@ -103,7 +116,19 @@
                             <input asp-for="AddressLine2" class="form-control" placeholder="@Localizer["Address Line 2"]" />
                         </div>
                     </div>
-
+                    @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                    {
+                        <div class="form-group row">
+                            <div class="col-6 pr5">
+                                <label asp-for="City" class="col-form-label sr-only">City</label>
+                                <input asp-for="City" class="form-control" placeholder="City" />
+                            </div>
+                            <div class="col-6 p15">
+                                <label asp-for="State" class="col-form-label sr-only">State / Province</label>
+                                <input asp-for="State" class="form-control" placeholder="State / Province" />
+                            </div>
+                        </div>
+                    }
                     <div class="form-group row">
                         <div class="col-6 pr5">
                             <label asp-for="Zip" class="col-form-label sr-only">@Localizer["ZIP/Postal Code"]</label>

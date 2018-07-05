@@ -118,9 +118,12 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Home" xml:space="preserve">
-    <value>主页</value>
+    <value>家</value>
   </data>
   <data name="Thank you!" xml:space="preserve">
     <value>谢谢！</value>
+  </data>
+  <data name="Your communications preferences have been updated." xml:space="preserve">
+    <value>您的简讯设置已改变了！谢谢！</value>
   </data>
 </root>

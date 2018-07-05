@@ -99,6 +99,11 @@ namespace RenewalWebsite.Controllers
             }
         }
 
+        public IActionResult WeChat_2017_08()
+        {
+            return View();
+        }
+
         public IActionResult Error()
         {
             return View();
@@ -215,16 +220,16 @@ namespace RenewalWebsite.Controllers
                 if (donation.SelectedAmount == 0) //Could be better
                 {
                     ModelState.AddModelError("amount", _localizer["Select amount"]);
-                    return View("Campaign_2017_08", donation);
+                    return View("Campaign", donation);
                 }
 
                 if (Math.Abs((decimal)donation.DonationAmount) < 1)
                 {
                     ModelState.AddModelError("amount", _localizer["Donation amount cannot be zero or less"]);
-                    return View("Campaign_2017_08", donation);
+                    return View("Campaign", donation);
                 }
 
-                if (!ModelState.IsValid) { return View("Campaign_2017_08", donation); }
+                if (!ModelState.IsValid) { return View("Campaign", donation); }
 
                 var model = new Donation
                 {
