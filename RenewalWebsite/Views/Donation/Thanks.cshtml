@@ -1,9 +1,13 @@
-﻿@model RenewalWebsite.Models.CompletedViewModel
+﻿@using RenewalWebsite.Controllers
+@using RenewalWebsite.Services
+@model RenewalWebsite.Models.CompletedViewModel
 @using Microsoft.AspNetCore.Mvc.Localization
 
 @inject IViewLocalizer Localizer
+@inject ICurrencyService CurrencyService
 @{
     ViewBag.Title = Localizer["Thank you"];
+    var currency = CurrencyService.GetCurrent();
 }
 @*<div>
         <h3>@Model.Message</h3>
@@ -20,14 +24,32 @@
         @*<p>Your card was charged successfully. Thank you for your kind gift of $100.</p>*@
         @if (Model.HasSubscriptions)
         {
-            <p>@Model.Message</p>
+            @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
+            {
+                <label> 您的卡已成功收费。谢谢你的亲切礼物 @Model.Message</label>
+            }
+
+            @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+            {
+                <text> Your card was charged successfully. Thank you for your kind gift of @Model.Message</text>
+            }
+            @*<p>@Model.Message</p>*@
             @*<p>[For subscriptions only:]</p>
                 <p>Your gift will repeat [monthly | quarterly | yearly]. To manage or cancel your subscription anytime, follow the link below.</p>*@
             <a asp-controller="Manage" asp-action="Index" class="styled-link">@Localizer["See my subscriptions"]</a>
         }
         else
         {
-            <p>@Model.Message</p>
+            @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
+            {
+                <label> 您的卡已成功收费。谢谢你的亲切礼物 @Model.Message</label>
+            }
+
+            @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+            {
+                <text> Your card was charged successfully. Thank you for your kind gift of @Model.Message</text>
+            }
+            @*<p>@Model.Message</p>*@
         }
     </div>
 </div>

@@ -24,6 +24,7 @@ namespace RenewalWebsite.Controllers
         private readonly ICampaignService _campaignService;
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly IStringLocalizer<DonateController> _localizer;
+        private readonly ICurrencyService _currencyService;
         private readonly ILoggerServicecs _loggerService;
         private EventLog log;
 
@@ -34,13 +35,14 @@ namespace RenewalWebsite.Controllers
             IOptions<StripeSettings> stripeSettings,
             ICampaignService campaignService,
             IStringLocalizer<DonateController> localizer,
-            ILoggerServicecs loggerService)
+            ILoggerServicecs loggerService, ICurrencyService currencyService)
         {
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
             _campaignService = campaignService;
             _localizer = localizer;
+            _currencyService = currencyService;
             _loggerService = loggerService;
 
         }

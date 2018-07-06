@@ -183,4 +183,7 @@
   <data name="ToDateRequired" xml:space="preserve">
     <value>To Date is reqquired</value>
   </data>
+  <data name="Pleaseenteravalidgiftamount" xml:space="preserve">
+    <value>Please enter a valid gift amount.</value>
+  </data>
 </root>

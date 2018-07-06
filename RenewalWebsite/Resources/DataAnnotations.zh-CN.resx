@@ -177,4 +177,7 @@
   <data name="ZipPostalCode" xml:space="preserve">
     <value>邮编/邮政编码</value>
   </data>
+  <data name="Pleaseenteravalidgiftamount" xml:space="preserve">
+    <value>请输入有效的礼品金额。</value>
+  </data>
 </root>

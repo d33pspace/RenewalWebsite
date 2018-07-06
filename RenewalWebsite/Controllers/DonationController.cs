@@ -334,7 +334,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
+                            Message = donation.DonationAmount.ToString(),
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -545,7 +545,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
+                            Message = donation.DonationAmount.ToString(),
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -833,7 +833,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
+                            Message = donation.DonationAmount.ToString(),
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
@@ -1001,7 +1001,7 @@ namespace RenewalWebsite.Controllers
                     {
                         var completedMessage = new CompletedViewModel
                         {
-                            Message = _localizer["Your card was charged successfully. Thank you for your kind gift of"] + donation.DonationAmount,
+                            Message = donation.DonationAmount.ToString(),
                             HasSubscriptions = false
                         };
                         return RedirectToAction("Thanks", completedMessage);
