@@ -15,7 +15,7 @@ namespace RenewalWebsite.Models
 
         public string CycleId { get; set; }
 
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price")]
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Please enter a valid gift amount.")]
         public decimal? DonationAmount { get; set; }
 
         public List<SelectListItem> DonationCycles { get; set; }
