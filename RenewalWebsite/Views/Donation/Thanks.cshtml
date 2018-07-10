@@ -26,12 +26,12 @@
         {
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
             {
-                <label>你的礼物 $ @Model.Message 会重复 @Model.Message1 要随时管理或取消订阅，请点击以下链接。</label>
+                <p>交易成功！你的$@(Model.Message)捐赠会自动的重复@(Model.Message1)。要随时管理或取消订阅，请点击以下链接。</p>
             }
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
             {
-                <text> Your gift $ @Model.Message will repeat @Model.Message1 To manage or cancel your subscription anytime, follow the link below. </text>
+                <p>Your card was charged successfully. Your gift of $@(Model.Message) will repeat @(Model.Message1). To manage or cancel your subscription anytime, follow the link below.</p>
             }
             @*<p>@Model.Message</p>*@
             @*<p>[For subscriptions only:]</p>
@@ -42,12 +42,12 @@
         {
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
             {
-                <label>您的卡已成功收费。谢谢你的亲切礼物 $ @Model.Message</label>                
+                <p>交易成功！谢谢你$@(Model.Message)的捐赠。</p>
             }
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
             {
-                <text>Your card was charged successfully. Thank you for your kind gift of $ @Model.Message</text>
+                <p>Your card was charged successfully. Thank you for your kind gift of $@(Model.Message).</p>
             }
             @*<p>@Model.Message</p>*@
         }
