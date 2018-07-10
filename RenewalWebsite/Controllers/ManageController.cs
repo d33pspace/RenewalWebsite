@@ -551,8 +551,6 @@ namespace RenewalWebsite.Controllers
         {
             try
             {
-
-
                 var user = await GetCurrentUserAsync();
                 CultureInfo us = new CultureInfo("en-US");
                 SearchViewModel model = new SearchViewModel();

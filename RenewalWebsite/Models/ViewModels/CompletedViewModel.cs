@@ -9,5 +9,6 @@ namespace RenewalWebsite.Models
     {
         public string Message { get; set; }
         public bool HasSubscriptions { get; set; }
+        public string Message1 { get; set; }
     }
 }

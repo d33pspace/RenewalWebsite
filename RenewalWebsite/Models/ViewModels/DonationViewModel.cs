@@ -14,8 +14,8 @@ namespace RenewalWebsite.Models
         public int Id { get; set; }
 
         public string CycleId { get; set; }
-
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessage = "Invalid price")]
+        //((\d+)((\.\d{1,2})?))$
+        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessageResourceName = "Pleaseenteravalidgiftamount", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public decimal? DonationAmount { get; set; }
 
         public List<SelectListItem> DonationCycles { get; set; }
@@ -37,13 +37,13 @@ namespace RenewalWebsite.Models
         public DonationViewModel()
         {
         }
-        
+
         public string GetCycle(string CycleId)
         {
             var pc = EnumInfo<PaymentCycle>.GetValue(CycleId);
             return EnumInfo<PaymentCycle>.GetDescription(pc);
         }
-        
+
         public static implicit operator DonationViewModel(Donation donation)
         {
             return new DonationViewModel();

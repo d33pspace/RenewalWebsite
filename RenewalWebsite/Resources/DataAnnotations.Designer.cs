@@ -196,6 +196,15 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid gift amount..
+        /// </summary>
+        public static string Pleaseenteravalidgiftamount {
+            get {
+                return ResourceManager.GetString("Pleaseenteravalidgiftamount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Security Code.
         /// </summary>
         public static string SecurityCode {

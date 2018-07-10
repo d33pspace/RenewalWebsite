@@ -117,11 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Amount is required." xml:space="preserve">
-    <value>金额是必需的。</value>
-  </data>
-  <data name="Donation amount cannot be zero or less" xml:space="preserve">
-    <value>捐赠金额不能为零或更少</value>
+  <data name="Please enter a gift amount greater than zero." xml:space="preserve">
+    <value>请输入合理的捐款金额！</value>
   </data>
   <data name="monthly" xml:space="preserve">
     <value>每月一次</value>

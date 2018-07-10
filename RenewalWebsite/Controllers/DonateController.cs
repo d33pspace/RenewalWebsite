@@ -24,6 +24,7 @@ namespace RenewalWebsite.Controllers
         private readonly ICampaignService _campaignService;
         private readonly IOptions<StripeSettings> _stripeSettings;
         private readonly IStringLocalizer<DonateController> _localizer;
+        private readonly ICurrencyService _currencyService;
         private readonly ILoggerServicecs _loggerService;
         private EventLog log;
 
@@ -34,13 +35,14 @@ namespace RenewalWebsite.Controllers
             IOptions<StripeSettings> stripeSettings,
             ICampaignService campaignService,
             IStringLocalizer<DonateController> localizer,
-            ILoggerServicecs loggerService)
+            ILoggerServicecs loggerService, ICurrencyService currencyService)
         {
             _userManager = userManager;
             _donationService = donationService;
             _stripeSettings = stripeSettings;
             _campaignService = campaignService;
             _localizer = localizer;
+            _currencyService = currencyService;
             _loggerService = loggerService;
 
         }
@@ -142,13 +144,13 @@ namespace RenewalWebsite.Controllers
 
                 if (donation.SelectedAmount == 0)
                 {
-                    ModelState.AddModelError("amount", _localizer["Select amount"]);
+                    ModelState.AddModelError("amount", _localizer["Please select a gift amount."]);
                     return View("Index", donation);
                 }
 
                 if (Math.Abs((decimal)donation.DonationAmount) <= 0)
                 {
-                    ModelState.AddModelError("amount", _localizer["Donation amount cannot be zero or less"]);
+                    ModelState.AddModelError("amount", _localizer["Please enter a gift amount greater than zero."]);
                     return View("Index", donation);
                 }
 
@@ -219,13 +221,13 @@ namespace RenewalWebsite.Controllers
 
                 if (donation.SelectedAmount == 0) //Could be better
                 {
-                    ModelState.AddModelError("amount", _localizer["Select amount"]);
+                    ModelState.AddModelError("amount", _localizer["Please select a gift amount."]);
                     return View("Campaign", donation);
                 }
 
                 if (Math.Abs((decimal)donation.DonationAmount) < 1)
                 {
-                    ModelState.AddModelError("amount", _localizer["Donation amount cannot be zero or less"]);
+                    ModelState.AddModelError("amount", _localizer["Please enter a gift amount greater than zero."]);
                     return View("Campaign", donation);
                 }
 

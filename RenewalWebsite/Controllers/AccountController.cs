@@ -168,6 +168,7 @@ namespace RenewalWebsite.Controllers
         public async Task<IActionResult> Logout()
         {
             await _signInManager.SignOutAsync();
+            HttpContext.Session.Clear();
             return RedirectToAction(nameof(HomeController.Index), "Home");
         }
 
