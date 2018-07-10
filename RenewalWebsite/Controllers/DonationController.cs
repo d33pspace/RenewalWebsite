@@ -75,26 +75,7 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 var donation = _donationService.GetById(id);
                 var detail = (DonationViewModel)donation;
-
-                List<CountryViewModel> countryList;
-                if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-                {
-                    countryList = _countryService.GetAllCountry()
-                                                         .Select(a => new CountryViewModel()
-                                                         {
-                                                             Code = a.ShortCode,
-                                                             Country = a.CountryEnglish
-                                                         }).OrderBy(a => a.Country).ToList();
-                }
-                else
-                {
-                    countryList = _countryService.GetAllCountry()
-                                                         .Select(a => new CountryViewModel()
-                                                         {
-                                                             Code = a.ShortCode,
-                                                             Country = a.CountryChinese
-                                                         }).OrderBy(a => a.Country).ToList();
-                }
+                List<CountryViewModel> countryList = GetCountryList();
 
                 // Check for existing customer
                 // edit = 1 means user wants to edit the credit card information
@@ -113,27 +94,8 @@ namespace RenewalWebsite.Controllers
 
                         if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
                         {
-                            var objCustomerRePaymentViewModel = new CustomerRePaymentViewModel
-                            {
-                                Name = user.FullName,
-                                AddressLine1 = user.AddressLine1,
-                                AddressLine2 = user.AddressLine2,
-                                City = user.City,
-                                State = user.State,
-                                Country = user.Country,
-                                Zip = user.Zip,
-                                DonationId = donation.Id,
-                                Description = donation.Reason,
-                                Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
-                                Amount = (decimal)donation.DonationAmount,
-                                Last4Digit = objStripeCard.Last4,
-                                CardId = objStripeCard.Id,
-                                DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
-                                IsCustom = donation.IsCustom,
-                                countries = countryList
-                            };
-
-                            return View("RePayment", objCustomerRePaymentViewModel);
+                            CustomerRePaymentViewModel customerRePaymentViewModel = CustomerRepaymentModelData(user, donation, detail, countryList, objStripeCustomer, objStripeCard);
+                            return View("RePayment", customerRePaymentViewModel);
                         }
                     }
                     catch (StripeException ex)
@@ -142,27 +104,10 @@ namespace RenewalWebsite.Controllers
                         _loggerService.SaveEventLogAsync(log);
                         ModelState.AddModelError("CustomerNotFound", ex.Message);
                     }
-
                 }
 
-                var model = new CustomerPaymentViewModel
-                {
-                    Name = user.FullName,
-                    AddressLine1 = user.AddressLine1,
-                    AddressLine2 = user.AddressLine2,
-                    City = user.City,
-                    State = user.State,
-                    Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
-                    Zip = user.Zip,
-                    DonationId = donation.Id,
-                    Description = donation.Reason,
-                    Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
-                    Amount = (decimal)donation.DonationAmount,
-                    IsCustom = donation.IsCustom,
-                    countries = countryList
-                };
-
-                return View("Payment", model);
+                CustomerPaymentViewModel customerPaymentViewModel = GetCustomerPaymentModel(user, donation, detail, countryList);
+                return View("Payment", customerPaymentViewModel);
             }
             catch (Exception ex)
             {
@@ -177,26 +122,7 @@ namespace RenewalWebsite.Controllers
         {
             try
             {
-                List<CountryViewModel> countryList;
-                if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-                {
-                    countryList = _countryService.GetAllCountry()
-                                                         .Select(a => new CountryViewModel()
-                                                         {
-                                                             Code = a.ShortCode,
-                                                             Country = a.CountryEnglish
-                                                         }).OrderBy(a => a.Country).ToList();
-                }
-                else
-                {
-                    countryList = _countryService.GetAllCountry()
-                                                         .Select(a => new CountryViewModel()
-                                                         {
-                                                             Code = a.ShortCode,
-                                                             Country = a.CountryChinese
-                                                         }).OrderBy(a => a.Country).ToList();
-                }
-
+                List<CountryViewModel> countryList = GetCountryList();
                 payment.countries = countryList;
 
                 var user = await GetCurrentUserAsync();
@@ -209,25 +135,7 @@ namespace RenewalWebsite.Controllers
                 // Construct payment
                 if (string.IsNullOrEmpty(user.StripeCustomerId))
                 {
-                    var customer = new StripeCustomerCreateOptions
-                    {
-                        Email = user.Email,
-                        Description = $"{user.Email} {user.Id}",
-                        SourceCard = new SourceCard
-                        {
-                            Name = payment.Name,
-                            Number = payment.CardNumber,
-                            Cvc = payment.Cvc,
-                            ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            AddressLine1 = payment.AddressLine1,
-                            AddressLine2 = payment.AddressLine2,
-                            AddressCity = payment.City,
-                            AddressState = payment.State,
-                            AddressCountry = payment.Country,
-                            AddressZip = payment.Zip
-                        }
-                    };
+                    StripeCustomerCreateOptions customer = GetCustomerCreateOptions(payment, user);
                     var stripeCustomer = customerService.Create(customer);
                     user.StripeCustomerId = stripeCustomer.Id;
                 }
@@ -254,70 +162,18 @@ namespace RenewalWebsite.Controllers
                         return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                     }
 
-                    var customer = new StripeCustomerUpdateOptions
-                    {
-                        SourceCard = new SourceCard
-                        {
-                            Name = payment.Name,
-                            Number = payment.CardNumber,
-                            Cvc = payment.Cvc,
-                            ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            AddressLine1 = payment.AddressLine1,
-                            AddressLine2 = payment.AddressLine2,
-                            AddressCity = payment.City,
-                            AddressState = payment.State,
-                            AddressCountry = payment.Country,
-                            AddressZip = payment.Zip
-                        }
-                    };
-
+                    StripeCustomerUpdateOptions customer = GetCustomerUpdateOption(payment);
                     var stripeCustomer = customerService.Update(user.StripeCustomerId, customer);
                     user.StripeCustomerId = stripeCustomer.Id;
                 }
 
-                if (user.FullName != payment.Name ||
-                   user.AddressLine1 != payment.AddressLine1 ||
-                   user.AddressLine2 != payment.AddressLine2 ||
-                   user.City != payment.City ||
-                   user.State != payment.State ||
-                   user.Country != payment.Country ||
-                   user.Zip != payment.Zip)
-                {
-                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
-                    var request = new RestRequest(Method.POST);
-                    request.AddParameter("email", user.Email);
-                    request.AddParameter("contact_name", payment.Name);
-                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
-                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
-                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
-                    request.AddParameter("address_line_1", payment.AddressLine1);
-                    request.AddParameter("address_line_2", payment.AddressLine2);
-                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
-                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
-                    request.AddParameter("time_zone", payment.TimeZone);
-                    request.AddParameter("city", payment.City);
-                    request.AddParameter("state", payment.State);
-                    request.AddParameter("zip", payment.Zip);
-                    request.AddParameter("country", payment.Country);
-                    // execute the request
-                    IRestResponse response = client.Execute(request);
-                }
-
-                user.FullName = payment.Name;
-                user.AddressLine1 = payment.AddressLine1;
-                user.AddressLine2 = payment.AddressLine2;
-                user.City = payment.City;
-                user.State = payment.State;
-                user.Country = payment.Country;
-                user.Zip = payment.Zip;
-                await _userManager.UpdateAsync(user);
+                UpdateUserEmail(payment, user);
+                await UpdateUserDetail(payment, user);
 
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
@@ -352,7 +208,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
+                        Message = result.StripePlan.Nickname.Split("_")[1] + result.StripePlan.Nickname.Split("_")[0],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -378,6 +234,7 @@ namespace RenewalWebsite.Controllers
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
+
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
         }
 
@@ -396,44 +253,9 @@ namespace RenewalWebsite.Controllers
                 {
                     var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                     var ExistingCustomer = customerService.Get(user.StripeCustomerId);
-
-                    List<CountryViewModel> countryList;
-                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-                    {
-                        countryList = _countryService.GetAllCountry()
-                                                             .Select(a => new CountryViewModel()
-                                                             {
-                                                                 Code = a.ShortCode,
-                                                                 Country = a.CountryEnglish
-                                                             }).OrderBy(a => a.Country).ToList();
-                    }
-                    else
-                    {
-                        countryList = _countryService.GetAllCountry()
-                                                             .Select(a => new CountryViewModel()
-                                                             {
-                                                                 Code = a.ShortCode,
-                                                                 Country = a.CountryChinese
-                                                             }).OrderBy(a => a.Country).ToList();
-                    }
-
-                    model = new CustomerPaymentViewModel
-                    {
-                        Name = user.FullName,
-                        AddressLine1 = user.AddressLine1,
-                        AddressLine2 = user.AddressLine2,
-                        City = user.City,
-                        State = user.State,
-                        Country = user.Country,
-                        Zip = user.Zip,
-                        DonationId = donation.Id,
-                        Description = donation.Reason,
-                        Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
-                        Amount = (decimal)donation.DonationAmount,
-                        DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
-                        IsCustom = donation.IsCustom,
-                        countries = countryList
-                    };
+                    List<CountryViewModel> countryList = GetCountryList();
+                    model = GetCustomerPaymentModel(user, donation, detail, countryList);
+                    model.DisableCurrencySelection = "1"; // Disable currency selection for already created customer as stripe only allow same currency for one customer,
                 }
                 catch (StripeException ex)
                 {
@@ -461,74 +283,20 @@ namespace RenewalWebsite.Controllers
 
                 if (!ModelState.IsValid)
                 {
-                    List<CountryViewModel> countryList;
-                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-                    {
-                        countryList = _countryService.GetAllCountry()
-                                                             .Select(a => new CountryViewModel()
-                                                             {
-                                                                 Code = a.ShortCode,
-                                                                 Country = a.CountryEnglish
-                                                             }).OrderBy(a => a.Country).ToList();
-                    }
-                    else
-                    {
-                        countryList = _countryService.GetAllCountry()
-                                                             .Select(a => new CountryViewModel()
-                                                             {
-                                                                 Code = a.ShortCode,
-                                                                 Country = a.CountryChinese
-                                                             }).OrderBy(a => a.Country).ToList();
-                    }
+                    List<CountryViewModel> countryList = GetCountryList();
                     payment.countries = countryList;
                     return View(payment);
                 }
 
                 var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                 var donation = _donationService.GetById(payment.DonationId);
-
-                if (user.FullName != payment.Name ||
-                   user.AddressLine1 != payment.AddressLine1 ||
-                   user.AddressLine2 != payment.AddressLine2 ||
-                   user.City != payment.City ||
-                   user.State != payment.State ||
-                   user.Country != payment.Country ||
-                   user.Zip != payment.Zip)
-                {
-                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
-                    var request = new RestRequest(Method.POST);
-                    request.AddParameter("email", user.Email);
-                    request.AddParameter("contact_name", payment.Name);
-                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
-                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
-                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
-                    request.AddParameter("address_line_1", payment.AddressLine1);
-                    request.AddParameter("address_line_2", payment.AddressLine2);
-                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
-                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
-                    request.AddParameter("time_zone", payment.TimeZone);
-                    request.AddParameter("city", payment.City);
-                    request.AddParameter("state", payment.State);
-                    request.AddParameter("zip", payment.Zip);
-                    request.AddParameter("country", payment.Country);
-                    // execute the request
-                    IRestResponse response = client.Execute(request);
-                }
-
-                user.FullName = payment.Name;
-                user.AddressLine1 = payment.AddressLine1;
-                user.AddressLine2 = payment.AddressLine2;
-                user.City = payment.City;
-                user.State = payment.State;
-                user.Country = payment.Country;
-                user.Zip = payment.Zip;
-                await _userManager.UpdateAsync(user);
+                UpdateUserRepaymentEmail(payment, user);
+                await UpdateRepaymentUserDetail(payment, user);
 
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
@@ -562,7 +330,8 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
+                        Message = result.StripePlan.Nickname.Split("_")[1],                        
+                        Message1 = _localizer[result.StripePlan.Nickname.Split("_")[0]],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -589,11 +358,6 @@ namespace RenewalWebsite.Controllers
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
-        }
-
-        private Task<ApplicationUser> GetCurrentUserAsync()
-        {
-            return _userManager.GetUserAsync(HttpContext.User);
         }
 
         public ActionResult Thanks(CompletedViewModel model)
@@ -634,26 +398,8 @@ namespace RenewalWebsite.Controllers
 
                         if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
                         {
-                            var objCustomerRePaymentViewModel = new CustomerRePaymentViewModel
-                            {
-                                Name = user.FullName,
-                                AddressLine1 = user.AddressLine1,
-                                AddressLine2 = user.AddressLine2,
-                                City = user.City,
-                                State = user.State,
-                                Country = user.Country,
-                                Zip = user.Zip,
-                                DonationId = donation.Id,
-                                Description = donation.Reason,
-                                Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
-                                Amount = (decimal)donation.DonationAmount,
-                                Last4Digit = objStripeCard.Last4,
-                                CardId = objStripeCard.Id,
-                                DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1",
-                                IsCustom = donation.IsCustom
-                            };
-
-                            return View("CampaignRePayment", objCustomerRePaymentViewModel);
+                            CustomerRePaymentViewModel customerRePaymentViewModel = CustomerRepaymentModelData(user, donation, detail, null, objStripeCustomer, objStripeCard);
+                            return View("CampaignRePayment", customerRePaymentViewModel);
                         }
                     }
                     catch (StripeException sex)
@@ -664,23 +410,8 @@ namespace RenewalWebsite.Controllers
                     }
                 }
 
-                var model = new CustomerPaymentViewModel
-                {
-                    Name = user.FullName,
-                    AddressLine1 = user.AddressLine1,
-                    AddressLine2 = user.AddressLine2,
-                    City = user.City,
-                    State = user.State,
-                    Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
-                    Zip = user.Zip,
-                    DonationId = donation.Id,
-                    Description = donation.Reason,
-                    Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
-                    Amount = (decimal)donation.DonationAmount,
-                    IsCustom = donation.IsCustom
-                };
-
-                return View("CampaignPayment", model);
+                CustomerPaymentViewModel customerPaymentViewModel = GetCustomerPaymentModel(user, donation, detail, null);
+                return View("CampaignPayment", customerPaymentViewModel);
             }
             catch (Exception ex)
             {
@@ -696,7 +427,6 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
                 if (!ModelState.IsValid)
                 {
                     return View(payment);
@@ -708,25 +438,7 @@ namespace RenewalWebsite.Controllers
                 // Construct payment
                 if (string.IsNullOrEmpty(user.StripeCustomerId))
                 {
-                    var customer = new StripeCustomerCreateOptions
-                    {
-                        Email = user.Email,
-                        Description = $"{user.Email} {user.Id}",
-                        SourceCard = new SourceCard
-                        {
-                            Name = payment.Name,
-                            Number = payment.CardNumber,
-                            Cvc = payment.Cvc,
-                            ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            AddressLine1 = payment.AddressLine1,
-                            AddressLine2 = payment.AddressLine2,
-                            AddressCity = payment.City,
-                            AddressState = payment.State,
-                            AddressCountry = payment.Country,
-                            AddressZip = payment.Zip
-                        }
-                    };
+                    StripeCustomerCreateOptions customer = GetCustomerCreateOptions(payment, user);
                     var stripeCustomer = customerService.Create(customer);
                     user.StripeCustomerId = stripeCustomer.Id;
                 }
@@ -753,70 +465,18 @@ namespace RenewalWebsite.Controllers
                         return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                     }
 
-                    var customer = new StripeCustomerUpdateOptions
-                    {
-                        SourceCard = new SourceCard
-                        {
-                            Name = payment.Name,
-                            Number = payment.CardNumber,
-                            Cvc = payment.Cvc,
-                            ExpirationMonth = payment.ExpiryMonth,
-                            ExpirationYear = payment.ExpiryYear,
-                            AddressLine1 = payment.AddressLine1,
-                            AddressLine2 = payment.AddressLine2,
-                            AddressCity = payment.City,
-                            AddressState = payment.State,
-                            AddressCountry = payment.Country,
-                            AddressZip = payment.Zip
-                        }
-                    };
-
+                    StripeCustomerUpdateOptions customer = GetCustomerUpdateOption(payment);
                     var stripeCustomer = customerService.Update(user.StripeCustomerId, customer);
                     user.StripeCustomerId = stripeCustomer.Id;
                 }
 
-                if (user.FullName != payment.Name ||
-                   user.AddressLine1 != payment.AddressLine1 ||
-                   user.AddressLine2 != payment.AddressLine2 ||
-                   user.City != payment.City ||
-                   user.State != payment.State ||
-                   user.Country != payment.Country ||
-                   user.Zip != payment.Zip)
-                {
-                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
-                    var request = new RestRequest(Method.POST);
-                    request.AddParameter("email", user.Email);
-                    request.AddParameter("contact_name", payment.Name);
-                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
-                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
-                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
-                    request.AddParameter("address_line_1", payment.AddressLine1);
-                    request.AddParameter("address_line_2", payment.AddressLine2);
-                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
-                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
-                    request.AddParameter("time_zone", payment.TimeZone);
-                    request.AddParameter("city", payment.City);
-                    request.AddParameter("state", payment.State);
-                    request.AddParameter("zip", payment.Zip);
-                    request.AddParameter("country", payment.Country);
-                    // execute the request
-                    IRestResponse response = client.Execute(request);
-                }
-
-                user.FullName = payment.Name;
-                user.AddressLine1 = payment.AddressLine1;
-                user.AddressLine2 = payment.AddressLine2;
-                user.City = payment.City;
-                user.State = payment.State;
-                user.Country = payment.Country;
-                user.Zip = payment.Zip;
-                await _userManager.UpdateAsync(user);
+                UpdateUserEmail(payment, user);
+                await UpdateUserDetail(payment, user);
 
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
@@ -851,7 +511,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
+                        Message = result.StripePlan.Nickname.Split("_")[1] + result.StripePlan.Nickname.Split("_")[0],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -888,28 +548,13 @@ namespace RenewalWebsite.Controllers
                 var user = await GetCurrentUserAsync();
                 var donation = _campaignService.GetById(id);
                 var detail = (DonationViewModel)donation;
-                CustomerPaymentViewModel model = new CustomerPaymentViewModel();
+                CustomerPaymentViewModel model = GetCustomerPaymentModel(user, donation, detail, null);
 
                 try
                 {
                     var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                     var ExistingCustomer = customerService.Get(user.StripeCustomerId);
-                    model = new CustomerPaymentViewModel
-                    {
-                        Name = user.FullName,
-                        AddressLine1 = user.AddressLine1,
-                        AddressLine2 = user.AddressLine2,
-                        City = user.City,
-                        State = user.State,
-                        Country = user.Country,
-                        Zip = user.Zip,
-                        DonationId = donation.Id,
-                        Description = donation.Reason,
-                        Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
-                        Amount = (decimal)donation.DonationAmount,
-                        DisableCurrencySelection = "1", // Disable currency selection for already created customer as stripe only allow same currency for one customer,
-                        IsCustom = donation.IsCustom
-                    };
+                    model.DisableCurrencySelection = "1"; // Disable currency selection for already created customer as stripe only allow same currency for one customer,
                 }
                 catch (StripeException ex)
                 {
@@ -934,7 +579,6 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await GetCurrentUserAsync();
-
                 if (!ModelState.IsValid)
                 {
                     return View(payment);
@@ -943,48 +587,13 @@ namespace RenewalWebsite.Controllers
                 var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                 var donation = _campaignService.GetById(payment.DonationId);
 
-                if (user.FullName != payment.Name ||
-                   user.AddressLine1 != payment.AddressLine1 ||
-                   user.AddressLine2 != payment.AddressLine2 ||
-                   user.City != payment.City ||
-                   user.State != payment.State ||
-                   user.Country != payment.Country ||
-                   user.Zip != payment.Zip)
-                {
-                    var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
-                    var request = new RestRequest(Method.POST);
-                    request.AddParameter("email", user.Email);
-                    request.AddParameter("contact_name", payment.Name);
-                    request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
-                    request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
-                    request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
-                    request.AddParameter("address_line_1", payment.AddressLine1);
-                    request.AddParameter("address_line_2", payment.AddressLine2);
-                    request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
-                    request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
-                    request.AddParameter("time_zone", payment.TimeZone);
-                    request.AddParameter("city", payment.City);
-                    request.AddParameter("state", payment.State);
-                    request.AddParameter("zip", payment.Zip);
-                    request.AddParameter("country", payment.Country);
-                    // execute the request
-                    IRestResponse response = client.Execute(request);
-                }
-
-                user.FullName = payment.Name;
-                user.AddressLine1 = payment.AddressLine1;
-                user.AddressLine2 = payment.AddressLine2;
-                user.City = payment.City;
-                user.State = payment.State;
-                user.Country = payment.Country;
-                user.Zip = payment.Zip;
-                await _userManager.UpdateAsync(user);
+                UpdateUserRepaymentEmail(payment, user);
+                await UpdateRepaymentUserDetail(payment, user);
 
                 // Add customer to Stripe
                 if (EnumInfo<PaymentCycle>.GetValue(donation.CycleId) == PaymentCycle.OneTime)
                 {
                     var model = (DonationViewModel)donation;
-
                     var charges = new StripeChargeService(_stripeSettings.Value.SecretKey);
 
                     // Charge the customer
@@ -1018,7 +627,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = _localizer["Your gift"] + result.StripePlan.Nickname.Split("_")[1] + _localizer["will repeat"] + result.StripePlan.Nickname.Split("_")[0] + _localizer["To manage or cancel your subscription anytime, follow the link below."],
+                        Message = result.StripePlan.Nickname.Split("_")[1] + result.StripePlan.Nickname.Split("_")[0],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -1045,6 +654,209 @@ namespace RenewalWebsite.Controllers
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
             return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = "Error" });
+        }
+
+        private Task<ApplicationUser> GetCurrentUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
+        }
+
+        private List<CountryViewModel> GetCountryList()
+        {
+            List<CountryViewModel> countryList;
+            if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+            {
+                countryList = _countryService.GetAllCountry()
+                                                     .Select(a => new CountryViewModel()
+                                                     {
+                                                         Code = a.ShortCode,
+                                                         Country = a.CountryEnglish
+                                                     }).OrderBy(a => a.Country).ToList();
+            }
+            else
+            {
+                countryList = _countryService.GetAllCountry()
+                                                     .Select(a => new CountryViewModel()
+                                                     {
+                                                         Code = a.ShortCode,
+                                                         Country = a.CountryChinese
+                                                     }).OrderBy(a => a.Country).ToList();
+            }
+
+            return countryList;
+        }
+
+        private void UpdateUserEmail(CustomerPaymentViewModel payment, ApplicationUser user)
+        {
+            if (user.FullName != payment.Name ||
+                               user.AddressLine1 != payment.AddressLine1 ||
+                               user.AddressLine2 != payment.AddressLine2 ||
+                               user.City != payment.City ||
+                               user.State != payment.State ||
+                               user.Country != payment.Country ||
+                               user.Zip != payment.Zip)
+            {
+                var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                var request = new RestRequest(Method.POST);
+                request.AddParameter("email", user.Email);
+                request.AddParameter("contact_name", payment.Name);
+                request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
+                request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
+                request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
+                request.AddParameter("address_line_1", payment.AddressLine1);
+                request.AddParameter("address_line_2", payment.AddressLine2);
+                request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                request.AddParameter("time_zone", payment.TimeZone);
+                request.AddParameter("city", payment.City);
+                request.AddParameter("state", payment.State);
+                request.AddParameter("zip", payment.Zip);
+                request.AddParameter("country", payment.Country);
+                // execute the request
+                IRestResponse response = client.Execute(request);
+            }
+        }
+
+        private void UpdateUserRepaymentEmail(CustomerRePaymentViewModel payment, ApplicationUser user)
+        {
+            if (user.FullName != payment.Name ||
+               user.AddressLine1 != payment.AddressLine1 ||
+               user.AddressLine2 != payment.AddressLine2 ||
+               user.City != payment.City ||
+               user.State != payment.State ||
+               user.Country != payment.Country ||
+               user.Zip != payment.Zip)
+            {
+                var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z0jmup/");
+                var request = new RestRequest(Method.POST);
+                request.AddParameter("email", user.Email);
+                request.AddParameter("contact_name", payment.Name);
+                request.AddParameter("language_preference", _currencyService.GetCurrentLanguage().TwoLetterISOLanguageName);
+                request.AddParameter("salutation", payment.Name.Split(' ').Length == 1 ? payment.Name : payment.Name.Split(' ')[0]);
+                request.AddParameter("last_name", payment.Name.Split(' ').Length == 1 ? "" : payment.Name.Split(' ')[(payment.Name.Split(' ').Length - 1)]);
+                request.AddParameter("address_line_1", payment.AddressLine1);
+                request.AddParameter("address_line_2", payment.AddressLine2);
+                request.AddParameter("server_location", _currencySettings.Value.ServerLocation);
+                request.AddParameter("ip_address", _httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString());
+                request.AddParameter("time_zone", payment.TimeZone);
+                request.AddParameter("city", payment.City);
+                request.AddParameter("state", payment.State);
+                request.AddParameter("zip", payment.Zip);
+                request.AddParameter("country", payment.Country);
+                // execute the request
+                IRestResponse response = client.Execute(request);
+            }
+        }
+
+        private CustomerPaymentViewModel GetCustomerPaymentModel(ApplicationUser user, Donation donation, DonationViewModel detail, List<CountryViewModel> countryList)
+        {
+            return new CustomerPaymentViewModel
+            {
+                Name = user.FullName,
+                AddressLine1 = user.AddressLine1,
+                AddressLine2 = user.AddressLine2,
+                City = user.City,
+                State = user.State,
+                Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
+                Zip = user.Zip,
+                DonationId = donation.Id,
+                Description = donation.Reason,
+                Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
+                Amount = (decimal)donation.DonationAmount,
+                IsCustom = donation.IsCustom,
+                countries = countryList
+            };
+        }
+
+        private CustomerRePaymentViewModel CustomerRepaymentModelData(ApplicationUser user, Donation donation, DonationViewModel detail, List<CountryViewModel> countryList, StripeCustomer objStripeCustomer, StripeCard objStripeCard)
+        {
+            return new CustomerRePaymentViewModel()
+            {
+                Name = user.FullName,
+                AddressLine1 = user.AddressLine1,
+                AddressLine2 = user.AddressLine2,
+                City = user.City,
+                State = user.State,
+                Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
+                Zip = user.Zip,
+                DonationId = donation.Id,
+                Description = donation.Reason,
+                Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
+                Amount = (decimal)donation.DonationAmount,
+                IsCustom = donation.IsCustom,
+                countries = countryList,
+                Last4Digit = objStripeCard.Last4,
+                CardId = objStripeCard.Id,
+                DisableCurrencySelection = string.IsNullOrEmpty(objStripeCustomer.Currency) ? "0" : "1"
+            };
+        }
+
+        private static StripeCustomerCreateOptions GetCustomerCreateOptions(CustomerPaymentViewModel payment, ApplicationUser user)
+        {
+            return new StripeCustomerCreateOptions
+            {
+                Email = user.Email,
+                Description = $"{user.Email} {user.Id}",
+                SourceCard = new SourceCard
+                {
+                    Name = payment.Name,
+                    Number = payment.CardNumber,
+                    Cvc = payment.Cvc,
+                    ExpirationMonth = payment.ExpiryMonth,
+                    ExpirationYear = payment.ExpiryYear,
+                    AddressLine1 = payment.AddressLine1,
+                    AddressLine2 = payment.AddressLine2,
+                    AddressCity = payment.City,
+                    AddressState = payment.State,
+                    AddressCountry = payment.Country,
+                    AddressZip = payment.Zip
+                }
+            };
+        }
+
+        private static StripeCustomerUpdateOptions GetCustomerUpdateOption(CustomerPaymentViewModel payment)
+        {
+            return new StripeCustomerUpdateOptions
+            {
+                SourceCard = new SourceCard
+                {
+                    Name = payment.Name,
+                    Number = payment.CardNumber,
+                    Cvc = payment.Cvc,
+                    ExpirationMonth = payment.ExpiryMonth,
+                    ExpirationYear = payment.ExpiryYear,
+                    AddressLine1 = payment.AddressLine1,
+                    AddressLine2 = payment.AddressLine2,
+                    AddressCity = payment.City,
+                    AddressState = payment.State,
+                    AddressCountry = payment.Country,
+                    AddressZip = payment.Zip
+                }
+            };
+        }
+
+        private async Task UpdateUserDetail(CustomerPaymentViewModel payment, ApplicationUser user)
+        {
+            user.FullName = payment.Name;
+            user.AddressLine1 = payment.AddressLine1;
+            user.AddressLine2 = payment.AddressLine2;
+            user.City = payment.City;
+            user.State = payment.State;
+            user.Country = payment.Country;
+            user.Zip = payment.Zip;
+            await _userManager.UpdateAsync(user);
+        }
+
+        private async Task UpdateRepaymentUserDetail(CustomerRePaymentViewModel payment, ApplicationUser user)
+        {
+            user.FullName = payment.Name;
+            user.AddressLine1 = payment.AddressLine1;
+            user.AddressLine2 = payment.AddressLine2;
+            user.City = payment.City;
+            user.State = payment.State;
+            user.Country = payment.Country;
+            user.Zip = payment.Zip;
+            await _userManager.UpdateAsync(user);
         }
     }
 }
