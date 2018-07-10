@@ -330,8 +330,8 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = result.StripePlan.Nickname.Split("_")[1],
-                        Message1 = result.StripePlan.Nickname.Split("_")[0],
+                        Message = result.StripePlan.Nickname.Split("_")[1],                        
+                        Message1 = _localizer[result.StripePlan.Nickname.Split("_")[0]],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
