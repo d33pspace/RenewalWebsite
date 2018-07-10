@@ -26,12 +26,12 @@
         {
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
             {
-                <label> 您的卡已成功收费。谢谢你的亲切礼物 @Model.Message</label>
+                <label> 您的卡已成功收费。谢谢你的@(Model.Message)的捐赠！</label>
             }
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
             {
-                <text> Your card was charged successfully. Thank you for your kind gift of @Model.Message</text>
+                <text> Your card was charged successfully. Thank you for your kind gift of @(Model.Message).</text>
             }
             @*<p>@Model.Message</p>*@
             @*<p>[For subscriptions only:]</p>
@@ -42,12 +42,12 @@
         {
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
             {
-                <label> 您的卡已成功收费。谢谢你的亲切礼物 @Model.Message</label>
+                <label> 您的卡已成功收费。谢谢你的@(Model.Message)的捐赠！</label>
             }
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
             {
-                <text> Your card was charged successfully. Thank you for your kind gift of @Model.Message</text>
+                <text> Your card was charged successfully. Thank you for your kind gift of @(Model.Message).</text>
             }
             @*<p>@Model.Message</p>*@
         }
