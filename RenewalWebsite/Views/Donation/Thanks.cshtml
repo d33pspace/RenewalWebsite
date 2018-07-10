@@ -42,8 +42,7 @@
         {
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
             {
-                <label>您的卡已成功收费。谢谢你的亲切礼物 $ @Model.Message</label>
-                <label> "Your gift"result.StripePlan.Nickname.Split("_")[1] + "will repeat" + result.StripePlan.Nickname.Split("_")[0] + "To manage or cancel your subscription anytime, follow the link below."</label>
+                <label>您的卡已成功收费。谢谢你的亲切礼物 $ @Model.Message</label>                
             }
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
