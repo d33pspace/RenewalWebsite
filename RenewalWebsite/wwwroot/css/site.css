@@ -27,14 +27,26 @@
 /*din 2014: extra-light*/
 
 @font-face {
+    font-family: 'SanHanLight';
+    src: url('../fonts/SourceHanSansSC-Light.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'SanHanBold';
+    src: url('../fonts/SourceHanSansSC-Bold.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'dpt35';
     src: url('../fonts/dpt35-webfont.woff2') format('woff2'), url('../fonts/dpt35-webfont.woff') format('woff'), url('../fonts/dpt35-webfont.eot') format('embedded-opentype'), url('../fonts/dpt35-webfont.svg') format('svg'), url('../fonts/dpt35-webfont.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
-
 /*din 2014: demi*/
-
 @font-face {
     font-family: 'dpt65';
     src: url('../fonts/dpt65-webfont.woff2') format('woff2'), url('../fonts/dpt65-webfont.woff') format('woff'), url('../fonts/dpt65-webfont.eot') format('embedded-opentype'), url('../fonts/dpt65-webfont.svg') format('svg'), url('../fonts/dpt65-webfont.ttf') format('truetype');
@@ -43,17 +55,17 @@
 }
 
 .din-demi {
-    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif !important;
+    font-family: SanHanBold, helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif !important;
 }
 
 .din-extra-light {
-    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: SanHanLight, helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
 body {
     font-size: 18px;
     color: #393939;
-    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    font-family: SanHanLight, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
     -webkit-tap-highlight-color: #d11241;
 }
 
@@ -74,11 +86,15 @@ h4,
 h5,
 h6 {
     font-weight: 600;
-    font-family: 'dpt65',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
 h5 {
     font-size: 1.45rem;
+}
+
+b {
+    font-family: SanHanBold !important;
 }
 
 a {
@@ -100,7 +116,7 @@ a.styled-link, p a {
     color: #393939;
     text-decoration: none;
     border-bottom: 2px solid #d11241;
-    font-family: 'dpt65',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     /*font-family: inherit;*/
 }
 
@@ -133,7 +149,7 @@ a.styled-link, p a {
 #mainNav {
     position: relative;
     background-color: white;
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
     #mainNav .navbar-brand {
@@ -152,7 +168,7 @@ a.styled-link, p a {
     #mainNav .navbar-nav > li.nav-item > a, .btn.btn-link.navbar-btn.navbar-link {
         font-size: 16px;
         font-weight: 400;
-        font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+        font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
         border-radius: 0px;
         vertical-align: top;
         letter-spacing: 1px;
@@ -315,7 +331,7 @@ header.masthead .page-heading {
         line-height: 1.1;
         display: block;
         margin: 10px 0 0;
-        font-family: 'dpt35', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        font-family: SanHanLight, 'Helvetica Neue', Helvetica, Arial, sans-serif;
     }
 
 @media only screen and (min-width: 768px) {
@@ -340,7 +356,7 @@ header.masthead .post-heading .subheading {
     font-size: 24px;
     font-weight: 600;
     margin: 10px 0 30px;
-    font-family: 'dpt65', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: 'SanHanBold', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 header.masthead .post-heading .meta {
@@ -593,15 +609,15 @@ form .form-group:first-child .floating-label-form-group {
 }
 
 /*form, input {
-    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanLight', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }*/
 
 label {
-    /*font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
+    /*font-family: 'SanHanBold', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
 }
 
 /*button, input, optgroup, select, textarea {
-    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanLight', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }*/
 
 form.contact input {
@@ -679,12 +695,12 @@ input#choose-amount {
 
 .form-control {
     /*font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;*/
-    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: SanHanLight, helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
     .form-control:focus, input#choose-amount:focus {
         border: 1px solid #d11241;
-        font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+        font-family: 'SanHanBold', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     }
 
 
@@ -715,7 +731,7 @@ input#choose-amount {
 a.dropdown-toggle {
     border-radius: 5px;
     border: 1px solid #e0e0e0;
-    font-family: 'dpt35', helvetica, sans-serif;
+    font-family: SanHanLight, helvetica, sans-serif;
 }
 
 .dropdown-item {
@@ -756,7 +772,7 @@ a.dropdown-toggle {
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 5px;
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     color: white;
     border-color: #d11241;
     background-color: #d11241;
@@ -771,7 +787,7 @@ a.dropdown-toggle {
     letter-spacing: 1px;
     text-transform: uppercase;
     border-radius: 5px;
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     color: white;
     border-color: #d11241;
     background-color: #d11241;
@@ -871,7 +887,7 @@ fieldset[disabled] .btn-primary.focus {
     font-size: 14px;
     text-decoration: underline;
     background-color: transparent;
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
     .transparent-btn:hover, .transparent-btn:focus, .transparent-btn:active {
@@ -1083,7 +1099,7 @@ a.news-link {
     letter-spacing: 1px;
     text-transform: inherit;
     float: left;
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
 .renewal-logo-news {
@@ -1171,7 +1187,7 @@ blockquote:before {
 }
 
 blockquote {
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     font-size: 26px;
     color: #393939;
     font-style: normal;
@@ -1237,7 +1253,7 @@ p.excerpt {
 }
 
 .news-subheader {
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     font-size: 21px;
 }
 
@@ -1245,7 +1261,7 @@ p.excerpt {
     color: #d11241 !important;
     text-decoration: none;
     border-bottom: none;
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
     .sub-menu-a.styled-link:hover {
@@ -1516,11 +1532,11 @@ input#CustomAmount {
 }
 
 .select-font {
-    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+    font-family: SanHanLight, Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
 }
 
     .select-font:focus {
-        font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
+        font-family: SanHanLight, Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
     }
 
 .rb-align {
@@ -1538,7 +1554,7 @@ input#CustomAmount {
 }
 
 .blockquote-winter {
-    font-family: 'dpt65', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'SanHanBold', Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     font-size: 26px;
     color: #393939;
     font-style: normal;

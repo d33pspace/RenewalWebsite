@@ -24,6 +24,7 @@ namespace RenewalWebsite.Utility
         public string To;
         public string language;
         public string fontPath;
+        public string boldFontPath;
 
         // this is the BaseFont we are going to use for the header / footer
         BaseFont bf = null;
@@ -49,7 +50,7 @@ namespace RenewalWebsite.Utility
             try
             {
                 PrintTime = DateTime.Now;
-                bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
                 cb = writer.DirectContent;
 
             }
@@ -73,11 +74,12 @@ namespace RenewalWebsite.Utility
         {
             base.OnEndPage(writer, document);
 
-            iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
-            iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
-            iTextSharp.text.Font baseFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            //iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
+            //iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            //iTextSharp.text.Font baseFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
 
             BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            BaseFont baseFontBold = BaseFont.CreateFont(boldFontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
             if (writer.PageNumber == 1)
             {
@@ -85,13 +87,13 @@ namespace RenewalWebsite.Utility
                 PdfPTable pdfTab = new PdfPTable(3);
 
                 //Row 2
-                PdfPCell pdfCell8 = new PdfPCell(new Phrase(fullName, baseFontBold));
+                PdfPCell pdfCell8 = new PdfPCell(new Phrase(fullName, new Font(baseFontBold, 12f, Font.BOLD, BaseColor.BLACK)));
                 pdfCell8.PaddingLeft = 70f;
                 Phrase phrase = new Phrase();
-                phrase.Add(new Chunk(recordHeader, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
-                phrase.Add(new Chunk(" " + startDate + " ", baseFontNormal));
-                phrase.Add(new Chunk(To, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
-                phrase.Add(new Chunk(" " + endDate, baseFontNormal));
+                phrase.Add(new Chunk(recordHeader, new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + startDate + " ", new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(To, new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + endDate, new Font(baseFont, 12f, 1, BaseColor.BLACK)));
 
                 PdfPCell pdfCell4 = new PdfPCell(phrase);
                 pdfCell4.PaddingLeft = 70f;
@@ -100,7 +102,7 @@ namespace RenewalWebsite.Utility
                 iTextSharp.text.Image myImage = iTextSharp.text.Image.GetInstance(logoPath);
                 myImage.ScaleToFit(50f, 50f);
 
-                PdfPCell pdfCell5 = new PdfPCell(new Phrase(RenewalHeader, language == "en-US" ? baseFontBig : new Font(baseFont, 14f, 1, BaseColor.BLACK)));
+                PdfPCell pdfCell5 = new PdfPCell(new Phrase(RenewalHeader, new Font(baseFontBold, 14f, 1, BaseColor.BLACK)));
                 pdfCell5.PaddingTop = 0f;
                 pdfCell5.PaddingLeft = 70f;
                 pdfCell5.Top = 0f;
