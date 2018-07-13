@@ -24,7 +24,8 @@ namespace RenewalWebsite.Utility
         public string To;
         public string language;
         public string fontPath;
-        public string boldFontPath;
+        public string EmailId;
+        public string Message;
 
         // this is the BaseFont we are going to use for the header / footer
         BaseFont bf = null;
@@ -50,7 +51,7 @@ namespace RenewalWebsite.Utility
             try
             {
                 PrintTime = DateTime.Now;
-                bf = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+                bf = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                 cb = writer.DirectContent;
 
             }
@@ -74,12 +75,11 @@ namespace RenewalWebsite.Utility
         {
             base.OnEndPage(writer, document);
 
-            //iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
-            //iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
-            //iTextSharp.text.Font baseFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font baseFontNormal = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.NORMAL, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font baseFontBig = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 14f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
+            iTextSharp.text.Font baseFontBold = new iTextSharp.text.Font(iTextSharp.text.Font.FontFamily.TIMES_ROMAN, 12f, iTextSharp.text.Font.BOLD, iTextSharp.text.BaseColor.BLACK);
 
             BaseFont baseFont = BaseFont.CreateFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
-            BaseFont baseFontBold = BaseFont.CreateFont(boldFontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
 
             if (writer.PageNumber == 1)
             {
@@ -87,13 +87,11 @@ namespace RenewalWebsite.Utility
                 PdfPTable pdfTab = new PdfPTable(3);
 
                 //Row 2
-                PdfPCell pdfCell8 = new PdfPCell(new Phrase(fullName, new Font(baseFontBold, 12f, Font.BOLD, BaseColor.BLACK)));
-                pdfCell8.PaddingLeft = 70f;
                 Phrase phrase = new Phrase();
-                phrase.Add(new Chunk(recordHeader, new Font(baseFont, 12f, 1, BaseColor.BLACK)));
-                phrase.Add(new Chunk(" " + startDate + " ", new Font(baseFont, 12f, 1, BaseColor.BLACK)));
-                phrase.Add(new Chunk(To, new Font(baseFont, 12f, 1, BaseColor.BLACK)));
-                phrase.Add(new Chunk(" " + endDate, new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(recordHeader, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + startDate + " ", baseFontNormal));
+                phrase.Add(new Chunk(To, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + endDate, baseFontNormal));
 
                 PdfPCell pdfCell4 = new PdfPCell(phrase);
                 pdfCell4.PaddingLeft = 70f;
@@ -102,7 +100,7 @@ namespace RenewalWebsite.Utility
                 iTextSharp.text.Image myImage = iTextSharp.text.Image.GetInstance(logoPath);
                 myImage.ScaleToFit(50f, 50f);
 
-                PdfPCell pdfCell5 = new PdfPCell(new Phrase(RenewalHeader, new Font(baseFontBold, 14f, 1, BaseColor.BLACK)));
+                PdfPCell pdfCell5 = new PdfPCell(new Phrase(RenewalHeader, language == "en-US" ? baseFontBig : new Font(baseFont, 14f, 1, BaseColor.BLACK)));
                 pdfCell5.PaddingTop = 0f;
                 pdfCell5.PaddingLeft = 70f;
                 pdfCell5.Top = 0f;
@@ -116,7 +114,6 @@ namespace RenewalWebsite.Utility
 
 
                 //set the alignment of all three cells and set border to 0
-                pdfCell8.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell4.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell5.HorizontalAlignment = Element.ALIGN_LEFT;
                 pdfCell6.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -124,25 +121,50 @@ namespace RenewalWebsite.Utility
 
 
                 pdfCell4.VerticalAlignment = Element.ALIGN_TOP;
-                pdfCell8.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell5.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell6.VerticalAlignment = Element.ALIGN_TOP;
                 pdfCell7.VerticalAlignment = Element.ALIGN_TOP;
 
 
                 pdfCell4.Colspan = 3;
-                pdfCell8.Colspan = 3;
 
                 pdfCell4.Border = 0;
                 pdfCell5.Border = 0;
                 pdfCell6.Border = 0;
                 pdfCell7.Border = 0;
-                pdfCell8.Border = 0;
 
                 pdfTab.AddCell(pdfCell5);
                 pdfTab.AddCell(pdfCell6);
                 pdfTab.AddCell(pdfCell7);
-                pdfTab.AddCell(pdfCell8);
+
+                if (!string.IsNullOrEmpty(fullName))
+                {
+                    PdfPCell pdfCell8 = new PdfPCell(new Phrase(fullName, baseFontBold));
+                    pdfCell8.PaddingLeft = 70f;
+                    pdfCell8.HorizontalAlignment = Element.ALIGN_LEFT;
+                    pdfCell8.VerticalAlignment = Element.ALIGN_TOP;
+                    pdfCell8.Colspan = 3;
+                    pdfCell8.Border = 0;
+                    pdfTab.AddCell(pdfCell8);
+                }
+                else
+                {
+                    PdfPCell pdfCell8 = new PdfPCell(new Phrase(EmailId, baseFontBold));
+                    pdfCell8.PaddingLeft = 70f;
+                    pdfCell8.HorizontalAlignment = Element.ALIGN_LEFT;
+                    pdfCell8.VerticalAlignment = Element.ALIGN_TOP;
+                    pdfCell8.Colspan = 3;
+                    pdfCell8.Border = 0;
+                    pdfTab.AddCell(pdfCell8);
+                    PdfPCell pdfCell9 = new PdfPCell(new Phrase(Message, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                    pdfCell9.PaddingLeft = 70f;
+                    pdfCell9.HorizontalAlignment = Element.ALIGN_LEFT;
+                    pdfCell9.VerticalAlignment = Element.ALIGN_TOP;
+                    pdfCell9.Colspan = 3;
+                    pdfCell9.Border = 0;
+                    pdfTab.AddCell(pdfCell9);
+                }
+
                 pdfTab.AddCell(pdfCell4);
                 pdfTab.TotalWidth = document.PageSize.Width;
                 pdfTab.WidthPercentage = 100;
@@ -150,7 +172,14 @@ namespace RenewalWebsite.Utility
                 //call WriteSelectedRows of PdfTable. This writes rows from PdfWriter in PdfTable
                 //first param is start row. -1 indicates there is no end row and all the rows to be included to write
                 //Third and fourth param is x and y position to start writing
-                pdfTab.WriteSelectedRows(0, -1, 0, document.PageSize.Height - 30, writer.DirectContent);
+                if (!string.IsNullOrEmpty(fullName))
+                {
+                    pdfTab.WriteSelectedRows(0, -1, 0, document.PageSize.Height - 30, writer.DirectContent);
+                }
+                else
+                {
+                    pdfTab.WriteSelectedRows(0, -1, 0, document.PageSize.Height - 10, writer.DirectContent);
+                }
             }
             else
             {

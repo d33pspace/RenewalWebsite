@@ -198,4 +198,7 @@
   <data name="View your valuable donation history" xml:space="preserve">
     <value>查看您宝贵的捐赠历史记录</value>
   </data>
+  <data name="Please complete your full name on the details tab." xml:space="preserve">
+    <value>请在详细信息选项卡上填写您的全名。</value>
+  </data>
 </root>
