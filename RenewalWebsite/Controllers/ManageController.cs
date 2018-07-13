@@ -710,7 +710,7 @@ namespace RenewalWebsite.Controllers
                 StringBuilder status = new StringBuilder("");
                 DateTime dTime = DateTime.Now;
                 //file name to be created   
-                string strPDFFileName = "Renewal giving record"; //string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
+                string strPDFFileName = "Renewal giving record" + ".pdf"; //string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
                 Document doc = new Document();
                 doc.SetPageSize(PageSize.A4);
                 doc.SetMargins(0f, 0f, 0f, 0f);

@@ -88,10 +88,10 @@ namespace RenewalWebsite.Utility
 
                 //Row 2
                 Phrase phrase = new Phrase();
-                phrase.Add(new Chunk(recordHeader, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
-                phrase.Add(new Chunk(" " + startDate + " ", baseFontNormal));
-                phrase.Add(new Chunk(To, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
-                phrase.Add(new Chunk(" " + endDate, baseFontNormal));
+                phrase.Add(new Chunk(recordHeader, language == "en-US" ? new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK) : new Font(baseFont, 10f, Font.NORMAL, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + startDate + " ", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK)));
+                phrase.Add(new Chunk(To, language == "en-US" ? new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK) : new Font(baseFont, 12f, Font.NORMAL, BaseColor.BLACK)));
+                phrase.Add(new Chunk(" " + endDate, new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK)));
 
                 PdfPCell pdfCell4 = new PdfPCell(phrase);
                 pdfCell4.PaddingLeft = 70f;
@@ -156,8 +156,9 @@ namespace RenewalWebsite.Utility
                     pdfCell8.Colspan = 3;
                     pdfCell8.Border = 0;
                     pdfTab.AddCell(pdfCell8);
-                    PdfPCell pdfCell9 = new PdfPCell(new Phrase(Message, language == "en-US" ? baseFontNormal : new Font(baseFont, 12f, 1, BaseColor.BLACK)));
+                    PdfPCell pdfCell9 = new PdfPCell(new Phrase(Message, language == "en-US" ? new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.ITALIC, BaseColor.BLACK) : new Font(baseFont, 10f, Font.ITALIC, BaseColor.BLACK)));
                     pdfCell9.PaddingLeft = 70f;
+                    pdfCell9.PaddingBottom = 10f;
                     pdfCell9.HorizontalAlignment = Element.ALIGN_LEFT;
                     pdfCell9.VerticalAlignment = Element.ALIGN_TOP;
                     pdfCell9.Colspan = 3;
@@ -178,7 +179,7 @@ namespace RenewalWebsite.Utility
                 }
                 else
                 {
-                    pdfTab.WriteSelectedRows(0, -1, 0, document.PageSize.Height - 10, writer.DirectContent);
+                    pdfTab.WriteSelectedRows(0, -1, 0, document.PageSize.Height, writer.DirectContent);
                 }
             }
             else
