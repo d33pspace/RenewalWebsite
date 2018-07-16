@@ -55,7 +55,7 @@ namespace RenewalWebsite.Controllers
             }
         }
 
-        public IActionResult ToggleLanguage(string returnUrl)
+        public IActionResult ToggleLanguage(string returnUrl = "/")
         {
             try
             {
@@ -64,7 +64,15 @@ namespace RenewalWebsite.Controllers
                 var currentCulture = feature.RequestCulture.Culture;
                 var culture = currentCulture.Name == "en-US" ? "zh-CN" : "en-US";
                 SetLanguage(culture);
-                return Redirect(Request.Headers["Referer"].ToString());
+                string urlToRedirect = Request.Headers["Referer"].ToString();
+                if (string.IsNullOrEmpty(urlToRedirect))
+                {
+                    return Redirect(returnUrl);
+                }
+                else
+                {
+                    return Redirect(Request.Headers["Referer"].ToString());
+                }                
             }
             catch (Exception ex)
             {
