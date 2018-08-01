@@ -118,13 +118,13 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="From Date is required" xml:space="preserve">
-    <value>从日期是必需的</value>
+    <value>无效的日期</value>
   </data>
   <data name="From:" xml:space="preserve">
-    <value>报告开支日期</value>
+    <value>报告起始日期</value>
   </data>
   <data name="Invalid From Date" xml:space="preserve">
-    <value>从日期无效</value>
+    <value>无效的日期</value>
   </data>
   <data name="Invalid To Date" xml:space="preserve">
     <value>无效的日期</value>
@@ -139,7 +139,7 @@
     <value>显示美元转换</value>
   </data>
   <data name="To Date is required" xml:space="preserve">
-    <value>至今是必需的</value>
+    <value>无效的日期</value>
   </data>
   <data name="To:" xml:space="preserve">
     <value>报告终止日期</value>

@@ -60,7 +60,7 @@
     <h2 class="red-border">
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
         {
-        <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount) 。。。</label>
+        <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount) ......</label>
         }
 
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
@@ -137,7 +137,7 @@
                         <div class="col-6 p15">
                             <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
                             <select asp-for="Country" class="form-control">
-                                <option value="">@Localizer["(please select a country)"]</option>
+                                <option value="">@Localizer["(Please select a country)"]</option>
                                 @foreach (var item in Model.countries)
                                 {
                                     <option value="@item.Code">@item.Country</option>

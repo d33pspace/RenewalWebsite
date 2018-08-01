@@ -124,7 +124,7 @@
     <value>忘记密码</value>
   </data>
   <data name="Log in" xml:space="preserve">
-    <value>登陆</value>
+    <value>登录</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密码</value>
@@ -133,12 +133,12 @@
     <value>注册一个新用户</value>
   </data>
   <data name="Remember me?" xml:space="preserve">
-    <value>自动登陆</value>
+    <value>自动登录</value>
   </data>
   <data name="Use a local account to log in." xml:space="preserve">
-    <value>用日新的账户登陆</value>
+    <value>用日新的账户登录</value>
   </data>
   <data name="Use another service to log in." xml:space="preserve">
-    <value>用第三方账号登陆</value>
+    <value>用第三方账号登录</value>
   </data>
 </root>

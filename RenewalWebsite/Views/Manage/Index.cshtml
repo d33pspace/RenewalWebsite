@@ -126,7 +126,7 @@
                                 <label class="col-sm-3 control-label" asp-for="Country">@Localizer["Country"]</label>
                                 <div class="col-sm-9">
                                     <select asp-for="Country" class="form-control">
-                                        <option value="">(please select a country)</option>
+                                        <option value="">@Localizer["(Please select a country)"]</option>
                                         @foreach (var item in Model.countries)
                                         {
                                             <option value="@item.Code">@item.Country</option>

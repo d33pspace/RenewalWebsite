@@ -59,7 +59,7 @@
     <h2 class="red-border">
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
         {
-        <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount) 。。。</label>
+        <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount) ......</label>
         }
 
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
@@ -133,7 +133,7 @@
                     <div class="col-6 p15">
                         <label asp-for="City" class="col-form-label sr-only">Country</label>
                         <select asp-for="Country" class="form-control">
-                            <option value="">(please select a country)</option>
+                            <option value="">@Localizer["(Please select a country)"]</option>
                             <option value="AF">Afghanistan</option>
                             <option value="AL">Albania</option>
                             <option value="DZ">Algeria</option>
