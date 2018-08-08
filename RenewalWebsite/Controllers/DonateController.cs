@@ -153,6 +153,11 @@ namespace RenewalWebsite.Controllers
                     ModelState.AddModelError("amount", _localizer["Please enter a gift amount greater than zero."]);
                     return View("Index", donation);
                 }
+                if (Math.Abs((decimal)donation.DonationAmount) >= 100000)
+                {
+                    ModelState.AddModelError("amount", _localizer["Amount must be no more than $100000"]);
+                    return View("Index", donation);
+                }
 
                 if (!ModelState.IsValid) { return View("Index", donation); }
 

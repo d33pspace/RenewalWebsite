@@ -136,6 +136,7 @@
         }
 
         $('#divInvoiceHistory').html('');
+        $('#btnSave').attr("disabled", "disabled");
         $.ajax({
             url: "/Manage/GetPaymentHistory",
             data: {
@@ -146,6 +147,7 @@
             type: 'POST',
             success: function (data) {
                 $('#divInvoiceHistory').append(data);
+                $('#btnSave').removeAttr("disabled");
                 displayUSDOption();
             }
         });

@@ -135,4 +135,7 @@
   <data name="yearly" xml:space="preserve">
     <value>每年</value>
   </data>
+  <data name="Amount must be no more than $100000" xml:space="preserve">
+    <value>金额不得超过$ 100000</value>
+  </data>
 </root>

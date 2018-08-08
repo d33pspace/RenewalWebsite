@@ -107,6 +107,8 @@ a.styled-link, p a {
         color: white !important;
         cursor: pointer;
         text-decoration: none;
+        padding: 0px 5px 0px 5px;
+        border-radius: 5px;
     }
 
 :lang(zh) .figure-caption.caption {
@@ -250,6 +252,7 @@ a.styled-link, p a {
         color: white;
         cursor: pointer;
         text-decoration: none;
+        border-radius: 5px;
     }
 }
 
@@ -516,6 +519,7 @@ ul.gift-options {
 .red-border {
     border: 2px solid #d11241;
     padding: 15px;
+    border-radius: 5px;
 }
 
 
@@ -862,6 +866,7 @@ fieldset[disabled] .btn-primary.focus {
         border-color: #d11241;
         border: 2px solid;
         cursor: pointer;
+        border-radius: 5px;
     }
 
 .transparent-btn {
@@ -1500,7 +1505,6 @@ input#CustomAmount {
     padding: 1px 5px;
     font-size: 12px;
     line-height: 1.5;
-    border-radius: 0px;
 }
 
 .m-tb-15 {
