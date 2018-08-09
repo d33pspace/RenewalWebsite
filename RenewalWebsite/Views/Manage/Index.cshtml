@@ -5,6 +5,7 @@
 
 <link href="~/css/jquery.scrolling-tabs.css" rel="stylesheet" />
 
+<script src="~/lib/jquery/dist/jquery.js"></script>
 <h2><i class="fa fa-user fa-2x"></i> @ViewData["Title"]</h2>
 @*<link href="~/css/demo.css" rel="stylesheet" />
     <link href="~/css/normalize.css" rel="stylesheet" />
@@ -219,7 +220,7 @@
                     <h4>@Localizer["View your valuable donation history"]</h4>
                     <hr />
                     <p>@Localizer["Gifts made by credit or debit card usually appear here within one hour, other donation methods take longer. If your gift doesn't appear here within five business days, please contact us at"] <a href="mailto:connect@renewal.org.cn">connect@renewal.org.cn</a>.</p>
-                    
+
                     <div id="paymentHistory">
                     </div>
                 </div>
@@ -307,5 +308,6 @@
                 $('#paymentHistory').append(data);
             }
         });
-    }
+    };
+
 </script>
