@@ -9,7 +9,7 @@
     string lang = CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName;
 }
 
-
+<link href="~/css/buttonLoader.css" rel="stylesheet" />
 <div class="container">
     <h4>@Localizer["Update Renewal communication preferences for..."]</h4>
     <h2>@email</h2>
@@ -27,7 +27,7 @@
             </div>
             <div class="form-group row">
                 <div class="col-md-12">
-                    <button type="button" id="btnChangeCommunication" class="btn btn-secondary" onclick="changePreference()">@Localizer["Submit"]</button>
+                    <button type="button" id="btnChangeCommunication" class="btn btn-secondary has-spinner">@Localizer["Submit"]</button>
                 </div>
             </div>
         </fieldset>
@@ -38,27 +38,29 @@
     $(document).ready(function () {
         var lang = "@lang";
         $("input[name=language][value=" + lang + "]").attr('checked', 'checked');
+
+        $('.has-spinner').click(function () {
+            var btn = $(this);
+            $(btn).buttonLoader('start');
+            var selValue = $('input[name=language]:checked').val();
+            $.ajax({
+                url: "/Contact/ChangePreference",
+                data: {
+                    "email": "@email",
+                    "language" :selValue
+                },
+                type: "post",
+                datatype: "application/json",
+                success: function (result) {
+                    if (result.status = "1") {
+                        $('#message').show();
+                        $('#message').text(result.data);
+                        $(btn).buttonLoader('stop');
+                        window.location.href = "/contact/thankyou?id=2";
+                    }
+                }
+            });
+        });
     });
 
-    function changePreference() {
-        var selValue = $('input[name=language]:checked').val();
-        $.ajax({
-            url: "/Contact/ChangePreference",
-            data: {
-                "email": "@email",
-                "language" :selValue
-            },
-            type: "post",
-            datatype: "application/json",
-            success: function (result) {
-                if (result.status = "1") {
-                    $('#message').show();
-                    $('#message').text(result.data);
-                    setInterval(function () {
-                        window.location.href = "/contact/thankyou?id=2";
-                    }, 1000);
-                }
-            }
-        });
-    };
 </script>

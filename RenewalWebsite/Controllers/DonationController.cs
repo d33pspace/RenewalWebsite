@@ -70,9 +70,9 @@ namespace RenewalWebsite.Controllers
         [Route("Donation/Payment/{id}")]
         public async Task<IActionResult> Payment(int id)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 var donation = _donationService.GetById(id);
                 var detail = (DonationViewModel)donation;
                 List<CountryViewModel> countryList = GetCountryList();
@@ -100,7 +100,7 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (StripeException ex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                         _loggerService.SaveEventLogAsync(log);
                         ModelState.AddModelError("CustomerNotFound", ex.Message);
                     }
@@ -111,7 +111,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -120,12 +120,11 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> Payment(CustomerPaymentViewModel payment)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 List<CountryViewModel> countryList = GetCountryList();
                 payment.countries = countryList;
-
-                var user = await GetCurrentUserAsync();
 
                 if (!ModelState.IsValid) { return View(payment); }
 
@@ -157,7 +156,7 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (Exception ex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                         _loggerService.SaveEventLogAsync(log);
                         return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                     }
@@ -208,7 +207,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = result.StripePlan.Nickname.Split("_")[1] + result.StripePlan.Nickname.Split("_")[0],
+                        Message = result.StripePlan.Nickname.Split("_")[1] + " " + result.StripePlan.Nickname.Split("_")[0],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -216,7 +215,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 if (ex.Message.ToLower().Contains("customer"))
                 {
@@ -230,7 +229,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
@@ -242,9 +241,9 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Payment(int id, int edit)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 var donation = _donationService.GetById(id);
                 var detail = (DonationViewModel)donation;
                 CustomerPaymentViewModel model = new CustomerPaymentViewModel();
@@ -259,7 +258,7 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     ModelState.AddModelError("CustomerNotFound", ex.Message);
                 }
@@ -268,7 +267,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -277,10 +276,9 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> RePayment(CustomerRePaymentViewModel payment)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
-
                 if (!ModelState.IsValid)
                 {
                     List<CountryViewModel> countryList = GetCountryList();
@@ -330,7 +328,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = result.StripePlan.Nickname.Split("_")[1],                        
+                        Message = result.StripePlan.Nickname.Split("_")[1],
                         Message1 = _localizer[result.StripePlan.Nickname.Split("_")[0]],
                         HasSubscriptions = true
                     };
@@ -339,7 +337,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 if (ex.Message.ToLower().Contains("customer"))
                 {
@@ -353,7 +351,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
@@ -375,9 +373,9 @@ namespace RenewalWebsite.Controllers
         [Route("Donation/Payment/campaign/{id}")]
         public async Task<IActionResult> CampaignPayment(int id)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 var donation = _campaignService.GetById(id);
                 var detail = (DonationViewModel)donation;
 
@@ -404,7 +402,7 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (StripeException sex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message, StackTrace = sex.StackTrace, Source = sex.Source };
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = sex.Message, StackTrace = sex.StackTrace, Source = sex.Source, EmailId = user.Email };
                         _loggerService.SaveEventLogAsync(log);
                         ModelState.AddModelError("CustomerNotFound", sex.Message);
                     }
@@ -415,7 +413,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -424,9 +422,9 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> CampaignPayment(CustomerPaymentViewModel payment)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 if (!ModelState.IsValid)
                 {
                     return View(payment);
@@ -460,7 +458,7 @@ namespace RenewalWebsite.Controllers
                     }
                     catch (Exception ex)
                     {
-                        log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                        log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                         _loggerService.SaveEventLogAsync(log);
                         return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
                     }
@@ -511,7 +509,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = result.StripePlan.Nickname.Split("_")[1] + result.StripePlan.Nickname.Split("_")[0],
+                        Message = result.StripePlan.Nickname.Split("_")[1] + " " + result.StripePlan.Nickname.Split("_")[0],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -519,7 +517,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 if (ex.Message.ToLower().Contains("customer"))
                 {
@@ -533,7 +531,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }
@@ -543,9 +541,9 @@ namespace RenewalWebsite.Controllers
         [Route("Donation/Payment/campaign/{id}/{edit?}")]
         public async Task<IActionResult> CampaignPayment(int id, int edit)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 var donation = _campaignService.GetById(id);
                 var detail = (DonationViewModel)donation;
                 CustomerPaymentViewModel model = GetCustomerPaymentModel(user, donation, detail, null);
@@ -558,7 +556,7 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     ModelState.AddModelError("CustomerNotFound", ex.Message);
                 }
@@ -567,7 +565,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -576,9 +574,9 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<IActionResult> CampaignRePayment(CustomerRePaymentViewModel payment)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 if (!ModelState.IsValid)
                 {
                     return View(payment);
@@ -627,7 +625,7 @@ namespace RenewalWebsite.Controllers
                 {
                     var completedMessage = new CompletedViewModel
                     {
-                        Message = result.StripePlan.Nickname.Split("_")[1] + result.StripePlan.Nickname.Split("_")[0],
+                        Message = result.StripePlan.Nickname.Split("_")[1] + " " + result.StripePlan.Nickname.Split("_")[0],
                         HasSubscriptions = true
                     };
                     return RedirectToAction("Thanks", completedMessage);
@@ -635,7 +633,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (StripeException ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 if (ex.Message.ToLower().Contains("customer"))
                 {
@@ -649,7 +647,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error", new ErrorViewModel() { Error = ex.Message });
             }

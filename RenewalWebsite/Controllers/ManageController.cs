@@ -81,6 +81,7 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null, int tabId = 0)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 // Optionaly use the region info to get default currency for user
@@ -93,7 +94,6 @@ namespace RenewalWebsite.Controllers
                     : message == ManageMessageId.RemovePhoneSuccess ? _localizer["Your phone number was removed."]
                     : "";
 
-                var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "User not found." };
@@ -164,7 +164,7 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     ModelState.AddModelError("CustomerNoFound", ex.Message);
                 }
@@ -173,7 +173,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return View(null);
             }
@@ -184,10 +184,10 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemoveLogin(RemoveLoginViewModel account)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 ManageMessageId? message = ManageMessageId.Error;
-                var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
                     var result = await _userManager.RemoveLoginAsync(user, account.LoginProvider, account.ProviderKey);
@@ -202,7 +202,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return View(null);
             }
@@ -219,6 +219,7 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddPhoneNumber(AddPhoneNumberViewModel model)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 if (!ModelState.IsValid)
@@ -226,7 +227,6 @@ namespace RenewalWebsite.Controllers
                     return View(model);
                 }
                 // Generate the token and send it
-                var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
                     return View("Error");
@@ -237,7 +237,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return View(null);
             }
@@ -248,9 +248,9 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> EnableTwoFactorAuthentication()
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
                     await _userManager.SetTwoFactorEnabledAsync(user, true);
@@ -261,7 +261,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return View(null);
             }
@@ -272,9 +272,9 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DisableTwoFactorAuthentication()
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
                     await _userManager.SetTwoFactorEnabledAsync(user, false);
@@ -285,7 +285,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return View(null);
             }
@@ -295,9 +295,9 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> VerifyPhoneNumber(string phoneNumber)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
                     return View("Error");
@@ -308,7 +308,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return View(null);
             }
@@ -319,11 +319,11 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> VerifyPhoneNumber(VerifyPhoneNumberViewModel model)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 if (!ModelState.IsValid) { return View(model); }
 
-                var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
                     var result = await _userManager.ChangePhoneNumberAsync(user, model.PhoneNumber, model.Code);
@@ -336,7 +336,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
             }
 
@@ -350,9 +350,9 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> RemovePhoneNumber()
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
                     var result = await _userManager.SetPhoneNumberAsync(user, null);
@@ -365,7 +365,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
             }
 
@@ -384,11 +384,11 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 if (!ModelState.IsValid) { return View(model); }
 
-                var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
                     var result = await _userManager.ChangePasswordAsync(user, model.OldPassword, model.NewPassword);
@@ -404,7 +404,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -422,11 +422,11 @@ namespace RenewalWebsite.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SetPassword(SetPasswordViewModel model)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 if (!ModelState.IsValid) { return View(model); }
 
-                var user = await GetCurrentUserAsync();
                 if (user != null)
                 {
                     var result = await _userManager.AddPasswordAsync(user, model.NewPassword);
@@ -442,7 +442,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -453,6 +453,7 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 ViewData["StatusMessage"] =
@@ -460,7 +461,6 @@ namespace RenewalWebsite.Controllers
                     : message == ManageMessageId.AddLoginSuccess ? _localizer["The external login was added."]
                     : message == ManageMessageId.Error ? _localizer["An error has occurred."]
                     : "";
-                var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
                     return View("Error");
@@ -476,7 +476,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -510,9 +510,9 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<ActionResult> LinkLoginCallback()
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
                     return View("Error");
@@ -534,7 +534,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -549,9 +549,9 @@ namespace RenewalWebsite.Controllers
         [HttpGet]
         public async Task<ActionResult> PaymentHistory()
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 CultureInfo us = new CultureInfo("en-US");
                 SearchViewModel model = new SearchViewModel();
                 model.FromDate = new DateTime((DateTime.Now.Year - 1), 1, 1).ToString("yyyy-MM-dd", us);
@@ -587,7 +587,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -596,9 +596,9 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<ActionResult> GetPaymentHistory(SearchViewModel model)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
@@ -638,7 +638,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -647,9 +647,9 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<ActionResult> DisplayUsdOption(SearchViewModel model)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
                 DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
                 DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
 
@@ -679,7 +679,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -688,10 +688,10 @@ namespace RenewalWebsite.Controllers
         [HttpPost]
         public async Task<ActionResult> GetInvoicePdf(SearchViewModel model)
         {
+            var user = await GetCurrentUserAsync();
             try
             {
                 string language = _currencyService.GetCurrentLanguage().Name;
-                var user = await GetCurrentUserAsync();
                 DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
                 DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
 
@@ -769,7 +769,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
             }
@@ -1083,10 +1083,9 @@ namespace RenewalWebsite.Controllers
         public async Task<JsonResult> SaveProfile(IndexViewModel profile)
         {
             ResultModel result = new ResultModel();
+            var user = await GetCurrentUserAsync();
             try
             {
-                var user = await GetCurrentUserAsync();
-
                 if (user != null)
                 {
                     if (user.FullName != profile.FullName ||
@@ -1133,7 +1132,7 @@ namespace RenewalWebsite.Controllers
             }
             catch (Exception ex)
             {
-                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
                 result.data = _localizer["Something went wrong, please try again"];
                 result.status = "0";
@@ -1167,14 +1166,14 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     result.data = ex.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     result.data = _localizer["Something went wrong, please try again"];
                     result.status = "0";
@@ -1233,14 +1232,14 @@ namespace RenewalWebsite.Controllers
                 }
                 catch (StripeException ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     result.data = ex.Message;
                     result.status = "0";
                 }
                 catch (Exception ex)
                 {
-                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                    log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     result.data = _localizer["Something went wrong, please try again"];
                     result.status = "0";

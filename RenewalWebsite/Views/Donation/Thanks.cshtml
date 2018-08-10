@@ -31,7 +31,7 @@
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
             {
-                <p>Your card was charged successfully. Your gift of $@(Model.Message) will repeat @(Model.Message1). To manage or cancel your subscription anytime, follow the link below.</p>
+                <p>Your card was charged successfully. Your gift of $@(Model.Message) will repeat@(string.IsNullOrEmpty(Model.Message1) ? string.Empty : " " + Model.Message1). To manage or cancel your subscription anytime, follow the link below.</p>
             }
             @*<p>@Model.Message</p>*@
             @*<p>[For subscriptions only:]</p>
