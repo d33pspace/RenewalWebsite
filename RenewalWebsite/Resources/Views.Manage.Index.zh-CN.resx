@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="(Please select a country)" xml:space="preserve">
+    <value> 请选择一个国家</value>
+  </data>
   <data name="Add New Subscription" xml:space="preserve">
     <value>新增一项定期捐赠</value>
   </data>

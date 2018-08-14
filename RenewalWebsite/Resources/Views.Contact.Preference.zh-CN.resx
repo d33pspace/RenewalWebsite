@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="English 英文" xml:space="preserve">
-    <value>英文 English</value>
+  <data name="English" xml:space="preserve">
+    <value>English （英文）</value>
   </data>
   <data name="Preferences" xml:space="preserve">
     <value>设置</value>
@@ -126,8 +126,8 @@
   <data name="Select your language preference and use the button below to confirm." xml:space="preserve">
     <value>选择语言：</value>
   </data>
-  <data name="Simplified Chinese 简体中文" xml:space="preserve">
-    <value>简体中文 Simplified Chinese</value>
+  <data name="Simplified Chinese （简体中文）" xml:space="preserve">
+    <value>Simplified Chinese</value>
   </data>
   <data name="Submit" xml:space="preserve">
     <value>提交</value>
