@@ -123,10 +123,13 @@
   <data name="Delete &amp; Add New Card" xml:space="preserve">
     <value>删除 / 加新的</value>
   </data>
+  <data name="Delete Card" xml:space="preserve">
+    <value>删除卡</value>
+  </data>
+  <data name="Edit Card" xml:space="preserve">
+    <value>编辑卡片</value>
+  </data>
   <data name="Expiration Date" xml:space="preserve">
     <value>期限</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>保存</value>
   </data>
 </root>

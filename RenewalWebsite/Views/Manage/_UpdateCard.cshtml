@@ -17,42 +17,43 @@
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
             </div>*@
-        <div class="row">
-            <div class="col-md-12">
-                <div class="form-group col-md-6 col-sm-6">
-                    <label class="control-label" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
-                    <div>
-                        <div class="row">
-                            <div class="col-3" style="padding-right:0px;">
-                                <select class="form-control" asp-for="ExpiryMonth">
-                                    <option value="01">Jan (01)</option>
-                                    <option value="02">Feb (02)</option>
-                                    <option value="03">Mar (03)</option>
-                                    <option value="04">Apr (04)</option>
-                                    <option value="05">May (05)</option>
-                                    <option value="06">June (06)</option>
-                                    <option value="07">July (07)</option>
-                                    <option value="08">Aug (08)</option>
-                                    <option value="09">Sep (09)</option>
-                                    <option value="10">Oct (10)</option>
-                                    <option value="11">Nov (11)</option>
-                                    <option value="12">Dec (12)</option>
-                                </select>
+        @*<div class="row">
+                <div class="col-md-12">
+                    <div class="form-group col-md-6 col-sm-6">
+                        <label class="control-label" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
+                        <div>
+                            <div class="row">
+                                <div class="col-3" style="padding-right:0px;">
+                                    <select class="form-control" asp-for="ExpiryMonth">
+                                        <option value="01">Jan (01)</option>
+                                        <option value="02">Feb (02)</option>
+                                        <option value="03">Mar (03)</option>
+                                        <option value="04">Apr (04)</option>
+                                        <option value="05">May (05)</option>
+                                        <option value="06">June (06)</option>
+                                        <option value="07">July (07)</option>
+                                        <option value="08">Aug (08)</option>
+                                        <option value="09">Sep (09)</option>
+                                        <option value="10">Oct (10)</option>
+                                        <option value="11">Nov (11)</option>
+                                        <option value="12">Dec (12)</option>
+                                    </select>
+                                </div>
+                                <div class="col-3" style="padding-left:5px;">
+                                    <select class="form-control" id="UpdateExpiryYear" name="UpdateExpiryYear" onchange="setExpiryYear(this)"></select>
+                                </div>
+
                             </div>
-                            <div class="col-3" style="padding-left:5px;">
-                                <select class="form-control" id="UpdateExpiryYear" name="UpdateExpiryYear" onchange="setExpiryYear(this)"></select>
-                            </div>
-                            @*<span asp-validation-for="ExpiryMonth" class="text-danger"></span>
-                                <span asp-validation-for="ExpiryYear" class="text-danger"></span>*@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div>*@
+        @*<span asp-validation-for="ExpiryMonth" class="text-danger"></span>
+            <span asp-validation-for="ExpiryYear" class="text-danger"></span>*@
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="submit" value="@Localizer["Save"]" class="btn btn-secondary" />
-                <input type="button" value="@Localizer["Delete & Add New Card"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
+                <input type="submit" value="@Localizer["Edit Card"]" class="btn btn-secondary" />
+                <input type="button" value="@Localizer["Delete Card"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
             </div>
         </div>
     </fieldset>
@@ -96,6 +97,8 @@
         }
     }
 
+
+
     function fun_fail(data) {
         $('#textMainMessage').show();
         $('#textMainMessage').removeClass('alert alert-success');
@@ -105,6 +108,27 @@
     }
 
     function deleteAddNewCard() {
+        $.confirm({
+            title: "warning",
+            content: "Are you sure you want to remove this card?",
+            theme: 'modern',
+            type: 'orange',
+            typeAnimated: true,
+            closeIcon: true,
+            columnClass: 'jconfirm-small',
+            buttons: {
+                tryAgain: {
+                    text: 'Confirm',
+                    btnClass: 'btn-red',
+                    action: function () {
+                        document.getElementById(triggerClick).click();
+                    }
+                },
+                cancel: function () {
+                }
+            }
+        });
+
         $('#divUpdate').hide();
         $.ajax({
             url: "/Manage/AddNewCard",

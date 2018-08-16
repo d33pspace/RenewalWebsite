@@ -1573,3 +1573,19 @@ input#CustomAmount {
 .CellWithComment:hover span.CellComment {
     display: block;
 }
+
+.Subtitle {
+    font-size: 13px;
+}
+
+.Index-p-l {
+    padding-left: 28px;
+}
+
+.Index-p-r {
+    padding-right: 23px;
+}
+
+.Loginpar-p-r {
+    padding-right: 10px;
+}

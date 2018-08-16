@@ -1156,8 +1156,8 @@ namespace RenewalWebsite.Controllers
 
                     StripeCardUpdateOptions updateCardOptions = new StripeCardUpdateOptions();
                     //updateCardOptions.Name = card.Name;
-                    updateCardOptions.ExpirationMonth = card.ExpiryMonth;
-                    updateCardOptions.ExpirationYear = card.ExpiryYear;
+                    //updateCardOptions.ExpirationMonth = card.ExpiryMonth;
+                    //updateCardOptions.ExpirationYear = card.ExpiryYear;
 
                     await CardService.UpdateAsync(user.StripeCustomerId, card.cardId, updateCardOptions);
                     result.data = _localizer["Card updated successfully"];

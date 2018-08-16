@@ -60,7 +60,7 @@
     <h2 class="red-border">
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
         {
-        <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount)......</label>
+            <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount)......</label>
         }
 
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
@@ -78,6 +78,8 @@
             <form action="/donation/payment" method="POST" role="form">
                 <fieldset>
                     <legend>@Localizer["Please enter your details below:"]</legend>
+                    <legend class="Subtitle">@Localizer["Your name as you'd it to appear in our record (required)"]</legend>
+                    <legend class="Subtitle">@Localizer["The address at which you'd like to receive Renewal communications(optional,not related with card verification)"]</legend>
                     <div asp-validation-summary="All" class="text-danger"></div>
                     <input hidden asp-for="Frequency" />
                     <input hidden asp-for="Amount" />
@@ -145,6 +147,7 @@
                             </select>
                         </div>
                     </div>
+                    <legend class="Subtitle">@Localizer["Your card information"]</legend>
                     <div class="form-group row">
                         <div class="col-lg-12">
                             <label asp-for="CardNumber" class="col-form-label sr-only">@Localizer["Card Number"]</label>

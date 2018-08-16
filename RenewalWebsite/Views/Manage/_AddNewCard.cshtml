@@ -149,26 +149,26 @@
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
 
-        $.confirm({
-            title: "warning",
-            content: "test",
-            theme: 'modern',
-            type: 'orange',
-            typeAnimated: true,
-            closeIcon: true,
-            columnClass: 'jconfirm-small',
-            buttons: {
-                tryAgain: {
-                    text: 'Confirm',
-                    btnClass: 'btn-red',
-                    action: function () {
-                        document.getElementById(triggerClick).click();
-                    }
-                },
-                cancel: function () {
-                }
-            }
-        });
+        //$.confirm({
+        //    title: "warning",
+        //    content: "test",
+        //    theme: 'modern',
+        //    type: 'orange',
+        //    typeAnimated: true,
+        //    closeIcon: true,
+        //    columnClass: 'jconfirm-small',
+        //    buttons: {
+        //        tryAgain: {
+        //            text: 'Confirm',
+        //            btnClass: 'btn-red',
+        //            action: function () {
+        //                document.getElementById(triggerClick).click();
+        //            }
+        //        },
+        //        cancel: function () {
+        //        }
+        //    }
+        //});
     }
 
     function fun_add_fail(data) {

@@ -26,6 +26,16 @@
                 </div>
             </div>
             <div class="form-group row">
+                <div class="col-md-4">
+                    <input type="text" id="EmailId" class="form-control" placeholder="Email Id" value="@email" />
+                </div>
+                @*</div>
+                    <div class="form-group row">*@
+                <div class="col-md-4">
+                    <input type="text" id="Salutation" class="form-control" placeholder="Salutation(First Name)" />
+                </div>
+            </div>
+            <div class="form-group row">
                 <div class="col-md-12">
                     <button type="button" id="btnChangeCommunication" class="btn btn-secondary has-spinner">@Localizer["Submit"]</button>
                 </div>
@@ -39,6 +49,8 @@
         var lang = "@lang";
         $("input[name=language][value=" + lang + "]").attr('checked', 'checked');
 
+        var email = $("#EmailId").val();
+        var Salutation =  $("#Salutation").val();
         $('.has-spinner').click(function () {
             var btn = $(this);
             $(btn).buttonLoader('start');
@@ -47,7 +59,8 @@
                 url: "/Contact/ChangePreference",
                 data: {
                     "email": "@email",
-                    "language" :selValue
+                    "language": selValue,
+                    "Salutation": Salutation
                 },
                 type: "post",
                 datatype: "application/json",
