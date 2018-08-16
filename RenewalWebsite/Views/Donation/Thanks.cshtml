@@ -26,7 +26,7 @@
         {
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
             {
-                <p>交易成功！你的$@(Model.Message)捐赠会自动的重复@(Model.Message1)。要随时管理或取消订阅，请点击以下链接。</p>
+                <p>扣款成功！你将会@(Model.Message1)捐赠$@(Model.Message)。要管理或随时取消定期捐赠，请点击以下链接。</p>
             }
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
