@@ -243,6 +243,13 @@
             ($elem).attr('maxlength', (card_length + space_length));
         }
         $elem.val(_self.formatCardNumber(cc_num, card_type));
+        var Id = $elem.attr('id');
+        if ($elem.val() != null && $elem.val() != undefined && $elem.val() != "" && Id == "Last4Digit") {
+            $elem.val('****' + $elem.val());
+        }
+        else {
+            $elem.val($elem.val());
+        }
         _self.addCardClassIdentifier($elem, card_type);
     };
 

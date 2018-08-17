@@ -49,16 +49,16 @@
         var lang = "@lang";
         $("input[name=language][value=" + lang + "]").attr('checked', 'checked');
 
-        var email = $("#EmailId").val();
-        var Salutation =  $("#Salutation").val();
         $('.has-spinner').click(function () {
             var btn = $(this);
             $(btn).buttonLoader('start');
             var selValue = $('input[name=language]:checked').val();
+            var email = $("#EmailId").val();
+            var Salutation = $("#Salutation").val();
             $.ajax({
                 url: "/Contact/ChangePreference",
                 data: {
-                    "email": "@email",
+                    "email": email,
                     "language": selValue,
                     "Salutation": Salutation
                 },

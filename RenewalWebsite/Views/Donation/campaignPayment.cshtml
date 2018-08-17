@@ -6,55 +6,7 @@
     ViewBag.Title = "Credit Card";
     var currency = CurrencyService.GetCurrent();
 }
-<style>
-    .ccFormatMonitor p::after {
-        content: url('/images/cards/Default.png');
-    }
 
-    .ccFormatMonitor.cc_type_vs + p::after {
-        content: url('/images/cards/Visa.png');
-    }
-
-    .ccFormatMonitor.cc_type_jc + p::after {
-        content: url('/images/cards/JCB.png');
-    }
-
-    .ccFormatMonitor.cc_type_dci + p::after {
-        content: url('/images/cards/DinersClub.png');
-    }
-
-    .ccFormatMonitor.cc_type_dccb + p::after {
-        content: url('/images/cards/DinersClub.png');
-    }
-
-    .ccFormatMonitor.cc_type_mc + p::after {
-        content: url('/images/cards/MasterCard.png');
-    }
-
-    .ccFormatMonitor.cc_type_mcs + p::after {
-        content: url('/images/cards/MasterCard.png');
-    }
-
-    .ccFormatMonitor.cc_type_mas + p::after {
-        content: url('/images/cards/Mastro.png');
-    }
-
-    .ccFormatMonitor.cc_type_dis + p::after {
-        content: url('/images/cards/Discover.png');
-    }
-
-    .ccFormatMonitor.cc_type_union + p::after {
-        content: url('/images/cards/UnionPay.png');
-    }
-
-    .ccFormatMonitor.cc_type_ax + p::after {
-        content: url('/images/cards/AmericanExpress.png');
-    }
-
-    .ccFormatMonitor.cc_type_unknown + p::after {
-        content: url('/images/cards/Default.png');
-    }
-</style>
 <div class="container">
     <h2 class="red-border">
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))

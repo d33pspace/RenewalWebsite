@@ -201,4 +201,10 @@
   <data name="Please complete your full name on the details tab." xml:space="preserve">
     <value>请在详细信息选项卡上填写您的全名。</value>
   </data>
+  <data name="Card details updated successfully." xml:space="preserve">
+    <value>卡详细信息已成功更新</value>
+  </data>
+  <data name="Something went wrong, please try again." xml:space="preserve">
+    <value>出了点问题，请再试一次。</value>
+  </data>
 </root>

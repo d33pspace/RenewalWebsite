@@ -144,7 +144,7 @@ namespace RenewalWebsite.Controllers
                         unsubscribeUser = new UnsubscribeUsers();
                         unsubscribeUser.email = model.email;
                         unsubscribeUser.language = model.language;
-                        unsubscribeUser.language = model.salutation;
+                        //unsubscribeUser.language = model.salutation;
                         unsubscribeUser.isUnsubscribe = false;
                         _unsubscribeUserService.Insert(unsubscribeUser);
                     }

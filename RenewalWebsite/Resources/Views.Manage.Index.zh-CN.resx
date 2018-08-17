@@ -132,6 +132,9 @@
   <data name="Card" xml:space="preserve">
     <value>信用卡</value>
   </data>
+  <data name="Card details updated successfully." xml:space="preserve">
+    <value>卡详细信息已成功更新</value>
+  </data>
   <data name="Change" xml:space="preserve">
     <value>更换</value>
   </data>
@@ -182,6 +185,9 @@
   </data>
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
+  </data>
+  <data name="Something went wrong, please try again." xml:space="preserve">
+    <value>出了点问题，请再试一次。</value>
   </data>
   <data name="State/Province" xml:space="preserve">
     <value>省份</value>

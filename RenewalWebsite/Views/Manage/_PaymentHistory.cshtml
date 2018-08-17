@@ -146,8 +146,12 @@
             },
             type: 'POST',
             success: function (data) {
+
                 $('#divInvoiceHistory').append(data);
                 $('#btnSave').removeAttr("disabled");
+                var HiddenfildTypeIsNull = $("#hdmIsInvoiseHistoryExists").val();
+                if (HiddenfildTypeIsNull == 0) { $("#btnSubmitPDF").hide(); }
+                else { $("#btnSubmitPDF").show(); }
                 displayUSDOption();
             }
         });

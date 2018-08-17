@@ -204,12 +204,9 @@ namespace RenewalWebsite.Controllers
                 var subscriptionService = new StripeSubscriptionService(_stripeSettings.Value.SecretKey);
                 var result = subscriptionService.Create(user.StripeCustomerId, plan.Id);
                 if (result != null)
-                {
-                    var completedMessage = new CompletedViewModel
-                    {
-                        Message = result.StripePlan.Nickname.Split("_")[1] + " " + result.StripePlan.Nickname.Split("_")[0],
-                        HasSubscriptions = true
-                    };
+                {                    
+                    CompletedViewModel completedMessage = new CompletedViewModel();
+                    completedMessage = GetSubscriptionMessage(result, true);
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
@@ -325,13 +322,9 @@ namespace RenewalWebsite.Controllers
                 var subscriptionService = new StripeSubscriptionService(_stripeSettings.Value.SecretKey);
                 var result = subscriptionService.Create(user.StripeCustomerId, plan.Id);
                 if (result != null)
-                {
-                    var completedMessage = new CompletedViewModel
-                    {
-                        Message = result.StripePlan.Nickname.Split("_")[1],
-                        Message1 = _localizer[result.StripePlan.Nickname.Split("_")[0]],
-                        HasSubscriptions = true
-                    };
+                {                    
+                    CompletedViewModel completedMessage = new CompletedViewModel();
+                    completedMessage = GetSubscriptionMessage(result, true);
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
@@ -507,11 +500,8 @@ namespace RenewalWebsite.Controllers
                 var result = subscriptionService.Create(user.StripeCustomerId, plan.Id);
                 if (result != null)
                 {
-                    var completedMessage = new CompletedViewModel
-                    {
-                        Message = result.StripePlan.Nickname.Split("_")[1] + " " + result.StripePlan.Nickname.Split("_")[0],
-                        HasSubscriptions = true
-                    };
+                    CompletedViewModel completedMessage = new CompletedViewModel();
+                    completedMessage = GetSubscriptionMessage(result, true);
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
@@ -623,11 +613,8 @@ namespace RenewalWebsite.Controllers
                 var result = subscriptionService.Create(user.StripeCustomerId, plan.Id);
                 if (result != null)
                 {
-                    var completedMessage = new CompletedViewModel
-                    {
-                        Message = result.StripePlan.Nickname.Split("_")[1] + " " + result.StripePlan.Nickname.Split("_")[0],
-                        HasSubscriptions = true
-                    };
+                    CompletedViewModel completedMessage = new CompletedViewModel();              
+                    completedMessage = GetSubscriptionMessage(result, true);
                     return RedirectToAction("Thanks", completedMessage);
                 }
             }
@@ -855,6 +842,20 @@ namespace RenewalWebsite.Controllers
             user.Country = payment.Country;
             user.Zip = payment.Zip;
             await _userManager.UpdateAsync(user);
+
+        }
+
+        private CompletedViewModel GetSubscriptionMessage(StripeSubscription result, bool HasSubscriptions)
+        {
+            var completedMessage = new CompletedViewModel
+            {
+                Message = result.StripePlan.Nickname.Split("_")[1],
+                Message1 = _localizer[result.StripePlan.Nickname.Split("_")[0]],
+                HasSubscriptions = HasSubscriptions
+            };
+            return completedMessage;
         }
     }
+
+
 }

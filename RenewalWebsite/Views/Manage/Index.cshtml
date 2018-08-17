@@ -1,6 +1,9 @@
-﻿@model IndexViewModel
+﻿@using RenewalWebsite.Services
+@inject ICurrencyService CurrencyService
+@model IndexViewModel
 @{
     ViewData["Title"] = Localizer["Your account"];
+    var currency = CurrencyService.GetCurrent();
 }
 
 <link href="~/css/jquery.scrolling-tabs.css" rel="stylesheet" />
@@ -88,6 +91,21 @@
                                     <span asp-validation-for="FullName" class="text-danger"></span>
                                 </div>
                             </div>
+                            @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
+                            {
+                                <div class="form-group row">
+                                    <div class="col-sm-4 Index-p-l">
+                                        <label class="col-sm-3 control-label" asp-for="State">@Localizer["State/Province"]</label>
+                                        <input asp-for="State" class="form-control" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-sm-4 Index-p-r">
+                                        <label class="col-sm-3 control-label" asp-for="City">@Localizer["City"]</label>
+                                        <input asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                </div>
+                            }
                             <div class="form-group">
                                 <label class="col-sm-3 control-label" asp-for="AddressLine1">@Localizer["Address Line 1"]</label>
                                 <div class="col-sm-8">
@@ -102,18 +120,22 @@
                                     <span asp-validation-for="AddressLine2" class="text-danger"></span>
                                 </div>
                             </div>
-                            <div class="form-group row">
-                                <div class="col-sm-4 Index-p-l">
-                                    <label class="col-sm-3 control-label" asp-for="City">@Localizer["City"]</label>
-                                    <input asp-for="City" class="form-control" />
-                                    <span asp-validation-for="City" class="text-danger"></span>
+
+                            @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                            {
+                                <div class="form-group row">
+                                    <div class="col-sm-4 Index-p-l">
+                                        <label class="col-sm-3 control-label" asp-for="City">@Localizer["City"]</label>
+                                        <input asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-sm-4 Index-p-r">
+                                        <label class="col-sm-3 control-label" asp-for="State">@Localizer["State/Province"]</label>
+                                        <input asp-for="State" class="form-control" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </div>
                                 </div>
-                                <div class="col-sm-4 Index-p-r">
-                                    <label class="col-sm-3 control-label" asp-for="State">@Localizer["State/Province"]</label>
-                                    <input asp-for="State" class="form-control" />
-                                    <span asp-validation-for="State" class="text-danger"></span>
-                                </div>
-                            </div>
+                            }
                             <div class="form-group row">
                                 <div class="col-sm-4 Index-p-l">
                                     <label class="col-sm-3 control-label" asp-for="Zip">@Localizer["Zip"]</label>
@@ -277,7 +299,8 @@
         $('#textMainMessage').show();
         $('#textMainMessage').removeClass('alert alert-success');
         $('#textMainMessage').addClass('alert alert-danger');
-        $('#textMainMessage').text('Something went wrong, please try again.');
+        var massage = "@Localizer["Something went wrong, please try again."]";
+        $('#textMainMessage').text(massage);
         $("html, body").animate({ scrollTop: 0 }, "slow");
     }
 
@@ -286,7 +309,8 @@
             $('#textMainMessage').show();
             $('#textMainMessage').removeClass('alert alert-danger');
             $('#textMainMessage').addClass('alert alert-success');
-            $('#textMainMessage').text("Card details updated successfully.");
+             var massage = "@Localizer["Card details updated successfully."]";
+            $('#textMainMessage').text(massage);
             //$(".tab-current").next().find("a").click();
             //$(".tab-current").next().trigger("click");
         }

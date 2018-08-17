@@ -138,4 +138,7 @@
   <data name="Security Code" xml:space="preserve">
     <value>卡确认的价值</value>
   </data>
+  <data name="Something went wrong, please try again." xml:space="preserve">
+    <value>出了点问题，请再试一次。</value>
+  </data>
 </root>
