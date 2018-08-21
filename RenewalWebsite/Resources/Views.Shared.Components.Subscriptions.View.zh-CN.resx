@@ -144,6 +144,9 @@
   <data name="Status" xml:space="preserve">
     <value>状态</value>
   </data>
+  <data name="warning" xml:space="preserve">
+    <value>警告</value>
+  </data>
   <data name="You have no subscriptions." xml:space="preserve">
     <value>你没有定期捐赠。</value>
   </data>

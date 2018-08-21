@@ -175,4 +175,22 @@
   <data name="Amount is required." xml:space="preserve">
     <value>金额是必需的。</value>
   </data>
+  <data name="(Please select a country)" xml:space="preserve">
+    <value>（请选择一个国家）</value>
+  </data>
+  <data name="Please enter your details below:" xml:space="preserve">
+    <value>请在下面输入您的详细信息</value>
+  </data>
+  <data name="Submit Payment" xml:space="preserve">
+    <value>提交付款</value>
+  </data>
+  <data name="The address at which you'd like to receive Renewal communications(optional,not related with card verification)" xml:space="preserve">
+    <value>您希望接收续订通讯的地址（可选，与卡验证无关）</value>
+  </data>
+  <data name="Your card information" xml:space="preserve">
+    <value>您的卡信息</value>
+  </data>
+  <data name="Your name as you'd it to appear in our record (required)" xml:space="preserve">
+    <value>您的姓名，因为它出现在我们的记录中（必填）</value>
+  </data>
 </root>

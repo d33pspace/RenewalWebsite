@@ -5,7 +5,6 @@
     ViewData["Title"] = Localizer["Your account"];
     var currency = CurrencyService.GetCurrent();
 }
-
 <link href="~/css/jquery.scrolling-tabs.css" rel="stylesheet" />
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -95,12 +94,12 @@
                             {
                                 <div class="form-group row">
                                     <div class="col-sm-4 Index-p-l">
-                                        <label class="col-sm-3 control-label" asp-for="State">@Localizer["State/Province"]</label>
+                                        <label class="col-sm-3 control-label Index-text-P-l " asp-for="State">@Localizer["State/Province"]</label>
                                         <input asp-for="State" class="form-control" />
                                         <span asp-validation-for="State" class="text-danger"></span>
                                     </div>
                                     <div class="col-sm-4 Index-p-r">
-                                        <label class="col-sm-3 control-label" asp-for="City">@Localizer["City"]</label>
+                                        <label class="col-sm-3 control-label Index-text-P-l " asp-for="City">@Localizer["City"]</label>
                                         <input asp-for="City" class="form-control" />
                                         <span asp-validation-for="City" class="text-danger"></span>
                                     </div>
@@ -125,12 +124,12 @@
                             {
                                 <div class="form-group row">
                                     <div class="col-sm-4 Index-p-l">
-                                        <label class="col-sm-3 control-label" asp-for="City">@Localizer["City"]</label>
+                                        <label class="col-sm-3 control-label Index-text-P-l " asp-for="City">@Localizer["City"]</label>
                                         <input asp-for="City" class="form-control" />
                                         <span asp-validation-for="City" class="text-danger"></span>
                                     </div>
                                     <div class="col-sm-4 Index-p-r">
-                                        <label class="col-sm-3 control-label" asp-for="State">@Localizer["State/Province"]</label>
+                                        <label class="col-sm-3 control-label Index-text-P-l " asp-for="State">@Localizer["State/Province"]</label>
                                         <input asp-for="State" class="form-control" />
                                         <span asp-validation-for="State" class="text-danger"></span>
                                     </div>
@@ -138,13 +137,13 @@
                             }
                             <div class="form-group row">
                                 <div class="col-sm-4 Index-p-l">
-                                    <label class="col-sm-3 control-label" asp-for="Zip">@Localizer["Zip"]</label>
+                                    <label class="col-sm-3 control-label Index-text-P-l " asp-for="Zip">@Localizer["Zip"]</label>
                                     <input asp-for="Zip" class="form-control" />
                                     <span asp-validation-for="Zip" class="text-danger"></span>
                                 </div>
 
                                 <div class="col-sm-4  Index-p-r">
-                                    <label class="col-sm-3 control-label" asp-for="Country">@Localizer["Country"]</label>
+                                    <label class="col-sm-3 control-label Index-text-P-l " asp-for="Country">@Localizer["Country"]</label>
                                     <select asp-for="Country" class="form-control">
                                         <option value="">@Localizer["(Please select a country)"]</option>
                                         @foreach (var item in Model.countries)

@@ -133,7 +133,7 @@
     <value>卡号</value>
   </data>
   <data name="Expiration Date" xml:space="preserve">
-    <value>期限</value>
+    <value>截止日期</value>
   </data>
   <data name="For your security, Renewal does not store credit card details. Stripe is our secure payment provider." xml:space="preserve">
     <value>为了您的安全, 日新中心不会存储信用卡详细信息。Stripe是我们的安全支付提供商。</value>
@@ -148,7 +148,7 @@
     <value>请输入你的信息：</value>
   </data>
   <data name="Security Code" xml:space="preserve">
-    <value>卡确认的价值</value>
+    <value>安全码</value>
   </data>
   <data name="State/Province" xml:space="preserve">
     <value>省份</value>

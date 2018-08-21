@@ -1143,7 +1143,7 @@ namespace RenewalWebsite.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<JsonResult> UpdateCard(CardViewModel card)
+        public async Task<JsonResult> DeleteCard(CardViewModel card)
         {
             ResultModel result = new ResultModel();
             var user = await GetCurrentUserAsync();
@@ -1152,15 +1152,17 @@ namespace RenewalWebsite.Controllers
                 try
                 {
                     var CardService = new StripeCardService(_stripeSettings.Value.SecretKey);
-                    StripeCard objStripeCard = await CardService.GetAsync(user.StripeCustomerId, card.cardId);
+                   // StripeCard objStripeCard = await CardService.GetAsync(user.StripeCustomerId, card.cardId);
 
-                    StripeCardUpdateOptions updateCardOptions = new StripeCardUpdateOptions();
+                    //StripeCardUpdateOptions updateCardOptions = new StripeCardUpdateOptions();
                     //updateCardOptions.Name = card.Name;
                     //updateCardOptions.ExpirationMonth = card.ExpiryMonth;
                     //updateCardOptions.ExpirationYear = card.ExpiryYear;
 
-                    await CardService.UpdateAsync(user.StripeCustomerId, card.cardId, updateCardOptions);
-                    result.data = _localizer["Card updated successfully"];
+                   // await CardService.UpdateAsync(user.StripeCustomerId, card.cardId, updateCardOptions);
+
+                    CardService.Delete(user.StripeCustomerId, card.cardId);
+                    result.data = _localizer["Card deleted successfully"];
                     result.status = "1";
                     return Json(result);
                 }
@@ -1200,7 +1202,7 @@ namespace RenewalWebsite.Controllers
                         var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
                         foreach (var cardSource in ExistingCustomer.Sources.Data)
                         {
-                            cardService.Delete(user.StripeCustomerId, cardSource.Card.Id);
+                            //  cardService.Delete(user.StripeCustomerId, cardSource.Card.Id);
                         }
                     }
 

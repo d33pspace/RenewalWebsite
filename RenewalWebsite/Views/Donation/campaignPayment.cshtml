@@ -11,7 +11,7 @@
     <h2 class="red-border">
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
         {
-        <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount)......</label>
+            <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount)......</label>
         }
 
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
@@ -25,7 +25,9 @@
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <form action="/donation/CampaignPayment" method="POST" role="form">
             <fieldset>
-                <legend>Please enter your details below:</legend>
+                <legend>@Localizer["Please enter your details below:"]</legend>
+                <legend class="Subtitle">@Localizer["Your name as you'd it to appear in our record (required)"]</legend>
+                <legend class="Subtitle">@Localizer["The address at which you'd like to receive Renewal communications(optional,not related with card verification)"]</legend>
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <input hidden asp-for="Frequency" />
                 <input hidden asp-for="Amount" />
@@ -328,6 +330,7 @@
                         </select>
                     </div>
                 </div>
+                <legend class="Subtitle">@Localizer["Your card information"]</legend>
                 <div class="form-group row">
                     <div class="col-lg-12">
                         <label asp-for="CardNumber" class="col-form-label sr-only">Card Numbers</label>
@@ -339,7 +342,7 @@
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-6 col-sm-12">
-                        <label class="control-label" asp-for="ExpiryMonth"></label>
+                        <label class="control-label Subtitle" asp-for="ExpiryMonth"></label>
                         <div>
                             <div class="row">
                                 <div class="col-6 pr5">
@@ -365,7 +368,7 @@
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12 form-group">
-                        <label class="control-label" asp-for="Cvc"></label>
+                        <label class="control-label Subtitle" asp-for="Cvc"></label>
                         <div class="row">
                             <div class="col-8">
                                 <input type="text" class="form-control" asp-for="Cvc" placeholder="Security Code" maxlength="3" autocomplete="off">
@@ -375,7 +378,7 @@
                 </div>
                 <div class="form-group row">
                     <div class="col-sm-offset-3 col-sm-9">
-                        <button class="btn btn-secondary" type="submit">Submit Payment</button>
+                        <button class="btn btn-secondary" type="submit">@Localizer["Submit Payment"]</button>
                     </div>
                 </div>
             </fieldset>

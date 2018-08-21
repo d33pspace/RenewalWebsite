@@ -1,5 +1,5 @@
 ﻿@model RenewalWebsite.Models.ManageViewModels.CardViewModel
-<form asp-controller="Manage" asp-action="UpdateCard" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_success(this,data,xhr);" data-ajax-failure="fun_fail(this,data,xhr);">
+<form id="update" asp-controller="Manage" asp-action="DeleteCard" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_success" data-ajax-failure="fun_fail">
     <fieldset>
         <div asp-validation-summary="All" class="text-danger"></div>
         <input type="hidden" asp-for="ExpiryYear">
@@ -55,8 +55,8 @@
             <span asp-validation-for="ExpiryYear" class="text-danger"></span>*@
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="submit" value="@Localizer["Edit Card"]" class="btn btn-secondary" />
-                <input type="button" value="@Localizer["Delete Card"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
+                <input type="button" value="@Localizer["Edit Card"]" class="btn btn-secondary" onclick="OpenAddNewCard()" />
+                <input type="button" id="delete" value="@Localizer["Delete Card"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
             </div>
         </div>
     </fieldset>
@@ -86,9 +86,9 @@
         $('#ExpiryYear').val(selectedVal);
     }
 
-    function fun_success(ele, data, xhr) {
+    function fun_success(data) {        
         if (data.status == "1") {
-            window.location = "/Manage/Index?message=&tabId=1";
+            window.location = "/Manage?tabId=1";
         }
         else {
             $('#textMainMessage').show();
@@ -109,7 +109,21 @@
         $('#textMainMessage').text(massage);
         $("html, body").animate({ scrollTop: 0 }, "slow");
     }
+
+    function OpenAddNewCard() {
+        $('#divUpdate').hide();
+        $.ajax({
+            url: "/Manage/AddNewCard",
+            data: {},
+            success: function (result) {
+                $('#divAdd').show();
+                $('#divAdd').html(result);
+            }
+        });
+    }
+
     function deleteAddNewCard() {
+
         var warning =  "@Localizer["warning"]";
         var content = "@Localizer["Are you sure you want to remove this card?"]";
         var Confirm = "@Localizer["Confirm"]";
@@ -127,13 +141,16 @@
                     text: Confirm,
                     btnClass: 'btn-red',
                     action: function () {
-                        $('#divUpdate').hide();
+                        
+                       // document.getElementById("delete").click();
+                        $("#update").trigger('submit');
                         $.ajax({
-                            url: "/Manage/AddNewCard",
+                          //  url: "/Manage/AddNewCard",
                             data: {},
                             success: function (result) {
-                                $('#divAdd').show();
-                                $('#divAdd').html(result);
+                                //$('#divAdd').show();
+                                //$('#divAdd').html(result);
+                                $('#divUpdate').hide();
                             }
                         });
                     }
@@ -144,5 +161,7 @@
                 }
             }
         });
-    };
+        };
+
+
 </script>
