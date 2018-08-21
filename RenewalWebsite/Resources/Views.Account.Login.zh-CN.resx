@@ -141,7 +141,7 @@
   <data name="Use another service to log in." xml:space="preserve">
     <value>用第三方账号登录</value>
   </data>
-  <data name="You've stumbled up on our testing server! Please click or tap here to proceed to our website:" xml:space="preserve">
+  <data name="You've stumbled upon our testing server! Please click or tap here to proceed to our website:" xml:space="preserve">
     <value>您误入了我们的测试页面！请点击这里回到我们的网站：</value>
   </data>
 </root>
