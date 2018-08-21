@@ -1,54 +1,5 @@
 ﻿@model RenewalWebsite.Models.ManageViewModels.NewCardViewModel
 
-<style>
-    .ccFormatMonitor p::after {
-        content: url('/images/cards/Default.png');
-    }
-
-    .ccFormatMonitor.cc_type_vs + p::after {
-        content: url('/images/cards/Visa.png');
-    }
-
-    .ccFormatMonitor.cc_type_jc + p::after {
-        content: url('/images/cards/JCB.png');
-    }
-
-    .ccFormatMonitor.cc_type_dci + p::after {
-        content: url('/images/cards/DinersClub.png');
-    }
-
-    .ccFormatMonitor.cc_type_dccb + p::after {
-        content: url('/images/cards/DinersClub.png');
-    }
-
-    .ccFormatMonitor.cc_type_mc + p::after {
-        content: url('/images/cards/MasterCard.png');
-    }
-
-    .ccFormatMonitor.cc_type_mcs + p::after {
-        content: url('/images/cards/MasterCard.png');
-    }
-
-    .ccFormatMonitor.cc_type_mas + p::after {
-        content: url('/images/cards/Mastro.png');
-    }
-
-    .ccFormatMonitor.cc_type_dis + p::after {
-        content: url('/images/cards/Discover.png');
-    }
-
-    .ccFormatMonitor.cc_type_union + p::after {
-        content: url('/images/cards/UnionPay.png');
-    }
-
-    .ccFormatMonitor.cc_type_ax + p::after {
-        content: url('/images/cards/AmericanExpress.png');
-    }
-
-    .ccFormatMonitor.cc_type_unknown + p::after {
-        content: url('/images/cards/Default.png');
-    }
-</style>
 <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
     <form asp-controller="Manage" asp-action="AddNewCard" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_add_success(this,data,xhr);" data-ajax-failure="fun_add_fail(this,data,xhr);">
         <fieldset>
@@ -149,33 +100,34 @@
             $("html, body").animate({ scrollTop: 0 }, "slow");
         }
 
-        $.confirm({
-            title: "warning",
-            content: "test",
-            theme: 'modern',
-            type: 'orange',
-            typeAnimated: true,
-            closeIcon: true,
-            columnClass: 'jconfirm-small',
-            buttons: {
-                tryAgain: {
-                    text: 'Confirm',
-                    btnClass: 'btn-red',
-                    action: function () {
-                        document.getElementById(triggerClick).click();
-                    }
-                },
-                cancel: function () {
-                }
-            }
-        });
+        //$.confirm({
+        //    title: "warning",
+        //    content: "test",
+        //    theme: 'modern',
+        //    type: 'orange',
+        //    typeAnimated: true,
+        //    closeIcon: true,
+        //    columnClass: 'jconfirm-small',
+        //    buttons: {
+        //        tryAgain: {
+        //            text: 'Confirm',
+        //            btnClass: 'btn-red',
+        //            action: function () {
+        //                document.getElementById(triggerClick).click();
+        //            }
+        //        },
+        //        cancel: function () {
+        //        }
+        //    }
+        //});
     }
 
     function fun_add_fail(data) {
         $('#textMainMessage').show();
         $('#textMainMessage').removeClass('alert alert-success');
         $('#textMainMessage').addClass('alert alert-danger');
-        $('#textMainMessage').text('Something went wrong, please try again.');
+         var massage = "@Localizer["Something went wrong, please try again."]";
+        $('#textMainMessage').text(massage);
         $("html, body").animate({ scrollTop: 0 }, "slow");
     };
 

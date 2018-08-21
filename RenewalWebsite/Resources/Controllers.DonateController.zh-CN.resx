@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Please enter a gift amount greater than zero." xml:space="preserve">
-    <value>请输入合理的捐款金额！</value>
+  <data name="Please enter a gift amount greater than 0.5" xml:space="preserve">
+    <value>请输入大于0.5的礼品金额</value>
   </data>
   <data name="monthly" xml:space="preserve">
     <value>每月一次</value>
@@ -135,7 +135,7 @@
   <data name="yearly" xml:space="preserve">
     <value>每年</value>
   </data>
-  <data name="Amount must be no more than $100000" xml:space="preserve">
-    <value>金额不得超过$ 100000</value>
+  <data name="Amount must be no more than $100000.00" xml:space="preserve">
+    <value>金额不得超过$ 100000.00</value>
   </data>
 </root>

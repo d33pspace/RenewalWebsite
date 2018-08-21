@@ -11,5 +11,6 @@ namespace RenewalWebsite.Models
         public bool isUnsubscribe { get; set; }
         public string language { get; set; }
         public string feedback { get; set; }
+        public string salutation { get; set; }
     }
 }

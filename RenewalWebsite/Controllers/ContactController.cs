@@ -144,6 +144,7 @@ namespace RenewalWebsite.Controllers
                         unsubscribeUser = new UnsubscribeUsers();
                         unsubscribeUser.email = model.email;
                         unsubscribeUser.language = model.language;
+                        //unsubscribeUser.language = model.salutation;
                         unsubscribeUser.isUnsubscribe = false;
                         _unsubscribeUserService.Insert(unsubscribeUser);
                     }
@@ -157,6 +158,7 @@ namespace RenewalWebsite.Controllers
                     var request = new RestRequest(Method.POST);
                     request.AddParameter("email", model.email);
                     request.AddParameter("language", model.language);
+                    request.AddParameter("Salutation", model.salutation);
                     // execute the request
                     IRestResponse response = client.Execute(request);
 
