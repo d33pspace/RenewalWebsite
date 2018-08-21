@@ -204,7 +204,7 @@ namespace RenewalWebsite.Controllers
                 var subscriptionService = new StripeSubscriptionService(_stripeSettings.Value.SecretKey);
                 var result = subscriptionService.Create(user.StripeCustomerId, plan.Id);
                 if (result != null)
-                {                    
+                {
                     CompletedViewModel completedMessage = new CompletedViewModel();
                     completedMessage = GetSubscriptionMessage(result, true);
                     return RedirectToAction("Thanks", completedMessage);
@@ -322,7 +322,7 @@ namespace RenewalWebsite.Controllers
                 var subscriptionService = new StripeSubscriptionService(_stripeSettings.Value.SecretKey);
                 var result = subscriptionService.Create(user.StripeCustomerId, plan.Id);
                 if (result != null)
-                {                    
+                {
                     CompletedViewModel completedMessage = new CompletedViewModel();
                     completedMessage = GetSubscriptionMessage(result, true);
                     return RedirectToAction("Thanks", completedMessage);
@@ -353,6 +353,10 @@ namespace RenewalWebsite.Controllers
 
         public ActionResult Thanks(CompletedViewModel model)
         {
+            if (model.Message1 != null)
+            {
+                model.Message1 = _localizer[model.Message1];
+            }
             return View(model);
         }
 
@@ -613,7 +617,7 @@ namespace RenewalWebsite.Controllers
                 var result = subscriptionService.Create(user.StripeCustomerId, plan.Id);
                 if (result != null)
                 {
-                    CompletedViewModel completedMessage = new CompletedViewModel();              
+                    CompletedViewModel completedMessage = new CompletedViewModel();
                     completedMessage = GetSubscriptionMessage(result, true);
                     return RedirectToAction("Thanks", completedMessage);
                 }
@@ -850,7 +854,7 @@ namespace RenewalWebsite.Controllers
             var completedMessage = new CompletedViewModel
             {
                 Message = result.StripePlan.Nickname.Split("_")[1],
-                Message1 = _localizer[result.StripePlan.Nickname.Split("_")[0]],
+                Message1 = result.StripePlan.Nickname.Split("_")[0],
                 HasSubscriptions = HasSubscriptions
             };
             return completedMessage;

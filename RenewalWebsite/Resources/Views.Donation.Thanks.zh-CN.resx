@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="monthly" xml:space="preserve">
+    <value>每月一次</value>
+  </data>
+  <data name="quarterly" xml:space="preserve">
+    <value>季刊</value>
+  </data>
   <data name="See my subscriptions" xml:space="preserve">
     <value>管理我的定期捐赠</value>
   </data>
@@ -125,6 +131,9 @@
   </data>
   <data name="Thank you!" xml:space="preserve">
     <value>非常感谢！</value>
+  </data>
+  <data name="yearly" xml:space="preserve">
+    <value>每年</value>
   </data>
   <data name="You are helping the Renewal Center continue to provide services, food and safe shelter for homeless people." xml:space="preserve">
     <value>你正在帮助日新中心持续为无家可归人士提供食物和安全的住所。</value>

@@ -150,4 +150,7 @@
   <data name="You have no subscriptions." xml:space="preserve">
     <value>你没有定期捐赠。</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
 </root>
