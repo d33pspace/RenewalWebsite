@@ -117,94 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="(Please select a country)" xml:space="preserve">
-    <value> 请选择一个国家</value>
+  <data name="." xml:space="preserve">
+    <value>的验证。</value>
   </data>
-  <data name="Add New Subscription" xml:space="preserve">
-    <value>新增一项定期捐赠</value>
+  <data name="account." xml:space="preserve">
+    <value>账户......</value>
   </data>
-  <data name="Address Line 1" xml:space="preserve">
-    <value>地址第1行</value>
+  <data name="Associate your" xml:space="preserve">
+    <value>关联您的</value>
   </data>
-  <data name="Address Line 2" xml:space="preserve">
-    <value>地址第2行</value>
+  <data name="Association Form" xml:space="preserve">
+    <value>关联形式</value>
   </data>
-  <data name="Card" xml:space="preserve">
-    <value>信用卡</value>
+  <data name="Email" xml:space="preserve">
+    <value>邮箱</value>
   </data>
-  <data name="Card details updated successfully." xml:space="preserve">
-    <value>卡详细信息已成功更新</value>
+  <data name="Please enter an email address for this site below and click the Register button to finish logging in." xml:space="preserve">
+    <value>请在下方输入一个邮件地址，然后点击注册按钮，完成登录。</value>
   </data>
-  <data name="Change" xml:space="preserve">
-    <value>更换</value>
+  <data name="Register" xml:space="preserve">
+    <value>注册</value>
   </data>
-  <data name="Change your card details" xml:space="preserve">
-    <value>更改你的信用卡信息</value>
-  </data>
-  <data name="Change your contact information" xml:space="preserve">
-    <value>更改你的个人信息</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>市</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>国家</value>
-  </data>
-  <data name="Create" xml:space="preserve">
-    <value>创建</value>
-  </data>
-  <data name="Details" xml:space="preserve">
-    <value>个人资料</value>
-  </data>
-  <data name="External Logins:" xml:space="preserve">
-    <value>第三方账号：</value>
-  </data>
-  <data name="Full Name" xml:space="preserve">
-    <value>全名</value>
-  </data>
-  <data name="Gifts made by credit or debit card usually appear here within one hour, other donation methods take longer. If your gift doesn't appear here within five business days, please contact us at" xml:space="preserve">
-    <value>通过信用卡或借记卡提供的礼品通常会在一小时内出现在此处，其他捐赠方式则需要更长时间。 如果您的礼物未在五个工作日内出现，请与我们联系</value>
-  </data>
-  <data name="History" xml:space="preserve">
-    <value>捐款历史</value>
-  </data>
-  <data name="Manage" xml:space="preserve">
-    <value>管理</value>
-  </data>
-  <data name="Manage your password and external logins" xml:space="preserve">
-    <value>管理你的账号</value>
-  </data>
-  <data name="Password" xml:space="preserve">
-    <value>密码</value>
-  </data>
-  <data name="Password:" xml:space="preserve">
-    <value>密码：</value>
-  </data>
-  <data name="Save" xml:space="preserve">
-    <value>保存</value>
-  </data>
-  <data name="Search" xml:space="preserve">
-    <value>搜索</value>
-  </data>
-  <data name="Something went wrong, please try again." xml:space="preserve">
-    <value>出了点问题，请再试一次。</value>
-  </data>
-  <data name="State/Province" xml:space="preserve">
-    <value>州/省</value>
-  </data>
-  <data name="Subscriptions" xml:space="preserve">
-    <value>定期捐赠</value>
-  </data>
-  <data name="View your valuable donation history" xml:space="preserve">
-    <value>查看您宝贵的捐赠历史记录</value>
-  </data>
-  <data name="You have no card on file." xml:space="preserve">
-    <value>你还没有添加任何信用卡</value>
-  </data>
-  <data name="Your account" xml:space="preserve">
-    <value>个人主页</value>
-  </data>
-  <data name="Zip" xml:space="preserve">
-    <value>压缩</value>
+  <data name="You've successfully authenticated with" xml:space="preserve">
+    <value>您已经成功通过</value>
   </data>
 </root>

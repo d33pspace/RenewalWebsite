@@ -165,4 +165,7 @@
   <data name="Yearly" xml:space="preserve">
     <value>每年</value>
   </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>确认</value>
+  </data>
 </root>

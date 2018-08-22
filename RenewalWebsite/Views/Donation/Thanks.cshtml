@@ -26,16 +26,13 @@
         {
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
             {
-                <p>扣款成功！你将会@(Model.Message1)捐赠$@(Model.Message)。要管理或随时取消定期捐赠，请点击以下链接。</p>
+            <p>扣款成功！你将会 @Localizer[@Model.Message1] 捐赠$@(Model.Message)。要管理或随时取消定期捐赠，请点击以下链接。</p>
             }
 
             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
             {
                 <p>Your card was charged successfully. Your gift of $@(Model.Message) will repeat@(string.IsNullOrEmpty(Model.Message1) ? string.Empty : " " + Model.Message1). To manage or cancel your subscription anytime, follow the link below.</p>
             }
-            @*<p>@Model.Message</p>*@
-            @*<p>[For subscriptions only:]</p>
-                <p>Your gift will repeat [monthly | quarterly | yearly]. To manage or cancel your subscription anytime, follow the link below.</p>*@
             <a asp-controller="Manage" asp-action="Index" class="styled-link">@Localizer["See my subscriptions"]</a>
         }
         else
@@ -49,7 +46,6 @@
             {
                 <p>Your card was charged successfully. Thank you for your kind gift of $@(Model.Message).</p>
             }
-            @*<p>@Model.Message</p>*@
         }
     </div>
 </div>

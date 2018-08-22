@@ -43,12 +43,34 @@ else
 <script type="text/javascript">
     function deleteSubscription(item) {
         var id = $(item).attr("data-ajax-value");
-        deleteSubscriptionConfirm(id);        
+        deleteSubscriptionConfirm(id);
     };
 
     function deleteSubscriptionConfirm(id) {
-
-        ConfirmMsg(id, "ankDeleteSubscriptionConfirmed", "@Localizer["warning"]", "@Localizer["Are you sure you want to cancel this subscription?"]")
+        $("#ankDeleteSubscriptionConfirmed").attr("data-id", id);
+         $.confirm({
+            title: "@Localizer["warning"]",
+            content: "@Localizer["Are you sure you want to cancel this subscription?"]",
+            theme: 'modern',
+            type: 'orange',
+            typeAnimated: true,
+            closeIcon: true,
+            columnClass: 'jconfirm-small',
+            buttons: {
+                tryAgain: {
+                    text: "@Localizer["Confirm"]",
+                    btnClass: 'btn-red',
+                    action: function () {
+                        document.getElementById("ankDeleteSubscriptionConfirmed").click();
+                    }
+                },
+                cancel: {
+                    text: "@Localizer["Cancel"]",
+                        btnClass: 'btn-red'
+                }
+            }
+        });
+        //ConfirmMsg(id, "ankDeleteSubscriptionConfirmed", "@Localizer["warning"]", "@Localizer["Are you sure you want to cancel this subscription?"]")
     }
 
     function deleteSubscriptionConfirmFinal() {
