@@ -150,4 +150,19 @@
   <data name="You have no subscriptions." xml:space="preserve">
     <value>你没有定期捐赠。</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>活性</value>
+  </data>
+  <data name="Monthly" xml:space="preserve">
+    <value>每月一次</value>
+  </data>
+  <data name="One Time" xml:space="preserve">
+    <value>一次</value>
+  </data>
+  <data name="Quarterly" xml:space="preserve">
+    <value>季刊</value>
+  </data>
+  <data name="Yearly" xml:space="preserve">
+    <value>每年</value>
+  </data>
 </root>

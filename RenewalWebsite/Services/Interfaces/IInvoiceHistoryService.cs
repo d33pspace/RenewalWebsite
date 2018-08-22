@@ -9,5 +9,7 @@ namespace RenewalWebsite.Services
     public interface IInvoiceHistoryService
     {
         List<InvoiceHistory> GetInvoiceHistory(DateTime FromDate, DateTime ToDate, string Email);
+
+        List<InvoiceHistory> GetAllInvoiceHistory(string Email);
     }
 }

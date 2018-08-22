@@ -117,76 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="AddressLine1" xml:space="preserve">
-    <value>地址栏1</value>
+  <data name="Back Home" xml:space="preserve">
+    <value>回家</value>
   </data>
-  <data name="AddressLine2" xml:space="preserve">
-    <value>地址栏2</value>
-  </data>
-  <data name="CardNumber" xml:space="preserve">
-    <value>卡号</value>
-  </data>
-  <data name="CardRequired" xml:space="preserve">
-    <value>信用卡号是必需的</value>
-  </data>
-  <data name="City" xml:space="preserve">
-    <value>市</value>
-  </data>
-  <data name="Country" xml:space="preserve">
-    <value>国家</value>
-  </data>
-  <data name="ExpirationDate" xml:space="preserve">
-    <value>截止日期</value>
-  </data>
-  <data name="FullName" xml:space="preserve">
-    <value>全名</value>
-  </data>
-  <data name="InvalidCard" xml:space="preserve">
-    <value>无效卡号</value>
-  </data>
-  <data name="InvalidCVC" xml:space="preserve">
-    <value>无效CVC号码</value>
-  </data>
-  <data name="InvalidMonth" xml:space="preserve">
-    <value>月份无效</value>
-  </data>
-  <data name="InvalidYear" xml:space="preserve">
-    <value>年度无效</value>
-  </data>
-  <data name="NameRequired" xml:space="preserve">
-    <value>姓名是必填项</value>
-  </data>
-  <data name="PersonName" xml:space="preserve">
-    <value>名称</value>
-  </data>
-  <data name="SecurityCode" xml:space="preserve">
-    <value>安全码</value>
-  </data>
-  <data name="SecurityCodeRequired" xml:space="preserve">
-    <value>安全码是必需的</value>
-  </data>
-  <data name="State" xml:space="preserve">
-    <value>州</value>
-  </data>
-  <data name="StateProvince" xml:space="preserve">
-    <value>州/省</value>
-  </data>
-  <data name="Zip" xml:space="preserve">
-    <value>压缩</value>
-  </data>
-  <data name="ZipPostalCode" xml:space="preserve">
-    <value>邮编/邮政编码</value>
-  </data>
-  <data name="Pleaseenteravalidgiftamount" xml:space="preserve">
-    <value>请输入有效的礼品金额。</value>
-  </data>
-  <data name="PasswordRequired" xml:space="preserve">
-    <value>请输入密码</value>
-  </data>
-  <data name="NotValidEmailAddress" xml:space="preserve">
-    <value>无效的邮箱地址</value>
-  </data>
-  <data name="EmailRequired" xml:space="preserve">
-    <value>电子邮件字段是必需的。</value>
+  <data name="Sorry, an error has occured while performing any operations!" xml:space="preserve">
+    <value>抱歉，执行任何操作时出错！</value>
   </data>
 </root>

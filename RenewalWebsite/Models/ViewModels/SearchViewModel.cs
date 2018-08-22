@@ -18,6 +18,8 @@ namespace RenewalWebsite.Models
 
         [Required]
         public bool displayUSD { get; set; }
+
+        public string typeOfHistory { get; set; }
     }
 
     public class InvoiceHistoryViewModel
@@ -28,4 +30,5 @@ namespace RenewalWebsite.Models
         public string Type { get; set; }
         public string Status { get; set; }
     }
+    
 }

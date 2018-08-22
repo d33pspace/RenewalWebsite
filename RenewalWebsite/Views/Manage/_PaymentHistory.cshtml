@@ -12,35 +12,30 @@
     @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
     @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
     @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
+    @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-row">
-        <div class="form-group col-md-3">
-            <label class="control-labe" for="@Model.FromDate">@Localizer["From:"]</label>
-            <div class="">
-                <input id="FromMaskDate" name="FromMaskDate" class="form-control" value="@Model.FromDate" placeholder="yyyy-mm-dd" data-inputmask="'alias': 'yyyy-mm-dd'" />
-                @*@Html.TextBoxFor(model => model.FromDate, "{0:yyyy-mm-dd}", new { @class = "form-control datetimepicker", @Text = Model.FromDate })*@
-                <span id="spanFromDate" class="text-danger" style="display:none;">@Localizer["From Date is required"]</span>
-                <span id="spanInvalidFromDate" class="text-danger" style="display:none;">@Localizer["Invalid From Date"]</span>
-            </div>
+        <div class="col-sm-offset-4 col-sm-8">
+            <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GeneratePDF('Last12Months')" />
+            <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GeneratePDF('ThisYear')" />
+            <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GeneratePDF('LastYear')" />
+            <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GeneratePDF('AllHistory')" />
         </div>
-        <div class="form-group col-md-3">
-            <label class="control-label" for="@Model.ToDate">@Localizer["To:"]</label>
-            <div class="">
-                <input id="ToMaskDate" name="ToMaskDate" class="form-control" value="@Model.ToDate" placeholder="yyyy-mm-dd" data-inputmask="'alias': 'yyyy-mm-dd'" />
-                @*@Html.TextBoxFor(model => model.ToDate, "{0:yyyy-mm-dd}", new { @class = "form-control datetimepicker", @Text = Model.ToDate })*@
-                <span id="spanToDate" class="text-danger" style="display:none;">@Localizer["To Date is required"]</span>
-                <span id="spanInvalidToDate" class="text-danger" style="display:none;">@Localizer["Invalid To Date"]</span>
-            </div>
+        <div class="col-sm-offset-4 col-sm-8">
+            <span style="color:#d11241">@ViewBag.DataNotFoundMessage</span>
         </div>
     </div>
+
     <div class="form-group">
         <div class="col-sm-offset-4 col-sm-8">
-            <input type="button" id="btnSave" class="btn btn-default" value="@Localizer["Search"]" onclick="GenerateData()" />
-            <input type="button" id="btnSubmitPDF" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
+            @*<input type="button" id="btnSave" class="btn btn-default" value="@Localizer["Search"]" onclick="GenerateData()" />
+                <input type="button" id="btnSubmitPDF" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
+            *@
             <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
         </div>
     </div>
 </form>
+
 <div class="form-row">
     <div class="col-md-12">
         <div id="divInvoiceHistory">
@@ -60,7 +55,7 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $(":input").inputmask();
-        GenerateData();
+        // GenerateData();
     });
 
     function displayUSDOption() {
@@ -157,46 +152,53 @@
         });
     };
 
-    function GeneratePDF() {
-        var fromDate = $('#FromMaskDate').val();
-        var toDate = $('#ToMaskDate').val();
+    //function GeneratePDF() {
+    //    var fromDate = $('#FromMaskDate').val();
+    //    var toDate = $('#ToMaskDate').val();
 
-        $('#FromDate').val(fromDate);
-        $('#ToDate').val(toDate);
+    //    $('#FromDate').val(fromDate);
+    //    $('#ToDate').val(toDate);
 
-        if (fromDate == "") {
-            $('#spanFromDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanFromDate').css('display', 'none');
-        }
+    //    if (fromDate == "") {
+    //        $('#spanFromDate').css('display', 'block');
+    //        return;
+    //    }
+    //    else {
+    //        $('#spanFromDate').css('display', 'none');
+    //    }
 
-        if (toDate == "") {
-            $('#spanToDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanToDate').css('display', 'none');
-        }
+    //    if (toDate == "") {
+    //        $('#spanToDate').css('display', 'block');
+    //        return;
+    //    }
+    //    else {
+    //        $('#spanToDate').css('display', 'none');
+    //    }
 
-        if (fromDate.includes("y") || fromDate.includes("m") || fromDate.includes("d")) {
-            $('#spanInvalidFromDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanInvalidFromDate').css('display', 'none');
-        }
+    //    if (fromDate.includes("y") || fromDate.includes("m") || fromDate.includes("d")) {
+    //        $('#spanInvalidFromDate').css('display', 'block');
+    //        return;
+    //    }
+    //    else {
+    //        $('#spanInvalidFromDate').css('display', 'none');
+    //    }
 
-        if (toDate.includes("y") || toDate.includes("m") || toDate.includes("d")) {
-            $('#spanInvalidToDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanInvalidToDate').css('display', 'none');
-        }
+    //    if (toDate.includes("y") || toDate.includes("m") || toDate.includes("d")) {
+    //        $('#spanInvalidToDate').css('display', 'block');
+    //        return;
+    //    }
+    //    else {
+    //        $('#spanInvalidToDate').css('display', 'none');
+    //    }
 
+    //    $('#btnPDF').trigger('click');
+
+    //};
+
+    function GeneratePDF(type) {
+        var showUsd = $('#showUSD').val();
+        $("#typeOfHistory").val(type);
         $('#btnPDF').trigger('click');
-
     };
+
 </script>
