@@ -21,8 +21,16 @@
             <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GeneratePDF('LastYear')" />
             <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GeneratePDF('AllHistory')" />
         </div>
+    </div>
+
+    <div class="form-row" id="idOfMessage" style="display:none">
         <div class="col-sm-offset-4 col-sm-8">
-            <span style="color:#d11241">@ViewBag.DataNotFoundMessage</span>
+            <span style="color:#d11241">@Localizer["Requested data not available, Try another."]</span>
+        </div>
+    </div>
+    <div class="form-row" id="idOfErrorMessage" style="display:none">
+        <div class="col-sm-offset-4 col-sm-8">
+            <span style="color:#d11241">@Localizer["Something went wrong, while fetching history."]</span>
         </div>
     </div>
 
@@ -196,9 +204,27 @@
     //};
 
     function GeneratePDF(type) {
-        var showUsd = $('#showUSD').val();
-        $("#typeOfHistory").val(type);
-        $('#btnPDF').trigger('click');
+        $("#idOfMessage").hide();
+        $("#idOfErrorMessage").hide();
+        $.ajax({
+            url: "/Manage/CheckHistoryAvailable",
+            data: {
+                typeOfHistory: type
+            },
+            type: 'POST',
+            success: function (data) {
+                if (data == true) {
+                    $("#typeOfHistory").val(type);
+                    $('#btnPDF').trigger('click');
+                }
+                else {
+                    $("#idOfMessage").show();
+                }
+            },
+            error: function () {
+                $("#idOfErrorMessage").show();
+            }
+        });
     };
 
 </script>

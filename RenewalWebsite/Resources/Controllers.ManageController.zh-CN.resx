@@ -213,7 +213,4 @@
   <data name="Renewal giving record" xml:space="preserve">
     <value>日新中心捐赠记录</value>
   </data>
-  <data name="Requested data not found,Try another" xml:space="preserve">
-    <value>找不到请求的数据，请尝试另一个</value>
-  </data>
 </root>

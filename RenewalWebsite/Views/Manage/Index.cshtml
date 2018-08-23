@@ -15,7 +15,6 @@
     <link href="~/css/tabstyles.css" rel="stylesheet" />
     <script src="~/js/modernizr.custom.js"></script>*@
 <input type="hidden" id="TabId" name="TabId" value="@ViewBag.TabId" />
-<input type="hidden" id="messageId" value="" />
 <div class="row">
     <div class="col-md-12">
         <!--<span>
@@ -31,12 +30,12 @@
     <div class="col-md-12">
         <div class="tabbable">
             <ul class="nav nav-tabs" id="account-tabs" role="tablist" style="height: 42px;">
-                <li class="nav-item active"><a class="nav-link" data-toggle="tab" onclick="removeMessage()" href="#subscriptions">@Localizer["Subscriptions"]</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="removeMessage()" href="#card" role="tab">@Localizer["Card"]</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="removeMessage()" href="#profile" role="tab">@Localizer["Details"]</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" onclick="removeMessage()" href="#password" role="tab">@Localizer["Password"]</a></li>
+                <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">@Localizer["Subscriptions"]</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card" role="tab">@Localizer["Card"]</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">@Localizer["Details"]</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab">@Localizer["Password"]</a></li>
                 <!--<li class="nav-item"><a class="nav-link" data-toggle="tab"onclick="removeMessage()" href="#logins" role="tab">External Logins</a></li>-->
-                <li class="nav-item"><a class="nav-link" id="lnkPaymentHistory" data-toggle="tab" href="#history" role="tab" onclick="getUserPaymentHistory()">@Localizer["History"]</a></li>
+                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history" role="tab" onclick="getUserPaymentHistory()">@Localizer["History"]</a></li>
             </ul>
             <div class="tab-content">
 
@@ -265,7 +264,6 @@
             scrollToTabEdge: true
         });
     $(document).ready(function () {
-        $("#messageId").val('');
         var country = @Html.Raw(Json.Serialize(Model.Country));
         $('#Country').val(country);
         var tabId = $('#TabId').val();
@@ -309,7 +307,6 @@
     }
 
     function selectedTab(selectedTab) {
-        $("#messageId").val('');
         if (selectedTab == 1) {
             $('#textMainMessage').show();
             $('#textMainMessage').removeClass('alert alert-danger');
@@ -320,13 +317,7 @@
             //$(".tab-current").next().trigger("click");
         }
         $('#account-tabs li:eq(' + selectedTab + ') a').tab('show');
-
-        if (selectedTab == "4" || selectedTab == 4)
-        {
-            $("#messageId").val("Requested data not found,Try another");
-            $("#lnkPaymentHistory").click();
-        }
-
+        
     };
 
     //function saveProfile() {
@@ -334,11 +325,10 @@
     //}
 
     function getUserPaymentHistory() {
-        var message = $("#messageId").val();
         $('#paymentHistory').html('');
         $.ajax({
             url: "/Manage/PaymentHistory",
-            data: { message},
+            data: { },
             success: function (data) {
                 $('#paymentHistory').append(data);
             }

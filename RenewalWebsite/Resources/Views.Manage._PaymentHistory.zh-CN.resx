@@ -141,11 +141,17 @@
   <data name="PDF" xml:space="preserve">
     <value>PDF报告</value>
   </data>
+  <data name="Requested data not available, Try another." xml:space="preserve">
+    <value>请求的数据不可用，请尝试另一种。</value>
+  </data>
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
   <data name="Show USD conversion" xml:space="preserve">
     <value>显示美元转换</value>
+  </data>
+  <data name="Something went wrong, while fetching history." xml:space="preserve">
+    <value>在取得历史的同时出了点问题。</value>
   </data>
   <data name="This Year" xml:space="preserve">
     <value>今年</value>

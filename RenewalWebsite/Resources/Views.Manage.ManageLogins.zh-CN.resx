@@ -120,8 +120,17 @@
   <data name="Add another service to log in." xml:space="preserve">
     <value>新增一个第三方登录账户</value>
   </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>脸书</value>
+  </data>
+  <data name="Google" xml:space="preserve">
+    <value>谷歌</value>
+  </data>
   <data name="Manage your external logins" xml:space="preserve">
     <value>管理您的第三方登录账户</value>
+  </data>
+  <data name="Microsoft" xml:space="preserve">
+    <value>微软</value>
   </data>
   <data name="Registered Logins" xml:space="preserve">
     <value>已注册账户</value>

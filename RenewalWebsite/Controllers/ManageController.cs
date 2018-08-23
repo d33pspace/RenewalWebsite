@@ -547,7 +547,7 @@ namespace RenewalWebsite.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult> PaymentHistory(string message)
+        public async Task<ActionResult> PaymentHistory()
         {
             var user = await GetCurrentUserAsync();
             try
@@ -582,11 +582,6 @@ namespace RenewalWebsite.Controllers
                         return PartialView("_PaymentHistory", model);
                     }
                 }
-                if (!string.IsNullOrEmpty(message))
-                {
-                    message = _localizer[message];
-                }
-                ViewBag.DataNotFoundMessage = message;
                 return PartialView("_PaymentHistory", model);
             }
             catch (Exception ex)
@@ -823,10 +818,7 @@ namespace RenewalWebsite.Controllers
 
                 if (invoicehistoryList == null || invoicehistoryList.Count == 0)
                 {
-                    ManageMessageId? message = null;
-                    int tabId = 4;
-                    ViewBag.TabId = "4";
-                    return RedirectToAction("Index", "Manage", new { message, tabId });
+                    return RedirectToAction("Index", "Manage");
                 }
                 BaseFont baseFont;
                 BaseFont baseFontEnglish;
@@ -1181,6 +1173,64 @@ namespace RenewalWebsite.Controllers
             });
         }
 
+        /// <summary>
+        /// checkIshistory available to check history available for current user.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+
+        [HttpPost]
+        public async Task<ActionResult> CheckHistoryAvailable(string typeOfHistory)
+        {
+            var user = await GetCurrentUserAsync();
+            string language = _currencyService.GetCurrentLanguage().Name;
+            List<InvoiceHistory> invoicehistoryList = new List<InvoiceHistory>();
+            DateTime FromDate = DateTime.Now;
+            DateTime ToDate = DateTime.Now;
+            try
+            {
+                if (typeOfHistory == "AllHistory")
+                {
+                    invoicehistoryList = _invoiceHistoryService.GetAllInvoiceHistory(user.Email);
+                }
+                else if (typeOfHistory == "Last12Months")
+                {
+                    ToDate = DateTime.Now;
+                    FromDate = DateTime.Now.AddMonths(-12);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (typeOfHistory == "ThisYear")
+                {
+                    int year = DateTime.Now.Year;
+                    FromDate = new DateTime(year, 1, 1);
+                    ToDate = new DateTime(year, 12, 31);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (typeOfHistory == "LastYear")
+                {
+                    DateTime previousYear = DateTime.Now.AddYears(-1);
+                    FromDate = new DateTime(previousYear.Year, 1, 1);
+                    ToDate = new DateTime(previousYear.Year, 12, 31);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+
+                if (invoicehistoryList == null || invoicehistoryList.Count == 0)
+                {
+                    return Json(false);
+                }
+                else
+                {
+                    return Json(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
+                _loggerService.SaveEventLogAsync(log);
+                return Json(false);
+            }
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
@@ -1383,5 +1433,6 @@ namespace RenewalWebsite.Controllers
 
             return Json(result);
         }
+
     }
 }
