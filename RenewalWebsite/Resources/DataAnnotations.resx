@@ -186,4 +186,19 @@
   <data name="Pleaseenteravalidgiftamount" xml:space="preserve">
     <value>Please enter a valid gift amount.</value>
   </data>
+  <data name="NotValidEmailAddress" xml:space="preserve">
+    <value>The Email field is not a valid e-mail address.</value>
+  </data>
+  <data name="PasswordRequired" xml:space="preserve">
+    <value>The Password field is required.</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>The Email field is required.</value>
+  </data>
+  <data name="PasswordAndConfirmPasswordNotMatch" xml:space="preserve">
+    <value>The password and confirmation password do not match.</value>
+  </data>
+  <data name="Passwordmustbe6andmax100charcterslong" xml:space="preserve">
+    <value>The Password must be at least 6 and at max 100 characters long.</value>
+  </data>
 </root>

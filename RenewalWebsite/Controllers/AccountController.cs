@@ -17,6 +17,7 @@ using RenewalWebsite.Utility;
 using RestSharp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
+using System.Text.RegularExpressions;
 
 namespace RenewalWebsite.Controllers
 {
@@ -149,7 +150,9 @@ namespace RenewalWebsite.Controllers
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToLocal(returnUrl);
                     }
-                    AddErrors(result);
+                    //AddErrors(result);
+                    AddErrorsForRegisterAction(result);
+
                 }
             }
             catch (Exception ex)
@@ -321,7 +324,18 @@ namespace RenewalWebsite.Controllers
                     mailModel.Name = user.FullName;
                     mailModel.message = callbackUrl;
                     string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
-                    await _emailSender.SendEmailAsync(model.Email, "Reset Password", callbackUrl, user.FullName, template);
+
+                    template = template.Replace("Use this link to reset your password. The link is only valid for 24 hours.", _localizer["Use this link to reset your password. The link is only valid for 24 hours."]);
+                    template = template.Replace("The Renewal Center", _localizer["The Renewal Center"]);
+                    template = template.Replace("Hi", _localizer["Hi"]);
+                    template = template.Replace("You recently requested to reset your password for your", _localizer["You recently requested to reset your password for your"]);
+                    template = template.Replace("account.", _localizer["account."]);
+                    template = template.Replace("Use the button below to reset it.", _localizer["Use the button below to reset it."]);
+                    template = template.Replace("Reset your password", _localizer["Reset your password"]);
+                    template = template.Replace("Thanks,", _localizer["Thanks,"]);
+                    template = template.Replace("Team", _localizer["Team"]);
+                    
+                    await _emailSender.SendEmailAsync(model.Email, _localizer["Reset Password"], callbackUrl, user.FullName, template);
                     return View("ForgotPasswordConfirmation");
                 }
 
@@ -375,7 +389,8 @@ namespace RenewalWebsite.Controllers
                 {
                     return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
                 }
-                AddErrors(result);
+                //AddErrors(result);
+                AddErrorsForRegisterAction(result);
                 return View();
             }
             catch (Exception ex)
@@ -521,6 +536,53 @@ namespace RenewalWebsite.Controllers
             }
         }
 
+        private void AddErrorsForRegisterAction(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                if (!string.IsNullOrEmpty(error.Description))
+                {
+                    if (error.Description.Contains("is already taken"))
+                    {
+                        const string MatchEmailPattern =
+          @"(([\w-]+\.)+[\w-]+|([a-zA-Z]{1}|[\w-]{2,}))@"
+          + @"((([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\."
+            + @"([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])\.([0-1]?[0-9]{1,2}|25[0-5]|2[0-4][0-9])){1}|"
+          + @"([a-zA-Z]+[\w-]+\.)+[a-zA-Z]{2,4})";
+                        Regex rx = new Regex(MatchEmailPattern, RegexOptions.Compiled | RegexOptions.IgnoreCase);
+                        // Find matches.
+                        MatchCollection matches = rx.Matches(error.Description);
+                        // Report the number of matches found.
+                        int noOfMatches = matches.Count;
+                        // Report on each match.
+                        string emailId = string.Empty;
+                        foreach (Match match in matches)
+                        {
+                            emailId = match.Value.ToString();
+                        }
+
+                        if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                        {
+                            string fullstring = _localizer["User name"] + " " + "'" + emailId + "'" + " " + _localizer["is already taken."];
+                            error.Description = fullstring;
+                        }
+                        else
+                        {
+                            string fullstring = _localizer["this username has been registered."];
+                            error.Description = fullstring;
+                        }
+                    }
+
+                    if(error.Description.Contains("Invalid token"))
+                    {
+                        error.Description = _localizer["Invalid token."];
+                    }
+                }
+
+                ModelState.AddModelError(string.Empty, error.Description);
+            }
+        }
+        
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

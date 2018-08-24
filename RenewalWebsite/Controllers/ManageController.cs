@@ -582,7 +582,6 @@ namespace RenewalWebsite.Controllers
                         return PartialView("_PaymentHistory", model);
                     }
                 }
-
                 return PartialView("_PaymentHistory", model);
             }
             catch (Exception ex)
@@ -685,17 +684,142 @@ namespace RenewalWebsite.Controllers
             }
         }
 
+        //[HttpPost]
+        //public async Task<ActionResult> GetInvoicePdf(SearchViewModel model)
+        //{
+        //    var user = await GetCurrentUserAsync();
+        //    try
+        //    {
+        //        string language = _currencyService.GetCurrentLanguage().Name;
+        //        DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+        //        DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+
+        //        List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+        //        BaseFont baseFont;
+        //        BaseFont baseFontEnglish;
+
+        //        baseFontEnglish = BaseFont.CreateFont(BaseFont.TIMES_ROMAN, BaseFont.CP1252, false);
+        //        baseFont = BaseFont.CreateFont(_hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\simkai.ttf", BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+
+        //        Font headerFont = new Font(baseFont, 14, 1, BaseColor.BLACK);
+        //        Font font = new Font(baseFont, 10, 1, BaseColor.BLACK);
+        //        Font fontEnglish = new Font(baseFontEnglish, 10, 1, BaseColor.BLACK);
+
+        //        MemoryStream workStream = new MemoryStream();
+        //        StringBuilder status = new StringBuilder("");
+        //        DateTime dTime = DateTime.Now;
+        //        //file name to be created   
+        //        //string strPDFFileName = "Renewal giving record" + ".pdf"; //string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
+        //        string strPDFFileName = _localizer["Renewal giving record"] + ".pdf";
+        //        Document doc = new Document();
+        //        doc.SetPageSize(PageSize.A4);
+        //        doc.SetMargins(0f, 0f, 0f, 0f);
+        //        //Create PDF Table with 5 columns  
+        //        PdfPTable tableLayout = null;
+        //        //Create PDF Table  
+
+        //        bool isAdd = true;
+        //        if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+        //        {
+        //            isAdd = true;
+        //        }
+        //        else if (invoicehistoryList.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+        //        {
+        //            isAdd = true;
+        //        }
+        //        else
+        //        {
+        //            if (model.showUSD == true) { isAdd = true; }
+        //            else { isAdd = false; }
+        //        }
+
+        //        doc.SetMargins(15f, 15f, 130f, 15f);
+
+        //        PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
+        //        writer.CloseStream = false;
+        //        PDFHelper pDFHelper = new PDFHelper();
+        //        pDFHelper.startDate = model.FromDate;
+        //        pDFHelper.endDate = model.ToDate;
+        //        pDFHelper.fullName = user.FullName;
+        //        pDFHelper.EmailId = user.Email;
+        //        pDFHelper.Message = _localizer["Please complete your full name on the details tab."];
+        //        pDFHelper.logoPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\Renewal Logo.jpg";
+        //        pDFHelper.isAdd = isAdd;
+        //        pDFHelper.sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
+        //        pDFHelper.RenewalHeader = _localizer["The Renewal Center"];
+        //        pDFHelper.recordHeader = _localizer["A record of your giving from"];
+        //        pDFHelper.To = _localizer["to"];
+        //        pDFHelper.language = language;
+        //        pDFHelper.fontPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\SourceHanSansSC-Light.otf";
+        //        writer.PageEvent = pDFHelper;
+
+        //        writer.SetLanguage(language);
+
+        //        doc.Open();
+        //        doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model, isAdd, fontEnglish, language));
+
+        //        // Closing the document  
+        //        doc.Close();
+
+        //        byte[] byteInfo = workStream.ToArray();
+        //        workStream.Write(byteInfo, 0, byteInfo.Length);
+        //        workStream.Position = 0;
+
+        //        return File(workStream.ToArray(), "application/pdf", strPDFFileName);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
+        //        _loggerService.SaveEventLogAsync(log);
+        //        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+        //    }
+        //}
+
         [HttpPost]
         public async Task<ActionResult> GetInvoicePdf(SearchViewModel model)
         {
             var user = await GetCurrentUserAsync();
+            string language = _currencyService.GetCurrentLanguage().Name;
+            List<InvoiceHistory> invoicehistoryList = new List<InvoiceHistory>();
+            DateTime FromDate = DateTime.Now;
+            DateTime ToDate = DateTime.Now;
             try
             {
-                string language = _currencyService.GetCurrentLanguage().Name;
-                DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
-                DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", System.Globalization.CultureInfo.InvariantCulture);
+                if (model.typeOfHistory == "AllHistory")
+                {
+                    invoicehistoryList = _invoiceHistoryService.GetAllInvoiceHistory(user.Email);
+                    var historyList = invoicehistoryList.OrderBy(a => a.Date).ToList();
+                    if (historyList.Count > 0)
+                    {
+                        FromDate = historyList.First().Date;
+                        ToDate = historyList.Last().Date;
+                    }
+                }
+                else if (model.typeOfHistory == "Last12Months")
+                {
+                    ToDate = DateTime.Now;
+                    FromDate = DateTime.Now.AddMonths(-12);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (model.typeOfHistory == "ThisYear")
+                {
+                    int year = DateTime.Now.Year;
+                    FromDate = new DateTime(year, 1, 1);
+                    ToDate = new DateTime(year, 12, 31);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (model.typeOfHistory == "LastYear")
+                {
+                    DateTime previousYear = DateTime.Now.AddYears(-1);
+                    FromDate = new DateTime(previousYear.Year, 1, 1);
+                    ToDate = new DateTime(previousYear.Year, 12, 31);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
 
-                List<InvoiceHistory> invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                if (invoicehistoryList == null || invoicehistoryList.Count == 0)
+                {
+                    return RedirectToAction("Index", "Manage");
+                }
                 BaseFont baseFont;
                 BaseFont baseFontEnglish;
 
@@ -710,7 +834,8 @@ namespace RenewalWebsite.Controllers
                 StringBuilder status = new StringBuilder("");
                 DateTime dTime = DateTime.Now;
                 //file name to be created   
-                string strPDFFileName = "Renewal giving record" + ".pdf"; //string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
+                //string strPDFFileName = "Renewal giving record" + ".pdf"; //string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
+                string strPDFFileName = _localizer["Renewal giving record"] + ".pdf";
                 Document doc = new Document();
                 doc.SetPageSize(PageSize.A4);
                 doc.SetMargins(0f, 0f, 0f, 0f);
@@ -738,8 +863,8 @@ namespace RenewalWebsite.Controllers
                 PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
                 writer.CloseStream = false;
                 PDFHelper pDFHelper = new PDFHelper();
-                pDFHelper.startDate = model.FromDate;
-                pDFHelper.endDate = model.ToDate;
+                pDFHelper.startDate = FromDate.ToString("dd MMM yyyy");
+                pDFHelper.endDate = ToDate.ToString("dd MMM yyyy");
                 pDFHelper.fullName = user.FullName;
                 pDFHelper.EmailId = user.Email;
                 pDFHelper.Message = _localizer["Please complete your full name on the details tab."];
@@ -1048,6 +1173,64 @@ namespace RenewalWebsite.Controllers
             });
         }
 
+        /// <summary>
+        /// checkIshistory available to check history available for current user.
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
+
+        [HttpPost]
+        public async Task<ActionResult> CheckHistoryAvailable(string typeOfHistory)
+        {
+            var user = await GetCurrentUserAsync();
+            string language = _currencyService.GetCurrentLanguage().Name;
+            List<InvoiceHistory> invoicehistoryList = new List<InvoiceHistory>();
+            DateTime FromDate = DateTime.Now;
+            DateTime ToDate = DateTime.Now;
+            try
+            {
+                if (typeOfHistory == "AllHistory")
+                {
+                    invoicehistoryList = _invoiceHistoryService.GetAllInvoiceHistory(user.Email);
+                }
+                else if (typeOfHistory == "Last12Months")
+                {
+                    ToDate = DateTime.Now;
+                    FromDate = DateTime.Now.AddMonths(-12);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (typeOfHistory == "ThisYear")
+                {
+                    int year = DateTime.Now.Year;
+                    FromDate = new DateTime(year, 1, 1);
+                    ToDate = new DateTime(year, 12, 31);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (typeOfHistory == "LastYear")
+                {
+                    DateTime previousYear = DateTime.Now.AddYears(-1);
+                    FromDate = new DateTime(previousYear.Year, 1, 1);
+                    ToDate = new DateTime(previousYear.Year, 12, 31);
+                    invoicehistoryList = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+
+                if (invoicehistoryList == null || invoicehistoryList.Count == 0)
+                {
+                    return Json(false);
+                }
+                else
+                {
+                    return Json(true);
+                }
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
+                _loggerService.SaveEventLogAsync(log);
+                return Json(false);
+            }
+        }
+
         #region Helpers
 
         private void AddErrors(IdentityResult result)
@@ -1152,14 +1335,14 @@ namespace RenewalWebsite.Controllers
                 try
                 {
                     var CardService = new StripeCardService(_stripeSettings.Value.SecretKey);
-                   // StripeCard objStripeCard = await CardService.GetAsync(user.StripeCustomerId, card.cardId);
+                    // StripeCard objStripeCard = await CardService.GetAsync(user.StripeCustomerId, card.cardId);
 
                     //StripeCardUpdateOptions updateCardOptions = new StripeCardUpdateOptions();
                     //updateCardOptions.Name = card.Name;
                     //updateCardOptions.ExpirationMonth = card.ExpiryMonth;
                     //updateCardOptions.ExpirationYear = card.ExpiryYear;
 
-                   // await CardService.UpdateAsync(user.StripeCustomerId, card.cardId, updateCardOptions);
+                    // await CardService.UpdateAsync(user.StripeCustomerId, card.cardId, updateCardOptions);
 
                     CardService.Delete(user.StripeCustomerId, card.cardId);
                     result.data = _localizer["Card deleted successfully"];
@@ -1250,5 +1433,6 @@ namespace RenewalWebsite.Controllers
 
             return Json(result);
         }
+
     }
 }

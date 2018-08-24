@@ -210,4 +210,7 @@
   <data name="Card deleted successfully" xml:space="preserve">
     <value>卡已成功删除</value>
   </data>
+  <data name="Renewal giving record" xml:space="preserve">
+    <value>日新中心捐赠记录</value>
+  </data>
 </root>

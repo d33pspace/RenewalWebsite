@@ -147,4 +147,7 @@
   <data name="warning" xml:space="preserve">
     <value>警告</value>
   </data>
+  <data name="Active" xml:space="preserve">
+    <value>活性</value>
+  </data>
 </root>
