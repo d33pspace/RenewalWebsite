@@ -121,7 +121,7 @@
     <value>每月一次</value>
   </data>
   <data name="quarterly" xml:space="preserve">
-    <value>季刊</value>
+    <value>每季</value>
   </data>
   <data name="See my subscriptions" xml:space="preserve">
     <value>管理我的定期捐赠</value>

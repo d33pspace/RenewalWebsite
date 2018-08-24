@@ -136,7 +136,7 @@
     <value>币种</value>
   </data>
   <data name="Frequency" xml:space="preserve">
-    <value> 周期</value>
+    <value>周期</value>
   </data>
   <data name="Manage your subscriptions" xml:space="preserve">
     <value>管理你的定期捐赠</value>
@@ -151,7 +151,7 @@
     <value>你没有定期捐赠。</value>
   </data>
   <data name="Active" xml:space="preserve">
-    <value>活性</value>
+    <value>有效</value>
   </data>
   <data name="Monthly" xml:space="preserve">
     <value>每月一次</value>
@@ -160,7 +160,7 @@
     <value>一次</value>
   </data>
   <data name="Quarterly" xml:space="preserve">
-    <value>季刊</value>
+    <value>每季</value>
   </data>
   <data name="Yearly" xml:space="preserve">
     <value>每年</value>
