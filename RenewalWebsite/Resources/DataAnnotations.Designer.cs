@@ -151,6 +151,15 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The Full Name field is required..
+        /// </summary>
+        public static string FullNameRequired {
+            get {
+                return ResourceManager.GetString("FullNameRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invalid Card Number.
         /// </summary>
         public static string InvalidCard {

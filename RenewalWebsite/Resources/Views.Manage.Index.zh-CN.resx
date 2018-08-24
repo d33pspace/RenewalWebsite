@@ -190,7 +190,7 @@
     <value>出了点问题，请再试一次。</value>
   </data>
   <data name="State/Province" xml:space="preserve">
-    <value>州/省</value>
+    <value>省</value>
   </data>
   <data name="Subscriptions" xml:space="preserve">
     <value>定期捐赠</value>

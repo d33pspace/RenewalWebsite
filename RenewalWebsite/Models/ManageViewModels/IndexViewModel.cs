@@ -10,9 +10,9 @@ namespace RenewalWebsite.Models.ManageViewModels
 {
     public class IndexViewModel
     {
-
+        
         [Display(Name = "FullName", ResourceType = typeof(Resources.DataAnnotations))]
-        [Required]
+        [Required(ErrorMessageResourceName = "FullNameRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string FullName { get; set; }
 
         [Display(Name = "AddressLine1", ResourceType = typeof(Resources.DataAnnotations))]

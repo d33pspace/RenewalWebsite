@@ -23,6 +23,7 @@ using iTextSharp.text;
 using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
+using System.Globalization;
 
 namespace RenewalWebsite.Controllers
 {
@@ -141,6 +142,15 @@ namespace RenewalWebsite.Controllers
                     countries = countryList
                 };
 
+                if (model != null)
+                {
+                    string serverLocation = _currencySettings.Value.ServerLocation;
+                    if (serverLocation.Contains("China"))
+                    {
+                        model.Country = "CN";
+                    }
+                }
+                
                 model.card = new CardViewModel();
                 model.card.Name = user.FullName;
 
@@ -592,18 +602,91 @@ namespace RenewalWebsite.Controllers
             }
         }
 
-        [HttpPost]
+        //[HttpPost]
+        //public async Task<ActionResult> GetPaymentHistory(SearchViewModel model)
+        //{
+        //    var user = await GetCurrentUserAsync();
+        //    try
+        //    {
+        //        DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+        //        DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
+
+        //        InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
+        //        invoiceHistoryModel.showUSDConversion = model.showUSD;
+        //        invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+
+        //        if (invoiceHistoryModel.InvoiceHistory.Count > 0)
+        //        {
+        //            if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+        //            {
+        //                invoiceHistoryModel.displayConversion = true;
+        //                invoiceHistoryModel.showUSDOption = false;
+        //                invoiceHistoryModel.showUSDConversion = true;
+        //                invoiceHistoryModel.Type = 1;
+        //                return PartialView("_InvoiceHistory", invoiceHistoryModel);
+        //            }
+        //            else if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
+        //            {
+        //                invoiceHistoryModel.displayConversion = false;
+        //                invoiceHistoryModel.showUSDOption = false;
+        //                invoiceHistoryModel.showUSDConversion = false;
+        //                invoiceHistoryModel.Type = 2;
+        //                return PartialView("_InvoiceHistory", invoiceHistoryModel);
+        //            }
+        //            else
+        //            {
+        //                invoiceHistoryModel.displayConversion = model.showUSD;
+        //                invoiceHistoryModel.showUSDOption = true;
+        //                invoiceHistoryModel.showUSDConversion = model.showUSD;
+        //                invoiceHistoryModel.Type = 3;
+        //                return PartialView("_InvoiceHistory", invoiceHistoryModel);
+        //            }
+        //        }
+
+        //        return PartialView("_InvoiceHistory", invoiceHistoryModel);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        log = new EventLog() { EventId = (int)LoggingEvents.SET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
+        //        _loggerService.SaveEventLogAsync(log);
+        //        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+        //    }
+        //}
+
         public async Task<ActionResult> GetPaymentHistory(SearchViewModel model)
         {
             var user = await GetCurrentUserAsync();
+            DateTime FromDate = DateTime.Now;
+            DateTime ToDate = DateTime.Now;
             try
             {
-                DateTime FromDate = DateTime.ParseExact(model.FromDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-                DateTime ToDate = DateTime.ParseExact(model.ToDate, "yyyy-MM-dd", CultureInfo.InvariantCulture);
-
                 InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
                 invoiceHistoryModel.showUSDConversion = model.showUSD;
-                invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                
+                if (model.typeOfHistory == "AllHistory")
+                {
+                    invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetAllInvoiceHistory(user.Email);
+                }
+                else if (model.typeOfHistory == "Last12Months")
+                {
+                    ToDate = DateTime.Now;
+                    FromDate = DateTime.Now.AddMonths(-12);
+                    invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (model.typeOfHistory == "ThisYear")
+                {
+                    int year = DateTime.Now.Year;
+                    FromDate = new DateTime(year, 1, 1);
+                    ToDate = new DateTime(year, 12, 31);
+                    invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
+                else if (model.typeOfHistory == "LastYear")
+                {
+                    DateTime previousYear = DateTime.Now.AddYears(-1);
+                    FromDate = new DateTime(previousYear.Year, 1, 1);
+                    ToDate = new DateTime(previousYear.Year, 12, 31);
+                    invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                }
 
                 if (invoiceHistoryModel.InvoiceHistory.Count > 0)
                 {
@@ -863,8 +946,16 @@ namespace RenewalWebsite.Controllers
                 PdfWriter writer = PdfWriter.GetInstance(doc, workStream);
                 writer.CloseStream = false;
                 PDFHelper pDFHelper = new PDFHelper();
-                pDFHelper.startDate = FromDate.ToString("dd MMM yyyy");
-                pDFHelper.endDate = ToDate.ToString("dd MMM yyyy");
+                if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                {
+                    pDFHelper.startDate = FromDate.ToString("MMMM d, yyyy");
+                    pDFHelper.endDate = ToDate.ToString("MMMM d, yyyy");
+                }
+                else
+                {
+                    pDFHelper.startDate = FromDate.ToString("yyyy-MM-dd");
+                    pDFHelper.endDate = ToDate.ToString("yyyy-MM-dd");
+                }
                 pDFHelper.fullName = user.FullName;
                 pDFHelper.EmailId = user.Email;
                 pDFHelper.Message = _localizer["Please complete your full name on the details tab."];
@@ -979,7 +1070,14 @@ namespace RenewalWebsite.Controllers
                 //Add body  
                 foreach (InvoiceHistory invoice in invoicehistoryList)
                 {
-                    AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);
+                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                    {
+                        AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("MMMM d, yyyy", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);    
+                    }
+                    else
+                    {
+                        AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);
+                    }
                     AddCellToBody(tableLayout, _localizer[invoice.Currency], "center", language == "en-US" ? fontEnglish : font);
                     AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", language == "en-US" ? fontEnglish : font);
                     if (displayConversion == true)

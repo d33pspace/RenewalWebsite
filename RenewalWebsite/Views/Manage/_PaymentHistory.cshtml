@@ -8,18 +8,37 @@
 <script src="~/js/daterangepicker/daterangepicker.js"></script>
 <script src="~/js/jquery.inputmask.bundle.js"></script>
 
+<input type="hidden" id="hdnOfType" name="TabId" value="Last12Months" />
+
 <form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
     @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
     @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
     @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
     @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
+
+    <div class="form-row">
+        <div class="col-md-12">
+            <div id="divInvoiceHistory">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-sm-offset-4 col-sm-8">
+            <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
+            <input type="button" id="btnSubmitPDF" style="display:none" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
+            <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
+        </div>
+    </div>
+
     <div asp-validation-summary="All" class="text-danger"></div>
     <div class="form-row">
         <div class="col-sm-offset-4 col-sm-8">
-            <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GeneratePDF('Last12Months')" />
-            <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GeneratePDF('ThisYear')" />
-            <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GeneratePDF('LastYear')" />
-            <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GeneratePDF('AllHistory')" />
+            <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GenerateData('Last12Months')" />
+            <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GenerateData('ThisYear')" />
+            <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GenerateData('LastYear')" />
+            <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GenerateData('AllHistory')" />
         </div>
     </div>
 
@@ -34,23 +53,10 @@
         </div>
     </div>
 
-    <div class="form-group">
-        <div class="col-sm-offset-4 col-sm-8">
-            @*<input type="button" id="btnSave" class="btn btn-default" value="@Localizer["Search"]" onclick="GenerateData()" />
-                <input type="button" id="btnSubmitPDF" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
-            *@
-            <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
-        </div>
-    </div>
+
 </form>
 
-<div class="form-row">
-    <div class="col-md-12">
-        <div id="divInvoiceHistory">
 
-        </div>
-    </div>
-</div>
 
 <div class="row">
     <div class="col-md-12">
@@ -61,9 +67,11 @@
     </div>
 </div>
 <script type="text/javascript">
+
     $(document).ready(function () {
         $(":input").inputmask();
-        // GenerateData();
+        var type = $("#hdnOfType").val();
+        GenerateData(type);
     });
 
     function displayUSDOption() {
@@ -97,134 +105,31 @@
         $('#showUSD').val(item.checked);
         GenerateData();
     };
-
-    function GenerateData() {
-        var fromDate = $('#FromMaskDate').val();
-        var toDate = $('#ToMaskDate').val();
-
-        $('#FromDate').val(fromDate);
-        $('#ToDate').val(toDate);
+    
+    function GenerateData(type) {
+        $("#hdnOfType").val(type);
         var showUsd = $('#showUSD').val();
-
-        if (fromDate == "") {
-            $('#spanFromDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanFromDate').css('display', 'none');
-        }
-
-        if (toDate == "") {
-            $('#spanToDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanToDate').css('display', 'none');
-        }
-
-        if (fromDate.includes("y") || fromDate.includes("m") || fromDate.includes("d")) {
-            $('#spanInvalidFromDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanInvalidFromDate').css('display', 'none');
-        }
-
-        if (toDate.includes("y") || toDate.includes("m") || toDate.includes("d")) {
-            $('#spanInvalidToDate').css('display', 'block');
-            return;
-        }
-        else {
-            $('#spanInvalidToDate').css('display', 'none');
-        }
-
         $('#divInvoiceHistory').html('');
-        $('#btnSave').attr("disabled", "disabled");
         $.ajax({
             url: "/Manage/GetPaymentHistory",
             data: {
-                fromDate: fromDate,
-                toDate: toDate,
-                showUSD: showUsd
-            },
-            type: 'POST',
-            success: function (data) {
-
-                $('#divInvoiceHistory').append(data);
-                $('#btnSave').removeAttr("disabled");
-                var HiddenfildTypeIsNull = $("#hdmIsInvoiseHistoryExists").val();
-                if (HiddenfildTypeIsNull == 0) { $("#btnSubmitPDF").hide(); }
-                else { $("#btnSubmitPDF").show(); }
-                displayUSDOption();
-            }
-        });
-    };
-
-    //function GeneratePDF() {
-    //    var fromDate = $('#FromMaskDate').val();
-    //    var toDate = $('#ToMaskDate').val();
-
-    //    $('#FromDate').val(fromDate);
-    //    $('#ToDate').val(toDate);
-
-    //    if (fromDate == "") {
-    //        $('#spanFromDate').css('display', 'block');
-    //        return;
-    //    }
-    //    else {
-    //        $('#spanFromDate').css('display', 'none');
-    //    }
-
-    //    if (toDate == "") {
-    //        $('#spanToDate').css('display', 'block');
-    //        return;
-    //    }
-    //    else {
-    //        $('#spanToDate').css('display', 'none');
-    //    }
-
-    //    if (fromDate.includes("y") || fromDate.includes("m") || fromDate.includes("d")) {
-    //        $('#spanInvalidFromDate').css('display', 'block');
-    //        return;
-    //    }
-    //    else {
-    //        $('#spanInvalidFromDate').css('display', 'none');
-    //    }
-
-    //    if (toDate.includes("y") || toDate.includes("m") || toDate.includes("d")) {
-    //        $('#spanInvalidToDate').css('display', 'block');
-    //        return;
-    //    }
-    //    else {
-    //        $('#spanInvalidToDate').css('display', 'none');
-    //    }
-
-    //    $('#btnPDF').trigger('click');
-
-    //};
-
-    function GeneratePDF(type) {
-        $("#idOfMessage").hide();
-        $("#idOfErrorMessage").hide();
-        $.ajax({
-            url: "/Manage/CheckHistoryAvailable",
-            data: {
+                showUSD: showUsd,
                 typeOfHistory: type
             },
             type: 'POST',
             success: function (data) {
-                if (data == true) {
-                    $("#typeOfHistory").val(type);
-                    $('#btnPDF').trigger('click');
-                }
-                else {
-                    $("#idOfMessage").show();
-                }
-            },
-            error: function () {
-                $("#idOfErrorMessage").show();
+                $('#divInvoiceHistory').append(data);
+                var HiddenfildTypeIsNull = $("#hdmIsInvoiseHistoryExists").val();
+                if (HiddenfildTypeIsNull == 0) { $("#btnSubmitPDF").hide(); }
+                else { $("#btnSubmitPDF").show(); }
+                //displayUSDOption();
             }
         });
-    };
+    }
 
+    function GeneratePDF() {
+        $("#typeOfHistory").val($("#hdnOfType").val())
+        $('#btnPDF').trigger('click');
+    };
+    
 </script>

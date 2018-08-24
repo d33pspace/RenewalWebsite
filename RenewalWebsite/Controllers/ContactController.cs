@@ -47,12 +47,14 @@ namespace RenewalWebsite.Controllers
         }
 
         [Route("/preference")]
-        public IActionResult Preference(string email)
+        public IActionResult Preference(string email,string salutation)
         {
             try
             {
                 email = Convert.ToString(HttpContext.Request.Query["email"]);
+                salutation = Convert.ToString(HttpContext.Request.Query["salutation"]);
                 ViewBag.email = email;
+                ViewBag.salutation = salutation;
             }
             catch (Exception ex)
             {

@@ -201,4 +201,7 @@
   <data name="Passwordmustbe6andmax100charcterslong" xml:space="preserve">
     <value>The Password must be at least 6 and at max 100 characters long.</value>
   </data>
+  <data name="FullNameRequired" xml:space="preserve">
+    <value>The Full Name field is required.</value>
+  </data>
 </root>

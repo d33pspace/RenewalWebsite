@@ -162,13 +162,16 @@
   <data name="ZIP/Postal Code" xml:space="preserve">
     <value>邮编</value>
   </data>
-  <data name="The address at which you'd like to receive Renewal communications (optional, not related with card verification)" xml:space="preserve">
-    <value>您希望用来与日新中心联络的通讯地址（选填，与信用卡验证无关）</value>
+  <data name="The address at which you'd like to receive Renewal communications(optional,not related with card verification)" xml:space="preserve">
+    <value>您希望接收续订通讯的地址（可选，与卡验证无关）</value>
   </data>
   <data name="Your card information" xml:space="preserve">
     <value>您的卡信息</value>
   </data>
   <data name="Your name as you'd it to appear in our records (required)" xml:space="preserve">
     <value>您希望显示在捐赠记录中的姓名（必填）</value>
+  </data>
+  <data name="The address at which you'd like to receive Renewal communications ( optional, not related with card verification)" xml:space="preserve">
+    <value>您希望接收续订通讯的地址（可选，与卡验证无关）</value>
   </data>
 </root>

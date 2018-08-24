@@ -323,17 +323,16 @@ namespace RenewalWebsite.Controllers
                     ForgotPasswordMailModel mailModel = new ForgotPasswordMailModel();
                     mailModel.Name = user.FullName;
                     mailModel.message = callbackUrl;
-                    string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
 
-                    template = template.Replace("Use this link to reset your password. The link is only valid for 24 hours.", _localizer["Use this link to reset your password. The link is only valid for 24 hours."]);
-                    template = template.Replace("The Renewal Center", _localizer["The Renewal Center"]);
-                    template = template.Replace("Hi", _localizer["Hi"]);
-                    template = template.Replace("You recently requested to reset your password for your", _localizer["You recently requested to reset your password for your"]);
-                    template = template.Replace("account.", _localizer["account."]);
-                    template = template.Replace("Use the button below to reset it.", _localizer["Use the button below to reset it."]);
-                    template = template.Replace("Reset your password", _localizer["Reset your password"]);
-                    template = template.Replace("Thanks,", _localizer["Thanks,"]);
-                    template = template.Replace("Team", _localizer["Team"]);
+                    string template = string.Empty;
+                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                    {
+                        template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
+                    }
+                    else
+                    {
+                        template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMailInChinese", mailModel);
+                    }
                     
                     await _emailSender.SendEmailAsync(model.Email, _localizer["Reset Password"], callbackUrl, user.FullName, template);
                     return View("ForgotPasswordConfirmation");

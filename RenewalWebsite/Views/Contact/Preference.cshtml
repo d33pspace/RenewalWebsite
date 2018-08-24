@@ -6,6 +6,7 @@
 }
 @{
     string email = ViewBag.email;
+    string salutation = ViewBag.salutation;
     string lang = CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName;
 }
 
@@ -20,19 +21,21 @@
     <form>
         <fieldset>
             <div class="form-group row">
-                <div class="col-md-12">
-                    <input type="radio" id="rbChinese" name="language" value="zh" /> @Localizer["Simplified Chinese （简体中文）"]<br />
-                    <input type="radio" id="rbEnglish" name="language" value="en" /> @Localizer["English"]
+                <div class="col-md-4">
+                    <label>@Localizer["Email"]</label>
+                    <input type="text" id="EmailId" class="form-control" placeholder="Email Id" value="@email" />
                 </div>
             </div>
             <div class="form-group row">
                 <div class="col-md-4">
-                    <input type="text" id="EmailId" class="form-control" placeholder="Email Id" value="@email" />
+                    <label>@Localizer["Salutation"]</label>
+                    <input type="text" id="Salutation" class="form-control" placeholder="Salutation(First Name)" value="@salutation" />
                 </div>
-                @*</div>
-                    <div class="form-group row">*@
-                <div class="col-md-4">
-                    <input type="text" id="Salutation" class="form-control" placeholder="Salutation(First Name)" />
+            </div>
+            <div class="form-group row">
+                <div class="col-md-12">
+                    <input type="radio" id="rbChinese" name="language" value="zh" /> @Localizer["Simplified Chinese （简体中文）"]<br />
+                    <input type="radio" id="rbEnglish" name="language" value="en" /> @Localizer["English"]
                 </div>
             </div>
             <div class="form-group row">
