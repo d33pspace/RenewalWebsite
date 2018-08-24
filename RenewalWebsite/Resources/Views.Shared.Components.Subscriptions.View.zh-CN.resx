@@ -136,7 +136,7 @@
     <value>币种</value>
   </data>
   <data name="Frequency" xml:space="preserve">
-    <value>周期</value>
+    <value> 周期</value>
   </data>
   <data name="Manage your subscriptions" xml:space="preserve">
     <value>管理你的定期捐赠</value>
