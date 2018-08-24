@@ -169,7 +169,7 @@
     <value>州</value>
   </data>
   <data name="StateProvince" xml:space="preserve">
-    <value>州/省</value>
+    <value>省</value>
   </data>
   <data name="Zip" xml:space="preserve">
     <value>压缩</value>
