@@ -199,7 +199,7 @@
     <value>查看您宝贵的捐赠历史记录</value>
   </data>
   <data name="You have no card on file." xml:space="preserve">
-    <value>你还没有添加任何信用卡</value>
+    <value>你还没有添加任何信用卡。</value>
   </data>
   <data name="Your account" xml:space="preserve">
     <value>个人主页</value>
