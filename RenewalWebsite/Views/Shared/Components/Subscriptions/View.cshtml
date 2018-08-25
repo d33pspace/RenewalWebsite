@@ -3,9 +3,9 @@
 
 @if (Model.Subscriptions == null || !Model.Subscriptions.Any())
 {
-    <h4>@Localizer["Manage your subscriptions"]</h4>
+    <h4>@Localizer["Manage your recurring gifts"]</h4>
     <hr />
-    <p>@Localizer["You have no subscriptions."]</p>
+    <p>@Localizer["You have no recurring gifts."]</p>
 }
 else
 {
@@ -37,7 +37,7 @@ else
     </div>
 }
 
-<a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Add New Subscription"]</a>
+<a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Make a gift now"]</a>
 <a id="ankDeleteSubscriptionConfirmed" onclick="deleteSubscriptionConfirmFinal(); false" href="#"></a>
 
 <script type="text/javascript">

@@ -120,9 +120,6 @@
   <data name="(Please select a country)" xml:space="preserve">
     <value> 请选择一个国家</value>
   </data>
-  <data name="Add New Subscription" xml:space="preserve">
-    <value>新增一项定期捐赠</value>
-  </data>
   <data name="Address Line 1" xml:space="preserve">
     <value>地址第1行</value>
   </data>
@@ -168,6 +165,9 @@
   <data name="History" xml:space="preserve">
     <value>捐款历史</value>
   </data>
+  <data name="Make a gift now" xml:space="preserve">
+    <value>现在捐赠</value>
+  </data>
   <data name="Manage" xml:space="preserve">
     <value>管理</value>
   </data>
@@ -180,6 +180,9 @@
   <data name="Password:" xml:space="preserve">
     <value>密码：</value>
   </data>
+  <data name="Recurring gifts" xml:space="preserve">
+    <value>定期捐赠</value>
+  </data>
   <data name="Save" xml:space="preserve">
     <value>保存</value>
   </data>
@@ -191,9 +194,6 @@
   </data>
   <data name="State/Province" xml:space="preserve">
     <value>省</value>
-  </data>
-  <data name="Subscriptions" xml:space="preserve">
-    <value>定期捐赠</value>
   </data>
   <data name="View your valuable donation history" xml:space="preserve">
     <value>查看您宝贵的捐赠历史记录</value>

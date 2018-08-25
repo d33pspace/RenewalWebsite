@@ -30,7 +30,7 @@
     <div class="col-md-12">
         <div class="tabbable">
             <ul class="nav nav-tabs" id="account-tabs" role="tablist" style="height: 42px;">
-                <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">@Localizer["Subscriptions"]</a></li>
+                <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">@Localizer["Recurring gifts"]</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card" role="tab">@Localizer["Card"]</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">@Localizer["Details"]</a></li>
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab">@Localizer["Password"]</a></li>
@@ -72,7 +72,7 @@
                     else
                     {
                     <p>@Localizer["You have no card on file."]</p>
-                    <a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Add New Subscription"]</a>
+                    <a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Make a gift now"]</a>
                     }
                 </div>
 
