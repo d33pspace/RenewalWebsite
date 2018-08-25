@@ -204,7 +204,7 @@
   <data name="Your account" xml:space="preserve">
     <value>个人主页</value>
   </data>
-  <data name="Zip/Postal code" xml:space="preserve">
+  <data name="ZIP/Postal code" xml:space="preserve">
     <value>邮编</value>
   </data>
 </root>

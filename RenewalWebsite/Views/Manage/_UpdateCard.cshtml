@@ -55,8 +55,8 @@
             <span asp-validation-for="ExpiryYear" class="text-danger"></span>*@
         <div class="form-group">
             <div class="col-sm-12">
-                <input type="button" value="@Localizer["Edit Card"]" class="btn btn-secondary" onclick="OpenAddNewCard()" />
-                <input type="button" id="delete" value="@Localizer["Delete Card"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
+                <input type="button" value="@Localizer["Edit"]" class="btn btn-secondary" onclick="OpenAddNewCard()" />
+                <input type="button" id="delete" value="@Localizer["Delete"]" class="btn btn-secondary" onclick="deleteAddNewCard()" />
             </div>
         </div>
     </fieldset>
@@ -64,7 +64,7 @@
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <span>For your security, Renewal does not store credit card details. Stripe is our secure payment provider.</span>
+            <span>@Localizer["For your security, Renewal does not store credit card details. Stripe is our secure payment provider."]</span>
         </div>
     </div>
 </div>
