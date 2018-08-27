@@ -150,7 +150,7 @@ namespace RenewalWebsite.Controllers
                         model.Country = "CN";
                     }
                 }
-                
+
                 model.card = new CardViewModel();
                 model.card.Name = user.FullName;
 
@@ -168,6 +168,8 @@ namespace RenewalWebsite.Controllers
                                 model.card.Name = cardSource.Card.Name;
                                 model.card.cardId = cardSource.Card.Id;
                                 model.card.Last4Digit = cardSource.Card.Last4;
+                                model.card.CardBrand = cardSource.Card.Brand;
+                                model.card.CardClass = GetCardClass(model.card.CardBrand);
                             }
                         }
                     }
@@ -573,6 +575,7 @@ namespace RenewalWebsite.Controllers
                 model.showUSD = false;
 
                 List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                int totalhistoryCount = _invoiceHistoryService.GetAllInvoiceHistoryCount(user.Email);
 
                 if (InvoiceHistory.Count > 0)
                 {
@@ -592,6 +595,12 @@ namespace RenewalWebsite.Controllers
                         return PartialView("_PaymentHistory", model);
                     }
                 }
+
+                if (totalhistoryCount == 0)
+                {
+                    model = null;
+                }
+
                 return PartialView("_PaymentHistory", model);
             }
             catch (Exception ex)
@@ -662,16 +671,20 @@ namespace RenewalWebsite.Controllers
             {
                 InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
                 invoiceHistoryModel.showUSDConversion = model.showUSD;
-                
+
                 if (model.typeOfHistory == "AllHistory")
                 {
                     invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetAllInvoiceHistory(user.Email);
+                    invoiceHistoryModel.StartDate = null;
+                    invoiceHistoryModel.EndDate = null;
                 }
                 else if (model.typeOfHistory == "Last12Months")
                 {
                     ToDate = DateTime.Now;
                     FromDate = DateTime.Now.AddMonths(-12);
                     invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                    invoiceHistoryModel.StartDate = FromDate;
+                    invoiceHistoryModel.EndDate = ToDate;
                 }
                 else if (model.typeOfHistory == "ThisYear")
                 {
@@ -679,6 +692,8 @@ namespace RenewalWebsite.Controllers
                     FromDate = new DateTime(year, 1, 1);
                     ToDate = new DateTime(year, 12, 31);
                     invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                    invoiceHistoryModel.StartDate = FromDate;
+                    invoiceHistoryModel.EndDate = ToDate;
                 }
                 else if (model.typeOfHistory == "LastYear")
                 {
@@ -686,6 +701,8 @@ namespace RenewalWebsite.Controllers
                     FromDate = new DateTime(previousYear.Year, 1, 1);
                     ToDate = new DateTime(previousYear.Year, 12, 31);
                     invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
+                    invoiceHistoryModel.StartDate = FromDate;
+                    invoiceHistoryModel.EndDate = ToDate;
                 }
 
                 if (invoiceHistoryModel.InvoiceHistory.Count > 0)
@@ -1072,7 +1089,7 @@ namespace RenewalWebsite.Controllers
                 {
                     if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
                     {
-                        AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("MMMM d, yyyy", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);    
+                        AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("MMMM d, yyyy", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);
                     }
                     else
                     {
@@ -1532,5 +1549,32 @@ namespace RenewalWebsite.Controllers
             return Json(result);
         }
 
+        /// <summary>
+        /// Get card image class by card
+        /// </summary>
+        /// <param name="cardBrand">Card brand</param>
+        /// <returns>Returns the reponse type of<see cref="string"/></returns>
+        public static string GetCardClass(string cardBrand)
+        {
+            switch (cardBrand)
+            {
+                case "Visa":
+                    return "ccFormatMonitor cc_type_vs";
+                case "MasterCard":
+                    return "ccFormatMonitor cc_type_mc";
+                case "American Express":
+                    return "ccFormatMonitor cc_type_ax";
+                case "Discover":
+                    return "ccFormatMonitor cc_type_dis";
+                case "Diners Club":
+                    return "ccFormatMonitor cc_type_dci";
+                case "JCB":
+                    return "ccFormatMonitor cc_type_jc";
+                case "UnionPay":
+                    return "ccFormatMonitor cc_type_union";
+                default:
+                    return "ccFormatMonitor cc_type_unknown";
+            }
+        }
     }
 }

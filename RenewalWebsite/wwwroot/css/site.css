@@ -94,6 +94,7 @@ a.styled-link, p a {
     border-bottom: 2px solid #d11241;
     font-family: 'dpt65',Arial, Helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
     /*font-family: inherit;*/
+    padding: 0px 5px 0px 5px;
 }
 
     a.styled-link:hover, p a:hover {

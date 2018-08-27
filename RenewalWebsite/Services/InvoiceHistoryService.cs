@@ -39,5 +39,17 @@ namespace RenewalWebsite.Services
                 return null;
             }
         }
+
+        public int GetAllInvoiceHistoryCount(string Email)
+        {
+            try
+            {
+                return _dbContext.InvoiceHistory.Where(a => a.Email.ToLower().Equals(Email.ToLower())).Count();
+            }
+            catch (Exception)
+            {
+                return 0;
+            }
+        }
     }
 }

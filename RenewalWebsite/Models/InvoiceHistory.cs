@@ -11,6 +11,8 @@ namespace RenewalWebsite.Models
         public bool displayConversion { get; set; }
         public bool showUSDOption { get; set; }
         public int Type { get; set; }
+        public DateTime? StartDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public List<InvoiceHistory> InvoiceHistory { get; set; }
     }
 

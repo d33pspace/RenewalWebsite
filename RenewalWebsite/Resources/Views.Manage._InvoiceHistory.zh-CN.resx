@@ -180,4 +180,10 @@
   <data name="Wire" xml:space="preserve">
     <value>电汇</value>
   </data>
+  <data name="A record of your giving from" xml:space="preserve">
+    <value>你的捐赠记录</value>
+  </data>
+  <data name="to" xml:space="preserve">
+    <value>至</value>
+  </data>
 </root>

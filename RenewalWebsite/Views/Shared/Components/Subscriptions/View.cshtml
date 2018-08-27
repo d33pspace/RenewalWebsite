@@ -38,15 +38,24 @@ else
 }
 
 <a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Add New Subscription"]</a>
-<a id="ankDeleteSubscriptionConfirmed" onclick="deleteSubscriptionConfirmFinal(); false" href="#"></a>
+@*<a id="ankDeleteSubscriptionConfirmed" onclick="deleteSubscriptionConfirmFinal(); false" href="#"></a>*@
 
 <script type="text/javascript">
     function deleteSubscription(item) {
-        var id = $(item).attr("data-ajax-value");
-        deleteSubscriptionConfirm(id);
+        var result = confirm("@Localizer["Are you sure you want to cancel this subscription?"]");
+        if (result) {
+            //Logic to delete the item
+            var id = $(item).attr("data-ajax-value");
+            window.location = "/Subscription/Delete?subscriptionId=" + id;
+        }
+        else {
+            return;
+        }
+        //var id = $(item).attr("data-ajax-value");
+        //deleteSubscriptionConfirm(id);
     };
 
-    function deleteSubscriptionConfirm(id) {
+    @*function deleteSubscriptionConfirm(id) {
         $("#ankDeleteSubscriptionConfirmed").attr("data-id", id);
          $.confirm({
             title: "@Localizer["warning"]",
@@ -71,10 +80,10 @@ else
             }
         });
         //ConfirmMsg(id, "ankDeleteSubscriptionConfirmed", "@Localizer["warning"]", "@Localizer["Are you sure you want to cancel this subscription?"]")
-    }
+    }*@
 
-    function deleteSubscriptionConfirmFinal() {
-        id = $("#ankDeleteSubscriptionConfirmed").attr("data-id");
-        window.location = "../Subscription/Delete?subscriptionId=" + id;
-    };
+    //function deleteSubscriptionConfirmFinal() {
+    //    id = $("#ankDeleteSubscriptionConfirmed").attr("data-id");
+    //    window.location = "../Subscription/Delete?subscriptionId=" + id;
+    //};
 </script>

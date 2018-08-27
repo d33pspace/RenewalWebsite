@@ -11,5 +11,7 @@ namespace RenewalWebsite.Services
         List<InvoiceHistory> GetInvoiceHistory(DateTime FromDate, DateTime ToDate, string Email);
 
         List<InvoiceHistory> GetAllInvoiceHistory(string Email);
+
+        int GetAllInvoiceHistoryCount(string Email);
     }
 }

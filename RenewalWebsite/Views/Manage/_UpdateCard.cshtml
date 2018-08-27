@@ -8,7 +8,7 @@
             <label class="col-sm-3 control-label">@Localizer["Card Number"]</label>
             <div class="col-sm-4">
                 <div class="input-group">
-                    <input type="text" readonly class="ccFormatMonitor form-control cc_type_unknown" asp-for="Last4Digit" value="****@Model.Last4Digit" />
+                    <input type="text" readonly class="form-control" asp-for="Last4Digit" value="****@Model.Last4Digit" />
                     <p class="well" style="margin-top:5px;margin-bottom:0px;margin-left:5px;"></p>
                 </div>
             </div>
@@ -79,6 +79,8 @@
 
         var value = (year).toString();
         $('#UpdateExpiryYear').val(parseInt(value.slice(-2)));
+        var cardClass = "@Model.CardClass";
+        $('#Last4Digit').addClass(cardClass);
     });
 
     function setExpiryYear(item) {
@@ -86,7 +88,7 @@
         $('#ExpiryYear').val(selectedVal);
     }
 
-    function fun_success(data) {        
+    function fun_success(data) {
         if (data.status == "1") {
             window.location = "/Manage?tabId=1";
         }
@@ -123,8 +125,16 @@
     }
 
     function deleteAddNewCard() {
-
-        var warning =  "@Localizer["warning"]";
+        var result = confirm("@Localizer["Are you sure you want to remove this card?"]");
+        if (result) {
+            //Logic to delete the card
+            $("#update").trigger('submit');
+        }
+        else {
+            return;
+        }
+    };
+        @*var warning =  "@Localizer["warning"]";
         var content = "@Localizer["Are you sure you want to remove this card?"]";
         var Confirm = "@Localizer["Confirm"]";
         var cancel = "@Localizer["cancel"]";
@@ -141,7 +151,7 @@
                     text: Confirm,
                     btnClass: 'btn-red',
                     action: function () {
-                        
+
                        // document.getElementById("delete").click();
                         $("#update").trigger('submit');
                         $.ajax({
@@ -161,7 +171,7 @@
                 }
             }
         });
-        };
+        };*@
 
 
 </script>

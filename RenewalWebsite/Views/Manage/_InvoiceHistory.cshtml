@@ -1,6 +1,12 @@
 ﻿@model RenewalWebsite.Models.InvoiceHistoryModel
 @using System.Globalization
 
+@if (Model.StartDate != null && Model.EndDate != null)
+{
+    <div class="row">
+        <span>@Localizer["A record of your giving from"] @Model.StartDate.Value.ToString("MMMM dd, yyyy") @Localizer["to"] @Model.EndDate.Value.ToString("MMMM dd, yyyy")</span>
+    </div>
+}
 
 @if (Model == null || !Model.InvoiceHistory.Any())
 {
@@ -9,88 +15,90 @@
 }
 else
 {
-    <div style="margin-top:15px;">
-        <table class="table table-bordered table-hover table-responsive" width="100%">
-            <thead>
-                <tr>
-                    <th>@Localizer["Date"]</th>
-                    <th>@Localizer["Currency"]</th>
-                    <th>@Localizer["Amount"]</th>
-                    @if (Model.displayConversion == true)
-                    {
-                        <th>@Localizer["Exchange Rate"]</th>
-                    }
-                    @if (Model.showUSDConversion == true)
-                    {
-                        <th>@Localizer["USD Amount"]</th>
-                    }
-                    <th>@Localizer["Method"]</th>
-                    <th>@Localizer["Transaction Reference"]</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                @foreach (var subscription in Model.InvoiceHistory)
-                {
-                    <tr class="CellWithComment">
-                        <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@(subscription.Date != null ? subscription.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "") </td>
-                        <td style="vertical-align:middle;color:black;" class="text-center CellWithComment">@Localizer[subscription.Currency] </td>
-                        <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(string.Format("{0:C}", subscription.Amount).Replace("$", "").Replace("¥", "")) </td>
+    <div class="row">
+        <div style="margin-top:15px;">
+            <table class="table table-bordered table-hover table-responsive" width="100%">
+                <thead>
+                    <tr>
+                        <th>@Localizer["Date"]</th>
+                        <th>@Localizer["Currency"]</th>
+                        <th>@Localizer["Amount"]</th>
                         @if (Model.displayConversion == true)
                         {
-                            <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(subscription.ExchangeRate == null ? "" : string.Format("{0:C3}", subscription.ExchangeRate).Replace("$", "").Replace("¥", ""))</td>
+                            <th>@Localizer["Exchange Rate"]</th>
                         }
                         @if (Model.showUSDConversion == true)
                         {
-                            <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(string.Format("{0:C}", subscription.USDAmount).Replace("$", "").Replace("¥", "")) </td>
+                            <th>@Localizer["USD Amount"]</th>
                         }
+                        <th>@Localizer["Method"]</th>
+                        <th>@Localizer["Transaction Reference"]</th>
+                    </tr>
+                </thead>
 
-                        <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@Localizer[subscription.Method]</td>
-                        <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@subscription.InvoiceNumber<span class="CellComment" style="color:black;">@subscription.Description</span></td>
-                    </tr>
-                }
-            </tbody>
-            <tfoot>
-                @if (Model.Type == 1)
-                {
-                    <tr>
-                        <td colspan="4" class="text-right"><strong>@Localizer["Total"]</strong></td>
-                        <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.USDAmount)</strong></td>
-                        <td colspan="2"></td>
-                    </tr>
-                }
-                else if (Model.Type == 2)
-                {
+                <tbody>
+                    @foreach (var subscription in Model.InvoiceHistory)
+                    {
+                        <tr class="CellWithComment">
+                            <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@(subscription.Date != null ? subscription.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "") </td>
+                            <td style="vertical-align:middle;color:black;" class="text-center CellWithComment">@Localizer[subscription.Currency] </td>
+                            <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(string.Format("{0:C}", subscription.Amount).Replace("$", "").Replace("¥", "")) </td>
+                            @if (Model.displayConversion == true)
+                            {
+                                <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(subscription.ExchangeRate == null ? "" : string.Format("{0:C3}", subscription.ExchangeRate).Replace("$", "").Replace("¥", ""))</td>
+                            }
+                            @if (Model.showUSDConversion == true)
+                            {
+                                <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(string.Format("{0:C}", subscription.USDAmount).Replace("$", "").Replace("¥", "")) </td>
+                            }
 
-                    <tr>
-                        <td colspan="2" class="text-right"><strong>@Localizer["Total"]</strong></td>
-                        <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.Amount)</strong></td>
-                        <td colspan="2"></td>
-                    </tr>
-                }
-                else
-                {
-                    if (Model.displayConversion == true)
+                            <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@Localizer[subscription.Method]</td>
+                            <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@subscription.InvoiceNumber<span class="CellComment" style="color:black;">@subscription.Description</span></td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    @if (Model.Type == 1)
                     {
                         <tr>
-                            <td colspan="2" class="text-right"><strong>Total</strong></td>
-                            <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.Amount)</strong></td>
-                            <td colspan="2" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.USDAmount)</strong></td>
+                            <td colspan="4" class="text-right"><strong>@Localizer["Total"]</strong></td>
+                            <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.USDAmount)</strong></td>
                             <td colspan="2"></td>
                         </tr>
                     }
-                    else
+                    else if (Model.Type == 2)
                     {
+
                         <tr>
                             <td colspan="2" class="text-right"><strong>@Localizer["Total"]</strong></td>
                             <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.Amount)</strong></td>
                             <td colspan="2"></td>
                         </tr>
                     }
-                }
-            </tfoot>
-        </table>
+                    else
+                    {
+                        if (Model.displayConversion == true)
+                        {
+                            <tr>
+                                <td colspan="2" class="text-right"><strong>Total</strong></td>
+                                <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.Amount)</strong></td>
+                                <td colspan="2" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.USDAmount)</strong></td>
+                                <td colspan="2"></td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr>
+                                <td colspan="2" class="text-right"><strong>@Localizer["Total"]</strong></td>
+                                <td colspan="1" class="text-right"><strong>@Model.InvoiceHistory.Sum(a => a.Amount)</strong></td>
+                                <td colspan="2"></td>
+                            </tr>
+                        }
+                    }
+                </tfoot>
+            </table>
 
+        </div>
     </div>
     <span class="tooltip tooltip-effect-1"><span class="tooltip-item">Euclid</span><span class="tooltip-content clearfix"><img src="img/Euclid.png" /><span class="tooltip-text"><strong>Euclid</strong>, also known as Euclid of Alexandria, was a Greek mathematician, often referred to as the "Father of Geometry". He was active in Alexandria during the reign of Ptolemy I. <a href="http://en.wikipedia.org/wiki/Euclid">Wikipedia</a></span></span></span>
 

@@ -25,6 +25,10 @@ namespace RenewalWebsite.Models.ManageViewModels
 
         [Range(17, 30, ErrorMessageResourceName = "InvalidYear", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryYear { get; set; }
+
+        public string CardBrand { get; set; }
+
+        public string CardClass { get; set; }
     }
 
     public class NewCardViewModel

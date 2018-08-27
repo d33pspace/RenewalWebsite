@@ -120,11 +120,20 @@
   <data name="Email" xml:space="preserve">
     <value>邮箱</value>
   </data>
+  <data name="Facebook" xml:space="preserve">
+    <value>脸书</value>
+  </data>
   <data name="Forgot your password?" xml:space="preserve">
     <value>忘记密码</value>
   </data>
+  <data name="Google" xml:space="preserve">
+    <value>谷歌</value>
+  </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
+  </data>
+  <data name="Microsoft" xml:space="preserve">
+    <value>微软</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密码</value>
