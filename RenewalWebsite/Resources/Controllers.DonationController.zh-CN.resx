@@ -136,7 +136,7 @@
     <value>您的卡的到期月份无效。</value>
   </data>
   <data name="monthly" xml:space="preserve">
-    <value>每月一次</value>
+    <value>每月</value>
   </data>
   <data name="one time" xml:space="preserve">
     <value>一次</value>
