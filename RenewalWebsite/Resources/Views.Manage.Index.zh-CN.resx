@@ -121,10 +121,10 @@
     <value> 请选择一个国家</value>
   </data>
   <data name="Address Line 1" xml:space="preserve">
-    <value>地址第1行</value>
+    <value>县区、街道</value>
   </data>
   <data name="Address Line 2" xml:space="preserve">
-    <value>地址第2行</value>
+    <value>详细地址</value>
   </data>
   <data name="Card" xml:space="preserve">
     <value>信用卡</value>
@@ -157,7 +157,7 @@
     <value>第三方账号：</value>
   </data>
   <data name="Full Name" xml:space="preserve">
-    <value>全名</value>
+    <value>姓名</value>
   </data>
   <data name="Gifts made by credit or debit card usually appear here within one hour, other donation methods take longer. If your gift doesn't appear here within five business days, please contact us at" xml:space="preserve">
     <value>通过信用卡或借记卡提供的礼品通常会在一小时内出现在此处，其他捐赠方式则需要更长时间。 如果您的礼物未在五个工作日内出现，请与我们联系</value>

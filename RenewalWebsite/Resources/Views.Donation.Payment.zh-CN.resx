@@ -127,7 +127,7 @@
     <value>详细地址</value>
   </data>
   <data name="City" xml:space="preserve">
-    <value>城市</value>
+    <value>市</value>
   </data>
   <data name="Debit/Credit Card Number" xml:space="preserve">
     <value>卡号</value>
@@ -151,7 +151,7 @@
     <value>安全码</value>
   </data>
   <data name="State/Province" xml:space="preserve">
-    <value>省份</value>
+    <value>省</value>
   </data>
   <data name="Submit Payment" xml:space="preserve">
     <value>提交付款</value>

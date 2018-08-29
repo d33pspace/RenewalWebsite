@@ -25,7 +25,7 @@
         <form asp-action="CampaignRePayment" asp-controller="Donation" method="POST" role="form">
             <fieldset>
                 <legend>Please enter your details below:</legend>
-                <legend class="Subtitle">@Localizer["Your name as you'd it to appear in our record (required)"]</legend>
+                <legend class="Subtitle">@Localizer["Your name as you'd it to appear in our records (required)"]</legend>
                 <legend class="Subtitle">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
                 <div asp-validation-summary="All" class="text-danger"></div>
                 <input hidden asp-for="Frequency" />
