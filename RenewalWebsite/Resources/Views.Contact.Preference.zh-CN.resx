@@ -129,7 +129,7 @@
   <data name="Preferences" xml:space="preserve">
     <value>设置</value>
   </data>
-  <data name="Salutation" xml:space="preserve">
+  <data name="Salutation/first name" xml:space="preserve">
     <value>怎么称呼您？</value>
   </data>
   <data name="Select your communications preferences and submit to confirm." xml:space="preserve">
