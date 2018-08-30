@@ -117,40 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Are you sure you want to remove this card?" xml:space="preserve">
-    <value>您确定要删除此卡吗？</value>
+  <data name="Click here to log in." xml:space="preserve">
+    <value>点击此处登录。</value>
   </data>
-  <data name="cancel" xml:space="preserve">
-    <value>取消</value>
+  <data name="View Invoice History Confirmation" xml:space="preserve">
+    <value>查看发票历史记录确认</value>
   </data>
-  <data name="Card Number" xml:space="preserve">
-    <value>卡号</value>
-  </data>
-  <data name="Confirm" xml:space="preserve">
-    <value>确认</value>
-  </data>
-  <data name="Delete &amp; Add New Card" xml:space="preserve">
-    <value>删除 / 加新的</value>
-  </data>
-  <data name="Delete" xml:space="preserve">
-    <value>删除</value>
-  </data>
-  <data name="Edit" xml:space="preserve">
-    <value>编辑</value>
-  </data>
-  <data name="Expiration Date" xml:space="preserve">
-    <value>有效期</value>
-  </data>
-  <data name="Something went wrong, please try again." xml:space="preserve">
-    <value>出了点问题，请再试一次。</value>
-  </data>
-  <data name="warning" xml:space="preserve">
-    <value>警告</value>
-  </data>
-  <data name="Active" xml:space="preserve">
-    <value>活性</value>
-  </data>
-  <data name="For your security, Renewal does not store credit card details. Stripe is our secure payment provider." xml:space="preserve">
-    <value>为了您的安全, 日新中心不会存储信用卡详细信息。Stripe是我们的安全支付提供商。</value>
+  <data name="Your email has been confirmed. Please" xml:space="preserve">
+    <value>您的电子邮件已经确认。 请</value>
   </data>
 </root>

@@ -197,6 +197,10 @@ a.styled-link, p a {
     display: inline;
 }
 
+.Loginpar-p-r {
+    padding-right: 5px;
+}
+
 @media only screen and (min-width: 992px) {
     #mainNav {
         border-bottom: 1px solid transparent;
@@ -1532,6 +1536,10 @@ input#CustomAmount {
     .btn-vertical {
         display: grid;
     }
+
+    .Loginpar-p-r {
+        padding-right: 0px;
+    }
 }
 
 .blockquote-winter {
@@ -1583,10 +1591,6 @@ input#CustomAmount {
 
 .Index-p-r {
     padding-right: 23px;
-}
-
-.Loginpar-p-r {
-    padding-right: 5px;
 }
 
 .ccFormatMonitor p::after {

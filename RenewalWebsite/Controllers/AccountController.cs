@@ -226,11 +226,27 @@ namespace RenewalWebsite.Controllers
             if (result.IsLockedOut) { return View("Lockout"); }
             else
             {
-                // If the user does not have an account, then ask the user to create an account.
-                ViewData["ReturnUrl"] = returnUrl;
-                ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
+                var user = new ApplicationUser { UserName = email, Email = email, EmailConfirmed = true };
+                var loginResult = await _userManager.CreateAsync(user);
+                if (loginResult.Succeeded)
+                {
+                    loginResult = await _userManager.AddLoginAsync(user, info);
+                    if (loginResult.Succeeded)
+                    {
+                        await _signInManager.SignInAsync(user, isPersistent: false);
+                        return RedirectToLocal(returnUrl);
+                    }
+                }
+                else
+                {
+                    // If the user does not have an account, then ask the user to create an account.
+                    ViewData["ReturnUrl"] = returnUrl;
+                    ViewData["LoginProvider"] = info.LoginProvider;
+                    AddErrorsForRegisterAction(loginResult);
+                    return View("ExternalLoginConfirmation", new ExternalLoginConfirmationViewModel { Email = email });
+                }
+                return RedirectToLocal(returnUrl);
             }
         }
 
@@ -333,7 +349,7 @@ namespace RenewalWebsite.Controllers
                     {
                         template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMailInChinese", mailModel);
                     }
-                    
+
                     await _emailSender.SendEmailAsync(model.Email, _localizer["Reset Password"], callbackUrl, user.FullName, template);
                     return View("ForgotPasswordConfirmation");
                 }
@@ -572,7 +588,7 @@ namespace RenewalWebsite.Controllers
                         }
                     }
 
-                    if(error.Description.Contains("Invalid token"))
+                    if (error.Description.Contains("Invalid token"))
                     {
                         error.Description = _localizer["Invalid token."];
                     }
@@ -581,7 +597,7 @@ namespace RenewalWebsite.Controllers
                 ModelState.AddModelError(string.Empty, error.Description);
             }
         }
-        
+
         private IActionResult RedirectToLocal(string returnUrl)
         {
             if (Url.IsLocalUrl(returnUrl))

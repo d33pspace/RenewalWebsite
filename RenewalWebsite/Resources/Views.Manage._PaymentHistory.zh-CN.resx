@@ -147,6 +147,9 @@
   <data name="Search" xml:space="preserve">
     <value>搜索</value>
   </data>
+  <data name="Send confirmation link" xml:space="preserve">
+    <value>Send confirmation link</value>
+  </data>
   <data name="Show USD conversion" xml:space="preserve">
     <value>显示美元转换</value>
   </data>
@@ -158,6 +161,9 @@
   </data>
   <data name="To Date is required" xml:space="preserve">
     <value>无效的日期</value>
+  </data>
+  <data name="To use this feature, please first confirm your email address" xml:space="preserve">
+    <value>To use this feature, please first confirm your email address</value>
   </data>
   <data name="To:" xml:space="preserve">
     <value>报告终止日期</value>

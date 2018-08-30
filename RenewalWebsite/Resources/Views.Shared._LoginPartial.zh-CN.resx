@@ -126,6 +126,9 @@
   <data name="Log out" xml:space="preserve">
     <value>注销</value>
   </data>
+  <data name="Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
   <data name="Register" xml:space="preserve">
     <value>注册</value>
   </data>

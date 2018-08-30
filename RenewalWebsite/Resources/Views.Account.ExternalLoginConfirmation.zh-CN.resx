@@ -141,4 +141,7 @@
   <data name="You've successfully authenticated with" xml:space="preserve">
     <value>您已经成功通过</value>
   </data>
+  <data name="Log in" xml:space="preserve">
+    <value>登陆'</value>
+  </data>
 </root>
