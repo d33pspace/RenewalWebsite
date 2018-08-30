@@ -1,10 +1,15 @@
 ﻿@model RenewalWebsite.Models.InvoiceHistoryModel
 @using System.Globalization
+@using RenewalWebsite.Services
+@inject ICurrencyService CurrencyService
+@{
+    var culture = CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower();
+}
 
 @if (Model.StartDate != null && Model.EndDate != null)
 {
     <div class="row">
-        <span>@Localizer["A record of your giving from"] @Model.StartDate.Value.ToString("MMMM dd, yyyy") @Localizer["to"] @Model.EndDate.Value.ToString("MMMM dd, yyyy")</span>
+        <span>@Localizer["A record of your giving from"] @(culture == "en" ? Model.StartDate.Value.ToString("MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")) : Model.StartDate.Value.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-US"))) @Localizer["to"] @(culture == "en" ? Model.EndDate.Value.ToString("MMMM dd, yyyy", new System.Globalization.CultureInfo("en-US")) : Model.EndDate.Value.ToString("yyyy-MM-dd", new System.Globalization.CultureInfo("en-US")))</span>
     </div>
 }
 
@@ -40,8 +45,8 @@ else
                     @foreach (var subscription in Model.InvoiceHistory)
                     {
                         <tr class="CellWithComment">
-                            <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@(subscription.Date != null ? subscription.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "") </td>
-                            <td style="vertical-align:middle;color:black;" class="text-center CellWithComment">@Localizer[subscription.Currency] </td>
+                            <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@(subscription.Date != null ? (culture == "en" ? subscription.Date.ToString("MMMM dd, yyyy", new CultureInfo("en-US")) : subscription.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US"))) : "") </td>
+                            <td style="vertical-align:middle;color:black;" class="text-center CellWithComment">@subscription.Currency</td>
                             <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(string.Format("{0:C}", subscription.Amount).Replace("$", "").Replace("¥", "")) </td>
                             @if (Model.displayConversion == true)
                             {

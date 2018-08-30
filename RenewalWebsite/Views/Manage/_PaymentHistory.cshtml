@@ -1,6 +1,9 @@
 ﻿@model RenewalWebsite.Models.SearchViewModel
+@inject UserManager<ApplicationUser> UserManager
+
 @{
     Layout = null;
+    ApplicationUser user = await UserManager.GetUserAsync(User);
 }
 
 <link href="~/js/daterangepicker/daterangepicker.css" rel="stylesheet" />
@@ -10,62 +13,83 @@
 
 <input type="hidden" id="hdnOfType" name="TabId" value="Last12Months" />
 
-@if (Model != null)
+@if (user.HistoryView == true)
 {
-    <form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
-        @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
-        @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
-        @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
-        @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
+    @if (Model != null)
+    {
+        <form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
+            @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
+            @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
+            @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
+            @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
 
-        <div class="form-row">
+            <div class="form-row">
+                <div class="col-md-12">
+                    <div id="divInvoiceHistory">
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
+                    <input type="button" id="btnSubmitPDF" style="display:none" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
+                    <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
+                </div>
+            </div>
+
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-row">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GenerateData('Last12Months')" />
+                    <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GenerateData('ThisYear')" />
+                    <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GenerateData('LastYear')" />
+                    <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GenerateData('AllHistory')" />
+                </div>
+            </div>
+
+            <div class="form-row" id="idOfMessage" style="display:none">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <span style="color:#d11241">@Localizer["Requested data not available, Try another."]</span>
+                </div>
+            </div>
+            <div class="form-row" id="idOfErrorMessage" style="display:none">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <span style="color:#d11241">@Localizer["Something went wrong, while fetching history."]</span>
+                </div>
+            </div>
+
+
+        </form>
+
+        <div class="row">
             <div class="col-md-12">
-                <div id="divInvoiceHistory">
-
+                <div class="form-group col-md-6" id="divUSD" style="display:none;">
+                    <input type="checkbox" id="usd" name="usd" onclick="changeValue(this)" /> @Localizer["Show USD conversion"]
+                    @Html.ValidationMessageFor(model => model.showUSD)
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-sm-offset-4 col-sm-8">
-                <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
-                <input type="button" id="btnSubmitPDF" style="display:none" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
-                <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
+    }
+}
+else
+{
+    <div class="row">
+        <div class="col-md-12">
+            <div id="divConfirmation" class="alert alert-danger" style="display:none;">
             </div>
         </div>
-
-        <div asp-validation-summary="All" class="text-danger"></div>
-        <div class="form-row">
-            <div class="col-sm-offset-4 col-sm-8">
-                <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GenerateData('Last12Months')" />
-                <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GenerateData('ThisYear')" />
-                <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GenerateData('LastYear')" />
-                <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GenerateData('AllHistory')" />
-            </div>
-        </div>
-
-        <div class="form-row" id="idOfMessage" style="display:none">
-            <div class="col-sm-offset-4 col-sm-8">
-                <span style="color:#d11241">@Localizer["Requested data not available, Try another."]</span>
-            </div>
-        </div>
-        <div class="form-row" id="idOfErrorMessage" style="display:none">
-            <div class="col-sm-offset-4 col-sm-8">
-                <span style="color:#d11241">@Localizer["Something went wrong, while fetching history."]</span>
-            </div>
-        </div>
-
-
-    </form>
-
-
+    </div>
 
     <div class="row">
         <div class="col-md-12">
-            <div class="form-group col-md-6" id="divUSD" style="display:none;">
-                <input type="checkbox" id="usd" name="usd" onclick="changeValue(this)" /> @Localizer["Show USD conversion"]
-                @Html.ValidationMessageFor(model => model.showUSD)
-            </div>
+            <p>@Localizer["To use this feature, please first confirm your email address"]</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <input type="button" id="btnSendConfirmation" class="btn btn-default" value="@Localizer["Send confirmation link"]" onclick="SendConfirmationMail()" />
         </div>
     </div>
 }
@@ -135,4 +159,26 @@
         $('#btnPDF').trigger('click');
     };
 
+
+    function SendConfirmationMail() {
+        $.ajax({
+            url: "/Manage/SendInvoiceHistoryConfirmation",
+            data: {},
+            type: 'GET',
+            success: function (data) {
+                if (data.status == "0") {
+                    $('#divConfirmation').show();
+                    $('#divConfirmation').removeClass('alert alert-success');
+                    $('#divConfirmation').addClass('alert alert-danger');
+                    $('#divConfirmation').text(data.data);
+                }
+                else {
+                    $('#divConfirmation').show();
+                    $('#divConfirmation').removeClass('alert alert-danger');
+                    $('#divConfirmation').addClass('alert alert-success');
+                    $('#divConfirmation').text(data.data);
+                }
+            }
+        });
+    }
 </script>

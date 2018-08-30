@@ -213,4 +213,10 @@
   <data name="Renewal giving record" xml:space="preserve">
     <value>日新中心捐赠记录</value>
   </data>
+  <data name="Link for view invoice history sent successfully." xml:space="preserve">
+    <value>成功发送的查看发票历史记录的链接</value>
+  </data>
+  <data name="View Invoice History Confirmation" xml:space="preserve">
+    <value>查看发票历史记录确认</value>
+  </data>
 </root>

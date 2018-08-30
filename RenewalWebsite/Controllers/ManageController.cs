@@ -24,6 +24,7 @@ using iTextSharp.text.pdf;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.Globalization;
+using RenewalWebsite.Models.ViewModels;
 
 namespace RenewalWebsite.Controllers
 {
@@ -44,6 +45,7 @@ namespace RenewalWebsite.Controllers
         private readonly IHostingEnvironment _hostingEnvironment;
         private readonly IStringLocalizer<ManageController> _localizer;
         private readonly ICountryService _countryService;
+        private readonly IViewRenderService _viewRenderService;
         private EventLog log;
 
         public ManageController(
@@ -60,7 +62,8 @@ namespace RenewalWebsite.Controllers
           IHostingEnvironment hostingEnvironment,
           IStringLocalizer<ManageController> localizer,
           ICountryService countryService,
-          CountrySeeder countrySeeder)
+          CountrySeeder countrySeeder,
+          IViewRenderService viewRenderService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -75,6 +78,7 @@ namespace RenewalWebsite.Controllers
             _hostingEnvironment = hostingEnvironment;
             _localizer = localizer;
             _countryService = countryService;
+            _viewRenderService = viewRenderService;
             countrySeeder.Seed();
         }
 
@@ -965,13 +969,13 @@ namespace RenewalWebsite.Controllers
                 PDFHelper pDFHelper = new PDFHelper();
                 if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
                 {
-                    pDFHelper.startDate = FromDate.ToString("MMMM d, yyyy");
-                    pDFHelper.endDate = ToDate.ToString("MMMM d, yyyy");
+                    pDFHelper.startDate = FromDate.ToString("MMMM dd, yyyy", new CultureInfo("en-US"));
+                    pDFHelper.endDate = ToDate.ToString("MMMM dd, yyyy", new CultureInfo("en-US"));
                 }
                 else
                 {
-                    pDFHelper.startDate = FromDate.ToString("yyyy-MM-dd");
-                    pDFHelper.endDate = ToDate.ToString("yyyy-MM-dd");
+                    pDFHelper.startDate = FromDate.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
+                    pDFHelper.endDate = ToDate.ToString("yyyy-MM-dd", new CultureInfo("en-US"));
                 }
                 pDFHelper.fullName = user.FullName;
                 pDFHelper.EmailId = user.Email;
@@ -1089,7 +1093,7 @@ namespace RenewalWebsite.Controllers
                 {
                     if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
                     {
-                        AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("MMMM d, yyyy", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);
+                        AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("MMMM dd, yyyy", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);
                     }
                     else
                     {
@@ -1540,6 +1544,71 @@ namespace RenewalWebsite.Controllers
                 catch (Exception ex)
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
+                    _loggerService.SaveEventLogAsync(log);
+                    result.data = _localizer["Something went wrong, please try again"];
+                    result.status = "0";
+                }
+            }
+
+            return Json(result);
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public async Task<ActionResult> InvoiceHistoryConfirm(ConfirmInvoiceHistoryViewModel confirmInvoiceHistoryViewModel)
+        {
+            try
+            {
+                var user = await _userManager.FindByIdAsync(confirmInvoiceHistoryViewModel.UserId);
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                }
+
+                user.HistoryView = true;
+                await _userManager.UpdateAsync(user);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> SendInvoiceHistoryConfirmation()
+        {
+            ResultModel result = new ResultModel();
+            var user = await GetCurrentUserAsync();
+            if (user != null)
+            {
+                try
+                {
+                    var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+                    string callbackUrl = Url.Action(nameof(InvoiceHistoryConfirm), "Manage", new { UserId = user.Id, Code = code }, protocol: HttpContext.Request.Scheme);
+                    HistoryConfirmationMailModel mailModel = new HistoryConfirmationMailModel();
+                    mailModel.Name = user.FullName;
+                    mailModel.message = callbackUrl;
+
+                    string template = string.Empty;
+                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                    {
+                        template = await _viewRenderService.RenderToStringAsync("Shared/_HistoryConfirmationMail", mailModel);
+                    }
+                    else
+                    {
+                        template = await _viewRenderService.RenderToStringAsync("Shared/_HistoryConfirmationMailInChinese", mailModel);
+                    }
+                    await _emailSender.SendEmailAsync(user.Email, _localizer["View Invoice History Confirmation"], callbackUrl, user.FullName, template);
+                    result.data = _localizer["Link for view invoice history sent successfully."];
+                    result.status = "1";
+                }
+                catch (Exception ex)
+                {
+                    log = new EventLog() { EventId = (int)LoggingEvents.GENERATE_ITEMS, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
                     result.data = _localizer["Something went wrong, please try again"];
                     result.status = "0";

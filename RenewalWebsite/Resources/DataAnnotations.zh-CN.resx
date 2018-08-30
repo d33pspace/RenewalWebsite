@@ -136,7 +136,7 @@
     <value>国家</value>
   </data>
   <data name="ExpirationDate" xml:space="preserve">
-    <value>截止日期</value>
+    <value>有效期</value>
   </data>
   <data name="FullName" xml:space="preserve">
     <value>全名</value>

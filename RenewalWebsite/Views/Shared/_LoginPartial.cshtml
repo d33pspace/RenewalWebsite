@@ -9,7 +9,7 @@
     <form asp-area="" asp-controller="Account" asp-action="Logout" method="post" id="logoutForm" class="ml-auto right">
         <ul class="navbar-nav ml-auto right">
             <li class="nav-item">
-                <a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index" title="Manage">@UserManager.GetUserName(User)</a>
+                <a class="nav-link" asp-area="" asp-controller="Manage" asp-action="Index" title="@Localizer["Manage"]">@UserManager.GetUserName(User)</a>
             </li>
             <li class="nav-item Loginpar-p-r">
                 <a class="nav-link" href="javascript:void(0);" onclick="Logout();" title="@Localizer["Log out"]">@Localizer["Log out"]</a>
