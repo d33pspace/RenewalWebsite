@@ -26,8 +26,8 @@ namespace RenewalWebsite.Models
 
         public string Country { get; set; }
 
-        public virtual IList<Donation> Donations { get; set; }
-
         public bool HistoryView { get; set; }
+
+        public virtual IList<Donation> Donations { get; set; }
     }
 }

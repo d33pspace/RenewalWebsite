@@ -23,6 +23,7 @@ using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Http;
 using RenewalWebsite.Utility;
+using RenewalWebsite.SettingModels;
 
 namespace RenewalWebsite
 {

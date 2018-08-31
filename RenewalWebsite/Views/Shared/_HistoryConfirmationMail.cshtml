@@ -25,7 +25,7 @@
             height: 100%;
             margin: 0;
             line-height: 1.4;
-            background-color: #F2F4F6;
+            background-color: white;
             color: #74787E;
             -webkit-text-size-adjust: none;
         }
@@ -58,7 +58,7 @@
             -premailer-width: 100%;
             -premailer-cellpadding: 0;
             -premailer-cellspacing: 0;
-            background-color: #F2F4F6;
+            background-color: white;
             border: solid 1px;
             border-color: lavender;
         }
@@ -397,14 +397,14 @@
     </style>
 </head>
 <body>
-    <span class="preheader">Use this link to view invoice history.</span>
+    <span class="preheader">@Model.ValidHours</span>
     <table class="email-wrapper" width="100%" cellpadding="0" cellspacing="0">
         <tr>
             <td align="center">
                 <table class="email-content" width="100%" cellpadding="0" cellspacing="0">
                     <tr>
                         <td class="email-masthead">
-                            @Localizer["The Renewal Center"]
+                            <img src="https://www.renewal.org.cn/images/renewal-logo@2x.png" width="125" />
                         </td>
                     </tr>
                     <!-- Email Body -->
@@ -414,8 +414,8 @@
                                 <!-- Body content -->
                                 <tr>
                                     <td class="content-cell">
-                                        <h1>@Localizer["Hi"] @Model.Name,</h1>
-                                        <p>@Localizer["You recently requested to confirmation for view invoice history for your The Renewal Center account.Use the button below to view invoice history."]</p>
+                                        <h1>@Model.Hi @Model.Name,</h1>
+                                        <p>@Model.HeaderInformation</p>
                                         <!-- Action -->
                                         <table class="body-action" align="center" width="100%" cellpadding="0" cellspacing="0">
                                             <tr>
@@ -427,8 +427,10 @@
                                                             <td align="center">
                                                                 <table border="0" cellspacing="0" cellpadding="0">
                                                                     <tr>
-                                                                        <td>
-                                                                            <a href="@Model.message" class="button button--green" target="_blank">@Localizer["Confirm view invoice history"]</a>
+                                                                        <td align="center" bgcolor="#d11241" style="-webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; color: #ffffff; display: block;">
+                                                                            <a href="@Model.message" style=" font-weight: bold; text-decoration: none; text-transform: uppercase; width:100%; display:inline-block">
+                                                                                <span style="color: #FFFFFF">@Model.ConfirmationLink</span>
+                                                                            </a>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -439,8 +441,8 @@
                                             </tr>
                                         </table>
                                         <p>
-                                            @Localizer["Thanks,"]
-                                            <br />@Localizer["The Renewal Center Team"]
+                                            @Model.Thanks
+                                            <br />@Model.RenewalTeam
                                         </p>
                                     </td>
                                 </tr>

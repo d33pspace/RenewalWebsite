@@ -2,6 +2,7 @@
 using RenewalWebsite.Data;
 using RenewalWebsite.Helpers;
 using RenewalWebsite.Models;
+using RenewalWebsite.SettingModels;
 using Stripe;
 using System;
 using System.Collections.Generic;

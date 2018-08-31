@@ -8,15 +8,15 @@ namespace RenewalWebsite.Models.ManageViewModels
 {
     public class SetPasswordViewModel
     {
-        [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+        [Required(ErrorMessageResourceName = "PasswordRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [StringLength(100, ErrorMessageResourceName = "Passwordmustbe6andmax100charcterslong", ErrorMessageResourceType = typeof(Resources.DataAnnotations), MinimumLength = 6)]
         [DataType(DataType.Password)]
-        [Display(Name = "New password")]
+        [Display(Name = "Password", ResourceType = typeof(Resources.DataAnnotations))]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
-        [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Display(Name = "ConfirmPassword", ResourceType = typeof(Resources.DataAnnotations))]
+        [Compare("NewPassword", ErrorMessageResourceName = "PasswordAndConfirmPasswordNotMatch", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string ConfirmPassword { get; set; }
     }
 }

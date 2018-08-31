@@ -15,7 +15,7 @@
             @for (var index = 0; index < Model.CurrentLogins.Count; index++)
             {
                 <tr>
-                    <td>@Model.CurrentLogins[index].LoginProvider</td>
+                    <td>@Localizer[Model.CurrentLogins[index].LoginProvider]</td>
                     <td>
                         @if ((bool)ViewData["ShowRemoveButton"])
                         {

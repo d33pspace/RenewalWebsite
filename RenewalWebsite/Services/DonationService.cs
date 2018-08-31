@@ -9,6 +9,7 @@ using RenewalWebsite.Data;
 using RenewalWebsite.Helpers;
 using Stripe;
 using System;
+using RenewalWebsite.SettingModels;
 
 namespace RenewalWebsite.Services
 {

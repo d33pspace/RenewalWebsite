@@ -219,4 +219,22 @@
   <data name="View Invoice History Confirmation" xml:space="preserve">
     <value>查看发票历史记录确认</value>
   </data>
+  <data name="Confirm view invoice history" xml:space="preserve">
+    <value>确认查看发票历史记录</value>
+  </data>
+  <data name="Hi" xml:space="preserve">
+    <value>你好</value>
+  </data>
+  <data name="Thanks," xml:space="preserve">
+    <value>谢谢！</value>
+  </data>
+  <data name="The Renewal Center Team" xml:space="preserve">
+    <value>日新中心团队</value>
+  </data>
+  <data name="Use this link to view invoice history." xml:space="preserve">
+    <value>使用此链接查看发票历史记录。</value>
+  </data>
+  <data name="You recently requested to confirmation for view invoice history for your The Renewal Center account.Use the button below to view invoice history." xml:space="preserve">
+    <value>您最近要求确认您的续订中心帐户的查看帐单历史记录。 使用下面的按钮查看发票历史记录。</value>
+  </data>
 </root>

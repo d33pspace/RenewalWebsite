@@ -25,6 +25,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Hosting;
 using System.Globalization;
 using RenewalWebsite.Models.ViewModels;
+using RenewalWebsite.Data;
+using RenewalWebsite.SettingModels;
 
 namespace RenewalWebsite.Controllers
 {
@@ -1592,16 +1594,14 @@ namespace RenewalWebsite.Controllers
                     HistoryConfirmationMailModel mailModel = new HistoryConfirmationMailModel();
                     mailModel.Name = user.FullName;
                     mailModel.message = callbackUrl;
+                    mailModel.ValidHours = _localizer["Use this link to view invoice history."];
+                    mailModel.HeaderInformation = _localizer["You recently requested to confirmation for view invoice history for your The Renewal Center account.Use the button below to view invoice history."];
+                    mailModel.ConfirmationLink = _localizer["Confirm view invoice history"];
+                    mailModel.Hi = _localizer["Hi"];
+                    mailModel.Thanks = _localizer["Thanks,"];
+                    mailModel.RenewalTeam = _localizer["The Renewal Center Team"];
 
-                    string template = string.Empty;
-                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-                    {
-                        template = await _viewRenderService.RenderToStringAsync("Shared/_HistoryConfirmationMail", mailModel);
-                    }
-                    else
-                    {
-                        template = await _viewRenderService.RenderToStringAsync("Shared/_HistoryConfirmationMailInChinese", mailModel);
-                    }
+                    string template = await _viewRenderService.RenderToStringAsync("Shared/_HistoryConfirmationMail", mailModel);
                     await _emailSender.SendEmailAsync(user.Email, _localizer["View Invoice History Confirmation"], callbackUrl, user.FullName, template);
                     result.data = _localizer["Link for view invoice history sent successfully."];
                     result.status = "1";

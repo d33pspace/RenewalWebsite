@@ -339,17 +339,13 @@ namespace RenewalWebsite.Controllers
                     ForgotPasswordMailModel mailModel = new ForgotPasswordMailModel();
                     mailModel.Name = user.FullName;
                     mailModel.message = callbackUrl;
+                    mailModel.ValidHours = _localizer["Use this link to reset your password. The link is only valid for 24 hours."];
+                    mailModel.HeaderInformation = _localizer["You recently requested to reset your password for your The Renewal Center account. Use the button below to reset it."];
+                    mailModel.ResetLink = _localizer["Reset your password"];
+                    mailModel.Thanks = _localizer["Thanks,"];
+                    mailModel.RenewalTeam = _localizer["The Renewal Center Team"];
 
-                    string template = string.Empty;
-                    if (_currencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
-                    {
-                        template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
-                    }
-                    else
-                    {
-                        template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMailInChinese", mailModel);
-                    }
-
+                    string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
                     await _emailSender.SendEmailAsync(model.Email, _localizer["Reset Password"], callbackUrl, user.FullName, template);
                     return View("ForgotPasswordConfirmation");
                 }

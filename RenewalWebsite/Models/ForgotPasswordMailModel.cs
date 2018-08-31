@@ -9,5 +9,10 @@ namespace RenewalWebsite.Models
     {
         public string Name { get; set; }
         public string message { get; set; }
+        public string ValidHours { get; set; }
+        public string HeaderInformation { get; set; }
+        public string ResetLink { get; set; }
+        public string Thanks { get; set; }
+        public string RenewalTeam { get; set; }
     }
 }

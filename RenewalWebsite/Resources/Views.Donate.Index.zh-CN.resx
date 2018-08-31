@@ -192,4 +192,7 @@
   <data name="Amount is required." xml:space="preserve">
     <value>金额是必需的。</value>
   </data>
+  <data name="Please enter a valid amount." xml:space="preserve">
+    <value>请输入一个有效的金额。</value>
+  </data>
 </root>

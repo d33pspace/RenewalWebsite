@@ -15,6 +15,8 @@ using RenewalWebsite.Utility;
 using RestSharp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
+using RenewalWebsite.Data;
+using RenewalWebsite.SettingModels;
 
 namespace RenewalWebsite.Controllers
 {

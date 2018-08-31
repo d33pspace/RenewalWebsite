@@ -14,6 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using RenewalWebsite.Utility;
+using RenewalWebsite.SettingModels;
 
 namespace RenewalWebsite.Controllers
 {

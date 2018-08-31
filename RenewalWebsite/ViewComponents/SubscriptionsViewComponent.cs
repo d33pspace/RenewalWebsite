@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using RenewalWebsite.Models;
+using RenewalWebsite.SettingModels;
 using Stripe;
 using System;
 using System.Collections.Generic;
