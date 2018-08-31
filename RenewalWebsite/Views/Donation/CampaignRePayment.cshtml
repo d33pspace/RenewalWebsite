@@ -10,7 +10,7 @@
     <h2 class="red-border">
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
         {
-        <label>你的@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount)......</label>
+            <label>您将@(Model.Frequency.ToLower())捐赠@(CurrencyService.GetSymbol(currency))@(Model.Amount)......</label>
         }
 
         @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))

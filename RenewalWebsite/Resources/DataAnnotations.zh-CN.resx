@@ -139,7 +139,7 @@
     <value>有效期</value>
   </data>
   <data name="FullName" xml:space="preserve">
-    <value>全名</value>
+    <value>姓名</value>
   </data>
   <data name="InvalidCard" xml:space="preserve">
     <value>无效卡号</value>
@@ -196,7 +196,7 @@
     <value>新密码长度必须在6--100个字符之间。</value>
   </data>
   <data name="FullNameRequired" xml:space="preserve">
-    <value>请输入您的全名。</value>
+    <value>请输入您的姓名。</value>
   </data>
   <data name="ConfirmNewPassword" xml:space="preserve">
     <value>再次输入新密码</value>
