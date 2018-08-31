@@ -250,6 +250,24 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The new password and confirmation password do not match..
+        /// </summary>
+        public static string NewPasswordAndConfirmPasswordNotMatch {
+            get {
+                return ResourceManager.GetString("NewPasswordAndConfirmPasswordNotMatch", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The new password must be at least 6 and at max 100 characters long..
+        /// </summary>
+        public static string NewPasswordmustbe6andmax100charcterslong {
+            get {
+                return ResourceManager.GetString("NewPasswordmustbe6andmax100charcterslong", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to New Password is required,..
         /// </summary>
         public static string NewPasswordRequired {

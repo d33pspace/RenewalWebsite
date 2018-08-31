@@ -225,4 +225,10 @@
   <data name="Password" xml:space="preserve">
     <value>Password</value>
   </data>
+  <data name="NewPasswordAndConfirmPasswordNotMatch" xml:space="preserve">
+    <value>The new password and confirmation password do not match.</value>
+  </data>
+  <data name="NewPasswordmustbe6andmax100charcterslong" xml:space="preserve">
+    <value>The new password must be at least 6 and at max 100 characters long.</value>
+  </data>
 </root>
