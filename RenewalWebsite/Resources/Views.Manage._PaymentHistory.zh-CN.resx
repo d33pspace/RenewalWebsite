@@ -138,6 +138,12 @@
   <data name="Last Year" xml:space="preserve">
     <value>去年</value>
   </data>
+  <data name="Make a gift now" xml:space="preserve">
+    <value>现在捐赠</value>
+  </data>
+  <data name="No History" xml:space="preserve">
+    <value>没有历史</value>
+  </data>
   <data name="PDF" xml:space="preserve">
     <value>PDF报告</value>
   </data>

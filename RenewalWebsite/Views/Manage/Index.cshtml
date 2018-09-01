@@ -48,31 +48,31 @@
                     <hr />
                     @if (Model.card != null && !string.IsNullOrEmpty(Model.card.cardId))
                     {
-                    @*<div id="textUpdateMessage" class="text-danger" style="display:none;">
-                            <ul>
-                                <li id="textErrorUpdateMessage"></li>
-                            </ul>
+                        @*<div id="textUpdateMessage" class="text-danger" style="display:none;">
+                                <ul>
+                                    <li id="textErrorUpdateMessage"></li>
+                                </ul>
+                            </div>
+                            <div id="textMessage" class="text-danger" style="display:none;">
+                                <ul>
+                                    <li id="textErrorMessage"></li>
+                                </ul>
+                            </div>*@
+                        <div class="row">
+                            <div id="divUpdate" class="col-md-12">
+                                @Html.Partial("_UpdateCard", Model.card)
+                            </div>
                         </div>
-                        <div id="textMessage" class="text-danger" style="display:none;">
-                            <ul>
-                                <li id="textErrorMessage"></li>
-                            </ul>
-                        </div>*@
-                    <div class="row">
-                        <div id="divUpdate" class="col-md-12">
-                            @Html.Partial("_UpdateCard", Model.card)
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div id="divAdd" style="display:none;"></div>
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12">
-                            <div id="divAdd" style="display:none;"></div>
-                        </div>
-                    </div>
                     }
                     else
                     {
-                    <p>@Localizer["You have no card on file."]</p>
-                    <a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Make a gift now"]</a>
+                        <p>@Localizer["You have no card on file."]</p>
+                        <a asp-action="Index" asp-controller="Donate" class="btn btn-default">@Localizer["Make a gift now"]</a>
                     }
                 </div>
 
@@ -92,18 +92,31 @@
                             </div>
                             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
                             {
-                            <div class="form-group row">
-                                <div class="col-sm-4 Index-p-l">
-                                    <label class="col-sm-12 control-label Index-text-P-l " asp-for="State">@Localizer["State/Province"]</label>
-                                    <input asp-for="State" class="form-control" />
-                                    <span asp-validation-for="State" class="text-danger"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4  Index-p-l">
+                                        <label class="col-sm-3 control-label Index-text-P-l " asp-for="Country">@Localizer["Country"]</label>
+                                        <select asp-for="Country" class="form-control">
+                                            <option value="">@Localizer["(Please select a country)"]</option>
+                                            @foreach (var item in Model.countries)
+                                            {
+                                                <option value="@item.Code">@item.Country</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                    </div>
                                 </div>
-                                <div class="col-sm-4 Index-p-r">
-                                    <label class="col-sm-12 control-label Index-text-P-l " asp-for="City">@Localizer["City"]</label>
-                                    <input asp-for="City" class="form-control" />
-                                    <span asp-validation-for="City" class="text-danger"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 Index-p-l">
+                                        <label class="col-sm-12 control-label Index-text-P-l " asp-for="State">@Localizer["State/Province"]</label>
+                                        <input asp-for="State" class="form-control" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-sm-4 Index-p-r">
+                                        <label class="col-sm-12 control-label Index-text-P-l " asp-for="City">@Localizer["City"]</label>
+                                        <input asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
                                 </div>
-                            </div>
                             }
                             <div class="form-group">
                                 <label class="col-sm-12 control-label" asp-for="AddressLine1">@Localizer["Address Line 1"]</label>
@@ -122,18 +135,18 @@
 
                             @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
                             {
-                            <div class="form-group row">
-                                <div class="col-sm-4 Index-p-l">
-                                    <label class="col-sm-12 control-label Index-text-P-l " asp-for="City">@Localizer["City"]</label>
-                                    <input asp-for="City" class="form-control" />
-                                    <span asp-validation-for="City" class="text-danger"></span>
+                                <div class="form-group row">
+                                    <div class="col-sm-4 Index-p-l">
+                                        <label class="col-sm-12 control-label Index-text-P-l " asp-for="City">@Localizer["City"]</label>
+                                        <input asp-for="City" class="form-control" />
+                                        <span asp-validation-for="City" class="text-danger"></span>
+                                    </div>
+                                    <div class="col-sm-4 Index-p-r">
+                                        <label class="col-sm-12 control-label Index-text-P-l " asp-for="State">@Localizer["State/Province"]</label>
+                                        <input asp-for="State" class="form-control" />
+                                        <span asp-validation-for="State" class="text-danger"></span>
+                                    </div>
                                 </div>
-                                <div class="col-sm-4 Index-p-r">
-                                    <label class="col-sm-12 control-label Index-text-P-l " asp-for="State">@Localizer["State/Province"]</label>
-                                    <input asp-for="State" class="form-control" />
-                                    <span asp-validation-for="State" class="text-danger"></span>
-                                </div>
-                            </div>
                             }
                             <div class="form-group row">
                                 <div class="col-sm-4 Index-p-l">
@@ -142,17 +155,20 @@
                                     <span asp-validation-for="Zip" class="text-danger"></span>
                                 </div>
 
-                                <div class="col-sm-4  Index-p-r">
-                                    <label class="col-sm-12 control-label Index-text-P-l " asp-for="Country">@Localizer["Country"]</label>
-                                    <select asp-for="Country" class="form-control">
-                                        <option value="">@Localizer["(Please select a country)"]</option>
-                                        @foreach (var item in Model.countries)
-                                        {
-                                        <option value="@item.Code">@item.Country</option>
-                                        }
-                                    </select>
-                                    <span asp-validation-for="Country" class="text-danger"></span>
-                                </div>
+                                @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                                {
+                                    <div class="col-sm-4  Index-p-r">
+                                        <label class="col-sm-3 control-label Index-text-P-l " asp-for="Country">@Localizer["Country"]</label>
+                                        <select asp-for="Country" class="form-control">
+                                            <option value="">@Localizer["(Please select a country)"]</option>
+                                            @foreach (var item in Model.countries)
+                                            {
+                                                <option value="@item.Code">@item.Country</option>
+                                            }
+                                        </select>
+                                        <span asp-validation-for="Country" class="text-danger"></span>
+                                    </div>
+                                }
                             </div>
                             <div class="form-group">
                                 <div class="col-md-offset-2 col-md-10">
@@ -172,11 +188,11 @@
                         <dd>
                             @if (Model.HasPassword)
                             {
-                            <a asp-controller="Manage" asp-action="ChangePassword" class="btn btn-default">@Localizer["Change"]</a>
+                                <a asp-controller="Manage" asp-action="ChangePassword" class="btn btn-default">@Localizer["Change"]</a>
                             }
                             else
                             {
-                            <a asp-controller="Manage" asp-action="SetPassword" class="btn btn-default">@Localizer["Create"]</a>
+                                <a asp-controller="Manage" asp-action="SetPassword" class="btn btn-default">@Localizer["Create"]</a>
                             }
                         </dd>
                         <dt>@Localizer["External Logins:"] (@Model.Logins.Count)</dt>
@@ -220,15 +236,15 @@
                             </p>*@
                         @if (Model.TwoFactor)
                         {
-                        <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
-                            Enabled <button type="submit" class="btn-link btn-bracketed">Disable</button>
-                        </form>
+                            <form asp-controller="Manage" asp-action="DisableTwoFactorAuthentication" method="post" class="form-horizontal">
+                                Enabled <button type="submit" class="btn-link btn-bracketed">Disable</button>
+                            </form>
                         }
                         else
                         {
-                        <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
-                            <button type="submit" class="btn-link btn-bracketed">Enable</button> Disabled
-                        </form>
+                            <form asp-controller="Manage" asp-action="EnableTwoFactorAuthentication" method="post" class="form-horizontal">
+                                <button type="submit" class="btn-link btn-bracketed">Enable</button> Disabled
+                            </form>
                         }
                     </div>
 
@@ -317,7 +333,7 @@
             //$(".tab-current").next().trigger("click");
         }
         $('#account-tabs li:eq(' + selectedTab + ') a').tab('show');
-        
+
     };
 
     //function saveProfile() {

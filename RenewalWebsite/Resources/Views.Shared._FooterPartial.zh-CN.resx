@@ -123,8 +123,17 @@
   <data name="Enter valid email address." xml:space="preserve">
     <value>输入有效的电邮地址。</value>
   </data>
+  <data name="Enter your name." xml:space="preserve">
+    <value>输入你的名字。</value>
+  </data>
   <data name="Name" xml:space="preserve">
     <value>姓名</value>
+  </data>
+  <data name="Please enter your email." xml:space="preserve">
+    <value>请输入您的邮箱。</value>
+  </data>
+  <data name="Please enter your name." xml:space="preserve">
+    <value>请输入您的全名。</value>
   </data>
   <data name="Sign Up" xml:space="preserve">
     <value>订阅</value>

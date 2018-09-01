@@ -680,12 +680,12 @@ input#choose-amount {
 
 .form-control {
     /*font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;*/
-    font-family: 'dpt35', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+    font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
 }
 
     .form-control:focus, input#choose-amount:focus {
         border: 1px solid #d11241;
-        font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;
+        /*font-family: 'dpt65', helvetica, "Microsoft YaHei New", "Microsoft Yahei", "微软雅黑", 宋体, SimSun, STXihei, "华文细黑", sans-serif;*/
     }
 
 
@@ -1493,7 +1493,7 @@ input#CustomAmount {
 }
 
     input#CustomAmount:focus {
-        font-weight: bold !important;
+        /*font-weight: bold !important;*/
     }
 
 .hide {

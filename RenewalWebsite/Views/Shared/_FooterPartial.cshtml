@@ -53,7 +53,7 @@
         {
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h6 class="text-danger">
+                    <h6 class="text-danger" style="color:#d11241 !important;">
                         @Localizer["Sign up for our email communications:"]
                     </h6>
                 </div>
@@ -82,11 +82,12 @@
                         <div class="form-group row">
                             <div class="col-6">
                                 <label for="drip-contact-name" class="col-form-label sr-only">Name</label><br />
-                                <input type="text" id="drip-contact-name" name="fields[contact_name]" class="form-control" value="" placeholder="@Localizer["Name"]" />
+                                <input type="text" id="drip-contact-name" name="fields[contact_name]" class="form-control" value="" placeholder="@Localizer["Name"]" title="@Localizer["Please enter your name."]" required />
+                                <span id="nameValid" class="text-danger hide">@Localizer["Enter your name."]</span>
                             </div>
                             <div class="col-6">
                                 <label for="drip-email" class="col-form-label sr-only">Email Address</label><br />
-                                <input type="email" id="drip-email" name="fields[email]" class="form-control" value="" placeholder="@Localizer["Email"]" required />
+                                <input type="email" id="drip-email" name="fields[email]" class="form-control" value="" placeholder="@Localizer["Email"]" title="@Localizer["Please enter your email."]" required />
                                 <span id="emailValid" class="text-danger hide">@Localizer["Enter valid email address."]</span>
                             </div>
                             <input type="hidden" id="drip-language-preference" name="fields[language_preference]" value="@culture.RequestCulture.UICulture.TwoLetterISOLanguageName" />
@@ -116,6 +117,16 @@
 <script type="text/javascript">
     $(document).ready(function () {
         $('#btnDripData').on('click', function () {
+            if ($('#drip-contact-name').val() == "") {
+                $('#nameValid').css("display", "table");
+                $('#nameValid').show();
+                return;
+            }
+            else {
+                $('#nameValid').css("display", "none");
+                $('#nameValid').hide();
+            }
+
             var emailExpression = /^(([^<>()[\]\\.,;:\s@@\"]+(\.[^<>()[\]\\.,;:\s@@\"]+)*)|(\".+\"))@@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
             if (!emailExpression.test($('#drip-email').val().toLowerCase())) {
                 $('#emailValid').css("display", "table");

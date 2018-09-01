@@ -127,6 +127,7 @@ namespace RenewalWebsite.Controllers
             {
                 List<CountryViewModel> countryList = GetCountryList();
                 payment.countries = countryList;
+                payment.yearList = GeneralUtility.GetYeatList();
 
                 if (!ModelState.IsValid) { return View(payment); }
 
@@ -748,14 +749,15 @@ namespace RenewalWebsite.Controllers
                 AddressLine2 = user.AddressLine2,
                 City = user.City,
                 State = user.State,
-                Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
+                Country = string.IsNullOrEmpty(user.Country) ? _currencySettings.Value.ServerLocation == "China" ? "CN" : "" : user.Country,
                 Zip = user.Zip,
                 DonationId = donation.Id,
                 Description = donation.Reason,
                 Frequency = _localizer[detail.GetCycle(donation.CycleId.ToString())],
                 Amount = (decimal)donation.DonationAmount,
                 IsCustom = donation.IsCustom,
-                countries = countryList
+                countries = countryList,
+                yearList = GeneralUtility.GetYeatList()
             };
         }
 
@@ -768,7 +770,7 @@ namespace RenewalWebsite.Controllers
                 AddressLine2 = user.AddressLine2,
                 City = user.City,
                 State = user.State,
-                Country = string.IsNullOrEmpty(user.Country) ? "US" : user.Country,
+                Country = string.IsNullOrEmpty(user.Country) ? _currencySettings.Value.ServerLocation == "China" ? "CN" : "" : user.Country,
                 Zip = user.Zip,
                 DonationId = donation.Id,
                 Description = donation.Reason,

@@ -16,7 +16,9 @@
 @if (Model == null || !Model.InvoiceHistory.Any())
 {
     <input id="hdmIsInvoiseHistoryExists" type="hidden" value="@Model.Type" />
-    <p>@Localizer["No contributions found for this date range."]</p>
+    <div class="row">
+        <p>@Localizer["No contributions found for this date range."]</p>
+    </div>
 }
 else
 {

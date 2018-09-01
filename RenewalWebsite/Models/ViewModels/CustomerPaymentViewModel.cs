@@ -1,4 +1,5 @@
-﻿using System;
+﻿using RenewalWebsite.Models.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -28,6 +29,7 @@ namespace RenewalWebsite.Models
         [Range(1, 12, ErrorMessageResourceName = "InvalidMonth", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryMonth { get; set; }
 
+        [Display(Name = "ExpirationDate", ResourceType = typeof(Resources.DataAnnotations))]
         [Range(17, 30, ErrorMessageResourceName = "InvalidYear", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public int ExpiryYear { get; set; }
 
@@ -74,6 +76,8 @@ namespace RenewalWebsite.Models
         public string TimeZone { get; set; }
 
         public List<CountryViewModel> countries { get; set; }
+
+        public List<Year> yearList { get; set; }
     }
 
     public class CountryViewModel

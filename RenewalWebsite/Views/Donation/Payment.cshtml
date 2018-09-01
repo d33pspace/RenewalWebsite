@@ -36,15 +36,28 @@
                     <input hidden asp-for="Description" />
                     <input hidden asp-for="DonationId" />
                     <input asp-for="TimeZone" type="hidden">
-                    <input type="hidden" asp-for="ExpiryYear" />
                     <div class="form-group row">
                         <div class="col-lg-12">
                             <label asp-for="Name" class="col-form-label sr-only">@Localizer["Name"]</label>
                             <input type="text" class="form-control" asp-for="Name" placeholder="@Localizer["Name"]">
                         </div>
                     </div>
+
                     @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
                     {
+                        <legend style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
+                        <div class="form-group row">
+                            <div class="col-6 p15">
+                                <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
+                                <select asp-for="Country" class="form-control">
+                                    <option value="">@Localizer["(Please select a country)"]</option>
+                                    @foreach (var item in Model.countries)
+                                    {
+                                        <option value="@item.Code">@item.Country</option>
+                                    }
+                                </select>
+                            </div>
+                        </div>
                         <div class="form-group row">
                             <div class="col-6 pr5">
                                 <label asp-for="State" class="col-form-label sr-only">@Localizer["State/Province"]</label>
@@ -56,7 +69,10 @@
                             </div>
                         </div>
                     }
-                    <legend style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
+                    @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                    {
+                        <legend style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
+                    }
                     <div class="form-group row">
                         <div class="col-lg-12">
                             <label asp-for="AddressLine1" class="col-form-label sr-only">@Localizer["Address Line 1"]</label>
@@ -87,16 +103,19 @@
                             <label asp-for="Zip" class="col-form-label sr-only">@Localizer["ZIP/Postal Code"]</label>
                             <input asp-for="Zip" class="form-control" placeholder="@Localizer["ZIP/Postal Code"]" />
                         </div>
-                        <div class="col-6 p15">
-                            <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
-                            <select asp-for="Country" class="form-control">
-                                <option value="">@Localizer["(Please select a country)"]</option>
-                                @foreach (var item in Model.countries)
-                                {
-                                    <option value="@item.Code">@item.Country</option>
-                                }
-                            </select>
-                        </div>
+                        @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("en"))
+                        {
+                            <div class="col-6 p15">
+                                <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
+                                <select asp-for="Country" class="form-control">
+                                    <option value="">@Localizer["(Please select a country)"]</option>
+                                    @foreach (var item in Model.countries)
+                                    {
+                                        <option value="@item.Code">@item.Country</option>
+                                    }
+                                </select>
+                            </div>
+                        }
                     </div>
                     <legend style="font-size:16px !important">@Localizer["Your card information"]</legend>
                     <div class="form-group row">
@@ -130,7 +149,12 @@
                                         </select>
                                     </div>
                                     <div class="col-6 pl5">
-                                        <select class="form-control" id="AddExpiryYear" name="AddExpiryYear" onchange="setNewExpiryYear(this)"></select>
+                                        <select class="form-control" asp-for="ExpiryYear">
+                                            @foreach (var item in Model.yearList)
+                                            {
+                                                <option value="@item.Id">@item.YearValue</option>
+                                            }
+                                        </select>
                                     </div>
                                 </div>
                             </div>
@@ -171,20 +195,5 @@
         var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
         var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         $('#TimeZone').val(timezone);
-
-        var year = new Date().getFullYear();
-        for (var i = 0; i < 10; i++) {
-            var value = (year + i).toString();
-            var opt = new Option(value, value.slice(-2));
-            $('#AddExpiryYear').append(opt);
-        }
-
-        var value = (year).toString();
-        $('#ExpiryYear').val(parseInt(value.slice(-2)));
     });
-
-    function setNewExpiryYear(item) {
-        var selectedVal = parseInt(item.value);
-        $('#ExpiryYear').val(selectedVal);
-    }
 </script>
