@@ -8,7 +8,7 @@ namespace RenewalWebsite.Models.AccountViewModels
 {
     public class ResetPasswordViewModel
     {
-        [Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        //[Required(ErrorMessageResourceName = "EmailRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         [EmailAddress(ErrorMessageResourceName = "NotValidEmailAddress", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string Email { get; set; }
 
@@ -23,5 +23,7 @@ namespace RenewalWebsite.Models.AccountViewModels
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
+
+        public string UserId { get; set; }
     }
 }

@@ -372,7 +372,7 @@ namespace RenewalWebsite.Controllers
         // GET: /Account/ResetPassword
         [HttpGet]
         [AllowAnonymous]
-        public IActionResult ResetPassword(string code = null)
+        public IActionResult ResetPassword(string code = null, string userId = null)
         {
             return code == null ? View("Error") : View();
         }
@@ -389,7 +389,7 @@ namespace RenewalWebsite.Controllers
                 {
                     return View(model);
                 }
-                var user = await _userManager.FindByEmailAsync(model.Email);
+                var user = await _userManager.FindByIdAsync(model.UserId);
                 if (user == null)
                 {
                     // Don't reveal that the user does not exist
