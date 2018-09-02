@@ -162,4 +162,7 @@
   <data name="Your name as you'd it to appear in our records (required)" xml:space="preserve">
     <value>您希望显示在捐赠记录中的姓名（必填）</value>
   </data>
+  <data name="Payment" xml:space="preserve">
+    <value>付款</value>
+  </data>
 </root>
