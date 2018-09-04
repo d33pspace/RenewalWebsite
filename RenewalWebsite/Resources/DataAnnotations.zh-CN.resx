@@ -190,10 +190,10 @@
     <value>请输入邮箱。</value>
   </data>
   <data name="PasswordAndConfirmPasswordNotMatch" xml:space="preserve">
-    <value>两次输入的新密码不一致。</value>
+    <value>两次输入的密码不一致。</value>
   </data>
   <data name="Passwordmustbe6andmax100charcterslong" xml:space="preserve">
-    <value>新密码长度必须在6--100个字符之间。</value>
+    <value>密码长度必须在6--100个字符之间。</value>
   </data>
   <data name="FullNameRequired" xml:space="preserve">
     <value>请输入您的姓名。</value>
@@ -220,9 +220,9 @@
     <value>密码</value>
   </data>
   <data name="NewPasswordAndConfirmPasswordNotMatch" xml:space="preserve">
-    <value>两次输入的新密码不一致。</value>
+    <value>两次输入的密码不一致。</value>
   </data>
   <data name="NewPasswordmustbe6andmax100charcterslong" xml:space="preserve">
-    <value>新密码长度必须在6--100个字符之间。</value>
+    <value>密码长度必须在6--100个字符之间。</value>
   </data>
 </root>

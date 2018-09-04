@@ -171,4 +171,7 @@
   <data name="The address at which you'd like to receive Renewal communications (optional, not related with card verification)" xml:space="preserve">
     <value>您希望接收续订通讯的地址（可选，与卡验证无关）</value>
   </data>
+  <data name="Payment" xml:space="preserve">
+    <value>付款</value>
+  </data>
 </root>

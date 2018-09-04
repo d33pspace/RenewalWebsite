@@ -3,7 +3,7 @@
 @model RenewalWebsite.Models.CustomerRePaymentViewModel
 @inject ICurrencyService CurrencyService
 @{
-    ViewBag.Title = "Credit Card";
+    ViewBag.Title = Localizer["Payment"];
     var currency = CurrencyService.GetCurrent();
 }
 <div class="container">
