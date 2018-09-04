@@ -208,13 +208,13 @@
     <value>当前密码</value>
   </data>
   <data name="CurrentPasswordRequired" xml:space="preserve">
-    <value>当前密码是必需的。</value>
+    <value>请输入您的当前密码。</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>新密码</value>
   </data>
   <data name="NewPasswordRequired" xml:space="preserve">
-    <value>需要新密码。</value>
+    <value>请输入您的新密码。</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>密码</value>

@@ -142,7 +142,7 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Current Password is required..
+        ///   Looks up a localized string similar to The Current Password field is required..
         /// </summary>
         public static string CurrentPasswordRequired {
             get {
@@ -268,7 +268,7 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to New Password is required,..
+        ///   Looks up a localized string similar to The New Password field is required,..
         /// </summary>
         public static string NewPasswordRequired {
             get {

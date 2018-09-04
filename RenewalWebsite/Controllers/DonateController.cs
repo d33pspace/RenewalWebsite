@@ -48,6 +48,7 @@ namespace RenewalWebsite.Controllers
 
         }
 
+        [HttpGet]
         public IActionResult Index()
         {
 
@@ -123,7 +124,11 @@ namespace RenewalWebsite.Controllers
                     var model = JsonConvert.DeserializeObject<Donation>(value);
                     return RedirectToAction("Payment", "Donation", new { Id = model.Id });
                 }
-                return NotFound();
+                else
+                {
+                    return RedirectToAction("Index", "Donate");
+                }
+                //return NotFound();
             }
             catch (Exception ex)
             {

@@ -491,7 +491,7 @@ namespace RenewalWebsite.Controllers
             try
             {
                 // Clear the existing external cookie to ensure a clean login process
-                await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+                await HttpContext.Authentication.SignOutAsync(IdentityConstants.ExternalScheme);
 
                 // Request a redirect to the external login provider to link a login for the current user
                 var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
@@ -1416,15 +1416,15 @@ namespace RenewalWebsite.Controllers
                 try
                 {
                     var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
-                    var ExistingCustomer = customerService.Get(user.StripeCustomerId);
-                    if (ExistingCustomer.Sources != null && ExistingCustomer.Sources.TotalCount > 0 && ExistingCustomer.Sources.Data.Any())
-                    {
-                        var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
-                        foreach (var cardSource in ExistingCustomer.Sources.Data)
-                        {
-                            //  cardService.Delete(user.StripeCustomerId, cardSource.Card.Id);
-                        }
-                    }
+                    //var ExistingCustomer = customerService.Get(user.StripeCustomerId);
+                    //if (ExistingCustomer.Sources != null && ExistingCustomer.Sources.TotalCount > 0 && ExistingCustomer.Sources.Data.Any())
+                    //{
+                    //    var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
+                    //    foreach (var cardSource in ExistingCustomer.Sources.Data)
+                    //    {
+                    //        //  cardService.Delete(user.StripeCustomerId, cardSource.Card.Id);
+                    //    }
+                    //}
 
                     var customer = new StripeCustomerUpdateOptions
                     {
