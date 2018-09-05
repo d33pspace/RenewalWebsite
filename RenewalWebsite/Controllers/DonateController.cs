@@ -211,7 +211,10 @@ namespace RenewalWebsite.Controllers
                     var model = JsonConvert.DeserializeObject<Donation>(value);
                     return Redirect("/Donation/Payment/campaign/" + model.Id);
                 }
-                return NotFound();
+                else
+                {
+                    return RedirectToAction("Campaign", "Donate");
+                }
             }
             catch (Exception ex)
             {

@@ -123,6 +123,15 @@
                 $('#CustomAmount').focus();
                 return;
             }
+            else {
+                var finalValue = parseFloat($('#CustomAmount').val());
+                if (isNaN(finalValue)) {
+                    $('#textMainMessage').show();
+                    $('#textMainErrorMessage').text('@Localizer["Please enter a valid amount."]');
+                    $('#CustomAmount').focus();
+                    return;
+                }
+            }
 
             $('#DonationAmount').val($('#CustomAmount').val());
         }

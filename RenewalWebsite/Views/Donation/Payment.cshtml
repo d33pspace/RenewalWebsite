@@ -46,16 +46,18 @@
                     @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
                     {
                         <legend style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
-                        <div class="form-group row">
+                        <div class="form-group row" style="overflow:inherit;">
                             <div class="col-6 p15">
                                 <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
-                                <select asp-for="Country" class="form-control">
-                                    <option value="">@Localizer["(Please select a country)"]</option>
-                                    @foreach (var item in Model.countries)
-                                    {
-                                        <option value="@item.Code">@item.Country</option>
-                                    }
-                                </select>
+                                <div class="box">
+                                    <select asp-for="Country" class="wide">
+                                        <option value="">@Localizer["(Please select a country)"]</option>
+                                        @foreach (var item in Model.countries)
+                                        {
+                                            <option value="@item.Code">@item.Country</option>
+                                        }
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -98,7 +100,7 @@
                             </div>
                         </div>
                     }
-                    <div class="form-group row">
+                    <div class="form-group row" style="overflow:inherit;">
                         <div class="col-6 pr5">
                             <label asp-for="Zip" class="col-form-label sr-only">@Localizer["ZIP/Postal Code"]</label>
                             <input asp-for="Zip" class="form-control" placeholder="@Localizer["ZIP/Postal Code"]" />
@@ -107,15 +109,15 @@
                         {
                             <div class="col-6 p15">
                                 <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
-                                <span class="plain-select">
-                                    <select asp-for="Country" class="form-control">
+                                <div class="box">
+                                    <select asp-for="Country" class="wide">
                                         <option value="">@Localizer["(Please select a country)"]</option>
                                         @foreach (var item in Model.countries)
                                         {
                                             <option value="@item.Code">@item.Country</option>
                                         }
                                     </select>
-                                </span>
+                                </div>
                             </div>
                         }
                     </div>
@@ -130,33 +132,37 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="form-group col-lg-6 col-sm-12">
+                        <div class="form-group col-lg-6 col-sm-12" style="overflow:inherit;">
                             <label class="control-label Subtitle" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
                             <div>
                                 <div class="row">
                                     <div class="col-6 pr5">
-                                        <select class="form-control" asp-for="ExpiryMonth">
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                            <option value="06">06</option>
-                                            <option value="07">07</option>
-                                            <option value="08">08</option>
-                                            <option value="09">09</option>
-                                            <option value="10">10</option>
-                                            <option value="11">11</option>
-                                            <option value="12">12</option>
-                                        </select>
+                                        <div class="box">
+                                            <select asp-for="ExpiryMonth" class="wide">
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                                <option value="06">06</option>
+                                                <option value="07">07</option>
+                                                <option value="08">08</option>
+                                                <option value="09">09</option>
+                                                <option value="10">10</option>
+                                                <option value="11">11</option>
+                                                <option value="12">12</option>
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-6 pl5">
-                                        <select class="form-control" asp-for="ExpiryYear">
-                                            @foreach (var item in Model.yearList)
-                                            {
-                                                <option value="@item.Id">@item.YearValue</option>
-                                            }
-                                        </select>
+                                        <div class="box">
+                                            <select asp-for="ExpiryYear" class="wide">
+                                                @foreach (var item in Model.yearList)
+                                                {
+                                                    <option value="@item.Id">@item.YearValue</option>
+                                                }
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -197,5 +203,7 @@
         var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
         var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         $('#TimeZone').val(timezone);
+
+        $('select').niceSelect();
     });
 </script>

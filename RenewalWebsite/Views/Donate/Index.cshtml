@@ -65,15 +65,15 @@
                             <li id="textMainErrorMessage"></li>
                         </ul>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group" style="overflow:inherit;">
                         <div class="input-group">
                             <label class="mtp-auto">
                                 @Localizer["I would like to make a"]&nbsp;
                             </label>
-                            <span class="plain-select">
-                                <select asp-for="CycleId" class="form-control select-font" style="min-width:120px; max-width:120px;border-radius:0.25rem;"
+                            <div class="box">
+                                <select asp-for="CycleId" class="wide select-font" style="min-width:120px; max-width:120px;border-radius:0.25rem;"
                                         asp-items="@Model.DonationCycles"></select>
-                            </span>&nbsp;
+                            </div>&nbsp;
 
                             <label class="mtp-auto">@Localizer["gift of:"]</label>
                         </div>
@@ -121,6 +121,7 @@
 
     $(document).ready(function () {
         $("#CycleId").prop('selectedIndex', 3);
+        $('select').niceSelect();
     });
 
     function checkAmount() {

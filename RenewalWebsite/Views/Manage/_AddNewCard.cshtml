@@ -15,28 +15,32 @@
                 </div>
             </div>
             <div class="row">
-                <div class="form-group col-lg-6 col-sm-12">
+                <div class="form-group col-lg-6 col-sm-12" style="overflow:inherit;">
                     <label class="control-label" asp-for="ExpiryMonth">@Localizer["Expiration Date"]</label>
                     <div>
                         <div class="row">
                             <div class="col-6 pr5">
-                                <select class="form-control" asp-for="ExpiryMonth">
-                                    <option value="01">Jan (01)</option>
-                                    <option value="02">Feb (02)</option>
-                                    <option value="03">Mar (03)</option>
-                                    <option value="04">Apr (04)</option>
-                                    <option value="05">May (05)</option>
-                                    <option value="06">June (06)</option>
-                                    <option value="07">July (07)</option>
-                                    <option value="08">Aug (08)</option>
-                                    <option value="09">Sep (09)</option>
-                                    <option value="10">Oct (10)</option>
-                                    <option value="11">Nov (11)</option>
-                                    <option value="12">Dec (12)</option>
-                                </select>
+                                <div class="box">
+                                    <select class="wide" asp-for="ExpiryMonth">
+                                        <option value="01">Jan (01)</option>
+                                        <option value="02">Feb (02)</option>
+                                        <option value="03">Mar (03)</option>
+                                        <option value="04">Apr (04)</option>
+                                        <option value="05">May (05)</option>
+                                        <option value="06">June (06)</option>
+                                        <option value="07">July (07)</option>
+                                        <option value="08">Aug (08)</option>
+                                        <option value="09">Sep (09)</option>
+                                        <option value="10">Oct (10)</option>
+                                        <option value="11">Nov (11)</option>
+                                        <option value="12">Dec (12)</option>
+                                    </select>
+                                </div>
                             </div>
                             <div class="col-6 pl5">
-                                <select class="form-control" id="AddExpiryYear" name="AddExpiryYear" onchange="setNewExpiryYear(this)"></select>
+                                <div class="box">
+                                    <select class="wide" id="AddExpiryYear" name="AddExpiryYear" onchange="setNewExpiryYear(this)"></select>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -80,7 +84,7 @@
 
         var value = (year).toString();
         $('#NewExpiryYear').val(parseInt(value.slice(-2)));
-
+        $('select').niceSelect();
     });
 
     function setNewExpiryYear(item) {

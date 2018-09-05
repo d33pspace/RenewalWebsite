@@ -34,7 +34,7 @@
                     <input hidden asp-for="Description" />
                     <input hidden asp-for="DonationId" />
                     <input asp-for="TimeZone" type="hidden">
-                    <div class="form-group row">
+                    <div class="form-group row" style="overflow:inherit;">
                         <div class="col-lg-12">
                             <label asp-for="Name" class="col-form-label sr-only">Name</label>
                             <input type="text" class="form-control" asp-for="Name" placeholder="Name">
@@ -46,13 +46,15 @@
                         <div class="form-group row">
                             <div class="col-6 p15">
                                 <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
-                                <select asp-for="Country" class="form-control">
-                                    <option value="">@Localizer["(Please select a country)"]</option>
-                                    @foreach (var item in Model.countries)
-                                    {
-                                        <option value="@item.Code">@item.Country</option>
-                                    }
-                                </select>
+                                <div class="box">
+                                    <select asp-for="Country" class="wide">
+                                        <option value="">@Localizer["(Please select a country)"]</option>
+                                        @foreach (var item in Model.countries)
+                                        {
+                                            <option value="@item.Code">@item.Country</option>
+                                        }
+                                    </select>
+                                </div>
                             </div>
                         </div>
                         <div class="form-group row">
@@ -95,7 +97,7 @@
                             </div>
                         </div>
                     }
-                    <div class="form-group row">
+                    <div class="form-group row" style="overflow:inherit;">
                         <div class="col-6 pr5">
                             <label asp-for="Zip" class="col-form-label sr-only">@Localizer["ZIP/Postal Code"]</label>
                             <input asp-for="Zip" class="form-control" placeholder="@Localizer["ZIP/Postal Code"]" />
@@ -104,13 +106,15 @@
                         {
                             <div class="col-6 p15">
                                 <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
-                                <select asp-for="Country" class="form-control">
-                                    <option value="">@Localizer["(Please select a country)"]</option>
-                                    @foreach (var item in Model.countries)
-                                    {
-                                        <option value="@item.Code">@item.Country</option>
-                                    }
-                                </select>
+                                <div class="box">
+                                    <select asp-for="Country" class="wide">
+                                        <option value="">@Localizer["(Please select a country)"]</option>
+                                        @foreach (var item in Model.countries)
+                                        {
+                                            <option value="@item.Code">@item.Country</option>
+                                        }
+                                    </select>
+                                </div>
                             </div>
                         }
                     </div>
@@ -146,5 +150,6 @@
         var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
         var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         $('#TimeZone').val(timezone);
+        $('select').niceSelect();
     });
 </script>
