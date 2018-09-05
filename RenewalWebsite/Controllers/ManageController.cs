@@ -1017,7 +1017,7 @@ namespace RenewalWebsite.Controllers
                     {
                         AddCellToBody(tableLayout, invoice.Date != null ? invoice.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US")) : "", "center", language == "en-US" ? fontEnglish : font);
                     }
-                    AddCellToBody(tableLayout, _localizer[invoice.Currency], "center", language == "en-US" ? fontEnglish : font);
+                    AddCellToBody(tableLayout, invoice.Currency, "center", language == "en-US" ? fontEnglish : font);
                     AddCellToBody(tableLayout, string.Format("{0:C}", invoice.Amount).Replace("$", "").Replace("¥", ""), "right", language == "en-US" ? fontEnglish : font);
                     if (displayConversion == true)
                     {
