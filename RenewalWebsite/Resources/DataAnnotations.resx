@@ -214,13 +214,13 @@
     <value>Current password</value>
   </data>
   <data name="CurrentPasswordRequired" xml:space="preserve">
-    <value>Current Password is required.</value>
+    <value>The Current Password field is required.</value>
   </data>
   <data name="NewPassword" xml:space="preserve">
     <value>New password</value>
   </data>
   <data name="NewPasswordRequired" xml:space="preserve">
-    <value>New Password is required,.</value>
+    <value>The New Password field is required,.</value>
   </data>
   <data name="Password" xml:space="preserve">
     <value>Password</value>

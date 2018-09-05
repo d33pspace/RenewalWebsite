@@ -154,7 +154,7 @@
     <value>搜索</value>
   </data>
   <data name="Send confirmation link" xml:space="preserve">
-    <value>发送确认链接</value>
+    <value>发送验证链接</value>
   </data>
   <data name="Show USD conversion" xml:space="preserve">
     <value>显示美元转换</value>
@@ -169,7 +169,7 @@
     <value>无效的日期</value>
   </data>
   <data name="To use this feature, please first confirm your email address" xml:space="preserve">
-    <value>要使用此功能，请先确认您的电子邮件地址</value>
+    <value>使用此功能前，请先验证您的邮箱地址。</value>
   </data>
   <data name="To:" xml:space="preserve">
     <value>报告终止日期</value>
