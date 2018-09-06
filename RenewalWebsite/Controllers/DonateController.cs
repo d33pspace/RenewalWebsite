@@ -154,11 +154,18 @@ namespace RenewalWebsite.Controllers
                     return View("Index", donation);
                 }
 
+                if (donation.SelectedAmount == 4 && donation.DonationAmount == null) //Could be better
+                {
+                    ModelState.AddModelError("amount", _localizer["Please enter a valid amount."]);
+                    return View("Index", donation);
+                }
+
                 if (Math.Abs((double)donation.DonationAmount) < 0.5)
                 {
                     ModelState.AddModelError("amount", _localizer["Please enter a gift amount greater than 0.5"]);
                     return View("Index", donation);
                 }
+
                 if (Math.Abs((double)donation.DonationAmount) > 100000.00)
                 {
                     ModelState.AddModelError("amount", _localizer["Amount must be no more than $100000.00"]);
@@ -239,9 +246,21 @@ namespace RenewalWebsite.Controllers
                     return View("Campaign", donation);
                 }
 
-                if (Math.Abs((decimal)donation.DonationAmount) < 1)
+                if (donation.SelectedAmount == 4 && donation.DonationAmount == null) //Could be better
                 {
-                    ModelState.AddModelError("amount", _localizer["Please enter a gift amount greater than zero."]);
+                    ModelState.AddModelError("amount", _localizer["Please enter a valid amount."]);
+                    return View("Campaign", donation);
+                }
+
+                if (Math.Abs((double)donation.DonationAmount) < 0.5)
+                {
+                    ModelState.AddModelError("amount", _localizer["Please enter a gift amount greater than 0.5"]);
+                    return View("Campaign", donation);
+                }
+
+                if (Math.Abs((double)donation.DonationAmount) > 100000.00)
+                {
+                    ModelState.AddModelError("amount", _localizer["Amount must be no more than $100000.00"]);
                     return View("Campaign", donation);
                 }
 

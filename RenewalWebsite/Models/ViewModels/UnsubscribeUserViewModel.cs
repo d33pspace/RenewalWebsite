@@ -12,5 +12,6 @@ namespace RenewalWebsite.Models
         public string language { get; set; }
         public string feedback { get; set; }
         public string salutation { get; set; }
+        public string newEmail { get; set; }
     }
 }

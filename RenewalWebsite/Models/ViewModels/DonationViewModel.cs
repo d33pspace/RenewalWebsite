@@ -15,7 +15,7 @@ namespace RenewalWebsite.Models
 
         public string CycleId { get; set; }
         //((\d+)((\.\d{1,2})?))$
-        [RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessageResourceName = "Pleaseenteravalidgiftamount", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        //[RegularExpression(@"\d+(\.\d{1,2})?", ErrorMessageResourceName = "Pleaseenteravalidgiftamount", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public decimal? DonationAmount { get; set; }
 
         public List<SelectListItem> DonationCycles { get; set; }

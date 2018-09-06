@@ -135,7 +135,7 @@
             }
             else {
                 var finalValue = parseFloat($('#CustomAmount').val());
-                if (isNaN(finalValue)) {
+                if (isNaN(finalValue) || finalValue == 0) {
                     $('#textMainMessage').show();
                     $('#textMainErrorMessage').text('@Localizer["Please enter a valid amount."]');
                     $('#CustomAmount').focus();

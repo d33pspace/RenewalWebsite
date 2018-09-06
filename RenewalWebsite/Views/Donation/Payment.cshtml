@@ -29,8 +29,8 @@
             <form action="/donation/payment" method="POST" role="form">
                 <fieldset>
                     <legend>@Localizer["Please enter your details below:"]</legend>
-                    <legend style="font-size:16px !important">@Localizer["Your name as you'd it to appear in our records (required)"]</legend>
                     <div asp-validation-summary="All" class="text-danger"></div>
+                    <legend style="font-size:16px !important">@Localizer["Your name as you'd it to appear in our records (required)"]</legend>
                     <input hidden asp-for="Frequency" />
                     <input hidden asp-for="Amount" />
                     <input hidden asp-for="Description" />
@@ -203,7 +203,6 @@
         var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
         var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         $('#TimeZone').val(timezone);
-
         $('select').niceSelect();
     });
 </script>

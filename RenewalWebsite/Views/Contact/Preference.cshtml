@@ -8,6 +8,7 @@
     string email = ViewBag.email;
     string salutation = ViewBag.salutation;
     string lang = CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName;
+    string newemail = ViewBag.email;
 }
 
 <link href="~/css/buttonLoader.css" rel="stylesheet" />
@@ -23,7 +24,7 @@
             <div class="form-group row">
                 <div class="col-md-4">
                     <label>@Localizer["Email"]</label>
-                    <input type="text" id="EmailId" class="form-control" value="@email" />
+                    <input type="text" id="EmailId" class="form-control" value="@newemail" />
                 </div>
             </div>
             <div class="form-group row">
@@ -57,14 +58,15 @@
             var btn = $(this);
             $(btn).buttonLoader('start');
             var selValue = $('input[name=language]:checked').val();
-            var email = $("#EmailId").val();
+            var newEmail = $("#EmailId").val();
             var Salutation = $("#Salutation").val();
             $.ajax({
                 url: "/Contact/ChangePreference",
                 data: {
-                    "email": email,
+                    "email": "@email",
                     "language": selValue,
-                    "Salutation": Salutation
+                    "Salutation": Salutation,
+                    "newEmail": newEmail
                 },
                 type: "post",
                 datatype: "application/json",

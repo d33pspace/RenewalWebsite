@@ -204,4 +204,7 @@
   <data name="Please open this page in your browser." xml:space="preserve">
     <value>请在您的浏览器中打开此页面</value>
   </data>
+  <data name="Please enter a valid amount." xml:space="preserve">
+    <value>请输入一个有效的金额。</value>
+  </data>
 </root>

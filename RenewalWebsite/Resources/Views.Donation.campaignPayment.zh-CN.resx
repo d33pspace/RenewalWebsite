@@ -117,28 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Please enter a gift amount greater than 0.5" xml:space="preserve">
-    <value>请输入大于0.5的礼品金额</value>
+  <data name="(Please select a country)1" xml:space="preserve">
+    <value> 请选择一个国家</value>
   </data>
-  <data name="monthly" xml:space="preserve">
-    <value>每月</value>
+  <data name="Address Line 1" xml:space="preserve">
+    <value>县区、街道</value>
   </data>
-  <data name="one time" xml:space="preserve">
-    <value>一次</value>
+  <data name="Address Line 2" xml:space="preserve">
+    <value>详细地址</value>
   </data>
-  <data name="quarterly" xml:space="preserve">
-    <value>每季</value>
+  <data name="City" xml:space="preserve">
+    <value>市</value>
   </data>
-  <data name="Select amount" xml:space="preserve">
-    <value>选择金额</value>
+  <data name="Debit/Credit Card Number" xml:space="preserve">
+    <value>卡号</value>
   </data>
-  <data name="yearly" xml:space="preserve">
-    <value>每年</value>
+  <data name="Expiration Date" xml:space="preserve">
+    <value>有效期</value>
   </data>
-  <data name="Amount must be no more than $100000.00" xml:space="preserve">
-    <value>金额不得超过$ 100000.00</value>
+  <data name="For your security, Renewal does not store credit card details. Stripe is our secure payment provider." xml:space="preserve">
+    <value>为了您的安全, 日新中心不会存储信用卡详细信息。Stripe是我们的安全支付提供商。</value>
   </data>
-  <data name="Please enter a valid amount." xml:space="preserve">
-    <value>请输入一个有效的金额。</value>
+  <data name="gift of" xml:space="preserve">
+    <value>捐赠</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>姓名</value>
+  </data>
+  <data name="Payment" xml:space="preserve">
+    <value>付款</value>
+  </data>
+  <data name="Please enter your details below:" xml:space="preserve">
+    <value>请输入您的信息：</value>
+  </data>
+  <data name="Security Code" xml:space="preserve">
+    <value>安全码</value>
+  </data>
+  <data name="State/Province" xml:space="preserve">
+    <value>省</value>
+  </data>
+  <data name="Submit Payment" xml:space="preserve">
+    <value>提交付款</value>
+  </data>
+  <data name="The address at which you'd like to receive Renewal communications (optional, not related with card verification)" xml:space="preserve">
+    <value>您希望接收续订通讯的地址（可选，与卡验证无关）</value>
+  </data>
+  <data name="Your" xml:space="preserve">
+    <value>你的</value>
+  </data>
+  <data name="Your card information" xml:space="preserve">
+    <value>您的卡信息</value>
+  </data>
+  <data name="Your name as you'd it to appear in our records (required)" xml:space="preserve">
+    <value>您希望显示在捐赠记录中的姓名（必填）</value>
+  </data>
+  <data name="ZIP/Postal Code" xml:space="preserve">
+    <value>邮编</value>
   </data>
 </root>

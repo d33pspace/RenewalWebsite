@@ -395,6 +395,7 @@ namespace RenewalWebsite.Controllers
             {
                 var donation = _campaignService.GetById(id);
                 var detail = (DonationViewModel)donation;
+                List<CountryViewModel> countryList = GetCountryList();
 
                 // Check for existing customer
                 // edit = 1 means user wants to edit the credit card information
@@ -413,7 +414,7 @@ namespace RenewalWebsite.Controllers
 
                         if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
                         {
-                            CustomerRePaymentViewModel customerRePaymentViewModel = CustomerRepaymentModelData(user, donation, detail, null, objStripeCustomer, objStripeCard);
+                            CustomerRePaymentViewModel customerRePaymentViewModel = CustomerRepaymentModelData(user, donation, detail, countryList, objStripeCustomer, objStripeCard);
                             return View("CampaignRePayment", customerRePaymentViewModel);
                         }
                     }
@@ -425,7 +426,7 @@ namespace RenewalWebsite.Controllers
                     }
                 }
 
-                CustomerPaymentViewModel customerPaymentViewModel = GetCustomerPaymentModel(user, donation, detail, null);
+                CustomerPaymentViewModel customerPaymentViewModel = GetCustomerPaymentModel(user, donation, detail, countryList);
                 return View("CampaignPayment", customerPaymentViewModel);
             }
             catch (Exception ex)
@@ -442,6 +443,9 @@ namespace RenewalWebsite.Controllers
             var user = await GetCurrentUserAsync();
             try
             {
+                List<CountryViewModel> countryList = GetCountryList();
+                payment.countries = countryList;
+                payment.yearList = GeneralUtility.GetYeatList();
                 if (!ModelState.IsValid)
                 {
                     return View(payment);
@@ -560,12 +564,13 @@ namespace RenewalWebsite.Controllers
             {
                 var donation = _campaignService.GetById(id);
                 var detail = (DonationViewModel)donation;
-                CustomerPaymentViewModel model = GetCustomerPaymentModel(user, donation, detail, null);
-
+                CustomerPaymentViewModel model = new CustomerPaymentViewModel();
                 try
                 {
+                    List<CountryViewModel> countryList = GetCountryList();
                     var customerService = new StripeCustomerService(_stripeSettings.Value.SecretKey);
                     var ExistingCustomer = customerService.Get(user.StripeCustomerId);
+                    model = GetCustomerPaymentModel(user, donation, detail, countryList);
                     model.DisableCurrencySelection = "1"; // Disable currency selection for already created customer as stripe only allow same currency for one customer,
                 }
                 catch (StripeException ex)
@@ -591,6 +596,8 @@ namespace RenewalWebsite.Controllers
             var user = await GetCurrentUserAsync();
             try
             {
+                List<CountryViewModel> countryList = GetCountryList();
+                payment.countries = countryList;
                 if (!ModelState.IsValid)
                 {
                     return View(payment);

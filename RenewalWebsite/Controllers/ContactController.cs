@@ -47,7 +47,7 @@ namespace RenewalWebsite.Controllers
         }
 
         [Route("/preference")]
-        public IActionResult Preference(string email,string salutation)
+        public IActionResult Preference(string email, string salutation)
         {
             try
             {
@@ -158,7 +158,8 @@ namespace RenewalWebsite.Controllers
 
                     var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/kbcwdc/");
                     var request = new RestRequest(Method.POST);
-                    request.AddParameter("email", model.email);
+                    request.AddParameter("email_old", model.email);
+                    request.AddParameter("email_new", model.email);
                     request.AddParameter("language", model.language);
                     request.AddParameter("Salutation", model.salutation);
                     // execute the request
