@@ -16,6 +16,14 @@
     <Compile Remove="Resources\Views.Error.500.zh-CN.Designer.cs" />
     <Compile Remove="Resources\Views.Error.DataNotFound.zh-CN.Designer.cs" />
   </ItemGroup>
+
+
+  <ItemGroup>
+    <Content Remove="Views\Donate\Campaign_2017-08_matching.cshtml" />
+    <Content Remove="Views\Donate\Campaign_2017-12.cshtml" />
+    <Content Remove="Views\Donate\Index_2017-12.cshtml" />
+    <Content Remove="Views\Donate\WeChat_2017-08.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
@@ -29,6 +37,7 @@
     <PackageReference Include="iTextSharp" Version="5.5.13" />
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Cookies" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="2.0.0" />

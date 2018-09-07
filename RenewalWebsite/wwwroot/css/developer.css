@@ -70,3 +70,7 @@
     -webkit-box-shadow: 0 0 0 2px rgba(253, 253, 253, 0.5) !important;
     box-shadow: 0 0 0 2px rgba(253, 253, 253, 0.5) !important;
 }
+
+.m-t-30 {
+    margin-top: 30px;
+}

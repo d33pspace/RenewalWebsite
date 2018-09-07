@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,6 @@ namespace RenewalWebsite.Controllers
     {
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly SignInManager<ApplicationUser> _signInManager;
-        private readonly string _externalCookieScheme;
         private readonly IEmailSender _emailSender;
         private readonly ISmsSender _smsSender;
         private readonly IOptions<StripeSettings> _stripeSettings;
@@ -398,7 +398,7 @@ namespace RenewalWebsite.Controllers
                         await _signInManager.SignInAsync(user, isPersistent: false);
                         return RedirectToAction(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
                     }
-                    AddErrors(result);
+                    AddErrorsForChangePasswordAction(result);
                     return View(model);
                 }
                 return RedirectToAction(nameof(Index), new { Message = ManageMessageId.Error });
@@ -491,7 +491,7 @@ namespace RenewalWebsite.Controllers
             try
             {
                 // Clear the existing external cookie to ensure a clean login process
-                await HttpContext.Authentication.SignOutAsync(IdentityConstants.ExternalScheme);
+                await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
                 // Request a redirect to the external login provider to link a login for the current user
                 var redirectUrl = Url.Action(nameof(LinkLoginCallback), "Manage");
@@ -529,7 +529,7 @@ namespace RenewalWebsite.Controllers
                 {
                     message = ManageMessageId.AddLoginSuccess;
                     // Clear the existing external cookie to ensure a clean login process
-                    await HttpContext.Authentication.SignOutAsync(_externalCookieScheme);
+                    await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
                 }
                 return RedirectToAction(nameof(ManageLogins), new { Message = message });
             }
@@ -1570,6 +1570,22 @@ namespace RenewalWebsite.Controllers
                        Code = a.ShortCode,
                        Country = language == "en" ? a.CountryEnglish : a.CountryChinese
                    }).OrderBy(a => a.Country).ToList();
+        }
+
+        private void AddErrorsForChangePasswordAction(IdentityResult result)
+        {
+            foreach (var error in result.Errors)
+            {
+                if (!string.IsNullOrEmpty(error.Description))
+                {
+                    if (error.Description.Contains("Incorrect password."))
+                    {
+                        error.Description = _localizer["Incorrect password."];
+                    }
+                }
+
+                ModelState.AddModelError(error.Code, error.Description);
+            }
         }
     }
 }

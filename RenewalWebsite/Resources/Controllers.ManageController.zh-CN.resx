@@ -237,4 +237,7 @@
   <data name="You recently requested to confirmation for view invoice history for your The Renewal Center account.Use the button below to view invoice history." xml:space="preserve">
     <value>您最近要求确认您的续订中心帐户的查看帐单历史记录。 使用下面的按钮查看发票历史记录。</value>
   </data>
+  <data name="Incorrect password." xml:space="preserve">
+    <value>密码不正确。</value>
+  </data>
 </root>

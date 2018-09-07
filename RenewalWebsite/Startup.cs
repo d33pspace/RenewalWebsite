@@ -24,6 +24,7 @@ using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Http;
 using RenewalWebsite.Utility;
 using RenewalWebsite.SettingModels;
+using Microsoft.AspNetCore.Authentication.OAuth;
 
 namespace RenewalWebsite
 {
@@ -75,6 +76,29 @@ namespace RenewalWebsite
                 googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
                 googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
                 googleOptions.CallbackPath = new PathString("/signin-google");
+                googleOptions.Events = new OAuthEvents
+                {
+                    OnRemoteFailure = ctx =>
+                    {
+                        var state = ctx.Request.Query["state"].FirstOrDefault();
+                        if (state != null)
+                        {
+                            var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
+                            try
+                            {
+                                var properties = options.Value.StateDataFormat.Unprotect(state);
+
+                            }
+                            catch (Exception)
+                            {
+
+                            }
+                        }
+                        ctx.Response.Redirect("/Account/Login");
+                        ctx.HandleResponse();
+                        return Task.FromResult(0);
+                    }
+                };
             });
 
             services.AddAuthentication().AddFacebook(facebookOptions =>
@@ -82,6 +106,29 @@ namespace RenewalWebsite
                 facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
                 facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
                 facebookOptions.CallbackPath = new PathString("/signin-facebook");
+                facebookOptions.Events = new OAuthEvents
+                {
+                    OnRemoteFailure = ctx =>
+                    {
+                        var state = ctx.Request.Query["state"].FirstOrDefault();
+                        if (state != null)
+                        {
+                            var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
+                            try
+                            {
+                                var properties = options.Value.StateDataFormat.Unprotect(state);
+
+                            }
+                            catch (Exception)
+                            {
+
+                            }
+                        }
+                        ctx.Response.Redirect("/Account/Login");
+                        ctx.HandleResponse();
+                        return Task.FromResult(0);
+                    }
+                };
             });
 
             services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
@@ -89,6 +136,29 @@ namespace RenewalWebsite
                 microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
                 microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
                 microsoftOptions.CallbackPath = new PathString("/signin-microsoft");
+                microsoftOptions.Events = new OAuthEvents
+                {
+                    OnRemoteFailure = ctx =>
+                    {
+                        var state = ctx.Request.Query["state"].FirstOrDefault();
+                        if (state != null)
+                        {
+                            var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
+                            try
+                            {
+                                var properties = options.Value.StateDataFormat.Unprotect(state);
+
+                            }
+                            catch (Exception)
+                            {
+
+                            }
+                        }
+                        ctx.Response.Redirect("/Account/Login");
+                        ctx.HandleResponse();
+                        return Task.FromResult(0);
+                    }
+                };
             });
 
             services.AddScoped<LanguageActionFilter>();

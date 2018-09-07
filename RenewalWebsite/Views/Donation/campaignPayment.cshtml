@@ -47,7 +47,7 @@
                             <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
                             <div class="box">
                                 <select asp-for="Country" class="wide">
-                                    <option value="">@Localizer["(Please select a country)"]</option>
+                                    <option value=""></option>
                                     @foreach (var item in Model.countries)
                                     {
                                         <option value="@item.Code">@item.Country</option>
@@ -107,7 +107,7 @@
                             <label asp-for="City" class="col-form-label sr-only">Country</label>
                             <div class="box">
                                 <select asp-for="Country" class="wide">
-                                    <option value="">@Localizer["(Please select a country)"]</option>
+                                    <option value=""></option>
                                     @foreach (var item in Model.countries)
                                     {
                                         <option value="@item.Code">@item.Country</option>
