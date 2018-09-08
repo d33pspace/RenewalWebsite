@@ -117,13 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Click here to log in." xml:space="preserve">
-    <value>点击此处登录。</value>
+  <data name="Please click here to log in." xml:space="preserve">
+    <value>请点击此处登录。</value>
   </data>
   <data name="View Invoice History Confirmation" xml:space="preserve">
     <value>查看发票历史记录确认</value>
   </data>
-  <data name="Your email has been confirmed. Please" xml:space="preserve">
-    <value>您的电子邮件已经确认。 请</value>
+  <data name="Your email has been confirmed." xml:space="preserve">
+    <value>您的电子邮件已确认。请</value>
   </data>
 </root>
