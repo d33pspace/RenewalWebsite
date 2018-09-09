@@ -382,7 +382,7 @@ namespace RenewalWebsite.Controllers
 
         [Route("Donation/Payment/campaign")]
         [HttpGet]
-        public ActionResult campaignPayment()
+        public ActionResult CampaignPayment()
         {
             return RedirectToAction("index", "home");
         }

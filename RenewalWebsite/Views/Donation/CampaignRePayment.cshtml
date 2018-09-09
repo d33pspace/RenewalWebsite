@@ -26,7 +26,7 @@
             <fieldset>
                 <legend>@Localizer["Please enter your details below:"]</legend>
                 <div asp-validation-summary="All" class="text-danger"></div>
-                <legend class="Subtitle">@Localizer["Your name as you'd it to appear in our records (required)"]</legend>
+                <legend style="font-size:16px !important">@Localizer["Your name as you'd it to appear in our records (required)"]</legend>
                 <input hidden asp-for="Frequency" />
                 <input hidden asp-for="Amount" />
                 <input hidden asp-for="Description" />
@@ -40,7 +40,7 @@
                 </div>
                 @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
                 {
-                    <legend class="Subtitle" style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
+                    <legend style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
                     <div class="form-group row" style="overflow:inherit;">
                         <div class="col-6 p15">
                             <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>
