@@ -32,12 +32,13 @@
                 <input hidden asp-for="Description" />
                 <input hidden asp-for="DonationId" />
                 <input asp-for="TimeZone" type="hidden">
-                <div class="form-group row">
+                <div class="form-group row" style="overflow:inherit;">
                     <div class="col-lg-12">
-                        <label asp-for="Name" class="col-form-label sr-only">Name</label>
-                        <input type="text" class="form-control" asp-for="Name" placeholder="Name">
+                        <label asp-for="Name" class="col-form-label sr-only">@Localizer["Name"]</label>
+                        <input type="text" class="form-control" asp-for="Name" placeholder="@Localizer["Name"]">
                     </div>
                 </div>
+
                 @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
                 {
                     <legend style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
