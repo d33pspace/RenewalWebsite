@@ -127,7 +127,7 @@
     <value>卡号</value>
   </data>
   <data name="CardRequired" xml:space="preserve">
-    <value>信用卡号是必需的</value>
+    <value>请输入您信用卡的卡号。</value>
   </data>
   <data name="City" xml:space="preserve">
     <value>市</value>
@@ -142,10 +142,10 @@
     <value>姓名</value>
   </data>
   <data name="InvalidCard" xml:space="preserve">
-    <value>无效卡号</value>
+    <value>您输入的信用卡卡号无效。</value>
   </data>
   <data name="InvalidCVC" xml:space="preserve">
-    <value>无效CVC号码</value>
+    <value>您输入的安全码无效。</value>
   </data>
   <data name="InvalidMonth" xml:space="preserve">
     <value>月份无效</value>
@@ -163,7 +163,7 @@
     <value>安全码</value>
   </data>
   <data name="SecurityCodeRequired" xml:space="preserve">
-    <value>安全码是必需的</value>
+    <value>请输入您信用卡的安全码。</value>
   </data>
   <data name="State" xml:space="preserve">
     <value>州</value>

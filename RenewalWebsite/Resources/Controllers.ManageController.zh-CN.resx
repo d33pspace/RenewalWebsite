@@ -190,10 +190,10 @@
     <value>您的双因素身份验证提供程序已设置。</value>
   </data>
   <data name="The external login was added." xml:space="preserve">
-    <value>外部登录已添加。</value>
+    <value>第三方登录账户已添加。</value>
   </data>
   <data name="The external login was removed." xml:space="preserve">
-    <value>外部登录已被删除。</value>
+    <value>该第三方登录账户已被删除。</value>
   </data>
   <data name="View your valuable donation history" xml:space="preserve">
     <value>查看您宝贵的捐赠历史记录</value>

@@ -133,7 +133,7 @@
     <value>您的信用卡遭到拒绝。</value>
   </data>
   <data name="Your card's expiration month is invalid." xml:space="preserve">
-    <value>您的卡的到期月份无效。</value>
+    <value>您输入的截止日期无效。</value>
   </data>
   <data name="monthly" xml:space="preserve">
     <value>每月</value>
