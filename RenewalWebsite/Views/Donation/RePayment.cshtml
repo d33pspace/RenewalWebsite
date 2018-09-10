@@ -28,7 +28,7 @@
                 <fieldset>
                     <legend>@Localizer["Please enter your details below:"]</legend>
                     <div asp-validation-summary="All" class="text-danger"></div>
-                    <legend class="Subtitle" style="font-size:16px !important">@Localizer["Your name as you'd it to appear in our records (required)"]</legend>
+                    <legend style="font-size:16px !important">@Localizer["Your name as you'd it to appear in our records (required)"]</legend>
                     <input hidden asp-for="Frequency" />
                     <input hidden asp-for="Amount" />
                     <input hidden asp-for="Description" />
@@ -36,13 +36,14 @@
                     <input asp-for="TimeZone" type="hidden">
                     <div class="form-group row" style="overflow:inherit;">
                         <div class="col-lg-12">
-                            <label asp-for="Name" class="col-form-label sr-only">Name</label>
-                            <input type="text" class="form-control" asp-for="Name" placeholder="Name">
+                            <label asp-for="Name" class="col-form-label sr-only">@Localizer["Name"]</label>
+                            <input type="text" class="form-control" asp-for="Name" placeholder="@Localizer["Name"]">
                         </div>
                     </div>
+
                     @if (CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower().Equals("zh"))
                     {
-                        <legend class="Subtitle" style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
+                        <legend style="font-size:16px !important">@Localizer["The address at which you'd like to receive Renewal communications (optional, not related with card verification)"]</legend>
                         <div class="form-group row" style="overflow:inherit;">
                             <div class="col-6 p15">
                                 <label asp-for="Country" class="col-form-label sr-only">@Localizer["Country"]</label>

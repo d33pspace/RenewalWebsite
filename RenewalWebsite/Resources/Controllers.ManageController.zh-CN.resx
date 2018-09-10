@@ -141,8 +141,8 @@
   <data name="The Renewal Center" xml:space="preserve">
     <value>日新中心</value>
   </data>
-  <data name="The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States. Donors may deduct contributions as provided in section 170 of the Code." xml:space="preserve">
-    <value>根据美国国内税收法典第501(c)(3)条，日新中心被确认为免税。 捐赠者可以按照守则第170条的规定扣除捐款。</value>
+  <data name="The Renewal Center is recognized as exempt under section 501(c)(3) of the Internal Revenue Code in the United States. Donors may deduct contributions as provided in section 170 of the Code. No goods or services were provided, in whole or in part, for your contribution." xml:space="preserve">
+    <value>本报告可作为您捐赠的记录。该捐赠不涉及任何全部或部分实物或服务的提供。</value>
   </data>
   <data name="to" xml:space="preserve">
     <value>至</value>
@@ -213,14 +213,14 @@
   <data name="Renewal giving record" xml:space="preserve">
     <value>日新中心捐赠记录</value>
   </data>
-  <data name="Link for view invoice history sent successfully." xml:space="preserve">
-    <value>成功发送的查看发票历史记录的链接</value>
+  <data name="Please check your email to confirm." xml:space="preserve">
+    <value>查看捐赠历史的链接已发送成功。</value>
   </data>
-  <data name="View Invoice History Confirmation" xml:space="preserve">
-    <value>查看发票历史记录确认</value>
+  <data name="View Giving History Confirmation" xml:space="preserve">
+    <value>查看捐赠历史确认</value>
   </data>
-  <data name="Confirm view invoice history" xml:space="preserve">
-    <value>确认查看发票历史记录</value>
+  <data name="Confirm your email" xml:space="preserve">
+    <value>确认查看捐赠历史</value>
   </data>
   <data name="Hi" xml:space="preserve">
     <value>你好</value>
@@ -234,8 +234,8 @@
   <data name="Use this link to view invoice history." xml:space="preserve">
     <value>使用此链接查看发票历史记录。</value>
   </data>
-  <data name="You recently requested to confirmation for view invoice history for your The Renewal Center account.Use the button below to view invoice history." xml:space="preserve">
-    <value>您最近要求确认您的续订中心帐户的查看帐单历史记录。 使用下面的按钮查看发票历史记录。</value>
+  <data name="You recently requested to confirm your Renewal Center account in order to view your giving history. Use the button below to confirm." xml:space="preserve">
+    <value>您要求查看您在日新中心的捐赠历史，请点击下面的按钮查看。</value>
   </data>
   <data name="Incorrect password." xml:space="preserve">
     <value>密码不正确。</value>
