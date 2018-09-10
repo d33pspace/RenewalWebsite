@@ -465,28 +465,45 @@ namespace RenewalWebsite.Controllers
                 {
                     //Check for existing credit card, if new credit card number is same as exiting credit card then we delete the existing
                     //Credit card information so new card gets generated automatically as default card.
-                    try
-                    {
-                        var ExistingCustomer = customerService.Get(user.StripeCustomerId);
-                        if (ExistingCustomer.Sources != null && ExistingCustomer.Sources.TotalCount > 0 && ExistingCustomer.Sources.Data.Any())
-                        {
-                            var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
-                            foreach (var cardSource in ExistingCustomer.Sources.Data)
-                            {
-                                cardService.Delete(user.StripeCustomerId, cardSource.Card.Id);
-                            }
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
-                        _loggerService.SaveEventLogAsync(log);
-                        return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
-                    }
+                    //try
+                    //{
+                    //    var ExistingCustomer = customerService.Get(user.StripeCustomerId);
+                    //    if (ExistingCustomer.Sources != null && ExistingCustomer.Sources.TotalCount > 0 && ExistingCustomer.Sources.Data.Any())
+                    //    {
+                    //        var cardService = new StripeCardService(_stripeSettings.Value.SecretKey);
+                    //        foreach (var cardSource in ExistingCustomer.Sources.Data)
+                    //        {
+                    //            cardService.Delete(user.StripeCustomerId, cardSource.Card.Id);
+                    //        }
+                    //    }
+                    //}
+                    //catch (Exception ex)
+                    //{
+                    //    log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
+                    //    _loggerService.SaveEventLogAsync(log);
+                    //    return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                    //}
 
                     StripeCustomerUpdateOptions customer = GetCustomerUpdateOption(payment);
-                    var stripeCustomer = customerService.Update(user.StripeCustomerId, customer);
-                    user.StripeCustomerId = stripeCustomer.Id;
+                    try
+                    {
+                        var stripeCustomer = customerService.Update(user.StripeCustomerId, customer);
+                        user.StripeCustomerId = stripeCustomer.Id;
+                    }
+                    catch (StripeException ex)
+                    {
+                        log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
+                        _loggerService.SaveEventLogAsync(log);
+                        if (ex.Message.ToLower().Contains("customer"))
+                        {
+                            return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+                        }
+                        else
+                        {
+                            ModelState.AddModelError("error", _localizer[ex.Message]);
+                            return View(payment);
+                        }
+                    }
                 }
 
                 UpdateUserEmail(payment, user);
@@ -888,6 +905,4 @@ namespace RenewalWebsite.Controllers
             return completedMessage;
         }
     }
-
-
 }

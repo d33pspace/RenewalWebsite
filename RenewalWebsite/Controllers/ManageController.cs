@@ -1514,7 +1514,7 @@ namespace RenewalWebsite.Controllers
                     mailModel.HeaderInformation = _localizer["You recently requested to confirmation for view invoice history for your The Renewal Center account.Use the button below to view invoice history."];
                     mailModel.ConfirmationLink = _localizer["Confirm view invoice history"];
                     mailModel.Hi = _localizer["Hi"];
-                    mailModel.Thanks = _localizer["Thanks,"];
+                    mailModel.Thanks = _localizer["Thank you!"];
                     mailModel.RenewalTeam = _localizer["The Renewal Center Team"];
 
                     string template = await _viewRenderService.RenderToStringAsync("Shared/_HistoryConfirmationMail", mailModel);

@@ -127,7 +127,8 @@
             }
             else {
                 var finalValue = parseFloat($('#CustomAmount').val());
-                if (isNaN(finalValue) || finalValue == 0) {
+                var format = /[ !@@#$%^&*()_+\-=\[\]{};':"\\|,<>\/?~`]/;
+                if (isNaN(finalValue) || finalValue == 0 || format.test($('#CustomAmount').val())) {
                     $('#textMainMessage').show();
                     $('#textMainErrorMessage').text('@Localizer["Please enter a valid amount."]');
                     $('#CustomAmount').focus();

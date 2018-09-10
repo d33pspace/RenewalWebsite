@@ -14,5 +14,6 @@ namespace RenewalWebsite.Models
         public string ResetLink { get; set; }
         public string Thanks { get; set; }
         public string RenewalTeam { get; set; }
+        public string Hi { get; set; }
     }
 }

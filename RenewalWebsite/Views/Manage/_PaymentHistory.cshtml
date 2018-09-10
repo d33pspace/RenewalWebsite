@@ -1,9 +1,11 @@
 ﻿@model RenewalWebsite.Models.SearchViewModel
+@using RenewalWebsite.Services
 @inject UserManager<ApplicationUser> UserManager
-
+@inject ICurrencyService CurrencyService
 @{
     Layout = null;
     ApplicationUser user = await UserManager.GetUserAsync(User);
+    var culture = CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower();
 }
 
 <link href="~/js/daterangepicker/daterangepicker.css" rel="stylesheet" />
@@ -17,59 +19,57 @@
 {
     @if (Model != null)
     {
-<form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
-    @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
-    @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
-    @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
-    @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
+        <form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
+            @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
+            @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
+            @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
+            @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
 
-    <div class="form-row">
-        <div class="col-md-12">
-            <div id="divInvoiceHistory">
+            <div class="form-row">
+                <div class="col-md-12">
+                    <div id="divInvoiceHistory">
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-12">
-            <div class="form-group col-md-6" id="divUSD" style="display:none;">
-                <input type="checkbox" id="usd" name="usd" onclick="changeValue(this)" /> @Localizer["Show USD conversion"]
-                @Html.ValidationMessageFor(model => model.showUSD)
+            @if (culture == "en")
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group col-md-6" id="divUSD" style="display:none;">
+                            <input type="checkbox" id="usd" name="usd" onclick="changeValue(this)" /> @Localizer["Show USD conversion"]
+                            @Html.ValidationMessageFor(model => model.showUSD)
+                        </div>
+                    </div>
+                </div>
+            }
+            <div class="form-row">
+                <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
+                <input type="button" id="btnSubmitPDF" style="display:none" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
+                <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
             </div>
-        </div>
-    </div>
 
-    <div class="form-row">
-        <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
-        <input type="button" id="btnSubmitPDF" style="display:none" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
-        <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
-    </div>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-row">
+                <div class="">
+                    <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GenerateData('Last12Months')" />
+                    <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GenerateData('ThisYear')" />
+                    <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GenerateData('LastYear')" />
+                    <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GenerateData('AllHistory')" />
+                </div>
+            </div>
 
-    <div asp-validation-summary="All" class="text-danger"></div>
-    <div class="form-row">
-        <div class="">
-            <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GenerateData('Last12Months')" />
-            <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GenerateData('ThisYear')" />
-            <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GenerateData('LastYear')" />
-            <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GenerateData('AllHistory')" />
-        </div>
-    </div>
-
-    <div class="form-row" id="idOfMessage" style="display:none">
-        <div class="col-sm-offset-4 col-sm-8">
-            <span style="color:#d11241">@Localizer["Requested data not available, Try another."]</span>
-        </div>
-    </div>
-    <div class="form-row" id="idOfErrorMessage" style="display:none">
-        <div class="col-sm-offset-4 col-sm-8">
-            <span style="color:#d11241">@Localizer["Something went wrong, while fetching history."]</span>
-        </div>
-    </div>
-
-
-</form>
-
+            <div class="form-row" id="idOfMessage" style="display:none">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <span style="color:#d11241">@Localizer["Requested data not available, Try another."]</span>
+                </div>
+            </div>
+            <div class="form-row" id="idOfErrorMessage" style="display:none">
+                <div class="col-sm-offset-4 col-sm-8">
+                    <span style="color:#d11241">@Localizer["Something went wrong, while fetching history."]</span>
+                </div>
+            </div>
+        </form>
     }
     else
     {

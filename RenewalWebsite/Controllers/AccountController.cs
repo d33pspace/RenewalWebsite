@@ -342,7 +342,8 @@ namespace RenewalWebsite.Controllers
                     mailModel.ValidHours = _localizer["Use this link to reset your password. The link is only valid for 24 hours."];
                     mailModel.HeaderInformation = _localizer["You recently requested to reset your password for your The Renewal Center account. Use the button below to reset it."];
                     mailModel.ResetLink = _localizer["Reset your password"];
-                    mailModel.Thanks = _localizer["Thanks,"];
+                    mailModel.Hi = _localizer["Hi"];
+                    mailModel.Thanks = _localizer["Thank you!"];
                     mailModel.RenewalTeam = _localizer["The Renewal Center Team"];
 
                     string template = await _viewRenderService.RenderToStringAsync("Shared/_ForgotPasswordMail", mailModel);
