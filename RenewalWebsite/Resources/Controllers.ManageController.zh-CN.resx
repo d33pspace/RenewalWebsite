@@ -232,12 +232,21 @@
     <value>日新中心团队</value>
   </data>
   <data name="Use this link to view invoice history." xml:space="preserve">
-    <value>使用此链接查看发票历史记录。</value>
+    <value>使用此链接查看捐赠历史。</value>
   </data>
   <data name="You recently requested to confirm your Renewal Center account in order to view your giving history. Use the button below to confirm." xml:space="preserve">
     <value>您要求查看您在日新中心的捐赠历史，请点击下面的按钮查看。</value>
   </data>
   <data name="Incorrect password." xml:space="preserve">
     <value>密码不正确。</value>
+  </data>
+  <data name="Confirm my account" xml:space="preserve">
+    <value>确认我的账户</value>
+  </data>
+  <data name="Confirm your Renewal account" xml:space="preserve">
+    <value>确认您的日新中心账户</value>
+  </data>
+  <data name="Confirmation email sent successfully." xml:space="preserve">
+    <value>确认邮件发送成功。</value>
   </data>
 </root>

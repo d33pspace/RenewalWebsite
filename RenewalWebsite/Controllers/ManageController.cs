@@ -1512,14 +1512,14 @@ namespace RenewalWebsite.Controllers
                     mailModel.message = callbackUrl;
                     mailModel.ValidHours = _localizer["Use this link to view invoice history."];
                     mailModel.HeaderInformation = _localizer["You recently requested to confirm your Renewal Center account in order to view your giving history. Use the button below to confirm."];
-                    mailModel.ConfirmationLink = _localizer["Confirm view invoice history"];
+                    mailModel.ConfirmationLink = _localizer["Confirm my account"];
                     mailModel.Hi = _localizer["Hi"];
                     mailModel.Thanks = _localizer["Thank you!"];
                     mailModel.RenewalTeam = _localizer["The Renewal Center Team"];
 
                     string template = await _viewRenderService.RenderToStringAsync("Shared/_HistoryConfirmationMail", mailModel);
-                    await _emailSender.SendEmailAsync(user.Email, _localizer["View Invoice History Confirmation"], callbackUrl, user.FullName, template);
-                    result.data = _localizer["Link for view invoice history sent successfully."];
+                    await _emailSender.SendEmailAsync(user.Email, _localizer["Confirm your Renewal account"], callbackUrl, user.FullName, template);
+                    result.data = _localizer["Confirmation email sent successfully."];
                     result.status = "1";
                 }
                 catch (Exception ex)
