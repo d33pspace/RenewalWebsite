@@ -1,6 +1,6 @@
 ﻿
 @{
-    ViewData["Title"] = "Error";
+    ViewData["Title"] = Localizer["Error"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 <style>
@@ -16,21 +16,22 @@
         height: 250px;
     }
 </style>
-<div class="container bootstrap snippet">
-    <div class="row">
-        <div class="col-md-12">
-            <div style="margin:0 auto;max-width:500px;text-align:center;">
-                <div class="col-md-10 pull-right">
-                    <p style="font-size:48px;">¯\_(ツ)_/¯</p>
-                    <p>@Localizer["Sorry, an error has occured while performing any operations!"]</p>
-                    <div class="error-actions">
-                        <a href="/Home/Index" class="btn btn-secondary">
-                            <span class="glyphicon glyphicon-arrow-left"></span>
-                            @Localizer["Back Home"]
-                        </a>
-                    </div>
-                </div>
-            </div>
+@*<div class="container bootstrap snippet">*@
+<div class="row">
+    <div class="col-md-12 text-center">
+        @*<div style="margin:0 auto;max-width:500px;text-align:center;">
+            <div class="col-md-10 pull-right">*@
+        <p style="font-size:36px;">¯\_(ツ)_/¯</p>
+        <h2>@Localizer["Error"]</h2>
+        <p>@Localizer["Whoops, something went wrong!"]</p>
+        <div class="error-actions">
+            <a href="/Home/Index" class="btn btn-secondary">
+                <span class="glyphicon glyphicon-arrow-left"></span>
+                @Localizer["Back Home"]
+            </a>
         </div>
+        @*</div>
+            </div>*@
     </div>
 </div>
+@*</div>*@
