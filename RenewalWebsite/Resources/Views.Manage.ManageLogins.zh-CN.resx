@@ -135,4 +135,7 @@
   <data name="Registered Logins" xml:space="preserve">
     <value>已注册账户</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>删除</value>
+  </data>
 </root>
