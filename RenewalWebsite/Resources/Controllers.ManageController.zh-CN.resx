@@ -252,4 +252,7 @@
   <data name="Hi there!" xml:space="preserve">
     <value>你好！</value>
   </data>
+  <data name="Your card's expiration month is invalid." xml:space="preserve">
+    <value>您输入的截止日期无效。</value>
+  </data>
 </root>

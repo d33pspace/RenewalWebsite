@@ -1456,7 +1456,7 @@ namespace RenewalWebsite.Controllers
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.UPDATE_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                     _loggerService.SaveEventLogAsync(log);
-                    result.data = ex.Message;
+                    result.data = _localizer[ex.Message];
                     result.status = "0";
                 }
                 catch (Exception ex)

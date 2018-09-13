@@ -9,9 +9,12 @@
 }
 
 <link href="~/js/daterangepicker/daterangepicker.css" rel="stylesheet" />
+<link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" type="text/css">
+<link href="~/css/buttonLoader.css" rel="stylesheet" />
 <script src="~/lib/jquery/dist/jquery.js" type="text/javascript"></script>
 <script src="~/js/daterangepicker/daterangepicker.js"></script>
 <script src="~/js/jquery.inputmask.bundle.js"></script>
+<script src="~/js/jquery.buttonLoader.js"></script>
 
 <input type="hidden" id="hdnOfType" name="TabId" value="Last12Months" />
 
@@ -52,10 +55,10 @@
             <div asp-validation-summary="All" class="text-danger"></div>
             <div class="form-row">
                 <div class="">
-                    <input type="button" id="btnLast12Months" class="btn btn-default" value="@Localizer["Last 12 Months"]" onclick="GenerateData('Last12Months')" />
-                    <input type="button" id="btnThisYear" class="btn btn-default" value="@Localizer["This Year"]" onclick="GenerateData('ThisYear')" />
-                    <input type="button" id="btnLastYear" class="btn btn-default" value="@Localizer["Last Year"]" onclick="GenerateData('LastYear')" />
-                    <input type="button" id="btnAllHistory" class="btn btn-default" value="@Localizer["All History"]" onclick="GenerateData('AllHistory')" />
+                    <button type="button" id="btnLast12Months" class="btn btn-default has-spinner" data-name="Last12Months">@Localizer["Last 12 Months"]</button>
+                    <button type="button" id="btnThisYear" class="btn btn-default has-spinner" data-name="ThisYear">@Localizer["This Year"]</button>
+                    <button type="button" id="btnLastYear" class="btn btn-default has-spinner" data-name="LastYear">@Localizer["Last Year"]</button>
+                    <button type="button" id="btnAllHistory" class="btn btn-default has-spinner" data-name="AllHistory">@Localizer["All History"]</button>
                 </div>
             </div>
 
@@ -127,6 +130,12 @@ else
         $(":input").inputmask();
         var type = $("#hdnOfType").val();
         GenerateData(type);
+        $('.has-spinner').click(function () {
+            var btn = $(this);
+            $(btn).buttonLoader('start');
+            var name = $(btn).attr('data-name');
+            GenerateData(name, btn);
+        });
     });
 
     function displayUSDOption(type) {
@@ -151,10 +160,11 @@ else
 
     function changeValue(item) {
         $('#showUSD').val(item.checked);
-        GenerateData($("#hdnOfType").val());
+        $('#usd').prop("disabled", true);
+        GenerateData($("#hdnOfType").val(), null);
     };
 
-    function GenerateData(type) {
+    function GenerateData(type, button) {
         $("#hdnOfType").val(type);
         var showUsd = $('#showUSD').val();
         $('#divInvoiceHistory').html('');
@@ -171,6 +181,10 @@ else
                 if (HiddenfildTypeIsNull == 0) { $("#btnSubmitPDF").hide(); }
                 else { $("#btnSubmitPDF").show(); }
                 displayUSDOption(type);
+                if (button != null) {
+                    $(button).buttonLoader('stop');
+                }
+                $('#usd').prop("disabled", false);
             }
         });
     }
