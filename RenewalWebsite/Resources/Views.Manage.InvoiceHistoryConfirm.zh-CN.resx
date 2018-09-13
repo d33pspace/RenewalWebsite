@@ -120,10 +120,10 @@
   <data name="Please click here to log in." xml:space="preserve">
     <value>请点击此处登录。</value>
   </data>
-  <data name="View Invoice History Confirmation" xml:space="preserve">
-    <value>查看发票历史记录确认</value>
+  <data name="Confirm your Renewal account" xml:space="preserve">
+    <value>确认您的日新中心账户</value>
   </data>
   <data name="Your email has been confirmed." xml:space="preserve">
-    <value>您的电子邮件已确认。请</value>
+    <value>您的电子邮件已确认。</value>
   </data>
 </root>
