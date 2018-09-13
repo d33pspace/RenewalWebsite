@@ -9,6 +9,15 @@
     string ipAddress = @HttpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
     string serverLocation = currencySettings.Value.ServerLocation;
 }
+<style>
+    .spinner {
+        width: auto;
+        display: contents;
+        margin-top: 30px;
+        position: relative;
+        top: 10px;
+    }
+</style>
 <footer class="mt-5">
     <div class="container">
         @*<div class="row">
@@ -92,7 +101,11 @@
                             </div>
                             <input type="hidden" id="drip-language-preference" name="fields[language_preference]" value="@culture.RequestCulture.UICulture.TwoLetterISOLanguageName" />
                         </div>
-                        <button type="button" id="btnDripData" name="submit" class="btn btn-secondary mb-5">@Localizer["Sign Up"]&nbsp;<i class="arrow right-arrow"></i></button>
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <button type="button" id="btnDripData" name="submit" class="btn btn-secondary mb-5 has-spinner">@Localizer["Sign Up"]&nbsp;<i class="arrow right-arrow"></i></button>
+                            </div>
+                        </div>
                     </form>
                 </div>
                 <div class="col-md-3"></div>
@@ -116,7 +129,7 @@
 <!-- Drip -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#btnDripData').on('click', function () {
+        $('.has-spinner').click(function () {
             if ($('#drip-contact-name').val() == "") {
                 $('#nameValid').css("display", "table");
                 $('#nameValid').show();
@@ -140,6 +153,9 @@
 
             //var sone = moment.tz.guess();
             //var timezone = moment.tz(sone).zoneAbbr();
+
+            var btn = $(this);
+            $(btn).buttonLoader('start');
             var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";
             var hour = (moment(new Date()).zone()) < 0 ? (Math.round(((moment(new Date()).zone()) / 60)) * -1) : Math.floor(((moment(new Date()).zone()) / 60));
             var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
@@ -168,6 +184,7 @@
                 datatype: "application/json",
                 success: function (result) {
                     if (result.status = "success") {
+                        $(btn).buttonLoader('stop');
                         window.location.href = "/thankyou";
                     }
                 }

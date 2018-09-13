@@ -240,4 +240,7 @@
   <data name="Incorrect password." xml:space="preserve">
     <value>密码不正确。</value>
   </data>
+  <data name="Hi there!" xml:space="preserve">
+    <value>你好！</value>
+  </data>
 </root>

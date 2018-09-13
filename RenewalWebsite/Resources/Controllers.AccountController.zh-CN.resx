@@ -180,4 +180,7 @@
   <data name="String1" xml:space="preserve">
     <value>你好</value>
   </data>
+  <data name="Hi there!" xml:space="preserve">
+    <value>你好！</value>
+  </data>
 </root>

@@ -1513,7 +1513,7 @@ namespace RenewalWebsite.Controllers
                     mailModel.ValidHours = _localizer["Use this link to view invoice history."];
                     mailModel.HeaderInformation = _localizer["You recently requested to confirm your Renewal Center account in order to view your giving history. Use the button below to confirm."];
                     mailModel.ConfirmationLink = _localizer["Confirm view invoice history"];
-                    mailModel.Hi = _localizer["Hi"];
+                    mailModel.Hi = _localizer["Hi there!"];
                     mailModel.Thanks = _localizer["Thank you!"];
                     mailModel.RenewalTeam = _localizer["The Renewal Center Team"];
 
