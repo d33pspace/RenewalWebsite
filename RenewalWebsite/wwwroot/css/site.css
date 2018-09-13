@@ -104,7 +104,7 @@ a.styled-link, p a {
         cursor: pointer;
         text-decoration: none;
         padding: 0px 2px 0px 2px;
-        border-radius: 5px;
+        border-radius: 3px;
     }
 
 :lang(zh) .figure-caption.caption {
