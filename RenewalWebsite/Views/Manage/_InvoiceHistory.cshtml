@@ -47,7 +47,7 @@ else
                     @foreach (var subscription in Model.InvoiceHistory)
                     {
                         <tr class="CellWithComment">
-                            <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@(subscription.Date != null ? (culture == "en" ? subscription.Date.ToString("MMMM dd, yyyy", new CultureInfo("en-US")) : subscription.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US"))) : "") </td>
+                            <td style="vertical-align:middle;color:black;" class="text-left CellWithComment">@(subscription.Date != null ? (culture == "en" ? subscription.Date.ToString("MMM dd, yyyy", new CultureInfo("en-US")) : subscription.Date.ToString("yyyy-MM-dd", new CultureInfo("en-US"))) : "") </td>
                             <td style="vertical-align:middle;color:black;" class="text-center CellWithComment">@subscription.Currency</td>
                             <td style="vertical-align:middle;color:black;" class="text-right CellWithComment">@(string.Format("{0:C}", subscription.Amount).Replace("$", "").Replace("¥", "")) </td>
                             @if (Model.displayConversion == true)
