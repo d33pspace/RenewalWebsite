@@ -124,7 +124,7 @@
     <value>出了点问题，请再试一次</value>
   </data>
   <data name="You have been unsubscribed from all Renewal communications." xml:space="preserve">
-    <value>您已取消订阅所有续订通讯。</value>
+    <value>您已退订所有邮件。</value>
   </data>
   <data name="Your communication preferences have been updated." xml:space="preserve">
     <value>您的通讯偏好已更新。</value>
