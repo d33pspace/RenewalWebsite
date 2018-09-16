@@ -120,10 +120,10 @@
   <data name="Email" xml:space="preserve">
     <value>电子邮箱</value>
   </data>
-  <data name="Enter valid email address." xml:space="preserve">
+  <data name="Please enter a valid email address." xml:space="preserve">
     <value>输入有效的电邮地址。</value>
   </data>
-  <data name="Enter your name." xml:space="preserve">
+  <data name="Please enter your name." xml:space="preserve">
     <value>输入你的名字。</value>
   </data>
   <data name="Name" xml:space="preserve">
