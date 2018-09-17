@@ -225,4 +225,13 @@
   <data name="NewPasswordmustbe6andmax100charcterslong" xml:space="preserve">
     <value>密码长度必须在6--100个字符之间。</value>
   </data>
+  <data name="PreferenceEmail" xml:space="preserve">
+    <value>请输入您的邮箱。</value>
+  </data>
+  <data name="PreferenceName" xml:space="preserve">
+    <value>请输入您的全名。</value>
+  </data>
+  <data name="PreferenceValidEmail" xml:space="preserve">
+    <value>请输入有效的电邮地址。</value>
+  </data>
 </root>

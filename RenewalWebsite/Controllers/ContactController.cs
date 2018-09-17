@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Logging;
 using RenewalWebsite.Models;
+using RenewalWebsite.Models.ViewModels;
 using RenewalWebsite.Services;
 using RenewalWebsite.Utility;
 using RestSharp;
@@ -49,12 +50,14 @@ namespace RenewalWebsite.Controllers
         [Route("/preference")]
         public IActionResult Preference(string email, string salutation)
         {
+            UserPreferenceViewModel userPreferenceViewModel = new UserPreferenceViewModel();
             try
             {
                 email = Convert.ToString(HttpContext.Request.Query["email"]);
                 salutation = Convert.ToString(HttpContext.Request.Query["salutation"]);
-                ViewBag.email = email;
-                ViewBag.salutation = salutation;
+                userPreferenceViewModel.Email = email;
+                userPreferenceViewModel.Salutation = salutation;
+                userPreferenceViewModel.NewEmail = email;
             }
             catch (Exception ex)
             {
@@ -62,7 +65,7 @@ namespace RenewalWebsite.Controllers
                 _loggerService.SaveEventLogAsync(log);
             }
 
-            return View();
+            return View(userPreferenceViewModel);
         }
 
         public IActionResult ThankYou()
@@ -133,35 +136,35 @@ namespace RenewalWebsite.Controllers
         }
 
         [HttpPost]
-        public JsonResult ChangePreference(UnsubscribeUserViewModel model)
+        public JsonResult ChangePreference(UserPreferenceViewModel model)
         {
             ResultModel result = new ResultModel();
             if (model != null)
             {
                 try
                 {
-                    UnsubscribeUsers unsubscribeUser = _unsubscribeUserService.GetUnsubscribeUsersByEmail(model.email);
+                    UnsubscribeUsers unsubscribeUser = _unsubscribeUserService.GetUnsubscribeUsersByEmail(model.Email);
                     if (unsubscribeUser == null)
                     {
                         unsubscribeUser = new UnsubscribeUsers();
-                        unsubscribeUser.email = model.email;
-                        unsubscribeUser.language = model.language;
+                        unsubscribeUser.email = model.Email;
+                        unsubscribeUser.language = model.Language;
                         //unsubscribeUser.language = model.salutation;
                         unsubscribeUser.isUnsubscribe = false;
                         _unsubscribeUserService.Insert(unsubscribeUser);
                     }
                     else
                     {
-                        unsubscribeUser.language = model.language;
+                        unsubscribeUser.language = model.Language;
                         _unsubscribeUserService.Update(unsubscribeUser);
                     }
 
                     var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/kbcwdc/");
                     var request = new RestRequest(Method.POST);
-                    request.AddParameter("email_old", model.email);
-                    request.AddParameter("email_new", model.newEmail);
-                    request.AddParameter("language", model.language);
-                    request.AddParameter("Salutation", model.salutation);
+                    request.AddParameter("email_old", model.Email);
+                    request.AddParameter("email_new", model.NewEmail);
+                    request.AddParameter("language", model.Language);
+                    request.AddParameter("Salutation", model.Salutation);
                     // execute the request
                     IRestResponse response = client.Execute(request);
 

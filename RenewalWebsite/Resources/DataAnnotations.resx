@@ -231,4 +231,13 @@
   <data name="NewPasswordmustbe6andmax100charcterslong" xml:space="preserve">
     <value>The new password must be at least 6 and at max 100 characters long.</value>
   </data>
+  <data name="PreferenceEmail" xml:space="preserve">
+    <value>Please enter your email.</value>
+  </data>
+  <data name="PreferenceName" xml:space="preserve">
+    <value>Please enter your name.</value>
+  </data>
+  <data name="PreferenceValidEmail" xml:space="preserve">
+    <value>Please enter a valid email address.</value>
+  </data>
 </root>

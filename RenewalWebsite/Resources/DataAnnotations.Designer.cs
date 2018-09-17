@@ -340,6 +340,33 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please enter your email..
+        /// </summary>
+        public static string PreferenceEmail {
+            get {
+                return ResourceManager.GetString("PreferenceEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter your name..
+        /// </summary>
+        public static string PreferenceName {
+            get {
+                return ResourceManager.GetString("PreferenceName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please enter a valid email address..
+        /// </summary>
+        public static string PreferenceValidEmail {
+            get {
+                return ResourceManager.GetString("PreferenceValidEmail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Security Code.
         /// </summary>
         public static string SecurityCode {

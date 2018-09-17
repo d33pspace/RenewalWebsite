@@ -20,7 +20,7 @@
             <div class="form-group row">
                 <div class="col-md-12">
                     <!--<button type="button" id="btnUnsubscribe" class="btn btn-secondary" onclick="unsubscribeUser()">@("Unsubscribe " + email + " from all mailings")</button>-->
-                    <button type="button" id="btnUnsubscribe" class="btn btn-secondary" onclick="unsubscribeUser()">@Localizer["Unsubscribe from all mailings"]</button>
+                    <button type="button" id="btnUnsubscribe" class="btn btn-secondary has-spinner" onclick="unsubscribeUser()">@Localizer["Unsubscribe from all mailings"]</button>
                 </div>
             </div>
         </fieldset>
@@ -30,6 +30,8 @@
 <script type="text/javascript">
 
     function unsubscribeUser() {
+        var btn = $('#btnUnsubscribe');
+        $(btn).buttonLoader('start');
         $.ajax({
             url: "/Contact/Unsubscribe",
             data: {
@@ -42,6 +44,7 @@
                     $('#message').show();
                     $('#message').text(result.data);
                     setInterval(function () {
+                        $(btn).buttonLoader('stop');
                         window.location.href = "/contact/thankyou?id=1";
                     }, 1000);
                 }

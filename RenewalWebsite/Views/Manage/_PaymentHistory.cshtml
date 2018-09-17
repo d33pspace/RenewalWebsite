@@ -106,7 +106,7 @@ else
         </div>
         <div class="row">
             <div class="col-md-12">
-                <input type="button" id="btnSendConfirmation" class="btn btn-default" value="@Localizer["Send confirmation link"]" onclick="SendConfirmationMail()" />
+                <button type="button" id="btnSendConfirmation" class="btn btn-default has-spinner" onclick=" SendConfirmationMail()">@Localizer["Send confirmation link"]</button>
             </div>
         </div>
     }
@@ -196,6 +196,8 @@ else
 
 
     function SendConfirmationMail() {
+        var btn = $('#btnSendConfirmation');
+        $(btn).buttonLoader('start');
         $.ajax({
             url: "/Manage/SendInvoiceHistoryConfirmation",
             data: {},
@@ -213,6 +215,7 @@ else
                     $('#divConfirmation').addClass('alert alert-success');
                     $('#divConfirmation').text(data.data);
                 }
+                $(btn).buttonLoader('stop');
             }
         });
     }
