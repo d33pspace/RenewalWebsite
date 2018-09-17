@@ -118,12 +118,15 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="Just one more step to unsubscribe..." xml:space="preserve">
-    <value>还有一步......</value>
+    <value>还差一步......</value>
   </data>
   <data name="Unsubscribe from all mailings" xml:space="preserve">
-    <value>不要所有邮件</value>
+    <value> 退订所有邮件</value>
   </data>
   <data name="Use the button below to unsubscribe from all mailings." xml:space="preserve">
-    <value>用下面的按钮......</value>
+    <value>请点击下面的按钮退订所有邮件。</value>
+  </data>
+  <data name="Unsubscribe" xml:space="preserve">
+    <value>退订</value>
   </data>
 </root>

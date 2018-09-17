@@ -857,7 +857,8 @@ namespace RenewalWebsite.Controllers
                 DateTime dTime = DateTime.Now;
                 //file name to be created   
                 //string strPDFFileName = "Renewal giving record" + ".pdf"; //string.Format("Invoice_History_" + dTime.ToString("dd-MMM-yyyy", new CultureInfo("en-US")) + "-" + ".pdf");
-                string strPDFFileName = language == "en-US" ? "Renewal_" + DateTime.Now.ToString("yyyy-MM-dd")  + ".pdf" : "Rixin_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";//_localizer["Renewal giving record"] + ".pdf";
+                //string strPDFFileName = language == "en-US" ? "Renewal_" + DateTime.Now.ToString("yyyy-MM-dd")  + ".pdf" : "Rixin_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";//_localizer["Renewal giving record"] + ".pdf";
+                string strPDFFileName = "Renewal.pdf";
                 Document doc = new Document();
                 doc.SetPageSize(PageSize.A4);
                 doc.SetMargins(0f, 0f, 0f, 0f);
