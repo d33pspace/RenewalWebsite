@@ -566,6 +566,15 @@ namespace RenewalWebsite.Controllers
                 List<InvoiceHistory> InvoiceHistory = _invoiceHistoryService.GetInvoiceHistory(FromDate, ToDate, user.Email);
                 int totalhistoryCount = _invoiceHistoryService.GetAllInvoiceHistoryCount(user.Email);
 
+                if (totalhistoryCount == 0)
+                {
+                    model.HasHistory = false;
+                }
+                else
+                {
+                    model.HasHistory = true;
+                }
+
                 if (InvoiceHistory.Count > 0)
                 {
                     if (InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
@@ -585,10 +594,6 @@ namespace RenewalWebsite.Controllers
                     }
                 }
 
-                if (totalhistoryCount == 0)
-                {
-                    model = null;
-                }
 
                 return PartialView("_PaymentHistory", model);
             }
@@ -1479,6 +1484,30 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await _userManager.FindByIdAsync(confirmInvoiceHistoryViewModel.UserId);
+                if (user == null)
+                {
+                    // Don't reveal that the user does not exist
+                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                }
+
+                user.HistoryView = true;
+                await _userManager.UpdateAsync(user);
+                return View();
+            }
+            catch (Exception ex)
+            {
+                log = new EventLog() { EventId = (int)LoggingEvents.USER_LOGIN, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source };
+                _loggerService.SaveEventLogAsync(log);
+                return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
+            }
+        }
+
+        [HttpGet]
+        public async Task<ActionResult> UpdateHistoryStatus()
+        {
+            try
+            {
+                var user = await GetCurrentUserAsync();
                 if (user == null)
                 {
                     // Don't reveal that the user does not exist

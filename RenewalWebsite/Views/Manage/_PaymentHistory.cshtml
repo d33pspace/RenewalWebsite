@@ -20,7 +20,7 @@
 
 @if (user.HistoryView == true)
 {
-    @if (Model != null)
+    @if (Model.HasHistory != false)
     {
         <form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
             @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
@@ -90,7 +90,7 @@
 }
 else
 {
-    @if (Model != null)
+    @if (Model.HasHistory != false)
     {
         <div class="row">
             <div class="col-md-12">
@@ -136,6 +136,19 @@ else
             var name = $(btn).attr('data-name');
             GenerateData(name, btn);
         });
+
+        var hasHistory = "@Model.HasHistory";
+        var historyView = "@user.HistoryView";
+
+        if (hasHistory == "False" && historyView == "False") {
+            $.ajax({
+                url: "/Manage/UpdateHistoryStatus",
+                data: {},
+                type: 'GET',
+                success: function (data) {
+                }
+            });
+        }
     });
 
     function displayUSDOption(type) {

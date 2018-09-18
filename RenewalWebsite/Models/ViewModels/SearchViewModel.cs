@@ -20,6 +20,8 @@ namespace RenewalWebsite.Models
         public bool displayUSD { get; set; }
 
         public string typeOfHistory { get; set; }
+
+        public bool HasHistory { get; set; }
     }
 
     public class InvoiceHistoryViewModel
