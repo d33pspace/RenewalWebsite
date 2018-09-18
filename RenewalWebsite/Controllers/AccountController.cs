@@ -35,6 +35,7 @@ namespace RenewalWebsite.Controllers
         private readonly IOptions<CurrencySettings> _currencySettings;
         private readonly IStringLocalizer<AccountController> _localizer;
         private readonly ICurrencyService _currencyService;
+        private readonly IInvoiceHistoryService invoiceHistoryService;
 
         public AccountController(
             UserManager<ApplicationUser> userManager,
@@ -46,7 +47,8 @@ namespace RenewalWebsite.Controllers
             IHttpContextAccessor httpContextAccessor,
             IOptions<CurrencySettings> currencySettings,
             IStringLocalizer<AccountController> localizer,
-            ICurrencyService currencyService)
+            ICurrencyService currencyService,
+            IInvoiceHistoryService invoiceHistoryService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -58,6 +60,7 @@ namespace RenewalWebsite.Controllers
             _currencySettings = currencySettings;
             _currencyService = currencyService;
             _localizer = localizer;
+            this.invoiceHistoryService = invoiceHistoryService;
         }
 
         // GET: /Account/Login
@@ -148,6 +151,13 @@ namespace RenewalWebsite.Controllers
                         IRestResponse response = client.Execute(request);
 
                         await _signInManager.SignInAsync(user, isPersistent: false);
+                        int totalhistoryCount = this.invoiceHistoryService.GetAllInvoiceHistoryCount(user.Email);
+                        if (totalhistoryCount == 0)
+                        {
+                            user.HistoryView = true;
+                            await _userManager.UpdateAsync(user);
+                        }
+
                         return RedirectToLocal(returnUrl);
                     }
                     //AddErrors(result);
