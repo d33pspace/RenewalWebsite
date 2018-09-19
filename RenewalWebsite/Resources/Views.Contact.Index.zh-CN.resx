@@ -129,4 +129,7 @@
   <data name="Unsubscribe" xml:space="preserve">
     <value>退订</value>
   </data>
+  <data name="Please wait" xml:space="preserve">
+    <value>请稍等</value>
+  </data>
 </root>

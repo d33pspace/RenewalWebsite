@@ -1,5 +1,9 @@
-﻿@{
+﻿@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
     ViewData["Title"] = Localizer["Confirm your Renewal account"];
+    ApplicationUser user = await UserManager.GetUserAsync(User);
 }
 
 <h2>@ViewData["Title"]</h2>
@@ -8,7 +12,8 @@
 <div class="form-group">
     <div class="col-md-offset-2 col-md-10">
         <p>
-            @Localizer["Your email has been confirmed."] <a asp-controller="Account" asp-action="Login">@Localizer["Please click here to log in."]</a>
+            @Localizer["Your email has been confirmed."]
+            <a asp-controller="Manage" asp-action="Index">@Localizer["Manage"]</a>
         </p>
     </div>
 </div>

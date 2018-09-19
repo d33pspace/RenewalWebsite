@@ -31,7 +31,7 @@
 
     function unsubscribeUser() {
         var btn = $('#btnUnsubscribe');
-        $(btn).buttonLoader('start');
+        $(btn).buttonLoader('start',"@Localizer["Please wait"]");
         $.ajax({
             url: "/Contact/Unsubscribe",
             data: {
@@ -50,5 +50,5 @@
                 }
             }
         });
-    };    
+    };
 </script>

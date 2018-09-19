@@ -628,5 +628,11 @@ namespace RenewalWebsite.Controllers
         {
             return View();
         }
+
+        private Task<ApplicationUser> GetCurrentUserAsync()
+        {
+            return _userManager.GetUserAsync(HttpContext.User);
+        }
+
     }
 }

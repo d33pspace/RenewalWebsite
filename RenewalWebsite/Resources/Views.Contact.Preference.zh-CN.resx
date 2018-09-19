@@ -147,4 +147,7 @@
   <data name="Update Renewal communication preferences for..." xml:space="preserve">
     <value>改变日新中心通讯的偏好......</value>
   </data>
+  <data name="Please wait" xml:space="preserve">
+    <value>请稍等</value>
+  </data>
 </root>

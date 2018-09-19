@@ -132,7 +132,7 @@ else
         GenerateData(type);
         $('.has-spinner').click(function () {
             var btn = $(this);
-            $(btn).buttonLoader('start');
+            $(btn).buttonLoader('start',"@Localizer["Please wait"]");
             var name = $(btn).attr('data-name');
             GenerateData(name, btn);
         });
@@ -210,7 +210,7 @@ else
 
     function SendConfirmationMail() {
         var btn = $('#btnSendConfirmation');
-        $(btn).buttonLoader('start');
+        $(btn).buttonLoader('start',"@Localizer["Please wait"]");
         $.ajax({
             url: "/Manage/SendInvoiceHistoryConfirmation",
             data: {},

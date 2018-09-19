@@ -126,4 +126,7 @@
   <data name="Your email has been confirmed." xml:space="preserve">
     <value>您的电子邮件已确认。</value>
   </data>
+  <data name="Manage" xml:space="preserve">
+    <value>管理</value>
+  </data>
 </root>

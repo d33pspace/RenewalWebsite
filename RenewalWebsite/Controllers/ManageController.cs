@@ -1484,14 +1484,24 @@ namespace RenewalWebsite.Controllers
             try
             {
                 var user = await _userManager.FindByIdAsync(confirmInvoiceHistoryViewModel.UserId);
+                var currentUser = await GetCurrentUserAsync();
                 if (user == null)
                 {
                     // Don't reveal that the user does not exist
-                    return RedirectToAction(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                    return RedirectToAction(nameof(AccountController.Login), "Account");
+                }
+                else if(user.Id != currentUser.Id)
+                {
+                    await _signInManager.SignOutAsync();
+                    HttpContext.Session.Clear();
+                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                }
+                else
+                {
+                    user.HistoryView = true;
+                    await _userManager.UpdateAsync(user);
                 }
 
-                user.HistoryView = true;
-                await _userManager.UpdateAsync(user);
                 return View();
             }
             catch (Exception ex)

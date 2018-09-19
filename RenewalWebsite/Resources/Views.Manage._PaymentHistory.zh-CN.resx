@@ -147,6 +147,9 @@
   <data name="PDF" xml:space="preserve">
     <value>PDF报告</value>
   </data>
+  <data name="Please wait" xml:space="preserve">
+    <value>请稍等</value>
+  </data>
   <data name="Requested data not available, Try another." xml:space="preserve">
     <value>请求的数据不可用，请尝试另一种。</value>
   </data>
