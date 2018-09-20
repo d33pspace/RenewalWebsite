@@ -47,7 +47,7 @@
         }
         <div class="form-row">
             <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
-            <button type="button" id="btnSubmitPDF" class="btn btn-default" onclick="GeneratePDF()">@Localizer["PDF"]</button>
+            <button type="button" id="btnSubmitPDF" class="btn btn-default has-spinner" onclick="GeneratePDF()">@Localizer["PDF"]</button>
             @*<input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" style="display:none"/>*@
         </div>
 
@@ -127,12 +127,11 @@ else
 </div>
 
 <script type="text/javascript">
-
     $(document).ready(function () {
         $(":input").inputmask();
         var type = $("#hdnOfType").val();
         GenerateData(type);
-        $('.has-spinner').click(function () {
+        $('#btnLast12Months,#btnThisYear,#btnLastYear,#btnAllHistory').click(function () {
             var btn = $(this);
             $(btn).buttonLoader('start',"@Localizer["Please wait"]");
             var name = $(btn).attr('data-name');
@@ -206,8 +205,8 @@ else
     }
 
     function GeneratePDF() {
-        //var btn = $('#btnSubmitPDF');
-        //$(btn).buttonLoader('start',"@Localizer["Please wait"]");
+        var btn = $('#btnSubmitPDF');
+        $(btn).buttonLoader('start',"@Localizer["Please wait"]");
         $("#typeOfHistory").val($("#hdnOfType").val());
         $.ajax({
             url: "/Manage/GetInvoicePdf",
@@ -221,7 +220,7 @@ else
             success: function (data) {
                 $('#divPDFFilePath').html('');
                 $('#divPDFFilePath').html(data);
-                //$(btn).buttonLoader('stop');
+                $(btn).buttonLoader('stop');
             }
         });
         //$('#btnPDF').trigger('click');

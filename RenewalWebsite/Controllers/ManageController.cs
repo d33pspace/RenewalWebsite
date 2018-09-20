@@ -922,13 +922,13 @@ namespace RenewalWebsite.Controllers
                 // Closing the document  
                 doc.Close();
 
-                string directoryPath = @"wwwroot/InvoiceHistory";
+                string directoryPath = @"wwwroot/InvoiceHistory/" + user.Id;
                 if (!Directory.Exists(directoryPath))
                 {
                     Directory.CreateDirectory(directoryPath);
                 }
 
-                string fileName = language == "en-US" ? "Renewal_" + DateTime.Now.ToString("yyyy-MM-dd") + "_" + user.Id + ".pdf" : "Rixin_" + DateTime.Now.ToString("yyyy-MM-dd") + "_" + user.Id + ".pdf";
+                string fileName = language == "en-US" ? "Renewal_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf" : "Rixin_" + DateTime.Now.ToString("yyyy-MM-dd") + ".pdf";
                 byte[] byteInfo = workStream.ToArray();
                 //workStream.Write(byteInfo, 0, byteInfo.Length);
                 //workStream.Position = 0;
@@ -938,7 +938,7 @@ namespace RenewalWebsite.Controllers
                 fileStream.Close();
 
                 PDFFileViewModel pDFFileViewModel = new PDFFileViewModel();
-                pDFFileViewModel.DownloadLink = @"InvoiceHistory" + "/" + fileName;
+                pDFFileViewModel.DownloadLink = @"InvoiceHistory/" + user.Id + "/" + fileName;
                 pDFFileViewModel.FileName = fileName;
                 return PartialView("_PDFFileDownload", pDFFileViewModel);
                 //return File(workStream.ToArray(), "application/pdf", strPDFFileName);
@@ -1509,7 +1509,7 @@ namespace RenewalWebsite.Controllers
                 {
                     await _signInManager.SignOutAsync();
                     HttpContext.Session.Clear();
-                    return RedirectToAction(nameof(HomeController.Index), "Home");
+                    return RedirectToAction(nameof(AccountController.Login), "Account");
                 }
                 else
                 {

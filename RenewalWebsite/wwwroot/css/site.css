@@ -1648,3 +1648,7 @@ input#CustomAmount {
     left: 0;
     right: 0;
 }
+
+.p-b-0 {
+    padding-bottom: 0px !important;
+}

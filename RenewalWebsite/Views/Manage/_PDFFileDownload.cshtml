@@ -2,10 +2,13 @@
 
 <div class="row m-t-30">
     <div class="col-md-12 text-center">
-        <div class="alert alert-danger m-0">
+        <div class="alert alert-danger m-0 alert-dismissible fade show" role="alert">
             <a href="@Model.DownloadLink" target="_blank">
                 <span>@Model.FileName</span>
             </a>
+            <button type="button" class="close p-b-0" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
     </div>
 </div>
