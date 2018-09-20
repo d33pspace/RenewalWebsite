@@ -922,11 +922,26 @@ namespace RenewalWebsite.Controllers
                 // Closing the document  
                 doc.Close();
 
-                byte[] byteInfo = workStream.ToArray();
-                workStream.Write(byteInfo, 0, byteInfo.Length);
-                workStream.Position = 0;
+                string directoryPath = @"wwwroot/InvoiceHistory";
+                if (!Directory.Exists(directoryPath))
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
 
-                return File(workStream.ToArray(), "application/pdf", strPDFFileName);
+                string fileName = language == "en-US" ? "Renewal_" + DateTime.Now.ToString("yyyy-MM-dd") + "_" + user.Id + ".pdf" : "Rixin_" + DateTime.Now.ToString("yyyy-MM-dd") + "_" + user.Id + ".pdf";
+                byte[] byteInfo = workStream.ToArray();
+                //workStream.Write(byteInfo, 0, byteInfo.Length);
+                //workStream.Position = 0;
+
+                FileStream fileStream = new FileStream(directoryPath + "/" + fileName, FileMode.Create);
+                fileStream.Write(byteInfo, 0, byteInfo.Length);
+                fileStream.Close();
+
+                PDFFileViewModel pDFFileViewModel = new PDFFileViewModel();
+                pDFFileViewModel.DownloadLink = @"InvoiceHistory" + "/" + fileName;
+                pDFFileViewModel.FileName = fileName;
+                return PartialView("_PDFFileDownload", pDFFileViewModel);
+                //return File(workStream.ToArray(), "application/pdf", strPDFFileName);
             }
             catch (Exception ex)
             {
@@ -1490,7 +1505,7 @@ namespace RenewalWebsite.Controllers
                     // Don't reveal that the user does not exist
                     return RedirectToAction(nameof(AccountController.Login), "Account");
                 }
-                else if(user.Id != currentUser.Id)
+                else if (user.Id != currentUser.Id)
                 {
                     await _signInManager.SignOutAsync();
                     HttpContext.Session.Clear();

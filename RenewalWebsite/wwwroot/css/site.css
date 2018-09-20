@@ -1641,3 +1641,10 @@ input#CustomAmount {
 .ccFormatMonitor.cc_type_unknown + p::after {
     content: url('/images/cards/Default.png');
 }
+
+#divPDFFilePath {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}

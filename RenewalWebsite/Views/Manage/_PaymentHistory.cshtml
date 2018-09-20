@@ -22,57 +22,55 @@
 {
     @if (Model.HasHistory != false)
     {
-        <form asp-action="GetInvoicePdf" asp-controller="Manage" method="post">
-            @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
-            @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
-            @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
-            @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
+        @Html.HiddenFor(model => model.showUSD, new { @id = "showUSD" })
+        @Html.HiddenFor(model => model.FromDate, new { @id = "FromDate" })
+        @Html.HiddenFor(model => model.ToDate, new { @id = "ToDate" })
+        @Html.HiddenFor(model => model.typeOfHistory, new { @id = "typeOfHistory" })
 
-            <div class="form-row">
+        <div class="form-row">
+            <div class="col-md-12">
+                <div id="divInvoiceHistory">
+
+                </div>
+            </div>
+        </div>
+        @if (culture == "en")
+        {
+            <div class="row">
                 <div class="col-md-12">
-                    <div id="divInvoiceHistory">
-
+                    <div class="form-group col-md-6" id="divUSD" style="display:none;">
+                        <input type="checkbox" id="usd" name="usd" onclick="changeValue(this)" /> @Localizer["Show USD conversion"]
+                        @Html.ValidationMessageFor(model => model.showUSD)
                     </div>
                 </div>
             </div>
-            @if (culture == "en")
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="form-group col-md-6" id="divUSD" style="display:none;">
-                            <input type="checkbox" id="usd" name="usd" onclick="changeValue(this)" /> @Localizer["Show USD conversion"]
-                            @Html.ValidationMessageFor(model => model.showUSD)
-                        </div>
-                    </div>
-                </div>
-            }
-            <div class="form-row">
-                <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
-                <input type="button" id="btnSubmitPDF" style="display:none" class="btn btn-default" value="@Localizer["PDF"]" onclick="GeneratePDF()" />
-                <input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" />
-            </div>
+        }
+        <div class="form-row">
+            <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
+            <button type="button" id="btnSubmitPDF" class="btn btn-default" onclick="GeneratePDF()">@Localizer["PDF"]</button>
+            @*<input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" style="display:none"/>*@
+        </div>
 
-            <div asp-validation-summary="All" class="text-danger"></div>
-            <div class="form-row">
-                <div class="">
-                    <button type="button" id="btnLast12Months" class="btn btn-default has-spinner" data-name="Last12Months">@Localizer["Last 12 Months"]</button>
-                    <button type="button" id="btnThisYear" class="btn btn-default has-spinner" data-name="ThisYear">@Localizer["This Year"]</button>
-                    <button type="button" id="btnLastYear" class="btn btn-default has-spinner" data-name="LastYear">@Localizer["Last Year"]</button>
-                    <button type="button" id="btnAllHistory" class="btn btn-default has-spinner" data-name="AllHistory">@Localizer["All History"]</button>
-                </div>
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="form-row">
+            <div class="">
+                <button type="button" id="btnLast12Months" class="btn btn-default has-spinner" data-name="Last12Months">@Localizer["Last 12 Months"]</button>
+                <button type="button" id="btnThisYear" class="btn btn-default has-spinner" data-name="ThisYear">@Localizer["This Year"]</button>
+                <button type="button" id="btnLastYear" class="btn btn-default has-spinner" data-name="LastYear">@Localizer["Last Year"]</button>
+                <button type="button" id="btnAllHistory" class="btn btn-default has-spinner" data-name="AllHistory">@Localizer["All History"]</button>
             </div>
+        </div>
 
-            <div class="form-row" id="idOfMessage" style="display:none">
-                <div class="col-sm-offset-4 col-sm-8">
-                    <span style="color:#d11241">@Localizer["Requested data not available, Try another."]</span>
-                </div>
+        <div class="form-row" id="idOfMessage" style="display:none">
+            <div class="col-sm-offset-4 col-sm-8">
+                <span style="color:#d11241">@Localizer["Requested data not available, Try another."]</span>
             </div>
-            <div class="form-row" id="idOfErrorMessage" style="display:none">
-                <div class="col-sm-offset-4 col-sm-8">
-                    <span style="color:#d11241">@Localizer["Something went wrong, while fetching history."]</span>
-                </div>
+        </div>
+        <div class="form-row" id="idOfErrorMessage" style="display:none">
+            <div class="col-sm-offset-4 col-sm-8">
+                <span style="color:#d11241">@Localizer["Something went wrong, while fetching history."]</span>
             </div>
-        </form>
+        </div>
     }
     else
     {
@@ -124,6 +122,10 @@ else
         </div>
     }
 }
+
+<div id="divPDFFilePath">
+</div>
+
 <script type="text/javascript">
 
     $(document).ready(function () {
@@ -178,6 +180,7 @@ else
     };
 
     function GenerateData(type, button) {
+        $('#divPDFFilePath').html('');
         $("#hdnOfType").val(type);
         var showUsd = $('#showUSD').val();
         $('#divInvoiceHistory').html('');
@@ -203,8 +206,25 @@ else
     }
 
     function GeneratePDF() {
-        $("#typeOfHistory").val($("#hdnOfType").val())
-        $('#btnPDF').trigger('click');
+        //var btn = $('#btnSubmitPDF');
+        //$(btn).buttonLoader('start',"@Localizer["Please wait"]");
+        $("#typeOfHistory").val($("#hdnOfType").val());
+        $.ajax({
+            url: "/Manage/GetInvoicePdf",
+            data: {
+                model: {
+                    typeOfHistory: $("#typeOfHistory").val(),
+                    showUSD: $('#showUSD').val()
+                },
+            },
+            type: 'POST',
+            success: function (data) {
+                $('#divPDFFilePath').html('');
+                $('#divPDFFilePath').html(data);
+                //$(btn).buttonLoader('stop');
+            }
+        });
+        //$('#btnPDF').trigger('click');
     };
 
 
