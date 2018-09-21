@@ -71,6 +71,11 @@ namespace RenewalWebsite.Controllers
             // Clear the existing external cookie to ensure a clean login process
             await HttpContext.SignOutAsync(IdentityConstants.ExternalScheme);
 
+            if (returnUrl == "/account/logout")
+            {
+                returnUrl = null;
+            }
+
             ViewData["ReturnUrl"] = returnUrl;
             return View();
         }
