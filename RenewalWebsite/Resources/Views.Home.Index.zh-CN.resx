@@ -117,9 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="." xml:space="preserve">
-    <value>。</value>
-  </data>
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
@@ -132,16 +129,16 @@
   <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
     <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
   </data>
-  <data name="Help beat the summer slump" xml:space="preserve">
-    <value>帮助我们度过夏日危机</value>
+  <data name="Help homeless people stay warm during the long winter ahead" xml:space="preserve">
+    <value>帮助无家可归人士渡过漫长的冬季</value>
   </data>
-  <data name="My gift to beat the summer slump" xml:space="preserve">
-    <value>用我的捐赠来度过夏日危机</value>
+  <data name="My gift winter warmth" xml:space="preserve">
+    <value>我的温暖捐赠</value>
   </data>
-  <data name="The Renewal Center needs your support now to overcome the 'summer slump.' During the hot summer months, giving drops off for our vital services to homeless people because supportive friends like you are more likely to be travelling." xml:space="preserve">
-    <value>日新中心现在急需您的帮助来度过“夏日危机”。每年夏季，许多和您一样的朋友都会选择外出度假，这会让我们的捐赠收入骤减，从而影响到我们为无家可归人士提供的帮助。</value>
+  <data name="To get ready, we are relying on your generosity. We never want to turn anyone away hungry or cold. With your help we won’t have to. Please give now to make a difference when it matters the most." xml:space="preserve">
+    <value>我们需要您的慷慨捐赠来为此做好准备。我们从不愿拒绝任何一个前来寻求帮助的人，而您可以帮助我们。请您在这最关键的时刻帮助他们渡过难关。</value>
   </data>
-  <data name="This can hurt, because our homeless guests rely on your kind support every day of the year.Please send your gift to beat the summer slump and continue helping homeless people when others can't." xml:space="preserve">
-    <value>这很糟糕，因为无家可归的人们在一年中的每一天都需要善良的帮助。请在今天做出您的捐赠，帮助我们度过夏日危机，在这困难时期继续为无家可归人士提供服务。</value>
+  <data name="Winter is coming, and we need your help. Hundreds of homeless people will come to us seeking nourishing meals and warm clothes to get them through the tough months ahead." xml:space="preserve">
+    <value>冬天即将来临，我们需要您的帮助。数百名无家可归人士将在冬天前来寻求营养的食物和温暖的衣物，从而渡过这个最困难的季节。</value>
   </data>
 </root>
