@@ -22,8 +22,10 @@ namespace RenewalWebsite.Models.AccountViewModels
         [Compare("Password", ErrorMessageResourceName = "PasswordAndConfirmPasswordNotMatch", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string ConfirmPassword { get; set; }
 
+        [Required]
         public string Code { get; set; }
 
+        [Required]
         public string UserId { get; set; }
     }
 }

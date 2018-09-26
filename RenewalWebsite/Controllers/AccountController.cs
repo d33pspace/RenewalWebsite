@@ -390,7 +390,7 @@ namespace RenewalWebsite.Controllers
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null, string userId = null)
         {
-            return code == null ? View("Error") : View();
+            return View();
         }
 
         // POST: /Account/ResetPassword
@@ -418,7 +418,7 @@ namespace RenewalWebsite.Controllers
                 }
                 //AddErrors(result);
                 AddErrorsForRegisterAction(result);
-                return View();
+                return View(model);
             }
             catch (Exception ex)
             {
@@ -604,9 +604,29 @@ namespace RenewalWebsite.Controllers
                     {
                         error.Description = _localizer["Invalid token."];
                     }
+
+                    if(error.Description.Contains("Passwords must have at least one non alphanumeric character"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one non alphanumeric character."];
+                    }
+
+                    if (error.Description.Contains("Passwords must have at least one lowercase ('a'-'z')"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one lowercase ('a'-'z')."];
+                    }
+
+                    if (error.Description.Contains("Passwords must have at least one uppercase ('A'-'Z')"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one uppercase ('A'-'Z')."];
+                    }
+
+                    if (error.Description.Contains("Passwords must have at least one digit ('0'-'9')"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one digit ('0'-'9')."];
+                    }
                 }
 
-                ModelState.AddModelError(string.Empty, error.Description);
+                ModelState.AddModelError(error.Code, error.Description);
             }
         }
 

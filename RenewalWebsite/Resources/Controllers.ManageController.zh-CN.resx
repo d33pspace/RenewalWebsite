@@ -255,4 +255,16 @@
   <data name="Your card's expiration month is invalid." xml:space="preserve">
     <value>您输入的截止日期无效。</value>
   </data>
+  <data name="Passwords must have at least one digit ('0'-'9')." xml:space="preserve">
+    <value>密码必须包含至少一个数字（“0”-"9"）。</value>
+  </data>
+  <data name="Passwords must have at least one lowercase ('a'-'z')." xml:space="preserve">
+    <value>密码必须包含至少一个小写字母（“a”-"z"）。</value>
+  </data>
+  <data name="Passwords must have at least one non alphanumeric character." xml:space="preserve">
+    <value>密码必须包含至少一个非字母数字字符。</value>
+  </data>
+  <data name="Passwords must have at least one uppercase ('A'-'Z')." xml:space="preserve">
+    <value>密码必须包含至少一个大写字母（“A”-"Z"）。</value>
+  </data>
 </root>

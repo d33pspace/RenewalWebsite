@@ -1637,6 +1637,26 @@ namespace RenewalWebsite.Controllers
                     {
                         error.Description = _localizer["Incorrect password."];
                     }
+
+                    if (error.Description.Contains("Passwords must have at least one non alphanumeric character"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one non alphanumeric character."];
+                    }
+
+                    if (error.Description.Contains("Passwords must have at least one lowercase ('a'-'z')"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one lowercase ('a'-'z')."];
+                    }
+
+                    if (error.Description.Contains("Passwords must have at least one uppercase ('A'-'Z')"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one uppercase ('A'-'Z')."];
+                    }
+
+                    if (error.Description.Contains("Passwords must have at least one digit ('0'-'9')"))
+                    {
+                        error.Description = _localizer["Passwords must have at least one digit ('0'-'9')."];
+                    }
                 }
 
                 ModelState.AddModelError(error.Code, error.Description);
