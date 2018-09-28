@@ -322,6 +322,15 @@ namespace RenewalWebsite.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Password must contain at least one special character, one number, one lowercase and one uppercase letter..
+        /// </summary>
+        public static string PasswordStructure {
+            get {
+                return ResourceManager.GetString("PasswordStructure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Name.
         /// </summary>
         public static string PersonName {

@@ -18,6 +18,7 @@ using RestSharp;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using System.Text.RegularExpressions;
+using Microsoft.AspNetCore.Routing;
 
 namespace RenewalWebsite.Controllers
 {
@@ -390,7 +391,10 @@ namespace RenewalWebsite.Controllers
         [AllowAnonymous]
         public IActionResult ResetPassword(string code = null, string userId = null)
         {
-            return View();
+            ResetPasswordViewModel model = new ResetPasswordViewModel();
+            model.Code = code;
+            model.UserId = userId;
+            return View(model);
         }
 
         // POST: /Account/ResetPassword
@@ -605,7 +609,7 @@ namespace RenewalWebsite.Controllers
                         error.Description = _localizer["Invalid token."];
                     }
 
-                    if(error.Description.Contains("Passwords must have at least one non alphanumeric character"))
+                    if (error.Description.Contains("Passwords must have at least one non alphanumeric character"))
                     {
                         error.Description = _localizer["Passwords must have at least one non alphanumeric character."];
                     }
