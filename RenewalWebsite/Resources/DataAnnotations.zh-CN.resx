@@ -235,6 +235,6 @@
     <value>请输入有效的电邮地址。</value>
   </data>
   <data name="PasswordStructure" xml:space="preserve">
-    <value>密码必须包含至少一个特殊字符、一个数字、一个小写字母和一个大写字母。</value>
+    <value>密码应至少为六位。 密码必须包含至少一个特殊字符、一个数字、一个小写字母和一个大写字母。</value>
   </data>
 </root>
