@@ -1,0 +1,306 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="'I can get a second chance and change my life...'" xml:space="preserve">
+    <value>“我得到了第二个机会并改变了我的一生”</value>
+  </data>
+  <data name="There's no telling how many people have faced hard times financially since then. What's clear is that your generous help has changed lives over an amazing decade of highly effective outreach." xml:space="preserve">
+    <value>金融危机让无数人开始了一段经济困难的日子。而您慷慨的资助在过去的十年间给这个最容易受影响的人群带来了让人不可思议的改变。</value>
+  </data>
+  <data name="- Rudy Ran" xml:space="preserve">
+    <value>冉茂平</value>
+  </data>
+  <data name="- Zhong Zhenhuan" xml:space="preserve">
+    <value>钟镇环</value>
+  </data>
+  <data name="A special women's program is launched to provide a residential program and employment placement." xml:space="preserve">
+    <value> 我们开始了专门面向女性的服务项目，为女性无家可归者提供住宿和找工作的服务。</value>
+  </data>
+  <data name="But it doesn’t feel peaceful or holy. He says, “It’s painful to be away from family for the holiday.” But thanks to your gifts, “The Renewal Center feels like a family. I came here because it's warm and there are lots of people.” When the shops are open, Luo Qingyuan makes deliveries for a business when they need him. At night, he sleeps outside their front door." xml:space="preserve">
+    <value>但他并未感到平安与神圣。他说：“在节日里远离家庭让人非常痛苦。”但多亏了您的捐赠，“日新中心就像我们的新家一样。这里温暖的氛围和朋友把我吸引了过来。”当商店营业时，罗青云在一家企业需要时帮他们送货。而在夜里，他就睡在这家公司门口的大街上。</value>
+  </data>
+  <data name="Donor gifts help launch programs to ensure homeless people get medical care and essential national ID cards." xml:space="preserve">
+    <value> 资助者们的捐赠帮助我们开展了更多的项目来为无家可归人士提供医疗和重要的身份证申请等服务。</value>
+  </data>
+  <data name="Donor investment launches Fresh Start cafe, a self-supporting restaurant that trains residents in cooking, kitchen and serving skills." xml:space="preserve">
+    <value> 资助者们的捐赠帮助我们开办了自助式的鲜也餐厅，我们在这里培训员工烹饪和服务等工作技巧。</value>
+  </data>
+  <data name="Gifts enable the Renewal Center to move to Zhongxing Road and expand, quadrupling our space to 200 sq. meters (2,100 sq. ft.) and greatly increasing our ability to help and train people living on the streets" xml:space="preserve">
+    <value> 在各界捐赠的帮助下，日新中心得以搬迁到中兴路的新地址。新的营业面积达到了过去四倍的200平方米。这极大地增强了我们帮助并培训无家可归人士的能力。</value>
+  </data>
+  <data name="Guests from the province were overjoyed, including Lua Quingyuan, who hails from Chongqing, definitely a capital of Sichuan cuisine. Although he feels ashamed to return there, he was so thankful to have a hot, traditional meal in his home away from home." xml:space="preserve">
+    <value>来自四川的朋友们非常高兴，当然也包括来自于重庆的罗青云。虽然他不好意思回到家乡，但他仍然非常感激地在上海品尝到了传统的家乡味道。</value>
+  </data>
+  <data name="he is incredibly thankful for your gifts. 'The Renewal Center gave me a new identity through its program and encouraged me to pursue a better life for myself.'" xml:space="preserve">
+    <value>他对您的捐赠感到由衷地感激，他说：“日新中心给了我新的身份，并鼓励我去追求更好的生活。”</value>
+  </data>
+  <data name="He means that a hush falls over the normally bustling city, because businesses close and people return to their home towns to spend several days with family." xml:space="preserve">
+    <value>他感到这个繁华的都市突然间安静了下来，企业纷纷歇业，而人们也都陆续回到各自的家乡，与亲人们欢度春节。</value>
+  </data>
+  <data name="He watched with interest as most of that group of guys came to the Renewal Center one by one, seeking a way out of that dead-end job. After carefully observing the results in his friends' lives, Rudy rightly concluded that, through your gifts," xml:space="preserve">
+    <value>他看到一些同伴陆续来到日新中心寻求摆脱这一没有前途的“工作”。在仔细观察到朋友们生活中的改变后，</value>
+  </data>
+  <data name="Here in our first newsletter after both the Western and Chinese New Years, what better time to reflect and thank you for your amazing support over the past 12 months. It's you who change lives, day after day - it simply wouldn't be possible without you." xml:space="preserve">
+    <value>这是我们在西方新年和中国新年后的第一封新闻资讯。在这节日的喜庆氛围中，我们要感谢您在过去的一年里为我们提供的支持与帮助。是您日复一日的努力，改变着无家可归人士的生活。没有您的帮助，这一切都不会成为现实。</value>
+  </data>
+  <data name="I will also be thrilled to know that you are renewing your support for the Renewal Center, by helping us continue to offer the showers, clean clothes, hot meals, shelter and job training people need to go from sleeping on the streets to finding a good full-time job and moving into a place of their own." xml:space="preserve">
+    <value>同样让我感到欣喜的是看到您再次为日新中心做出了捐赠。是您帮助我们持续提供着洗澡、洗衣、餐食、住所和工作培训服务，从而鼓励无家可归人士离开街头去找到一份稳定的工作并开始自己新的生活。</value>
+  </data>
+  <data name="Imagine facing cold and empty streets on a day everyone you know is with their family, having a traditional holiday meal. Luo Qingyuan says, 'Being in Shanghai at Spring Festival is like being in a temple, because everyone has left...'" xml:space="preserve">
+    <value>试想，在你认识的每一个人都在家与家人一起共享传统节日晚餐时，你却一个人面对着寒冷空荡的街头，这会是一种什么滋味？罗青云说：“春节期间待在上海就像待在一座寺庙里一样，因为每个人都早已回家与家人团聚了…”</value>
+  </data>
+  <data name="In 2008, the Renewal Center was just starting out, and at that time, Rudy was one of a group of young men who hung around the train station picking up used tickets off the floor and out of the trash to sell to dishonest businesspeople who include them in their expenses to reduce their tax bill." xml:space="preserve">
+    <value>2008年，日新中心刚刚开始营业。在那时，冉茂平还在和一群年轻人一起整日在火车站附近游荡，从大街上和垃圾箱里捡被人丢弃的火车票，并将这些车票卖给无良商人来帮助他们逃税。</value>
+  </data>
+  <data name="It's amazing what your support can do, and rescuing a person from the streets is just the beginning of their transformation." xml:space="preserve">
+    <value>您的支持能够带来不可思议的结果，而帮助无家可归人士离开街头只是转变的开始。</value>
+  </data>
+  <data name="Like you, our thoughts are with him. Your gifts have already given him basic help. “Being able to change clothes at the Renewal Center is the most important thing to me, because it preserves my dignity.” One day Luo Qunyuan might join our residential program, but until then, we'll keep inviting him in for showers, clothes and meals." xml:space="preserve">
+    <value>和您一样，我们也牵挂着他。您的捐赠已经为他提供了最基础的帮助。“能够在日新中心换洗衣物对我来说是最重要的事情，这让我保留了自己的尊严。”也许有一天，罗青云会加入我们的全日制住宿计划，但在此之前，我们会继续邀请他来洗澡、换洗衣物并给他提供食物。</value>
+  </data>
+  <data name="Moved to Minhang with a drop-in center separate from the residential training center." xml:space="preserve">
+    <value> 我们再次搬迁到了闵行区，开始将服务站与住宿式培训中心分开运营。</value>
+  </data>
+  <data name="Now ready for a change from restaurant work, Rudy is confident in planning his next move rather than facing life on the streets with no options. His amazing progress is a result of your powerful support. Thank you!" xml:space="preserve">
+    <value>现在，冉茂平正打算换一份工作。如今的他已经不再是那个流落街头对生活没有选择权的男孩，他正充满信心地计划自己的下一步人生。他身上发生的令人惊喜的变化都是来源于您的无私帮助。谢谢您！</value>
+  </data>
+  <data name="Once here, Rudy progressed rapidly and soon joined our restaurant partner Element Fresh, who offered him a full-time job. Reflecting back, he says, 'Life on the street is lonely and depressing. Day after day it's the same, and you never know if you'll have the money for your next meal. The Renewal Center is a home away from home. You find direction here whenever you need it most.'" xml:space="preserve">
+    <value>来到日新中心后，冉茂平进步很快，不久他就加入了我们的餐饮合作伙伴新元素餐厅，在那里找到了一份全职工作。回想过去，他说：“街头的生活是孤独和令人沮丧的。日复一日，似乎没有尽头，你永远不知道自己的下一顿饭在哪里。而日新中心就是我们的第二个家。在这里，你总能在最需要的时刻找到前进的方向。”</value>
+  </data>
+  <data name="Our first resident trainee finds a full-time job." xml:space="preserve">
+    <value>我们的首位受训人员找到了全职工作。</value>
+  </data>
+  <data name="Our seventh year marks a total of 28 men and 4 women completing our training program since its inception." xml:space="preserve">
+    <value> 在我们开业的第7年，我们的工作培训项目总共已经帮助28名男性和4名女性完成了培训。</value>
+  </data>
+  <data name="Rudy benefits from a decade of caring" xml:space="preserve">
+    <value>您的支持给了冉茂平开始新生活的坚定信心</value>
+  </data>
+  <data name="Rudy celebrates the confidence you gave him to make huge strides in life." xml:space="preserve">
+    <value>您的支持给了冉茂平开始新生活的坚定信心。</value>
+  </data>
+  <data name="Rudy first visited the Renewal Center 10 years ago, at the start of a global economic crisis." xml:space="preserve">
+    <value>冉茂平第一次来到日新中心已是10年以前，也就是全球金融危机开始的时候。</value>
+  </data>
+  <data name="Search is underway for a new site for our cafe, which will allow trainees to earn an income while profits are plowed back into outreach." xml:space="preserve">
+    <value> 我们开始为餐厅寻找新的地址，新的餐厅能够帮助培训人员赚取收入，并帮助我们继续扩大规模。</value>
+  </data>
+  <data name="Some people think of homelessness as an endless cycle, but it doesn't have to be that way. Again and again, I've seen people move up and out of street life for good. This is all thanks to you. I also want to let you know that through your continued support, plans are afoot to open a new training cafe." xml:space="preserve">
+    <value>有些人认为无家可归的状态会是一种无尽的恶性循环，但事实并不总是这样的。我们已经一次又一次的看到无家可归人士离开街头开始更美好的人生。而这些都要感谢您的帮助。另外，我还想告诉您一个好消息：在您的持续支持下，我们正在计划开办一家新的培训餐厅。</value>
+  </data>
+  <data name="That includes our Spring Festival celebration. Thanks to you, the Renewal Center stayed open when other business close, knowing that the homeless feel the lack of warmth, food and friendship now more than ever. Our dedicated volunteers made an amazing 7,000 dumplings for our guests. These are the traditional dish for dipping in hot sauce or dark vinegar. This year was special because one volunteer made an exceptionally hot Sichuan style sauce from scratch, on the spot." xml:space="preserve">
+    <value>当然也包括我们的春节特别庆祝活动！在您的帮助下，日新中心在春节期间正常营业，因为我们知道，无家可归的朋友们在这段时间比平时更加需要温暖、食物和友谊。我们充满奉献精神的志愿者们为大家准备了7千只饺子！这是中国春节期间传统的节日美食。而今年的饺子更加特殊，因为我们的一位志愿者亲自为大家制作了四川风味的特制辣酱。</value>
+  </data>
+  <data name="The change in his life has been remarkable, thanks to your outstanding support. Zhong Zhenhuan came to the Renewal Center after being estranged from his family; he had also lost his national ID card meaning he couldn't get a apply for a legitimate job. But he showed a real passion for cooking, testing and improving the recipes for our Fresh Start cafe," xml:space="preserve">
+    <value>现如今，钟振环已经回到南方广东的家乡，在那里开办了自己的餐馆。日新中心开心地送给他了一台我们不再需要地烤炉作为礼物。看到他开始了作为餐馆老板的新生活，</value>
+  </data>
+  <data name="The new 600 sq. meter (6,450 sq. ft.) space allows the Renewal Center to more than double our opening hours and triple the number of meals we serve to homeless guests." xml:space="preserve">
+    <value>新的600平方米场地使日新中心得以将营业时间增加了一倍多，而且能够为无家可归人士提供的食物也增加了2倍。</value>
+  </data>
+  <data name="The Renewal Center gave me a new identity" xml:space="preserve">
+    <value>日新中心给了我新的身份</value>
+  </data>
+  <data name="the Renewal Center really did offer him both practical help and the opportunity to lead a much better life than survival on the streets." xml:space="preserve">
+    <value>冉茂平发现日新中心在捐赠者的无私资助下，确实能够给他提供实际的帮助，并让他有机会远离街头开始更美好的新生活。</value>
+  </data>
+  <data name="Today, Zhong Zhenhuan is back in his southern home province of Guangdong, where he has opened a restaurant. The Renewal Center was thrilled to send him off with the gift of an oven we could no longer use - even more so to see how he has put it to good use as a new business owner. And he's now married with a child. Today," xml:space="preserve">
+    <value>现如今，钟振环已经回到南方广东的家乡，在那里开办了自己的餐馆。日新中心开心地送给他了一台我们不再需要地烤炉作为礼物。看到他开始了作为餐馆老板的新生活，我们更是感到无比兴奋。现在他已经结了婚并有了一个孩子。今天，</value>
+  </data>
+  <data name="We have saved all the kitchen appliances, furnishings and utensils from our former location (it's normal even to strip out electrical cables and lights), so I'm looking forward to telling you more as these plans develop. In the meantime, let me repeat my warmest and sincerest thanks!" xml:space="preserve">
+    <value>自从离开过去的地址后，我们留下了所有的厨房电器、家具和餐具，甚至包括电线与灯具。随着这些计划逐渐得到实施，我将期待着与您分享更多的好消息。最后，让我再一次对您致以最温暖、最诚挚的感谢！</value>
+  </data>
+  <data name="When holidays hurt, the people you help smile with thanks for a traditional meal" xml:space="preserve">
+    <value>在孤独的节日里，您提供的传统美餐帮助他们重新露出了微笑</value>
+  </data>
+  <data name="which not only trained people for valuable work cooking and serving food in Shanghai's many restaurants, it also turned a profit to help cover the costs of training homeless people to lead independent lives." xml:space="preserve">
+    <value>我们更是感到无比兴奋。现在他已经结了婚并有了一个孩子。今天，他对您的捐赠感到由衷地感激，他说：“日新中心给了我新的身份，并鼓励我去追求更好的生活。”</value>
+  </data>
+  <data name="You gave a hot holiday meal to the lonely and hungry" xml:space="preserve">
+    <value>是您给那些孤独而饥饿的人们送去了热腾腾的节日美餐</value>
+  </data>
+  <data name="You gave Zhong Zhenhuan the skills to return to his home province and start a small business" xml:space="preserve">
+    <value>是您帮助钟振环锻炼了厨艺并帮他回到家乡开办自己的餐馆</value>
+  </data>
+  <data name="You make the difference, year after year" xml:space="preserve">
+    <value>年复一年，是您带来了改变</value>
+  </data>
+  <data name="You'll find direction here whenever you need it most." xml:space="preserve">
+    <value>在这里，你总能在最需要的时刻找到前进的方向。</value>
+  </data>
+  <data name="Your gifts crown a decade of caring" xml:space="preserve">
+    <value>年复一年，是您带来了改变</value>
+  </data>
+  <data name="Your investment in people's lives achieves more than saving them from danger, cold and rain on the streets - you are giving them the chance to make a completely new start in life." xml:space="preserve">
+    <value>感谢您的资助，他的生活发生了翻天覆地的变化。刚来到日新中心时，钟振环已经离开了他的家人。他还弄丢了自己的身份证，因而无法找到一份合法的工作。但在我们的鲜也餐厅，他展现出了对厨艺极大的热情，尝试并改良了我们的菜单。</value>
+  </data>
+  <data name="Your kindness in the face of the global financial crisis allows the Renewal Center to open its doors to homeless guests on West Suzhou Road, with just 50 sq. meters (540 sq. ft.) of floorspace." xml:space="preserve">
+    <value> 全球金融危机爆发之时，在您的仁慈帮助下，日新中心在苏州西路一处仅有50平方米的场地开始向无家可归人士开放。</value>
+  </data>
+  <data name="Your support again enables expansion into rented space on the second floor, doubling our size to 400 sq. meters (4,300 sq. ft.) and assisting the launch of full residency and drop-in services." xml:space="preserve">
+    <value>在您的帮助下，我们得以租下了二楼的场地，使我们的营业面积达到了400平方米。同时我们还开始了全日制住宿和服务站双向服务。</value>
+  </data>
+  <data name="Your support helped Zhong Zhenhuan develop career and cooking skills" xml:space="preserve">
+    <value>是您的捐赠帮助钟振环学习厨艺并开始了新的人生</value>
+  </data>
+  <data name="Zhong Zhenhuan was in his forties when he became homeless on the streets of Shanghai, and he thought his life was over because he was too old to try something new. Zhong Zhenhuan noticed that many of the homeless people who come to the Renewal Center are in their twenties and thirties, but now he says, 'If I can get a second chance and change my life in my forties, they can too.'" xml:space="preserve">
+    <value>这不仅帮助我们的培训员工锻炼了在上海各种餐厅提供烹饪和服务的能力，还为我们带来了一定的收入，从而帮助我们收回了培训成本，并帮助他们开始独立的生活。</value>
+  </data>
+  <data name="Dear friends," xml:space="preserve">
+    <value>亲爱的朋友们，</value>
+  </data>
+  <data name="Hanson Ye" xml:space="preserve">
+    <value>叶海生</value>
+  </data>
+  <data name="In this issue of Re:news" xml:space="preserve">
+    <value>刊物内容</value>
+  </data>
+  <data name="My gift today" xml:space="preserve">
+    <value>我的捐赠</value>
+  </data>
+  <data name="Once on the streets of Shanghai, Zhong Zhenhuan has opened a restaurant thanks to your kindness." xml:space="preserve">
+    <value>在您的帮助下，曾在上海街头无家可归的钟振环回到家乡开了一家餐馆。</value>
+  </data>
+  <data name="Operations Director" xml:space="preserve">
+    <value>运营总监</value>
+  </data>
+  <data name="Please give hot meals and hope to a homeless person and put them on the path to new life." xml:space="preserve">
+    <value>请为无家可归人士带去食物与希望，帮助他们开启新的人生。</value>
+  </data>
+  <data name="See the incredible results of your giving" xml:space="preserve">
+    <value>您的捐赠所会带来不可思议的结果</value>
+  </data>
+  <data name="You offered a holiday dinner to those who would otherwise go hungry because they can't go home!" xml:space="preserve">
+    <value>您的资助给那些无法回家的饥饿的人们带来了珍贵的节日美餐！</value>
+  </data>
+  <data name="Your generous help has changed lives over an amazing decade of outreach" xml:space="preserve">
+    <value>您慷慨的资助在过去的十年间给这个最容易受影响的人群带来了让人不可思议的改变</value>
+  </data>
+  <data name="ISSUE 10" xml:space="preserve">
+    <value>第10期</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>简报</value>
+  </data>
+  <data name="Read how your gifts are changing lives in the New Year..." xml:space="preserve">
+    <value>您的捐赠在新年里改变了他们的生活......</value>
+  </data>
+  <data name="SPRING 2018" xml:space="preserve">
+    <value>2018年春季</value>
+  </data>
+</root>
