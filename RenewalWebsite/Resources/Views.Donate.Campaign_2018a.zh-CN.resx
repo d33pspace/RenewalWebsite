@@ -195,16 +195,16 @@
   <data name="Please enter a valid amount." xml:space="preserve">
     <value>请输入一个有效的金额。</value>
   </data>
-  <data name="When you give today, it will make a difference in the lives of people living on Shanghai's streets. We recently reinstated our women-only Thursdays to give women a chance to use the Renewal Center in a comfortable and safe environment.  Your gift ensures we can continue to expand our important services." xml:space="preserve">
-    <value>您在今天的捐赠将改变上海街头无家可归的人们。我们在日新中心重新开放了周四特别女性服务日，给所有女性受助者提供更加安全（和没有男性）的环境。您的捐赠能够帮我们继续并扩大这项重要的服务。</value>
+  <data name="As the temperature plummets, we will see more and more people come to the Renewal Center hoping for warmth, nourishing meals, clean winter clothes and welcoming, friendly faces." xml:space="preserve">
+    <value>随着气温骤降，我们将看到越来越多的人们来到日新中心寻求温暖、营养的食物、干净的保暖衣物以及热心、善良的朋友。</value>
   </data>
-  <data name="Your generous gift is transformed into education, food, shelter, job training, and hope for homeless men and women." xml:space="preserve">
+  <data name="The only way we can serve them is through your generosity. Will you give the gift of hot stew, waterproof coats, and refreshing showers today?" xml:space="preserve">
     <value>唯一能帮助我们提供这些服务的就是您慷慨的捐助。您会在今天帮我们提供热腾腾的饭菜、防水的大衣和清爽的洗澡服务吗？</value>
   </data>
-  <data name="Homeless men and women need a place where they can feel safe" xml:space="preserve">
-    <value>无家可归的人们需要安全的家</value>
+  <data name="When the weather outside is freezing cold..." xml:space="preserve">
+    <value>当寒冷的冬季来临…</value>
   </data>
-  <data name="Thank you for giving homeless women (and men) shelter and showers." xml:space="preserve">
-    <value>感谢您为无家可归女性提供的住所和洗澡服务。</value>
+  <data name="Your generosity will bring warmth to people through the long winter ahead." xml:space="preserve">
+    <value>您的慷慨捐赠将在漫长的冬日给人们带来温暖。</value>
   </data>
 </root>

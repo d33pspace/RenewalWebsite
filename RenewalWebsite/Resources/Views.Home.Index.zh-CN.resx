@@ -129,16 +129,19 @@
   <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
     <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
   </data>
-  <data name="Help homeless people stay warm during the long winter ahead" xml:space="preserve">
-    <value>帮助无家可归人士渡过漫长的冬季</value>
+  <data name="Your gifts open the door to education and jobs for people struggling on the street" xml:space="preserve">
+    <value>您的捐赠给街头无家可归的人们带来了接受教育和培训的机会。</value>
   </data>
-  <data name="My gift of winter warmth" xml:space="preserve">
-    <value>我的温暖捐赠</value>
+  <data name="My gift to help Pan and others live full lives" xml:space="preserve">
+    <value>为潘和其他人提供帮助</value>
   </data>
-  <data name="To get ready, we are relying on your generosity. We never want to turn anyone away hungry or cold. With your help we won’t have to. Please give now to make a difference when it matters the most." xml:space="preserve">
-    <value>我们需要您的慷慨捐赠来为此做好准备。我们从不愿拒绝任何一个前来寻求帮助的人，而您可以帮助我们。请您在这最关键的时刻帮助他们渡过难关。</value>
+  <data name="Pan’s story is just one highlight in our latest newsletter. Please check it out and see how your help makes a real difference in real lives." xml:space="preserve">
+    <value>潘的事迹仅仅是我们最新简报中的一个故事。请点击查看更多故事，了解您的帮助如何改变他们的人生。</value>
   </data>
-  <data name="Winter is coming, and we need your help. Hundreds of homeless people will come to us seeking nourishing meals and warm clothes to get them through the tough months ahead." xml:space="preserve">
-    <value>冬天即将来临，我们需要您的帮助。数百名无家可归人士将在冬天前来寻求营养的食物和温暖的衣物，从而渡过这个最困难的季节。</value>
+  <data name="Communicating with Pan is hard. He can’t hear or speak, read or write. But your support has opened a path for him to get the education he has lacked for so long. With your continued help, we can give Pan everything he needs to succeed." xml:space="preserve">
+    <value>与潘交流非常困难。他不会听、说，也不会读、写。但您的支持为他接受教育提供了珍贵的机会。在您的持续帮助下，我们给潘提供了一切获得成功所需的支持。</value>
+  </data>
+  <data name="Read our autumn newsletter" xml:space="preserve">
+    <value>阅读我们秋季刊的简报</value>
   </data>
 </root>

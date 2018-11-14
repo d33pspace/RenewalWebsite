@@ -117,94 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
-    <value>立即用信用卡捐款</value>
+  <data name="Home" xml:space="preserve">
+    <value>首页</value>
   </data>
-  <data name="gift of:" xml:space="preserve">
-    <value>捐款：</value>
+  <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
+    <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
   </data>
-  <data name="I would like to make a" xml:space="preserve">
-    <value>我想</value>
+  <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
+    <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
   </data>
-  <data name="OPEN ALIPAY APP AND DONATE NOW" xml:space="preserve">
-    <value>立即打开支付宝APP捐款</value>
+  <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
+    <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
   </data>
-  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
-    <value>或者用支付宝扫描下面的二维码：</value>
+  <data name="Help homeless people stay warm during the long winter ahead" xml:space="preserve">
+    <value>帮助无家可归人士渡过漫长的冬季</value>
   </data>
-  <data name="to help as many people as I can." xml:space="preserve">
-    <value>尽可能多地帮助他们。</value>
+  <data name="My gift of winter warmth" xml:space="preserve">
+    <value>我的温暖捐赠</value>
   </data>
-  <data name="to provide 45 hot meals and care." xml:space="preserve">
-    <value>提供45顿饭菜和关怀。</value>
+  <data name="To get ready, we are relying on your generosity. We never want to turn anyone away hungry or cold. With your help we won’t have to. Please give now to make a difference when it matters the most." xml:space="preserve">
+    <value>我们需要您的慷慨捐赠来为此做好准备。我们从不愿拒绝任何一个前来寻求帮助的人，而您可以帮助我们。请您在这最关键的时刻帮助他们渡过难关。</value>
   </data>
-  <data name="to provide 30 hot meals and care." xml:space="preserve">
-    <value>提供30顿饭菜和关怀。</value>
-  </data>
-  <data name="to provide 60 hot meals and care." xml:space="preserve">
-    <value>提供60顿饭菜和关怀。</value>
-  </data>
-  <data name="When people come to the Renewal Center, we want to be able to help!  Thanks for your summer gift to ensure programs continue all summer long." xml:space="preserve">
-    <value>当无家可归的人们来到日新中心，我们希望能够帮助他们！感谢您的夏日捐赠，它帮助我们在整个夏天持续提供服务。</value>
-  </data>
-  <data name="monthly" xml:space="preserve">
-    <value>每月</value>
-  </data>
-  <data name="one time" xml:space="preserve">
-    <value>一次</value>
-  </data>
-  <data name="quarterly" xml:space="preserve">
-    <value>每季</value>
-  </data>
-  <data name="yearly" xml:space="preserve">
-    <value>每年</value>
-  </data>
-  <data name="Amount is required." xml:space="preserve">
-    <value>金额是必需的。</value>
-  </data>
-  <data name="(Please select a country)" xml:space="preserve">
-    <value>（请选择一个国家）</value>
-  </data>
-  <data name="Please enter your details below:" xml:space="preserve">
-    <value>请在下面输入您的详细信息</value>
-  </data>
-  <data name="Submit Payment" xml:space="preserve">
-    <value>提交付款</value>
-  </data>
-  <data name="The address at which you'd like to receive Renewal communications (optional, not related with card verification)" xml:space="preserve">
-    <value>您希望接收续订通讯的地址（可选，与卡验证无关）</value>
-  </data>
-  <data name="Your card information" xml:space="preserve">
-    <value>您的卡信息</value>
-  </data>
-  <data name="Your name as you'd it to appear in our records (required)" xml:space="preserve">
-    <value>您希望显示在捐赠记录中的姓名（必填）</value>
-  </data>
-  <data name="Donate" xml:space="preserve">
-    <value>捐款</value>
-  </data>
-  <data name="To make a donation with Alipay, please select 'Open in Safari' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在Safari打开”。</value>
-  </data>
-  <data name="To make a donation with Alipay, please select 'Open with Browser' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在浏览器打开”。</value>
-  </data>
-  <data name="Please open this page in your browser." xml:space="preserve">
-    <value>请在您的浏览器中打开此页面</value>
-  </data>
-  <data name="Please enter a valid amount." xml:space="preserve">
-    <value>请输入一个有效的金额。</value>
-  </data>
-  <data name="When you give today, it will make a difference in the lives of people living on Shanghai's streets. We recently reinstated our women-only Thursdays to give women a chance to use the Renewal Center in a comfortable and safe environment.  Your gift ensures we can continue to expand our important services." xml:space="preserve">
-    <value>您在今天的捐赠将改变上海街头无家可归的人们。我们在日新中心重新开放了周四特别女性服务日，给所有女性受助者提供更加安全（和没有男性）的环境。您的捐赠能够帮我们继续并扩大这项重要的服务。</value>
-  </data>
-  <data name="Your generous gift is transformed into education, food, shelter, job training, and hope for homeless men and women." xml:space="preserve">
-    <value>唯一能帮助我们提供这些服务的就是您慷慨的捐助。您会在今天帮我们提供热腾腾的饭菜、防水的大衣和清爽的洗澡服务吗？</value>
-  </data>
-  <data name="Homeless men and women need a place where they can feel safe" xml:space="preserve">
-    <value>无家可归的人们需要安全的家</value>
-  </data>
-  <data name="Thank you for giving homeless women (and men) shelter and showers." xml:space="preserve">
-    <value>感谢您为无家可归女性提供的住所和洗澡服务。</value>
+  <data name="Winter is coming, and we need your help. Hundreds of homeless people will come to us seeking nourishing meals and warm clothes to get them through the tough months ahead." xml:space="preserve">
+    <value>冬天即将来临，我们需要您的帮助。数百名无家可归人士将在冬天前来寻求营养的食物和温暖的衣物，从而渡过这个最困难的季节。</value>
   </data>
 </root>
