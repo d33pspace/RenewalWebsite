@@ -58,6 +58,15 @@ namespace RenewalWebsite
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
             services.Configure<EmailNotification>(Configuration.GetSection("EmailErrorNotification"));
 
+            services.Configure<IdentityOptions>(
+                options =>
+                {
+                    // Default Lockout settings.
+                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
+                    options.Lockout.MaxFailedAccessAttempts = 3;
+                    options.Lockout.AllowedForNewUsers = true;
+                });
+
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             // Session cache
             services.AddDistributedMemoryCache();
