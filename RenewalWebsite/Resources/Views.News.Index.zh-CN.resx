@@ -333,11 +333,8 @@
   <data name="To make life easier for women who need support, we've started having women-only Thursdays, just like we did in our former location. It's proved very popular for those who appreciate having some time to shower and do their laundry in privacy. We also introduce women to the wonderful Lynn, our American supporter and volunteer who travels 200 miles (300km) from Nanjing each week to offer all kinds of practical and emotional support." xml:space="preserve">
     <value>为了给女性带来更多关怀，我们已经重新开始举办只有女性能够参加的周四特别活动。这是一项很受欢迎的活动，女性朋友们可以在更私密的环境下获得洗澡和换洗衣服的服务。我们还向她们介绍了新朋友Lynn，她是我们来自美国的支持者和志愿者。每周她都会从300公里之外的南京来到上海，</value>
   </data>
-  <data name="When a woman is unable to afford all the things she needs, what is it she really dreams of having? Let's be frank: she really wants food, shelter, clean clothes and friendship. Wnag Xijuan is finding these things here at the Renewal Center were r call her Ms Wang. She says, 'Washing clothes," xml:space="preserve">
-    <value>当一位女性无法负担她所需要的一切，她最渴望的梦想是什么呢？老实讲，她最需要的是食物、住所、干净的衣服和友谊。王秀娟在日新中心得到了这一切，而且我们称她为王女士。她说：</value>
-  </data>
-  <data name="When a woman is unable to afford all the things she needs, what is it she really dreams of having? Let's be frank: she really wants food, shelter, clean clothes and friendship. Wnag Xijuan is finding these things here at the Renewal Center were r call her Ms Wang. She says, 'Washing clothes, exchanging clothes, eating and taking a shower-these are the things I really need.' Ms Wang explains, 'I don't have a job. I live in cheap government housing and collect bottles and boxes on the streets during the day.'" xml:space="preserve">
-    <value>当一位女性无法负担她所需要的一切，她最渴望的梦想是什么呢？老实讲，她最需要的是食物、住所、干净的衣服和友谊。王秀娟在日新中心得到了这一切，而且我们称她为王女士。她说：“换洗衣服、填饱肚子、洗个淋浴，这些都是我非常需要的。”对于她的生活，她补充道：“我没有工作，住在政府提供的廉价住房里。白天我就上街捡瓶子和纸箱为生。”</value>
+  <data name="When a woman is unable to afford all the things she needs, what is it she really dreams of having? Let's be frank: she really wants food, shelter, clean clothes and friendship. Wang Xijuan is finding these things here at the Renewal Center where we call her Ms Wang." xml:space="preserve">
+    <value>当一位女性无法负担她所需要的一切，她最渴望的梦想是什么呢？老实讲，她最需要的是食物、住所、干净的衣服和友谊。王秀娟在日新中心得到了这一切，而且我们称她为王女士。</value>
   </data>
   <data name="Women who lack even hygiene essentials have a friend in Lynn, who seems to have an endless supply. But she also brings special treats like donuts and manicure kits - there's something different every week. And always endless smiles and words of love." xml:space="preserve">
     <value>为我们带来各种实用又贴心的支持。她甚至能为我们的女性朋友提供许多的卫生必需品。同时，她也会带来一些甜甜圈和美甲工具等特别礼物——每周都有不同的惊喜。当然，还有她甜美的笑容和无尽的爱。</value>
@@ -365,5 +362,8 @@
   </data>
   <data name="Working in a prestigious kitchen gave Zhou Yushuai the skills to get a full-time job." xml:space="preserve">
     <value>在专业厨房工作的经历使周玉帅具备了全职工作的能力。</value>
+  </data>
+  <data name="She says, 'Washing clothes, exchanging clothes, eating and taking a shower -- these are the things I really need.' Ms Wang explains, 'I don't have a job. I live in cheap government housing and collect bottles and boxes on the streets during the day.'" xml:space="preserve">
+    <value>她说：“换洗衣服、填饱肚子、洗个淋浴，这些都是我非常需要的。”对于她的生活，她补充道：“我没有工作，住在政府提供的廉价住房里。白天我就上街捡瓶子和纸箱为生。”</value>
   </data>
 </root>
