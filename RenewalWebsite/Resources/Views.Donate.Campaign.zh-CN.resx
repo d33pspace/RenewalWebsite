@@ -207,4 +207,19 @@
   <data name="Thank you for giving homeless women (and men) shelter and showers." xml:space="preserve">
     <value>感谢您为无家可归女性提供的住所和洗澡服务。</value>
   </data>
+  <data name="Helping people achieve their dreams" xml:space="preserve">
+    <value>帮助人们实现他们的梦想</value>
+  </data>
+  <data name="Please help hard-working people gain the skills they need to make a better life." xml:space="preserve">
+    <value>请帮助这些努力的人们获得学习技术的机会，从而开始更好的人生。</value>
+  </data>
+  <data name="That's why your support started the residential job program. It gives people an opportunity to build the skills they need to find fulfilling jobs and to thrive in Shanghai (and beyond)." xml:space="preserve">
+    <value>这就是我们在您的支持下开始工作培训计划的原因。它使人们有机会学习独立自主所需的工作技巧，让他们能够找到一份工作，在上海（或其他地方）开始新的生活。</value>
+  </data>
+  <data name="Wanting a job, a family, a safe place to live - these seem like simple and achievable dreams. But realizing these dreams can be almost impossible without the right resources." xml:space="preserve">
+    <value>一份工作、一个家庭、一个安全的住所——这些听起来都是很简单很容易实现的梦想。但对有些人来说，即使这样的梦想也是遥不可及的。</value>
+  </data>
+  <data name="Your gift supports job training" xml:space="preserve">
+    <value>您的捐赠支持着我们的工作培训计划</value>
+  </data>
 </root>

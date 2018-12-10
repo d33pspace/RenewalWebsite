@@ -144,4 +144,19 @@
   <data name="Read our autumn newsletter" xml:space="preserve">
     <value>阅读我们秋季刊的简报</value>
   </data>
+  <data name="A chance at a new, fulfilling life" xml:space="preserve">
+    <value>一个开始新生的机会</value>
+  </data>
+  <data name="How do you make a new life when everything you have has been taken away? It’s only possible with a helping hand! That’s why the people in our residential job training program need you." xml:space="preserve">
+    <value>如果你的一切都被夺走，你是否还能开始新生？答案当然是肯定的，只要有人伸出援手！所以我们的工作培训计划中的学员们需要您的帮助</value>
+  </data>
+  <data name="My gift to help people start a new, fulfilling life!" xml:space="preserve">
+    <value>我愿为人们开始新的人生做出捐赠！</value>
+  </data>
+  <data name="The homeless people who come to the Renewal Center want to work, but they don’t have job skills or even a place to live." xml:space="preserve">
+    <value>来到日新中心的无家可归的人们想要工作，但他们不具备工作所需的技术，甚至没有固定的住处。</value>
+  </data>
+  <data name="With your help, we can welcome people into a long-term program that gives them all of the tools they need to live independent and fulfilling lives. Please send a gift toward this life-changing program." xml:space="preserve">
+    <value>在您的帮助下，我们可以为他们提供长期的帮助，给他们开始独立生活所需的工具，开始新的人生。请为我们的这项改变人生的计划做出您的捐赠。</value>
+  </data>
 </root>
