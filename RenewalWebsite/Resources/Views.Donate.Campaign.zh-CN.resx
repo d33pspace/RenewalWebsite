@@ -219,7 +219,16 @@
   <data name="Wanting a job, a family, a safe place to live - these seem like simple and achievable dreams. But realizing these dreams can be almost impossible without the right resources." xml:space="preserve">
     <value>一份工作、一个家庭、一个安全的住所——这些听起来都是很简单很容易实现的梦想。但对有些人来说，即使这样的梦想也是遥不可及的。</value>
   </data>
-  <data name="Your gift supports job training" xml:space="preserve">
-    <value>您的捐赠支持着我们的工作培训计划</value>
+  <data name="Your gift provides meals, shelter and supports job training." xml:space="preserve">
+    <value>您的捐赠提供健康的食物、安全的住宿和支持着我们的工作培训计划。</value>
+  </data>
+  <data name="to provide one month hot meals and care." xml:space="preserve">
+    <value>为无家可归男女提供一个月安全的住宿和温暖的帮助。</value>
+  </data>
+  <data name="to provide one week of shelter and good meals." xml:space="preserve">
+    <value>为无家可归男女提供一周安全的住宿和健康的食物。</value>
+  </data>
+  <data name="to provide three nights of shelter for a homeless man or woman." xml:space="preserve">
+    <value>为无家可归男女提供三个晚上安全的住宿。</value>
   </data>
 </root>
