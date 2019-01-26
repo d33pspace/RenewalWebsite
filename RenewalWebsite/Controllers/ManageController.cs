@@ -701,6 +701,7 @@ namespace RenewalWebsite.Controllers
 
                 if (invoiceHistoryModel.InvoiceHistory.Count > 0)
                 {
+                    invoiceHistoryModel.InvoiceHistory = invoiceHistoryModel.InvoiceHistory.OrderBy(a => a.Date).ToList();
                     if (invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("cny")).Any() && invoiceHistoryModel.InvoiceHistory.Where(a => a.Currency.ToLower().Equals("usd")).Any())
                     {
                         invoiceHistoryModel.displayConversion = true;
@@ -915,6 +916,9 @@ namespace RenewalWebsite.Controllers
                 writer.PageEvent = pDFHelper;
 
                 writer.SetLanguage(language);
+
+                // Order by date 
+                invoicehistoryList = invoicehistoryList.OrderBy(a => a.Date).ToList();
 
                 doc.Open();
                 doc.Add(Add_Content_To_PDF(tableLayout, invoicehistoryList, model.showUSD, font, headerFont, model, isAdd, fontEnglish, language));
