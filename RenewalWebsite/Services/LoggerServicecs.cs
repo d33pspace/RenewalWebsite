@@ -15,14 +15,14 @@ namespace RenewalWebsite.Services
         private readonly ApplicationDbContext _dbContext;
         private readonly IViewRenderService _viewRenderService;
         private readonly IEmailSender _emailSender;
-        private readonly IOptions<EmailNotification> _EmailNotiFy;
-
+        private readonly IOptions<EmailNotification> _EmailNotiFy;        
+        
         public LoggerServicecs(IEmailSender emailSender, IViewRenderService viewRenderService, ApplicationDbContext dbContext, IOptions<EmailNotification> EmailNotification)
         {
             _emailSender = emailSender;
             _viewRenderService = viewRenderService;
             _dbContext = dbContext;
-            _EmailNotiFy = EmailNotification;
+            _EmailNotiFy = EmailNotification;            
         }
 
         public async void SaveEventLogAsync(EventLog log)

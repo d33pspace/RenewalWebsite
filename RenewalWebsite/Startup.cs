@@ -57,13 +57,15 @@ namespace RenewalWebsite
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
             services.Configure<EmailNotification>(Configuration.GetSection("EmailErrorNotification"));
-
+            services.Configure<LockoutSettings>(Configuration.GetSection("LockoutSettings"));
+            
+            string maxAttampt = Configuration["LockoutSettings:MaxAttempt"];
             services.Configure<IdentityOptions>(
                 options =>
                 {
                     // Default Lockout settings.
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(60);
-                    options.Lockout.MaxFailedAccessAttempts = 3;
+                    options.Lockout.MaxFailedAccessAttempts = Convert.ToInt32(maxAttampt);
                     options.Lockout.AllowedForNewUsers = true;
                 });
 
@@ -110,65 +112,67 @@ namespace RenewalWebsite
                 };
             });
 
-            services.AddAuthentication().AddFacebook(facebookOptions =>
-            {
-                facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
-                facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
-                facebookOptions.CallbackPath = new PathString("/signin-facebook");
-                facebookOptions.Events = new OAuthEvents
-                {
-                    OnRemoteFailure = ctx =>
-                    {
-                        var state = ctx.Request.Query["state"].FirstOrDefault();
-                        if (state != null)
-                        {
-                            var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
-                            try
-                            {
-                                var properties = options.Value.StateDataFormat.Unprotect(state);
+            //facebook signin
+            //services.AddAuthentication().AddFacebook(facebookOptions =>
+            //{
+            //    facebookOptions.AppId = Configuration["Authentication:Facebook:AppId"];
+            //    facebookOptions.AppSecret = Configuration["Authentication:Facebook:AppSecret"];
+            //    facebookOptions.CallbackPath = new PathString("/signin-facebook");
+            //    facebookOptions.Events = new OAuthEvents
+            //    {
+            //        OnRemoteFailure = ctx =>
+            //        {
+            //            var state = ctx.Request.Query["state"].FirstOrDefault();
+            //            if (state != null)
+            //            {
+            //                var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
+            //                try
+            //                {
+            //                    var properties = options.Value.StateDataFormat.Unprotect(state);
 
-                            }
-                            catch (Exception)
-                            {
+            //                }
+            //                catch (Exception)
+            //                {
 
-                            }
-                        }
-                        ctx.Response.Redirect("/Account/Login");
-                        ctx.HandleResponse();
-                        return Task.FromResult(0);
-                    }
-                };
-            });
+            //                }
+            //            }
+            //            ctx.Response.Redirect("/Account/Login");
+            //            ctx.HandleResponse();
+            //            return Task.FromResult(0);
+            //        }
+            //    };
+            //});
 
-            services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
-            {
-                microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
-                microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
-                microsoftOptions.CallbackPath = new PathString("/signin-microsoft");
-                microsoftOptions.Events = new OAuthEvents
-                {
-                    OnRemoteFailure = ctx =>
-                    {
-                        var state = ctx.Request.Query["state"].FirstOrDefault();
-                        if (state != null)
-                        {
-                            var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
-                            try
-                            {
-                                var properties = options.Value.StateDataFormat.Unprotect(state);
+            //microsoft signin
+            //services.AddAuthentication().AddMicrosoftAccount(microsoftOptions =>
+            //{
+            //    microsoftOptions.ClientId = Configuration["Authentication:Microsoft:ClientId"];
+            //    microsoftOptions.ClientSecret = Configuration["Authentication:Microsoft:ClientSecret"];
+            //    microsoftOptions.CallbackPath = new PathString("/signin-microsoft");
+            //    microsoftOptions.Events = new OAuthEvents
+            //    {
+            //        OnRemoteFailure = ctx =>
+            //        {
+            //            var state = ctx.Request.Query["state"].FirstOrDefault();
+            //            if (state != null)
+            //            {
+            //                var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
+            //                try
+            //                {
+            //                    var properties = options.Value.StateDataFormat.Unprotect(state);
 
-                            }
-                            catch (Exception)
-                            {
+            //                }
+            //                catch (Exception)
+            //                {
 
-                            }
-                        }
-                        ctx.Response.Redirect("/Account/Login");
-                        ctx.HandleResponse();
-                        return Task.FromResult(0);
-                    }
-                };
-            });
+            //                }
+            //            }
+            //            ctx.Response.Redirect("/Account/Login");
+            //            ctx.HandleResponse();
+            //            return Task.FromResult(0);
+            //        }
+            //    };
+            //});
 
             services.AddScoped<LanguageActionFilter>();
 
