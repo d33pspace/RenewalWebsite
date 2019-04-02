@@ -3,11 +3,11 @@
 @{
     ViewData["Title"] = "News";
     ViewData["Title"] = Localizer["News"];
-    ViewData["IssueNo"] = Localizer["ISSUE 11"];
-    ViewData["IssueStyle"] = "issue-11";
-    ViewData["IssueDate"] = Localizer["AUTUMN 2018"];
+    ViewData["IssueNo"] = Localizer["ISSUE 12"];
+    ViewData["IssueStyle"] = "issue-12";
+    ViewData["IssueDate"] = Localizer["SPRING 2019"];
     //ViewData["CoverPhotoCaption"] = Localizer["Working in a prestigious kitchen gave Zhou Yushuai the skills to get a full-time job."];
-    ViewData["CoverPhotoCaption"] = Localizer["Pan has survived in silence perhaps because his community didn't know how to teach a child born deaf."];
+    ViewData["CoverPhotoCaption"] = Localizer["The Spring Festival is over, but new life is growing at Renewal."];
     var currency = CurrencyService.GetCurrent();
     var language = CurrencyService.GetCurrentLanguage();
     double baseAmountCNY = 10;
@@ -21,22 +21,22 @@
                 <h6 class="sub-menu-h6">@Localizer["In this issue of Re:news"]</h6>
 
                 <a class="sub-menu-a styled-link" href="#story-3">
-                    <img class="img-fluid" src="~/images/news/issue11/che.jpg">
-                    @Localizer["Renewal van takes your support farther than ever"]
+                    <img class="img-fluid" src="~/images/news/issue12/liang.jpg">
+                    @Localizer["Your amazing support made this Spring Festival..."]
                 </a>
-                <p class="excerpt">@Localizer["You wouldn't believe the difference a van makes in the lives of people who need transport."]</p><br>
+                <p class="excerpt">@Localizer["More than 80 smiling people lined up to enjoy the hot holiday meal you provided."]</p><br>
 
                 <a class="sub-menu-a styled-link" href="#story-4">
-                    <img class="img-fluid" src="~/images/news/issue11/zhou.jpg">
-                    @Localizer["How you gave training from world-class chef"]
+                    <img class="img-fluid" src="~/images/news/issue12/liu-junyi.jpg">
+                    @Localizer["...the most wonderful time of the year"]
                 </a>
-                <p class="excerpt">@Localizer["Zhou's first challenge in a professional kitchen..."]</p><br>
+                <p class="excerpt">@Localizer["He knows how dangerous life is on the streets."]</p><br>
 
                 <a class="sub-menu-a styled-link" href="#story-5">
-                    <img class="img-fluid" src="~/images/news/issue11/wang.jpg">
-                    @Localizer["You fulfill a woman's dreams"]
+                    <img class="img-fluid" src="~/images/news/issue12/li.jpg">
+                    @Localizer["You' re always there, always helping"]
                 </a>
-                <p class="excerpt">@Localizer["Your support for Wang Xiujuan shows you know what women want"]</p><br>
+                <p class="excerpt">@Localizer["Guests like Mr. Li rely on your kind support"]</p><br>
 
                 <!--<div class="browse">
                     <h6 class="sub-menu-h6">Browse our previous issues...</h6>
@@ -50,29 +50,27 @@
         </div>
         <div class="col-lg-8 col-md-12 col-sm-12">
             <div id="story-1">
-                <h3>@Localizer["New life for a man who can't hear, speak, read or write"]</h3>
-                <div class="news-subheader mb-4">@Localizer["Pan was trapped in silence until your kindness reached him"]</div>
-                <!--<img class="img-fluid story-img" src="~/images/news/issue11/pan.jpg">-->
-                <!--<figcaption class="figure-caption caption chinese">@Localizer["Pan has survived in silence perhaps because his community didn't know how to teach a child born deaf."]</figcaption>-->
+                <h3>@Localizer["You gave him a chance, not a cheat!"]</h3>
+                <div class="news-subheader mb-4">@Localizer["Your gifts beat scammers who target the unemployed"]</div>
+                <img class="img-fluid story-img" src="~/images/news/issue12/yuanfujiang.jpg">
+                <!--<figcaption class="figure-caption caption chinese">@Localizer["Yuan Fujiang now has a satisfying job with a legitimate employer."]</figcaption>-->
                 <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Hanson Ye"]</p>-->
                 <p class="mb4 clear">
-                    <b>@Localizer["Your kindness is changing the life of a homeless man we call Pan, who is deaf and has never learned to read or write."]</b>
-                    @Localizer["We have to guess that Pan was born to very poor rural parents who didn't have resources in their community to teach their deaf child how communicate or use numbersPan can't even read lips"]
+                    <b>@Localizer["Your gifts are giving Yuan Fujiang satisfying work in a job market peppered with cheats and scammers."]</b>
+                    @Localizer["I was brought by a friend to the Renewal Center,'he recalls. 'The first time I came I saw a poster that said help was available finding a stable job, so I decided to enter the training program. At first I was a little nervous - I thought it might be another scam..."]
                 </p>
                 <p>
-                    @Localizer["It's not known when he came to Shanghai but Pan must have survived thus far on his amazingly positive attitude, hard work and the kindness of people around him. The only reason we call him Pan is because he showed us a slip of paper from a detention center with the surname Pan,"]
-                    @Localizer["aged 22. But Pan is clearly well into his 30s, so perhaps it's a keepsake from a friend."]
+                    @Localizer["Yuan was right to be concerned. In extreme cases, we've had program participants who were lured into scams and taken to remote farms in western China where they were forced to work. These days, a man living on the streets is more likely to meet a person claiming to be a recruiter who says he can get him a factory job. He requires a finder's fee or money to buy a uniform and then disappears, never to be seen again."]
+                   
                 </p>
                 <blockquote>
-                    @Localizer["He's a tireless worker and loves life, but Pan has been held back"]<br><italic>@Localizer[""]</italic>
+                    @Localizer["Yuan Fujiang thought the training program was too good to be true."]<br><italic>@Localizer[""]</italic>
                 </blockquote>
                 <p>
-                    @Localizer["At first it seemed impossible to invite Pan to join our residential program. He was quick to mop the floor and started helping out with meals, but he lacked the ability even to use sign language. He couldn't understand that there was a bed for him here, so he would continue to sleep on the streets. With persistence,"]
-                    @Localizer["he was convinced to stay and is now getting an education and job training. Volunteers are teaching Pan to identify shapes and objects with the aim to start using numbers. We've also developed a few basic signs so he can be understood."]
+                    @Localizer["Sometimes the job is real, but the recruiter may be paid handsomely to find employees even for a dead-end job (see a chance to feel safe p.3). But Yuan now says,Slowly my fear melted away and I knew the Renewal Center could give me the help and care I desperately needed. He has now been working with our valued restaurant partner Element Fresh for over five months."]
                 </p>
                 <p>
-                    @Localizer["The Renewal team is convinced that Pan will one day land a job with one of our employment partners. He's a tireless worker and loves life, but he has been held back because he wasn't given an education. But through incredibly kind support like yours, Pan now has more opportunities in life - something he never had before!"]
-
+                    @Localizer["I've learned so much there, says Yuan.I've made lots of mistakes but my manager teaches me patiently. It really motivates me to carry out all my responsibilities well.When he reflects on your support for the Renewal Center,Yuan beams,The happiest thing is the joy the community brings. So I think about how I can best use my own time to pitch in and help. This is the path to happiness. Thank you again for your help!"]
                 </p>
             </div>
             <div class="hide-large small-sub mb-4">
@@ -85,14 +83,14 @@
                 <p class="excerpt">@Localizer["Your support for Wang Xiujuan shows you know what women want"]</p>
             </div>
             <div id="story-2">
-                <h2>@Localizer["Your Renewal Center, your incredible achievements!"]</h2>
+                <h2>@Localizer["Thanks for bringing new hope to men and women on the streets!"]</h2>
                 <img class="img-fluid story-img" src="~/images/news/issue11/hj.jpg">
                 <!--<div class="news-subheader">@Localizer["We are helping the marginalized and forgotten thanks to your support"]</div>-->
                 <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Jimmy McWhinney and Hanson Ye"]</p>-->
-                <p>@Localizer["Dear friends,"]</p>
-                <p>@Localizer["Of all the things we have to do to keep the Renewal Center effectively helping people in need, one of our favorite jobs is collecting stories to tell you the impact of your kind and incredible support. Every time we look, we're surprised. And we wish we could tell you more than any newsletter could ever relate."]</p>
-                <p>@Localizer["Our women's outreach (back page) continues to grow, and we have to tell you how grateful we are that you have helped supply a van (this page) that now connects our two locations like never before. Our training (page 3) and education programs (page 1) continue to have an outstanding impact on people's lives - and this is all thanks to you."]</p>
-                <p>@Localizer["So if you find it is ever possible to visit the Renewal Center, you'll have a chance to see some more of the exciting work that results from your giving. Thank you again for the special role you play here. This is your Renewal Center and we're so glad you are continuing to transform people's lives through this unique outreach."]</p>
+                
+                <p>@Localizer["Your support means the Renewal Center keeps helping people in exciting new ways."]</p>
+                <p>@Localizer["For instance, when we noticed that fewer women are joining our residential program, we noticed it's because those we do meet need medical help or have mental health problems. This inspired us to start working with a local hospital to offer free medical treatment to women who would otherwise have to pay for all their care and medicine, when they are simply too poor to afford help they need."]</p>
+                <p>@Localizer["Another way we are hoping to make the most of your support is to expand our training program this year, ideally to once again open a café that can train homeless men in restaurant careers. Thanks to you, we can continue to look for new ways to bring hope to people wherever they are - whether they are on the streets or working their way into a new life."]</p>
                 <p>@Localizer["Hanson Ye"]<br />@Localizer["Jimmy McWhinney"]</p>
             </div>
             <!--<div class="browse hide-large">
@@ -105,73 +103,75 @@
             </div>-->
             <div id="story-3">
                 <div class="news-subheader">@Localizer[""]</div>
-                <h2>@Localizer["Renewal van takes your support farther than ever"]</h2>
-                <div class="news-subheader mb-4">@Localizer["Now your kindness can go the extra mile"]</div>
-                <img class="img-fluid story-img" src="~/images/news/issue11/che.jpg">
-                <figcaption class="figure-caption caption chinese">@Localizer["You wouldn't believe the difference a van makes in the lives of people who need transport."]</figcaption>
+                <h2>@Localizer["Your amazing support made this Spring Festival..."]</h2>
+                <div class="news-subheader mb-4">@Localizer[" "]</div>
+                <img class="img-fluid story-img" src="~/images/news/issue12/liang.jpg">
+                <figcaption class="figure-caption caption chinese">@Localizer["More than 80 smiling people lined up to enjoy the hot holiday meal you provided."]</figcaption>
                 <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Jimmy McWhinney"]</p>-->
-                <p class="mb4 clear"><b>@Localizer["Thanks to your donations, a new van is transporting homeless people to safe shelter, education and training,"]</b> @Localizer["while also delivering clean clothes and supplies to people on the streets who need them most. Because it is both roomy and reasonably priced, the van is proving indispensable especially now that the Renewal Center is in two locations - our drop-in center in central Shanghai and a residential and training center some two miles (3km) away."]</p>
+                <p class="mb4 clear"><b>@Localizer["You know that Spring Festival is a kind of Christmas in China - a time of traveling home, celebration with family, exchanging presents and sharing lots of traditional food."]</b> @Localizer["It's heartbreaking that many people can't afford these luxuries, which is why you'll be thrilled to know you gave 80 people in need a celebration of warmth, friendship and a hot, holiday meal at the Renewal Center."]</p>
                 <p>
-                    @Localizer["As a link between the two locations, the van is transporting essential clothes and supplies, but also getting more people - including vulnerable and older people - to safe accommodation and our training and education base."]
-                    @Localizer["Yang Tao, 23, is in benefiting from the residential training program and helps ensure we get the most out of the van. 'We move clothes and supplies to the drop-in center, things that are very heavy and hard to move.' Executive Director Jimmy McWhinney adds, 'Honestly, I'm not sure how we survived this long without it.'"]
+                    @Localizer["Our regular guest Lao Liang helped prepare the feast, washing and cutting mountains of vegetables. As an army veteran and former prison inmate, Mr. Liang has earned valuable experience working in kitchens. His help was crucial in serving so many people that day - and inviting them all to come back for seconds, and even thirds. None of the food you generously provided went to waste!"]
                 </p>
                 <p>
-                    @Localizer["It also offers a much-needed escape to people you're helping, including trips to mountains, parks and historical sites that many people living on the streets have never seen. It even gives people a chance to have a special meal. Says Yang Tao, 'I'm quite happy when we use it for an outing such as to eat together."]
-                    @Localizer["It doesn't matter where we go, it's just nice for everyone to be together and laugh. It's a family feeling.'It makes all of us at the Renewal Center all the more grateful for you!"]
+                    @Localizer["The festive meal included favorites like braised pork with pickled greens, chicken and potatoes, as well as hand-made sausages stir-fried with garlic and sprouts. In all, five days of preparation went into making the Spring Festival meal and - in addition to your amazing support - it was our own program residents who did most of the cooking and serving to make the feast truly special."]
+                    @Localizer["Through you, we even managed to give each one a small gift of cash in a traditional hongbao, as well as a bag full of fruit, nuts and a bottled drink."]
                 </p>
             </div>
             <div id="story-4">
 
-                <h2>@Localizer["How you gave training from world-class chef"]</h2>
-                <div class="news-subheader mb-4">@Localizer["Zhou's first challenge in a professional kitchen..."]</div>
+                <h2>@Localizer["...the most wonderful time of the year"]</h2>
+                <div class="news-subheader mb-4">@Localizer["You gave Liu Junyi a chance to feel safe"]</div>
 
-                <img class="img-fluid story-img" src="~/images/news/issue11/zhou.jpg">
-                <figcaption class="figure-caption caption chinese">@Localizer["Zhou Yushai has made the most of his training at one of Shanghai's finest restaurants."]</figcaption>
+                <img class="img-fluid story-img" src="~/images/news/issue12/liu-junyi.jpg">
+                <figcaption class="figure-caption caption chinese">@Localizer["He knows how dangerous life is on the streets."]</figcaption>
                 <br />
                 <br />
 
-                <p class="mb4 clear">
-                    <b>@Localizer["People in Renewal's residential program are gaining valuable work experience thanks to supporters like you."]</b>
-                    @Localizer["Your gifts combine with the generosity of others like Michelle Garnaut and Hamish Waddel, the owner and executive chef of the prestigious M on the Bund restaurant in Shanghai. They are giving the people you help the opportunity to work in their world-class kitchen because we've all seen how it can pave the way for a rewarding career in hospitality."]
+                <p class="mb4 clear">    
+                    @Localizer["Here's a picture of just how meaningful your help is. At the Renewal Center, your gifts made Spring Festival more than just a celebratory meal. It gave many people the chance to feel like a part of a family again - and to feel safe. Liu Junyi, age 37, described working in appalling conditions in cities across China, but never earning enough to rent a home. He finally moved to Shanghai because of its low crime rate, which he feels is essential for anyone who would consider sleeping outdoors."]
                 </p>
-                <blockquote>
-                    @Localizer["After developing skills in a place like that I can work anywhere."]
-                </blockquote>
+                
                 <p>
-                    @Localizer["Zhou Yushuai is one example. The 24 year old from Zhejiang Province just south of Shanghai describes his experience: 'My training at M on the Bund was the first time I'd been in a professional kitchen. It's very big and at first a little intimidating because everyone is so professional and skilled. But they were very good to me so I wasn't nervous for long. It gave me a lot of confidence to start my job."]
-                    @Localizer["I think I would have been too nervous stepping into a professional kitchen without it. After developing some skills in a place like that I can work anywhere.'"]
+                    @Localizer["I don't have a place to live, I just need some place out of the rain and a warm blanket to sleep under, he says. Liu is often lonely and scared, having seen people robbed or accosted on the streets. But at the Spring Festival dinner, he had a smile on his face, and we do everything for Liu that we can."]
                 </p>
                 <p>
-                    @Localizer["As his words suggest, Zhou Yushuai used his experience at M on the Bund to find a full-time job at another great restaurant. And you probably know that no matter how good a cook you are at home, working in a professional kitchen is all about safety, speed, accuracy, and impeccable food hygiene. It's a great salute to supporters like you and our partners that residents can leave the Renewal Center with these incredibly valuable skills."]
+                    @Localizer["People were thrilled to share this time of celebration and good food. Many guests went out of their way to be kind to each other, even surrendering their place in line when it seemed too long. Mr. Liang's words fully express the joy we want to share with you. 'That day, everyone was happy. Our thanks go out to you and to everyone who helped us, because our happiness comes from your help!'"]
                 </p>
 
             </div>
             <div id="story-5">
-                <h3>@Localizer["You fulfill a woman's dreams"]</h3>
-                <div class="news-subheader mb-4">@Localizer["Your support for Wang Xiujuan shows you know what women want"]</div>
-                <img class="img-fluid story-img" src="~/images/news/issue11/wang.jpg">
+                <h3>@Localizer["You' re always there, always helping"]</h3>
+                <div class="news-subheader mb-4">@Localizer["Guests like Mr. Li rely on your kind support"]</div>
+                <img class="img-fluid story-img" src="~/images/news/issue12/li.jpg">
                 <p>
-                    @Localizer["When a woman is unable to afford all the things she needs, what is it she really dreams of having? Let's be frank: she really wants food, shelter, clean clothes and friendship. Wang Xijuan is finding these things here at the Renewal Center where we call her Ms Wang."]
-                    @Localizer["She says, 'Washing clothes, exchanging clothes, eating and taking a shower -- these are the things I really need.' Ms Wang explains, 'I don't have a job. I live in cheap government housing and collect bottles and boxes on the streets during the day.'"]
+                <p class="mb4 clear">
+                    <b>@Localizer["Ever been so broke you had to leave town?"]</b> @Localizer["Mr. Li, age 43, drops into the Renewal Center for a hot meal when he is waiting for casual work setting up and breaking down stages. But when demand drops off he struggles to survive - and takes advantage of low-cost bus or train tickets to Inner Mongolia where life is hard, but goods are cheaper."]
                 </p>
                 <div class="red-border">
-                    <span class="blockquote-winter">@Localizer["Your investment in someone's life is just"]</span>
-                     @if (currency.Name.Contains("zh"))
+                    <span class="blockquote-winter">@Localizer["Give meals, help and support to a homeless person and put them on the path to growth and new life."]</span>
+                    @*@if (currency.Name.Contains("zh"))
                     {
-                    <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
                     }
                     else
                     {
-                    <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
-                    }
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
+                    }*@
                     <br /><br />
-                    <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign">@Localizer["A hot meal for a woman (or man)"] <i class="arrow right-arrow"></i></a>
+                    <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign">@Localizer["My gift for new life today"] <i class="arrow right-arrow"></i></a>
                     <div style="margin-bottom:15px;"></div>
                 </div>
                 <p>
-                    @Localizer["To make life easier for women who need support, we've started having women-only Thursdays, just like we did in our former location. It's proved very popular for those who appreciate having some time to shower and do their laundry in privacy. We also introduce women to the wonderful Lynn, our American supporter and volunteer who travels 200 miles (300km) from Nanjing each week to offer all kinds of practical and emotional support."]
-                    @Localizer["Women who lack even hygiene essentials have a friend in Lynn, who seems to have an endless supply. But she also brings special treats like donuts and manicure kits - there's something different every week. And always endless smiles and words of love."]
+                    @Localizer["Despite Shanghai's many opportunities, the city offers little help for those who lack the right connections. 'For people like me at the bottom of society, it's extremely hard to make a living,' says Mr. Li. He reflects how hard it is to even maintain lasting relationships among a class of people who are constantly on the move."]
                 </p>
-        </div>
+                <p>
+                    @Localizer["'I have no real friends I can trust, but I enjoy coming to the Renewal Center,' says Mr. Li He isn't adverse to sleeping outdoors or in fast-food restaurants, but worries about the consequences. 'If I sleep on the street, how do I keep myself and my clothes clean? If I get dirty people will avoid me, which makes it even harder to get a job.'"]
+                </p>
+                <p>
+                    @Localizer["Because he can wash up and do laundry at the Renewal Center, Mr. Li certainly finds more work than he would otherwise and even arranges for people he knows to work with him. Employers find him very reliable, but the work comes and goes. While he struggles to make ends meet, Mr. Li and we are very grateful for your continued help for drop-in services, like laundry, showers, food, warmth - and offers of further help."]
+                </p>
+
+            </div>
+
     </div>
 </div>

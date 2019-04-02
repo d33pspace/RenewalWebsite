@@ -207,14 +207,20 @@
   <data name="Thank you for giving homeless women (and men) shelter and showers." xml:space="preserve">
     <value>感谢您为无家可归女性提供的住所和洗澡服务。</value>
   </data>
-  <data name="Your gift today gives years of growth and new life" xml:space="preserve">
-    <value>您的捐赠帮助他们不断成长，并获得新生</value>
+  <data name="Helping people achieve their dreams" xml:space="preserve">
+    <value>帮助人们实现他们的梦想</value>
   </data>
-  <data name="The Renewal Center is reaching homeless people every day this spring, but we can only continue through your support. In the lives of people in need, new growth and lasting renewal depends on the kindness of friends like you." xml:space="preserve">
-    <value>这个春天，日新中心将继续向所有无家可归人士伸出援手。但这些工作离不开您的持续支持。在所有和您一样善良的朋友的资助下，他们能够不断成长并获得开启新生活的机会。</value>
+  <data name="Please help hard-working people gain the skills they need to make a better life." xml:space="preserve">
+    <value>请帮助这些努力的人们获得学习技术的机会，从而开始更好的人生。</value>
   </data>
-  <data name="New lives can start at the Renewal Center through your gift today." xml:space="preserve">
-    <value>今天，您的捐赠就能帮助他们在日新中心开始重生</value>
+  <data name="That's why your support started the residential job program. It gives people an opportunity to build the skills they need to find fulfilling jobs and to thrive in Shanghai (and beyond)." xml:space="preserve">
+    <value>这就是我们在您的支持下开始工作培训计划的原因。它使人们有机会学习独立自主所需的工作技巧，让他们能够找到一份工作，在上海（或其他地方）开始新的生活。</value>
+  </data>
+  <data name="Wanting a job, a family, a safe place to live - these seem like simple and achievable dreams. But realizing these dreams can be almost impossible without the right resources." xml:space="preserve">
+    <value>一份工作、一个家庭、一个安全的住所——这些听起来都是很简单很容易实现的梦想。但对有些人来说，即使这样的梦想也是遥不可及的。</value>
+  </data>
+  <data name="Your gift provides meals, shelter and supports job training." xml:space="preserve">
+    <value>您的捐赠提供健康的食物、安全的住宿和支持着我们的工作培训计划。</value>
   </data>
   <data name="to provide one month hot meals and care." xml:space="preserve">
     <value>为无家可归男女提供一个月安全的住宿和温暖的帮助。</value>
@@ -224,8 +230,5 @@
   </data>
   <data name="to provide three nights of shelter for a homeless man or woman." xml:space="preserve">
     <value>为无家可归男女提供三个晚上安全的住宿。</value>
-  </data>
-  <data name="Please be as generous as you can today to give many more homeless men and women on the streets of Shanghai the opportunity to start a new life." xml:space="preserve">
-    <value>请继续您的善举，救助更多上海街头的无家可归男女，让他们有机会开始新的生活。</value>
   </data>
 </root>
