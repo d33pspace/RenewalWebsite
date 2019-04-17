@@ -132,6 +132,9 @@
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
   </data>
+  <data name="Log in using your Google account" xml:space="preserve">
+    <value>使用您的谷歌账户登录</value>
+  </data>
   <data name="Microsoft" xml:space="preserve">
     <value>微软</value>
   </data>
