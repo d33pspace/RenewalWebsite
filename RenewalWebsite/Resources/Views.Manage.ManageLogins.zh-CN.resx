@@ -126,6 +126,9 @@
   <data name="Google" xml:space="preserve">
     <value>谷歌</value>
   </data>
+  <data name="Log in using your Google account" xml:space="preserve">
+    <value>使用您的谷歌账户登录</value>
+  </data>
   <data name="Manage your external logins" xml:space="preserve">
     <value>管理您的第三方登录账户</value>
   </data>
