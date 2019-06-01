@@ -144,16 +144,22 @@
   <data name="Read our autumn newsletter" xml:space="preserve">
     <value>阅读我们秋季刊的简报</value>
   </data>
-  <data name="Through you, new life can grow this spring" xml:space="preserve">
-    <value>您让他们在今春得到重生</value>
+  <data name="Help stop the ‘summer slump’ in giving so we don’t have to cut services to desperate homeless people..." xml:space="preserve">
+    <value>帮助战胜“夏日困境”，让我们继续为无家可归者提供关键的服务</value>
   </data>
-  <data name="The Spring Festival in February was just the beginning of a year of new growth. Hundreds of homeless men and women will come seeking new life here today – but helping each one of them depends on you!" xml:space="preserve">
-    <value>2月的春节，象征着新的一年的重生。数百无家可归的男女又将来到日新中心寻求新的生活。而要为他们实现愿望，我们需要您的帮助。</value>
+  <data name="Please help beat the ‘summer slump’ with your gift for essential services. Your kindness to homeless men and women will change their lives forever." xml:space="preserve">
+    <value>请用您的捐赠帮助我们战胜“夏日困境”。您的善举会改变无家可归者的一生。</value>
   </data>
   <data name="My gift of new life for homeless men and women" xml:space="preserve">
     <value>我为无家可归男女开启新生活提供的捐赠</value>
   </data>
   <data name="Every day of every month, we rely on your kindness to provide shelter, along with hot wholesome meals, showers, clean clothes and an open door to job training, education and personal growth. Your gift if the key to all this, so please be as generous as you can." xml:space="preserve">
     <value>每个月的每一天，我们都需要您慷慨的捐助为他们提供住所、健康的食品、洗浴、换洗衣物以及工作培训、教育和个人成长的机遇。您的捐赠是所有这一切的来源，所以我们希望您能一如既往的支持我们的工作。</value>
+  </data>
+  <data name="Here’s my donation" xml:space="preserve">
+    <value>我要捐赠</value>
+  </data>
+  <data name="Your gift is even more important now, because giving for services to homeless people drops off in the summer months." xml:space="preserve">
+    <value>因为为无家可归者提供的捐赠会在夏季明显下滑，所以您此时的捐赠尤为重要。</value>
   </data>
 </root>

@@ -38,15 +38,24 @@
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
             <img src="~/images/home/slide-campaign.jpg" class="figure-img img-fluid" alt="donate page image">
             <figcaption class="figure-caption caption chinese">
-                @Localizer["New lives can start at the Renewal Center through your gift today."]
+                @Localizer["Please give to stop the dangerous 'summer slump' before there are cutbacks to services for homeless people."]
             </figcaption>
         </div>
 
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-            <h2>@Localizer["Your gift today gives years of growth and new life"]</h2>
-            <p>@Localizer["The Renewal Center is reaching homeless people every day this spring, but we can only continue through your support. In the lives of people in need, new growth and lasting renewal depends on the kindness of friends like you."]</p>
-            <p>@Localizer["Please be as generous as you can today to give many more homeless men and women on the streets of Shanghai the opportunity to start a new life."]</p>
-            <p>@Localizer[""]</p>
+            <h2>@Localizer["Help overcome the 'summer slump' with your gift, so services to homeless people don't have to be cut back for lack of funding"]</h2>
+            <p>@Localizer["Right now, during the summer months, giving for services to homeless people drops off, probably because school is out and people are planning summer holidays. But there is never a drop in the number of homeless men and women who are desperate for help."]</p>
+            <p>@Localizer["Many homeless people only want something to eat. Some haven't had a meal in three days. But you can provide a meal as well as essential services to a homeless person at this crucial time. Just"]
+                @if (currency.Name.Contains("zh"))
+                {
+                    <span>@baseAmountCNY.ToString("C", currency)</span>
+                }
+                else
+                {
+                    <span>@baseAmountUSD.ToString("C", currency)</span>
+                }
+               @Localizer["will provide a meal, hot shower, and change of clothes for a homeless man or woman."]</p>
+            <p>@Localizer["Your gift today will change the life of a homeless person who struggling to survive on the streets and feels their hope running out."]</p>
                          @if (currency.Name.Contains("en"))
                          {
                     <form asp-controller="Donate" asp-action="CreateCampaign">

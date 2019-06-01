@@ -117,82 +117,43 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Every" xml:space="preserve">
-    <value>只要</value>
+  <data name="Home" xml:space="preserve">
+    <value>首页</value>
   </data>
-  <data name="to help as many people as I can." xml:space="preserve">
-    <value>尽可能多地帮助他们。</value>
+  <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
+    <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
   </data>
-  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
-    <value>立即用信用卡捐款</value>
+  <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
+    <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
   </data>
-  <data name="My gift of hot meals, shelter and support for homeless men and women" xml:space="preserve">
-    <value>我为无家可归男女提供的食物、住所和培训机会</value>
+  <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
+    <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
   </data>
-  <data name="you give today will provide a hot meal, shower and change of clothes for a homeless man or woman." xml:space="preserve">
-    <value>您就能为一位无家可归者提供一顿健康的午餐，一次淋浴和一次换洗衣服的机会。</value>
+  <data name="Your gifts open the door to education and jobs for people struggling on the street" xml:space="preserve">
+    <value>您的捐赠给街头无家可归的人们带来了接受教育和培训的机会。</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 10 people." xml:space="preserve">
-    <value>来为10人提供午餐、淋浴和干净的衣服。</value>
+  <data name="My gift to help Pan and others live full lives" xml:space="preserve">
+    <value>为潘和其他人提供帮助</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 30 people." xml:space="preserve">
-    <value>来为30人提供午餐、淋浴和干净的衣服。</value>
+  <data name="Pan’s story is just one highlight in our latest newsletter. Please check it out and see how your help makes a real difference in real lives." xml:space="preserve">
+    <value>潘的事迹仅仅是我们最新简报中的一个故事。请点击查看更多故事，了解您的帮助如何改变他们的人生。</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 100 people." xml:space="preserve">
-    <value>来为100人提供午餐、淋浴和干净的衣服。</value>
+  <data name="Your gift gives growth and new life this spring." xml:space="preserve">
+    <value>您的捐赠为他们带来了新生</value>
   </data>
-  <data name="Yes, I’ll rescue a homeless person from the streets by providing the food, shelter, support and training they need to start a new life!" xml:space="preserve">
-    <value>是的，我希望解救无家可归者，为他们提供食物、住所以及开始新生所需的培训和其他帮助。我愿捐赠：</value>
+  <data name="Read our autumn newsletter" xml:space="preserve">
+    <value>阅读我们秋季刊的简报</value>
   </data>
-  <data name="An amount of your choice to help as many people as you can." xml:space="preserve">
-    <value>我自己选择的余额尽可能多地帮助他们。</value>
+  <data name="Through you, new life can grow this spring" xml:space="preserve">
+    <value>您让他们在今春得到重生</value>
   </data>
-  <data name="gift of:" xml:space="preserve">
-    <value>捐款：</value>
+  <data name="The Spring Festival in February was just the beginning of a year of new growth. Hundreds of homeless men and women will come seeking new life here today – but helping each one of them depends on you!" xml:space="preserve">
+    <value>2月的春节，象征着新的一年的重生。数百无家可归的男女又将来到日新中心寻求新的生活。而要为他们实现愿望，我们需要您的帮助。</value>
   </data>
-  <data name="I would like to make a" xml:space="preserve">
-    <value>我想</value>
+  <data name="My gift of new life for homeless men and women" xml:space="preserve">
+    <value>我为无家可归男女开启新生活提供的捐赠</value>
   </data>
-  <data name="OPEN ALIPAY APP AND DONATE NOW" xml:space="preserve">
-    <value>立即打开支付宝APP捐款</value>
-  </data>
-  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
-    <value>或者用支付宝扫描下面的二维码：</value>
-  </data>
-  <data name="Donate" xml:space="preserve">
-    <value>捐款</value>
-  </data>
-  <data name="To make a donation with Alipay, please select 'Open with Browser' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在浏览器打开”。</value>
-  </data>
-  <data name="Please open this page in your browser." xml:space="preserve">
-    <value>请在您的浏览器中打开此页面</value>
-  </data>
-  <data name="To make a donation with Alipay, please select 'Open in Safari' from the context menu (three dots) at the top of your screen." xml:space="preserve">
-    <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在Safari打开”。</value>
-  </data>
-  <data name="." xml:space="preserve">
-    <value>。</value>
-  </data>
-  <data name="to be doubled to" xml:space="preserve">
-    <value>翻倍到</value>
-  </data>
-  <data name="monthly" xml:space="preserve">
-    <value>每月</value>
-  </data>
-  <data name="one time" xml:space="preserve">
-    <value>一次</value>
-  </data>
-  <data name="quarterly" xml:space="preserve">
-    <value>每季</value>
-  </data>
-  <data name="yearly" xml:space="preserve">
-    <value>每年</value>
-  </data>
-  <data name="Amount is required." xml:space="preserve">
-    <value>金额是必需的。</value>
-  </data>
-  <data name="Please enter a valid amount." xml:space="preserve">
-    <value>请输入一个有效的金额。</value>
+  <data name="Every day of every month, we rely on your kindness to provide shelter, along with hot wholesome meals, showers, clean clothes and an open door to job training, education and personal growth. Your gift if the key to all this, so please be as generous as you can." xml:space="preserve">
+    <value>每个月的每一天，我们都需要您慷慨的捐助为他们提供住所、健康的食品、洗浴、换洗衣物以及工作培训、教育和个人成长的机遇。您的捐赠是所有这一切的来源，所以我们希望您能一如既往的支持我们的工作。</value>
   </data>
 </root>
