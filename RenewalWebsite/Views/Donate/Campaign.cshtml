@@ -12,6 +12,8 @@
     var language = CurrencyService.GetCurrentLanguage();
     double baseAmountCNY = 15;
     double baseAmountUSD = 2.24;
+    double totalAmountCNY = 1166;
+    double totalAmountUSD = 174.13;
 }
 
 <div class="row">
@@ -38,14 +40,23 @@
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
             <img src="~/images/home/slide-campaign.jpg" class="figure-img img-fluid" alt="donate page image">
             <figcaption class="figure-caption caption chinese">
-                @Localizer["Please give to stop the dangerous 'summer slump' before there are cutbacks to services for homeless people."]
+                @Localizer["Your gift for meals and clean clothes inspires men to enter job training."]
             </figcaption>
         </div>
 
         <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-            <h2>@Localizer["Help overcome the 'summer slump' with your gift, so services to homeless people don't have to be cut back for lack of funding"]</h2>
-            <p>@Localizer["Right now, during the summer months, giving for services to homeless people drops off, probably because school is out and people are planning summer holidays. But there is never a drop in the number of homeless men and women who are desperate for help."]</p>
-            <p>@Localizer["Many homeless people only want something to eat. Some haven't had a meal in three days. But you can provide a meal as well as essential services to a homeless person at this crucial time. Just"]
+            <h2>@Localizer["With clean clothes and a hot meal, you can start a new life!"]</h2>
+            <p>@Localizer["As the weather gets cooler, it's more important than ever to provide hot showers, clean warm clothes and hot nutritious meals to people who are struggling to survive on the streets. It is often your generosity in giving these small, affordable gifts that open the door to a someone who wants to get off the streets, find a good job, and start living an independent life."]</p>
+            <p>@Localizer["Every day of the year, it costs the Renewal Center"]
+                @if (currency.Name.Contains("zh"))
+                {
+                    <span>@totalAmountCNY.ToString("C", currency)</span>
+                }
+                else
+                {
+                    <span>@totalAmountUSD.ToString("C", currency)</span>
+                }
+               @Localizer["to provide frontline services to homeless people -- like hot meals, showers and clean clothes. That means every"]
                 @if (currency.Name.Contains("zh"))
                 {
                     <span>@baseAmountCNY.ToString("C", currency)</span>
@@ -54,8 +65,7 @@
                 {
                     <span>@baseAmountUSD.ToString("C", currency)</span>
                 }
-               @Localizer["will provide a meal, hot shower, and change of clothes for a homeless man or woman."]</p>
-            <p>@Localizer["Your gift today will change the life of a homeless person who struggling to survive on the streets and feels their hope running out."]</p>
+               @Localizer["of your gift will provide these life-changing essentials to a man or woman who is desperate just to put one foot forward, and off the streets."]</p>
                          @if (currency.Name.Contains("en"))
                          {
                     <form asp-controller="Donate" asp-action="CreateCampaign">

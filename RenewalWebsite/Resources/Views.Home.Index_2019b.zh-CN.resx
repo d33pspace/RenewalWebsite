@@ -117,25 +117,49 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Home" xml:space="preserve">
+    <value>首页</value>
+  </data>
+  <data name="The Renewal Center relies on friends like you to help homeless people in Shanghai start a new life." xml:space="preserve">
+    <value>是您，日新中心的朋友，帮助上海街头无家可归人士开始新的生活。</value>
+  </data>
   <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
     <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
   </data>
-  <data name="Gifts as simple as hot meals and clean clothes are hugely encouraging to homeless people. You make them feel cared for -- and often inspired to begin training for a steady job and a better life." xml:space="preserve">
-    <value>午餐和干净衣物等普通的礼物能够极大地鼓励无家可归的人们。您可以让他们感到关怀，并激励他们参加工作培训，并开启更好的人生。</value>
-  </data>
-  <data name="My gift of new life for homeless men and women" xml:space="preserve">
-    <value>我为无家可归男女开启新生做出的捐赠</value>
-  </data>
-  <data name="Please help get as many homeless women and men into shelter and job training today so their new lives can start now." xml:space="preserve">
-    <value>请帮我们救助更多的无家可归男女，帮他们参加工作培训，开启新的人生。</value>
-  </data>
-  <data name="The smallest gift, like a clean shirt or a hot meal, can put a person on the road to independence." xml:space="preserve">
-    <value>最小的礼物，比如一件干净的衬衫或一顿的午餐，都可能让一个人重新开始独立人生。</value>
-  </data>
-  <data name="Your gift of support will arrive at an important time for homeless men and women, between the heat of summer and the cold of winter. In the warmer months, people just want to wash off the sweat and grime of the streets -- but the winter weather can be life-threatening for those who sleep outdoors." xml:space="preserve">
-    <value>在炎热夏季和寒冷冬季交替的季节，您的捐赠将为无家可归的男女带来关键的支持。在温暖的季节里，人们只是想洗净在街头的汗水和污垢，但在冬季，那些露宿街头的人们可能遇到致命的威胁。</value>
-  </data>
   <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
     <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
+  </data>
+  <data name="Your gifts open the door to education and jobs for people struggling on the street" xml:space="preserve">
+    <value>您的捐赠给街头无家可归的人们带来了接受教育和培训的机会。</value>
+  </data>
+  <data name="My gift to help Pan and others live full lives" xml:space="preserve">
+    <value>为潘和其他人提供帮助</value>
+  </data>
+  <data name="Pan’s story is just one highlight in our latest newsletter. Please check it out and see how your help makes a real difference in real lives." xml:space="preserve">
+    <value>潘的事迹仅仅是我们最新简报中的一个故事。请点击查看更多故事，了解您的帮助如何改变他们的人生。</value>
+  </data>
+  <data name="Your gift gives growth and new life this spring." xml:space="preserve">
+    <value>您的捐赠为他们带来了新生</value>
+  </data>
+  <data name="Read our autumn newsletter" xml:space="preserve">
+    <value>阅读我们秋季刊的简报</value>
+  </data>
+  <data name="Help stop the ‘summer slump’ in giving so we don’t have to cut services to desperate homeless people..." xml:space="preserve">
+    <value>帮助战胜“夏日困境”，让我们继续为无家可归者提供关键的服务</value>
+  </data>
+  <data name="Please help beat the ‘summer slump’ with your gift for essential services. Your kindness to homeless men and women will change their lives forever." xml:space="preserve">
+    <value>请用您的捐赠帮助我们战胜“夏日困境”。您的善举会改变无家可归者的一生。</value>
+  </data>
+  <data name="My gift of new life for homeless men and women" xml:space="preserve">
+    <value>我为无家可归男女开启新生活提供的捐赠</value>
+  </data>
+  <data name="Every day of every month, we rely on your kindness to provide shelter, along with hot wholesome meals, showers, clean clothes and an open door to job training, education and personal growth. Your gift if the key to all this, so please be as generous as you can." xml:space="preserve">
+    <value>每个月的每一天，我们都需要您慷慨的捐助为他们提供住所、健康的食品、洗浴、换洗衣物以及工作培训、教育和个人成长的机遇。您的捐赠是所有这一切的来源，所以我们希望您能一如既往的支持我们的工作。</value>
+  </data>
+  <data name="Here’s my donation" xml:space="preserve">
+    <value>我要捐赠</value>
+  </data>
+  <data name="Your gift is even more important now, because giving for services to homeless people drops off in the summer months." xml:space="preserve">
+    <value>因为为无家可归者提供的捐赠会在夏季明显下滑，所以您此时的捐赠尤为重要。</value>
   </data>
 </root>

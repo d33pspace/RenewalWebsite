@@ -144,6 +144,9 @@
   <data name="to provide a hot meal, shower, and clean clothes for 100 people." xml:space="preserve">
     <value>为100位朋友提供食物、洗澡和换衣物的机会。</value>
   </data>
+  <data name="When people come to the Renewal Center, we want to be able to help!  Thanks for your summer gift to ensure programs continue all summer long." xml:space="preserve">
+    <value>当无家可归的人们来到日新中心，我们希望能够帮助他们！感谢您的夏日捐赠，它帮助我们在整个夏天持续提供服务。</value>
+  </data>
   <data name="monthly" xml:space="preserve">
     <value>每月</value>
   </data>
@@ -192,8 +195,26 @@
   <data name="Please enter a valid amount." xml:space="preserve">
     <value>请输入一个有效的金额。</value>
   </data>
+  <data name="When you give today, it will make a difference in the lives of people living on Shanghai's streets. We recently reinstated our women-only Thursdays to give women a chance to use the Renewal Center in a comfortable and safe environment.  Your gift ensures we can continue to expand our important services." xml:space="preserve">
+    <value>您在今天的捐赠将改变上海街头无家可归的人们。我们在日新中心重新开放了周四特别女性服务日，给所有女性受助者提供更加安全（和没有男性）的环境。您的捐赠能够帮我们继续并扩大这项重要的服务。</value>
+  </data>
   <data name="Your generous gift is transformed into education, food, shelter, job training, and hope for homeless men and women." xml:space="preserve">
     <value>唯一能帮助我们提供这些服务的就是您慷慨的捐助。您会在今天帮我们提供热腾腾的饭菜、防水的大衣和清爽的洗澡服务吗？</value>
+  </data>
+  <data name="Homeless men and women need a place where they can feel safe" xml:space="preserve">
+    <value>无家可归的人们需要安全的家</value>
+  </data>
+  <data name="Thank you for giving homeless women (and men) shelter and showers." xml:space="preserve">
+    <value>感谢您为无家可归女性提供的住所和洗澡服务。</value>
+  </data>
+  <data name="Help overcome the 'summer slump' with your gift, so services to homeless people don't have to be cut back for lack of funding" xml:space="preserve">
+    <value>请用您的捐赠帮我们战胜“夏日困境”，使我们为无家可归者提供的服务不必因资金问题而中止。</value>
+  </data>
+  <data name="Right now, during the summer months, giving for services to homeless people drops off, probably because school is out and people are planning summer holidays. But there is never a drop in the number of homeless men and women who are desperate for help." xml:space="preserve">
+    <value>在上海炎热的夏季，为无家可归人士提供服务的捐赠总会减少。这也许是因为学校纷纷放假，人们都计划着夏日的假期。但无家可归的人们从来不会减少，他们依然渴望得到帮助。</value>
+  </data>
+  <data name="Please give to stop the dangerous 'summer slump' before there are cutbacks to services for homeless people." xml:space="preserve">
+    <value>请在我们服务于无家可归者的资金枯竭前做出捐赠，帮我们战胜危险的“夏日困境”。</value>
   </data>
   <data name="to provide one month hot meals and care." xml:space="preserve">
     <value>为无家可归男女提供一个月安全的住宿和温暖的帮助。</value>
@@ -204,28 +225,13 @@
   <data name="to provide three nights of shelter for a homeless man or woman." xml:space="preserve">
     <value>为无家可归男女提供三个晚上安全的住宿。</value>
   </data>
+  <data name="Many homeless people only want something to eat. Some haven't had a meal in three days. But you can provide a meal as well as essential services to a homeless person at this crucial time. Just" xml:space="preserve">
+    <value>许多无家可归者只是想得到一些食物，他们中有些人甚至已经三天没有吃饭。在这个关键的时期，您可以为他们提供食物和其他重要的服务。只要</value>
+  </data>
   <data name="Your gift today will change the life of a homeless person who struggling to survive on the streets and feels their hope running out." xml:space="preserve">
     <value>无家可归的人们在街头艰难地生活，甚至看不到希望。但您的捐赠有可能会改变他的一生。</value>
   </data>
   <data name="will provide a meal, hot shower, and change of clothes for a homeless man or woman." xml:space="preserve">
     <value>就能为一位无家可归者提供一顿午餐、一次淋浴和一次换洗衣物的机会。</value>
-  </data>
-  <data name="As the weather gets cooler, it's more important than ever to provide hot showers, clean warm clothes and hot nutritious meals to people who are struggling to survive on the streets. It is often your generosity in giving these small, affordable gifts that open the door to a someone who wants to get off the streets, find a good job, and start living an independent life." xml:space="preserve">
-    <value>随着天气转凉，在街头艰难生存的无家可归者比以往更加需要热水淋浴、干净的衣服和热的午餐。您慷慨捐赠的这些普通的、并不昂贵的礼物可能会为他们打开一扇门，帮助他们找到合适的工作并开始独立的新生。</value>
-  </data>
-  <data name="Every day of the year, it costs the Renewal Center" xml:space="preserve">
-    <value>每一年的每一天，日新中心都需要</value>
-  </data>
-  <data name="of your gift will provide these life-changing essentials to a man or woman who is desperate just to put one foot forward, and off the streets." xml:space="preserve">
-    <value>，就可能帮助一位绝望的无家可归者远离街头并开始新的人生。</value>
-  </data>
-  <data name="to provide frontline services to homeless people -- like hot meals, showers and clean clothes. That means every" xml:space="preserve">
-    <value>元人民币的资金来为无家可归者提供前线服务，包括热的午餐、淋浴和干净的衣服。这意味着您每捐赠</value>
-  </data>
-  <data name="With clean clothes and a hot meal, you can start a new life!" xml:space="preserve">
-    <value>得到了干净的衣服和健康的食物，你可以开始新的人生！</value>
-  </data>
-  <data name="Your gift for meals and clean clothes inspires men to enter job training." xml:space="preserve">
-    <value>您捐赠的午餐和衣服鼓舞着无家可归者参加工作培训</value>
   </data>
 </root>
