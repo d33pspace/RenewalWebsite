@@ -142,7 +142,7 @@
     <value>在日新中心，我知道我能找到一份环境好，报酬好的好工作。</value>
   </data>
   <data name="Big thanks to you. There is really no one else who would treat people like me so well." xml:space="preserve">
-    <value>真地感激你们。从来没有人曾经对我这么好过。</value>
+    <value>真的感激你们。从来没有人曾经对我这么好过。</value>
   </data>
   <data name="But this story is not only about Xu Bo. It's about you and Xu. You see, you gave Xu the time and space he needed to find the right job by sending faithful support to the Renewal Center. He and the other residents are very thankful for that kind of support, because there's really no other place in Shanghai that you could donate to that will give people like Xu Bo a chance to not only find a job, but to find the right job no matter how long it takes." xml:space="preserve">
     <value>但这并不是徐波一个人的故事，您在其中的作用也不可忽视。是您给日新中心的支持使徐波得到了找到合适工作所需的时间和资源。他和其他培训计划学员都非常感激您的支持，因为在上海，再也没有其他地方可以利用您的捐赠让徐波这样的无家可归人士有机会找到新的工作，并且是最适合他们的工作，不论这需要经历多长的时间。</value>
@@ -245,5 +245,8 @@
   </data>
   <data name="You've encouraged Xu to earn a living making special deliveries across Shanghai." xml:space="preserve">
     <value>您的鼓励使徐波可以通过在上海投送特别快递来养活自己</value>
+  </data>
+  <data name="News" xml:space="preserve">
+    <value>简报</value>
   </data>
 </root>

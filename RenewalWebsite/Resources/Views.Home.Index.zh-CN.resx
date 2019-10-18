@@ -138,4 +138,7 @@
   <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
     <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>首页</value>
+  </data>
 </root>
