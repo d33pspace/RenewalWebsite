@@ -85,6 +85,9 @@
     <Content Update="Views\News\2018a.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
+    <Content Update="Views\News\Index.cshtml">
+      <Pack>$(IncludeRazorContentInPack)</Pack>
+    </Content>
     <Content Update="Views\Shared\_ExceptionMail.cshtml">
       <Pack>$(IncludeRazorContentInPack)</Pack>
     </Content>
@@ -139,10 +142,13 @@
     <EmbeddedResource Update="Resources\ViewModels.PaymentCycle.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Views.News.Index.zh-CN.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Donate.Campaign_2019b.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views.News.2019b.zh-CN.resx">
+    <EmbeddedResource Update="Resources\Views.News.2019a.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Donate.Campaign_2019a.zh-CN.resx">
@@ -203,7 +209,7 @@
     <EmbeddedResource Update="Resources\Views.Manage._UpdateCard.zh-cn.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
-    <EmbeddedResource Update="Resources\Views.News.Index.zh-CN.resx">
+    <EmbeddedResource Update="Resources\Views.News.2019b.zh-CN.resx">
       <Generator>ResXFileCodeGenerator</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Resources\Views.Shared.Components.Subscriptions.View.zh-CN.resx">

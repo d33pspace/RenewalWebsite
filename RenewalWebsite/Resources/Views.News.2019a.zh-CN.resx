@@ -1,0 +1,237 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="'I have no real friends I can trust, but I enjoy coming to the Renewal Center,' says Mr. Li He isn't adverse to sleeping outdoors or in fast-food restaurants, but worries about the consequences. 'If I sleep on the street, how do I keep myself and my clothes clean? If I get dirty people will avoid me, which makes it even harder to get a job.'" xml:space="preserve">
+    <value>老李说：“我没有真正可以信赖的朋友，但我很喜欢来到日新中心。”他并不介意睡在室外或快餐店里，但他担心这种生活给他带来的影响。“如果我睡在大街上，就无法保持干净。而如果我浑身脏兮兮的，就更难找到工作了。”</value>
+  </data>
+  <data name="...the most wonderful time of the year" xml:space="preserve">
+    <value>…一年中最美好的时光</value>
+  </data>
+  <data name="Another way we are hoping to make the most of your support is to expand our training program this year, ideally to once again open a café that can train homeless men in restaurant careers. Thanks to you, we can continue to look for new ways to bring hope to people wherever they are - whether they are on the streets or working their way into a new life." xml:space="preserve">
+    <value>今年，另一个我们希望改进的方面就是，在您的支持下，进一步扩大我们的培训项目。我们希望重新开一家咖啡厅，给参加培训项目的无家可归人士提供实习机会。多亏了您的帮助，我们可以不断发现新的方式为需要帮助的人们带来新的希望——无论他们是在街头还是在开始新的生活。</value>
+  </data>
+  <data name="Because he can wash up and do laundry at the Renewal Center, Mr. Li certainly finds more work than he would otherwise and even arranges for people he knows to work with him. Employers find him very reliable, but the work comes and goes. While he struggles to make ends meet, Mr. Li and we are very grateful for your continued help for drop-in services, like laundry, showers, food, warmth - and offers of further help." xml:space="preserve">
+    <value>因为可以在日新中心洗澡洗衣，老李得以找到更多工作机会，甚至还能介绍其他人和他一起工作。他的雇主们认为他是个可信赖的人，但这种工作仍然不是很稳定。虽然他仍很难自给自足，但老李和我们依旧对您为卫生服务站提供的帮助感到万分的感激，谢谢您提供的洗衣、洗澡、食物以及其他帮助。</value>
+  </data>
+  <data name="Despite Shanghai's many opportunities, the city offers little help for those who lack the right connections. 'For people like me at the bottom of society, it's extremely hard to make a living,' says Mr. Li. He reflects how hard it is to even maintain lasting relationships among a class of people who are constantly on the move." xml:space="preserve">
+    <value>虽然上海是个充满机会的城市，但缺乏关系的人在这里却很难得到帮助。老李说：“像我这种社会底层的人，要想在这里生活下去非常艰难。”由于这种工作的地点很不固定，想要获得稳定的工作机会非常困难。</value>
+  </data>
+  <data name="Ever been so broke you had to leave town?" xml:space="preserve">
+    <value>你是否经历过受生活所迫不得不离开家乡的情况？</value>
+  </data>
+  <data name="For instance, when we noticed that fewer women are joining our residential program, we noticed it's because those we do meet need medical help or have mental health problems. This inspired us to start working with a local hospital to offer free medical treatment to women who would otherwise have to pay for all their care and medicine, when they are simply too poor to afford help they need." xml:space="preserve">
+    <value>比如，当我们意识到很少有女性参加我们的住宿项目时，我们了解到她们很多都需要医疗帮助或存在心理健康问题。但她们没有足够的经济能力获得必要的医疗护理。因此，我们开始与一所本地医院合作，为这些需要帮助的女性提供免费的医疗救助。</value>
+  </data>
+  <data name="Guests like Mr. Li rely on your kind support" xml:space="preserve">
+    <value>老李需要您的善良帮助</value>
+  </data>
+  <data name="He knows how dangerous life is on the streets." xml:space="preserve">
+    <value>他知道街头的生活有多危险</value>
+  </data>
+  <data name="Here's a picture of just how meaningful your help is. At the Renewal Center, your gifts made Spring Festival more than just a celebratory meal. It gave many people the chance to feel like a part of a family again - and to feel safe. Liu Junyi, age 37, described working in appalling conditions in cities across China, but never earning enough to rent a home. He finally moved to Shanghai because of its low crime rate, which he feels is essential for anyone who would consider sleeping outdoors." xml:space="preserve">
+    <value>这张照片充分显示了您提供的帮助的重要意义。在日新中心，您的捐赠让春节的意义远远超过一顿节日的美餐。它给了许多人再次感受到家庭温暖和安全感的机会。37岁的刘俊义在中国各地许多严酷的环境下工作过，但一直没有足够的经济能力去租一个房子。因为上海犯罪率低，他来到了这个城市，可见安全感对露宿街头的人们来说是那么的重要。</value>
+  </data>
+  <data name="I don't have a place to live, I just need some place out of the rain and a warm blanket to sleep under, he says. Liu is often lonely and scared, having seen people robbed or accosted on the streets. But at the Spring Festival dinner, he had a smile on his face, and we do everything for Liu that we can." xml:space="preserve">
+    <value>他说：“我没有住的地方，只要能够躲避风雨，有个温暖的毯子，我就满足了。”目睹过人们在街头被抢劫和欺负后，刘俊义常常感到孤独和害怕。但在春节晚餐中，在我们的努力帮助下，他露出了发自内心的笑容。</value>
+  </data>
+  <data name="'I was brought by a friend to the Renewal Center,' he recalls. 'The first time I came I saw a poster that said help was available finding a stable job, so I decided to enter the training program. At first I was a little nervous - I thought it might be another scam...'" xml:space="preserve">
+    <value>“一个朋友把我带来了日新中心，”他回忆道。“我第一次来到这里就看到一张海报上写着可以帮助我找到稳定的工作。所以我决定加入培训项目。起初我还有点紧张，我害怕这是又一种诈骗手段…”</value>
+  </data>
+  <data name="'I've learned so much there,' says Yuan. 'I've made lots of mistakes but my manager teaches me patiently. It really motivates me to carry out all my responsibilities well.' When he reflects on your support for the Renewal Center, Yuan beams, 'The happiest thing is the joy the community brings. So I think about how I can best use my own time to pitch in and help. This is the path to happiness. Thank you again for your help!'" xml:space="preserve">
+    <value>袁福江说：“我在这里学到了很多，也犯了不少错误，但我的经理对我非常耐心。这会激励我在工作中更加负责。”提到您对日新中心的支持，他强调说：“最幸福的事就是这个大家庭带来的快乐。我也在思考如何能够尽自己所能为中心和其他人提供帮助，从而把幸福传递下去。再次感谢您对我的帮助！”</value>
+  </data>
+  <data name="It's heartbreaking that many people can't afford these luxuries, which is why you'll be thrilled to know you gave 80 people in need a celebration of warmth, friendship and a hot, holiday meal at the Renewal Center." xml:space="preserve">
+    <value>而不幸的是，还有许多人没有这样的能力。也许您会很惊讶，因为在您的支持下，日新中心在春节期间为多达80多位无家可归的人们提供了一次难得的欢庆节日，分享友谊和享受春节美食的机会。</value>
+  </data>
+  <data name="Lao Liang regularly prepares hot, healthy meals for our guests." xml:space="preserve">
+    <value>老梁会定期来到卫生服务站为大家准备热腾腾的健康美食。</value>
+  </data>
+  <data name="Mr. Li, age 43, drops into the Renewal Center for a hot meal when he is waiting for casual work setting up and breaking down stages. But when demand drops off he struggles to survive - and takes advantage of low-cost bus or train tickets to Inner Mongolia where life is hard, but goods are cheaper." xml:space="preserve">
+    <value>43岁的老李时常来到日新中心想要吃一顿饱饭。他有个舞台搭建和拆除的临时工作，但并不稳定。没活干时他的生活就会变得非常困难，他甚至会搭乘低价长途车或火车到内蒙古，就因为那里物价很低，但那里的生活却十分艰苦。</value>
+  </data>
+  <data name="Our regular guest Lao Liang helped prepare the feast, washing and cutting mountains of vegetables. As an army veteran and former prison inmate, Mr. Liang has earned valuable experience working in kitchens. His help was crucial in serving so many people that day - and inviting them all to come back for seconds, and even thirds. None of the food you generously provided went to waste!" xml:space="preserve">
+    <value>定期前来支持日新中心工作的老朋友老梁帮助我们准备了堆积如山的食物。作为一名退伍军人和住过监狱的人 ，老梁有丰富的厨房工作经验。他的帮助使我们能够接待那么多的人——并邀请他们以后再次前来。您慷慨提供的食物绝对不会被浪费！</value>
+  </data>
+  <data name="People were thrilled to share this time of celebration and good food. Many guests went out of their way to be kind to each other, even surrendering their place in line when it seemed too long. Mr. Liang's words fully express the joy we want to share with you. 'That day, everyone was happy. Our thanks go out to you and to everyone who helped us, because our happiness comes from your help!'" xml:space="preserve">
+    <value>人们兴奋地分享着这些欢乐的时光和美味的食物。许多访客都互相帮助，他们在最拥挤的时候还主动让出空间排队。老梁的话最能代表我们想要与您分享的快乐：“那天，每个人都很开心。我们感谢您和所有帮助过我们的人，你们的慷慨帮助就是我们幸福的源泉。”</value>
+  </data>
+  <data name="Sometimes the job is real, but the recruiter may be paid handsomely to find employees even for a dead-end job (see a chance to feel safe p.3). But Yuan now says, 'Slowly my fear melted away and I knew the Renewal Center could give me the help and care I desperately needed.' He has now been working with our valued restaurant partner Element Fresh for over five months." xml:space="preserve">
+    <value>有时他介绍的工作是真的，但“招聘人员”会索要很大一笔钱，即使那只是一个没有出路的工作（见第3页的“一个获得安全感的机会”）。但现在，袁福江说：“渐渐地，我不再害怕，我知道日新中心会为我提供我最需要的帮助和关怀。”现在他已经在我们的合作伙伴新元素餐厅工作了5个多月了。</value>
+  </data>
+  <data name="Thanks for bringing new hope to men and women on the streets!" xml:space="preserve">
+    <value>感谢您为街头的男女带来的新的希望！</value>
+  </data>
+  <data name="The festive meal included favorites like braised pork with pickled greens, chicken and potatoes, as well as hand-made sausages stir-fried with garlic and sprouts. In all, five days of preparation went into making the Spring Festival meal and - in addition to your amazing support - it was our own program residents who did most of the cooking and serving to make the feast truly special." xml:space="preserve">
+    <value>节日美餐包括了大家喜爱的扣肉泡菜、土豆鸡肉、以及手工香肠炒蒜头和豆芽。为了筹备春节活动，我们准备了五天的时间！除了您提供的支持，大部分的准备和服务工作都是由我们的项目参与者完成的，这使得这次活动更加特别。</value>
+  </data>
+  <data name="The Spring Festival is over, but new life is growing at Renewal." xml:space="preserve">
+    <value>春节已经过去，但他们将在日新中心继续成长</value>
+  </data>
+  <data name="Through you, we even managed to give each one a small gift of cash in a traditional hongbao, as well as a bag full of fruit, nuts and a bottled drink." xml:space="preserve">
+    <value>在您的帮助下，我们甚至还有机会给每个人发放了一个小红包，以及满满一袋水果、坚果和一瓶饮料。</value>
+  </data>
+  <data name="You gave him a chance, not a cheat!" xml:space="preserve">
+    <value>您给了他机会，而不是骗局！</value>
+  </data>
+  <data name="You gave Liu Junyi a chance to feel safe" xml:space="preserve">
+    <value>是您给了刘俊义一个获得安全感的机会</value>
+  </data>
+  <data name="You know that Spring Festival is a time of traveling home, celebration with family, exchanging presents and sharing lots of traditional food." xml:space="preserve">
+    <value>春节是一个无论身在何方，都要回家与全家团圆的日子。与家人在一起分享快乐，享受各种传统美食。</value>
+  </data>
+  <data name="You're always there, always helping" xml:space="preserve">
+    <value>您的帮助一直都在</value>
+  </data>
+  <data name="Your amazing support made this Spring Festival..." xml:space="preserve">
+    <value>是您的支持让这个春节成为了…</value>
+  </data>
+  <data name="Your gifts are giving Yuan Fujiang satisfying work in a job market peppered with cheats and scammers." xml:space="preserve">
+    <value>您的捐赠能够在一个存在着狡诈和欺骗的劳务市场中帮袁福江找到一份满意的工作。</value>
+  </data>
+  <data name="Your gifts beat scammers who target the unemployed" xml:space="preserve">
+    <value>您的捐赠战胜了瞄准失业者的骗子</value>
+  </data>
+  <data name="Your support means the Renewal Center keeps helping people in exciting new ways." xml:space="preserve">
+    <value>您的支持使日新中心能够持续以新的方式帮助需要帮助的人们。</value>
+  </data>
+  <data name="Yuan Fujiang thought the training program was too good to be true." xml:space="preserve">
+    <value>袁福江认为培训项目太好了，简直难以置信</value>
+  </data>
+  <data name="Yuan was right to be concerned. In extreme cases, we've had program participants who were lured into scams and taken to remote farms in western China where they were forced to work. These days, a man living on the streets is more likely to meet a person claiming to be a recruiter who says he can get him a job. He requires a finder's fee or money to buy a uniform and then disappears, never to be seen again." xml:space="preserve">
+    <value>袁福江的谨慎是有原因的。有时，我们的培训项目会遇到曾被欺骗到中国西部偏远地区农场做苦工的人们。在那段时间里，有人会冒充招聘人员对街头的无家可归人士说能帮助他们找到工作。他会索要一些中介费用或谎称需要交钱购买制服。而拿到钱之后他就会立刻消失得无影无踪。</value>
+  </data>
+  <data name="Give meals, help and support to a homeless person and put them on the path to growth and new life." xml:space="preserve">
+    <value>为无家可归人士提供食物和帮助，让他们开始新的人生。</value>
+  </data>
+  <data name="In this issue of Re:news" xml:space="preserve">
+    <value>刊物内容</value>
+  </data>
+  <data name="My gift for new life today" xml:space="preserve">
+    <value>我要捐赠</value>
+  </data>
+  <data name="Hanson Ye and Jimmy McWhinney" xml:space="preserve">
+    <value>叶海生和Jimmy McWhinney</value>
+  </data>
+  <data name="ISSUE 12" xml:space="preserve">
+    <value>第12期</value>
+  </data>
+  <data name="SPRING 2019" xml:space="preserve">
+    <value>2019年春季刊</value>
+  </data>
+</root>
