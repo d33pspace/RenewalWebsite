@@ -1158,6 +1158,12 @@ a.news-link:hover {
     min-height: 500px;
 }
 
+.news.issue-14 {
+    background-image: url(/images/news/issue14/header.jpg);
+    background-size: cover;
+    min-height: 500px;
+}
+
 .p-20 {
     padding-top: 20px;
 }
