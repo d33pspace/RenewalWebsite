@@ -273,4 +273,10 @@
   <data name="Your next gift could help Lin, 76, who is especially vulnerable to the virus and cold weather." xml:space="preserve">
     <value>您的下一份捐赠可以帮助76岁的林天野——这位在病毒和寒冷天气下更需要帮助的老人。</value>
   </data>
+  <data name="Each mask lasts only a day or two -- and although they're now very scarce, we've found a few reliable suppliers who charge slightly higher prices. To comply with the law banning public gatherings, our drop-in center is closed, meaning homeless people have no place to have a hot meal, shower, change of clothes, or laundry." xml:space="preserve">
+    <value>每只口罩仅能使用一到两天的时间。虽然非常稀缺，但我们仍然找到了一些可靠的供货商，不过价格稍高。由于政府禁止各种形式的公共聚集活动，我们的卫生服务站已经关停。这意味着无家可归者已经无法得到午餐、淋浴或换洗衣物的服务了。</value>
+  </data>
+  <data name="No day labor and no income from recycling means no money, and no food." xml:space="preserve">
+    <value>找不到临时工作或废品，意味着没有收入，没有食物。</value>
+  </data>
 </root>

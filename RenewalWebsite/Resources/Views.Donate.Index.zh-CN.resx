@@ -126,23 +126,14 @@
   <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
     <value>立即用信用卡捐款</value>
   </data>
-  <data name="My gift of hot meals, shelter and support for homeless men and women" xml:space="preserve">
-    <value>我为无家可归男女提供的食物、住所和培训机会</value>
+  <data name="to provide food, support and care to 5 people on the streets." xml:space="preserve">
+    <value>为5位无家可归者提供食物、帮助与关怀。</value>
   </data>
-  <data name="you give today will provide a hot meal, shower and change of clothes for a homeless man or woman." xml:space="preserve">
-    <value>您就能为一位无家可归者提供一顿健康的午餐，一次淋浴和一次换洗衣服的机会。</value>
+  <data name="to provide food, support and care to 20 people on the streets." xml:space="preserve">
+    <value>为20位无家可归者提供食物、帮助与关怀。</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 10 people." xml:space="preserve">
-    <value>来为10人提供午餐、淋浴和干净的衣服。</value>
-  </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 30 people." xml:space="preserve">
-    <value>来为30人提供午餐、淋浴和干净的衣服。</value>
-  </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 100 people." xml:space="preserve">
-    <value>来为100人提供午餐、淋浴和干净的衣服。</value>
-  </data>
-  <data name="Yes, I’ll rescue a homeless person from the streets by providing the food, shelter, support and training they need to start a new life!" xml:space="preserve">
-    <value>是的，我希望解救无家可归者，为他们提供食物、住所以及开始新生所需的培训和其他帮助。我愿捐赠：</value>
+  <data name="to provide food, support and care to 10 people on the streets." xml:space="preserve">
+    <value>为10位无家可归者提供食物、帮助与关怀。</value>
   </data>
   <data name="An amount of your choice to help as many people as you can." xml:space="preserve">
     <value>我自己选择的余额尽可能多地帮助他们。</value>
@@ -174,9 +165,6 @@
   <data name="." xml:space="preserve">
     <value>。</value>
   </data>
-  <data name="to be doubled to" xml:space="preserve">
-    <value>翻倍到</value>
-  </data>
   <data name="monthly" xml:space="preserve">
     <value>每月</value>
   </data>
@@ -194,5 +182,14 @@
   </data>
   <data name="Please enter a valid amount." xml:space="preserve">
     <value>请输入一个有效的金额。</value>
+  </data>
+  <data name="Help provide the basics like masks. They only last a few days, but everyone is required to wear one." xml:space="preserve">
+    <value>帮助提供口罩等必需品。虽然一只口罩只能使用几天的时间，但每个人都必须佩戴。</value>
+  </data>
+  <data name="The coronavirus has left homeless people in crisis, and the Renewal Center is relying on your help to reach the homeless people who are now stuck out on the streets and more desperate than ever. Thank you for your gift below." xml:space="preserve">
+    <value>冠状病毒疫情让无家可归者深受影响，而日新中心需要您的支持来帮助那些被困于街头的无家可归者。他们比过去任何时间都更需要帮助。感谢您做出的捐赠。</value>
+  </data>
+  <data name="Your gift below could save a life" xml:space="preserve">
+    <value>您的捐赠可以拯救生命</value>
   </data>
 </root>

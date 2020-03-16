@@ -120,25 +120,25 @@
   <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
     <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
   </data>
-  <data name="Gifts as simple as hot meals and clean clothes are hugely encouraging to homeless people. You make them feel cared for -- and often inspired to begin training for a steady job and a better life." xml:space="preserve">
-    <value>午餐和干净衣物等普通的礼物能够极大地鼓励无家可归的人们。您可以让他们感到关怀，并激励他们参加工作培训，并开启更好的人生。</value>
-  </data>
-  <data name="My gift of new life for homeless men and women" xml:space="preserve">
-    <value>我为无家可归男女开启新生做出的捐赠</value>
-  </data>
-  <data name="Please help get as many homeless women and men into shelter and job training today so their new lives can start now." xml:space="preserve">
-    <value>请帮我们救助更多的无家可归男女，帮他们参加工作培训，开启新的人生。</value>
-  </data>
-  <data name="The smallest gift, like a clean shirt or a hot meal, can put a person on the road to independence." xml:space="preserve">
-    <value>最小的礼物，比如一件干净的衬衫或一顿的午餐，都可能让一个人重新开始独立人生。</value>
-  </data>
-  <data name="Your gift of support will arrive at an important time for homeless men and women, between the heat of summer and the cold of winter. In the warmer months, people just want to wash off the sweat and grime of the streets -- but the winter weather can be life-threatening for those who sleep outdoors." xml:space="preserve">
-    <value>在炎热夏季和寒冷冬季交替的季节，您的捐赠将为无家可归的男女带来关键的支持。在温暖的季节里，人们只是想洗净在街头的汗水和污垢，但在冬季，那些露宿街头的人们可能遇到致命的威胁。</value>
-  </data>
   <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
     <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>首页</value>
+  </data>
+  <data name="Help the homeless people hardest hit by the coronavirus" xml:space="preserve">
+    <value>帮助那些受冠状病毒影响最大的无家可归者</value>
+  </data>
+  <data name="My emergency gift" xml:space="preserve">
+    <value>我的紧急捐赠</value>
+  </data>
+  <data name="The coronavirus crisis has left so many people hungry and hopeless. Before it hit, they could find day jobs or earn a few coins collecting cans and bottles. Since then, there's hardly been anyone on the streets so their meagre incomes have disappeared." xml:space="preserve">
+    <value>冠状病毒危机使许多无家可归者忍受饥饿，丧失希望。疫情爆发前，他们还可以通过卖废品或临时工作来赚一些钱。但疫情爆发之后，空空荡荡的街头使他们本来就少得可怜的赚钱机会都消失了。</value>
+  </data>
+  <data name="To make matters worse, Renewal's drop-in center was forced to closed. We are still taking food to people in need, but everyone needs to stay clean, clothed and safe." xml:space="preserve">
+    <value>更糟的是，日新中心的卫生服务站也不得不暂停服务。虽然我们仍在为需要的人们提供食物，但他们仍然需要淋浴、换洗衣物和安全的住所。</value>
+  </data>
+  <data name="When the coronavirus crisis ends, we face a long period of recovery. Right now, people desperately need your help." xml:space="preserve">
+    <value>当冠状病毒危机结束后，我们将面临长期的恢复工作。目前，人们迫切地需要您的帮助。</value>
   </data>
 </root>
