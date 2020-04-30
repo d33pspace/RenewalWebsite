@@ -120,6 +120,9 @@
   <data name="Donate" xml:space="preserve">
     <value>捐款</value>
   </data>
+  <data name="Download" xml:space="preserve">
+    <value>下载</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>主页</value>
   </data>
