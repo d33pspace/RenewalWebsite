@@ -117,22 +117,19 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="LOGOs" xml:space="preserve">
-    <value>标志</value>
+  <data name="From a shower and clean clothes to safe shelter and job training, your support provides everything a person needs to turn their life around." xml:space="preserve">
+    <value>从洗澡到换洗衣物，从安全的住所到工作培训机会，您的支持能够帮助一位无家可归人士开始新的生活。</value>
   </data>
-  <data name="PDF" xml:space="preserve">
-    <value>PDF格式</value>
-  </data>
-  <data name="Planning on promoting Renewal? Please read our guidelines in the Let's Renewal document above and feel free to download our logo here:" xml:space="preserve">
+  <data name="Planning on promoting Renewal for your own fundraiser or clothing drive? Please read our guidelines in the Let's Renewal document above and feel free to download our logo here:" xml:space="preserve">
     <value>计划促进更新？请阅读上面的“续订”文档中的准则，并随时在此处下载我们的徽标：</value>
   </data>
-  <data name="Read about the best ways to support our work at Renewal with the latest edition of Let's Renewal!" xml:space="preserve">
+  <data name="Read about the three best ways to support our work at Renewal with the latest edition of Let's Renewal!" xml:space="preserve">
     <value>阅读最新版本的“让我们续约”，了解支持续约工作的最佳方法！</value>
   </data>
   <data name="Renewal Downloads" xml:space="preserve">
-    <value>续订下载</value>
+    <value>日新中心下载页</value>
   </data>
-  <data name="When the coronavirus crisis ends, we face a long period of recovery. Right now, people desperately need your help." xml:space="preserve">
-    <value>当冠状病毒危机结束时，我们将面临长期的恢复。现在，人们迫切需要您的帮助。</value>
+  <data name="Renewal Logo" xml:space="preserve">
+    <value>日新中心的logo</value>
   </data>
 </root>
