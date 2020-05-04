@@ -666,6 +666,9 @@ namespace RenewalWebsite.Controllers
                 InvoiceHistoryModel invoiceHistoryModel = new InvoiceHistoryModel();
                 invoiceHistoryModel.showUSDConversion = model.showUSD;
 
+                var log = new EventLog() { EventId = (int)LoggingEvents.GET_INVOICE_HISTORY, LogLevel = LogLevel.Information.ToString(), Message = $"Get Invoice history - Type: {model.typeOfHistory}", StackTrace = "", Source = "GetPaymentHistory", EmailId = user.Email };
+                _loggerService.SaveEventLogToDb(log);
+
                 if (model.typeOfHistory == "AllHistory")
                 {
                     invoiceHistoryModel.InvoiceHistory = _invoiceHistoryService.GetAllInvoiceHistory(user.Email);
@@ -813,6 +816,9 @@ namespace RenewalWebsite.Controllers
             DateTime ToDate = DateTime.Now;
             try
             {
+                var log = new EventLog() { EventId = (int)LoggingEvents.GET_INVOICE_HISTORY, LogLevel = LogLevel.Information.ToString(), Message = $"Get Invoice PDF - Type: {model.typeOfHistory}", StackTrace = "", Source = "GetInvoicePdf", EmailId = user.Email };
+                _loggerService.SaveEventLogToDb(log);
+
                 if (model.typeOfHistory == "AllHistory")
                 {
                     invoicehistoryList = _invoiceHistoryService.GetAllInvoiceHistory(user.Email);

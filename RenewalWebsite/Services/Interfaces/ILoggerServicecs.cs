@@ -9,5 +9,7 @@ namespace RenewalWebsite.Services
     public interface ILoggerServicecs
     {
         void SaveEventLogAsync(EventLog log);
+
+        void SaveEventLogToDb(EventLog log);
     }
 }
