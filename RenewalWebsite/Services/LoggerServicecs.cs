@@ -15,14 +15,14 @@ namespace RenewalWebsite.Services
         private readonly ApplicationDbContext _dbContext;
         private readonly IViewRenderService _viewRenderService;
         private readonly IEmailSender _emailSender;
-        private readonly IOptions<EmailNotification> _EmailNotiFy;        
-        
+        private readonly IOptions<EmailNotification> _EmailNotiFy;
+
         public LoggerServicecs(IEmailSender emailSender, IViewRenderService viewRenderService, ApplicationDbContext dbContext, IOptions<EmailNotification> EmailNotification)
         {
             _emailSender = emailSender;
             _viewRenderService = viewRenderService;
             _dbContext = dbContext;
-            _EmailNotiFy = EmailNotification;            
+            _EmailNotiFy = EmailNotification;
         }
 
         public async void SaveEventLogAsync(EventLog log)
@@ -33,10 +33,23 @@ namespace RenewalWebsite.Services
 
             try
             {
-                string template = await _viewRenderService.RenderToStringAsync("Shared/_ExceptionMail", log);                
+                string template = await _viewRenderService.RenderToStringAsync("Shared/_ExceptionMail", log);
                 await _emailSender.SendEmailAsync(_EmailNotiFy.Value.Email, "Exception", "", "Admin", template);
             }
             catch (Exception ex)
+            {
+            }
+        }
+
+        public void SaveEventLogToDb(EventLog log)
+        {
+            try
+            {
+                log.CreatedTime = DateTime.Now;
+                _dbContext.EventLog.Add(log);
+                _dbContext.SaveChanges();
+            }
+            catch (Exception)
             {
             }
         }
