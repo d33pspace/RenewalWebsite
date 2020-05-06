@@ -144,8 +144,8 @@
   <data name="I would like to make a" xml:space="preserve">
     <value>我想</value>
   </data>
-  <data name="DONATE NOW USING YOOPAY" xml:space="preserve">
-    <value>立即打开友付捐款</value>
+  <data name="DONATE NOW USING WECHAT OR ALIPAY" xml:space="preserve">
+    <value>立即用微信或支付宝捐款</value>
   </data>
   <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
     <value>或者用支付宝扫描下面的二维码：</value>
