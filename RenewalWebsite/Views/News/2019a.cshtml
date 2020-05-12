@@ -1,5 +1,7 @@
 ﻿@using RenewalWebsite.Services
 @inject ICurrencyService CurrencyService
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "News";
     ViewData["Title"] = Localizer["News"];
@@ -60,7 +62,7 @@
                     @Localizer["'I was brought by a friend to the Renewal Center,' he recalls. 'The first time I came I saw a poster that said help was available finding a stable job, so I decided to enter the training program. At first I was a little nervous - I thought it might be another scam...'"]
                 </p>
                 <p>
-                    @Localizer["Yuan was right to be concerned. In extreme cases, we've had program participants who were lured into scams and taken to remote farms in western China where they were forced to work. These days, a man living on the streets is more likely to meet a person claiming to be a recruiter who says he can get him a job. He requires a finder's fee or money to buy a uniform and then disappears, never to be seen again."]        
+                    @Localizer["Yuan was right to be concerned. In extreme cases, we've had program participants who were lured into scams and taken to remote farms in western China where they were forced to work. These days, a man living on the streets is more likely to meet a person claiming to be a recruiter who says he can get him a job. He requires a finder's fee or money to buy a uniform and then disappears, never to be seen again."]
                 </p>
                 <blockquote>
                     @Localizer["Yuan Fujiang thought the training program was too good to be true."]<br>
@@ -86,7 +88,7 @@
                 <img class="img-fluid story-img" src="~/images/news/issue11/hj.jpg">
                 <!--<div class="news-subheader">@Localizer["We are helping the marginalized and forgotten thanks to your support"]</div>-->
                 <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Jimmy McWhinney and Hanson Ye"]</p>-->
-                
+
                 <p>@Localizer["Your support means the Renewal Center keeps helping people in exciting new ways."]</p>
                 <p>@Localizer["For instance, when we noticed that fewer women are joining our residential program, we noticed it's because those we do meet need medical help or have mental health problems. This inspired us to start working with a local hospital to offer free medical treatment to women who would otherwise have to pay for all their care and medicine, when they are simply too poor to afford help they need."]</p>
                 <p>@Localizer["Another way we are hoping to make the most of your support is to expand our training program this year, ideally to once again open a café that can train homeless men in restaurant careers. Thanks to you, we can continue to look for new ways to bring hope to people wherever they are - whether they are on the streets or working their way into a new life."]</p>
@@ -126,10 +128,10 @@
                 <br />
                 <br />
 
-                <p class="mb4 clear">    
+                <p class="mb4 clear">
                     @Localizer["Here's a picture of just how meaningful your help is. At the Renewal Center, your gifts made Spring Festival more than just a celebratory meal. It gave many people the chance to feel like a part of a family again - and to feel safe. Liu Junyi, age 37, described working in appalling conditions in cities across China, but never earning enough to rent a home. He finally moved to Shanghai because of its low crime rate, which he feels is essential for anyone who would consider sleeping outdoors."]
                 </p>
-                
+
                 <p>
                     @Localizer["I don't have a place to live, I just need some place out of the rain and a warm blanket to sleep under, he says. Liu is often lonely and scared, having seen people robbed or accosted on the streets. But at the Spring Festival dinner, he had a smile on his face, and we do everything for Liu that we can."]
                 </p>
@@ -149,13 +151,13 @@
                 <div class="red-border">
                     <span class="blockquote-winter">@Localizer["Give meals, help and support to a homeless person and put them on the path to growth and new life."]</span>
                     @*@if (currency.Name.Contains("zh"))
-                    {
-                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
-                    }
-                    else
-                    {
-                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
-                    }*@
+                        {
+                            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
+                        }
+                        else
+                        {
+                            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
+                        }*@
                     <br /><br />
                     <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign">@Localizer["My gift for new life today"] <i class="arrow right-arrow"></i></a>
                     <div style="margin-bottom:15px;"></div>
@@ -172,5 +174,5 @@
 
             </div>
 
+        </div>
     </div>
-</div>

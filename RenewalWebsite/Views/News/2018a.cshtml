@@ -1,5 +1,7 @@
 ﻿@using RenewalWebsite.Services
 @inject ICurrencyService CurrencyService
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "News";
     ViewData["Title"] = Localizer["News"];
@@ -149,13 +151,13 @@
                 <div class="red-border">
                     <span class="blockquote-winter">@Localizer["Please give hot meals and hope to a homeless person and put them on the path to new life."]</span>
                     <!-- @@if (currency.Name.Contains("zh"))
-        {
-            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)@Localizer["."]</span>
-        }
-        else
-        {
-            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)@Localizer["."]</span>
-        }-->
+                    {
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)@Localizer["."]</span>
+                    }
+                    else
+                    {
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)@Localizer["."]</span>
+                    }-->
                     <br />
                     <br />
                     <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["My gift today"] <i class="arrow right-arrow"></i></a>

@@ -1,5 +1,6 @@
 ﻿@using RenewalWebsite.Services
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @inject ICurrencyService CurrencyService
 
 @{
@@ -25,8 +26,8 @@
 
         <h2 class="red-border">@Localizer["Help stop the ‘summer slump’ in giving so we don’t have to cut services to desperate homeless people..."]</h2>
         <p>@Localizer["Please help beat the ‘summer slump’ with your gift for essential services. Your kindness to homeless men and women will change their lives forever."]</p>
-       
-        
+
+
 
         @*<p><a asp-controller="Donate" asp-action="Campaign">@Localizer["My gift to help people start a new, fulfilling life!"]</a></p>*@
 

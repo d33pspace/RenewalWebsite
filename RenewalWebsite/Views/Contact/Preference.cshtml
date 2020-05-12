@@ -1,6 +1,8 @@
 ﻿@model RenewalWebsite.Models.ViewModels.UserPreferenceViewModel
 @using RenewalWebsite.Services
 @inject ICurrencyService CurrencyService
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = Localizer["Preferences"];
     Layout = "~/Views/Shared/_Layout.cshtml";

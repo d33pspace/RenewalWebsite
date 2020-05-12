@@ -2,7 +2,8 @@
     ViewData["Title"] = Localizer["Thank you!"];
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 <div class="row">
     <div class="col-md-12">
         <div class="alert alert-success" role="alert">

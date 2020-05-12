@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 @using RenewalWebsite.Services
 @using Microsoft.AspNetCore.Mvc.Localization
-@model DonationViewModel
+@model RenewalWebsite.Models.DonationViewModel
 
 @inject IViewLocalizer Localizer
 @inject ICurrencyService CurrencyService
@@ -47,47 +47,47 @@
             <p>@Localizer["The Renewal Center is reaching homeless people every day this spring, but we can only continue through your support. In the lives of people in need, new growth and lasting renewal depends on the kindness of friends like you."]</p>
             <p>@Localizer["Please be as generous as you can today to give many more homeless men and women on the streets of Shanghai the opportunity to start a new life."]</p>
             <p>@Localizer[""]</p>
-                         @if (currency.Name.Contains("en"))
-                         {
-                    <form asp-controller="Donate" asp-action="CreateCampaign">
+            @if (currency.Name.Contains("en"))
+            {
+                <form asp-controller="Donate" asp-action="CreateCampaign">
 
-                        <div asp-validation-summary="All" class="text-danger"></div>
-                        <div id="textMainMessage" class="text-danger" style="display:none;">
-                            <ul>
-                                <li id="textMainErrorMessage"></li>
-                            </ul>
-                        </div>
-                        <div class="form-group" style="overflow:inherit;">
-                            <div class="input-group">
-                                <label class="mtp-auto">
-                                    @Localizer["I would like to make a"]&nbsp;
-                                </label>
-                                <div class="box">
-                                    <select asp-for="CycleId" class="wide select-font" style="min-width:100px; max-width:100px;border-radius:0.25rem;"
-                                            asp-items="@Model.DonationCycles"></select>
-                                </div>&nbsp;
-                                <label class="mtp-auto">@Localizer["gift of:"]</label>
-                            </div>
-                        </div>
-                        <input type="hidden" id="Reason" name="Reason" />
-                        <input type="hidden" id="IsCustom" name="IsCustom" />
-                        <input type="hidden" id="DonationAmount" name="DonationAmount" />
-                        <ul class="list-unstyled rmb-options mb-5">
-                            <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="22.40" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)22.40</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 10 people."]</li>
-                            <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="67.20" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)67.20</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 30 people."]</li>
-                            <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="224.00" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)224.00</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 100 people."]</li>
-                            <li>
-                                <div class="input-group">
-                                    <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="to help as many people as I can." onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
-                                    <input type="text" id="CustomAmount" name="CustomAmount" onfocus="checkSelection()" class="form-control" style="height:38px;" /> @Localizer["to help as many people as I can."]
-                                </div>
-                            </li>
+                    <div asp-validation-summary="All" class="text-danger"></div>
+                    <div id="textMainMessage" class="text-danger" style="display:none;">
+                        <ul>
+                            <li id="textMainErrorMessage"></li>
                         </ul>
-                        <div class="clearfix mt-3 mb-3">
-                            <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
-                            <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
+                    </div>
+                    <div class="form-group" style="overflow:inherit;">
+                        <div class="input-group">
+                            <label class="mtp-auto">
+                                @Localizer["I would like to make a"]&nbsp;
+                            </label>
+                            <div class="box">
+                                <select asp-for="CycleId" class="wide select-font" style="min-width:100px; max-width:100px;border-radius:0.25rem;"
+                                        asp-items="@Model.DonationCycles"></select>
+                            </div>&nbsp;
+                            <label class="mtp-auto">@Localizer["gift of:"]</label>
                         </div>
-<p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
+                    </div>
+                    <input type="hidden" id="Reason" name="Reason" />
+                    <input type="hidden" id="IsCustom" name="IsCustom" />
+                    <input type="hidden" id="DonationAmount" name="DonationAmount" />
+                    <ul class="list-unstyled rmb-options mb-5">
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="22.40" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)22.40</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 10 people."]</li>
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="67.20" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)67.20</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 30 people."]</li>
+                        <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="224.00" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)224.00</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 100 people."]</li>
+                        <li>
+                            <div class="input-group">
+                                <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="to help as many people as I can." onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
+                                <input type="text" id="CustomAmount" name="CustomAmount" onfocus="checkSelection()" class="form-control" style="height:38px;" /> @Localizer["to help as many people as I can."]
+                            </div>
+                        </li>
+                    </ul>
+                    <div class="clearfix mt-3 mb-3">
+                        <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
+                        <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
+                    </div>
+                    <p>@await Html.PartialAsync("_CurrencyTogglePartial")</p>
                 </form>
             }
             else

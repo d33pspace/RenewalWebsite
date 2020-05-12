@@ -5,7 +5,8 @@
 @{
     var culture = CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower();
 }
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @if (Model.StartDate != null && Model.EndDate != null)
 {
     <div class="row">

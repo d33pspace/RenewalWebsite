@@ -243,4 +243,7 @@
   <data name="PasswordStructure" xml:space="preserve">
     <value>Passwords must be at least 6 characters. Password must contain at least one special character, one number, one lowercase and one uppercase letter.</value>
   </data>
+  <data name="CaptchaRequired" xml:space="preserve">
+    <value>The Captcha is required.</value>
+  </data>
 </root>

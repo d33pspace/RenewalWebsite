@@ -1,4 +1,6 @@
 ﻿@model RenewalWebsite.Models.ManageViewModels.CardViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 <form id="update" asp-controller="Manage" asp-action="DeleteCard" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_success" data-ajax-failure="fun_fail">
     <fieldset>
         <div asp-validation-summary="All" class="text-danger"></div>

@@ -1,6 +1,8 @@
 ﻿@using RenewalWebsite.Services
+@using Microsoft.AspNetCore.Mvc.Localization
 @inject ICurrencyService CurrencyService
-@model IndexViewModel
+@inject IViewLocalizer Localizer
+@model RenewalWebsite.Models.ManageViewModels.IndexViewModel
 @{
     ViewData["Title"] = Localizer["Your account"];
     var currency = CurrencyService.GetCurrent();

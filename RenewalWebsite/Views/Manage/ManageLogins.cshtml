@@ -1,5 +1,7 @@
-﻿@model ManageLoginsViewModel
-@using Microsoft.AspNetCore.Http.Authentication
+﻿@model RenewalWebsite.Models.ManageViewModels.ManageLoginsViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
+@*@using Microsoft.AspNetCore.Http.Authentication*@
 @{
     ViewData["Title"] = @Localizer["Manage your external logins"];
 }
@@ -47,7 +49,7 @@
             <p>
                 @foreach (var provider in Model.OtherLogins)
                 {
-                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="@Localizer["Log in using your Google account"]" @(Model.CurrentLogins.Count > 0 ? "disabled" : " ")>@Localizer[@provider.Name]</button>                    
+                    <button type="submit" class="btn btn-default" name="provider" value="@provider.Name" title="@Localizer["Log in using your Google account"]" @(Model.CurrentLogins.Count > 0 ? "disabled" : " ")>@Localizer[@provider.Name]</button>
                 }
             </p>
         </div>

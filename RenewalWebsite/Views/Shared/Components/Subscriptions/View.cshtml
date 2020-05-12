@@ -1,4 +1,6 @@
 ﻿@model RenewalWebsite.Models.CustomerPaymentViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @using System.Globalization
 
 @if (Model.Subscriptions == null || !Model.Subscriptions.Any())

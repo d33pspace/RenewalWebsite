@@ -1,5 +1,6 @@
 ﻿@model RenewalWebsite.Models.ManageViewModels.NewCardViewModel
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
     <form asp-controller="Manage" asp-action="AddNewCard" class="form-horizontal" data-ajax="true" data-ajax-method="POST" data-ajax-success="fun_add_success(this,data,xhr);" data-ajax-failure="fun_add_fail(this,data,xhr);">
         <fieldset>

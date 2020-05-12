@@ -1,5 +1,8 @@
 ﻿@model RenewalWebsite.Models.SearchViewModel
 @using RenewalWebsite.Services
+@using RenewalWebsite.Models
+@using Microsoft.AspNetCore.Identity
+
 @inject UserManager<ApplicationUser> UserManager
 @inject ICurrencyService CurrencyService
 @{
@@ -7,7 +10,8 @@
     ApplicationUser user = await UserManager.GetUserAsync(User);
     var culture = CurrencyService.GetCurrentLanguage().TwoLetterISOLanguageName.ToLower();
 }
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 <link href="~/js/daterangepicker/daterangepicker.css" rel="stylesheet" />
 <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" type="text/css">
 <link href="~/css/buttonLoader.css" rel="stylesheet" />

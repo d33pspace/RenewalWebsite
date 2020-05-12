@@ -1,64 +1,67 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Localization;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using RenewalWebsite.Data;
-using RenewalWebsite.Models;
 using RenewalWebsite.Filters;
+using RenewalWebsite.Models;
 using RenewalWebsite.Services;
-using Microsoft.AspNetCore.Mvc.Razor;
-using System.Globalization;
-using Microsoft.AspNetCore.Localization;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Rewrite;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.Options;
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Http;
-using RenewalWebsite.Utility;
 using RenewalWebsite.SettingModels;
+using RenewalWebsite.Utility;
+using Microsoft.AspNetCore.Authentication.Google;
 using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Rewrite;
 
-namespace RenewalWebsite
+
+namespace TestWebsite
 {
     public class Startup
     {
-        public Startup(IHostingEnvironment env)
+        public Startup(IConfiguration configuration, IWebHostEnvironment env)
         {
             var builder = new ConfigurationBuilder()
-                .SetBasePath(env.ContentRootPath)
-                .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
-                .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
+                 .SetBasePath(env.ContentRootPath)
+              .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
+              .AddJsonFile($"appsettings.{env.EnvironmentName}.json", optional: true);
 
             if (env.IsDevelopment())
             {
                 // For more details on using the user secret store see https://go.microsoft.com/fwlink/?LinkID=532709
                 builder.AddUserSecrets<Startup>();
             }
-
             builder.AddEnvironmentVariables();
-            Configuration = builder.Build();
+            
+            configuration = builder.Build();
+            Configuration = configuration;
         }
 
-        public IConfigurationRoot Configuration { get; }
+        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            // Stripe settings
+            services.AddControllersWithViews();
             services.Configure<StripeSettings>(Configuration.GetSection("Stripe"));
             services.Configure<CurrencySettings>(Configuration.GetSection("CurrencySettings"));
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
             services.Configure<EmailNotification>(Configuration.GetSection("EmailErrorNotification"));
             services.Configure<LockoutSettings>(Configuration.GetSection("LockoutSettings"));
-            
+
             string maxAttampt = Configuration["LockoutSettings:MaxAttempt"];
             services.Configure<IdentityOptions>(
                 options =>
@@ -111,7 +114,6 @@ namespace RenewalWebsite
                     }
                 };
             });
-
             //facebook signin
             //services.AddAuthentication().AddFacebook(facebookOptions =>
             //{
@@ -173,7 +175,6 @@ namespace RenewalWebsite
             //        }
             //    };
             //});
-
             services.AddScoped<LanguageActionFilter>();
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
@@ -193,6 +194,7 @@ namespace RenewalWebsite
             services.AddScoped<IViewRenderService, ViewRenderService>();
 
             // Add application services.
+
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
             services.AddTransient<IDonationService, DonationService>();
@@ -203,10 +205,17 @@ namespace RenewalWebsite
             services.AddTransient<IInvoiceHistoryService, InvoiceHistoryService>();
             services.AddTransient<ICountryService, CountryService>();
             services.AddTransient<CountrySeeder>();
+
+            services.AddLogging(loggingBuilder =>
+            {
+                loggingBuilder.AddConfiguration(Configuration.GetSection("Logging"));
+                loggingBuilder.AddConsole();
+                loggingBuilder.AddDebug();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory, ApplicationDbContext appDbContext)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             app.Use(async (context, next) =>
             {
@@ -230,37 +239,34 @@ namespace RenewalWebsite
                 //}
 
             });
-
-            loggerFactory.AddConsole(Configuration.GetSection("Logging"));
-            loggerFactory.AddDebug();
-
             var options = new RewriteOptions()
-                .AddRedirectToHttps();
+              .AddRedirectToHttps();
 
+      
             app.UseSession();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                app.UseBrowserLink();
+         //       app.UseBrowserLink();
             }
             else
             {
+                //  app.UseExceptionHandler("/Home/Error");
                 app.UseExceptionHandler("/Shared/Error");
+                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                app.UseHsts();
             }
-
-            //app.UseStatusCodePagesWithRedirects("/error/{0}");
+         //   app.UseHttpsRedirection();
             app.UseStaticFiles();
-
-            app.UseIdentity();
-
+            
             var supportedCultures = new[]
-            {
-                new CultureInfo("en-US"),
-                new CultureInfo("en"),
-                new CultureInfo("zh-CN"),
-                new CultureInfo("zh")
-            };
+    {
+                      new CultureInfo("en-US"),
+                      new CultureInfo("en"),
+                      new CultureInfo("zh-CN"),
+                      new CultureInfo("zh")
+                  };
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
@@ -272,16 +278,16 @@ namespace RenewalWebsite
                 // UI strings that we have localized.
                 SupportedUICultures = supportedCultures
             });
+            app.UseRouting();
+            app.UseAuthentication();
+            app.UseAuthorization();
 
-            // Add external authentication middleware below. To configure them please see https://go.microsoft.com/fwlink/?LinkID=532715
-
-            app.UseMvc(routes =>
+            app.UseEndpoints(endpoints =>
             {
-                routes.MapRoute(
+                endpoints.MapControllerRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
         }
     }
 }

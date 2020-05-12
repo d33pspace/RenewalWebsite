@@ -1,4 +1,6 @@
-﻿@model RegisterViewModel
+﻿@model RenewalWebsite.Models.AccountViewModels.RegisterViewModel
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = @Localizer["Register"];
 }
@@ -32,6 +34,16 @@
         </div>
     </div>
     <div class="form-group">
+        <div class="col-md-3">
+            <img id="img-captcha" src="~/api/Captcha/get-captcha-image" />
+            <i class="fa fa-refresh" aria-hidden="true" style="margin-left:10px;cursor:pointer;" id="refresh-captcha"></i>
+        </div>
+        <div class="col-md-3">
+            <input type="text" class="form-control" placeholder="Captcha Code" asp-for="CaptchaCode" maxlength="4" />
+            <span asp-validation-for="CaptchaCode" class="text-danger"></span>
+        </div>
+    </div>
+    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <button type="submit" class="btn btn-default">@Localizer["Register"]</button>
         </div>
@@ -49,5 +61,15 @@
         var minutes = (moment(new Date()).zone() < 0 ? ((moment(new Date()).zone() * -1) % 60) : ((moment(new Date()).zone() % 60)));
         var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         $('#TimeZone').val(timezone);
+        $("#CaptchaCode").val("");
     });
+
+    $("#refresh-captcha").click(function () {
+        resetCaptchaImage();
+    });
+
+    function resetCaptchaImage() {
+        d = new Date();
+        $("#img-captcha").attr("src", "/api/Captcha/get-captcha-image?" + d.getTime());
+    }
 </script>

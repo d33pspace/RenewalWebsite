@@ -2,6 +2,8 @@
 @using RenewalWebsite.Services
 @model RenewalWebsite.Models.CustomerRePaymentViewModel
 @inject ICurrencyService CurrencyService
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewBag.Title = Localizer["Payment"];
     var currency = CurrencyService.GetCurrent();

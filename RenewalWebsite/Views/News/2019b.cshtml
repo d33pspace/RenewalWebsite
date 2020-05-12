@@ -1,5 +1,7 @@
 ﻿@using RenewalWebsite.Services
 @inject ICurrencyService CurrencyService
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "News";
     ViewData["Title"] = Localizer["News"];
@@ -60,7 +62,7 @@
                 </p>
                 <p>
                     @Localizer["For them, just getting basic healthcare seems impossible. State-subsidized medical care is available only to those with ID cards. Most homeless people don't have one and those who do often come from outside Shanghai."]
-                    @Localizer["So a homeless woman has to pay to see a doctor -- full price, in advance, and even in a life-threatening emergency. The result is that those who can't even afford decent meals or clean clothes never get medical attention at all."]        
+                    @Localizer["So a homeless woman has to pay to see a doctor -- full price, in advance, and even in a life-threatening emergency. The result is that those who can't even afford decent meals or clean clothes never get medical attention at all."]
                 </p>
                 <blockquote>
                     @Localizer["Big thanks to you. There is really no one else who would treat people like me so well."]<br>
@@ -85,7 +87,7 @@
             <div id="story-2">
                 <h2>@Localizer["Renewal residents cook up new careers"]</h2>
                 <img class="img-fluid story-img" src="~/images/news/issue13/jimmy-and-hanson.jpg">
-                
+
                 <p>@Localizer["Great news. The Renewal Center's Fresh Start Cafe is making a comeback, thanks to the support of generous donors like you! Not only will earnings from the new cafe provide crucial funding to help homeless people, it will also serve as a training program where residents learn valuable food service skills and gain an opportunity to be placed in a full time job with one of our partner restaurants."]</p>
                 <p>@Localizer["Since 2016, the stoves, ovens, tables, chairs, and even lighting and wiring has been safely stored, waiting for they day we found a new location. And I'm pleased to announce that day has come. The new site in downtown Shanghai will give the Renewal Center a foothold in the city center, where your giving can be even more effective in spotting the talents of homeless people who just need training. Thanks again for helping provide the resource they need to launch a lasting career!"]</p>
                 <p>@Localizer["Hanson Ye and Jimmy McWhinney"]</p>
@@ -158,13 +160,13 @@
                 <div class="red-border">
                     <span class="blockquote-winter">@Localizer["Give meals, help and support to a homeless person and put them on the path to growth and a good job."]</span>
                     @*@if (currency.Name.Contains("zh"))
-            {
-                <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
-            }
-            else
-            {
-                <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
-            }*@
+                        {
+                            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
+                        }
+                        else
+                        {
+                            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
+                        }*@
                     <br /><br />
                     <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign">@Localizer["My gift to train homeless people for steady work"] <i class="arrow right-arrow"></i></a>
                     <div style="margin-bottom:15px;"></div>
@@ -178,5 +180,5 @@
 
             </div>
 
+        </div>
     </div>
-</div>

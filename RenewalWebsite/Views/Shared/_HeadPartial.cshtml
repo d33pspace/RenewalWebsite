@@ -1,10 +1,12 @@
 ﻿<meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 <title>@Localizer["Renewal"] | @ViewData["Title"]</title>
 
 <environment names="Development">
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-    <link rel="stylesheet" href="~/lib/selectbox/nice-select.css"/>
+    <link rel="stylesheet" href="~/lib/selectbox/nice-select.css" />
     <link rel="stylesheet" href="~/css/site.css" />
     <link rel="stylesheet" href="~/css/developer.css" />
     <link rel="stylesheet" href="~/lib/font-awesome/css/font-awesome.min.css" type="text/css">

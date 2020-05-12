@@ -1,5 +1,7 @@
 ﻿@using RenewalWebsite.Services
 @inject ICurrencyService CurrencyService
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "News";
     ViewData["Title"] = Localizer["News"];
@@ -43,14 +45,14 @@
                 </a>
                 <p class="excerpt">@Localizer["The virus is scary, but you can save people facing the worst of it."]</p><br>
 
-    <!--<div class="browse">
-        <h6 class="sub-menu-h6">Browse our previous issues...</h6>
-        <ul>
-            <li><a class="sub-menu-a styled-link" href="/">Issue 7: Fall 2016</a></li>
-            <li><a class="sub-menu-a styled-link" href="/">Issue 6: Spring 2016</a></li>
-            <li><a class="sub-menu-a styled-link" href="/">Issue 5: Fall 2015</a></li>
-        </ul>
-    </div>-->
+                <!--<div class="browse">
+                    <h6 class="sub-menu-h6">Browse our previous issues...</h6>
+                    <ul>
+                        <li><a class="sub-menu-a styled-link" href="/">Issue 7: Fall 2016</a></li>
+                        <li><a class="sub-menu-a styled-link" href="/">Issue 6: Spring 2016</a></li>
+                        <li><a class="sub-menu-a styled-link" href="/">Issue 5: Fall 2015</a></li>
+                    </ul>
+                </div>-->
 
             </div>
         </div>

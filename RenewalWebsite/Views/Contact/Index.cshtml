@@ -7,7 +7,8 @@
     string email = ViewBag.email;
 }
 
-
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 <div class="container">
     <h4>@Localizer["Just one more step to unsubscribe..."]</h4>
     <h2>@email</h2>

@@ -1,5 +1,7 @@
 ﻿@using RenewalWebsite.Services
 @inject ICurrencyService CurrencyService
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 @{
     ViewData["Title"] = "News";
     ViewData["Title"] = Localizer["News"];
@@ -156,13 +158,13 @@
                 </p>
                 <div class="red-border">
                     <span class="blockquote-winter">@Localizer["Your investment in someone's life is just"]</span>
-                     @if (currency.Name.Contains("zh"))
+                    @if (currency.Name.Contains("zh"))
                     {
-                    <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
                     }
                     else
                     {
-                    <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
                     }
                     <br /><br />
                     <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Campaign">@Localizer["A hot meal for a woman (or man)"] <i class="arrow right-arrow"></i></a>
@@ -172,6 +174,6 @@
                     @Localizer["To make life easier for women who need support, we've started having women-only Thursdays, just like we did in our former location. It's proved very popular for those who appreciate having some time to shower and do their laundry in privacy. We also introduce women to the wonderful Lynn, our American supporter and volunteer who travels 200 miles (300km) from Nanjing each week to offer all kinds of practical and emotional support."]
                     @Localizer["Women who lack even hygiene essentials have a friend in Lynn, who seems to have an endless supply. But she also brings special treats like donuts and manicure kits - there's something different every week. And always endless smiles and words of love."]
                 </p>
+            </div>
         </div>
     </div>
-</div>

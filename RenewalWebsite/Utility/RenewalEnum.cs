@@ -16,6 +16,7 @@ namespace RenewalWebsite.Utility
         GET_CUSTOMER,
         SET_ITEM,
         USER_REGISTER,
-        USER_LOGIN
+        USER_LOGIN,
+        GET_INVOICE_HISTORY
     }
 }

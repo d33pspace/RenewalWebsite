@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Localization;
 using System.Text.RegularExpressions;
 using Microsoft.AspNetCore.Routing;
+using RenewalWebsite.Helpers.CaptchaLib;
 
 namespace RenewalWebsite.Controllers
 {
@@ -140,6 +141,13 @@ namespace RenewalWebsite.Controllers
                 ViewData["ReturnUrl"] = returnUrl;
                 if (ModelState.IsValid)
                 {
+                    // Validate Captcha Code
+                    if (!Captcha.ValidateCaptchaCode(model.CaptchaCode, HttpContext))
+                    {
+                        ModelState.AddModelError("Captcha", _localizer["Invalid captcha."]);
+                        return View(model);
+                    }
+
                     var user = new ApplicationUser { UserName = model.Email, Email = model.Email, EmailConfirmed = true, PhoneNumberConfirmed = true };
                     var result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)

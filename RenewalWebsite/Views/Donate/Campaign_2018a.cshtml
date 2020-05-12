@@ -1,7 +1,7 @@
 ﻿@using System.Globalization
 @using RenewalWebsite.Services
 @using Microsoft.AspNetCore.Mvc.Localization
-@model DonationViewModel
+@model RenewalWebsite.Models.DonationViewModel
 
 @inject IViewLocalizer Localizer
 @inject ICurrencyService CurrencyService
@@ -46,7 +46,7 @@
             <h2>@Localizer["When the weather outside is freezing cold..."]</h2>
             <p>@Localizer["As the temperature plummets, we will see more and more people come to the Renewal Center hoping for warmth, nourishing meals, clean winter clothes and welcoming, friendly faces."]</p>
             <p>@Localizer["The only way we can serve them is through your generosity. Will you give the gift of hot stew, waterproof coats, and refreshing showers today?"]</p>
-     
+
             @if (currency.Name.Contains("en"))
             {
                 <form asp-controller="Donate" asp-action="CreateCampaign">

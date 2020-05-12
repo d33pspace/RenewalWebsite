@@ -3,6 +3,8 @@
 <head>
     @await Html.PartialAsync("_HeadPartial")
 </head>
+@using Microsoft.AspNetCore.Mvc.Localization
+@inject IViewLocalizer Localizer
 <body class="news-page">
     <header class="masthead">
         <div class="row">

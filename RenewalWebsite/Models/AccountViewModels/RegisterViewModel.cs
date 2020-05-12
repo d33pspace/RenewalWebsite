@@ -27,6 +27,8 @@ namespace RenewalWebsite.Models.AccountViewModels
 
         public string TimeZone { get; set; }
 
-
+        [Required(ErrorMessageResourceName = "CaptchaRequired", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [StringLength(4)]
+        public string CaptchaCode { get; set; }
     }
 }

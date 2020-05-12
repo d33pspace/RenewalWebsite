@@ -195,4 +195,7 @@
   <data name="Passwords must have at least one uppercase ('A'-'Z')." xml:space="preserve">
     <value>密码必须包含至少一个大写字母（“A”-"Z"）。</value>
   </data>
+  <data name="Invalid captcha." xml:space="preserve">
+    <value>无效输入。</value>
+  </data>
 </root>
