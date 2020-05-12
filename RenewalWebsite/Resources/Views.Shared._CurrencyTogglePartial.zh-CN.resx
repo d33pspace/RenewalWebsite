@@ -120,7 +120,7 @@
   <data name="Donate using a credit or debit card" xml:space="preserve">
     <value>用信用卡捐款</value>
   </data>
-  <data name="Donate using Alipay" xml:space="preserve">
-    <value>用支付宝捐款</value>
+  <data name="Donate using WeChat or Alipay" xml:space="preserve">
+    <value>用微信或支付宝捐款</value>
   </data>
 </root>
