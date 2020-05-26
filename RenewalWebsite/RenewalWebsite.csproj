@@ -15,7 +15,6 @@
     <None Include="Views\_ViewImports.cshtml" />
     <None Include="Views\_ViewStart.cshtml" />
     <None Include="wwwroot\downloads\renewal-logo.zip" />
-    <None Include="wwwroot\downloads\日新中心简介 Let%27s Renewal 2020-04-28.pdf" />
     <None Include="wwwroot\fonts\dpt35-webfont.svg" />
     <None Include="wwwroot\fonts\dpt35-webfont.woff2" />
     <None Include="wwwroot\fonts\dpt65-webfont.svg" />
