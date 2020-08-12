@@ -165,7 +165,7 @@
   <data name="Your card information" xml:space="preserve">
     <value>您的卡信息</value>
   </data>
-  <data name="Your name as you'd it to appear in our records (required)" xml:space="preserve">
+  <data name="Your name as you'd like it to appear in our records (required)" xml:space="preserve">
     <value>您希望显示在捐赠记录中的姓名（必填）</value>
   </data>
   <data name="The address at which you'd like to receive Renewal communications (optional, not related with card verification)" xml:space="preserve">
