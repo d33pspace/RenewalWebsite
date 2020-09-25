@@ -141,4 +141,10 @@
   <data name="When the coronavirus crisis ends, we face a long period of recovery. Right now, people desperately need your help." xml:space="preserve">
     <value>当冠状病毒危机结束后，我们将面临长期的恢复工作。目前，人们迫切地需要您的帮助。</value>
   </data>
+  <data name="My gift to be doubled" xml:space="preserve">
+    <value>我的将被翻倍的捐赠</value>
+  </data>
+  <data name="Your gift today will be doubled by a matching grant" xml:space="preserve">
+    <value>您今天的捐赠将被一份等额资助金翻番</value>
+  </data>
 </root>

@@ -192,4 +192,7 @@
   <data name="Your gift below could save a life" xml:space="preserve">
     <value>您的捐赠可以拯救生命</value>
   </data>
+  <data name="My gift to be doubled by Renewal’s matching grant" xml:space="preserve">
+    <value>我的捐赠，将被日新中心的等额资助金翻倍！</value>
+  </data>
 </root>
