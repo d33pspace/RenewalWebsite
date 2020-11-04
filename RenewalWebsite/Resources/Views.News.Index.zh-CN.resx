@@ -219,6 +219,9 @@
   <data name="Your gift will help the homeless hit by Covid-19." xml:space="preserve">
     <value>您的捐赠能够帮助受新冠影响的无家可归者。</value>
   </data>
+  <data name="Your gift will provide his only escape from the cold." xml:space="preserve">
+    <value>您的捐赠将是他躲避严寒的唯一希望。</value>
+  </data>
   <data name="Your gifts mean Tao doesn’t have to beg for food." xml:space="preserve">
     <value>您的捐赠使陶德正不必再去乞讨食物</value>
   </data>
