@@ -126,19 +126,25 @@
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Cold weather hits homeless suffering in Covid-19 crisis" xml:space="preserve">
-    <value>因新冠困苦不堪的无家可归者们又将遭受寒冬的侵袭</value>
+  <data name="Help the homeless people hardest hit by the coronavirus" xml:space="preserve">
+    <value>帮助那些受冠状病毒影响最大的无家可归者</value>
   </data>
-  <data name="Give hot meals" xml:space="preserve">
-    <value>提供热的午餐</value>
+  <data name="My emergency gift" xml:space="preserve">
+    <value>我的紧急捐赠</value>
   </data>
-  <data name="Life is returning to normal in Shanghai - but the homeless are now feeling the cold which makes the strict health protocols even harsher. People are literally locked out of the services they need to survive." xml:space="preserve">
-    <value>上海人的生活正逐渐恢复正常——但对无家可归者而言，即将到来的严寒将让严格的防疫措施更加困难，他们几乎无法再获得他们平时赖以生存的救助服务。</value>
+  <data name="The coronavirus crisis has left so many people hungry and hopeless. Before it hit, they could find day jobs or earn a few coins collecting cans and bottles. Since then, there's hardly been anyone on the streets so their meagre incomes have disappeared." xml:space="preserve">
+    <value>冠状病毒危机使许多无家可归者忍受饥饿，丧失希望。疫情爆发前，他们还可以通过卖废品或临时工作来赚一些钱。但疫情爆发之后，空空荡荡的街头使他们本来就少得可怜的赚钱机会都消失了。</value>
   </data>
-  <data name="Your gift can provide his only escape from the cold." xml:space="preserve">
-    <value>您的捐赠将是他躲避严寒的唯一希望。</value>
+  <data name="To make matters worse, Renewal's drop-in center was forced to closed. We are still taking food to people in need, but everyone needs to stay clean, clothed and safe." xml:space="preserve">
+    <value>更糟的是，日新中心的卫生服务站也不得不暂停服务。虽然我们仍在为需要的人们提供食物，但他们仍然需要淋浴、换洗衣物和安全的住所。</value>
   </data>
-  <data name="Your kindness today will stock the shelves and replenish the clean clothing exchange here at the Renewal Center, providing good food and warm clothes to people in desperate need." xml:space="preserve">
-    <value>您的捐赠将帮助我们用干净的衣物装满日新中心的货架，为那些急切需要帮助的人们提供食品和更换保暖衣物的服务。</value>
+  <data name="When the coronavirus crisis ends, we face a long period of recovery. Right now, people desperately need your help." xml:space="preserve">
+    <value>当冠状病毒危机结束后，我们将面临长期的恢复工作。目前，人们迫切地需要您的帮助。</value>
+  </data>
+  <data name="My gift to be doubled" xml:space="preserve">
+    <value>我的将被翻倍的捐赠</value>
+  </data>
+  <data name="Your gift today will be doubled by a matching grant" xml:space="preserve">
+    <value>您今天的捐赠将被一份等额资助金翻番</value>
   </data>
 </root>

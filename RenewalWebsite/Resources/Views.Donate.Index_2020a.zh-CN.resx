@@ -117,28 +117,82 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
-    <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
+  <data name="Every" xml:space="preserve">
+    <value>只要</value>
   </data>
-  <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
-    <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
+  <data name="to help as many people as I can." xml:space="preserve">
+    <value>尽可能多地帮助他们。</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>首页</value>
+  <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
+    <value>立即用信用卡捐款</value>
   </data>
-  <data name="Cold weather hits homeless suffering in Covid-19 crisis" xml:space="preserve">
-    <value>因新冠困苦不堪的无家可归者们又将遭受寒冬的侵袭</value>
+  <data name="to provide food, support and care to 5 people on the streets." xml:space="preserve">
+    <value>为5位无家可归者提供食物、帮助与关怀。</value>
   </data>
-  <data name="Give hot meals" xml:space="preserve">
-    <value>提供热的午餐</value>
+  <data name="to provide food, support and care to 20 people on the streets." xml:space="preserve">
+    <value>为20位无家可归者提供食物、帮助与关怀。</value>
   </data>
-  <data name="Life is returning to normal in Shanghai - but the homeless are now feeling the cold which makes the strict health protocols even harsher. People are literally locked out of the services they need to survive." xml:space="preserve">
-    <value>上海人的生活正逐渐恢复正常——但对无家可归者而言，即将到来的严寒将让严格的防疫措施更加困难，他们几乎无法再获得他们平时赖以生存的救助服务。</value>
+  <data name="to provide food, support and care to 10 people on the streets." xml:space="preserve">
+    <value>为10位无家可归者提供食物、帮助与关怀。</value>
   </data>
-  <data name="Your gift can provide his only escape from the cold." xml:space="preserve">
-    <value>您的捐赠将是他躲避严寒的唯一希望。</value>
+  <data name="An amount of your choice to help as many people as you can." xml:space="preserve">
+    <value>我自己选择的余额尽可能多地帮助他们。</value>
   </data>
-  <data name="Your kindness today will stock the shelves and replenish the clean clothing exchange here at the Renewal Center, providing good food and warm clothes to people in desperate need." xml:space="preserve">
-    <value>您的捐赠将帮助我们用干净的衣物装满日新中心的货架，为那些急切需要帮助的人们提供食品和更换保暖衣物的服务。</value>
+  <data name="gift of:" xml:space="preserve">
+    <value>捐款：</value>
+  </data>
+  <data name="I would like to make a" xml:space="preserve">
+    <value>我想</value>
+  </data>
+  <data name="DONATE NOW USING WECHAT OR ALIPAY" xml:space="preserve">
+    <value>立即用微信或支付宝捐款</value>
+  </data>
+  <data name="Or scan the QR code below with your Alipay app to donate now:" xml:space="preserve">
+    <value>或者用支付宝扫描下面的二维码：</value>
+  </data>
+  <data name="Donate" xml:space="preserve">
+    <value>捐款</value>
+  </data>
+  <data name="To make a donation with Alipay, please select 'Open with Browser' from the context menu (three dots) at the top of your screen." xml:space="preserve">
+    <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在浏览器打开”。</value>
+  </data>
+  <data name="Please open this page in your browser." xml:space="preserve">
+    <value>请在您的浏览器中打开此页面</value>
+  </data>
+  <data name="To make a donation with Alipay, please select 'Open in Safari' from the context menu (three dots) at the top of your screen." xml:space="preserve">
+    <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在Safari打开”。</value>
+  </data>
+  <data name="." xml:space="preserve">
+    <value>。</value>
+  </data>
+  <data name="monthly" xml:space="preserve">
+    <value>每月</value>
+  </data>
+  <data name="one time" xml:space="preserve">
+    <value>一次</value>
+  </data>
+  <data name="quarterly" xml:space="preserve">
+    <value>每季</value>
+  </data>
+  <data name="yearly" xml:space="preserve">
+    <value>每年</value>
+  </data>
+  <data name="Amount is required." xml:space="preserve">
+    <value>金额是必需的。</value>
+  </data>
+  <data name="Please enter a valid amount." xml:space="preserve">
+    <value>请输入一个有效的金额。</value>
+  </data>
+  <data name="Help provide the basics like masks. They only last a few days, but everyone is required to wear one." xml:space="preserve">
+    <value>帮助提供口罩等必需品。虽然一只口罩只能使用几天的时间，但每个人都必须佩戴。</value>
+  </data>
+  <data name="The coronavirus has left homeless people in crisis, and the Renewal Center is relying on your help to reach the homeless people who are now stuck out on the streets and more desperate than ever. Thank you for your gift below." xml:space="preserve">
+    <value>冠状病毒疫情让无家可归者深受影响，而日新中心需要您的支持来帮助那些被困于街头的无家可归者。他们比过去任何时间都更需要帮助。感谢您做出的捐赠。</value>
+  </data>
+  <data name="Your gift below could save a life" xml:space="preserve">
+    <value>您的捐赠可以拯救生命</value>
+  </data>
+  <data name="My gift to be doubled by Renewal’s matching grant" xml:space="preserve">
+    <value>我的捐赠，将被日新中心的等额资助金翻倍！</value>
   </data>
 </root>
