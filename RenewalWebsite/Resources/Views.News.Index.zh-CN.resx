@@ -129,12 +129,6 @@
   <data name="News" xml:space="preserve">
     <value>简报</value>
   </data>
-  <data name=". Your gift will help the homeless hit by Covid-19." xml:space="preserve">
-    <value>，就可以提供一顿午餐、热水淋浴和温暖的衣物。</value>
-  </data>
-  <data name="A meal, shower and warm clothes for just" xml:space="preserve">
-    <value>您的捐赠能够帮助受新冠影响的无家可归者。只需</value>
-  </data>
   <data name="A story of desperation and hope" xml:space="preserve">
     <value>一个从绝望到希望的故事</value>
   </data>
@@ -221,6 +215,9 @@
   </data>
   <data name="You can help the homeless hiding in plain sight" xml:space="preserve">
     <value>您的资助给无家可归者带来了自信</value>
+  </data>
+  <data name="Your gift will help the homeless hit by Covid-19." xml:space="preserve">
+    <value>您的捐赠能够帮助受新冠影响的无家可归者。</value>
   </data>
   <data name="Your gifts mean Tao doesn’t have to beg for food." xml:space="preserve">
     <value>您的捐赠使陶德正不必再去乞讨食物</value>
