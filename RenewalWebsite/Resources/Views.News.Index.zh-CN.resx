@@ -189,9 +189,6 @@
   <data name="On the surface, life is returning to normal here in China, but your support is providing essential help to those who are still struggling to survive in the wake of the recent lockdown. Temporary jobs in Shanghai are extremely hard to find, and new health protocols mean people can no longer use the hand basin in a public lavatory to bathe or wash their clothes. The result is a spike in demand for the services here at Renewal that are funded by your kind gifts." xml:space="preserve">
     <value>表面上，疫情后中国人的生活正逐渐恢复正常，但之前的封锁措施使无家可归者们的生活更加困难，而您的支持可以为他们提供最重要的帮助。在上海，临时工作非常难找，而新的防疫措施禁止在公共卫生间洗澡和洗衣服。因此，对日新中心提供的这些服务的需求猛增，而这离不开您的慷慨捐赠。</value>
   </data>
-  <data name="String1" xml:space="preserve">
-    <value>您此时的帮助对我们而言更加重要</value>
-  </data>
   <data name="Tao Dezheng had no choice but to leave his family and search for work" xml:space="preserve">
     <value>陶德正不得不离开家人去寻找工作</value>
   </data>
@@ -227,6 +224,9 @@
   </data>
   <data name="Your gifts reach the homeless hit by Covid-19" xml:space="preserve">
     <value>您的捐赠能够帮助受新冠影响的无家可归者</value>
+  </data>
+  <data name="Your help has never been so important" xml:space="preserve">
+    <value>您此时的帮助对我们而言更加重要</value>
   </data>
   <data name="Your kindness goes a long way each time you send a gift to the Renewal Center. Offering someone a hot shower and a free load of laundry costs very little, but something that simple can make a life-changing difference. “If you’re not able to take a shower for a long time, you feel the dirt. It starts to itch. But there’s no place else to wash, even with a hand towel, especially not in the city center.”" xml:space="preserve">
     <value>每次向日新中心做出捐赠，您的善举都能起到巨大的作用。为无家可归者提供热水淋浴和换洗衣物需要的成本不高，但这些最基本的服务却能够造成改变人生的影响。“如果长时间不洗澡，你都能感觉到身上的污垢，痒得不得了。但可以洗澡的地方很难找，尤其是在市中心。”</value>
