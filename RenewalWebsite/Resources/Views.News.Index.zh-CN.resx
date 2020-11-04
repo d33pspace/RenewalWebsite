@@ -189,6 +189,9 @@
   <data name="On the surface, life is returning to normal here in China, but your support is providing essential help to those who are still struggling to survive in the wake of the recent lockdown. Temporary jobs in Shanghai are extremely hard to find, and new health protocols mean people can no longer use the hand basin in a public lavatory to bathe or wash their clothes. The result is a spike in demand for the services here at Renewal that are funded by your kind gifts." xml:space="preserve">
     <value>表面上，疫情后中国人的生活正逐渐恢复正常，但之前的封锁措施使无家可归者们的生活更加困难，而您的支持可以为他们提供最重要的帮助。在上海，临时工作非常难找，而新的防疫措施禁止在公共卫生间洗澡和洗衣服。因此，对日新中心提供的这些服务的需求猛增，而这离不开您的慷慨捐赠。</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value>您此时的帮助对我们而言更加重要</value>
+  </data>
   <data name="Tao Dezheng had no choice but to leave his family and search for work" xml:space="preserve">
     <value>陶德正不得不离开家人去寻找工作</value>
   </data>
