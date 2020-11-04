@@ -145,57 +145,44 @@
                 <p>
                     @Localizer["Despite everything Tao tries to stay positive. He hopes the economic impact of the pandemic will soon be a distant memory so society will turn to normal and he can find a decent job. In the meantime, Tao says he’s very grateful to you for the help he needs to survive."]
                 </p>
+                <p>
+                    <b>@Localizer["Author profile"]</b>
+                </p>
+                <p>
+                    @Localizer["Jack Niu is a small business entrepreneur and enthusiastic volunteer for social causes who first came to the Renewal Center through our network of volunteers. Since that time, Jack has been talking with people here who are thankful for your help and want to share their struggles and victories with you. Through Jack’s involvement, we are thrilled to tell you more about how your giving makes a lasting difference in many lives."]
+                </p>
             </div>
             <div id="story-4">
-
-                <h2>@Localizer["How you saved a grateful survivor"]</h2>
-                <div class="news-subheader mb-4">@Localizer["Your gifts can get Lin Tianye inside, clean, warm and fed, when we can."]</div>
-
-                <img class="img-fluid story-img" src="~/images/news/issue14/story-4.jpg">
-                <figcaption class="figure-caption caption chinese">@Localizer["Your next gift could help Lin, 76, who is especially vulnerable to the virus and cold weather."]</figcaption>
-                <p class="mb4 clear">
-                    @Localizer["You've probably heard that the coronavirus is worse for older people: on 6 March it was reported in the media that for every year above the age of 50 a person is more likely to die from the infection, and men are more vulnerable."]
-                </p>
-                <p>
-                    @Localizer["Thankfully, your help has kept Lin Tianye warm and healthy. Born near the end of World War II in Taiwan, he was displaced by the war and moved to mainland China. He later lost his investment in a failed business, and now has no family at all."]
-                </p>
-                <blockquote>
-                    @Localizer["Your gifts give people what they need, when they need it."]<br>
-                </blockquote>
-                <p>
-                    @Localizer["Try to imagine what it's like to survive on the streets at 76 years old, and you'll have an idea what Lin's life is like. Hanson is constantly in touch with Lin, ensuring that he gets whatever help he needs, as quickly as we can deliver it."]
-                </p>
-                <p>
-                    <b>@Localizer["Thank you for helping Lin! Your next gift will reach another vulnerable person crisis."]</b>
-                </p>
-            </div>
-            <div id="story-5">
-                <h3>@Localizer["You are the answer to the coronavirus crisis"]</h3>
-                <div class="news-subheader mb-4">@Localizer["The virus is scary, but you can save people facing the worst of it."]</div>
+                <h3>@Localizer["His only escape from the cold"]</h3>
+                <div class="news-subheader mb-4">@Localizer["You can help the homeless hiding in plain sight"]</div>
                 <img class="img-fluid story-img" src="~/images/news/issue14/story-5.jpg">
-                <figcaption class="figure-caption caption chinese">@Localizer["The Renewal kitchen is still cooking nutritious meals like egg fried rice with mushrooms. With your help, we are taking bowls of hearty portions to hungry people on the streets."]</figcaption>
+                <figcaption class="figure-caption caption chinese">@Localizer["The Renewal Center gives Yan Shipin, 45, the confidence to look for a job."]</figcaption>
                 <p>
                 <p class="mb4 clear">
-                    @Localizer["If you're asking, 'What can I do?' The answer is to help the Renewal Center respond to the coronavirus. We are close to the crisis and your gift will reach the poorest and most helpless people on the streets, with healthy food, milk, water, and masks that everyone is required to wear."]
+                    @Localizer["That man sleeping alone in the airport concourse – is he waiting for a flight? You might be surprised to find that not only does he not have a ticket, he doesn’t have a passport, a wallet or even a few coins buy his next meal."]
                 </p>
                 <p>
-                    <b>@Localizer["They are running out of hope. Shanghai's street sleepers urgently need help."]</b>
+                    @Localizer["It happened to Yan Shipin, 45. He drops into the Renewal Center for the occasional hot meal, but also relies on the showers and clothing exchange to stay presentable enough to look for a job. In the meantime, he sleeps in the airport for safety and warmth – and because there’s less of a chance he’ll be told to move on."]
                 </p>
                 <div class="red-border">
-                    <span class="blockquote-winter">@Localizer["The crisis isn't over. Please help victims of the coronavirus scare who are living on the streets."]</span>
-                    @*@if (currency.Name.Contains("zh"))
-                        {
-                            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)</span>
-                        }
-                        else
-                        {
-                            <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)</span>
-                        }*@
+                    <span class="blockquote-winter">@Localizer["A meal, shower and warm clothes for just"]
+                    @if (currency.Name.Contains("zh"))
+                    {
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountCNY.ToString("C", currency)
+                    }
+                    else
+                    {
+                        <span class="blockquote-winter" style="padding-left: 0px">@baseAmountUSD.ToString("C", currency)
+                    }
+                    @Localizer[". Your gift will help the homeless hit by Covid-19.]</span>
+
                     <br /><br />
-                    <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["To help the homeless hit by coronavirus"]<i class="arrow right-arrow"></i></a>
+                    <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["My gift to meet basic needs"]<i class="arrow right-arrow"></i></a>
                     <div style="margin-bottom:15px;"></div>
                 </div>
-
+                <p>
+                    @Localizer["Yan used to be a part-time attendant in the public baths, but since they closed, he now scrapes together whatever money he can collecting plastic bottles to recycle. Your kindness makes a difference to him – and will have a life-changing impact on the next person in need. As Yan says, “The clean clothes I receive at the Renewal Center give me the dignity to ride on public transport and interview for jobs.”"]
+                </p> 
             </div>
 
         </div>

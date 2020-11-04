@@ -129,8 +129,17 @@
   <data name="News" xml:space="preserve">
     <value>简报</value>
   </data>
+  <data name=". Your gift will help the homeless hit by Covid-19." xml:space="preserve">
+    <value>，就可以提供一顿午餐、热水淋浴和温暖的衣物。</value>
+  </data>
+  <data name="A meal, shower and warm clothes for just" xml:space="preserve">
+    <value>您的捐赠能够帮助受新冠影响的无家可归者。只需</value>
+  </data>
   <data name="A story of desperation and hope" xml:space="preserve">
     <value>一个从绝望到希望的故事</value>
+  </data>
+  <data name="Author profile" xml:space="preserve">
+    <value>作者简介</value>
   </data>
   <data name="By Hanson Ye" xml:space="preserve">
     <value>作者：叶海生，项目运营总监</value>
@@ -153,6 +162,9 @@
   <data name="He comes from Jiangxi Province, near the city of Leping, about 600 kilometers away from Shanghai. People like Tao Dezheng are limited to a few different kinds of work: farming, construction and factory work. Even during a pandemic, people still need food produced by farms, but many people who work in construction or factories have lost their job in the wake of economic shifts resulting from Covid-19." xml:space="preserve">
     <value>陶德正来自于江西省乐平市周边，距离上海大约600千米。像他这样的人能够从事的工作种类非常有限：务农、建筑以及工厂工作。即使在疫情期间，人们依然需要农场生产的食物，但因为疫情造成的经济危机，许多在建筑工地或工厂工作的人们都丢掉了他们的工作。</value>
   </data>
+  <data name="His only escape from the cold" xml:space="preserve">
+    <value>他躲避严寒的唯一希望</value>
+  </data>
   <data name="I first want to say a very big “thank you” for your support during the Covid-19 crisis – and you might have been able to send a gift to be doubled during our recent matching grant campaign. The pandemic is far from over, and millions of people are suffering an economic impact, which makes me all the more grateful. Your help has never been so important." xml:space="preserve">
     <value>首先，我要衷心向您说一声感谢，谢谢您在新冠疫情期间给予我们的支持，以及您在我们最近的等额资助金活动中做出的捐赠。然而，新冠危机还远未结束，数百万人都受到了疫情造成的经济影响。在这样的艰难环境下，我更要向您表示感谢，您此时的帮助对我们而言更加重要。</value>
   </data>
@@ -168,8 +180,17 @@
   <data name="In getting to know the people at the Renewal Center, I was struck by talking with Tao Denzheng, because his situation paints a real picture of why your giving has been so important during the Covid-19 crisis, and why people like him are so incredibly grateful. Tao, for one, would be in a very desperate situation without your help." xml:space="preserve">
     <value>在与日新中心的人们的交流中，我被陶德正的故事所打动。他的情况正说明了您的捐赠在新冠危机期间是多么的重要，以及那些得到帮助的人们对此有多么的感激。与许多人一样，如果没有您的帮助，陶德正就将陷入非常绝望的境地。</value>
   </data>
+  <data name="It happened to Yan Shipin, 45. He drops into the Renewal Center for the occasional hot meal, but also relies on the showers and clothing exchange to stay presentable enough to look for a job. In the meantime, he sleeps in the airport for safety and warmth – and because there’s less of a chance he’ll be told to move on." xml:space="preserve">
+    <value>这个人就是45岁的颜士平。他偶尔会来到日新中心接受我们提供的午餐，但对他而言最重要的是淋浴和换洗衣服的服务，因为那可以使他重获找工作的自信。同时，他晚上都在虹桥机场过夜，因为那里比较安全和温暖，而且那里很少会有人赶他离开。</value>
+  </data>
+  <data name="Jack Niu is a small business entrepreneur and enthusiastic volunteer for social causes who first came to the Renewal Center through our network of volunteers. Since that time, Jack has been talking with people here who are thankful for your help and want to share their struggles and victories with you. Through Jack’s involvement, we are thrilled to tell you more about how your giving makes a lasting difference in many lives." xml:space="preserve">
+    <value>钮嘉昆是一家小企业的老板，也是一位热心的志愿者。他通过我们的志愿者网络首次来到日新中心。从那以后，钮嘉昆就经常与这里的受助者交流，了解他们对您的感激，并与您分享无家可归者的困难与成绩。通过钮嘉昆的工作，我们很高兴能够告诉您更多日新中心的故事，让您知道您的捐赠会不断地改变许多人的人生。</value>
+  </data>
   <data name="Lockdown took their jobs and homes, but your help gives them hope" xml:space="preserve">
     <value>防控措施使他们失去了工作与住所，但您的帮助给了他们希望</value>
+  </data>
+  <data name="My gift to meet basic needs" xml:space="preserve">
+    <value>用我的捐赠去满足他们最基本的需求</value>
   </data>
   <data name="On the surface, life is returning to normal here in China, but your support is providing essential help to those who are still struggling to survive in the wake of the recent lockdown. Temporary jobs in Shanghai are extremely hard to find, and new health protocols mean people can no longer use the hand basin in a public lavatory to bathe or wash their clothes. The result is a spike in demand for the services here at Renewal that are funded by your kind gifts." xml:space="preserve">
     <value>表面上，疫情后中国人的生活正逐渐恢复正常，但之前的封锁措施使无家可归者们的生活更加困难，而您的支持可以为他们提供最重要的帮助。在上海，临时工作非常难找，而新的防疫措施禁止在公共卫生间洗澡和洗衣服。因此，对日新中心提供的这些服务的需求猛增，而这离不开您的慷慨捐赠。</value>
@@ -177,8 +198,14 @@
   <data name="Tao Dezheng had no choice but to leave his family and search for work" xml:space="preserve">
     <value>陶德正不得不离开家人去寻找工作</value>
   </data>
+  <data name="That man sleeping alone in the airport concourse – is he waiting for a flight? You might be surprised to find that not only does he not have a ticket, he doesn’t have a passport, a wallet or even a few coins buy his next meal." xml:space="preserve">
+    <value>有个人正独自睡在机场大厅——他是在等候他的航班吗？了解真相后你会惊奇地发现，他不但没有机票、没有护照、没有钱包，甚至连买下一顿饭所需的几枚硬币都没有。</value>
+  </data>
   <data name="The good news for Zhang and many others is your amazing support. Your gifts are a lifeline to people who have no other help to meet their basic needs, so we and the people you reach every day are deeply grateful for you and the gifts you give. We are also very aware how much we depend on your financial generosity – and donations like clean, wearable, used or new clothes – to give people a better chance of finding work and making a new start in life." xml:space="preserve">
     <value>您的支持对张明和许多其他人而言就是最好的消息。对于那些生活的基本需求都无法得到满足的人们而言，您的捐赠能够拯救他们的生命，我们和这些受助者们都对您怀有衷心的感激。我们也清楚地知道，您慷慨的资金捐赠，以及捐助的各种干净、实用的衣物，是我们得以帮助无家可归者找到工作，进而开始新生的最大依靠。</value>
+  </data>
+  <data name="The Renewal Center gives Yan Shipin, 45, the confidence to look for a job." xml:space="preserve">
+    <value>日新中心使45岁的颜士平重新具备了找工作的信心</value>
   </data>
   <data name="The situation in Tao’s home town got so bad that he had no choice but to leave to look for work. He scraped together about 1,000 RMB and came to Shanghai where he hoped to find a job so he could send money back to his desperate family. He is married with a child in school and two aging parents who both need care. But, he says, “The god of luck did not favor me. After the pandemic, even finding a temporary job in Shanghai is extremely difficult.”" xml:space="preserve">
     <value>陶德正家乡的经济状况非常糟糕，他不得不踏上外出打工之路。他凑了大约1千元钱来到上海，希望找到一份工作来补贴家里的困境。他已经结婚，孩子在上学，年迈的父母也都需要照顾。但他说：“幸运之神没有眷顾我。疫情后想在上海找到一份临时工作特别困难。”</value>
@@ -188,6 +215,12 @@
   </data>
   <data name="Walking around in dirty clothes makes you feel inferior." xml:space="preserve">
     <value>穿着脏衣服会让人感觉低人一等</value>
+  </data>
+  <data name="Yan used to be a part-time attendant in the public baths, but since they closed, he now scrapes together whatever money he can collecting plastic bottles to recycle. Your kindness makes a difference to him – and will have a life-changing impact on the next person in need. As Yan says, “The clean clothes I receive at the Renewal Center give me the dignity to ride on public transport and interview for jobs.”" xml:space="preserve">
+    <value>颜士平曾经在公共浴室做过临时工。但现在浴室关门了，他只能依靠捡塑料瓶换取一点点收入。您的慷慨捐赠帮助了他——也将对下一位需要帮助的无家可归者产生改变人生的影响。正如颜士平所说：“日新中心为我提供的干净衣服使我有了自信，也让我敢去坐公交地铁和找工作了。”</value>
+  </data>
+  <data name="You can help the homeless hiding in plain sight" xml:space="preserve">
+    <value>您的资助给无家可归者带来了自信</value>
   </data>
   <data name="Your gifts mean Tao doesn’t have to beg for food." xml:space="preserve">
     <value>您的捐赠使陶德正不必再去乞讨食物</value>
