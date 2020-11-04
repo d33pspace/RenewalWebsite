@@ -5,14 +5,14 @@
 @{
     ViewData["Title"] = "News";
     ViewData["Title"] = Localizer["News"];
-    ViewData["IssueNo"] = Localizer["ISSUE 14"];
+    ViewData["IssueNo"] = Localizer["ISSUE 15"];
     ViewData["IssueStyle"] = "issue-14";
-    ViewData["IssueDate"] = Localizer["SPRING 2020"];
-    ViewData["CoverPhotoCaption"] = Localizer["Help the homeless hit by coronavirus."];
+    ViewData["IssueDate"] = Localizer["AUTUMN 2020"];
+    ViewData["CoverPhotoCaption"] = Localizer["Your gift will provide his only escape from the cold."];
     var currency = CurrencyService.GetCurrent();
     var language = CurrencyService.GetCurrentLanguage();
     double baseAmountCNY = 15;
-    double baseAmountUSD = 2.14;
+    double baseAmountUSD = 2.19;
 }
 
 <div class="container news-container">
@@ -58,38 +58,26 @@
         </div>
         <div class="col-lg-8 col-md-12 col-sm-12">
             <div id="story-1">
-                <h3>@Localizer["An urgent letter from the director"]</h3>
-                <!--<div class="news-subheader mb-4">@Localizer["Homeless women have crucial healthcare, thanks to you"]</div>-->
+                <h3>@Localizer["Your gifts reach the homeless hit by Covid-19"]</h3>
+                <div class="news-subheader mb-4">@Localizer["Lockdown took their jobs and homes, but your help gives them hope"]</div>
                 <img class="img-fluid story-img" src="~/images/news/issue14/story-1.jpg">
-                <figcaption class="figure-caption caption chinese">@Localizer["He has nowhere else to turn. Your gift can give a food parcel and an essential disposable mask."]</figcaption>
+                <figcaption class="figure-caption caption chinese">@Localizer["Clean clothes offer a better chance of finding a job."]</figcaption>
 
-                <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Hanson Ye"]</p>-->
+                <p class="mb4 clear" style="color: #777777;">@Localizer["By Hanson Ye"]</p>
                 <p class="mb4 clear">
-                    <i>@Localizer["Dear Friend and Supporter,"]</i>
+                    @Localizer["On the surface, life is returning to normal here in China, but your support is providing essential help to those who are still struggling to survive in the wake of the recent lockdown. Temporary jobs in Shanghai are extremely hard to find, and new health protocols mean people can no longer use the hand basin in a public lavatory to bathe or wash their clothes. The result is a spike in demand for the services here at Renewal that are funded by your kind gifts."]
                 </p>
                 <p>
-                    @Localizer["As we write, coronavirus dominates news headlines. It started 500 miles from Shanghai in Wuhan."]
-                </p>
-                <p>
-                    @Localizer["We don't know how long it will last, but today, masks are an urgent need. Homeless people can't find or afford them, but they have to wear them, and nobody can go into a shop or buy food without one. Your help can provide one for those in need."]
-                </p>
-                <p>
-                    @Localizer["Each mask lasts only a day or two -- and although they're now very scarce, we've found a few reliable suppliers who charge slightly higher prices. To comply with the law banning public gatherings, our drop-in center is closed, meaning homeless people have no place to have a hot meal, shower, change of clothes, or laundry."]
+                    @Localizer["Zhang Ming is grateful just for access to a washing machine, showers and our clothing exchange. “Walking around in dirty clothes makes you feel inferior,” he says. “Your confidence hits bottom and it’s impossible to find job.” It all makes life on the streets even harder than before. “For me, the pandemic has meant that I can’t make a living or afford to pay rent, so sleeping on the streets is my only option right now.”"]
                 </p>
                 <blockquote>
-                    @Localizer["I haven't eaten in two days."]<br>
+                    @Localizer["Walking around in dirty clothes makes you feel inferior."]<br>
                 </blockquote>
                 <p>
-                    @Localizer["Your gift will provide food for people on the streets. Packaged meals and milk cost much more than our communal meals and it takes longer to find the people who need them."]
+                    @Localizer["The good news for Zhang and many others is your amazing support. Your gifts are a lifeline to people who have no other help to meet their basic needs, so we and the people you reach every day are deeply grateful for you and the gifts you give. We are also very aware how much we depend on your financial generosity – and donations like clean, wearable, used or new clothes – to give people a better chance of finding work and making a new start in life."]
                 </p>
                 <p>
-                    @Localizer["Homeless people are running out of every means of survival. There are no bottles or other recyclables to be found on the empty streets, and day jobs have disappeared. In the past, people would crew for outdoor events, but all of this is currently out of the question, and only a handful of businesses are open."]
-                </p>
-                <p>
-                    @Localizer["So the situation is getting serious. When we give someone food or a mask, some people tell us, 'I haven't eaten in two days.' Still, we are incredibly grateful for your response to our recent email. Your kind support gives us hope that we can help people through this terrible time, no matter what happens."]
-                </p>
-                <p>
-                    <i>@Localizer["Hanson Ye and Jimmy McWhinney"]</i>
+                    @Localizer["Zhang Ming has a larger frame than most, so if you are wondering as some of our supporters do whether we can use large size clothes, the answer is “Yes!” In fact, whatever help you can send in this time of continued crisis for homeless people will make a huge difference – and be hugely appreciated."]
                 </p>
             </div>
             <div class="hide-large small-sub mb-4">

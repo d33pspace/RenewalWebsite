@@ -183,13 +183,13 @@
   <data name="The Renewal Center might be his only access to hot meals and warm clothes." xml:space="preserve">
     <value>日新中心可能是他吃到热饭，获得保暖衣物的唯一机会。</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 10 people" xml:space="preserve">
+  <data name="to provide a hot meal, shower, and clean clothes for 10 people." xml:space="preserve">
     <value>为10人提供午餐、淋浴和干净的衣物</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 20 people" xml:space="preserve">
+  <data name="to provide a hot meal, shower, and clean clothes for 20 people." xml:space="preserve">
     <value>为20人提供午餐、淋浴和干净的衣物</value>
   </data>
-  <data name="[ ]  750 RMB to provide a hot meal, shower, and clean clothes for 50 people" xml:space="preserve">
+  <data name="to provide a hot meal, shower, and clean clothes for 50 people." xml:space="preserve">
     <value>为50人提供午餐、淋浴和干净的衣物</value>
   </data>
 </root>

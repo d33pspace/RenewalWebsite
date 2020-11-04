@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ISSUE 14" xml:space="preserve">
-    <value>第14期</value>
+  <data name="ISSUE 15" xml:space="preserve">
+    <value>第15期</value>
   </data>
-  <data name="SPRING 2020" xml:space="preserve">
-    <value>2020年春季刊</value>
+  <data name="AUTUMN 2020" xml:space="preserve">
+    <value>2020年秋季刊</value>
   </data>
   <data name="In this issue of Re:news" xml:space="preserve">
     <value>刊物内容</value>
@@ -129,154 +129,31 @@
   <data name="News" xml:space="preserve">
     <value>简报</value>
   </data>
-  <data name="A record number joined our Spring Festival but we need your help for street sleepers." xml:space="preserve">
-    <value>春节活动参与人数打破纪录，但我们需要您来帮助街头的无家可归者</value>
+  <data name="By Hanson Ye" xml:space="preserve">
+    <value>作者：叶海生，项目运营总监</value>
   </data>
-  <data name="An urgent letter from the director" xml:space="preserve">
-    <value>主管的紧急请求</value>
+  <data name="Clean clothes offer a better chance of finding a job." xml:space="preserve">
+    <value>干净的衣服让他更容易找到工作</value>
   </data>
-  <data name="As we write, coronavirus dominates news headlines. It started 500 miles from Shanghai in Wuhan." xml:space="preserve">
-    <value>此时此刻，冠状病毒正占据着各大媒体的头条位置。这次疫情起始于距离上海500英里远的武汉市。</value>
+  <data name="Lockdown took their jobs and homes, but your help gives them hope" xml:space="preserve">
+    <value>防控措施使他们失去了工作与住所，但您的帮助给了他们希望</value>
   </data>
-  <data name="Biggest ever Spring Festival followed by closure" xml:space="preserve">
-    <value>最大规模春节庆祝后不得不关闭服务</value>
+  <data name="On the surface, life is returning to normal here in China, but your support is providing essential help to those who are still struggling to survive in the wake of the recent lockdown. Temporary jobs in Shanghai are extremely hard to find, and new health protocols mean people can no longer use the hand basin in a public lavatory to bathe or wash their clothes. The result is a spike in demand for the services here at Renewal that are funded by your kind gifts." xml:space="preserve">
+    <value>表面上，疫情后中国人的生活正逐渐恢复正常，但之前的封锁措施使无家可归者们的生活更加困难，而您的支持可以为他们提供最重要的帮助。在上海，临时工作非常难找，而新的防疫措施禁止在公共卫生间洗澡和洗衣服。因此，对日新中心提供的这些服务的需求猛增，而这离不开您的慷慨捐赠。</value>
   </data>
-  <data name="But your help can make a difference. You gave a hot and hearty meal to our biggest crowd ever, and now we are working to reach many of the same people who are forced to sleep on the street. Your kind support is already housing as many people as we have space for on our residential training program." xml:space="preserve">
-    <value>您的帮助可以带来改变。在您的支持下，我们举办了有史以来最大规模的晚宴活动，而现在我们正在努力帮助相同的这群被迫露宿街头的人们。您的善良资助还使我们能够通过住宿培训计划为尽可能多的无家可归者提供了住处。</value>
+  <data name="The good news for Zhang and many others is your amazing support. Your gifts are a lifeline to people who have no other help to meet their basic needs, so we and the people you reach every day are deeply grateful for you and the gifts you give. We are also very aware how much we depend on your financial generosity – and donations like clean, wearable, used or new clothes – to give people a better chance of finding work and making a new start in life." xml:space="preserve">
+    <value>您的支持对张明和许多其他人而言就是最好的消息。对于那些生活的基本需求都无法得到满足的人们而言，您的捐赠能够拯救他们的生命，我们和这些受助者们都对您怀有衷心的感激。我们也清楚地知道，您慷慨的资金捐赠，以及捐助的各种干净、实用的衣物，是我们得以帮助无家可归者找到工作，进而开始新生的最大依靠。</value>
   </data>
-  <data name="Coronavirus hits the homeless" xml:space="preserve">
-    <value>冠状病毒影响无家可归者</value>
+  <data name="Walking around in dirty clothes makes you feel inferior." xml:space="preserve">
+    <value>穿着脏衣服会让人感觉低人一等</value>
   </data>
-  <data name="Coronavirus put an end to gatherings like Spring Festival. We need your help to reach people who are now stuck outdoors." xml:space="preserve">
-    <value>冠状病毒疫情使春节一类的聚集活动全部停止。我们需要您的捐赠来帮助那些被困于街头的人们。</value>
+  <data name="Your gifts reach the homeless hit by Covid-19" xml:space="preserve">
+    <value>您的捐赠能够帮助受新冠影响的无家可归者</value>
   </data>
-  <data name="Current Street Action" xml:space="preserve">
-    <value>现有街头行动</value>
+  <data name="Zhang Ming has a larger frame than most, so if you are wondering as some of our supporters do whether we can use large size clothes, the answer is “Yes!” In fact, whatever help you can send in this time of continued crisis for homeless people will make a huge difference – and be hugely appreciated." xml:space="preserve">
+    <value>张明的体型比大多数人都要高大，所以如果您和我们的一些支持者一样想知道我们是否需要大码服装，我们的回答是肯定的！事实上，在这个持续性的危机时期，无论您提供的任何帮助都能为无家可归者的生活带来巨大影响，我们对此都感激不尽。</value>
   </data>
-  <data name="Dear Friend and Supporter," xml:space="preserve">
-    <value>亲爱的朋友们和支持者们，</value>
-  </data>
-  <data name="Few people are infected. But the closed businesses and empty streets are hurting the homeless. People who were already on the fringes of society are now pushed to the edge of survival. More and more people are sleeping in parks and in doorways. They really have no other choice." xml:space="preserve">
-    <value>只有少数人被感染，但商业活动的关停和空荡的街头正在伤害无家可归者。本来就处于社会边缘的人们被进一步推向了艰难的生存境地。越来越多的人要睡在公园或走廊中，他们真的别无选择。</value>
-  </data>
-  <data name="Hanson Ye and Jimmy McWhinney" xml:space="preserve">
-    <value>叶海生</value>
-  </data>
-  <data name="He has nowhere else to turn. Your gift can give a food parcel and an essential disposable mask." xml:space="preserve">
-    <value>他已走投无路。您的捐赠可以让他得到一包食物和一只必备的一次性口罩。</value>
-  </data>
-  <data name="Help the homeless hit by coronavirus." xml:space="preserve">
-    <value>帮助被冠状病毒影响的无家可归者</value>
-  </data>
-  <data name="Homeless people are running out of every means of survival. There are no bottles or other recyclables to be found on the empty streets, and day jobs have disappeared. In the past, people would crew for outdoor events, but all of this is currently out of the question, and only a handful of businesses are open." xml:space="preserve">
-    <value>无家可归的人们正在失去各种生存下去的机会。空荡荡的街道上，不再有能够拿来卖钱的瓶子或其他废物，临时工作机会也都不见了。过去，无家可归者们可以在户外活动中找到一些工作机会，但这些活动现在都不可能存在了，只有极少的商业活动仍在继续。</value>
-  </data>
-  <data name="How you saved a grateful survivor" xml:space="preserve">
-    <value>您如何拯救了一位心存感激的幸存者</value>
-  </data>
-  <data name="I haven't eaten in two days." xml:space="preserve">
-    <value>我已经两天没吃东西了。</value>
-  </data>
-  <data name="If this crisis continues, we can explore taking fresh clothing onto the streets. At night, there is a chance people might be able to change clothes with dignity." xml:space="preserve">
-    <value>如果危机继续，我们会尝试给他们送去干净的衣物。在夜间，无家可归者可能有机会在私密的条件下更换衣物。</value>
-  </data>
-  <data name="If you can, come and see the results of your help. You will be amazed! Even if you can't pay a visit, thank you again for your support toward our biggest and perhaps best ever Spring Festival meal." xml:space="preserve">
-    <value>如果条件允许，您可以前来现场，亲身感受您的捐赠带来的变化。您一定会感到欣慰。即使您无法来到现场，我们依然要再次感谢您的支持，是您帮助我们举办了有史以来最大，也许也是最好的一次春节晚宴。</value>
-  </data>
-  <data name="If you're asking, 'What can I do?' The answer is to help the Renewal Center respond to the coronavirus. We are close to the crisis and your gift will reach the poorest and most helpless people on the streets, with healthy food, milk, water, and masks that everyone is required to wear." xml:space="preserve">
-    <value>如果有人问：“我能做什么？”答案就是帮助日新中心应对冠状病毒疫情。我们正亲身经历这场疫情，您的捐赠将被用于帮助街头最贫困、最无助的人们，为他们带去健康的食物、牛奶、水，以及每人必须佩戴的口罩。</value>
-  </data>
-  <data name="People are suffering, and the dirt from the streets is humiliating. Our drop-in center sadly must remain closed for now, giving people no access to a shower, laundry or a clean change of clothes." xml:space="preserve">
-    <value>尘土在凄凉的街头飞扬，无家可归的人们正在煎熬。很遗憾，我们的卫生服务站暂时无法开门，无法给他们提供淋浴或换洗衣物的服务。</value>
-  </data>
-  <data name="Please send a gift today to help those still stuck out in the cold." xml:space="preserve">
-    <value>请现在就做出捐赠，帮助那些被困于寒冷街头的人们吧。</value>
-  </data>
-  <data name="Renewal's drop-in center will reopen the day we can. Until then, we need help to reach people who are stuck outdoors." xml:space="preserve">
-    <value>只需150元，就能给10个人提供食物和医用口罩。</value>
-  </data>
-  <data name="So the situation is getting serious. When we give someone food or a mask, some people tell us, 'I haven't eaten in two days.' Still, we are incredibly grateful for your response to our recent email. Your kind support gives us hope that we can help people through this terrible time, no matter what happens." xml:space="preserve">
-    <value>当我们给无家可归者分发食物或口罩时，有些人说他们已经两天没吃东西了。所以情况仍十分危急。但我依然万分感激您对我近期邮件的回复。您的善良支持给了我们希望，无论如何，我们都将帮助无家可归者们度过这段困难的日子。</value>
-  </data>
-  <data name="Spring Festival was our last public gathering this year. Most people in this picture are now stuck on the streets and relying on our support for food, water and milk." xml:space="preserve">
-    <value>春节是今年我们的最后一次聚集活动。这张照片中的许多人现在都被困于街头，只能依靠我们提供的食物、水和牛奶来生存。</value>
-  </data>
-  <data name="Thank you for helping Lin! Your next gift will reach another vulnerable person crisis." xml:space="preserve">
-    <value>感谢您帮助林天野老人！您的下一份捐赠也将帮助下一位在危机中最需要帮助的人。</value>
-  </data>
-  <data name="Thankfully, your help has kept Lin Tianye warm and healthy. Born near the end of World War II in Taiwan, he was displaced by the war and moved to mainland China. He later lost his investment in a failed business, and now has no family at all." xml:space="preserve">
-    <value>值得庆幸的是，您的捐赠已帮助林天野老人保持温暖和健康。在二战末期生于台湾的他，由于战争的原因来到内地。后来，由于投资失败，他失去了一切，包括家庭。</value>
-  </data>
-  <data name="The crisis isn't over. Please help victims of the coronavirus scare who are living on the streets." xml:space="preserve">
-    <value>危机尚未结束。请帮助那些因冠状病毒疫情而被困于街头的受害者们。</value>
-  </data>
-  <data name="The Human Impact" xml:space="preserve">
-    <value>人为影响</value>
-  </data>
-  <data name="The Renewal kitchen is still cooking nutritious meals like egg fried rice with mushrooms. With your help, we are taking bowls of hearty portions to hungry people on the streets." xml:space="preserve">
-    <value>日新中心现在扔在为无家可归者提供营养的食物，比如蘑菇蛋炒饭。在您的帮助下，我们会将这些用心准备的食物送给街头饥饿的人们。</value>
-  </data>
-  <data name="The Story So Far" xml:space="preserve">
-    <value>当前情况</value>
-  </data>
-  <data name="The streets of Shanghai are empty. There is no recycling to pick up and no day jobs. One person said, 'There is no work, so I don't have money to eat.'" xml:space="preserve">
-    <value>上海的街头空荡荡的。找不到可以卖钱的废品或其他临时工作。一位无家可归者说：“找不到工作，我就没钱吃饭了。”</value>
-  </data>
-  <data name="The virus is scary, but you can save people facing the worst of it." xml:space="preserve">
-    <value>病毒肆虐，但您可以帮助人们面对最糟糕的状况</value>
-  </data>
-  <data name="There's no telling how long the crisis will last, but you can help with a gift for disposable masks, packaged food, and nutritious drinks like milk for people who are stuck outside. The situation is now serious." xml:space="preserve">
-    <value>目前的情况仍不乐观。疫情还会延续多长时间还不可知，但您的捐赠可以帮我们准备一次性口罩、包装食品和牛奶等营养饮品并提供给露宿街头的人们。</value>
-  </data>
-  <data name="They are running out of hope. Shanghai's street sleepers urgently need help." xml:space="preserve">
-    <value>走投无路，上海街头的无家可归者迫切需要帮助</value>
-  </data>
-  <data name="To help the homeless hit by coronavirus" xml:space="preserve">
-    <value>帮助被冠状病毒影响的无家可归者</value>
-  </data>
-  <data name="Today, many homeless people have nothing to eat but steamed buns with very little nutrition. Many others have no food." xml:space="preserve">
-    <value>目前，许多无家可归者都只能吃到一些营养有限的馒头，而其他人甚至完全没有东西吃。</value>
-  </data>
-  <data name="Try to imagine what it's like to survive on the streets at 76 years old, and you'll have an idea what Lin's life is like. Hanson is constantly in touch with Lin, ensuring that he gets whatever help he needs, as quickly as we can deliver it." xml:space="preserve">
-    <value>试想，以76岁的高龄在当前这个情况下露宿街头是多么的困难，而林天野正在过着这样的生活。我们的工作人员叶海生正在与林天野老人保持联系，以最快速度确保他能够得到生存下去所需的帮助。</value>
-  </data>
-  <data name="We are taking your gifts to the streets with parcels of food, milk, and disposable masks. It takes more time and more money. Our typical communal meals are much cheaper, but because the drop in center is closed, they've been banned for now." xml:space="preserve">
-    <value>我们正利用您的捐赠为无家可归者送去盒装食品、牛奶和一次性口罩。这需要更多的时间和成本。我们平时提供的堂食午餐成本更低，但由于卫生服务站已经关停，我们无法提供这样的服务。</value>
-  </data>
-  <data name="We don't know how long it will last, but today, masks are an urgent need. Homeless people can't find or afford them, but they have to wear them, and nobody can go into a shop or buy food without one. Your help can provide one for those in need." xml:space="preserve">
-    <value>我们不知道疫情会延续多久，但目前，口罩是人们最迫切的需求。无家可归者买不到，或根本买不起口罩，但他们仍必须佩戴。只有佩戴口罩的人才被允许进入商店或购买食物。您可以帮助他们得到口罩。</value>
-  </data>
-  <data name="We tested all 150 people who came to the Spring Festival dinner with an infrared thermometer and nobody showed fever or signs of coronavirus infection. Yet, on the very next day, we were forced to close to prevent large gatherings, and everyone outdoors was required to wear a mask." xml:space="preserve">
-    <value>我们为前来参加春节晚宴的150人进行了红外测温仪测试，无人出现发热或冠状病毒感染迹象。但第二天，我们仍被迫关停以防止大规模聚集活动，并且身处室外的所有人都被要求佩戴口罩。</value>
-  </data>
-  <data name="What You Can Do" xml:space="preserve">
-    <value>您能做什么</value>
-  </data>
-  <data name="You are the answer to the coronavirus crisis" xml:space="preserve">
-    <value>您就是解决冠状病毒危机的答案</value>
-  </data>
-  <data name="You've probably heard that the coronavirus is worse for older people: on 6 March it was reported in the media that for every year above the age of 50 a person is more likely to die from the infection, and men are more vulnerable." xml:space="preserve">
-    <value>您也许听说过，冠状病毒对老年人更加危险：3月6日有媒体报道，对于50岁以上的人群，年龄每增加一岁，因感染冠状病毒的病死率都会增加，尤其是男性患者更加危险。</value>
-  </data>
-  <data name="Your gift will provide food for people on the streets. Packaged meals and milk cost much more than our communal meals and it takes longer to find the people who need them." xml:space="preserve">
-    <value>您的捐赠将为街头的人们提供食物。盒装食品和牛奶比我们通常提供的堂食午餐成本更高，并且我们需要花更多时间去寻找这些街头的无家可归者。</value>
-  </data>
-  <data name="Your gifts can get Lin Tianye inside, clean, warm and fed, when we can." xml:space="preserve">
-    <value>您的捐赠能帮助林天野来到室内，保持干净、温暖和健康。</value>
-  </data>
-  <data name="Your gifts give people what they need, when they need it." xml:space="preserve">
-    <value>您的捐赠会在人们最需要的时候满足他们的需求。</value>
-  </data>
-  <data name="Your help can rush food and support to people on the streets." xml:space="preserve">
-    <value>您的帮助可以为街头的人们带去食物和支持</value>
-  </data>
-  <data name="Your next gift could help Lin, 76, who is especially vulnerable to the virus and cold weather." xml:space="preserve">
-    <value>您的下一份捐赠可以帮助76岁的林天野——这位在病毒和寒冷天气下更需要帮助的老人。</value>
-  </data>
-  <data name="Each mask lasts only a day or two -- and although they're now very scarce, we've found a few reliable suppliers who charge slightly higher prices. To comply with the law banning public gatherings, our drop-in center is closed, meaning homeless people have no place to have a hot meal, shower, change of clothes, or laundry." xml:space="preserve">
-    <value>每只口罩仅能使用一到两天的时间。虽然非常稀缺，但我们仍然找到了一些可靠的供货商，不过价格稍高。由于政府禁止各种形式的公共聚集活动，我们的卫生服务站已经关停。这意味着无家可归者已经无法得到午餐、淋浴或换洗衣物的服务了。</value>
-  </data>
-  <data name="No day labor and no income from recycling means no money, and no food." xml:space="preserve">
-    <value>找不到临时工作或废品，意味着没有收入，没有食物。</value>
+  <data name="Zhang Ming is grateful just for access to a washing machine, showers and our clothing exchange. “Walking around in dirty clothes makes you feel inferior,” he says. “Your confidence hits bottom and it’s impossible to find job.” It all makes life on the streets even harder than before. “For me, the pandemic has meant that I can’t make a living or afford to pay rent, so sleeping on the streets is my only option right now.”" xml:space="preserve">
+    <value>张明对我们提供的淋浴和换洗衣物的服务特别感激。他表示：“穿着脏衣服走在街头让我感觉低人一等，没有自信，根本无法找到工作。”这让无家可归的街头生活比过去更加困难。“疫情使我没了工作，无法支付房租，露宿街头成了我现在唯一的选择。”</value>
   </data>
 </root>
