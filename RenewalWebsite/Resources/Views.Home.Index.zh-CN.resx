@@ -123,14 +123,14 @@
   <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
     <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
   </data>
+  <data name="Donate now" xml:space="preserve">
+    <value>点击此处捐款</value>
+  </data>
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
   <data name="Homeless people need hot meals and warm, winter clothes" xml:space="preserve">
     <value>无家可归的人们需要一份温暖的饭菜和保暖的冬装</value>
-  </data>
-  <data name="Donate now" xml:space="preserve">
-    <value>点击此处捐款</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
