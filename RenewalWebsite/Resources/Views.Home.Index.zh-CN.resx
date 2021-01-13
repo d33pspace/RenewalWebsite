@@ -129,11 +129,17 @@
   <data name="Homeless people need hot meals and warm, winter clothes" xml:space="preserve">
     <value>无家可归的人们需要一份温暖的饭菜和保暖的冬装</value>
   </data>
-  <data name="Give hot meals" xml:space="preserve">
-    <value>提供热的午餐</value>
+  <data name="Donate now" xml:space="preserve">
+    <value>点击此处捐款</value>
   </data>
-  <data name="Life is returning to normal in Shanghai - but the homeless are now feeling the cold which makes the strict health protocols even harsher. People are literally locked out of the services they need to survive." xml:space="preserve">
-    <value>上海人的生活正逐渐恢复正常——但对无家可归者而言，即将到来的严寒将让严格的防疫措施更加困难，他们几乎无法再获得他们平时赖以生存的救助服务。</value>
+  <data name="Log in" xml:space="preserve">
+    <value>登录</value>
+  </data>
+  <data name="Your support for the Renewal Center offers hope to people who can’t hold on much longer outdoors." xml:space="preserve">
+    <value>您对日新中心的支持给那些露宿街头、难以为继的人们带去了希望</value>
+  </data>
+  <data name=" to see your personalized giving report for 2020." xml:space="preserve">
+    <value>查看您在2020年的捐赠报告。</value>
   </data>
   <data name="This is our busiest time of year. Dozens more homeless people are coming in from the cold weather asking for something to eat as well as coats, hats, gloves, other warm winter clothing." xml:space="preserve">
     <value>这是我们在一年中最繁忙的日子。越来越多无家可归的人们从寒冬中来到这里，寻求食物、大衣、帽子、手套和别的保暖衣物。</value>
