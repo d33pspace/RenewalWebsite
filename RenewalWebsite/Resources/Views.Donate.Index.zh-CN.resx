@@ -174,17 +174,17 @@
   <data name="Please enter a valid amount." xml:space="preserve">
     <value>请输入一个有效的金额。</value>
   </data>
-  <data name="At 88 RMB per person, it only takes 264 RMB to provide a meal, winter clothes and urgent support for three." xml:space="preserve">
-    <value>仅需88元就能帮助1人，264元就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
-  </data>
-  <data name="At $13.50 per person, it only takes $40.50 to provide a meal, winter clothes and urgent support for three." xml:space="preserve">
-    <value>仅需$13.50就能帮助1人，$40.50就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
-  </data>
   <data name="My urgent gift for cold weather support" xml:space="preserve">
     <value>我为严寒天气提供的紧急捐款</value>
   </data>
   <data name="When the weather is cold, more people come to us and they all need urgent help." xml:space="preserve">
     <value>寒冷的季节里，更多的人来到这里，寻求紧急的救助。</value>
+  </data>
+  <data name="At 88 RMB per person, it only takes 264 RMB to provide a meal, winter clothes and urgent support for three." xml:space="preserve">
+    <value>仅需88元就能帮助1人，264元就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
+  </data>
+  <data name="At $13.50 per person, it only takes $40.50 to provide a meal, winter clothes and urgent support for three." xml:space="preserve">
+    <value>仅需$13.50就能帮助1人，$40.50就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
   </data>
   <data name="to provide a hot meal, shower, and winter clothes for 1 person" xml:space="preserve">
     <value>，为1人提供一顿温暖的饭菜、淋浴及冬装</value>
