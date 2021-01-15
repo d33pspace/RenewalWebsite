@@ -187,12 +187,12 @@
     <value>仅需$13.50就能帮助1人，$40.50就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
   </data>
   <data name="to provide a hot meal, shower, and winter clothes for 1 person" xml:space="preserve">
-    <value>，为1人提供一顿温暖的饭菜、淋浴及冬装</value>
+    <value>为1人提供一顿温暖的饭菜、淋浴及冬装</value>
   </data>
   <data name="to provide a hot meal, shower, and winter clothes for 3 people" xml:space="preserve">
-    <value>，为3人提供一顿温暖的饭菜、淋浴及冬装</value>
+    <value>为3人提供一顿温暖的饭菜、淋浴及冬装</value>
   </data>
   <data name="to provide a hot meal, shower, and winter clothes for 6 people" xml:space="preserve">
-    <value>，为6人提供一顿温暖的饭菜、淋浴及冬装</value>
+    <value>为6人提供一顿温暖的饭菜、淋浴及冬装</value>
   </data>
 </root>
