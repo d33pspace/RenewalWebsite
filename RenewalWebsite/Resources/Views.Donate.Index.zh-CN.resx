@@ -174,22 +174,25 @@
   <data name="Please enter a valid amount." xml:space="preserve">
     <value>请输入一个有效的金额。</value>
   </data>
-  <data name="Here is my gift to provide warm clothes, good food, hot showers and shelter for people who would otherwise be out in the cold." xml:space="preserve">
-    <value>请使用我的以下捐赠为那些在街头饱受严寒侵袭的人们提供健康的食物、热水淋浴、保暖的衣物和躲避严寒的住所。</value>
+  <data name="At 88 RMB per person, it only takes 264 RMB to provide a meal, winter clothes and urgent support for three." xml:space="preserve">
+    <value>仅需88元就能帮助1人，264元就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
   </data>
-  <data name="My gift for good food, hot showers and warm clothes" xml:space="preserve">
-    <value>我为提供健康食物、热水淋浴和保暖衣物所做的捐赠</value>
+  <data name="At $13.50 per person, it only takes $40.50 to provide a meal, winter clothes and urgent support for three." xml:space="preserve">
+    <value>仅需$13.50就能帮助1人，$40.50就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
   </data>
-  <data name="The Renewal Center might be his only access to hot meals and warm clothes." xml:space="preserve">
-    <value>日新中心可能是他吃到热饭，获得保暖衣物的唯一机会。</value>
+  <data name="My urgent gift for cold weather support" xml:space="preserve">
+    <value>我为严寒天气提供的紧急捐款</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 10 people." xml:space="preserve">
-    <value>为10人提供午餐、淋浴和干净的衣物</value>
+  <data name="When the weather is cold, more people come to us and they all need urgent help." xml:space="preserve">
+    <value>寒冷的季节里，更多的人来到这里，寻求紧急的救助。</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 20 people." xml:space="preserve">
-    <value>为20人提供午餐、淋浴和干净的衣物</value>
+  <data name="to provide a hot meal, shower, and winter clothes for 1 person" xml:space="preserve">
+    <value>，为1人提供一顿温暖的饭菜、淋浴及冬装</value>
   </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 50 people." xml:space="preserve">
-    <value>为50人提供午餐、淋浴和干净的衣物</value>
+  <data name="to provide a hot meal, shower, and winter clothes for 3 people" xml:space="preserve">
+    <value>，为3人提供一顿温暖的饭菜、淋浴及冬装</value>
+  </data>
+  <data name="to provide a hot meal, shower, and winter clothes for 6 people" xml:space="preserve">
+    <value>，为6人提供一顿温暖的饭菜、淋浴及冬装</value>
   </data>
 </root>
