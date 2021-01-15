@@ -34,11 +34,11 @@
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["My urgent gift for cold weather support"]</h2>
-        <p>@Localizer["At $13.50 per person, it only takes $40.50 to provide a meal, winter clothes and urgent support for three."]</p>
+        <h2>@Localizer["My urgent gift for cold weather support"]</h2>        
 
         @if (currency.Name.Contains("en"))
         {
+            <p>@Localizer["At $13.50 per person, it only takes $40.50 to provide a meal, winter clothes and urgent support for three."]</p>
             <form asp-controller="Donate" asp-action="Create">
 
                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -83,6 +83,7 @@
         }
         else
         {
+             <p>@Localizer["At 88 RMB per person, it only takes 264 RMB to provide a meal, winter clothes and urgent support for three."]</p>
             <ul class="list-unstyled gift-options">
                 <li><strong>@CurrencyService.GetSymbol(currency)88</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 1 person"]</li>
                 <li><strong>@CurrencyService.GetSymbol(currency)264</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 3 people"]</li>
