@@ -1682,10 +1682,3 @@ input#CustomAmount {
 .p-b-0 {
     padding-bottom: 0px !important;
 }
-
-.body-norm {
-    font-size: 18px;
-    color: #393939;
-    font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
-    -webkit-tap-highlight-color: #d11241;
-}
