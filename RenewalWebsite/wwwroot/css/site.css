@@ -1174,6 +1174,10 @@ a.news-link:hover {
     padding-top: 20px;
 }
 
+.bodynorm {
+    font-family: Georgia, "楷体";
+}
+
 .back {
     font-family: Georgia, "Times New Roman", "KaiTi", "楷体", STKaiti, "华文楷体", serif;
     font-style: italic;
