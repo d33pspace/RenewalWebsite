@@ -39,7 +39,7 @@
             <i class="fa fa-refresh" aria-hidden="true" style="margin-left:10px;cursor:pointer;" id="refresh-captcha"></i>
         </div>
         <div class="col-md-3">
-            <input type="text" class="form-control" placeholder="@Localizer["Captcha Code"]" asp-for="CaptchaCode" maxlength="4" />
+            <input type="text" class="form-control" placeholder="@Localizer["Captcha Code"]" asp-for="CaptchaCode" autocomplete="off" maxlength="4" />
             <span asp-validation-for="CaptchaCode" class="text-danger"></span>
         </div>
     </div>

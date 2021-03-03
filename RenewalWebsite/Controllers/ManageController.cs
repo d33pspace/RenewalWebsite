@@ -100,7 +100,10 @@ namespace RenewalWebsite.Controllers
                     : message == ManageMessageId.AddPhoneSuccess ? _localizer["Your phone number was added."]
                     : message == ManageMessageId.RemovePhoneSuccess ? _localizer["Your phone number was removed."]
                     : "";
-
+                if (message == ManageMessageId.Error)
+                    ViewBag.error = true;
+                else
+                    ViewBag.error = false;
                 if (user == null)
                 {
                     log = new EventLog() { EventId = (int)LoggingEvents.GET_ITEM, LogLevel = LogLevel.Error.ToString(), Message = "User not found." };

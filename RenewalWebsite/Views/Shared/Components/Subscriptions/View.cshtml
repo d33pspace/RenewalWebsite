@@ -2,7 +2,7 @@
 @using Microsoft.AspNetCore.Mvc.Localization
 @inject IViewLocalizer Localizer
 @using System.Globalization
-
+    <script src="~/js/jquery.buttonLoader.js"></script>
 @if (Model.Subscriptions == null || !Model.Subscriptions.Any())
 {
     <h4>@Localizer["Manage your recurring gifts"]</h4>
@@ -31,7 +31,7 @@ else
                         <td style="vertical-align:middle;" class="text-right">@(Convert.ToDecimal(subscription.Amount) / 100)</td>
                         <td style="vertical-align:middle;">@subscription.Currency.ToUpper()</td>
                         <td style="vertical-align:middle;">@Localizer[(CultureInfo.CurrentCulture.TextInfo.ToTitleCase(subscription.Status))]</td>
-                        <td style="vertical-align:middle;"><a href="javascript:void(0);" class="btn btn-primary" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">@Localizer["Cancel"]</a></td>
+                        <td style="vertical-align:middle;"><a href="javascript:void(0);" class="has-spinner btn btn-primary" id="@subscription.Id" data-ajax-value="@subscription.Id" onclick="deleteSubscription(this);">@Localizer["Cancel"]</a></td>
                     </tr>
                 }
             </tbody>
@@ -48,6 +48,10 @@ else
         if (result) {
             //Logic to delete the item
             var id = $(item).attr("data-ajax-value");
+            var btn = $('#' + id);
+            $(btn).buttonLoader('start', "@Localizer["Please wait"]");
+            $('#' + id).css("pointer-events", "none");
+            $('#' + id).css("color", "White");
             window.location = "/Subscription/Delete?subscriptionId=" + id;
         }
         else {

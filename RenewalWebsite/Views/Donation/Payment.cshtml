@@ -180,7 +180,7 @@
 
                     <div class="form-group row">
                         <div class="col-sm-offset-3 col-sm-9">
-                            <button class="btn btn-secondary" type="submit">@Localizer["Submit Payment"]</button>
+                            <button class="btn btn-secondary" type="submit" id="PaymentSubmit" onclick="Save()">@Localizer["Submit Payment"]</button>
                         </div>
                     </div>
                 </fieldset>
@@ -206,4 +206,11 @@
         $('#TimeZone').val(timezone);
         $('select').niceSelect();
     });
+    function Save() {
+        var btn = $('#PaymentSubmit');
+        $(btn).buttonLoader('start', "@Localizer["Please wait"]");
+        $('#PaymentSubmit').css("pointer-events", "none");
+        $('#PaymentSubmit').css("color", "White");
+        $('#PaymentSubmit').css("background-color", "#d11241");
+    }
 </script>

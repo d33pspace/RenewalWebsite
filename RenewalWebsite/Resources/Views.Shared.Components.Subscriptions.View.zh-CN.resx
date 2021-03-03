@@ -171,4 +171,7 @@
   <data name="Confirm" xml:space="preserve">
     <value>确认</value>
   </data>
+  <data name="Please wait" xml:space="preserve">
+    <value>请稍等</value>
+  </data>
 </root>

@@ -24,7 +24,16 @@
             <span style="font-size:1.75rem;">My Account</span>
         </span>-->
         <div asp-validation-summary="All" class="text-danger"></div>
+        @if (ViewBag.error && ViewData["StatusMessage"].ToString() != "")
+        {
+            <div class="alert alert-danger">@ViewData["StatusMessage"]</div>
+        }
+        else if(ViewData["StatusMessage"].ToString() != "")
+        {
+            <div class="alert alert-success">@ViewData["StatusMessage"]</div>
+        }
         <div id="textMainMessage" class="alert alert-danger" style="display:none;">
+
         </div>
     </div>
 </div>
