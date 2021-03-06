@@ -7,6 +7,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using RenewalWebsite.SettingModels;
+using RenewalWebsite.Controllers;
 
 namespace RenewalWebsite.Services
 {
@@ -25,7 +26,7 @@ namespace RenewalWebsite.Services
             _EmailNotiFy = EmailNotification;
         }
 
-        public async void SaveEventLogAsync(EventLog log)
+        public async void SaveEventLogAsync(EventLog log, ApplicationUser user = null)
         {
             log.CreatedTime = DateTime.Now;
             _dbContext.EventLog.Add(log);
@@ -33,6 +34,11 @@ namespace RenewalWebsite.Services
 
             try
             {
+                if (user != null)
+                {
+                    log.UserName = user.FullName;
+                    log.EmailId = user.Email;
+                }
                 string template = await _viewRenderService.RenderToStringAsync("Shared/_ExceptionMail", log);
                 await _emailSender.SendEmailAsync(_EmailNotiFy.Value.Email, "Exception", "", "Admin", template);
             }

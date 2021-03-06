@@ -21,5 +21,7 @@ namespace RenewalWebsite.Models
         public string Source { get; set; }
 
         public string EmailId { get; set; }
+        [NotMapped]
+        public string UserName { get; set; }
     }
 }

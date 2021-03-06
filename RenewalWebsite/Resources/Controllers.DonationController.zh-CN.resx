@@ -147,4 +147,10 @@
   <data name="yearly" xml:space="preserve">
     <value>每年</value>
   </data>
+  <data name="Your transaction is failed. Please try again or contact your bank for the details." xml:space="preserve">
+    <value>您的交易失败。 请重试或联系您的银行以获取详细信息。</value>
+  </data>
+  <data name="Your card was declined. The error code is" xml:space="preserve">
+    <value>您的卡片被拒，错误代码为</value>
+  </data>
 </root>

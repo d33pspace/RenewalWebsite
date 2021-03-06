@@ -92,10 +92,9 @@
 
     function fun_success(data) {
         if (data.status == "1") {
-            window.location = "/Manage?tabId=1";
-        } else if(data.status == "2") {
-            window.location = "/Manage?tabId=2";
-        } else {
+
+            window.location = "/Manage?tabId=1&Message=CardDeleteSuccess";
+        }  else {
             $('#textMainMessage').show();
             $('#textMainMessage').removeClass('alert alert-success');
             $('#textMainMessage').addClass('alert alert-danger');

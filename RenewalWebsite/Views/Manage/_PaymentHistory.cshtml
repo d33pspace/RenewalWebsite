@@ -49,7 +49,7 @@
                 </div>
             </div>
         }
-        <div class="form-row">
+        <div class="form-row" id="BtnPdf">
             <input type="button" style="display:none" id="btnSave" class="btn btn-default hide" value="@Localizer["Search"]" onclick="GenerateData()" />
             <button type="button" id="btnSubmitPDF" class="btn btn-default has-spinner" onclick="GeneratePDF()">@Localizer["PDF"]</button>
             @*<input type="submit" id="btnPDF" class="btn btn-default hide" value="PDF" style="display:none"/>*@
@@ -132,6 +132,7 @@ else
 
 <script type="text/javascript">
     $(document).ready(function () {
+        $("#btnSubmitPDF").hide();
         $(":input").inputmask();
         var type = $("#hdnOfType").val();
         GenerateData(type);
