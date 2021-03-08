@@ -267,4 +267,7 @@
   <data name="Passwords must have at least one uppercase ('A'-'Z')." xml:space="preserve">
     <value>密码必须包含至少一个大写字母（“A”-"Z"）。</value>
   </data>
+  <data name="Your giving history:" xml:space="preserve">
+    <value>您的捐赠记录：</value>
+  </data>
 </root>

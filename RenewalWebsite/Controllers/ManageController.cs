@@ -921,8 +921,16 @@ namespace RenewalWebsite.Controllers
                 pDFHelper.isAdd = isAdd;
                 pDFHelper.sealImagePath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\images\\renewal-seal-image.png";
                 pDFHelper.RenewalHeader = _localizer["The Renewal Center"];
-                pDFHelper.recordHeader = _localizer["A record of your giving from"];
-                pDFHelper.To = _localizer["to"];
+                if (model.typeOfHistory == "AllHistory")
+                {
+                    pDFHelper.recordHeader = _localizer["Your giving history:"];
+                    pDFHelper.To = "";
+                }
+                else
+                {
+                    pDFHelper.recordHeader = _localizer["A record of your giving from"];
+                    pDFHelper.To = _localizer["to"];
+                }
                 pDFHelper.language = language;
                 pDFHelper.fontPath = _hostingEnvironment.ContentRootPath + "\\wwwroot\\fonts\\SourceHanSansSC-Light.otf";
                 writer.PageEvent = pDFHelper;

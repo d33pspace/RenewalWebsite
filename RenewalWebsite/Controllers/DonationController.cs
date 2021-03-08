@@ -181,7 +181,7 @@ namespace RenewalWebsite.Controllers
                         _loggerService.SaveEventLogAsync(log, user);
 
                         ResponseModel responseModel = JsonSerializer.Deserialize<ResponseModel>(ex.StripeResponse.ResponseJson);
-                        if (responseModel != null && responseModel.error.decline_code == "do_not_honor")
+                        if (responseModel != null && responseModel.error.decline_code == "do_not_honor" || responseModel.error.code == "do_not_honor")
                         {
                             ModelState.AddModelError("error", _localizer["Your transaction is failed. Please try again or contact your bank for the details."]);
                             return View(payment);
@@ -433,7 +433,10 @@ namespace RenewalWebsite.Controllers
                         if (objStripeCard != null && !string.IsNullOrEmpty(objStripeCard.Id))
                         {
                             CustomerRePaymentViewModel customerRePaymentViewModel = CustomerRepaymentModelData(user, donation, detail, countryList, objStripeCustomer, objStripeCard);
-                            return View("CampaignRePayment", customerRePaymentViewModel);
+                            if (customerRePaymentViewModel != null && customerRePaymentViewModel.countries != null && customerRePaymentViewModel.Amount > 0)
+                            {
+                                return View("CampaignRePayment", customerRePaymentViewModel);
+                            }
                         }
                     }
                     catch (StripeException sex)
@@ -512,6 +515,19 @@ namespace RenewalWebsite.Controllers
                     {
                         log = new EventLog() { EventId = (int)LoggingEvents.GET_CUSTOMER, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                         _loggerService.SaveEventLogAsync(log);
+
+                        ResponseModel responseModel = JsonSerializer.Deserialize<ResponseModel>(ex.StripeResponse.ResponseJson);
+                        if (responseModel != null && responseModel.error.decline_code == "do_not_honor" || responseModel.error.code == "do_not_honor")
+                        {
+                            ModelState.AddModelError("error", _localizer["Your transaction is failed. Please try again or contact your bank for the details."]);
+                            return View(payment);
+                        }
+                        if (responseModel != null && responseModel.error.code == "card_declined")
+                        {
+                            ModelState.AddModelError("error", $"{_localizer["Your card was declined. The error code is"]} [{ responseModel.error.decline_code }].");
+                            return View(payment);
+                        }
+
                         if (ex.Message.ToLower().Contains("customer"))
                         {
                             return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
