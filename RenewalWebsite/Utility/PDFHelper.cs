@@ -89,10 +89,10 @@ namespace RenewalWebsite.Utility
                 //Row 2
                 Phrase phrase = new Phrase();
                 phrase.Add(new Chunk(recordHeader, language == "en-US" ? new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK) : new Font(baseFont, 10f, Font.NORMAL, BaseColor.BLACK)));
-                phrase.Add(new Chunk(" " + startDate + " ", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK)));
-                phrase.Add(new Chunk(To, language == "en-US" ? new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK) : new Font(baseFont, 10f, Font.NORMAL, BaseColor.BLACK)));
                 if (To != "")
                 {
+                    phrase.Add(new Chunk(" " + startDate + " ", new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK)));
+                    phrase.Add(new Chunk(To, language == "en-US" ? new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK) : new Font(baseFont, 10f, Font.NORMAL, BaseColor.BLACK)));
                     phrase.Add(new Chunk(" " + endDate, new Font(Font.FontFamily.TIMES_ROMAN, 10f, Font.NORMAL, BaseColor.BLACK)));
                 }
 
