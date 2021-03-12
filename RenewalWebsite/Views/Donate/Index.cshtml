@@ -34,7 +34,7 @@
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["My urgent gift for cold weather support"]</h2>        
+        <h2>@Localizer["My urgent gift for cold weather support"]</h2>
 
         @if (currency.Name.Contains("en"))
         {
@@ -49,20 +49,22 @@
                 </div>
                 <div class="form-group" style="overflow:inherit;">
                     <div class="input-group">
-                        <label class="mtp-auto">
-                            @Localizer["I would like to make a"]&nbsp;
-                        </label>
-                        <div class="box">
-                            <select asp-for="CycleId" class="wide select-font" style="min-width:120px; max-width:120px;border-radius:0.25rem;"
-                                    asp-items="@Model.DonationCycles"></select>
-                        </div>&nbsp;
+                        <label class="mtp-auto">@Localizer["I would like to make a gift of:"]</label>
+                        @*<label class="mtp-auto">
+                                @Localizer["I would like to make a"]&nbsp;
+                            </label>
+                            <div class="box">
+                                <select asp-for="CycleId" class="wide select-font" style="min-width:120px; max-width:120px;border-radius:0.25rem;"
+                                        asp-items="@Model.DonationCycles"></select>
+                            </div>&nbsp;
 
-                        <label class="mtp-auto">@Localizer["gift of:"]</label>
+                            <label class="mtp-auto">@Localizer["gift of:"]</label>*@
                     </div>
                 </div>
                 <input type="hidden" id="Reason" name="Reason" />
                 <input type="hidden" id="IsCustom" name="IsCustom" />
                 <input type="hidden" id="DonationAmount" name="DonationAmount" />
+                <input type="hidden" id="CycleId" name="CycleId" />
                 <ul class="list-unstyled rmb-options mb-5">
                     <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="13.50" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)13.50</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 1 person"]</li>
                     <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="40.50" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)40.50</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 3 people"]</li>
@@ -74,6 +76,8 @@
                         </div>
                     </li>
                 </ul>
+
+                <input type="checkbox" id="RepeateCycle" value="1">&nbsp; @Localizer["I want my gift to repeat automatically every month."]
                 <div class="clearfix mt-3 mb-3">
                     <button id="btnSave" class="btn btn-secondary" type="button" onclick="checkAmount();">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
                     <button id="btnSaveFinal" class="btn btn-secondary hide" type="submit">@Localizer["DONATE WITH CREDIT OR DEBIT CARD NOW"]&nbsp;<i class="arrow right-arrow"></i></button>
@@ -83,7 +87,7 @@
         }
         else
         {
-             <p>@Localizer["At 88 RMB per person, it only takes 264 RMB to provide a meal, winter clothes and urgent support for three."]</p>
+            <p>@Localizer["At 88 RMB per person, it only takes 264 RMB to provide a meal, winter clothes and urgent support for three."]</p>
             <ul class="list-unstyled gift-options">
                 <li><strong>@CurrencyService.GetSymbol(currency)88</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 1 person"]</li>
                 <li><strong>@CurrencyService.GetSymbol(currency)264</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 3 people"]</li>
@@ -102,8 +106,9 @@
 <script type="text/javascript">
 
     $(document).ready(function () {
-        $("#CycleId").prop('selectedIndex', 3);
-        $('select').niceSelect();
+        $("#CycleId").val(4);
+        //$("#CycleId").prop('selectedIndex', 3);
+        //$('select').niceSelect();
     });
 
     function checkAmount() {
@@ -138,7 +143,13 @@
 
         var iscustom = $('input[name=SelectedAmount]:checked').data('value');
         $('#IsCustom').val(iscustom);
-
+        
+        if($("#RepeateCycle").prop("checked") == true){
+             $("#CycleId").val($('#RepeateCycle:checked').val());
+            }
+            else if($("#RepeateCycle").prop("checked") == false){
+             $("#CycleId").val(4);
+            }
         $('#textMainMessage').hide();
         $('#textMainErrorMessage').text('');
         $("#btnSaveFinal").trigger("click");

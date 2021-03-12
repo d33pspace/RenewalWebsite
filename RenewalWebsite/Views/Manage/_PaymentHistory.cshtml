@@ -57,7 +57,7 @@
 
         <div asp-validation-summary="All" class="text-danger"></div>
         <div class="form-row">
-            <div class="">
+            <div class="" id="BtnFilter">
                 <button type="button" id="btnLast12Months" class="btn btn-default has-spinner" data-name="Last12Months">@Localizer["Last 12 Months"]</button>
                 <button type="button" id="btnThisYear" class="btn btn-default has-spinner" data-name="ThisYear">@Localizer["This Year"]</button>
                 <button type="button" id="btnLastYear" class="btn btn-default has-spinner" data-name="LastYear">@Localizer["Last Year"]</button>
@@ -133,6 +133,7 @@ else
 <script type="text/javascript">
     $(document).ready(function () {
         $("#btnSubmitPDF").hide();
+        $("#BtnFilter").hide();
         $(":input").inputmask();
         var type = $("#hdnOfType").val();
         GenerateData(type);
@@ -197,6 +198,7 @@ else
             type: 'POST',
             success: function (data) {
                 $('#divInvoiceHistory').append(data);
+                $("#BtnFilter").show();
                 var HiddenfildTypeIsNull = $("#hdmIsInvoiseHistoryExists").val();
                 if (HiddenfildTypeIsNull == 0) { $("#btnSubmitPDF").hide(); }
                 else { $("#btnSubmitPDF").show(); }

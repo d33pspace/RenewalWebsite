@@ -194,5 +194,11 @@
   </data>
   <data name="to provide a hot meal, shower, and winter clothes for 6 people" xml:space="preserve">
     <value>为6人提供一顿温暖的饭菜、淋浴及冬装</value>
-  </data>  
+  </data>
+  <data name="I want my gift to repeat automatically every month." xml:space="preserve">
+    <value>我愿意每个月自动捐出同样的数额。</value>
+  </data>
+  <data name="I would like to make a gift of:" xml:space="preserve">
+    <value>我想捐款：</value>
+  </data>
 </root>
