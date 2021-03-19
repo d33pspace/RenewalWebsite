@@ -60,7 +60,7 @@
                     </ul>
                 </div>
             </div>*@
-        @if (controller.ToLower() == "home")
+        @if (controller.ToLower() == "home" || controller.ToLower() == "news")
         {
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -155,7 +155,7 @@
 
             //var sone = moment.tz.guess();
             //var timezone = moment.tz(sone).zoneAbbr();
-
+            
             var btn = $(this);
             $(btn).buttonLoader('start',"@Localizer["Please wait"]");
             var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";

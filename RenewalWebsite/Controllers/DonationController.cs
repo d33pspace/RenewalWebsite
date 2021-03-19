@@ -186,7 +186,7 @@ namespace RenewalWebsite.Controllers
                             ModelState.AddModelError("error", _localizer["Your transaction is failed. Please try again or contact your bank for the details."]);
                             return View(payment);
                         }
-                        if (responseModel != null && responseModel.error.code == "card_declined")
+                        if (responseModel != null && responseModel.error.code == "card_declined" || responseModel.error.code == "expired_card" || responseModel.error.code == "incorrect_cvc" || responseModel.error.code == "processing_error")
                         {
                             ModelState.AddModelError("error", $"{_localizer["Your card was declined. The error code is"]} [{ responseModel.error.decline_code }].");
                             return View(payment);
@@ -252,6 +252,12 @@ namespace RenewalWebsite.Controllers
             {
                 log = new EventLog() { EventId = (int)LoggingEvents.INSERT_ITEM, LogLevel = LogLevel.Error.ToString(), Message = ex.Message, StackTrace = ex.StackTrace, Source = ex.Source, EmailId = user.Email };
                 _loggerService.SaveEventLogAsync(log);
+                ResponseModel responseModel = JsonSerializer.Deserialize<ResponseModel>(ex.StripeResponse.ResponseJson);
+                if (responseModel != null && responseModel.error.code == "authentication_required")
+                {
+                    ModelState.AddModelError("error", $"{_localizer["Your card was declined. The error code is"]} [{ responseModel.error.decline_code }].");
+                    return View(payment);
+                }
                 if (ex.Message.ToLower().Contains("customer"))
                 {
                     return RedirectToAction("Error", "Error500", new ErrorViewModel() { Error = ex.Message });
