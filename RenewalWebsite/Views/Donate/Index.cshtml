@@ -73,11 +73,8 @@
 <!--                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="81.00" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)81.00</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 6 people"]</li> -->
                     <li>
                         <div class="input-group">
-                            <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="to help as many people as I can." onclick="setFocus(this)" />
-                            <input type="text" id="CustomAmount" name="CustomAmount" onfocus="checkSelection()" class="form-control" style="height:38px;" /> @Localizer["RMB for "]
-								<input type="checkbox">@Localizer["hot meals"]</>
-								<input type="checkbox">@Localizer["job training"]</>
-								<input type="checkbox">@Localizer["any current need"]</>
+                            <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="to help as many people as I can." onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
+                            <input type="text" id="CustomAmount" name="CustomAmount" onfocus="checkSelection()" class="form-control" style="height:38px;" /> @Localizer["to help as many people as I can."]
                         </div>
                     </li>
                 </ul>
