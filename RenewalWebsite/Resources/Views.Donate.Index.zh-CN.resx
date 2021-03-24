@@ -198,6 +198,18 @@
   <data name="XXX RMB to provide XX days of job training, meals and accommodation" xml:space="preserve">
     <value>XXX元人民币，提供XX天的工作培训，膳食和住宿</value>
   </data>
+  <data name="RMB for " xml:space="preserve">
+    <value>人民币，用于</value>
+  </data>
+  <data name="hot meals" xml:space="preserve">
+    <value>热腾腾的饭菜</value>
+  </data>
+  <data name="job training" xml:space="preserve">
+    <value>工作培训</value>
+  </data>
+  <data name="any current need" xml:space="preserve">
+    <value>任何当下所需</value>
+  </data>
   <data name="I want my gift to repeat automatically every month." xml:space="preserve">
     <value>我愿意每个月自动捐出同样的数额。</value>
   </data>
