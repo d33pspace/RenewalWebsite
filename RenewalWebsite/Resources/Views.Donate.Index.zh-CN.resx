@@ -186,14 +186,14 @@
   <data name="At $13.50 per person, it only takes $40.50 to provide a meal, winter clothes and urgent support for three." xml:space="preserve">
     <value>仅需$13.50就能帮助1人，$40.50就能为3人提供一顿饱餐、冬装和紧急的救助。</value>
   </data>
-  <data name="to provide a hot meal, shower, and winter clothes for 1 person" xml:space="preserve">
-    <value>为1人提供一顿温暖的饭菜、淋浴及冬装</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 10 people" xml:space="preserve">
+    <value>可为10人提供热腾腾的饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide a hot meal, shower, and winter clothes for 3 people" xml:space="preserve">
-    <value>为3人提供一顿温暖的饭菜、淋浴及冬装</value>
+  <data name="to provide XX days of job training, meals and accommodation" xml:space="preserve">
+    <value>提供XX天的就业培训，膳食和住宿</value>
   </data>
-  <data name="to provide a hot meal, shower, and winter clothes for 6 people" xml:space="preserve">
-    <value>为6人提供一顿温暖的饭菜、淋浴及冬装</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 50 people" xml:space="preserve">
+    <value>可为50人提供热腾腾的饭菜、淋浴和干净的衣服</value>
   </data>
   <data name="I want my gift to repeat automatically every month." xml:space="preserve">
     <value>我愿意每个月自动捐出同样的数额。</value>
