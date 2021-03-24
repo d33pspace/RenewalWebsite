@@ -38,7 +38,7 @@
 
         @if (currency.Name.Contains("en"))
         {
-            <p>@Localizer["At $13.50 per person, it only takes $40.50 to provide a meal, winter clothes and urgent support for three."]</p>
+            <p>@Localizer["Every hot meal we serve at the Renewal Center relies on a supporter gift of $2.30. And your gift of $XX.XX could provide a meal, plus one day of accommodation on our incredibly effective job training program."]</p>
             <form asp-controller="Donate" asp-action="Create">
 
                 <div asp-validation-summary="All" class="text-danger"></div>
@@ -87,7 +87,7 @@
         }
         else
         {
-            <p>@Localizer["At 88 RMB per person, it only takes 264 RMB to provide a meal, winter clothes and urgent support for three."]</p>
+            <p>@Localizer["Every hot meal we serve at the Renewal Center relies on a supporter gift of 15 RMB. And your gift of XXX RMB could provide a meal, plus one day of accommodation on our incredibly effective job training program."]</p>
             <ul class="list-unstyled gift-options">
                 <li><strong>@CurrencyService.GetSymbol(currency)88</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 1 person"]</li>
                 <li><strong>@CurrencyService.GetSymbol(currency)264</strong> @Localizer["to provide a hot meal, shower, and winter clothes for 3 people"]</li>
