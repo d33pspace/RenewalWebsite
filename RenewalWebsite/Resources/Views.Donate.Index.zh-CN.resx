@@ -186,14 +186,17 @@
   <data name="Every hot meal we serve at the Renewal Center relies on a supporter gift of 15 RMB. And your gift of XXX RMB could provide a meal, plus one day of accommodation on our incredibly effective job training program." xml:space="preserve">
     <value>我们在日新中心提供的每顿热腾腾的餐食都需要15元人民币的捐赠。若您捐赠XXX元，就可以为人们提供一顿热饭，外加参与一天卓有成效的就业培训项目及寄宿费用。</value>
   </data>
-  <data name="to provide a hot meal, shower, and winter clothes for 1 person" xml:space="preserve">
-    <value>为1人提供一顿温暖的饭菜、淋浴及冬装</value>
+  <data name="150 RMB to provide a hot meal, shower, and clean clothes for 10 people" xml:space="preserve">
+    <value>150元人民币，可为10人提供热腾腾的饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide a hot meal, shower, and winter clothes for 3 people" xml:space="preserve">
-    <value>为3人提供一顿温暖的饭菜、淋浴及冬装</value>
+  <data name="XX RMB to provide XX days of job training, meals and accommodation" xml:space="preserve">
+    <value>XX元人民币，提供XX天的就业培训，膳食和住宿</value>
   </data>
-  <data name="to provide a hot meal, shower, and winter clothes for 6 people" xml:space="preserve">
-    <value>为6人提供一顿温暖的饭菜、淋浴及冬装</value>
+  <data name="750 RMB to provide a hot meal, shower, and clean clothes for 50 people" xml:space="preserve">
+    <value>750元人民币，可为50人提供热腾腾的饭菜、淋浴和干净的衣服</value>
+  </data>
+  <data name="XXX RMB to provide XX days of job training, meals and accommodation" xml:space="preserve">
+    <value>XXX元人民币，提供XX天的工作培训，膳食和住宿</value>
   </data>
   <data name="I want my gift to repeat automatically every month." xml:space="preserve">
     <value>我愿意每个月自动捐出同样的数额。</value>
