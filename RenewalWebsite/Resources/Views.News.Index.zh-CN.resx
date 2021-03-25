@@ -189,8 +189,8 @@
   <data name="People come for a hot meal and learn about our job training program" xml:space="preserve">
     <value>从享用一份热饭开始，人们了解了我们的就业培训项目</value>
   </data>
-  <data name="My gift to meet basic needs" xml:space="preserve">
-    <value>用我的捐赠去满足他们最基本的需求</value>
+  <data name="My gift for meals and training" xml:space="preserve">
+    <value>我愿为提供温暖的饭菜和培训而捐款。</value>
   </data>
   <data name="Thank you! Your support provided a hot holiday meal to 100 homeless guests and introduced them to our job training program. And because family reunions such a big tradition at this time of year, your gifts help overcome the sadness of having no family or being unable or afraid to return home. Your kindness also gave a few renminbi in a traditional red envelope to guests who could not otherwise afford their next meal because there’s no short-term work over the holiday." xml:space="preserve">
     <value>感谢您！您的帮助为100位无家可归的来访者提供了热腾腾的节日餐，并让他们了解了我们的就业培训项目。根据传统，每年的这个时候都是合家团圆的时刻，您的捐助帮助他们战胜了无家可归、无法回家或害怕回家的痛苦。您的善意还赠与了来访者们传统的春节红包，使他们在无工可打的春节期间的生活也能得以维系。</value>
@@ -225,8 +225,8 @@
   <data name="Your gift will help the homeless hit by Covid-19." xml:space="preserve">
     <value>您的捐赠能够帮助受新冠影响的无家可归者。</value>
   </data>
-  <data name="Your gift will provide his only escape from the cold." xml:space="preserve">
-    <value>您的捐赠将是他躲避严寒的唯一希望。</value>
+  <data name="A hot meal and shower costs 15 RMB. Add a day’s job training for a total of XXX RMB." xml:space="preserve">
+    <value>一顿温暖的饭菜和和一次淋浴的费用是15元人民币，加上一天的职业培训，总计XXX 元RMB。</value>
   </data>
   <data name="Your gifts mean Tao doesn’t have to beg for food." xml:space="preserve">
     <value>您的捐赠使陶德正不必再去乞讨食物</value>
