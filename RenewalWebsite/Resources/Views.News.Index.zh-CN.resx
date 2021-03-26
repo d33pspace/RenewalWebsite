@@ -225,8 +225,8 @@
   <data name="Your gift will help the homeless hit by Covid-19." xml:space="preserve">
     <value>您的捐赠能够帮助受新冠影响的无家可归者。</value>
   </data>
-  <data name="A hot meal and shower costs 15 RMB. Add a day’s job training for a total of XXX RMB." xml:space="preserve">
-    <value>一顿温暖的饭菜和和一次淋浴的费用是15元人民币，加上一天的职业培训，总计XXX 元RMB。</value>
+  <data name="A hot meal and shower costs 15 RMB. Add a day’s job training for a total of 60 RMB." xml:space="preserve">
+    <value>一顿温暖的饭菜和和一次淋浴的费用是15元人民币，加上一天的职业培训，总计60 元RMB。</value>
   </data>
   <data name="Your gifts mean Tao doesn’t have to beg for food." xml:space="preserve">
     <value>您的捐赠使陶德正不必再去乞讨食物</value>
@@ -237,8 +237,8 @@
   <data name="Your help has never been so important" xml:space="preserve">
     <value>您此时的帮助对我们而言更加重要</value>
   </data>
-  <data name="We spend XXX RMB per person, per day for meals, training and accommodation, including the work our trainees do to keep the Renewal Center working for others. Your help today could change a life!" xml:space="preserve">
-    <value>我们每天为每个人花费XXX元，用于他们餐食、培训和住宿，包括让受训人员参与日新中心的日常运营工作，为他人提供服务。今天您的帮助将会改变人们的一生！</value>
+  <data name="We spend 60 RMB per person, per day for meals, training and accommodation, including the work our trainees do to keep the Renewal Center working for others. Your help today could change a life!" xml:space="preserve">
+    <value>我们每天为每个人花费60元，用于他们餐食、培训和住宿，包括让受训人员参与日新中心的日常运营工作，为他人提供服务。今天您的帮助将会改变人们的一生！</value>
   </data>
   <data name="Because we serve meals every day, can you help provide more essential food this spring? It will definitely attract more people into our training program." xml:space="preserve">
     <value>由于每天都需要供应食物，您是否可以在今年春天支持我们提供更多的食物？这样一定能吸引到更多的人参加我们的培训项目。</value>
