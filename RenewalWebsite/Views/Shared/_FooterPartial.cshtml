@@ -64,9 +64,11 @@
         {
             <div class="row">
                 <div class="col-md-12 text-center">
-                    <h6 class="text-danger" style="color:#d11241 !important;">
-                        @Localizer["Sign up for our email communications:"]
-                    </h6>
+                    <h5 class="text-danger" style="color:#d11241 !important;">
+                        <b>
+                            @Localizer["Sign up for our email communications:"]
+                        </b>
+                    </h5>
                 </div>
             </div>
             <div class="row">
@@ -155,7 +157,7 @@
 
             //var sone = moment.tz.guess();
             //var timezone = moment.tz(sone).zoneAbbr();
-            
+
             var btn = $(this);
             $(btn).buttonLoader('start',"@Localizer["Please wait"]");
             var sign = (moment(new Date()).zone()) < 0 ? "+" : "-";
