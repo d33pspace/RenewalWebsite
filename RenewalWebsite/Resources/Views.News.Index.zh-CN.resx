@@ -252,11 +252,8 @@
   <data name="Luo Yu dropped out of job training a year ago, but we’re glad to welcome him back" xml:space="preserve">
     <value>羅羽一年前輟學了，但我們很高興歡迎他回來</value>
   </data>
-  <data name="Most are using are other front line services like our hot showers and washing maehmes — and are learning about our residential training program for people who want to move on and ﬁnd a full-time job." xml:space="preserve">
+  <data name="Most are using are other frontline services like our hot showers and washing machines — and are learning about our residential training program for people who want to move on and ﬁnd a full-time job." xml:space="preserve">
     <value>大多數人正在使用其他前線服務，例如我們的熱水淋浴和洗衣服務，並且正在學習我們的住宅培訓計劃，該計劃適用於希望繼續工作並找到全職工作的人們。</value>
-  </data>
-  <data name="Most are using are other trontline services like our hot showers and washing maehmes — and are learning about our residential training program for people who want to move on and ﬁnd a full-time job." xml:space="preserve">
-    <value>大多數人使用的是其他傳統服務，例如熱水淋浴和洗髮水-並正在了解我們的住宅培訓計劃，該計劃適用於希望繼續工作並找到全職工作的人們。</value>
   </data>
   <data name="My gift to meets basic needs" xml:space="preserve">
     <value>我的禮物可以滿足基本需求</value>
@@ -267,13 +264,10 @@
   <data name="spring 2021" xml:space="preserve">
     <value>2021年春季</value>
   </data>
-  <data name="This is our busiest time of year. Dozens more homeless people are coming in from the cold weather aslcing for something to eat as wdl as coats, hats, gloves, other warm winter clothing." xml:space="preserve">
+  <data name="This is our busiest time of year. Dozens more homeless people are coming in from the cold weather asking for something to eat as well as coats, hats, gloves, other warm winter clothing." xml:space="preserve">
     <value>這是我們一年中最忙的時間。數十名無家可歸的人正從寒冷的天氣中來，尋找像外套，帽子，手套和其他冬季保暖衣物一樣的食物。</value>
   </data>
-  <data name="This is our busiest time ofyear. Dozens more homeless people are coming in from the cold weather aslcing for something to eat as wdl as coats, hats, gloves, other warm winter clothing." xml:space="preserve">
-    <value>這是我們一年中最忙的時間。數十名無家可歸的人正從寒冷的天氣中來，尋找像外套，帽子，手套和其他冬季保暖衣物一樣的食物。</value>
-  </data>
-  <data name="we can't do it without you. The Renewal center relies on donations to change the lives ofhomeless people in shanghai.Your gifts provide basic support, meals, friendship and warmth. More than that, you also oeter safe, temporary accommodation, career training — and help getting an essential national identity card, a satisfy job and a paramanent home" xml:space="preserve">
+  <data name="we can't do it without you. The Renewal center relies on donations to change the lives of homeless people in shanghai.Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training — and help getting an essential national identity card, a satisfy job and a paramanent home" xml:space="preserve">
     <value>沒有你，我們無法做到。復興中心依靠捐贈來改變上海無家可歸者的生活。您的禮物可提供基本的支持，餐飲，友誼和溫暖。不僅如此，您還將獲得安全，臨時的住所，職業培訓，並幫助獲得基本的國民身份證，滿意的工作和永久居所</value>
   </data>
   <data name="You were there when he needed a second chance" xml:space="preserve">
@@ -290,5 +284,8 @@
   </data>
   <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
     <value>您的支持將幫助流離失所者獲得就業，穩定和永久居所</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
   </data>
 </root>
