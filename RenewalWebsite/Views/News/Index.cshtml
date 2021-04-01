@@ -21,20 +21,95 @@
         border: 2px solid white !important;
     }
 
-    @@media only screen and (max-width : 540px) {
-        .MobileScreen {
-            margin-bottom: 0px !important;
+    @@media only screen and (max-width : 990px) {
+        #FirstDiv {
+            min-height: 0px !important;
+        }
+
+        #mobileViewhr {
+            display: block !important;
+        }
+
+        #firsthr, #secoundhr {
+            display: none;
+        }
+
+        #story-1 {
+            padding-top: 0;
+        }
+
+        #MobileScreenImg {
+            position: absolute;
+            top: 0;
+            margin-top: 15px;
+            margin-bottom: 15px;
+        }
+
+        #imagecaption1 {
+            float: left;
+            text-align: left;
+        }
+        #MobileHeading1{
+            margin-top:15px;
+        }
+        /* hr {
+            display: none;
+        }*/
+        .row.news {
+            display: flex;
+            flex-direction: column-reverse;
+        }
+    }
+
+    @@media (max-width:415px) {
+        .story-img {
+            width: 100%;
+            max-width: 100%;
+            margin-left: 0px;
         }
     }
 </style>
+<script>
+
+    function resize() {
+        var common_height = 0;
+        var content = $("#FirstDiv");
+        var sidecontent = $(".columns");
+        if ($(content).height() >= $(sidecontent).height()) {
+            common_height = $(content).height()
+        } else {
+            common_height = $(sidecontent).height()
+        }
+        var x = window.matchMedia("(max-width: 991px)");
+        if (!x.matches) {
+            $('#FirstDiv').css('min-height', common_height);
+            $('.columns').css('min-height', common_height);
+            $("#MobileScreenContent").css("margin-top", "0");
+            $("#MobileScreenContent").css("min-height", "0");
+        } else {
+            $("#MobileScreenContent").css("margin-top", $("#MobileScreenImg").height() + 10);
+        }
+    }
+
+    $(document).ready(function () {
+        resize();
+    });
+    $(window).resize(function () {
+        resize();
+    });
+</script>
 <div class="container news-container">
     <!--<div class="row flex-sm-row-reverse">-->
-    <div class="row">
+    <div class="row news">
         <div class="col-lg-6 col-md-12 col-sm-12">
+            <hr id="mobileViewhr" style="border:1px solid black;display:none" />
             <div id="story-2">
-                <img class="img-fluid story-img" src="~/images/news/issue16/story-2.jpg">
-                <figcaption class="figure-caption caption chinese mb4 clear MobileScreen" style="margin-bottom:370px">@Localizer["Your support for the Renewal Center offers hope to people who can't hold on much longer outdoors"]</figcaption>
-                <p class="mb4 clear">
+                <div id="FirstDiv">
+                    <img class="img-fluid story-img" src="~/images/news/issue16/story-2.jpg">
+                    <figcaption id="imagecaption1" style="padding:10px 0px 0px 0px" class="figure-caption caption chinese mb4 clear">@Localizer["Your support for the Renewal Center offers hope to people who can't hold on much longer outdoors"]</figcaption>
+                </div>
+                <hr id="firsthr" style="border:1px solid black;width:106%" />
+                <p class="mb4 clear" id="MobileHeading1">
                     <h2><b>@Localizer["Your support helps displaced people gain employment, stability and a permanent home"]</b></h2>
                 </p>
                 <p class="mb4 clear">
@@ -45,7 +120,7 @@
                 </p>
                 <blockquote style="font-size:20px;padding-left:30px">
                     @Localizer["Walking around in dirty clothes makes you feel inferior."]
-                   <br>
+                    <br>
                 </blockquote>
                 <p>
                     @Localizer["Most are using are other frontline services like our hot showers and washing machines — and are learning about our residential training program for people who want to move on and ﬁnd a full-time job."]
@@ -91,34 +166,37 @@
         </div>
         <div class="col-lg-6 col-md-12 col-sm-12">
             <div id="story-1">
-                <h2 class="text-danger" style="color: #d11241 !important;font-size:70px"><b>@Localizer["Re:news"]</b></h2>
-                <h4 class="text-danger" style="color: #d11241 !important;">@Localizer["How your gifts can transform live in shangai"]</h4>
-                <p style="float:left;color:gray">@Localizer["issue 16"]</p>
-                <p style="float:right;color:gray">@Localizer["spring 2021"]</p>
-                <p class="clear">
-                    <h2><b>@Localizer["Your support helps displaced people gain employement, stability and a permanent home"]</b></h2>
-                </p>
-                @*<div class="news-subheader mb-4">@Localizer["People come for a hot meal and learn about our job training program"]</div>*@
+                <div class="columns" id="MobileScreenContent">
+                    <h2 class="text-danger" style="color: #d11241 !important;font-size:70px"><b>@Localizer["Re:news"]</b></h2>
+                    <h4 class="text-danger" style="color: #d11241 !important;">@Localizer["How your gifts can transform live in shangai"]</h4>
+                    <p style="float:left;color:gray">@Localizer["issue 16"]</p>
+                    <p style="float:right;color:gray">@Localizer["spring 2021"]</p>
+                    <p class="clear">
+                        <h2><b>@Localizer["Your support helps displaced people gain employement, stability and a permanent home"]</b></h2>
+                    </p>
+
+                    @*<div class="news-subheader mb-4">@Localizer["People come for a hot meal and learn about our job training program"]</div>*@
 
 
-                <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Hanson Ye"]</p>-->
-                <p class="mb4 clear">
+                    <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Hanson Ye"]</p>-->
 
-                    @Localizer["we can't do it without you. The Renewal center relies on donations to change the lives of homeless people in shanghai.Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training — and help getting an essential national identity card, a satisfy job and a paramanent home"]
-                </p>
-                <p>
-                    @Localizer["This is our busiest time of year. Dozens more homeless people are coming in from the cold weather asking for something to eat as well as coats, hats, gloves, other warm winter clothing."]
-                </p>
-                <p>
-                    @Localizer["Most are using are other frontline services like our hot showers and washing machines — and are learning about our residential training program for people who want to move on and ﬁnd a full-time job."]
-                </p>
-                <img class="img-fluid story-img" src="~/images/news/issue16/story-1.jpg">
-                <figcaption class="figure-caption caption chinese" style="float:left;text-align:left;padding:10px 0px 0px 0px">@Localizer["Your support for the Renewal Center offers hope to people who can't hold on much longer outdoors"]</figcaption>
+                    <p class="mb4 clear">
 
-                <!--<blockquote>
-                    @Localizer["Because we serve meals every day, can you help provide more essential food this spring? It will definitely attract more people into our training program."]<br>
-                </blockquote>-->
+                        @Localizer["we can't do it without you. The Renewal center relies on donations to change the lives of homeless people in shanghai.Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training — and help getting an essential national identity card, a satisfy job and a paramanent home"]
+                    </p>
+                    <p>
 
+                        @Localizer["This is our busiest time of year. Dozens more homeless people are coming in from the cold weather asking for something to eat as well as coats, hats, gloves, other warm winter clothing."]
+                    </p>
+                    <p style="margin-bottom:0px">
+                        @Localizer["Most are using are other frontline services like our hot showers and washing machines — and are learning about our residential training program for people who want to move on and ﬁnd a full-time job."]
+                    </p>
+                </div>
+                <hr id="secoundhr" style="border:1px solid black" />
+                <div id="MobileScreenImg">
+                    <img class="img-fluid story-img" src="~/images/news/issue16/story-1.jpg">
+                    <figcaption class="figure-caption caption chinese" style="float:left;text-align:left;padding:10px 0px 0px 0px">@Localizer["Your support for the Renewal Center offers hope to people who can't hold on much longer outdoors"]</figcaption>
+                </div>
             </div>
             <!--<div class="hide-large small-sub mb-4">
                 <h6 class="sub-menu-h6 mb-4">@Localizer["In this issue of Re:news"]</h6>
