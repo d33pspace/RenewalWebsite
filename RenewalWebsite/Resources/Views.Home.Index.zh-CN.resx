@@ -117,55 +117,55 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
-    <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
+  <data name="After a time of working at Renewal, most program participants are ready to find a full-time job. Our local employment partners including popular restaurants help us match our residents with a job they value. Once they settle in and establish a personal budget, we give them further assistance to help them find a permanent home." xml:space="preserve">
+    <value>在日新中心工作一段时间后，大多数计划参与者都具备了找到全职工作的能力。我们在当地的合作伙伴包括著名的餐厅，他们能为我们的学员提供宝贵的工作。一旦他们安顿下来并有了一定存款后，我们会给他们进一步的协助，帮他们找到永久的住所。</value>
   </data>
-  <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
-    <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
+  <data name="After years of living on the streets, finding a job can seem impossible – even for those who are disciplined enough to hold down a full-time job. Your support for our Work Experience program invites people to serve in our laundry room, clean and maintain the center or manage our essential services. They each gain valuable job skills while helping out other people in need." xml:space="preserve">
+    <value>在街头生活得太久，使他们很难再找到工作，即使有些人完全具备工作所需的能力。您的支持让我们开启了“工作经验”计划，邀请这些人们在我们的洗衣间工作，帮助我们打扫和维护中心的整洁或管理我们的基础服务。他们在此积累了宝贵的工作经验，同时还能够帮助其他有需求的人们。</value>
   </data>
-  <data name="Donate now" xml:space="preserve">
-    <value>点击此处捐款</value>
+  <data name="Employment and Support" xml:space="preserve">
+    <value>工作与支持</value>
   </data>
-  <data name="Home" xml:space="preserve">
-    <value>首页</value>
+  <data name="Essential Services" xml:space="preserve">
+    <value>基本服务</value>
   </data>
-  <data name="Homeless people need hot meals and warm, winter clothes" xml:space="preserve">
-    <value>无家可归的人们需要一份温暖的饭菜和保暖的冬装</value>
+  <data name="From a shower and clean clothes to safe shelter and job training, your gifts provide everything a person needs to turn their life around." xml:space="preserve">
+    <value>从洗澡到换洗衣物，从安全的住所到工作培训机会，您的捐赠能够帮助一位无家可归人士开始新的生活。</value>
   </data>
-  <data name="Log in" xml:space="preserve">
-    <value>登录</value>
+  <data name="Life Skills Workshops" xml:space="preserve">
+    <value>生存技能工作坊</value>
   </data>
-  <data name="Your support for the Renewal Center offers hope to people who can’t hold on much longer outdoors." xml:space="preserve">
-    <value>您对日新中心的支持给那些露宿街头、难以为继的人们带去了希望</value>
+  <data name="People who want further support find a dedicated team of volunteers offering workshops that help them set goals, build friendships and express themselves. Many people begin to broken relationships, reconcile with family or make a return visit to their home province, which is the only way to obtain or renew an essential national identity card." xml:space="preserve">
+    <value>我们敬业的志愿者团队还为他们提供了进一步的支持，帮助他们设定目标，建立友谊并展示自己。许多人开始结交新朋友，与家人和解或回到自己的家乡，这样他们才能获得或更新最基础的个人身份。</value>
   </data>
-  <data name=" to see your personalized giving report for 2020." xml:space="preserve">
-    <value>查看您在2020年的捐赠报告。</value>
+  <data name="Renewal offers displaced people a range of services on the road to a better life" xml:space="preserve">
+    <value>日新中心为无家可归人士提供一系列通向更美好生活的服务</value>
   </data>
-  <data name="This is our busiest time of year. Dozens more homeless people are coming in from the cold weather asking for something to eat as well as coats, hats, gloves, other warm winter clothing." xml:space="preserve">
-    <value>这是我们在一年中最繁忙的日子。越来越多无家可归的人们从寒冬中来到这里，寻求食物、大衣、帽子、手套和别的保暖衣物。</value>
+  <data name="Services" xml:space="preserve">
+    <value>服务</value>
   </data>
-  <data name="Most are using are other frontline services like our hot showers and washing machines – and are learning about our residential training program for people who want to move on and find a full-time job." xml:space="preserve">
-    <value>大多数人也会使用其它的一线服务，如淋浴设施和洗衣机，并了解我们的住宿培训计划——该计划适用于那些谋求发展、渴望能找到一份全职工作的人。</value>
+  <data name="Starting with basic help for men and women living on the streets, Renewal also offers longer-term support to help people build friendships, find satisfying work and move into a permanent home." xml:space="preserve">
+    <value>除了最基本的帮助外，日新中心还为街头的无家可归人士提供长期的支持，帮助他们建立友谊，寻找满意的工作并组建永久的家庭。</value>
   </data>
-  <data name="Hot meals introduce more people to job training" xml:space="preserve">
-    <value>熱餐使更多人接受職業培訓</value>
+  <data name="Work Experience" xml:space="preserve">
+    <value>工作经验</value>
   </data>
-  <data name="Like every hot meal we serve, our Spring Festival celebration brings new people into the Renewal Center where they find out about job training and other services." xml:space="preserve">
-    <value>像我們提供的每頓熱飯一樣，我們的春節慶祝活動將新人們帶入復興中心，在那裡他們可以找到有關工作培訓和其他服務的信息。</value>
+  <data name="Your support offers every person who comes to Renewal a good meal, a hot shower, a change of clothes, the use of free laundry facilities and a chance to let someone know what help they need. The streets are an incredibly dangerous and difficult place to live, but with your continued support, Renewal will be here for everyone who needs friendship and a helping hand." xml:space="preserve">
+    <value>您的支持能够为每一位来到日新中心寻求帮助的人提供一顿饱餐，一次热水澡，一套干净的衣服，免费使用洗衣机和一次让别人了解他的需求的机会。露宿街头的生活危险而艰难，但在您的持续帮助下，日新中心将会为每一个需要的人提供友谊与援助之手。</value>
   </data>
-  <data name="Read about Chen Wenlin who visited for the first at Spring Festival and has already joined our residential program to train job-seekers." xml:space="preserve">
-    <value>了解有關陳文林的信息，陳文林在春節期間首次來訪，並已加入我們的住宿計劃，以培訓求職者。</value>
-  </data>
-  <data name="Read more" xml:space="preserve">
-    <value>閱讀更多</value>
-  </data>
-  <data name="The simple gift of a hot meal can encourage someone to change their whole life" xml:space="preserve">
-    <value>一份簡單的熱飯禮物可以鼓勵某人改變一生</value>
-  </data>
-  <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. You’ll also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
-    <value>沒有您，我們無法做到。復興中心依靠捐款來改變上海無家可歸者的生活。您的禮物可以提供基本的支持，用餐，友誼和溫暖。您還將提供安全的臨時住所，職業培訓，並幫助獲得基本的國民身份證，令人滿意的工作和永久居所。</value>
-  </data>
-  <data name="You will help displaced people gain employment, stability and a permanent home" xml:space="preserve">
-    <value>您將幫助流離失所者獲得就業，穩定和永久居所</value>
-  </data>
+																																											 
+																																					
+		 
+											  
+							   
+		 
+																												   
+									  
+		 
+																																																																																															   
+																																																																  
+		 
+																												   
+										 
+		 
 </root>
