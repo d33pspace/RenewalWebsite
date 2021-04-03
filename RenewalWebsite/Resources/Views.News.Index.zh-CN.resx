@@ -117,10 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="ISSUE 16" xml:space="preserve">
+  <data name="Issue 16" xml:space="preserve">
     <value>第16期</value>
   </data>
-  <data name="SPRING 2021" xml:space="preserve">
+  <data name="Spring 2021" xml:space="preserve">
     <value>2021年春季刊</value>
   </data>
   <data name="How your gifts can transform live in shangai" xml:space="preserve">
