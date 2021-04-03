@@ -36,23 +36,23 @@
             <a class="navbar-brand hide-small" href="/"><img src="~/images/renewal-logo.png" data-at2x="~/images/renewal-logo@2x.png" width="100" /></a>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav left">
-                    <li class="nav-item">
-                        <a class="nav-link" href="/">@Localizer["Home"]</a>
-											  
-							
-																							
-																		
-																									
-							  
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="/" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            @Localizer["Home"]
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                            <a class="dropdown-item" href="#">Test 1</a>
+                            <a class="dropdown-item" href="#">Test 2</a>                            
+                        </div>
                     </li>
-										   
-																			   
-								
-																				
-																				
-																				
-								 
-							   
+                    @*<li class="nav-item">
+                            <a class="nav-link" href="/">@Localizer["Home"]</a>
+                            <ul>
+                                <li><a class="nav-link" href="/">Test 1</a></li>
+                                <li><a class="nav-link" href="/">Test 2</a></li>
+                                <li><a class="nav-link" href="/">Test 3</a></li>
+                            </ul>
+                        </li>*@
                     <li class="nav-item">
                         <a class="nav-link" asp-controller="Home" asp-action="Services">@Localizer["Services"]</a>
                     </li>
