@@ -133,7 +133,7 @@
 <!-- Drip -->
 <script type="text/javascript">
     $(document).ready(function () {
-        $('#btnDripData').click(function () {
+        $('#btnDripData').click(function () {            
             if ($('#drip-contact-name').val() == "") {
                 $('#nameValid').css("display", "table");
                 $('#nameValid').show();
@@ -186,7 +186,8 @@
                 type: "post",
                 datatype: "application/json",
                 success: function (result) {
-                    if (result.status = "success") {
+                    //console.log(result.status);
+                    if (result.status = "success") {                        
                         $(btn).buttonLoader('stop');
                         window.location.href = "/thankyou";
                     }
