@@ -17,239 +17,82 @@
     //double baseAmountUSD = 2.19;
 }
 <style>
-    #btnDripData {
-        border: 2px solid white !important;
-    }
-
-    @@media only screen and (max-width : 991px) {
-        #FirstDiv {
-            min-height: 0px !important;
-        }
-
-        #mobileViewhr {
-            display: block !important;
-        }
-
-        #firsthr /* #secoundhr*/ {
-            display: none;
-        }
-
-        #story-1 {
-            padding-top: 0;
-        }
-
-        #MobileScreenFirstDiv {
-            display: block !important;
-        }
-
-        #FirstDiv {
-            display: none !important;
-        }
-
-        #MobileScreenImg {
-            /*position: absolute;
-            top: 0;
-            margin-top: 15px;
-            margin-bottom: 15px;*/
-        }
-
-        #imagecaption1 {
-            float: left;
-            text-align: left;
-        }
-
-        #MobileHeading1 {
-            margin-top: 15px;
-        }
-        /* hr {
-            display: none;
-        }*/
+    @@media only screen and (max-width : 768px) {
         .row.news {
             display: flex;
             flex-direction: column-reverse;
         }
     }
-
-    @@media (max-width:415px) {
-        .story-img {
-            width: 100%;
-            max-width: 100%;
-            margin-left: 0px;
-        }
-    }
 </style>
-<script>
-    $(document).ready(resize);
-    $(window).resize(resize);            
-    function resize() {        
-            timeout = false;
-        var common_height = 0;
-        var Linewidth = 0;
-            var content = $("#FirstDiv");
-            var sidecontent = $(".columns");
-            //if ($(content).height() >= $(sidecontent).height()) {
-            //    common_height = $(content).height();
-            //} else {
-        common_height = $(sidecontent).height();
-        Linewidth = $("#firsthr").width();
-            //}
-            var x = window.matchMedia("(max-width: 991px)");
-        if (!x.matches) {
-            $("#firsthr").css("width", (100 + 10)+'%');
-                $('#FirstDiv').css('min-height', common_height);
-                $('.columns').css('min-height', common_height);
-                $("#MobileScreenContent").css("margin-top", "0");
-                $("#MobileScreenContent").css("min-height", "0");
-            } //else {
-        // $("#MobileScreenContent").css("margin-top", $("#MobileScreenImg").height() + 10);
-        //}                
-    }
-    $(window).load(resize);
-</script>
 <div class="container news-container">
-    <!--<div class="row flex-sm-row-reverse">-->
-    <div class="row news">
-        <div class="col-lg-6 col-md-12 col-sm-12">
-            <div id="story-2">
-                <div id="FirstDiv">
-                    <img class="img-fluid story-img" src="~/images/news/issue16/story-1.jpg">
-                    <figcaption class="figure-caption caption chinese" style="float:left;text-align:left;padding:10px 0px 0px 0px">@Localizer["As well as a holiday meal, each guest received a party favor of seasonal mandarins, peanuts, a drink and a few renminbi to spend on essentials."]</figcaption>
-                </div>
-                <hr id="firsthr" style="border:1px solid black;width:106%" />
-                <p class="mb4 clear" id="MobileHeading1">
-                    <h2><b>@Localizer["You were there when he needed a second chance"]</b></h2>
-                    <div class="news-subheader mb-4">@Localizer["Luo Yu dropped out of job training a year ago, but we’re glad to welcome him back"]</div>
-                </p>
-                <p class="mb4 clear">
-                    @Localizer["Were you ever given a second chance in life? What about a third chance? Each one of us has experienced failure at some point, but then there’s the kind of personal crisis that happens right on the verge of success..."]
-                </p>
-                <p>
-                    @Localizer["Luo Yu could tell you all about it. He was doing exceptionally well in our residential program and ready to start training one day a week at one of our outstanding partner restaurants, M on the Bund – when he suddenly disappeared."]
-                </p>
-                <blockquote>
-                    @Localizer["I just want a stable well-paid job. I’ve been drifting for too long."]<br>
-                </blockquote>
-                <p>
-                    @Localizer["That was a year ago. It was sad but understandable – because we know that even small steps toward full-time employment can be intimidating for those who know the joy of total freedom, even if it comes with the pain of homelessness."]
-                </p>
-                <p>
-                    @Localizer["But ... now Luo Yu is back! And far from getting the cold shoulder from his former friends, we’re still ready to help him make a new start. Every part of our journey brings us to where we are, and for Luo Yu, it’s your support that says, “Yes, come back, you wanderer!”"]
-                </p>
-                <p>
-                    @Localizer["Like anyone who succeeds in our very challenging program, Luo Yu is an extremely hard worker who is once again learning to apply his effort do doing tasks according to plan, not just the way he thinks best. And he says he’s ready this time to finish the work he started, “I just want a stable, well-paid job. I’ve been drifting for too long.”"]
-                </p>
-
-                <p>
-                    @Localizer["The Renewal Center’s training program is often the key to successful life-change, and is open to anyone who is willing to put in serious work towards finding full-time employment."]&nbsp;<b>@Localizer["We spend 60 RMB ($9.20) per person, per day for meals, training and accommodation, including the work our trainees do to keep the Renewal Center working for others. Your help today could change a life!"]</b>
-                </p>
-                <div class="red-border">
-                    <span class="blockquote-winter">@Localizer["A hot meal and shower costs 15 RMB ($2.30). Add a day’s job training for a total of 60 RMB ($9.20)."]</span>
-                    <br /><br />
-                    <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["My gift for meals and training"]<i class="arrow right-arrow"></i></a>
-                    <div style="margin-bottom:15px;"></div>
-                </div>
-            </div>
-            <!--<div class="hide-small">
-                <h6 class="sub-menu-h6">@Localizer["In this issue of Re:news"]</h6>
-
-                <a class="sub-menu-a styled-link" href="#story-2">
-                    <img class="img-fluid" src="~/images/news/issue16/story-2.jpg">
-                    @Localizer["You were there when he needed a second chance"]
-                </a>
-                <p class="excerpt">@Localizer["Luo Yu dropped out of job training a year ago, but we’re glad to welcome him back"]</p><br>
-
-                <a class="sub-menu-a styled-link" href="#story-3">
-                    <img class="img-fluid" src="~/images/news/issue15/story-3.jpg">
-                    @Localizer["A story of desperation and hope"]
-                </a>
-                <p class="excerpt">@Localizer["Tao Dezheng had no choice but to leave his family and search for work"]</p><br>
-
-                <a class="sub-menu-a styled-link" href="#story-4">
-                    <img class="img-fluid" src="~/images/news/issue15/story-4.jpg">
-                    @Localizer["His only escape from the cold"]
-                </a>
-                <p class="excerpt">@Localizer["You can help the homeless hiding in plain sight"]</p><br>
-
-                <div class="browse">
-                    <h6 class="sub-menu-h6">Browse our previous issues...</h6>
-                    <ul>
-                        <li><a class="sub-menu-a styled-link" href="/">Issue 7: Fall 2016</a></li>
-                        <li><a class="sub-menu-a styled-link" href="/">Issue 6: Spring 2016</a></li>
-                        <li><a class="sub-menu-a styled-link" href="/">Issue 5: Fall 2015</a></li>
-                    </ul>
-                </div>
-
-            </div>-->
+    <div class="row">
+        <div class="col-md-6">
+            <img class="img-fluid story-img" src="~/images/news/issue16/story-1.jpg">
+            <figcaption class="figure-caption caption chinese" style="float:left;text-align:left;padding:10px 0px 0px 0px">@Localizer["As well as a holiday meal, each guest received a party favor of seasonal mandarins, peanuts, a drink and a few renminbi to spend on essentials."]</figcaption>
         </div>
-        <div class="col-lg-6 col-md-12 col-sm-12">
-            <div id="story-1">
-                <div id="MobileScreenFirstDiv" style="display:none">
-                    <img class="img-fluid story-img" src="~/images/news/issue16/story-1.jpg">
-                    <figcaption class="figure-caption caption chinese" style="float:left;text-align:left;padding:10px 0px 0px 0px">@Localizer["As well as a holiday meal, each guest received a party favor of seasonal mandarins, peanuts, a drink and a few renminbi to spend on essentials."]</figcaption>
-                </div>
-                <div class="columns" id="MobileScreenContent">
-                    <h2 class="text-danger" style="color: #d11241 !important;font-size:70px"><b>@Localizer["Re:news"]</b></h2>
-                    <h4 class="text-danger" style="color: #d11241 !important;">@Localizer["How your gifts can transform live in shangai"]</h4>
-                    <p style="float:left;color:gray">@Localizer["Issue 16"]</p>
-                    <p style="float:right;color:gray">@Localizer["Spring 2021"]</p>
-                    <p class="clear">
-                        <h2><b>@Localizer["Spring Festival dinner is a launch pad for new lives"]</b></h2>
-                        <div class="news-subheader mb-4">@Localizer["People come for a hot meal and learn about our job training program"]</div>
-                    </p>
-                    <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Hanson Ye"]</p>-->
+        <div class="col-md-6">
+            <h2 class="text-danger" style="color: #d11241 !important;font-size:70px"><b>@Localizer["Re:news"]</b></h2>
+            <h4 class="text-danger" style="color: #d11241 !important;">@Localizer["How your gifts can transform live in shangai"]</h4>
+            <p style="float:left;color:gray">@Localizer["Issue 16"]</p>
+            <p style="float:right;color:gray">@Localizer["Spring 2021"]</p>
+            <p class="clear">
+                <h2><b>@Localizer["Spring Festival dinner is a launch pad for new lives"]</b></h2>
+                <div class="news-subheader mb-4">@Localizer["People come for a hot meal and learn about our job training program"]</div>
+            </p>
+            <!--<p class="mb4 clear" style="color: #777777;">@Localizer["By Hanson Ye"]</p>-->
 
-                    <p class="mb4 clear">
-                        @Localizer["Thank you! Your support provided a hot holiday meal to 100 homeless guests and introduced them to our job training program. And because family reunions such a big tradition at this time of year, your gifts help overcome the sadness of having no family or being unable or afraid to return home. Your kindness also gave a few renminbi in a traditional red envelope to guests who could not otherwise afford their next meal because there’s no short-term work over the holiday."]
-                    <p>
-                        @Localizer["Chen Wenlin was invited by a friend and said, “I saw so many friends there. It brought me hope.” He was incredibly grateful for the gift of cash. “I don’t know what I would have done without your hongbao.” Better yet, Chen has already started our job training program. He is enthusiastically doing daily chores and learning to read and write, practicing his characters in a notebook used by schoolchildren."]
-                    </p>
-                    <p style="margin-bottom:0px">
-                        @Localizer["Our Spring Festival meal includes traditional dumplings, or jiaozi, all handmade by volunteers."]&nbsp;<b>@Localizer["Because we serve meals every day, can you help provide more essential food this spring? It will definitely attract more people into our training program."]</b>
-                    </p>
-                </div>
-                <hr id="secoundhr" style="border:1px solid black" />
-                @*<hr id="mobileViewhr" style="border:1px solid black;display:none" />*@
-                <div id="MobileScreenImg">
-                    <img class="img-fluid story-img" src="~/images/news/issue16/story-2.jpg">
-                    <figcaption id="imagecaption1" style="padding:10px 0px 0px 0px" class="figure-caption caption chinese mb4 clear">@Localizer["No one has any doubt that Luo Yu will land a satisfying job when he completes the Renewal Center’s training program."]</figcaption>
-                </div>
+            <p class="mb4 clear">
+                @Localizer["Thank you! Your support provided a hot holiday meal to 100 homeless guests and introduced them to our job training program. And because family reunions such a big tradition at this time of year, your gifts help overcome the sadness of having no family or being unable or afraid to return home. Your kindness also gave a few renminbi in a traditional red envelope to guests who could not otherwise afford their next meal because there’s no short-term work over the holiday."]
+            <p>
+                @Localizer["Chen Wenlin was invited by a friend and said, “I saw so many friends there. It brought me hope.” He was incredibly grateful for the gift of cash. “I don’t know what I would have done without your hongbao.” Better yet, Chen has already started our job training program. He is enthusiastically doing daily chores and learning to read and write, practicing his characters in a notebook used by schoolchildren."]
+            </p>
+            <p style="margin-bottom:0px">
+                @Localizer["Our Spring Festival meal includes traditional dumplings, or jiaozi, all handmade by volunteers."]&nbsp;<b>@Localizer["Because we serve meals every day, can you help provide more essential food this spring? It will definitely attract more people into our training program."]</b>
+            </p>
+
+        </div>
+    </div>
+    <hr style="border-top:2px solid black" />
+    <div class="row news">
+        <div class="col-md-6">
+            <p class="mb4 clear" id="MobileHeading1">
+                <h2><b>@Localizer["You were there when he needed a second chance"]</b></h2>
+                <div class="news-subheader mb-4">@Localizer["Luo Yu dropped out of job training a year ago, but we’re glad to welcome him back"]</div>
+            </p>
+            <p class="mb4 clear">
+                @Localizer["Were you ever given a second chance in life? What about a third chance? Each one of us has experienced failure at some point, but then there’s the kind of personal crisis that happens right on the verge of success..."]
+            </p>
+            <p>
+                @Localizer["Luo Yu could tell you all about it. He was doing exceptionally well in our residential program and ready to start training one day a week at one of our outstanding partner restaurants, M on the Bund – when he suddenly disappeared."]
+            </p>
+            <blockquote>
+                @Localizer["I just want a stable well-paid job. I’ve been drifting for too long."]<br>
+            </blockquote>
+            <p>
+                @Localizer["That was a year ago. It was sad but understandable – because we know that even small steps toward full-time employment can be intimidating for those who know the joy of total freedom, even if it comes with the pain of homelessness."]
+            </p>
+            <p>
+                @Localizer["But ... now Luo Yu is back! And far from getting the cold shoulder from his former friends, we’re still ready to help him make a new start. Every part of our journey brings us to where we are, and for Luo Yu, it’s your support that says, “Yes, come back, you wanderer!”"]
+            </p>
+            <p>
+                @Localizer["Like anyone who succeeds in our very challenging program, Luo Yu is an extremely hard worker who is once again learning to apply his effort do doing tasks according to plan, not just the way he thinks best. And he says he’s ready this time to finish the work he started, “I just want a stable, well-paid job. I’ve been drifting for too long.”"]
+            </p>
+
+            <p>
+                @Localizer["The Renewal Center’s training program is often the key to successful life-change, and is open to anyone who is willing to put in serious work towards finding full-time employment."]&nbsp;<b>@Localizer["We spend 60 RMB ($9.20) per person, per day for meals, training and accommodation, including the work our trainees do to keep the Renewal Center working for others. Your help today could change a life!"]</b>
+            </p>
+            <div class="red-border">
+                <span class="blockquote-winter">@Localizer["A hot meal and shower costs 15 RMB ($2.30). Add a day’s job training for a total of 60 RMB ($9.20)."]</span>
+                <br /><br />
+                <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["My gift for meals and training"]<i class="arrow right-arrow"></i></a>
+                <div style="margin-bottom:15px;"></div>
             </div>
-            <!--<div class="hide-large small-sub mb-4">
-                <h6 class="sub-menu-h6 mb-4">@Localizer["In this issue of Re:news"]</h6>
-                <a class="sub-menu-a styled-link" href="#story-2">@Localizer["You were there when he needed a second chance"]</a>
-                <p class="excerpt">@Localizer["Luo Yu dropped out of job training a year ago, but we’re glad to welcome him back"]</p>
-            </div>-->
-            <!--<div class="browse hide-large">
-                <h6 class="sub-menu-h6">Browse our previous issues...</h6>
-                <ul>
-                    <li><a class="sub-menu-a styled-link" href="/">Issue 7: Fall 2016</a></li>
-                    <li><a class="sub-menu-a styled-link" href="/">Issue 6: Spring 2016</a></li>
-                    <li><a class="sub-menu-a styled-link" href="/">Issue 5: Fall 2015</a></li>
-                </ul>
-            </div>-->
-            <!--<div id="story-X">
-                <h3>@Localizer["His only escape from the cold"]</h3>
-                <div class="news-subheader mb-4">@Localizer["You can help the homeless hiding in plain sight"]</div>
-                <img class="img-fluid story-img" src="~/images/news/issue15/story-4.jpg">
-                <figcaption class="figure-caption caption chinese">@Localizer["The Renewal Center gives Yan Shipin, 45, the confidence to look for a job."]</figcaption>
-                <p>
-                <p class="mb4 clear">
-                    @Localizer["That man sleeping alone in the airport concourse – is he waiting for a flight? You might be surprised to find that not only does he not have a ticket, he doesn’t have a passport, a wallet or even a few coins buy his next meal."]
-                </p>
-                <p>
-                    @Localizer["It happened to Yan Shipin, 45. He drops into the Renewal Center for the occasional hot meal, but also relies on the showers and clothing exchange to stay presentable enough to look for a job. In the meantime, he sleeps in the airport for safety and warmth – and because there’s less of a chance he’ll be told to move on."]
-                </p>
-                <div class="red-border">
-                    <span class="blockquote-winter">@Localizer["Your gift will help the homeless hit by Covid-19."]</span>
-                    <br /><br />
-                    <a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["My gift to meet basic needs"]<i class="arrow right-arrow"></i></a>
-                    <div style="margin-bottom:15px;"></div>
-                </div>
-                <p>
-                    @Localizer["Yan used to be a part-time attendant in the public baths, but since they closed, he now scrapes together whatever money he can collecting plastic bottles to recycle. Your kindness makes a difference to him – and will have a life-changing impact on the next person in need. As Yan says, “The clean clothes I receive at the Renewal Center give me the dignity to ride on public transport and interview for jobs.”"]
-                </p>
-            </div>-->
-
+        </div>
+        <div class="col-md-6">
+            <div id="MobileScreenImg">
+                <img class="img-fluid story-img" src="~/images/news/issue16/story-2.jpg">
+                <figcaption id="imagecaption1" style="padding:10px 0px 0px 0px" class="figure-caption caption chinese mb4 clear">@Localizer["No one has any doubt that Luo Yu will land a satisfying job when he completes the Renewal Center’s training program."]</figcaption>
+            </div>
         </div>
     </div>
 </div>
