@@ -29,16 +29,16 @@
                 <span>@baseAmountUSD.ToString("C", currency)</span>
             }
             @Localizer["you give today will provide a hot meal, shower and change of clothes for a homeless man or woman."]-->
-            @Localizer["You give hot meals to people who would otherwise not eat that day – and like Luo Yu, some are inspired to join our job training program!"]
+            @Localizer["Give people in desperate need a home away from home – and training to live independently."]
         </figcaption>
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Please give hot meals and job training"]</h2>
+        <h2>@Localizer["我愿做出捐赠来对抗夏季的低迷"]</h2>
 
         @if (currency.Name.Contains("en"))
         {
-            <p>@Localizer["Every hot meal we serve at the Renewal Center relies on a supporter gift of $2.30. And your gift of $9.20 could provide a meal, plus one day of accommodation on our incredibly effective job training program."]</p>
+            <p>@Localizer["The Renewal Center is facing a summer slump in giving, and people’s futures are at risk. Your gift will help keep us going to offer meals, showers, shelter and training to give homeless people a second chance."]</p>
             <form asp-controller="Donate" asp-action="Create">
 
                 <div asp-validation-summary="All" class="text-danger"></div>
