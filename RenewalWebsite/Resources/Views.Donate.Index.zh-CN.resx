@@ -204,20 +204,23 @@
   <data name="Every hot meal we serve at the Renewal Center relies on a supporter gift of 15 RMB. And your gift of 60 RMB could provide a meal, plus one day of accommodation on our incredibly effective job training program." xml:space="preserve">
     <value>我们在日新中心提供的每顿热腾腾的餐食都需要15元人民币的捐赠。若您捐赠60元，就可以为人们提供一顿热饭，外加参与一天卓有成效的就业培训项目及寄宿费用。</value>
   </data>
-  <data name="for hot meals, job training, or any current need" xml:space="preserve">
-    <value>帮助尽可能多的人们吃上热腾腾的饭菜、获得就业培训，或用于任何当下所需</value>
+  <data name="to help as many people as I can." xml:space="preserve">
+    <value>帮助尽量多的人。</value>
+  </data>
+  <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
+    <value>尽我所能帮助尽量多的人。</value>
   </data>
   <data name="My gift to beat the summer slump" xml:space="preserve">
     <value>我愿做出捐赠来对抗夏季的低迷</value>
   </data>
-  <data name="to provide 10 days of job training, meals and accommodation" xml:space="preserve">
-    <value>提供10天的就业培训、膳食及住宿</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 50 people" xml:space="preserve">
+    <value>为50人提供热腾腾的饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide a hot meal and shower for 20 people" xml:space="preserve">
-    <value>可为20人提供热腾腾的饭菜和淋浴</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 30 people" xml:space="preserve">
+    <value>为30人提供热腾腾的饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide a hot meal and shower for 90 people" xml:space="preserve">
-    <value>可为90人提供热腾腾的饭菜和淋浴</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 90 people" xml:space="preserve">
+    <value>为90人提供热腾腾的饭菜、淋浴和干净的衣服</value>
   </data>
   <data name="Give people in desperate need a home away from home – and training to live independently." xml:space="preserve">
     <value>给急需帮助的人一个家外之家——并且给他们培训让他们能独立生活。</value>
@@ -225,7 +228,7 @@
   <data name="The Renewal Center is facing a summer slump in giving, and people’s futures are at risk. Your gift will help keep us going to offer meals, showers, shelter and training to give homeless people a second chance." xml:space="preserve">
     <value>日新中心正面临夏季捐赠的低迷期，这使得这里的人未来面临风险。您的捐助将帮助我们继续提供食物、淋浴、住所和培训，给无家可归的人第二次机会。</value>
   </data>
-  <data name="to provide a hot meal and shower for 10 people" xml:space="preserve">
-    <value>可为10人提供热腾腾的饭菜和淋浴</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 10 people" xml:space="preserve">
+    <value>为10人提供热腾腾的饭菜、淋浴和干净的衣服</value>
   </data>
 </root>
