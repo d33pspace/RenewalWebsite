@@ -102,24 +102,24 @@
 
 						<div class="form-group row">
                             <div class="col-6">
-								<label for="drip-first-name">First Name</label><br>
-								<input type="text" id="drip-first-name" name="fields[first_name]" value="">
+								<label for="drip-first-name" class="col-form-label sr-only">Name</label><br>
+								<input type="text" id="drip-first-name" name="fields[first_name]" class="form-control" value="" placeholder="@Localizer["Name"]">
 							</div>
 
 							<div class="col-6">
-								<label for="drip-email">Email Address</label><br>
-								<input type="email" id="drip-email" name="fields[email]" value="">
+								<label for="drip-email" class="col-form-label sr-only">Email Address</label><br>
+								<input type="email" id="drip-email" name="fields[email]" class="form-control" value="" placeholder="@Localizer["Email"]">
 							</div>							
 						</div>
 
-							<div style="display: none;" aria-hidden="true">
-								<label for="website">Website</label><br>
-								<input type="text" id="website" name="website" tabindex="-1" autocomplete="false" value="">
-							</div>
+						<div style="display: none;" aria-hidden="true">
+							<label for="website">Website</label><br>
+							<input type="text" id="website" name="website" tabindex="-1" autocomplete="false" value="">
+						</div>
   
-							<div>
-								<input type="submit" value="Subscribe" data-drip-attribute="sign-up-button">
-							</div>
+						<div>
+							<input type="submit" value="Subscribe" data-drip-attribute="sign-up-button">
+						</div>
 					</form>
 
 				
