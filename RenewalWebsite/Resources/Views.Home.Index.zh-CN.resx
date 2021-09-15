@@ -147,11 +147,8 @@
   <data name="Every gift doubles" xml:space="preserve">
     <value>每一笔捐赠都将翻倍</value>
   </data>
-  <data name="A generous supporter of the Renewal Center has offered a generous matching grant that will double your gift until October 16." xml:space="preserve">
-   <value>日新中心一位慷慨的赞助者愿意提供配套捐赠，将您所捐的善款翻倍，直至10月16日。</value>
-  </data>
-  <data name="Help us prepare for the winter months when more people need help." xml:space="preserve">
-    <value>帮助我们为即将来临的冬季做好准备吧，届时总是有更多的人需要帮助。</value>
+  <data name="A generous supporter of the Renewal Center has offered a generous matching grant that will double your gift until October 16. Help us prepare for the winter months when more people need help." xml:space="preserve">
+   <value>日新中心一位慷慨的赞助者愿意提供配套捐赠，将您所捐的善款翻倍，直至10月16日。帮助我们为即将来临的冬季做好准备吧，届时总是有更多的人需要帮助。</value>
   </data>
   <data name="Read more" xml:space="preserve">
     <value>了解更多</value>
