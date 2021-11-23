@@ -179,22 +179,7 @@
   </data>
   <data name="When the weather is cold, more people come to us and they all need urgent help." xml:space="preserve">
     <value>寒冷的季节里，更多的人来到这里，寻求紧急的救助。</value>
-  </data>
-  <data name="150 RMB to provide a hot meal, shower, and clean clothes for 10 people" xml:space="preserve">
-    <value>150元提供10人份的餐食、淋浴和干净衣物</value>
-  </data>
-  <data name="450 RMB to provide a hot meal, shower, and clean clothes for 30 people" xml:space="preserve">
-    <value>450元提供30人份的餐食、淋浴和干净衣物</value>
-  </data>
-  <data name="750 RMB to provide a hot meal, shower, and clean clothes for 50 people" xml:space="preserve">
-    <value>750元提供50人份的餐食、淋浴和干净衣物</value>
-  </data>
-  <data name="1,350 RMB to provide a hot meal, shower, and clean clothes for 90 people" xml:space="preserve">
-    <value>1350元提供90人份的餐食、淋浴和干净衣物</value>
-  </data>
-  <data name="to provide a hot meal, shower, and winter clothes for 6 people" xml:space="preserve">
-    <value>为6人提供一顿温暖的饭菜、淋浴及冬装</value>
-  </data>
+  </data>  
   <data name="I want my gift to repeat automatically every month." xml:space="preserve">
     <value>我愿意每个月自动捐出同样的数额。</value>
   </data>
@@ -213,14 +198,17 @@
   <data name="Hot meals and support open the door to training" xml:space="preserve">
     <value>热气腾腾的饭菜和其它帮助打开了职业培训的大门</value>
   </data>
-  <data name="will double to $231.00 and help 100 hungry people this winter" xml:space="preserve">
-    <value>将翻倍为$231.00，帮助100 个饥肠辘辘的人度过这个冬天</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 10 people" xml:space="preserve">
+    <value>为10人提供餐食、淋浴和干净衣物</value>
   </data>
-  <data name="will double to $129.36 and provide two weeks’ training for one person" xml:space="preserve">
-    <value>将翻倍为$129.36，为1个人提供为期两周的培训</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 30 people" xml:space="preserve">
+    <value>为30人提供餐食、淋浴和干净衣物</value>
   </data>
-  <data name="will double to $462.00 to reach 200 people" xml:space="preserve">
-    <value>元人民币将翻倍为$462.00，帮助200个人</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 50 people" xml:space="preserve">
+    <value>为50人提供餐食、淋浴和干净衣物</value>
+  </data>
+  <data name="to provide a hot meal, shower, and clean clothes for 90 people" xml:space="preserve">
+    <value>为90人提供餐食、淋浴和干净衣物</value>
   </data>
   <data name="A hot meal is the first step towards residential training and a full-time job." xml:space="preserve">
     <value>一顿热气腾腾的饭菜是通往寄宿培训和全职工作的第一步。</value>
