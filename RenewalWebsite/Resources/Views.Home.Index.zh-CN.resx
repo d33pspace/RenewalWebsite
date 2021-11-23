@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Your support helps displaced people gain employment, stability and a permanent home" xml:space="preserve">
-    <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
+  <data name="Help a homeless person get off the streets" xml:space="preserve">
+    <value>帮助无家可归的人们离开街头</value>
   </data>
-  <data name="Double my gift" xml:space="preserve">
-    <value>将我的捐赠翻倍</value>
+  <data name="Give now" xml:space="preserve">
+    <value>现在捐赠</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>首页</value>
@@ -144,22 +144,22 @@
   <data name="Most are using are other frontline services like our hot showers and washing machines – and are learning about our residential training program for people who want to move on and find a full-time job." xml:space="preserve">
     <value>大多数人也会使用其它的一线服务，如淋浴设施和洗衣机，并了解我们的住宿培训计划——该计划适用于那些谋求发展、渴望能找到一份全职工作的人。</value>
   </data>
-  <data name="Every gift doubles" xml:space="preserve">
-    <value>每一笔捐赠都将翻倍</value>
+  <data name="Please send a gift to help someone like Luo Yu find a stable job" xml:space="preserve">
+    <value>请做出捐赠，帮助和罗玉一样的人找到一份稳定的工作</value>
   </data>
-  <data name="A generous supporter of the Renewal Center has offered a generous matching grant that will double your gift until October 16. Help us prepare for the winter months when more people need help." xml:space="preserve">
-   <value>日新中心一位慷慨的赞助者愿意提供配套捐赠，将您所捐的善款翻倍，直至10月16日。帮助我们为即将来临的冬季做好准备吧，届时总是有更多的人需要帮助。</value>
+  <data name="Luo Yu was wandering with no hope for the future when he discovered the Renewal Center. Our friendly drop-in support like hot meals and laundry service gave him the confidence to join our residential training program. “I just wanted a stable, well-paid job,” he says." xml:space="preserve">
+   <value>在发现日新中心之前，罗玉一直游荡在街头，对未来不抱任何希望。而我们向他伸出了援手，为他提供了热腾腾的餐食和洗衣服务，给予他信心，加入我们的住宿培训项目。“我只想要一份稳定的、薪水不错的工作。”他说。</value>
   </data>
   <data name="Read more" xml:space="preserve">
     <value>了解更多</value>
   </data>
-  <data name="Every gift delivers twice as much help today and for the coming winter months!" xml:space="preserve">
-    <value>每一笔捐赠都将提供双倍的帮助，帮助人们度过今天和严冬！</value>
+  <data name="Your gift gives someone like Luo Yu the chance to enter job training." xml:space="preserve">
+    <value>您的捐赠让罗玉这样的人有机会参加职业培训。</value>
   </data>
-  <data name="We can't do it without you. The Renewal Center relies on donations to change the lives of homeless people in Shanghai. Your gifts provide basic support, meals, friendship and warmth. More than that, you also offer safe, temporary accommodation, career training – and help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
-    <value>没有您的帮助，我们绝不会走到今天。日新中心需要您的资助来帮助上海街头无家可归人士开启新的生活。您的资助能够给他们带来食物、友谊与温暖。更重要的是，您还能提供安全的暂时住所和职业培训，使他们拥有新的身份、满意的工作和永久的家庭。</value>
+  <data name="Every 15 RMB of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
+    <value>今天，您每捐出 15 元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
   </data>
-  <data name="You will help displaced people gain employment, stability and a permanent home" xml:space="preserve">
-    <value>您的慷慨相助使流离失所的人们重新找到满意的工作、稳定的生活和永久的家庭</value>
+  <data name="Your gift offers them safe, temporary accommodation, career training – as well as help getting an essential national identity card, a satisfying job and a permanent home." xml:space="preserve">
+    <value>您的捐赠带给他们安全、临时的住所和职业培训——还能帮助他们取得身份证、一份好的工作和永久的家。</value>
   </data>
 </root>
