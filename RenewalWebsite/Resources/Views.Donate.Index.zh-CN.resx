@@ -180,17 +180,17 @@
   <data name="When the weather is cold, more people come to us and they all need urgent help." xml:space="preserve">
     <value>寒冷的季节里，更多的人来到这里，寻求紧急的救助。</value>
   </data>
-  <data name="will double to to ￥300 and give meals and warm clothes to 20 people" xml:space="preserve">
-    <value>将翻倍为￥300，为20个人提供食物和冬装</value>
+  <data name="150 RMB to provide a hot meal, shower, and clean clothes for 10 people" xml:space="preserve">
+    <value>150元提供10人份的餐食、淋浴和干净衣物</value>
   </data>
-  <data name="will double to ￥840 and provide two weeks’ training for one person" xml:space="preserve">
-    <value>将翻倍为￥840，为1个人提供为期两周的培训</value>
+  <data name="450 RMB to provide a hot meal, shower, and clean clothes for 30 people" xml:space="preserve">
+    <value>450元提供30人份的餐食、淋浴和干净衣物</value>
   </data>
-  <data name="will double to ￥1,500 and help 100 hungry people this winter" xml:space="preserve">
-    <value>将翻倍为￥1500，帮助100 个饥肠辘辘的人度过这个冬天 </value>
+  <data name="750 RMB to provide a hot meal, shower, and clean clothes for 50 people" xml:space="preserve">
+    <value>750元提供50人份的餐食、淋浴和干净衣物</value>
   </data>
-  <data name="will double to ￥3,000 to reach 200 people" xml:space="preserve">
-    <value>将翻倍为￥3000，帮助200个人</value>
+  <data name="1,350 RMB to provide a hot meal, shower, and clean clothes for 90 people" xml:space="preserve">
+    <value>1350元提供90人份的餐食、淋浴和干净衣物</value>
   </data>
   <data name="to provide a hot meal, shower, and winter clothes for 6 people" xml:space="preserve">
     <value>为6人提供一顿温暖的饭菜、淋浴及冬装</value>
@@ -210,8 +210,8 @@
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Send your gift to be doubled today" xml:space="preserve">
-    <value>现在捐款，即可翻倍</value>
+  <data name="Hot meals and support open the door to training" xml:space="preserve">
+    <value>热气腾腾的饭菜和其它帮助打开了职业培训的大门</value>
   </data>
   <data name="will double to $231.00 and help 100 hungry people this winter" xml:space="preserve">
     <value>将翻倍为$231.00，帮助100 个饥肠辘辘的人度过这个冬天</value>
@@ -222,11 +222,11 @@
   <data name="will double to $462.00 to reach 200 people" xml:space="preserve">
     <value>元人民币将翻倍为$462.00，帮助200个人</value>
   </data>
-  <data name="Every gift helps twice as many people today." xml:space="preserve">
-    <value>今天，每份捐赠都可提供双倍的帮助</value>
+  <data name="A hot meal is the first step towards residential training and a full-time job." xml:space="preserve">
+    <value>一顿热气腾腾的饭菜是通往寄宿培训和全职工作的第一步。</value>
   </data>
-  <data name="Your gift will double today – helping the Renewal Center reach twice as many people with hot meals, warm clothes and support, now and during the colder winter months." xml:space="preserve">
-    <value>今天，您的捐赠将被翻倍——帮助日新中心在眼下和即将到来的冬季为人们提供更多热腾腾的餐食、温暖的冬装和支持。</value>
+  <data name="The Renewal Center relies on your support to provide meals, showers, shelter and training to give homeless people a path to a stable job and permanent home. Send your gift now for frontline support to open the door of opportunity..." xml:space="preserve">
+    <value>日新中心依靠您的帮助来供应膳食、淋浴、住所和培训，为无家可归者提供一条通往稳定工作和家庭的路。立即捐赠，提供基础的卫生服务，为人们打开机会之门。</value>
   </data>
   <data name="will double to to $46.20 and give meals and warm clothes to 20 people" xml:space="preserve">
     <value>将翻倍为$46.20，为20个人提供食物和冬装</value>
