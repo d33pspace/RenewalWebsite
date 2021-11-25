@@ -22,7 +22,18 @@
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <h2>@Localizer["Help a homeless person get off the streets"]</h2>
-        <p>@Localizer["Every 15 RMB of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good."]</p>
+		
+		@if (currency.Name.Contains("en"))
+		{
+			<p>@Localizer["Every $2.33 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good."]</p>
+		}
+		else
+		{
+			<p>@Localizer["Every ￥15.00 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good."]</p>
+		}
+		
+<!--        <p>@Localizer["Every 15 RMB of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good."]</p>
+-->
 		
 		<p>@Localizer["Your gift offers them safe, temporary accommodation, career training – as well as help getting an essential national identity card, a satisfying job and a permanent home."]</p>
 
