@@ -17,7 +17,7 @@
 <div class="row">
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <img src="~/images/home/slide-donate_202103.jpg" class="figure-img img-fluid" alt="donate page image">
+        <img src="~/images/home/slide-donate_20211212.jpg" class="figure-img img-fluid" alt="donate page image">
         <figcaption class="figure-caption caption chinese">
             <!--@Localizer["Every"]
             @if (currency.Name.Contains("zh"))
@@ -29,16 +29,19 @@
                 <span>@baseAmountUSD.ToString("C", currency)</span>
             }
             @Localizer["you give today will provide a hot meal, shower and change of clothes for a homeless man or woman."]-->
-            @Localizer["A hot meal is the first step towards residential training and a full-time job."]
+            @Localizer["Warm winter clothes are essential this time of year. Your gift provides hot meals, support, clothes and friendship for homeless guests like Xu Hui."]
         </figcaption>
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Hot meals and support open the door to training"]</h2>
+        <h2>@Localizer["Give your urgent gift for winter warmth and hot meals"]</h2>
 
         @if (currency.Name.Contains("en"))
         {
+<!--
             <p>@Localizer["The Renewal Center relies on your support to provide meals, showers, shelter and training to give homeless people a path to a stable job and permanent home. Send your gift now for frontline support to open the door of opportunity..."]</p>
+-->			
+
             <form asp-controller="Donate" asp-action="Create">
 
                 <div asp-validation-summary="All" class="text-danger"></div>
