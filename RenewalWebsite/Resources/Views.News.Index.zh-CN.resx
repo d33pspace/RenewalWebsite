@@ -132,6 +132,9 @@
   <data name="A story of desperation and hope" xml:space="preserve">
     <value>一个从绝望到希望的故事</value>
   </data>
+  <data name="Give now" xml:space="preserve">
+    <value>现在捐赠</value>
+  </data>
   <data name="Author profile" xml:space="preserve">
     <value>作者简介</value>
   </data>
