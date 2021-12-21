@@ -17,7 +17,8 @@ namespace RenewalWebsite.Models.AccountViewModels
         [StringLength(100, ErrorMessageResourceName = "Passwordmustbe6andmax100charcterslong", ErrorMessageResourceType = typeof(Resources.DataAnnotations), MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
-        [RegularExpression(@"^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[*_%$@!#&()-?~`^+=,./\|:;{}])(?!.*[pPoO])\S{6,}$", ErrorMessageResourceName = "PasswordStructure", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        [RegularExpression(@"^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[*_%$@!#&()-?~`^+=,./\|:;{}])\S{6,}$", ErrorMessageResourceName = "PasswordStructure", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
+        //[RegularExpression(@"^(?=.*[A-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[*_%$@!#&()-?~`^+=,./\|:;{}])(?!.*[pPoO])\S{6,}$", ErrorMessageResourceName = "PasswordStructure", ErrorMessageResourceType = typeof(Resources.DataAnnotations))]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
