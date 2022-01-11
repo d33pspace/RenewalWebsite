@@ -17,7 +17,7 @@
 <div class="row">
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <img src="~/images/home/slide-donate_20211212.jpg" class="figure-img img-fluid" alt="donate page image">
+        <img src="~/images/home/slide-donate_20220111.jpg" class="figure-img img-fluid" alt="donate page image">
         <figcaption class="figure-caption caption chinese">
             <!--@Localizer["Every"]
             @if (currency.Name.Contains("zh"))
@@ -29,12 +29,14 @@
                 <span>@baseAmountUSD.ToString("C", currency)</span>
             }
             @Localizer["you give today will provide a hot meal, shower and change of clothes for a homeless man or woman."]-->
-            @Localizer["Warm winter clothes are essential this time of year. Your gift provides hot meals, support, clothes and friendship for homeless guests like Xu Hui."]
+            @Localizer["Lonely people will be very grateful for the hot, traditional meal and warm friendship you give this Chinese New Year."]
         </figcaption>
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Give your urgent gift for winter warmth and hot meals"]</h2>
+        <h2>@Localizer["Give a happy Chinese New Year to a lonely man like Yang Lianxi"]</h2>
+		
+		<p>@Localizer["Homeless men like Yang Lianxi come to the Renewal Center on Chinese New Year because they have no place else to go. Please provide hot meals here, where they also find friendship, a sense of family, and all our emergency services for people living on the streets."]</p>
 
         @if (currency.Name.Contains("en"))
         {
@@ -69,10 +71,10 @@
                 <input type="hidden" id="DonationAmount" name="DonationAmount" />
                 <input type="hidden" id="CycleId" name="CycleId" />
                 <ul class="list-unstyled rmb-options mb-5">
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="5" data-value="false" checked="checked" data-donation-value="27.96" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)27.96</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 12 people"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" data-donation-value="46.60" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)46.60</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 20 people"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="58.25" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)58.25</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 25 people"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="74.56" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)74.56</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 32 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="5" data-value="false" checked="checked" data-donation-value="13.85" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)13.85</strong> @Localizer["to provide a hot meal and urgent support for 1 person"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" data-donation-value="41.55" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)41.55</strong> @Localizer["to provide a hot meal and urgent support for 3 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="83.10" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)83.10</strong> @Localizer["to provide a hot meal and urgent support for 6 people"]</li>
+                   
                     <li>
                         <div class="input-group">
                             <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="for a hot meals, job training, or any current need" onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
@@ -95,10 +97,10 @@
             <p>@Localizer["The Renewal Center relies on your support to provide meals, showers, shelter and training to give homeless people a path to a stable job and permanent home. Send your gift now for frontline support to open the door of opportunity..."]</p>
 -->
             <ul class="list-unstyled gift-options">
-                <li><strong>@CurrencyService.GetSymbol(currency)120</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 8 people"]</li>
-                <li><strong>@CurrencyService.GetSymbol(currency)210</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 14 people"]</li>
-                <li><strong>@CurrencyService.GetSymbol(currency)375</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 25 people"]</li>
-				<li><strong>@CurrencyService.GetSymbol(currency)450</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 30 people"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)88</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 1 people"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)264</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 3 people"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)528</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 6 people"]</li>
+				
                 <li>@Localizer["An amount of my choice to help as many people as I can."]</li>
             </ul>
             <div class="clearfix mt-3 mb-3">
