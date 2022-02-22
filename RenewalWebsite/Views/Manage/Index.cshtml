@@ -54,7 +54,7 @@
             </ul>
             <div class="tab-content">
 
-                <div id="subscriptions" class="tab-pane mt-3">
+                <div id="subscriptions" class="tab-pane active mt-3">
                     @await Component.InvokeAsync("Subscriptions")
                 </div>
 
@@ -371,4 +371,16 @@
     //function saveProfile() {
     //    $('#btnSubmit').trigger("submit");
     //}
+
+    function getUserPaymentHistory() {
+        $('#paymentHistory').html('');
+        $.ajax({
+            url: "/Manage/PaymentHistory",
+            data: { },
+            success: function (data) {
+                $('#paymentHistory').append(data);
+            }
+        });
+    };
+
 </script>
