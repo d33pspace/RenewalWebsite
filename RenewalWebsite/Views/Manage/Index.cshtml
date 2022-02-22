@@ -7,7 +7,6 @@
     ViewData["Title"] = Localizer["Your account"];
     var currency = CurrencyService.GetCurrent();
 }
-
 <link href="~/css/jquery.scrolling-tabs.css" rel="stylesheet" />
 
 <script src="~/lib/jquery/dist/jquery.js"></script>
@@ -42,15 +41,13 @@
     <div class="col-md-12">
         <div class="tabbable">
             <ul class="nav nav-tabs" id="account-tabs" role="tablist" style="height: 42px;">
-                @*<li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">@Localizer["Recurring gifts"]</a></li>*@
-                <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#history" role="tab">@Localizer["Giving record"]</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">@Localizer["Details"]</a></li>
-                <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card" role="tab">@Localizer["Card"]</a></li>
-                <li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">@Localizer["Recurring gifts"]</a></li>
-                @*<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history" role="tab" onclick="getUserPaymentHistory()">@Localizer["Giving record"]</a></li>*@
+				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#profile" role="tab">@Localizer["Details"]</a></li>
+				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#card" role="tab">@Localizer["Card"]</a></li>
+				<li class="nav-item active"><a class="nav-link" data-toggle="tab" href="#subscriptions">@Localizer["Recurring gifts"]</a></li>
+				<li class="nav-item"><a class="nav-link" data-toggle="tab" href="#history" role="tab" onclick="getUserPaymentHistory()">@Localizer["Giving record"]</a></li>  
                 <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#password" role="tab">@Localizer["Password"]</a></li>
                 <!--<li class="nav-item"><a class="nav-link" data-toggle="tab"onclick="removeMessage()" href="#logins" role="tab">External Logins</a></li>-->
-
+                
             </ul>
             <div class="tab-content">
 
@@ -276,7 +273,7 @@
                     <h4>@Localizer["View your valuable donation history"]</h4>
                     <hr />
                     <p>@Localizer["Gifts made by credit or debit card usually appear here within one hour, other donation methods take longer. If your gift doesn't appear here within five business days, please contact us at"] <a href="mailto:connect@renewal.org.cn">connect@renewal.org.cn</a>.</p>
-                    
+
                     <div id="paymentHistory">
                     </div>
                 </div>
@@ -311,16 +308,6 @@
         var timezone = "UTC " + sign + (hour < 10 ? "0" + hour : hour) + ":" + (minutes < 10 ? "0" + minutes : minutes);
         $('#TimeZone').val(timezone);
         $('select').niceSelect();
-
-        ///paymentHistory
-        $('#paymentHistory').html('');
-        $.ajax({
-            url: "/Manage/PaymentHistory",
-            data: {},
-            success: function (data) {
-                $('#paymentHistory').append(data);
-            }
-        });
     });
 
     function removeMessage()
