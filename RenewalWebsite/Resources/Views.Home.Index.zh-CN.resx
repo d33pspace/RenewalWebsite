@@ -117,8 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Urgent need: Winter shelter, warm clothes and hot meals" xml:space="preserve">
-    <value>急需：冬天的庇护所、温暖的冬装及热腾腾的食物</value>
+  <data name="Homeless people need help and hot meals" xml:space="preserve">
+    <value>无家可归的人们需要帮助和热腾腾的饭菜</value>
   </data>
   <data name="Give now" xml:space="preserve">
     <value>现在捐赠</value>
@@ -153,8 +153,8 @@
   <data name="Read more" xml:space="preserve">
     <value>了解更多</value>
   </data>
-  <data name="Xu Hui is well dressed but lacks a winter coat and is often spending the night in the train station. Your help can reach homeless guests like him this winter." xml:space="preserve">
-    <value>许辉穿戴整齐，但缺少一件冬天的外套。他常常在火车站过夜。您伸出的援手可以在今年冬天帮助像他一样无家可归的人们。</value>
+  <data name="Give more people like Chu Fude clean clothes and hot meals." xml:space="preserve">
+    <value>帮助更多像褚福德这样的人获得干净的衣服和热腾腾的饭菜。</value>
   </data>
   <data name="Every $2.33 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出2.33美元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
@@ -162,7 +162,7 @@
   <data name="Every ￥15.00 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出15元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
   </data>
-  <data name="People like Xu Hui are still sleeping on the streets in the winter cold. Please help provide shelter, winter clothing and hot, healthy meals. You’ll help Renewal’s homeless guests survive the winter and find hope for the future – and your support for the residential training program can give people a completely new start in life." xml:space="preserve">
-    <value>许多和许辉一样的人们即使是在寒冷的冬天也仍然露宿街头。请帮助我们，为他们提供庇护所、冬装和热腾腾、健康的食物。您的慷慨解囊将帮助前来日新中心的那些无家可归的人们度过这个冬季，并找到对未来的希望——而您对寄宿培训项目的支持更能给于人们一个全新的开始。</value>
+  <data name="More and more Millennials like Chu Fude are coming to us for urgent help. For more than a decade, he hasn’t been able to afford a home because he can’t find a steady job. But you can help. Your gift today will help more people like Chu Fude get the support they need to survive and rebuild their lives." xml:space="preserve">
+    <value>越来越多像褚福德一样的八零、九零后前来寻求紧急援助。十多年来，因为找不到稳定的工作，他都无法拥有一个家。但您能帮助他。您今天的捐赠将帮助更多像褚福德一样的人生存下去并重建他们的生活。</value>
   </data>
 </root>
