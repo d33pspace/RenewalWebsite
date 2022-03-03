@@ -195,17 +195,17 @@
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Give a happy Chinese New Year to a lonely man like Yang Nianxi" xml:space="preserve">
-    <value>给杨年喜这样孤独的人一个欢乐的春节</value>
+  <data name="Your gift below offers emergency help and hope for the future" xml:space="preserve">
+    <value>您的捐赠可以为人们送去紧急援助及对未来的希望</value>
   </data>
-  <data name="to provide a hot meal and urgent support for 1 person" xml:space="preserve">
-    <value>提供1人份的餐食、淋浴和干净衣物</value>
+  <data name="provides a hot meal, shower, and clean clothes for 12 people" xml:space="preserve">
+    <value>为12人提供饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide a hot meal and urgent support for 3 people" xml:space="preserve">
-    <value>提供3人份的餐食、淋浴和干净衣物</value>
+  <data name="provides a hot meal, shower, and clean clothes for 21 people" xml:space="preserve">
+    <value>为21人提供饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide a hot meal and urgent support for 6 people" xml:space="preserve">
-    <value>提供6人份的餐食、淋浴和干净衣物</value>
+  <data name="gives one person a week’s accommodation and job training" xml:space="preserve">
+    <value>为一人提供一周的住宿和就业培训</value>
   </data>
   <data name="to provide a hot meal, shower, and clean clothes for 1 people" xml:space="preserve">
     <value>为1人提供餐食、淋浴和干净衣物</value>
@@ -219,10 +219,10 @@
   <data name="to provide a hot meal, shower, and clean clothes for 30 people" xml:space="preserve">
     <value>为30人提供餐食、淋浴和干净衣物</value>
   </data>
-  <data name="Lonely people will be grateful for the hot meal and warm friendship you give this Chinese New Year." xml:space="preserve">
-    <value>对于您在这个春节给予的热腾腾的节日餐及温暖的友谊，孤独的人们将感激万分。</value>
+  <data name="Your gift will provide hot, healthy meals and a full range of support." xml:space="preserve">
+    <value>您的捐赠将带给人们热腾腾的、干净的饭菜和全方位的支持。</value>
   </data>
-  <data name="Homeless men like Yang Nianxi come to the Renewal Center on Chinese New Year because they have no place else to go. Please provide hot meals here, where they also find friendship, a sense of family, and all our emergency services for people living on the streets." xml:space="preserve">
-    <value>像杨年喜这样无家可归的人们会在春节来到日新中心，因为除此之外他们无处可去。请帮助我们为他们供应热腾腾的食物。他们还将在这里找到友谊、一种家的感觉以及我们为流落街头的人们提供的所有应急服务。</value>
+  <data name="People like Chu Fude are running out of hope on the streets, but your gift will provide urgent, immediate help and hope for the future. Please send your gift now to offer  emergency meals, frontline support and residential job training." xml:space="preserve">
+    <value>和褚福德一样的人们正流落街头并丧失了希望，你的捐赠将给他们带去紧急、直接的捐助以及对未来的希望。请现在做出捐赠，为他们提供急需的饭菜、卫生服务和寄宿就业培训。</value>
   </data>
 </root>
