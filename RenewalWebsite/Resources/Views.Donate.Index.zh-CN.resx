@@ -117,10 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Every" xml:space="preserve">
-    <value>只要</value>
-  </data>
-  <data name="to help as many people as I can." xml:space="preserve">
+ <data name="to help as many people as I can." xml:space="preserve">
     <value>帮助尽可能多的人们</value>
   </data>
   <data name="DONATE WITH CREDIT OR DEBIT CARD NOW" xml:space="preserve">
