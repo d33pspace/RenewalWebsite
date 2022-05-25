@@ -123,8 +123,8 @@
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Help the homeless hit hardest by COVID measures" xml:space="preserve">
-    <value>疫情封控措施严重影响了无家可归的人们，请帮帮他们</value>
+  <data name="Homeless people need help and hot meals" xml:space="preserve">
+    <value>无家可归的人们需要帮助和热腾腾的饭菜</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
@@ -150,8 +150,8 @@
   <data name="Read more" xml:space="preserve">
     <value>了解更多</value>
   </data>
-  <data name="People need meals and other support during lockdown." xml:space="preserve">
-    <value>人们在封控期间需要食物和其它帮助</value>
+  <data name="Give more people like Chu Fude clean clothes and hot meals." xml:space="preserve">
+    <value>帮助更多像褚福德这样的人获得干净的衣服和热腾腾的饭菜。</value>
   </data>
   <data name="Every $2.33 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出2.33美元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
@@ -159,7 +159,7 @@
   <data name="Every ￥15.00 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出15元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
   </data>
-  <data name="Rolling lockdowns in Shanghai mean homeless people are lonely, hungry and in danger. Casual labor has vanished along with safety and food. Your support now will help the Renewal Center take meals, friendship and support to people in need, every time we have a chance to reach out." xml:space="preserve">
-    <value>上海的动态封控意味着无家可归的人们需要面对孤独、饥饿和危险。打零工的机会随着安全与食物一同消失了。您的捐赠将支持日新中心为亟需帮助的人们提供食物、友情和其他的东西。一旦有机会，我们就会随时出去帮助他们。</value>
+  <data name="More and more Millennials like Chu Fude are coming to us for urgent help. For more than a decade, he hasn’t been able to afford a home because he can’t find a steady job. But you can help. Your gift today will help more people like Chu Fude get the support they need to survive and rebuild their lives." xml:space="preserve">
+    <value>越来越多像褚福德一样的八零、九零后前来寻求紧急援助。十多年来，因为找不到稳定的工作，他都无法拥有一个家。但您能帮助他。您今天的捐赠将帮助更多像褚福德一样的人生存下去并重建他们的生活。</value>
   </data>
 </root>
