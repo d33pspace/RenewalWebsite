@@ -192,34 +192,34 @@
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Give urgent meals and support now" xml:space="preserve">
-    <value>立刻提供急需的食物和其他帮助</value>
+  <data name="Your gift below offers emergency help and hope for the future" xml:space="preserve">
+    <value>您的捐赠可以为人们送去紧急援助及对未来的希望</value>
   </data>
-  <data name="to provide meals and support for 12 people" xml:space="preserve">
-    <value>为12人提供饭菜和其它帮助</value>
+  <data name="provides a hot meal, shower, and clean clothes for 12 people" xml:space="preserve">
+    <value>为12人提供饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide meals and support for 25 people" xml:space="preserve">
-    <value>为25人提供饭菜和其它帮助</value>
+  <data name="provides a hot meal, shower, and clean clothes for 21 people" xml:space="preserve">
+    <value>为21人提供饭菜、淋浴和干净的衣服</value>
   </data>
-  <data name="to provide meals and support for 35 people" xml:space="preserve">
-    <value>为35人提供饭菜和其它帮助</value>
+  <data name="gives one person a week’s accommodation and job training" xml:space="preserve">
+    <value>为一人提供一周的住宿和就业培训</value>
   </data>
-  <data name="to provide meals and emergency care for 8 people" xml:space="preserve">
-    <value>提供8人份的餐食、淋浴和干净衣物</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 1 people" xml:space="preserve">
+    <value>为1人提供餐食、淋浴和干净衣物</value>
   </data>
-  <data name="to provide meals and emergency care for 14 people" xml:space="preserve">
-    <value>提供14人份的餐食、淋浴和干净衣物</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 3 people" xml:space="preserve">
+    <value>为3人提供餐食、淋浴和干净衣物</value>
   </data>
-  <data name="to provide meals and emergency care for 25 people" xml:space="preserve">
-    <value>提供25人份的餐食、淋浴和干净衣物</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 6 people" xml:space="preserve">
+    <value>为6人提供餐食、淋浴和干净衣物</value>
   </data>
-  <data name="to provide meals and emergency care for 30 people" xml:space="preserve">
-    <value>提30人份的餐食、淋浴和干净衣物</value>
+  <data name="to provide a hot meal, shower, and clean clothes for 30 people" xml:space="preserve">
+    <value>为30人提供餐食、淋浴和干净衣物</value>
   </data>
-  <data name="The meals you provide bring joy and relief." xml:space="preserve">
-    <value>您捐赠的食物将为人们带去欢乐和安慰</value>
+  <data name="Your gift will provide hot, healthy meals and a full range of support." xml:space="preserve">
+    <value>您的捐赠将带给人们热腾腾的、干净的饭菜和全方位的支持。</value>
   </data>
-  <data name="For hungry people who are stuck outside, your kind support may be the only help they will receive. The meals you provide will help them survive – but you’re also helping us bring friendship and urgent support when we see people with more serious needs." xml:space="preserve">
-    <value>对于那些目前流落在外、饥肠辘辘的人们来说，您的慷慨解囊可能是他们唯一的希望。您捐赠的那些食物将帮助他们生存下去，并让他们感受到友谊。同时，对那些情况更严重的人来说，您也将为他们提供更多急需的帮助。</value>
+  <data name="People like Chu Fude are running out of hope on the streets, but your gift will provide urgent, immediate help and hope for the future. Please send your gift now to offer  emergency meals, frontline support and residential job training." xml:space="preserve">
+    <value>和褚福德一样的人们正流落街头并丧失了希望，你的捐赠将给他们带去紧急、直接的捐助以及对未来的希望。请现在做出捐赠，为他们提供急需的饭菜、卫生服务和寄宿就业培训。</value>
   </data>
 </root>
