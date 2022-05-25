@@ -123,8 +123,8 @@
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Homeless people need help and hot meals" xml:space="preserve">
-    <value>无家可归的人们需要帮助和热腾腾的饭菜</value>
+  <data name="Homeless people need hot meals and warm, winter clothes" xml:space="preserve">
+    <value>无家可归的人们需要一份温暖的饭菜和保暖的冬装</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
