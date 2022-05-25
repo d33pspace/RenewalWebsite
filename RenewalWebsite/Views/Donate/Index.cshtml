@@ -17,7 +17,7 @@
 <div class="row">
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <img src="~/images/home/slide-donate-202203.jpg" class="figure-img img-fluid" alt="donate page image">
+        <img src="https://www.renewal365.org/images/home/slide-donate_2022summer.jpeg" class="figure-img img-fluid" alt="donate page image">
         <figcaption class="figure-caption caption chinese">
             <!--@Localizer["Every"]
             @if (currency.Name.Contains("zh"))
@@ -29,14 +29,14 @@
                 <span>@baseAmountUSD.ToString("C", currency)</span>
             }
             @Localizer["you give today will provide a hot meal, shower and change of clothes for a homeless man or woman."]-->
-            @Localizer["Your gift will provide hot, healthy meals and a full range of support."]
+            @Localizer["The meals you provide bring joy and relief."]
         </figcaption>
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Your gift below offers emergency help and hope for the future"]</h2>
+        <h2>@Localizer["Give urgent meals and support now"]</h2>
 		
-		<p>@Localizer["People like Chu Fude are running out of hope on the streets, but your gift will provide urgent, immediate help and hope for the future. Please send your gift now to offer  emergency meals, frontline support and residential job training."]</p>
+		<p>@Localizer["For hungry people who are stuck outside, your kind support may be the only help they will receive. The meals you provide will help them survive – but you’re also helping us bring friendship and urgent support when we see people with more serious needs."]</p>
 
         @if (currency.Name.Contains("en"))
         {
@@ -72,9 +72,9 @@
                 <input type="hidden" id="DonationAmount" name="DonationAmount" />
                 <input type="hidden" id="CycleId" name="CycleId" />
                 <ul class="list-unstyled rmb-options mb-5">
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="5" data-value="false" checked="checked" data-donation-value="18.90" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)18.90</strong> @Localizer["provides a hot meal, shower, and clean clothes for 12 people"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" data-donation-value="33.07" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)33.07</strong> @Localizer["provides a hot meal, shower, and clean clothes for 21 people"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="55.12" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)55.12</strong> @Localizer["gives one person a week’s accommodation and job training"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="5" data-value="false" checked="checked" data-donation-value="28.32" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)28.32</strong> @Localizer["to provide meals and support for 12 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" data-donation-value="59.00" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)59.00</strong> @Localizer["to provide meals and support for 25 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="82.60" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)82.60</strong> @Localizer["to provide meals and support for 35 people"]</li>
                    
                     <li>
                         <div class="input-group">
@@ -98,9 +98,10 @@
             <p>@Localizer["The Renewal Center relies on your support to provide meals, showers, shelter and training to give homeless people a path to a stable job and permanent home. Send your gift now for frontline support to open the door of opportunity..."]</p>
 -->
             <ul class="list-unstyled gift-options">
-                <li><strong>@CurrencyService.GetSymbol(currency)120</strong> @Localizer["provides a hot meal, shower, and clean clothes for 12 people"]</li>
-                <li><strong>@CurrencyService.GetSymbol(currency)210</strong> @Localizer["provides a hot meal, shower, and clean clothes for 21 people"]</li>
-                <li><strong>@CurrencyService.GetSymbol(currency)350</strong> @Localizer["gives one person a week’s accommodation and job training"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)120</strong> @Localizer["to provide meals and emergency care for 8 people"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)210</strong> @Localizer["to provide meals and emergency care for 14 people"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)375</strong> @Localizer["to provide meals and emergency care for 25 people"]</li>
+				<li><strong>@CurrencyService.GetSymbol(currency)450</strong> @Localizer["to provide meals and emergency care for 30 people"]</li>
 				
                 <li>@Localizer["An amount of my choice to help as many people as I can."]</li>
             </ul>
