@@ -427,15 +427,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Reference Include="DotNetCore.Kit.Captcha">
-      <HintPath>dlls\DotNetCore.Kit.Captcha.dll</HintPath>
-    </Reference>
-    <Reference Include="DotNetCore.Kit.Serialization">
-      <HintPath>dlls\DotNetCore.Kit.Serialization.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="Resources\DataAnnotations.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
