@@ -1,11 +1,16 @@
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Razor;
-using Microsoft.AspNetCore.Rewrite;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -17,8 +22,10 @@ using RenewalWebsite.Models;
 using RenewalWebsite.Services;
 using RenewalWebsite.SettingModels;
 using RenewalWebsite.Utility;
-using System;
-using System.Globalization;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.OAuth;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Rewrite;
 
 
 namespace TestWebsite
@@ -38,7 +45,7 @@ namespace TestWebsite
                 builder.AddUserSecrets<Startup>();
             }
             builder.AddEnvironmentVariables();
-
+            
             configuration = builder.Build();
             Configuration = configuration;
         }
@@ -78,35 +85,35 @@ namespace TestWebsite
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
-            //services.AddAuthentication().AddGoogle(googleOptions =>
-            //{
-            //    googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
-            //    googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
-            //    googleOptions.CallbackPath = new PathString("/signin-google");
-            //    googleOptions.Events = new OAuthEvents
-            //    {
-            //        OnRemoteFailure = ctx =>
-            //        {
-            //            var state = ctx.Request.Query["state"].FirstOrDefault();
-            //            if (state != null)
-            //            {
-            //                var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
-            //                try
-            //                {
-            //                    var properties = options.Value.StateDataFormat.Unprotect(state);
+            services.AddAuthentication().AddGoogle(googleOptions =>
+            {
+                googleOptions.ClientId = Configuration["Authentication:Google:ClientId"];
+                googleOptions.ClientSecret = Configuration["Authentication:Google:ClientSecret"];
+                googleOptions.CallbackPath = new PathString("/signin-google");
+                googleOptions.Events = new OAuthEvents
+                {
+                    OnRemoteFailure = ctx =>
+                    {
+                        var state = ctx.Request.Query["state"].FirstOrDefault();
+                        if (state != null)
+                        {
+                            var options = ctx.HttpContext.RequestServices.GetRequiredService<IOptions<GoogleOptions>>();
+                            try
+                            {
+                                var properties = options.Value.StateDataFormat.Unprotect(state);
 
-            //                }
-            //                catch (Exception)
-            //                {
+                            }
+                            catch (Exception)
+                            {
 
-            //                }
-            //            }
-            //            ctx.Response.Redirect("/Account/Login");
-            //            ctx.HandleResponse();
-            //            return Task.FromResult(0);
-            //        }
-            //    };
-            //});
+                            }
+                        }
+                        ctx.Response.Redirect("/Account/Login");
+                        ctx.HandleResponse();
+                        return Task.FromResult(0);
+                    }
+                };
+            });
             //facebook signin
             //services.AddAuthentication().AddFacebook(facebookOptions =>
             //{
@@ -235,13 +242,13 @@ namespace TestWebsite
             var options = new RewriteOptions()
               .AddRedirectToHttps();
 
-
+      
             app.UseSession();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
                 app.UseDatabaseErrorPage();
-                //       app.UseBrowserLink();
+         //       app.UseBrowserLink();
             }
             else
             {
@@ -250,9 +257,9 @@ namespace TestWebsite
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
-            //   app.UseHttpsRedirection();
+         //   app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            
             var supportedCultures = new[]
     {
                       new CultureInfo("en-US"),
