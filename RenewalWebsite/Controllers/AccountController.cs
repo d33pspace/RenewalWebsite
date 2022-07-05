@@ -152,7 +152,7 @@ namespace RenewalWebsite.Controllers
                     var result = await _userManager.CreateAsync(user, model.Password);
                     if (result.Succeeded)
                     {
-                        var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/z07xtw/");
+                        var client = new RestClient("https://hooks.zapier.com/hooks/catch/2318707/bwxh6qu/");
                         var request = new RestRequest(Method.POST);
                         request.AddParameter("email", model.Email);
                         request.AddParameter("name", string.Empty);
