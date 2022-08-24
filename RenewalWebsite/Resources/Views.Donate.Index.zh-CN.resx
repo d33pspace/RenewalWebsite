@@ -189,8 +189,8 @@
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Give urgent meals and support now" xml:space="preserve">
-    <value>立刻提供急需的食物和其他帮助</value>
+  <data name="Give food and friendship to those most in need" xml:space="preserve">
+    <value>为迫切需要帮助的人们送去食物和友谊</value>
   </data>
   <data name="to provide meals and support for 8 people" xml:space="preserve">
     <value>为8人提供饭菜和其它帮助</value>
@@ -216,10 +216,10 @@
   <data name="to provide meals and emergency care for 35 people" xml:space="preserve">
     <value>提35人份的餐食、淋浴和干净衣物</value>
   </data>
-  <data name="The meals you provide bring joy and relief." xml:space="preserve">
-    <value>您捐赠的食物为人们带去欢乐和安慰</value>
+  <data name="Some people receive no kindness except yours." xml:space="preserve">
+    <value>除了您的善意之外，他们别无可求</value>
   </data>
-  <data name="For hungry people who are stuck outside, your kind support may be the only help they will receive. The meals you provide will help them survive – but you’re also helping us bring friendship and urgent support when we see people with more serious needs." xml:space="preserve">
-    <value>对于那些目前流落在外、饥肠辘辘的人们来说，您的慷慨解囊可能是他们唯一的希望。您捐赠的那些食物将帮助他们生存下去，并让他们感受到友谊。同时，对那些情况更严重的人来说，您也将为他们提供更多急需的帮助。</value>
+  <data name="Your gift below will give food and friendship to those who are left behind, but also support to find longer-term help as well as housing, job training and career placement for those who are ready and able." xml:space="preserve">
+    <value>您的捐赠将为这些被边缘化的人们送去食物和友谊，也将在他们做好准备的时候，为他们提供包括住房、职业培训和就业安置在内的长期援助。</value>
   </data>
 </root>
