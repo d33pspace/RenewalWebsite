@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Give now" xml:space="preserve">
-    <value>现在捐赠</value>
+  <data name="Send a gift" xml:space="preserve">
+    <value>做出捐赠</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Help the homeless hit hardest by COVID measures" xml:space="preserve">
-    <value>疫情封控措施严重影响了无家可归的人们，请帮帮他们</value>
+  <data name="Across Shanghai, your gift will bring hope and help to desperate people" xml:space="preserve">
+    <value>您的捐赠将为上海各个地方身处绝望中的人们送去希望和帮助</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
@@ -147,8 +147,8 @@
   <data name="Read more" xml:space="preserve">
     <value>了解更多</value>
   </data>
-  <data name="People need meals and other support during lockdown." xml:space="preserve">
-    <value>人们在封控期间需要食物和其它帮助</value>
+  <data name="When people have no place to sleep at night, your gift can still provide food and friendship." xml:space="preserve">
+    <value>当人们夜里无处安身，您的捐赠依然可以为他们送去食物和友谊。</value>
   </data>
   <data name="Every $2.33 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出2.33美元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
@@ -156,7 +156,7 @@
   <data name="Every ￥15.00 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出15元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
   </data>
-  <data name="Rolling lockdowns in Shanghai mean homeless people are lonely, hungry and in danger. Casual labor has vanished along with safety and food. Your support now will help the Renewal Center take meals, friendship and support to people in need, every time we have a chance to reach out." xml:space="preserve">
-    <value>上海的动态封控意味着无家可归的人们需要面对孤独、饥饿和危险。打零工的机会随着安全与食物一同消失了。您的捐赠将支持日新中心为亟需帮助的人们提供食物、友情和其他的东西。一旦有机会，我们就会随时出去帮助他们。</value>
+  <data name="Here on People’s Square, our street support team finds people in need who most people don’t see. Some homelessness people leave no trace, meaning the ones we find are in dire need because they are hidden away, suffering and invisible. Your gift today will reach the people that nobody else can help." xml:space="preserve">
+    <value>这里是人民广场，我们的街头援助小组在这里找到了需要帮助的人们，而他们往往不会被其他人发现。许多无家可归的人们常常来去匆匆，不留下一点儿痕迹。他们东躲西藏、默默地忍受着一切。他们正迫切地需要我们的支持。今天，您的捐赠将会向这些“隐形人”们伸去援手。</value>
   </data>
 </root>
