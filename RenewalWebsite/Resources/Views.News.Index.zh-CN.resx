@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Issue 18" xml:space="preserve">
-    <value>第18期</value>
+  <data name="Issue 19" xml:space="preserve">
+    <value>第19期</value>
   </data>
-  <data name="Spring 2022" xml:space="preserve">
-    <value>2022年春季刊</value>
+  <data name="Autumn 2022" xml:space="preserve">
+    <value>2022年秋季刊</value>
   </data>
   <data name="How your gifts can transform lives in Shanghai" xml:space="preserve">
     <value>您的捐赠如何改变了人们在上海的生活</value>
@@ -144,8 +144,8 @@
   <data name="By Jack Niu, Renewal Center Volunteer" xml:space="preserve">
     <value>作者：日新中心志愿者钮嘉昆</value>
   </data>
-  <data name="Your help gave Chu Fude clean clothes and hot meals." xml:space="preserve">
-    <value>您的帮助为褚福德提供了干净的衣服和热腾腾的饭菜。</value>
+  <data name="Our mobile team is still finding people in need." xml:space="preserve">
+    <value>我们的行动小组仍然在街头寻找需要帮助的人们</value>
   </data>
   <data name="The kitchen and laundry are now separate, enabling the kitchen to stay cleaner and prepare more hot meals for our homeless guests. A former storage space now welcomes more guests and training sessions, while a curtain affords privacy for counselling, legal help, doctor’s visits and interviews. The portable shower has been replaced by two new showers with stronger pressure and hot water. There’s level access for older guests who also benefit from a new accessible toilet." xml:space="preserve">
     <value>原先合在一起的厨房和洗衣房现在分开了，这能让厨房一直保持干净，为无家可归的人们提供更多热气腾腾的食物。原先的储藏空间现在可以供更多的来访者和培训课程使用，窗帘有利于保护咨询、法律援助、医疗检查和采访的私密性。便携式淋浴器被替换成了两个全新的淋浴喷头，提供超强水压的热水。上了年纪的人们更是可以放心使用这里无障碍的浴室和厕所。</value>
@@ -156,32 +156,32 @@
   <data name="Hanson Ye and Jimmy McWhinney" xml:space="preserve">
     <value>叶海生和Jimmy McWhinney</value>
   </data>
-  <data name="Your amazing support really does make dreams possible. The people you reach are running out of options, but your kindness is giving them hope." xml:space="preserve">
-    <value>是您莫大的支持让梦想变成可能。您帮助的这些人已别无选择，但您的善良带给他们希望。</value>
+  <data name="In fact, a gift of just 120 RMB can equip our street team to provide a wholesome meal, clean clothes and in-person as many as 12 people. We and they will be incredibly grateful until the drop-in center can open again." xml:space="preserve">
+    <value>事实上，您120元的捐赠就可以帮助我们的行动小组，为12个人每人提供一份健康的食物、一套干净的衣物以及友善的关怀。我们和被帮助的人们都将深深地感激您的善举！期待服务站能重新投入运营！</value>
   </data>
   <data name="Just 120 RMB / US $18 gives hope, a hot meal and emergency help to 12 homeless people." xml:space="preserve">
     <value>只需120元人民币，就能为 12 名无家可归的人们送去希望、一顿热腾腾的食物和紧急援助。</value>
   </data>
-  <data name="Spring is finally here, and the season of renewal seems like a good time to share what’s been happening over the past few months and consider what the future holds." xml:space="preserve">
-    <value>春天终于来了，万物更新的季节似乎非常适合回顾过去几个月里发生的事情，并展望未来。</value>
+  <data name="A better name for our drop-in center might actually be “welcome center” because it’s not only where we provide front-line support – it’s where we get to know people like Jiang Yuanyan who have the drive to enter our residential training program." xml:space="preserve">
+    <value>也许我们的服务站更应该被称为“信息站”，因为那儿不仅是我们为人们提供卫生服务的地方，更是我们互相认识、交换信息的地方——我们在那儿结识了许多和江远焱一样的人，他是我们住宿培训项目中一位积极向上的实习生。</value>
   </data>
-  <data name="But delve deeper, and a couple of important things are happening..." xml:space="preserve">
-    <value>但深入了解后，您会发现更重要的事情正在发生……</value>
+  <data name="Jiang Yuanyan aspires to build a career in the computer field. Until then, he is glad to be working steadily, saving money, gaining experience and building solid references. Success in his current job will soon help him land a more demanding role that requires all of his technical abilities." xml:space="preserve">
+    <value>江远焱渴望最终能够从事计算机相关的工作。不过在那之前，他很乐意一步一步脚踏实地地工作、存钱、积累经验，并获得雇主的好评。只要把目前的工作做好，他就能迅速换到一个更有挑战性的职位，在那发挥他的技术才能。</value>
   </data>
-  <data name="More space to change lives, thanks to you" xml:space="preserve">
-    <value>更大的空间、更多改变，感谢有您</value>
+  <data name="More than just his next meal" xml:space="preserve">
+    <value>绝不仅仅是一餐饭</value>
   </data>
-  <data name="Our bright, modern space gives people a better chance of renewal" xml:space="preserve">
-    <value>明亮、现代的环境给人们以更好的契机重启人生</value>
+  <data name="Lockdown didn’t stop Jiang Yuanyan from training for a new job" xml:space="preserve">
+    <value>疫情封控也不能阻挡江远焱参加就业培训并寻找一份新的工作</value>
   </data>
-  <data name="Crowds filled our renovated space as Spring Festival meals were served." xml:space="preserve">
-    <value>春节节日餐的供应，让新装修的场地里挤满了人。</value>
+  <data name="People in search of hot food and warm clothes find so much more." xml:space="preserve">
+    <value>人们前来寻求热腾腾的食物和温暖的衣物，但是却收获到更多</value>
   </data>
-  <data name="It’s so nice! Beautiful! Clean, comfortable and warm." xml:space="preserve">
-    <value>这里太棒了！漂亮！干净、舒适又温馨。</value>
+  <data name="I have a job and don’t have to wonder where my next meal is coming from." xml:space="preserve">
+    <value>我现在有一份工作，再也不需要为下一顿吃什么而苦苦发愁。</value>
   </data>
-  <data name="First, more people are coming in for support, and just the type of person we can help. Before, the space was functional but fairly cramped and uninviting. Today it is not only more spacious but so attractive that people are eager to be here. And there’s finally enough space to offer more services aimed at helping people rebuild their lives." xml:space="preserve">
-    <value>首先，更多的人前来寻求支持了，而他们正是我们能够帮助的人。以前，这里虽然也能勉强应付，但狭窄的空间总令人不快。现在，它不仅更加宽敞，而且更具吸引力，使得人们渴望在此停留。同时，这里终于有了足够大的地方，可以提供更多的服务，以更帮助人们重建他们的生活。</value>
+  <data name="When asked how he coped through a recent quarantine, Jiang Yuanyan was characteristically positive. “I have a job and I don’t have to wonder where my next meal is coming from,” he smiled. “This is a lot better than sleeping in the train station.”" xml:space="preserve">
+    <value>当被问及如何度过了最近一次的封控时，江远焱表现得非常乐观。“我现在有一份工作，再也不需要为下一顿吃什么而苦苦发愁，”他笑着说，“这比睡在火车站好太多了。”</value>
   </data>
   <data name="It happened to Yan Shipin, 45. He drops into the Renewal Center for the occasional hot meal, but also relies on the showers and clothing exchange to stay presentable enough to look for a job. In the meantime, he sleeps in the airport for safety and warmth – and because there’s less of a chance he’ll be told to move on." xml:space="preserve">
     <value>这个人就是45岁的颜士平。他偶尔会来到日新中心接受我们提供的午餐，但对他而言最重要的是淋浴和换洗衣服的服务，因为那可以使他重获找工作的自信。同时，他晚上都在虹桥机场过夜，因为那里比较安全和温暖，而且那里很少会有人赶他离开。</value>
@@ -189,14 +189,14 @@
   <data name="Our Spring Festival meal includes traditional dumplings, or jiaozi, all handmade by volunteers." xml:space="preserve">
     <value>我们的春节餐包括由志愿者们亲手包的饺子。</value>
   </data>
-  <data name="He quit school to find work, but has never had a home or steady job" xml:space="preserve">
-    <value>他辍学去寻找工作，却无法找到一个家或一份稳定的工作</value>
+  <data name="People urgently need coats, warm clothes and hot meals" xml:space="preserve">
+    <value>人们迫切地需要外套、温暖的冬装和热气腾腾的食物</value>
   </data>
   <data name="My gift for meals and training" xml:space="preserve">
     <value>我愿为提供温暖的饭菜和培训而捐款</value>
   </data>
-  <data name="More and more, Millennials are seeking help at the Renewal Center, and some like Chu Fude have already spent more than a decade feeling out of place in the world. Chu Fude grew up 400 miles away in the coal mining town of Zaozhuang where he dropped out of school to earn money. Now that he is 30 years old, the kind of job he would like to have usually goes to people with a high school education or better." xml:space="preserve">
-    <value>越来越多千禧一代的人（即八零、九零后）来日新中心寻求帮助，其中，像褚福德这样的人已流浪在外十多年了。褚福德在 600多公里外的煤矿城市枣庄长大，并辍学挣钱。现在他已经 30 岁了，他想从事的那些工作通常要求候选人拥有高中及以上学历。</value>
+  <data name="Any day now we hope to welcome homeless guests back to our drop-in center, which opened briefly in October but was forced to close again despite the steady stream of people seeking urgent help. The relief was short after months of COVID restrictions, but our mobile team is still taking meals and warm clothes to people out on the streets." xml:space="preserve">
+    <value>我们的服务站曾在十月份短暂地运营过，但是很快又被迫关闭，尽管大街上仍有许多人迫切地需要帮助。每一天，我们都在盼望着，能重新打开服务站的大门，迎接人们的到来。在经历了数个月的疫情封控之后，我们的救援物资有所短缺，但我们的行动小组仍在努力地走上街头，将食物和温暖的衣服分发给人们。</value>
   </data>
   <data name="Tao Dezheng had no choice but to leave his family and search for work" xml:space="preserve">
     <value>陶德正不得不离开家人去寻找工作</value>
@@ -210,8 +210,8 @@
   <data name="The Renewal Center gives Yan Shipin, 45, the confidence to look for a job." xml:space="preserve">
     <value>日新中心使45岁的颜士平重新具备了找工作的信心</value>
   </data>
-  <data name="Second, in the near future, we could extend our support to reach more of the people who are very close to launching a career, but just need residential training, education and coaching – all aimed at helping them find stability and full-time jobs." xml:space="preserve">
-    <value>其次，在不久的将来，我们将为更多有望找到工作的人提供支持，他们仅仅是缺少就业培训、教育和指导——这一切都是为了帮助他们找到稳定的全职工作。</value>
+  <data name="Now that the drop-in center has reopened, we will be looking for more trainees. One big concern is that people are already looking for coats and warm clothes as we see cold weather on the horizon." xml:space="preserve">
+    <value>一旦服务站重新投入运营，我们也会开始寻找更多的培训生。不过目前我们比较担心的是，随着严寒天气的逼近，人们越来越需要外套和温暖的冬装了。</value>
   </data>
   <data name="The Renewal Center’s training program is often the key to successful life-change, and is open to anyone who is willing to put in serious work towards finding full-time employment." xml:space="preserve">
     <value>日新中心的培训项目通常是成功改变生活的关键，任何有意愿努力寻求一份全职工作的人都可参加。</value>
@@ -225,8 +225,8 @@
   <data name="You can help the homeless hiding in plain sight" xml:space="preserve">
     <value>您的资助给无家可归者带来了自信</value>
   </data>
-  <data name="Back in December, we completed some exciting building renovations that generous supporters helped to fund. On the surface, you’ll see a bigger, cleaner, brighter space with updates to the kitchen, laundry room, shower, and reception and common areas." xml:space="preserve">
-    <value>去年十二月，我们完成了令人兴奋的房屋翻新工作，并得到了大家的慷慨资助。外观上，您将看到一个更大、更整洁、更明亮的空间，这里的厨房、洗衣房、淋浴间、前台和公共区域都进行了翻新。</value>
+  <data name="Jiang Yuanyan is one of only a handful of people who entered our program during lockdown. With the drop-in center closed during that time, it felt nearly impossible to meet potential new trainees – so it’s good to know that bright and capable people could still find their way from living on the streets to landing a job full time job. Today, thanks to support from friends like you, Jiang Yuanyan is working with SF Express, a very reputable delivery company, and is serving the Jiaotong University campus nearby." xml:space="preserve">
+    <value>疫情封控期间有不少人都前来参加了我们的就业培训项目，江远焱就是其中之一。当时的服务站正因疫情而闭门，我们以为根本无法发掘出新的有潜力的培训生。因此，当发现这些阳光、能干的人们仍然能够前来参加培训，并最终找到一份全职工作，而不用再流落街头时，我们非常欣喜。正是得益于像您一样的朋友们的支持，目前的江远焱就职于一家非常有名的物流公司——顺丰速运，他服务的片区位于交通大学附近。</value>
   </data>
   <data name="A hot meal and shower costs 15 RMB ($2.30). Add a day’s job training for a total of 60 RMB ($9.20)." xml:space="preserve">
     <value>一顿温暖的饭菜和和一次淋浴的费用是15元人民币，加上一天的职业培训，总计60 元人民币。</value>
@@ -237,26 +237,24 @@
   <data name="One thing you should know is how glad I am that friends like you give generously. It’s vitally important to have ongoing support, but you are helping to meet our needs as they arise. I was especially grateful to see that donations toward our recent Spring Festival were on a similar level to the response for our matching grant appeal back in October." xml:space="preserve">
     <value>希望您能明白，有您这样的朋友慷慨解囊，我们感到多么地高兴。能获得持续的帮助对我们来说至关重要，而您的支持恰恰满足了我们的需要。我们发现，春节期间我们收到的捐款数额与去年十月份配捐活动期间收到的数额不相上下，对此我们充满感激。</value>
   </data>
-  <data name="Homeless young people are finding hope here" xml:space="preserve">
-    <value>无家可归的年轻人在这里找到了希望</value>
+  <data name="Drop-in center poised to reopen for cold weather" xml:space="preserve">
+    <value>服务站随时准备重开，以应对冬季的严寒</value>
   </data>
   <data name="Your help has never been so important" xml:space="preserve">
     <value>您此时的帮助对我们而言更加重要</value>
   </data>
-  <data name="It all reminds me that the wonderful work of the Renewal Center would quite simply never happen without friends like you. Thank you!" xml:space="preserve">
-    <value>这一切都在提醒着我：如果没有像您这样的朋友，日新中心的所有成就都无从谈起。感谢您！</value>
-		 
-																																																																																																						  
-																																																																																						  
+  <data name="What a great time it would be for your support to inspire another person not just to receive a meal, but have the opportunity to spend the winter in warm, supportive home where they can train for a satisfying career." xml:space="preserve">
+    <value>如果您能支持我们，为人们送去食物，更送去一个在严寒中呆在温暖的屋子里接受职业培训的机会，我们将不胜感激。他们将有机会找到一份满意的工作。</value>						
   </data>
-																																																																																																																																								
-																																																																							   
-		 
   <data name="Because we serve meals every day, can you help provide more essential food this spring? It will definitely attract more people into our training program." xml:space="preserve">
     <value>由于每天都需要供应食物，您是否可以在今年春天支持我们提供更多的食物？这样一定能吸引到更多的人参加我们的培训项目。</value>
   </data>
-  <data name="He has found temporary work here in Shanghai where, he says, “I can earn more for an 8-hour shift than I used to earn in 12.” But Chu Fude doesn’t earn enough consistently to afford a home. He is thankful for your support and feels ready to land a steady job – and his dreams of getting married and starting a family finally seem possible. He says, “I used to think there was no place for me in the world, but friends here have given me hope that I can actually be somebody.”" xml:space="preserve">
-    <value>他已经在上海找了份临时工。他说：“我现在上8小时的班比以前工作12小时挣的还多”。但褚福德的收入还不足以长期支撑一个家庭。他感谢您的帮助，也准备好了要找一份稳定的工作——他结婚组建家庭的梦想终于变得可能了。他说：“我曾经认为这世上没有我的容身之所，但这里的朋友给了我希望，让我觉得我能有所成就。”</value>
+  <data name="It was hard enough for people during summer lockdown to fight for survival outdoors. Now as the nighttime temperature dips and cold weather approaches, we are seeing more and more cold, hungry people who are all alone and urgently need help." xml:space="preserve">
+    <value>在夏季的封控期间，流落街头的人们为了生存下去已经拼尽全力。而现在，随着寒冷的气候逼近，夜间的温度开始下降，我们看到，越来越多饥寒交迫的人们亟待帮助。</value>
+  </data>
+  <data name="Only when the drop-in center reopens again will we be able to provide full front-line support including showers and laundry. Costs are also rising, and food especially is more expensive than before the pandemic began. People ask for meals more than anything else we provide, so your generosity today will offer life-changing support." xml:space="preserve">
+    <value>只有当服务站再次开门之时，我们才能重新为人们提供全套的卫生服务，包括淋浴和清洗衣物。所有的东西的成本都在不断攀升，尤其是食物的价格，已经比疫情之前高出许多，而人们最需要的就是食物。因此您今天的慷慨解囊将支持我们，为人们提供改变他们一生的帮助。</value>
+  </data>
 		 
 											 
 						   

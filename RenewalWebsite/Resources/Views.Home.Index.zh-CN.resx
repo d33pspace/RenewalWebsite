@@ -123,8 +123,8 @@
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Across Shanghai, your gift will bring hope and help to desperate people" xml:space="preserve">
-    <value>您的捐赠将为上海各个地方身处绝望中的人们送去希望和帮助</value>
+  <data name="Cold nights are here. You can help people survive" xml:space="preserve">
+    <value>寒夜已至，您可以帮助人们生存下去</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
@@ -144,11 +144,11 @@
   <data name="Please send a gift to help someone like Luo Yu find a stable job" xml:space="preserve">
     <value>请做出捐赠，帮助和罗玉一样的人找到一份稳定的工作</value>
   </data>
-  <data name="Read more" xml:space="preserve">
-    <value>了解更多</value>
+  <data name="Read the story here" xml:space="preserve">
+    <value>点此阅读我们的故事</value>
   </data>
-  <data name="When people have no place to sleep at night, your gift can still provide food and friendship." xml:space="preserve">
-    <value>当人们夜里无处安身，您的捐赠依然可以为他们送去食物和友谊。</value>
+  <data name="When temperatures drop, people urgently need warm clothes, coats and hats." xml:space="preserve">
+    <value>气温下降时，人们迫切地需要温暖的衣服、外套和帽子</value>
   </data>
   <data name="Every $2.33 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出2.33美元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
@@ -156,7 +156,10 @@
   <data name="Every ￥15.00 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出15元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
   </data>
-  <data name="Here on People’s Square, our street support team finds people in need who most people don’t see. Some homeless people leave no trace, meaning the ones we find are in dire need because they are hidden away, suffering and invisible. Your gift today will reach the people that nobody else can help." xml:space="preserve">
-    <value>这里是人民广场，我们的街头援助小组在这里找到了需要帮助的人们，而他们往往不会被其他人发现。许多无家可归的人们常常来去匆匆，不留下一点儿痕迹。他们东躲西藏、默默地忍受着一切。他们正迫切地需要我们的支持。今天，您的捐赠将会向这些“隐形人”们伸去援手。</value>
+  <data name="Renewal’s drop-in center <has re-opened just in time to offer/is offering> warm clothes, food and kindness to lonely homeless people who will be struggling to survive on the cold streets at night. We are urgently requesting gifts from supporters – because the cost of food is rising and the first people want when they come to us is a good, hot meal." xml:space="preserve">
+    <value>日新的服务站<已及时重开，为在寒夜中流落街头的人们提供>温暖的衣物、食物和关爱。我们在此急切地恳请大家给予援助——因为食物的成本正在不断上涨，而人们最需要的恰恰就是一份健康的、热腾腾的食物。</value>
+  </data>
+  <data name="Our autumn newsletter also tells the survival story of Jiang Yuanyan, who found his way to the Renewal Center during lockdown, despite the drop-in center being closed for most of the last seven months. It was wonderful to see Jiang Yuanyan start a new job – and to know that it would have been impossible without the training provided here, and the kind gifts of generous supporters like you." xml:space="preserve">
+    <value>我们的秋季简报中讲述了江远焱的生存故事，他在封控期间仍然找到了日新中心，尽管我们的服务站在过去的七个月内大部分时间都处于关门状态。我们非常高兴地看到江远焱找到了一份新的工作——这与他在这里参加的培训息息相关，也绝对离不开您的支持。</value>
   </data>
 </root>
