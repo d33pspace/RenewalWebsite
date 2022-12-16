@@ -124,7 +124,7 @@
     <value>首页</value>
   </data>
   <data name="Cold weather can kill. You can help people survive" xml:space="preserve">
-    <value>寒冷的天气非常危险，而您可以帮助人们应对</value>
+    <value>寒冷的天气非常危险，而您可以帮助人们应对 </value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
