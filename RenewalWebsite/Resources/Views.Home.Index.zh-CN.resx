@@ -123,8 +123,8 @@
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Cold nights are here. You can help people survive" xml:space="preserve">
-    <value>寒夜已至，您可以帮助人们生存下去</value>
+  <data name="Cold weather can kill. You can help people survive" xml:space="preserve">
+    <value>寒冷的天气非常危险，而您可以帮助人们应对</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
