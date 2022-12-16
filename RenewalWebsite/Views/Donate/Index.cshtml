@@ -29,23 +29,14 @@
                 <span>@baseAmountUSD.ToString("C", currency)</span>
             }
             @Localizer["you give today will provide a hot meal, shower and change of clothes for a homeless man or woman."]-->
-            @Localizer["We must close the funding gap to keep providing food and support."]
+            @Localizer["When temperatures drop, people need coats and hot meals."]
         </figcaption>
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Close the year-end gap to keep serving hot meals"]</h2>
+        <h2>@Localizer["Give a person warm clothes and hot meals"]</h2>
 		
-		<p>
-		@if (currency.Name.Contains("zh"))
-        {
-            @Localizer["Our year-end gap in funding now stands at 651,000 RMB. Your urgent gift will help meet our year-end need and keep offering help and hope throughout the New Year. Please indicate the amount of your gift below:"]
-        }
-        else
-        {
-            @Localizer["Our year-end gap in funding now stands at $97,700. Your urgent gift will help meet our year-end need and keep offering help and hope throughout the New Year. Please indicate the amount of your gift below:"]
-        }
-		</p>
+		<p>@Localizer["It costs only 10RMB to provide a wholesome meal, hot shower, warm clothes and friendship to a person in desperate need, so please help as many people as you can today."]</p>
 
         @if (currency.Name.Contains("en"))
         {
@@ -76,10 +67,10 @@
                 <input type="hidden" id="DonationAmount" name="DonationAmount" />
                 <input type="hidden" id="CycleId" name="CycleId" />
                 <ul class="list-unstyled rmb-options mb-5">
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="31.50" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)31.50</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 21 people"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="57.00" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)57.00</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 38 people"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="67.50" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)63.45</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 45 people"]</li>
-					<li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="6" data-value="false" data-donation-value="90.00" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)84.60</strong> @Localizer["to provide a hot meal, shower, and clean clothes for 60 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="29.61" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)29.61</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 21 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="52.88" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)52.88</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 38 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="63.45" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)63.45</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 45 people"]</li>
+					<li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="6" data-value="false" data-donation-value="84.60" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)84.60</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 60 people"]</li>
                     <li>
                         <div class="input-group">
                             <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="for a hot meals, job training, or any current need" onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
@@ -100,7 +91,7 @@
             <ul class="list-unstyled gift-options">
                 <li><strong>@CurrencyService.GetSymbol(currency)120</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 12 people"]</li>
                 <li><strong>@CurrencyService.GetSymbol(currency)210</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 21 people"]</li>
-                <li><strong>@CurrencyService.GetSymbol(currency)380</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 38 people"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)375</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 38 people"]</li>
 				<li><strong>@CurrencyService.GetSymbol(currency)450</strong> @Localizer["to provide a hot meal, shower, and warm clothes for 45 people"]</li>
 				
                 <li>@Localizer["An amount of my choice to help as many people as I can."]</li>

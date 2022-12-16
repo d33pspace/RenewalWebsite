@@ -18,37 +18,30 @@
 <div class="row">
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
         <img src="https://www.renewal365.org/images/home/slide-home_2022autumn.jpeg" class="figure-img img-fluid" alt="donate page image">
-        <figcaption class="figure-caption caption chinese">@Localizer["Please help close the year-end gap and keep helping the homeless"]</figcaption>
+        <figcaption class="figure-caption caption chinese">@Localizer["When temperatures drop, people urgently need warm clothes, coats and hats."]</figcaption>
     </div>
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Urgent financial need must be met by December 31"]</h2>
+        <h2>@Localizer["Cold nights are here. You can help people survive"]</h2>
 
-		<p>@Localizer["This has been a challenging year for Renewal and the homeless people we help. Many months of lockdown meant they were forced to spread out and sleep rough, which made their suffering worse."]
+		<p>@Localizer["Renewal’s drop-in center is offering warm clothes, food and kindness to lonely homeless people who will be struggling to survive on the cold streets at night. We are urgently requesting gifts from supporters – because the cost of food is rising and the first people want when they come to us is a good, hot meal."]
 		</p>
 			
-		<p>@Localizer["At the same time, our gift income has very seriously declined. Face-to-face fundraising came to a standstill. Strict quarantines and long periods of lockdown meant many of our supporters left Shanghai and returned to their home countries."]
-		</p>
+		<p class="m-tb-15">
+                <a href="/news"><span>@Localizer["Read the story here"]</span></a>
+        </p>
 		
-		<p><b>
-		@if (currency.Name.Contains("zh"))
-        {
-            @Localizer["Your gift now can help close the 651,000 RMB shortfall and help continue providing meals and support for homeless people into the New Year."]
-        }
-        else
-        {
-            @Localizer["Your gift now can help close the $97,700 shortfall and help continue providing meals and support for homeless people into the New Year."]
-        }
-		</b></p>
-
-<!--			
+		<p>@Localizer["Our autumn newsletter also tells the survival story of Jiang Yuanyan, who found his way to the Renewal Center during lockdown, despite the drop-in center being closed for most of the last seven months. It was wonderful to see Jiang Yuanyan start a new job – and to know that it would have been impossible without the training provided here, and the kind gifts of generous supporters like you."]
+		</p>
+			
 		<p class="m-tb-15">
                 <a href="/news#story-2"><span>@Localizer["Read the story here"]</span></a>
         </p>
-
+<!--			
+		<a class="bodynorm" href="/news">@Localizer["Read more"]</a>
         <h2 class="red-border">@Localizer["Please send a gift to help someone like Luo Yu find a stable job"]</h2>
--->
+--> 
 		<div class="clearfix mt-4 mb-5">
-			<a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["Send your uegent gift"] <i class="arrow right-arrow"></i></a>
+			<a class="btn btn-secondary btn-block" asp-controller="Donate" asp-action="Index">@Localizer["Send a gift"] <i class="arrow right-arrow"></i></a>
 		</div>
 
 <!--	

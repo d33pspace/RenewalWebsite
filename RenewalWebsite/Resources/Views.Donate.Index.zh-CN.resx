@@ -189,23 +189,8 @@
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Close the year-end gap to keep serving hot meals" xml:space="preserve">
-    <value>弥补财务缺口，继续为人们提供食物</value>
-  </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 21 people" xml:space="preserve">
-    <value>为21人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
-  </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 38 people" xml:space="preserve">
-    <value>为38人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
-  </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 45 people" xml:space="preserve">
-    <value>为45人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
-  </data>
-  <data name="to provide a hot meal, shower, and clean clothes for 60 people" xml:space="preserve">
-    <value>为60人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
-  </data>
-  <data name="to provide a hot meal, shower, and warm clothes for 12 people" xml:space="preserve">
-    <value>为12人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
+  <data name="Give a person warm clothes and hot meals" xml:space="preserve">
+    <value>为人们提供温暖的衣物和食物</value>
   </data>
   <data name="to provide a hot meal, shower, and warm clothes for 21 people" xml:space="preserve">
     <value>为21人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
@@ -216,13 +201,25 @@
   <data name="to provide a hot meal, shower, and warm clothes for 45 people" xml:space="preserve">
     <value>为45人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
   </data>
-  <data name="We must close the funding gap to keep providing food and support." xml:space="preserve">
-    <value>我们必须弥补财务上的缺口，继续为人们提供食物和帮助</value>
+  <data name="to provide a hot meal, shower, and warm clothes for 60 people" xml:space="preserve">
+    <value>为60人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
   </data>
-  <data name="Our year-end gap in funding now stands at 651,000 RMB. Your urgent gift will help meet our year-end need and keep offering help and hope throughout the New Year. Please indicate the amount of your gift below:" xml:space="preserve">
-    <value>截至今年年末，我们财务上的缺口为651,000元。您的紧急捐赠将帮助我们弥补这一短缺，使我们在新的一年能继续为人们提供帮助、燃起希望。请选择以下数额进行捐赠。</value>
+  <data name="to provide a hot meal, shower, and warm clothes for 12 people" xml:space="preserve">
+    <value>为12人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
   </data>
-  <data name="Our year-end gap in funding now stands at $97,700. Your urgent gift will help meet our year-end need and keep offering help and hope throughout the New Year. Please indicate the amount of your gift below:" xml:space="preserve">
-    <value>截至今年年末，我们财务上的缺口为$97,700。您的紧急捐赠将帮助我们弥补这一短缺，使我们在新的一年能继续为人们提供帮助、燃起希望。请选择以下数额进行捐赠。</value>
+  <data name="to provide meals and emergency care for 14 people" xml:space="preserve">
+    <value>提供14人份的餐食、淋浴和干净衣物</value>
+  </data>
+  <data name="to provide meals and emergency care for 25 people" xml:space="preserve">
+    <value>提供25人份的餐食、淋浴和干净衣物</value>
+  </data>
+  <data name="to provide meals and emergency care for 35 people" xml:space="preserve">
+    <value>提供35人份的餐食、淋浴和干净衣物</value>
+  </data>
+  <data name="When temperatures drop, people need coats and hot meals." xml:space="preserve">
+    <value>当气温下降时，人们需要外套和热腾腾的食物。</value>
+  </data>
+  <data name="It costs only 10RMB to provide a wholesome meal, hot shower, warm clothes and friendship to a person in desperate need, so please help as many people as you can today." xml:space="preserve">
+    <value>仅需10元，您就可以为一个身处绝望的人送去一份健康的食物、一次热水澡、一些温暖的衣物以及——友谊。今天，请尽您所能地为人们提供更多的帮助。</value>
   </data>
 </root>

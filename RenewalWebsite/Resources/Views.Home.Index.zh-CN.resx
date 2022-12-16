@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Send your uegent gift" xml:space="preserve">
-    <value>紧急捐赠</value>
+  <data name="Send a gift" xml:space="preserve">
+    <value>做出捐赠</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Urgent financial need must be met by December 31" xml:space="preserve">
-    <value>12月31前需要您的紧急援助</value>
+  <data name="Cold nights are here. You can help people survive" xml:space="preserve">
+    <value>寒夜已至，您可以帮助人们生存下去</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
@@ -147,8 +147,8 @@
   <data name="Read the story here" xml:space="preserve">
     <value>点此阅读我们的故事</value>
   </data>
-  <data name="Please help close the year-end gap and keep helping the homeless" xml:space="preserve">
-    <value>请帮助我们弥补今年的财务缺口，让我们能继续为无家可归的人们服务</value>
+  <data name="When temperatures drop, people urgently need warm clothes, coats and hats." xml:space="preserve">
+    <value>气温下降时，人们迫切地需要温暖的衣服、外套和帽子</value>
   </data>
   <data name="Every $2.33 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出2.33美元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
@@ -156,16 +156,10 @@
   <data name="Every ￥15.00 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出15元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
   </data>
-  <data name="This has been a challenging year for Renewal and the homeless people we help. Many months of lockdown meant they were forced to spread out and sleep rough, which made their suffering worse." xml:space="preserve">
-    <value>对于日新中心和我们所帮助的那些无家可归的人们来说，今年是充满了挑战的一年。长达数月的封控让人们的流浪生活雪上加霜——他们不得不孤独地过着朝不保夕、彻夜难眠的生活。</value>
+  <data name="Renewal’s drop-in center is offering warm clothes, food and kindness to lonely homeless people who will be struggling to survive on the cold streets at night. We are urgently requesting gifts from supporters – because the cost of food is rising and the first people want when they come to us is a good, hot meal." xml:space="preserve">
+    <value>日新的服务站为在寒夜中流落街头的人们提供温暖的衣物、食物和关爱。我们在此急切地恳请大家给予援助——因为食物的成本正在不断上涨，而人们最需要的恰恰就是一份健康的、热腾腾的食物。</value>
   </data>
-  <data name="At the same time, our gift income has very seriously declined. Face-to-face fundraising came to a standstill. Strict quarantines and long periods of lockdown meant many of our supporters left Shanghai and returned to their home countries." xml:space="preserve">
-    <value>与此同时，我们的捐赠收入也出现了严重地下滑。线下募捐活动被迫停止，而严格的隔离措施和长时间的封控管理，更使得我们的许多朋友不得不离开上海、回到祖国。</value>
-  </data>
-  <data name="Your gift now can help close the 651,000 RMB shortfall and help continue providing meals and support for homeless people into the New Year." xml:space="preserve">
-    <value>目前，我们的财务缺口为651,000元，您的捐赠可以帮助我们弥补这一短缺，使我们在新的一年中能继续为无家可归的人们提供食物和帮助。</value>
-  </data>
-  <data name="Your gift now can help close the $97,700 shortfall and help continue providing meals and support for homeless people into the New Year." xml:space="preserve">
-    <value>目前，我们的财务缺口为$97,700，您的捐赠可以帮助我们弥补这一短缺，使我们在新的一年中能继续为无家可归的人们提供食物和帮助。</value>
+  <data name="Our autumn newsletter also tells the survival story of Jiang Yuanyan, who found his way to the Renewal Center during lockdown, despite the drop-in center being closed for most of the last seven months. It was wonderful to see Jiang Yuanyan start a new job – and to know that it would have been impossible without the training provided here, and the kind gifts of generous supporters like you." xml:space="preserve">
+    <value>我们的秋季简报中讲述了江远焱的生存故事，他在封控期间仍然找到了日新中心，尽管我们的服务站在过去的七个月内大部分时间都处于关门状态。我们非常高兴地看到江远焱找到了一份新的工作——这与他在这里参加的培训息息相关，也绝对离不开您的支持。</value>
   </data>
 </root>
