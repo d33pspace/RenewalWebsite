@@ -189,37 +189,31 @@
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Give a person warm clothes and hot meals" xml:space="preserve">
-    <value>为人们提供温暖的衣物和食物</value>
+  <data name="My gift for Spring Festival meals, warmth and joy for the homeless" xml:space="preserve">
+    <value>我愿意为无家可归的人们送去新年的食物、温暖和欢乐</value>
   </data>
-  <data name="to provide a hot meal, shower, and warm clothes for 21 people" xml:space="preserve">
-    <value>为21人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
+  <data name="to provide a Spring Festival meal, holiday treats, a “red envelope” and essential winter clothes for one person" xml:space="preserve">
+    <value>为一个人提供一份新年节日餐、一些节日的零食、一个红包和以及一些必备的冬装。</value>
   </data>
-  <data name="to provide a hot meal, shower, and warm clothes for 38 people" xml:space="preserve">
-    <value>为38人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
+  <data name="to provide a Spring Festival celebration for two people" xml:space="preserve">
+    <value>为两个人提供新年的礼物。</value>
   </data>
-  <data name="to provide a hot meal, shower, and warm clothes for 45 people" xml:space="preserve">
-    <value>为45人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
+  <data name="to feed and clothe three people this Spring Festival" xml:space="preserve">
+    <value>为三个人送去特别的礼物、食物和衣物。</value>
   </data>
-  <data name="to provide a hot meal, shower, and warm clothes for 60 people" xml:space="preserve">
-    <value>为60人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
+  <data name="will provide a Spring Festival meal, holiday treats, a hongbao and essential winter clothes for one person" xml:space="preserve">
+    <value>为一个人提供一份新年节日餐、一些节日的零食、一个红包和以及一些必备的冬装。</value>
   </data>
-  <data name="to provide a hot meal, shower, and warm clothes for 12 people" xml:space="preserve">
-    <value>为12人提供一份热腾腾的食物、一次淋浴和温暖的衣物</value>
+  <data name="will give a Spring Festival celebration for two people" xml:space="preserve">
+    <value>为两个人提供新年的礼物。</value>
   </data>
-  <data name="to provide meals and emergency care for 14 people" xml:space="preserve">
-    <value>提供14人份的餐食、淋浴和干净衣物</value>
+  <data name="as a special gift will feed and clothes three people" xml:space="preserve">
+    <value>为三个人送去特别的礼物、食物和衣物。</value>
   </data>
-  <data name="to provide meals and emergency care for 25 people" xml:space="preserve">
-    <value>提供25人份的餐食、淋浴和干净衣物</value>
+  <data name="Reach someone who is alone and on the streets this Spring Festival." xml:space="preserve">
+    <value>帮助春节期间流落街头、孤身一人的他们</value>
   </data>
-  <data name="to provide meals and emergency care for 35 people" xml:space="preserve">
-    <value>提供35人份的餐食、淋浴和干净衣物</value>
-  </data>
-  <data name="When temperatures drop, people need coats and hot meals." xml:space="preserve">
-    <value>当气温下降时，人们需要外套和热腾腾的食物。</value>
-  </data>
-  <data name="It costs only 10RMB to provide a wholesome meal, hot shower, warm clothes and friendship to a person in desperate need, so please help as many people as you can today." xml:space="preserve">
-    <value>仅需10元，您就可以为一个身处绝望的人送去一份健康的食物、一次热水澡、一些温暖的衣物以及——友谊。今天，请尽您所能地为人们提供更多的帮助。</value>
+  <data name="Here’s my gift to give a homeless person a hot, traditional Spring Festival meal, a warm hat and winter gloves, a special “red envelope” and a thermos for hot drinks and soups. I’m glad to give courage and hope this New Year!" xml:space="preserve">
+    <value>我愿意为无家可归的人们提供一份热腾腾的新年节日餐、一顶温暖的帽子、一副手套、一个特别的小红包和一个能让他们喝到热水和热汤的保温杯，我也愿意给人们带去勇气和希望。</value>
   </data>
 </root>
