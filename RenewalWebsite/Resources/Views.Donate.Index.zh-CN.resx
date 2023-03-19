@@ -189,20 +189,20 @@
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="My gift for Spring Festival meals, warmth and joy for the homeless" xml:space="preserve">
-    <value>我愿意为无家可归的人们送去新年的食物、温暖和欢乐</value>
+  <data name="Help restock our supplies of food and clothing for new trainees" xml:space="preserve">
+    <value>请帮助我们储备食物和衣物，为我们的新学员提供支持</value>
   </data>
-  <data name="to provide a Spring Festival meal, holiday treats, a “red envelope” and essential winter clothes for one person" xml:space="preserve">
-    <value>为一个人提供一份新年节日餐、一些节日的零食、一个红包和以及一些必备的冬装。</value>
+  <data name="resupplies food and clothes for one day’s training" xml:space="preserve">
+    <value>为一天的培训提供食物和衣物</value>
   </data>
-  <data name="to provide a Spring Festival celebration for two people" xml:space="preserve">
-    <value>为两个人提供新年的礼物。</value>
+  <data name="provides food, clothing & shelter for two day’s training" xml:space="preserve">
+    <value>为两天的培训提供食物、衣物和住所</value>
   </data>
-  <data name="to feed and clothe three people this Spring Festival" xml:space="preserve">
-    <value>为三个人送去特别的礼物、食物和衣物。</value>
+  <data name="provides food, clothing & shelter for a week’s training" xml:space="preserve">
+    <value>为一周的培训提供食物、衣物和住所</value>
   </data>
-  <data name="will provide a Spring Festival meal, holiday treats, a hongbao and essential winter clothes for one person" xml:space="preserve">
-    <value>为一个人提供一份新年节日餐、一些节日的零食、一个红包和以及一些必备的冬装。</value>
+  <data name="provides food, clothing & shelter for a months’ training" xml:space="preserve">
+    <value>为一个月的培训提供食物、衣物和住所</value>
   </data>
   <data name="will give a Spring Festival celebration for two people" xml:space="preserve">
     <value>为两个人提供新年的礼物。</value>
@@ -210,10 +210,10 @@
   <data name="as a special gift will feed and clothes three people" xml:space="preserve">
     <value>为三个人送去特别的礼物、食物和衣物。</value>
   </data>
-  <data name="Reach someone who is alone and on the streets this Spring Festival." xml:space="preserve">
-    <value>帮助春节期间流落街头、孤身一人的他们</value>
+  <data name="We need new clothes for trainees who are looking for jobs. Stocks of food and dry goods are also running low." xml:space="preserve">
+    <value>我们需要为找工作的学员们提供衣服，同时，我们的食物和其他衣物也即将消耗殆尽。</value>
   </data>
-  <data name="Here’s my gift to give a homeless person a hot, traditional Spring Festival meal, a warm hat and winter gloves, a special “red envelope” and a thermos for hot drinks and soups. I’m glad to give courage and hope this New Year!" xml:space="preserve">
-    <value>我愿意为无家可归的人们提供一份热腾腾的新年节日餐、一顶温暖的帽子、一副手套、一个特别的小红包和一个能让他们喝到热水和热汤的保温杯，我也愿意给人们带去勇气和希望。</value>
+  <data name="Stocks of food, dry goods and our clothing supplies have slowly depleted over the COVID lockdown, and we need to restock now. Our residential program is once again open to new trainees and more people are seeking urgent help!" xml:space="preserve">
+    <value>食物和衣物的库存在疫情封控期间都逐渐消耗殆尽，现在我们急需储备新的物资。除此之外，日新就业培训项目也开始招收新的学员。越来越多的人们正在寻求帮助！</value>
   </data>
 </root>
