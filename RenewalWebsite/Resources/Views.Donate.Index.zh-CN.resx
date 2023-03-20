@@ -195,13 +195,13 @@
   <data name="resupplies food and clothes for one day’s training" xml:space="preserve">
     <value>为一天的培训提供食物和衣物</value>
   </data>
-  <data name="provides food, clothing & shelter for two day’s training" xml:space="preserve">
+  <data name="provides food, clothing and shelter for two day’s training" xml:space="preserve">
     <value>为两天的培训提供食物、衣物和住所</value>
   </data>
-  <data name="provides food, clothing & shelter for a week’s training" xml:space="preserve">
+  <data name="provides food, clothing and shelter for a week’s training" xml:space="preserve">
     <value>为一周的培训提供食物、衣物和住所</value>
   </data>
-  <data name="provides food, clothing & shelter for a months’ training" xml:space="preserve">
+  <data name="provides food, clothing and shelter for a months’ training" xml:space="preserve">
     <value>为一个月的培训提供食物、衣物和住所</value>
   </data>
   <data name="will give a Spring Festival celebration for two people" xml:space="preserve">
