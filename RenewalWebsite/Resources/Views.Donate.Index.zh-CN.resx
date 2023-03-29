@@ -138,6 +138,9 @@
   <data name="Donate" xml:space="preserve">
     <value>捐款</value>
   </data>
+  <data name="To make a donation with Alipay, please select 'Open with Browser' from the context menu (three dots) at the top of your screen." xml:space="preserve">
+    <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在浏览器打开”。</value>
+  </data>
   <data name="To make a donation with Alipay, please select 'Open in Safari' from the context menu (three dots) at the top of your screen." xml:space="preserve">
     <value>为了使用支付宝进行捐款，请点击右上角菜单按钮（三个点）选择“在Safari打开”。</value>
   </data>
@@ -167,7 +170,7 @@
   </data>
   <data name="When the weather is cold, more people come to us and they all need urgent help." xml:space="preserve">
     <value>寒冷的季节里，更多的人来到这里，寻求紧急的救助。</value>
-  </data>
+  </data>  
   <data name="I want my gift to repeat automatically every month." xml:space="preserve">
     <value>我愿意每个月自动捐出同样的数额。</value>
   </data>
