@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="SEND YOUR URGENT GIFT" xml:space="preserve">
-    <value>做出紧急捐赠</value>
+  <data name="SEND A GIFT" xml:space="preserve">
+    <value>做出捐赠</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>首页</value>
   </data>
-  <data name="Give hot, holiday meals to homeless people this Spring Festival" xml:space="preserve">
-    <value>这个春节，将热腾腾的食物送给那些无家可归的人们</value>
+  <data name="New training programs, new arrivals" xml:space="preserve">
+    <value>新的培训项目，新的开始</value>
   </data>
   <data name="Log in" xml:space="preserve">
     <value>登录</value>
@@ -147,8 +147,8 @@
   <data name="Read the story here" xml:space="preserve">
     <value>点此阅读我们的故事</value>
   </data>
-  <data name="Your Spring Festival gift will serve a hot holiday meal, even outdoors." xml:space="preserve">
-    <value>您的春节捐赠将为无家可归的人们送去一份温暖的节日餐</value>
+  <data name="Baby Yaoxi was born at the Renewal Center." xml:space="preserve">
+    <value>宝宝瑶惜诞生在了日新中心</value>
   </data>
   <data name="Every $2.33 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出2.33美元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
@@ -156,10 +156,10 @@
   <data name="Every ￥15.00 of your gift today will provide a hot meal, shower and clean clothes to someone who is sleeping rough. The Renewal Center relies entirely on the gifts of people like you to change the lives of homeless people in Shanghai and help them get off the streets for good." xml:space="preserve">
     <value>今天，您每捐出15元，就能为无处栖身的人提供一顿热腾腾的餐食、一次淋浴和干净的衣物。日新中心完全仰仗您这样的人，来改变上海无家可归的人们的生活，帮助他们永久地离开街头。</value>
   </data>
-  <data name="Homeless people in Shanghai are left out in the cold while everyone celebrates Spring Festival. Let someone know you care by giving them a hot, traditional holiday meal, a hongbao, and essential winter clothes today." xml:space="preserve">
-    <value>当家家户户都在庆祝中国农历新年时，无家可归的人们却在上海街头的寒风中瑟瑟发抖。请给他们送去一份热腾腾的节日餐、一个小红包和一些冬天必备的衣物吧，让他们感受到您的关爱！</value>
+  <data name="Mo Lifang came to Renewal for emergency shelter and gave birth the next morning on the bathroom floor. Her baby was dangerously premature." xml:space="preserve">
+    <value>莫莉方来到日新中心寻求一个临时的庇护所。次日清晨，她在浴室的地板上生下了宝宝。由于早产，她的宝宝一度情况危急。</value>
   </data>
-  <data name="Our autumn newsletter also tells the survival story of Jiang Yuanyan, who found his way to the Renewal Center during lockdown, despite the drop-in center being closed for most of the last seven months. It was wonderful to see Jiang Yuanyan start a new job – and to know that it would have been impossible without the training provided here, and the kind gifts of generous supporters like you." xml:space="preserve">
-    <value>我们的秋季简报中讲述了江远焱的生存故事，他在封控期间仍然找到了日新中心，尽管我们的服务站在过去的七个月内大部分时间都处于关门状态。我们非常高兴地看到江远焱找到了一份新的工作——这与他在这里参加的培训息息相关，也绝对离不开您的支持。</value>
+  <data name="People who need work could soon be joining a program in Yunnan province where Renewal can provide training in a variety of great jobs." xml:space="preserve">
+    <value>那些渴望找到工作的人们很快将会参与到日新的云南项目中去——我们在那里为他们准备了各式各样的培训与工作岗位。</value>
   </data>
 </root>
