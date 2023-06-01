@@ -180,6 +180,9 @@
   <data name="to support and train as many people as I can" xml:space="preserve">
     <value>尽我所能为人们提供支持和培训</value>
   </data>
+  <data name="to support and train as many people as I can " xml:space="preserve">
+    <value>尽我所能为人们提供支持和培训</value>
+  </data>
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
@@ -198,11 +201,17 @@
   <data name="offers 10 days’ job training for one person" xml:space="preserve">
     <value>为一个人提供10天的就业培训</value>
   </data>
-  <data name="will give a Spring Festival celebration for two people" xml:space="preserve">
-    <value>为两个人提供新年的礼物。</value>
+  <data name="gives a hot meal and support to 12 people " xml:space="preserve">
+    <value>为12个人提供热腾腾的食物和帮助</value>
   </data>
-  <data name="as a special gift will feed and clothes three people" xml:space="preserve">
-    <value>为三个人送去特别的礼物、食物和衣物。</value>
+  <data name="offers food and frontline services to 21 people " xml:space="preserve">
+    <value>为21个人提供食物和卫生服务</value>
+  </data>
+  <data name="funds one week’s urban or farm-based training " xml:space="preserve">
+    <value>提供为期一周的城市或农业培训</value>
+  </data>
+  <data name="offers 10 days’ job training for one person " xml:space="preserve">
+    <value>为一个人提供10天的就业培训</value>
   </data>
   <data name="Your donation gives people the training they need to find great jobs." xml:space="preserve">
     <value>您的捐赠为人们提供培训，帮助他们找到理想的工作</value>
