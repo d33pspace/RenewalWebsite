@@ -17,7 +17,7 @@
 <div class="row">
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <img src="https://www.renewal365.org/images/home/slide-donate_2023spring.jpeg" class="figure-img img-fluid" alt="donate page image">
+        <img src="https://www.renewal365.org/images/home/slide-donate_2023summerslump.jpeg" class="figure-img img-fluid" alt="donate page image">
         <figcaption class="figure-caption caption chinese">
             <!--@Localizer["Every"]
             @if (currency.Name.Contains("zh"))
@@ -29,14 +29,14 @@
                 <span>@baseAmountUSD.ToString("C", currency)</span>
             }
             @Localizer["you give today will provide a hot meal, shower and change of clothes for a homeless man or woman."]-->
-            @Localizer["For trainees like these, Hanson and Jimmy are developing a rural program in Yunnan."]
+            @Localizer["Your donation gives people the training they need to find great jobs."]
         </figcaption>
     </div>
 
     <div class="col-lg-6 offset-lg-0 offset-md-2 col-md-8 offset-sm-1">
-        <h2>@Localizer["Give urgent support and job training"]</h2>
+        <h2>@Localizer["Beat the “summer slump” and help launch farm-based training!"]</h2>
 		
-		<p>@Localizer["It costs only 50 RMB to provide one day of residential training, which opens the door to great job opportunities."]</p>
+		<p>@Localizer["Giving drops in the summer. But we need your help! Renewal is working to launch farm-based training in Yunnan. Your support is crucial now."]</p>
 
         @if (currency.Name.Contains("en"))
         {
@@ -67,14 +67,14 @@
                 <input type="hidden" id="DonationAmount" name="DonationAmount" />
                 <input type="hidden" id="CycleId" name="CycleId" />
                 <ul class="list-unstyled rmb-options mb-5">
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="21.75" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)21.75</strong> @Localizer["provides three days' job training for one person"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="29.00" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)29.00</strong> @Localizer["gives four days' job training for one person"]</li>
-                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="6" data-value="false" data-donation-value="50.75" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)50.75</strong> @Localizer["provides a full week of job training"]</li>
-					<li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="72.50" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)72.50</strong> @Localizer["offers 10 days' job training for one person"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="1" data-value="false" checked="checked" data-donation-value="18" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)18</strong> @Localizer["gives a hot meal and support to 12 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="2" data-value="false" data-donation-value="31.50" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)31.50</strong> @Localizer["offers food and frontline services to 21 people"]</li>
+                    <li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="6" data-value="false" data-donation-value="52.50" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)52.50</strong> @Localizer["funds one week’s urban or farm-based training"]</li>
+					<li> <input id="SelectedAmount" name="SelectedAmount" type="radio" value="3" data-value="false" data-donation-value="75" data-reason="For most urgent needs" /><strong>@CurrencyService.GetSymbol(currency)75</strong> @Localizer["offers 10 days’ job training for one person"]</li>
                     <li>
                         <div class="input-group">
                             <input id="SelectedAmount" name="SelectedAmount" type="radio" value="4" class="rb-align" data-value="true" data-reason="for a hot meals, job training, or any current need" onclick="setFocus(this)" /><strong>@CurrencyService.GetSymbol(currency)</strong>
-                            <input type="text" id="CustomAmount" name="CustomAmount" onfocus="checkSelection()" class="form-control" style="height:38px;" /> @Localizer["provide as much training as I can."]
+                            <input type="text" id="CustomAmount" name="CustomAmount" onfocus="checkSelection()" class="form-control" style="height:38px;" /> @Localizer["to support and train as many people as I can"]
                         </div>
                     </li>
                 </ul>
@@ -89,11 +89,11 @@
         else
         {
             <ul class="list-unstyled gift-options">
-                <li><strong>@CurrencyService.GetSymbol(currency)150</strong> @Localizer["provides three days' job training for one person"]</li>
-                <li><strong>@CurrencyService.GetSymbol(currency)200</strong> @Localizer["gives four days' job training for one person"]</li>
-				<li><strong>@CurrencyService.GetSymbol(currency)350</strong> @Localizer["provides a full week of job training"]</li>
-				<li><strong>@CurrencyService.GetSymbol(currency)500</strong> @Localizer["offers 10 days' job training for one person"]</li>
-                <li>@Localizer["provide as much training as I can."]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)120</strong> @Localizer["gives a hot meal and support to 12 people"]</li>
+                <li><strong>@CurrencyService.GetSymbol(currency)210</strong> @Localizer["offers food and frontline services to 21 people"]</li>
+				<li><strong>@CurrencyService.GetSymbol(currency)350</strong> @Localizer["funds one week’s urban or farm-based training"]</li>
+				<li><strong>@CurrencyService.GetSymbol(currency)500</strong> @Localizer["offers 10 days’ job training for one person"]</li>
+                <li>@Localizer["to support and train as many people as I can"]</li>
             </ul>
             <div class="clearfix mt-3 mb-3">
                 <a class="btn btn-secondary" target="_blank" href="https://yoopay.cn/pay/renewal365">@Localizer["DONATE NOW USING WECHAT OR ALIPAY"] <i class="arrow right-arrow"></i></a>

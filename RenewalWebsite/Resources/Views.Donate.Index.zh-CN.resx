@@ -177,26 +177,26 @@
   <data name="Every hot meal we serve at the Renewal Center relies on a supporter gift of 15 RMB. And your gift of 60 RMB could provide a meal, plus one day of accommodation on our incredibly effective job training program." xml:space="preserve">
     <value>我们在日新中心提供的每顿热腾腾的餐食都需要15元人民币的捐赠。若您捐赠60元，就可以为人们提供一顿热饭，外加参与一天卓有成效的就业培训项目及寄宿费用。</value>
   </data>
-  <data name="provide as much training as I can." xml:space="preserve">
-    <value>尽我所能地为人们提供就业培训的机会。</value>
+  <data name="to support and train as many people as I can" xml:space="preserve">
+    <value>尽我所能为人们提供支持和培训</value>
   </data>
   <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Give urgent support and job training" xml:space="preserve">
-    <value>为人们提供紧急援助和就业培训</value>
+  <data name="Beat the “summer slump” and help launch farm-based training!" xml:space="preserve">
+    <value>对抗“夏季的低迷“，支持农业项目的启动！</value>
   </data>
-  <data name="provides three days' job training for one person" xml:space="preserve">
-    <value>为一个人提供三天的就业培训</value>
+  <data name="gives a hot meal and support to 12 people" xml:space="preserve">
+    <value>为12个人提供热腾腾的食物和帮助</value>
   </data>
-  <data name="gives four days' job training for one person" xml:space="preserve">
-    <value>为一个人提供四天的就业培训</value>
+  <data name="offers food and frontline services to 21 people" xml:space="preserve">
+    <value>为21个人提供食物和卫生服务</value>
   </data>
-  <data name="provides a full week of job training" xml:space="preserve">
-    <value>为一个人提供一周的就业培训</value>
+  <data name="funds one week’s urban or farm-based training" xml:space="preserve">
+    <value>提供为期一周的城市或农业培训</value>
   </data>
-  <data name="offers 10 days' job training for one person" xml:space="preserve">
-    <value>为一个人提供十天的就业培训</value>
+  <data name="offers 10 days’ job training for one person" xml:space="preserve">
+    <value>为一个人提供10天的就业培训</value>
   </data>
   <data name="will give a Spring Festival celebration for two people" xml:space="preserve">
     <value>为两个人提供新年的礼物。</value>
@@ -204,10 +204,10 @@
   <data name="as a special gift will feed and clothes three people" xml:space="preserve">
     <value>为三个人送去特别的礼物、食物和衣物。</value>
   </data>
-  <data name="For trainees like these, Hanson and Jimmy are developing a rural program in Yunnan." xml:space="preserve">
-    <value>叶海生和Jimmy正在为学员们打造一个云南乡村项目</value>
+  <data name="Your donation gives people the training they need to find great jobs." xml:space="preserve">
+    <value>您的捐赠为人们提供培训，帮助他们找到理想的工作</value>
   </data>
-  <data name="It costs only 50 RMB to provide one day of residential training, which opens the door to great job opportunities." xml:space="preserve">
-    <value>仅需50元就能提供一天的住宿培训，帮助人们寻找到一份好工作。</value>
+  <data name="Giving drops in the summer. But we need your help! Renewal is working to launch farm-based training in Yunnan. Your support is crucial now." xml:space="preserve">
+    <value>夏季的捐赠收入锐减，我们需要您的帮助！目前日新中心正在云南启动一个农业培训项目。因此您此刻的支持至关重要！</value>
   </data>
 </root>
