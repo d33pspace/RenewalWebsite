@@ -180,20 +180,38 @@
   <data name="to support and train as many people as I can" xml:space="preserve">
     <value>尽我所能为人们提供支持和培训</value>
   </data>
-  <data name="to support and train as many people as I can " xml:space="preserve">
-    <value>尽我所能为人们提供支持和培训</value>
-  </data>
-  <data name="An amount of my choice to help as many people as I can." xml:space="preserve">
+  <data name="to help as many people as I can." xml:space="preserve">
     <value>尽我所能帮助尽量多的人。</value>
   </data>
-  <data name="Beat the “summer slump” and help launch farm-based training!" xml:space="preserve">
-    <value>对抗“夏季的低迷“，支持农业项目的启动！</value>
+    <data name="to help as many people as I can. " xml:space="preserve">
+    <value>尽我所能帮助尽量多的人。</value>
+  </data>
+  <data name="Homeless retired people need meals and support" xml:space="preserve">
+    <value>老无所依的人们需要食物和您的支持</value>
   </data>
   <data name="gives a hot meal and support to 12 people" xml:space="preserve">
-    <value>为12个人提供热腾腾的食物和帮助</value>
+    <value>为12个人提供热腾腾的食物、淋浴和衣物。</value>
   </data>
-  <data name="offers food and frontline services to 21 people" xml:space="preserve">
-    <value>为21个人提供食物和卫生服务</value>
+  <data name="to provide a hot meal, shower, and warm clothes for 21 people" xml:space="preserve">
+    <value>为21个人提供热腾腾的食物、淋浴和衣物。</value>
+  </data>
+  <data name="to provide a hot meal, shower, and warm clothes for 38 people" xml:space="preserve">
+    <value>为38个人提供热腾腾的食物、淋浴和衣物。</value>
+  </data>
+  <data name="to provide a hot meal, shower, and warm clothes for 45 people" xml:space="preserve">
+    <value>为45个人提供热腾腾的食物、淋浴和衣物。</value>
+  </data>
+    <data name="gives a hot meal and support to 12 people " xml:space="preserve">
+    <value>为12个人提供热腾腾的食物、淋浴和衣物。</value>
+  </data>
+  <data name="to provide a hot meal, shower, and warm clothes for 21 people " xml:space="preserve">
+    <value>为21个人提供热腾腾的食物、淋浴和衣物。</value>
+  </data>
+  <data name="to provide a hot meal, shower, and warm clothes for 38 people " xml:space="preserve">
+    <value>为38个人提供热腾腾的食物、淋浴和衣物。</value>
+  </data>
+  <data name="to provide a hot meal, shower, and warm clothes for 45 people " xml:space="preserve">
+    <value>为45个人提供热腾腾的食物、淋浴和衣物。</value>
   </data>
   <data name="funds one week’s urban or farm-based training" xml:space="preserve">
     <value>提供为期一周的城市或农业培训</value>
@@ -201,22 +219,16 @@
   <data name="offers 10 days’ job training for one person" xml:space="preserve">
     <value>为一个人提供10天的就业培训</value>
   </data>
-  <data name="gives a hot meal and support to 12 people " xml:space="preserve">
-    <value>为12个人提供热腾腾的食物和帮助</value>
-  </data>
-  <data name="offers food and frontline services to 21 people " xml:space="preserve">
-    <value>为21个人提供食物和卫生服务</value>
-  </data>
   <data name="funds one week’s urban or farm-based training " xml:space="preserve">
     <value>提供为期一周的城市或农业培训</value>
   </data>
   <data name="offers 10 days’ job training for one person " xml:space="preserve">
     <value>为一个人提供10天的就业培训</value>
   </data>
-  <data name="Your donation gives people the training they need to find great jobs." xml:space="preserve">
-    <value>您的捐赠为人们提供培训，帮助他们找到理想的工作</value>
+  <data name="Send a gift to help retired homeless people like Xie Lu’de" xml:space="preserve">
+    <value>请伸出援手，帮助谢路德这样老无所依的人们</value>
   </data>
-  <data name="Giving drops in the summer. But we need your help! Renewal is working to launch farm-based training in Yunnan. Your support is crucial now." xml:space="preserve">
-    <value>夏季的捐赠收入锐减，我们需要您的帮助！目前日新中心正在云南启动一个农业培训项目。因此您此刻的支持至关重要！</value>
+  <data name="Your gift will help keep crucial programs going! More homeless people – including retired women – are seeking help at the drop-in center at a time when giving declines." xml:space="preserve">
+    <value>您的捐赠能帮助我们至关重要的项目继续推进！收入下滑，可越来越多无家可归的人们——包括老无所依的人们——正在日新服务站寻求帮助。</value>
   </data>
 </root>
