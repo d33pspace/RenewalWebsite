@@ -117,11 +117,11 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Issue 20" xml:space="preserve">
-    <value>第20期</value>
+  <data name="Issue 21" xml:space="preserve">
+    <value>第21期</value>
   </data>
-  <data name="May 2023" xml:space="preserve">
-    <value>2023年春季刊</value>
+  <data name="September 2023" xml:space="preserve">
+    <value>2023年秋季刊</value>
   </data>
   <data name="How your gifts can transform lives in Shanghai" xml:space="preserve">
     <value>您的捐赠如何改变了人们在上海的生活</value>
