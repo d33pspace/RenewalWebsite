@@ -117,14 +117,14 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Issue 21" xml:space="preserve">
-    <value>第21期</value>
+  <data name="Issue 22" xml:space="preserve">
+    <value>第22期</value>
   </data>
-  <data name="September 2023" xml:space="preserve">
-    <value>2023年秋季刊</value>
+  <data name="Spring 2024" xml:space="preserve">
+    <value>2024年春季刊</value>
   </data>
-  <data name="How your gifts can transform lives in Shanghai" xml:space="preserve">
-    <value>您的捐赠如何改变了人们在上海的生活</value>
+  <data name="How your gifts are transforming lives in Shanghai" xml:space="preserve">
+    <value>您的捐赠如何改变人们在上海的生活</value>
   </data>
   <data name="Re:news" xml:space="preserve">
     <value>日新新闻</value>
@@ -132,50 +132,51 @@
   <data name="Give now" xml:space="preserve">
     <value>现在捐赠</value>
   </data>
-  <data name="Author profile" xml:space="preserve">
-    <value>作者简介</value>
+  <data name="I feel like I’m home." xml:space="preserve">
+    <value>我觉得自己仿佛回到了家</value>
   </data>
-  <data name="By Hanson Ye" xml:space="preserve">
-    <value>作者：叶海生，项目运营总监</value>
+  <data name="Our latest arrival at the Yunnan Career Hub is an old friend. Ma Long recently returned to the Renewal Center in Shanghai having lost his job as a security guard. His employers discovered that he couldn’t read or write, which is now a requirement almost everywhere you go. Along with his very poor eyesight, Ma Long faces huge obstacles in gaining long-term employment and stability." xml:space="preserve">
+    <value>最近有一位老朋友来到了我们的云南就业培训中心。原先在上海做保安的马龙由于不识字，被公司解雇了，因此又回到了日新。无论在哪儿，读写能力现在似乎都是一项必要的技能。而且马龙的视力也很差，这让他更加难以找到一份长期且稳定的工作。</value>
   </data>
-  <data name="By Jack Niu, Renewal Center Volunteer" xml:space="preserve">
-    <value>作者：日新中心志愿者钮嘉昆</value>
+  <data name="Bound to struggle from the day he was born, Ma Long lost his father when he was just a baby – and his mother, after giving birth at home, abandoned him. This is part of the reason he never learned to read or write or was even issued a hukou (national identity card)." xml:space="preserve">
+    <value>马龙的人生一直很艰难——母亲当年在家中生下了他后立刻就抛弃了他，父亲在他牙牙学语的阶段也撒手人寰。从某种程度上说，这些导致了他从未上过学也没有登记过户口。</value>
   </data>
-  <data name="Yang Wenyin is keeping the doors open and meals ready while the crowds pour in." xml:space="preserve">
-    <value>当人们涌入日新时，杨文寅负责打理这里并准备食物</value>
+  <data name="Now with contact lenses and literacy training, Ma Long can soon qualify for a more satisfying job." xml:space="preserve">
+    <value>有了隐形眼镜和扫盲培训，马龙很快就能获得一份更满意的工作。</value>
   </data>
-  <data name="A man of few words, Yang Wenyin often simply replies, “En” or “Uh-huh.” But then watch him go! We have never felt so confident leaving the drop-in center in someone else’s hands, even at a time when money is very tight." xml:space="preserve">
-    <value>杨文寅是个沉默寡言的人，他通常只会回复你“嗯”或者“哦”，然后默默地把事情安排妥当！我们从未如此放心地把日新交给其它人管理，尤其是在资金紧张的时候。</value>
+  <data name="But since reconnecting with Renewal, all that has changed. Not only does Ma Long now have a much-needed hukou thanks to support from friends like you, we’ve helped him get corrective lenses, and he’s finally in literacy training. He’s also learning to cook and regularly prepares full meals for our communal suppers." xml:space="preserve">
+    <value>不过再次来到日新中心后，马龙的生活也彻底改变了。在您的支持下，现在的他不仅有了梦寐以求的户口，还带上了矫正眼镜，参加了扫盲培训班，正在学习烹饪的他也会经常为我们准备晚餐。
+</value>
   </data>
-  <data name="Your gift of 350 RMB / US $55.12 provides a week’s accommodation and job training for one person." xml:space="preserve">
-    <value>您350元人民币的捐赠可以为一个人提供一周的寄宿培训。</value>
+  <data name="Ma Long works incredibly hard, but also needs longer-term support. That's why we’re glad your gifts are giving him a place where he can rebuild his life and see a brighter future!" xml:space="preserve">
+    <value>马龙正在发奋努力，但他需要长期的支持。因此，我们非常感激你的捐赠，是您为他提供了一个场所，让他能在这里重建他的人生并有机会拥有一个美好的未来！</value>
   </data>
-  <data name="Hanson Ye and Jimmy McWhinney" xml:space="preserve">
-    <value>叶海生和Jimmy McWhinney</value>
+  <data name="The same, but different ..." xml:space="preserve">
+    <value>一样的日新，不一样的关怀……</value>
   </data>
-  <data name="We are grateful for you. Every gift is crucial as we strive to keep the drop-in center open, and work to start agricultural training for people who won’t thrive in high-pressure city jobs." xml:space="preserve">
-    <value>我们非常感激您！此刻的每一份捐赠都至关重要，它可以帮助我们维持日新卫生服务站的运营，也可以帮助我们启动农业培训项目，为那些无法适应高强度的城市节奏的人们提供一个机会。</value>
+  <data name="Women are finding friendship, help and support" xml:space="preserve">
+    <value>女性在这里收获了友谊、帮助和支持</value>
   </data>
-  <data name="Just 120 RMB / US $18 gives hope, a hot meal and emergency help to 12 homeless people." xml:space="preserve">
-    <value>只需120元人民币，就能为 12 名无家可归的人们送去希望、一顿热腾腾的食物和紧急援助。</value>
+  <data name="By Vicky Wang Renewal’s head of women’s services." xml:space="preserve">
+    <value>由日新女性卫生保健服务主管王玮燕撰写</value>
   </data>
-  <data name="Forced to retire because of a stroke, Xie Lu’de and her husband now live on the streets and sleep every night in the train station. It’s the only place they feel safe and protected from the weather. They say it takes them an hour to reach the Renewal Center each week, but they drop in as often as they can." xml:space="preserve">
-    <value>因为中风而不得不提前退休的谢路德目前正和丈夫露宿街头。他们每晚都在火车站里度过，因为觉得那里比较安全，同时也可以暂时躲避寒冷和炎热的天气。他们说从火车站到日新中心需要一个钟头的路程，但他们总是会尽可能多地过来。</value>
+  <data name="Because Renewal can’t offer a separate space for women, we give them a separate day." xml:space="preserve">
+    <value>日新无法为女性提供一个独立的空间，因此我们选择为她们提供一个专属的日子</value>
   </data>
-  <data name="“There is always such a warm welcome,” says Xie Lu’de. “Friends at the Renewal Center can help you resolve the difficulties you face, and offer a place to shower, have something to eat and change into clean clothes.”" xml:space="preserve">
-    <value>“这里的人很热情，”谢路德说：“日新的朋友们可以帮助你解决困难，同时给你洗澡、吃饭和换衣服。”</value>
+  <data name="Chairman Mao once said, “Women hold up half the sky.” But a homeless woman in one of the world’s largest cities is bound to feel the sky is falling on her. While men find safety in numbers and often put on a brave face, women on the streets feel vulnerable and terrified. Constantly looking out for thieves and attackers can cause huge emotional strain." xml:space="preserve">
+    <value>毛主席曾经说过：“妇女能顶半边天。”但是在上海这样一个国际大都市，一个无家可归的女性往往会感觉她的天塌了。露宿街头的男性通常不觉得危险，还显得满不在乎，女性却觉得自己弱小无助。她们一直小心提防着小偷与暴力分子，精神长期处在巨大的压力之下。</value>
   </data>
-  <data name="The sad plight of the homeless retired" xml:space="preserve">
-    <value>老无所依的困境</value>
+  <data name="All this means that the women who visit Renewal’s drop-in center during the hours set aside for them every Thursday need to see a woman greeting them. They also come hoping for a little more privacy, greater security, a listening ear and just a bit more time – even if they only need a few more minutes to pick out a clean new shirt or coat." xml:space="preserve">
+    <value>由于这些原因，每周四当她们来到日新中心时，总是期待能由女性来接待她们。她们渴望拥有一些私密、安全的空间和一个愿意倾听的人。她们也希望可以在中心里待得久一些，尽管拿衣服换衣服只需要几分钟而已。</value>
   </data>
-  <data name="Married couple sleep in a train station but are finding hope here" xml:space="preserve">
-    <value>一对睡在火车站里的夫妇来日新寻找希望</value>
+  <data name="I feel glad – even privileged – to “hold up half the sky” for these women who feel beaten down. The suffering they’ve already endured inspires me to make sure each one gets the care and attention she needs. I might be meeting strangers and newcomers, but this place feels like home – so many people come here to give and receive love." xml:space="preserve">
+    <value>我很高兴——甚至很荣幸——可以为崩溃的她们“顶起半边天”。她们已经承受了太多，所以我会尽力确保她们每一个人都能得到所需的关怀与关注。她们中不乏陌生人和第一次来中心的人，但我们这里就像家一样，所以人们总可以在这儿收获和给与爱。</value>
   </data>
-  <data name="Weary but thankful, Xie Lu’de was overjoyed to receive clean, new clothes." xml:space="preserve">
-    <value>即便疲惫不堪，谢路德收到干净、崭新的衣物时仍然非常开心，并充满了感激。</value>
+  <data name="Most women only need a hot meal, a shower, or a new item or two of clothing to replace ones that are old and worn out. But as you may have heard, one woman gave birth here. Where would that mother and baby be today without the caring support another only a woman can give? " xml:space="preserve">
+    <value>大多数女性来这儿只是为了吃顿饭、洗个澡，或者拿一两件换洗的衣物，去替换掉身上已经穿旧穿破的。但您或许也听说过，曾经有一位女性在这里生下了宝宝。如果日新没有女性员工去关怀支持她们的话，今天的她们又将何去何从呢？</value>
   </data>
-  <data name="I have a job and don’t have to wonder where my next meal is coming from." xml:space="preserve">
-    <value>我现在有一份工作，再也不需要为下一顿吃什么而苦苦发愁。</value>
+  <data name="Although lots has changed since I started helping at the Renewal Center nearly 15 years ago, I still really enjoy being a sister to the men who come here for help. It’s also amazing to share the load with Jimmy, Hanson and the team of guys who work tirelessly to make sure your support changes women’s lives!" xml:space="preserve">
+    <value>我在日新帮忙已经十五年了。尽管在这期间很多东西都已经改变，但我仍然非常乐意像一个姐妹一样去支持那些前来寻求帮助的人们。能与Jimmy、海生和其他辛勤工作的团队成员分忧解难、确保您的捐赠实实在在地改变了女性们的生活，也是我莫大的荣幸。</value>
   </data>
   <data name="Their only son was recently married, but despite having a tiny income, Xie Lu’de and her husband can’t afford a place to live because rents have drastically increased since the COVID-19 lockdown finally came to an end. They are also still repaying a loan they took out when all their investments were lost." xml:space="preserve">
     <value>他们唯一的儿子最近刚刚结婚。尽管有着微薄的退休金，谢路德和丈夫却无法找到一个居住的地方，因为疫情结束后的租房价格一路飙升。同时，他们还需要定期归还投资失败所欠下的贷款。</value>
@@ -186,8 +187,8 @@
   <data name="Our Spring Festival meal includes traditional dumplings, or jiaozi, all handmade by volunteers." xml:space="preserve">
     <value>我们的春节餐包括由志愿者们亲手包的饺子。</value>
   </data>
-  <data name="'Superhero' graduate keeps center open at crucial time" xml:space="preserve">
-    <value>关键时刻，我们的超能学员将中心打理得井井有条</value>
+  <data name="Ma Long first visited the new drop-in center back in 2008" xml:space="preserve">
+    <value>马龙第一次来到服务站还是在2008年</value>
   </data>
   <data name="My gift for meals and training" xml:space="preserve">
     <value>我愿为提供温暖的饭菜和培训而捐款</value>
@@ -234,8 +235,8 @@
   <data name="One thing you should know is how glad I am that friends like you give generously. It’s vitally important to have ongoing support, but you are helping to meet our needs as they arise. I was especially grateful to see that donations toward our recent Spring Festival were on a similar level to the response for our matching grant appeal back in October." xml:space="preserve">
     <value>希望您能明白，有您这样的朋友慷慨解囊，我们感到多么地高兴。能获得持续的帮助对我们来说至关重要，而您的支持恰恰满足了我们的需要。我们发现，春节期间我们收到的捐款数额与去年十月份配捐活动期间收到的数额不相上下，对此我们充满感激。</value>
   </data>
-  <data name="Growing in confidence" xml:space="preserve">
-    <value>自信地成长</value>
+  <data name="Homecoming for a longtime friend" xml:space="preserve">
+    <value>老朋友回来了</value>
   </data>
   <data name="Your help has never been so important" xml:space="preserve">
     <value>您此时的帮助对我们而言更加重要</value>
